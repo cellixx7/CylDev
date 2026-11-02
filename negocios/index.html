@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="claro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marcelo Vaz | Planilhas, painéis e páginas para o seu negócio</title>
+    <meta name="description" content="Organizo a planilha do seu negócio e monto o painel com os seus números. Preços fechados, pagamento por Pix." />
+    <meta name="theme-color" content="#f5f4ef" />
+    <link rel="icon" href="/favicon-negocios.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Marcelo Vaz | Planilhas, painéis e páginas para o seu negócio" />
+    <meta property="og:description" content="Organizo a planilha do seu negócio e monto o painel com os seus números. Preços fechados, pagamento por Pix." />
+    <meta property="og:url" content="__URL__/negocios/" />
+    <meta property="og:image" content="__URL__/og-negocios-v1.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      try {
+        var t = localStorage.getItem("tema-negocios");
+        if (t === "claro" || t === "escuro") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <div id="raiz"></div>
+    <!-- Gêmeo estático do formulário de contato, para a Netlify detectar no build. -->
+    <form name="contato" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contato" />
+      <input name="bot-field" /><input name="origem" /><input name="nome" /><input name="contato" /><textarea name="mensagem"></textarea>
+    </form>
+    <script type="module" src="/src/pages/negocios/main.tsx"></script>
+  </body>
+</html>

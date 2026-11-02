@@ -1,0 +1,47 @@
+/* Tokens da identidade. Trocar a identidade visual = mexer só aqui (e nos CSS de área). */
+:root {
+  --fonte-titulo: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --fonte-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fonte-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 0.75rem;
+  --espaco-4: 1rem;
+  --espaco-5: 1.5rem;
+  --espaco-6: 2.25rem;
+  --espaco-7: 3.5rem;
+  --espaco-8: 5rem;
+
+  --raio-pequeno: 3px;
+  --raio: 6px;
+  --largura-max: 68rem;
+  --alvo-toque: 44px;
+}
+
+:root,
+[data-theme="claro"] {
+  --cor-fundo: #f5f4ef;
+  --cor-superficie: #ffffff;
+  --cor-texto: #1b1b18;
+  --cor-texto-suave: #55544d;
+  --cor-linha: #d6d4ca;
+  --cor-destaque: #1d4b3c;
+  --cor-destaque-texto: #f5f4ef;
+  --cor-realce: #efe6c8;
+  --cor-foco: #b4530f;
+  color-scheme: light;
+}
+
+[data-theme="escuro"] {
+  --cor-fundo: #16161a;
+  --cor-superficie: #1f1f25;
+  --cor-texto: #ecebe6;
+  --cor-texto-suave: #aeada6;
+  --cor-linha: #383840;
+  --cor-destaque: #9fd4bd;
+  --cor-destaque-texto: #10231b;
+  --cor-realce: #2c2a20;
+  --cor-foco: #ffb26b;
+  color-scheme: dark;
+}

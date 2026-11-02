@@ -1,0 +1,174 @@
+/* Seções compartilhadas pelas áreas Negócios e Comunidade. */
+
+.apresentacao {
+  padding-top: var(--espaco-7);
+  padding-bottom: var(--espaco-8);
+}
+
+.apresentacao__titulo {
+  font-size: clamp(2rem, 7.5vw, 3.6rem);
+  letter-spacing: -0.01em;
+  max-width: 20ch;
+}
+
+.apresentacao__texto {
+  color: var(--cor-texto-suave);
+  font-size: 1.1rem;
+}
+
+.apresentacao__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espaco-3) var(--espaco-5);
+  margin-top: var(--espaco-5);
+}
+
+.apresentacao__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--alvo-toque);
+  font-weight: 600;
+}
+
+@media (min-width: 56rem) {
+  .apresentacao {
+    display: grid;
+    grid-template-columns: 7fr 4fr;
+    gap: var(--espaco-7);
+    align-items: end;
+    padding-top: var(--espaco-8);
+  }
+
+  .apresentacao__lado {
+    padding-bottom: var(--espaco-2);
+  }
+}
+
+.entregas__intro {
+  color: var(--cor-texto-suave);
+}
+
+.piloto {
+  display: inline-block;
+  margin: var(--espaco-2) 0 var(--espaco-5);
+  padding: var(--espaco-2) var(--espaco-3);
+  background: var(--cor-realce);
+  border-left: 3px solid var(--cor-destaque);
+  font-weight: 600;
+}
+
+/* Catálogo: lista com linhas, não grade de cartões. */
+.catalogo {
+  list-style: none;
+  margin: var(--espaco-5) 0 0;
+  padding: 0;
+  border-top: 2px solid var(--cor-texto);
+}
+
+.catalogo__item {
+  padding: var(--espaco-5) 0;
+  border-bottom: 1px solid var(--cor-linha);
+}
+
+.catalogo__cabeca {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--espaco-1) var(--espaco-4);
+}
+
+.catalogo__nome {
+  font-size: 1.35rem;
+  margin: 0;
+}
+
+.catalogo__preco {
+  margin: 0;
+  font-family: var(--fonte-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.catalogo__item--aula .catalogo__preco,
+.catalogo__item--aPartirDe .catalogo__preco {
+  white-space: normal;
+}
+
+.catalogo__resultado {
+  margin: var(--espaco-2) 0 var(--espaco-3);
+}
+
+.catalogo__detalhes {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--espaco-1) var(--espaco-3);
+  margin: 0 0 var(--espaco-3);
+  font-size: 0.95rem;
+  color: var(--cor-texto-suave);
+}
+
+.catalogo__detalhes dt {
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.catalogo__detalhes dd {
+  margin: 0;
+}
+
+.catalogo__pedir {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--alvo-toque);
+  font-weight: 600;
+  color: var(--cor-destaque);
+}
+
+[data-theme="claro"] .catalogo__pedir {
+  color: var(--cor-destaque);
+}
+
+.catalogo__item--sobConsulta {
+  border-bottom: 0;
+  margin-top: var(--espaco-3);
+  padding: var(--espaco-4);
+  background: var(--cor-realce);
+}
+
+@media (min-width: 56rem) {
+  .catalogo__item:not(.catalogo__item--sobConsulta) {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    column-gap: var(--espaco-6);
+  }
+
+  .catalogo__cabeca {
+    grid-column: 1 / -1;
+  }
+
+  .catalogo__resultado {
+    grid-column: 1;
+  }
+
+  .catalogo__detalhes {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    margin-top: var(--espaco-2);
+  }
+
+  .catalogo__pedir {
+    grid-column: 1;
+  }
+}
+
+.contato {
+  padding-bottom: var(--espaco-8);
+}
+
+.catalogo__inclui {
+  margin: 0;
+  padding-left: 1.1em;
+}

@@ -1,0 +1,99 @@
+.home {
+  max-width: var(--largura-max);
+  margin-inline: auto;
+  padding: var(--espaco-6) var(--espaco-4) var(--espaco-8);
+}
+
+.home__titulo {
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  max-width: 24ch;
+  margin-bottom: var(--espaco-6);
+}
+
+.home__portas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--espaco-4);
+}
+
+.porta__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  min-height: 11rem;
+  padding: var(--espaco-5);
+  text-decoration: none;
+  border: 1px solid var(--cor-texto);
+  border-radius: var(--raio);
+}
+
+.porta__rotulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.5rem, 6vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.15;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.porta__guia {
+  max-width: 40ch;
+}
+
+.porta__assinatura {
+  margin-top: auto;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cor-texto-suave);
+}
+
+.porta--negocios .porta__link {
+  background: var(--cor-destaque);
+  border-color: var(--cor-destaque);
+  color: var(--cor-destaque-texto);
+}
+
+.porta--negocios .porta__assinatura {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.porta--comunidade .porta__link {
+  background: #17141f;
+  border-color: #17141f;
+  color: #ecebe6;
+}
+
+.porta--comunidade .porta__assinatura {
+  color: #c9b8ff;
+  font-family: var(--fonte-mono);
+}
+
+.porta__link:hover .porta__rotulo {
+  text-decoration-thickness: 4px;
+}
+
+@media (min-width: 48rem) {
+  .home__portas {
+    grid-template-columns: 3fr 2fr;
+    align-items: stretch;
+  }
+
+  .porta--negocios .porta__link {
+    min-height: 20rem;
+  }
+
+  .porta--comunidade {
+    align-self: end;
+  }
+}
+
+.aviso {
+  max-width: var(--largura-max);
+  margin-inline: auto;
+  padding: var(--espaco-8) var(--espaco-4);
+}
