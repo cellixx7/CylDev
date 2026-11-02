@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>V0 · Comunidade B · Cartaz</title>
+<style>
+  /* Direção B: cartaz. Tipo condensado grande, azul-noite, verde-limão como marca-texto. */
+  :root {
+    --fundo: #10131c;
+    --fundo-2: #181d2a;
+    --texto: #eef0f5;
+    --suave: #9aa2b5;
+    --limao: #c6f03c;
+    --linha: #272d3d;
+    --cond: "Bahnschrift SemiBold Condensed", "Bahnschrift Condensed", Impact, "Arial Narrow", sans-serif;
+    --corpo: "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fundo); color: var(--texto); font: 17px/1.6 var(--corpo); }
+  a { color: var(--limao); }
+  .topo { display: flex; justify-content: space-between; align-items: center; padding: 18px 5vw; }
+  .topo strong { font: 1.5rem var(--cond); letter-spacing: .04em; }
+  .topo a { color: var(--texto); font-weight: 600; }
+  .abertura { padding: 8vh 5vw 6vh; }
+  h1 { font: clamp(3.4rem, 10vw, 8.5rem)/.9 var(--cond); text-transform: uppercase; margin: 0; letter-spacing: -.01em; }
+  h1 mark { background: var(--limao); color: var(--fundo); padding: 0 .12em; }
+  .abertura .lado { display: flex; justify-content: flex-end; margin-top: 36px; }
+  .abertura .lado div { max-width: 30rem; }
+  .abertura p { margin: 0 0 18px; color: var(--suave); }
+  .botao { display: inline-block; padding: 13px 22px; background: var(--limao); color: var(--fundo); font-weight: 700; text-decoration: none; }
+  .projetos { display: grid; grid-template-columns: 3fr 2fr; margin: 6vh 5vw; border-top: 2px solid var(--texto); }
+  .projetos article { padding: 32px 32px 40px 0; }
+  .projetos article + article { padding-left: 32px; border-left: 1px solid var(--linha); color: var(--suave); }
+  .projetos h2 { font: 3rem/1 var(--cond); text-transform: uppercase; margin: 0 0 14px; color: var(--texto); }
+  .selo { font: .8rem var(--corpo); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--limao); }
+  .bots { background: var(--fundo-2); padding: 56px 5vw 64px; }
+  .bots h2 { font: 2.6rem/1 var(--cond); text-transform: uppercase; margin: 0 0 10px; }
+  .bots .piloto { color: var(--limao); font-weight: 600; margin: 0 0 28px; }
+  .precos { display: flex; gap: 56px; flex-wrap: wrap; }
+  .preco { min-width: 260px; }
+  .preco .valor { font: 4.4rem/1 var(--cond); }
+  .preco .valor small { font-size: 1.4rem; color: var(--suave); }
+  .preco h3 { margin: 8px 0 4px; font-size: 1.1rem; }
+  .preco p { margin: 0; color: var(--suave); max-width: 22rem; }
+  .bots .mensal { margin: 36px 0 0; max-width: 46rem; color: var(--suave); border-top: 1px solid var(--linha); padding-top: 18px; }
+  .rodape { padding: 24px 5vw 60px; font-size: .8rem; color: var(--suave); }
+  .rotulo { position: fixed; right: 12px; bottom: 12px; background: var(--limao); color: var(--fundo); font: 12px Consolas, monospace; padding: 6px 10px; }
+  @media (max-width: 760px) { .projetos { grid-template-columns: 1fr; } .projetos article + article { padding-left: 0; border-left: 0; border-top: 1px solid var(--linha); } }
+</style>
+</head>
+<body>
+<header class="topo"><strong>CYLDEV</strong><a href="#">Falar sobre um bot</a></header>
+
+<section class="abertura">
+  <h1>Eu faço bots e <mark>ferramentas</mark> para quem joga.</h1>
+  <div class="lado"><div>
+    <p>Aqui ficam os projetos que eu faço para Discord e para jogos. Se você cuida de um servidor e quer um bot do seu jeito, dá para conversar.</p>
+    <a class="botao" href="#">Falar sobre um bot</a>
+  </div></div>
+</section>
+
+<section class="projetos">
+  <article>
+    <h2>CylBot</h2>
+    <p>Bot de Discord com central de tickets, anúncios por servidor, IA opcional e painel web.</p>
+    <a href="#">Ver o código no GitHub</a>
+  </article>
+  <article>
+    <span class="selo">Em desenvolvimento</span>
+    <h2>CylSense</h2>
+    <p>Análise de desempenho para quem joga VALORANT. Toda métrica vai mostrar o tamanho da amostra, e o que for hipótese vai aparecer como hipótese.</p>
+  </article>
+</section>
+
+<section class="bots">
+  <h2>Bot sob medida para o seu servidor</h2>
+  <p class="piloto">As 5 primeiras vagas têm 10% de desconto na criação.</p>
+  <div class="precos">
+    <div class="preco"><span class="valor">R$ 300</span><h3>Bot de Discord essencial</h3><p>Tickets, boas-vindas e moderação básica.</p></div>
+    <div class="preco"><span class="valor"><small>a partir de </small>R$ 500</span><h3>Bot com IA e painel web</h3><p>O uso da IA é cobrado pelo provedor, na sua conta.</p></div>
+  </div>
+  <p class="mensal">Mensalidade: 10% do preço de criação por mês, mais a hospedagem. Cobre hospedagem, monitoramento e correção de erros.</p>
+</section>
+
+<footer class="rodape">CYL Sense não é afiliado à Riot Games.</footer>
+<div class="rotulo">V0 · Comunidade · Direção B: cartaz</div>
+</body>
+</html>

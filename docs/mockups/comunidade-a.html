@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>V0 · Comunidade A · Registro</title>
+<style>
+  /* Direção A: registro. Grafite, âmbar, monoespaçada; projetos como entradas de um log. */
+  :root {
+    --fundo: #141414;
+    --fundo-2: #1c1c1b;
+    --texto: #e8e4da;
+    --suave: #9a958a;
+    --ambar: #e3a43a;
+    --linha: #2f2e2b;
+    --mono: "Cascadia Mono", Consolas, monospace;
+    --corpo: "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fundo); color: var(--texto); font: 17px/1.6 var(--corpo); }
+  a { color: var(--ambar); }
+  .topo { display: flex; justify-content: space-between; padding: 18px 6vw; font-family: var(--mono); border-bottom: 1px solid var(--linha); }
+  .topo nav a { margin-left: 20px; color: var(--suave); text-decoration: none; }
+  .abertura { padding: 12vh 6vw 10vh; max-width: 1100px; }
+  .abertura .marca { font: 600 .9rem var(--mono); color: var(--ambar); margin: 0 0 18px; }
+  h1 { font: 700 clamp(2.2rem, 5vw, 4rem)/1.1 var(--mono); margin: 0 0 24px; letter-spacing: -.03em; }
+  .abertura p { color: var(--suave); max-width: 40rem; }
+  .botao { display: inline-block; margin-top: 12px; padding: 12px 18px; border: 1px solid var(--ambar); color: var(--ambar); font: 600 .95rem var(--mono); text-decoration: none; }
+  .log { margin: 0 6vw; border-top: 1px solid var(--linha); }
+  .entrada { display: grid; grid-template-columns: 180px 1fr; gap: 4vw; padding: 44px 0; border-bottom: 1px solid var(--linha); }
+  .entrada .meta { font: .85rem var(--mono); color: var(--suave); }
+  .entrada .meta b { display: block; color: var(--texto); font-size: 1.3rem; margin-bottom: 6px; }
+  .estado { display: inline-block; padding: 1px 8px; border: 1px solid var(--suave); font-size: .75rem; }
+  .estado--ativo { border-color: var(--ambar); color: var(--ambar); }
+  .entrada p { margin: 0 0 14px; max-width: 42rem; }
+  .bots { margin: 72px 6vw; }
+  .bots h2 { font: 700 1.8rem var(--mono); margin: 0 0 6px; }
+  .bots .piloto { font: .9rem var(--mono); color: var(--ambar); }
+  .linha { display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; padding: 22px 0; border-top: 1px dashed var(--linha); }
+  .linha h3 { margin: 0; font: 700 1.15rem var(--mono); }
+  .linha .preco { font: 700 1.15rem var(--mono); color: var(--ambar); }
+  .linha p { grid-column: 1 / -1; margin: 0; color: var(--suave); }
+  .mensal { margin-top: 18px; padding: 16px 18px; background: var(--fundo-2); border-left: 2px solid var(--ambar); color: var(--suave); font-size: .95rem; }
+  .rodape { margin: 0 6vw; padding: 24px 0 60px; border-top: 1px solid var(--linha); font: .8rem var(--mono); color: var(--suave); }
+  .rotulo { position: fixed; right: 12px; bottom: 12px; background: var(--ambar); color: #141414; font: 12px var(--mono); padding: 6px 10px; }
+  @media (max-width: 760px) { .entrada { grid-template-columns: 1fr; } .topo nav { display: none; } }
+</style>
+</head>
+<body>
+<header class="topo"><span>cyldev</span><nav><a href="#">cylbot</a><a href="#">cylsense</a><a href="#">bots</a><a href="#">contato</a></nav></header>
+
+<section class="abertura">
+  <p class="marca">CylDev</p>
+  <h1>Eu faço bots e ferramentas para quem joga.</h1>
+  <p>Aqui ficam os projetos que eu faço para Discord e para jogos. Se você cuida de um servidor e quer um bot do seu jeito, dá para conversar.</p>
+  <a class="botao" href="#">Falar sobre um bot</a>
+</section>
+
+<section class="log">
+  <article class="entrada">
+    <div class="meta"><b>CylBot</b><span class="estado estado--ativo">código aberto</span></div>
+    <div>
+      <p>Bot de Discord com central de tickets, anúncios por servidor, IA opcional e painel web.</p>
+      <a href="#">Ver o código no GitHub</a>
+    </div>
+  </article>
+  <article class="entrada">
+    <div class="meta"><b>CylSense</b><span class="estado">em desenvolvimento</span></div>
+    <div>
+      <p>Uma ferramenta de análise de desempenho para quem joga VALORANT. Ainda não está aberta ao público. Quando sair, toda métrica vai mostrar o tamanho da amostra, e o que for hipótese vai aparecer como hipótese.</p>
+    </div>
+  </article>
+</section>
+
+<section class="bots">
+  <h2>Bot sob medida para o seu servidor</h2>
+  <p class="piloto">5 vagas com 10% de desconto na criação.</p>
+  <div class="linha"><h3>Bot de Discord essencial</h3><span class="preco">R$ 300</span><p>Tickets, mensagem de boas-vindas e moderação básica. Mensalidade de R$ 30, mais a hospedagem.</p></div>
+  <div class="linha"><h3>Bot com IA e painel web</h3><span class="preco">a partir de R$ 500</span><p>Responde com IA e tem um painel no navegador. O uso da IA é cobrado pelo provedor, na sua conta.</p></div>
+  <p class="mensal">O bot precisa ficar ligado o tempo todo. A mensalidade cobre hospedagem, monitoramento e correção de erros.</p>
+</section>
+
+<footer class="rodape">CYL Sense não é afiliado à Riot Games.</footer>
+<div class="rotulo">V0 · Comunidade · Direção A: registro</div>
+</body>
+</html>
