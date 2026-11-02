@@ -1,5 +1,7 @@
 import type { Preco, Servico } from "../../content/servicos";
+import { catalogo as t } from "../../content/textos";
 import { brl } from "../lib/formato";
+import { mensalidadeDe } from "../lib/orcamento";
 import { formatarPrazo, prazoEmDias } from "../lib/prazo";
 import { linkContato } from "../lib/whatsapp";
 
@@ -7,8 +9,6 @@ type Props = {
   servicos: Servico[];
   origem: string;
   textoPedir: string;
-  textoInclui: string;
-  textoPrazo: string;
 };
 
 export function textoPreco(preco: Preco): string {
@@ -29,11 +29,17 @@ export function textoPrazo(s: Servico): string | null {
   return s.prazoTexto ?? null;
 }
 
-export function Catalogo({ servicos, origem, textoPedir, textoInclui, textoPrazo: rotuloPrazo }: Props) {
+export function textoMensalidade(s: Servico): string | null {
+  if (!s.mensalidade || (s.preco.tipo !== "fixo" && s.preco.tipo !== "aPartirDe")) return null;
+  return t.valorMensalidade(brl(mensalidadeDe(s.preco.valor)), s.preco.tipo === "aPartirDe");
+}
+
+export function Catalogo({ servicos, origem, textoPedir }: Props) {
   return (
     <ol className="catalogo">
       {servicos.map((s) => {
         const prazo = textoPrazo(s);
+        const mensalidade = textoMensalidade(s);
         const mensagem = `Quero um orçamento de: ${s.nome} (${textoPreco(s.preco)}).`;
         return (
           <li key={s.id} className={`catalogo__item catalogo__item--${s.preco.tipo}`}>
@@ -43,7 +49,7 @@ export function Catalogo({ servicos, origem, textoPedir, textoInclui, textoPrazo
             </div>
             <p className="catalogo__resultado">{s.resultado}</p>
             <dl className="catalogo__detalhes">
-              <dt>{textoInclui}</dt>
+              <dt>{t.inclui}</dt>
               <dd>
                 <ul className="catalogo__inclui">
                   {s.inclui.map((i) => (
@@ -53,11 +59,18 @@ export function Catalogo({ servicos, origem, textoPedir, textoInclui, textoPrazo
               </dd>
               {prazo && (
                 <>
-                  <dt>{rotuloPrazo}</dt>
+                  <dt>{t.prazo}</dt>
                   <dd>{prazo}</dd>
                 </>
               )}
+              {mensalidade && (
+                <>
+                  <dt>{t.mensalidade}</dt>
+                  <dd>{mensalidade}</dd>
+                </>
+              )}
             </dl>
+            {s.nota && <p className="catalogo__nota">{s.nota}</p>}
             <a
               className="catalogo__pedir"
               href={linkContato(`${origem}-${s.id}`, mensagem)}

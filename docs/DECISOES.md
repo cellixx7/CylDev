@@ -6,18 +6,30 @@
 - **Páginas:** `index.html`, `negocios/`, `comunidade/`, `obrigado/`, `404.html`, declaradas em `vite.config.ts`.
 - **Open Graph:** o build troca `__URL__` nos HTML pela variável `URL` da Netlify (ou `site.urlPadrao`). Imagens em `public/og-*-v1.png`; ao trocar a imagem, mude o sufixo (`-v2`) por causa do cache do WhatsApp.
 - **Tema:** `data-theme` no `<html>`, um script inline aplica a escolha salva antes da pintura. Chave por área (`tema-negocios`, `tema-comunidade`, `tema-home`), leitura e escrita em `try/catch`.
-- **Formulário:** Netlify Forms. A versão React posta para `/obrigado/`; um gêmeo estático escondido em `negocios/index.html` existe para a Netlify detectar o formulário no deploy.
+- **Formulário:** ver V1.1 (EmailJS).
 - **Fontes:** a V1 usa pilhas de fontes do sistema (serifada nos títulos, sans no texto, mono nos preços). As fontes definitivas entram com a identidade visual (V4), carregadas localmente com `font-display: swap`.
 - **Catálogo por área:** pacotes de Discord aparecem em `/comunidade/`; os demais em `/negocios/`. Campo `area` em `servicos.ts`.
-- **Prazo calculado:** `ceil(horas / horasPorDiaUtil) + diasDeRevisao`. Pela fórmula, a "Planilha organizada" (2,5 h) dá **3 dias úteis**, não os 2 da tabela do briefing. Confirmar com o Marcelo: mudar as horas para 2 ou aceitar 3 dias.
+- **Prazo calculado:** `ceil(horas / horasPorDiaUtil) + diasDeRevisao`.
 - **Demos:** ficam para a V2 (sem demo, não há dado fictício exposto na V1).
+
+## V1.1 (02/11/2026): mudanças de escopo
+
+- **Formulário por EmailJS** (`src/shared/lib/emailjs.ts`, API REST via `fetch`, sem dependência). `serviceId`, `templateId` e `publicKey` ficam em `site.emailjs` (são públicos); nenhuma chave privada no repositório. Proteção: campo isca + tempo mínimo de 3 s (spam finge sucesso) + limites de tamanho. No painel do EmailJS, restringir as origens permitidas ao domínio do site. Se o envio falhar (ou faltar configuração), o formulário mostra WhatsApp e e-mail. O template do EmailJS deve usar: `nome`, `preferencia`, `contato`, `assunto`, `mensagem`, `origem`.
+- **Netlify Forms removido** (gêmeo estático apagado de `negocios/index.html`).
+- **Descontos de piloto:** `vagasPiloto10` e `vagasPiloto5` em `src/content/orcamento.ts`; o aviso aparece em Negócios e Comunidade e some com os dois em 0. Desconto só sobre a criação.
+- **Mensalidade dos bots:** 10% do preço de criação por mês + hospedagem (`mensalidadeBots`); funcionalidade nova a R$ 50/h. Landing, painel e planilha sem mensalidade; ajustes a R$ 50/h.
+- **Calculadora (V2):** `estimar()` em `src/shared/lib/orcamento.ts` multiplica horas e preço pela complexidade (`complexidades`).
+- **Preços e horas:** planilha R$ 100 / 2 h (prazo 2 dias úteis), painel R$ 200 / 4 h, landing R$ 300 / 5 h, bot essencial R$ 300, automação a partir de R$ 300, bot com IA a partir de R$ 500.
+- **Textos:** COPY v2 aplicada (`docs/COPY.md`). Uniser visível só com texto. Promessas de "vídeo curto" e "teste com os seus arquivos" removidas.
 
 ## Pendências do Marcelo
 
 - [ ] Conferir o termo de estágio com o supervisor **antes do merge na main** (`mostrarMinisterio: true` em `src/content/site.ts`).
-- [ ] Uniser segue oculto (`mostrarUniser: false`).
-- [ ] Confirmar preços e horas em `src/content/servicos.ts` e `src/content/orcamento.ts`.
+- [ ] Preencher `site.emailjs` (serviceId, templateId, publicKey) **antes do merge** e criar o template com os campos acima.
+- [ ] Horas base de automação, bot essencial e bot com IA (hoje provisórias: 6 h, 4 h, 8 h).
+- [ ] Fator da complexidade média (proposta: 1,5).
+- [ ] Desconto do plano de 6 meses dos bots (`mensalidadeBots.descontoPlanoAdiantado`).
+- [ ] Confirmar que o desconto de piloto vale só sobre a criação.
 - [ ] Escolher o nome do site na Netlify e atualizar `site.urlPadrao`.
-- [ ] Revisar `docs/COPY.md`.
 - [ ] Foto (opcional): colocar em `public/` e apontar `site.foto`.
-- [ ] Vídeo do CylBot e link do repositório (`site.repositorioCylBot`).
+- [ ] Vídeo do CylBot (talvez Uniser e CylSense). Nenhum vídeo para a planilha.

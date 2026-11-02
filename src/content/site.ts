@@ -9,15 +9,24 @@ export const site = {
   // Endereço público usado no Open Graph quando a Netlify não injeta `URL` no build.
   urlPadrao: "https://cyldev.netlify.app",
 
-  // Conferir o termo de estágio com o supervisor antes de publicar.
+  // Texto liberado; sem merge na main até o supervisor confirmar.
   mostrarMinisterio: true,
-  // Oculto até o supervisor responder.
-  mostrarUniser: false,
+  // Texto liberado. Imagens do Uniser só com aprovação do supervisor.
+  mostrarUniser: true,
 
   // Caminho em /public. Sem foto, o site usa o avatar de iniciais.
   foto: null as string | null,
 
-  repositorioCylBot: null as string | null,
+  repositorioCylBot: "https://github.com/cellixx7/CylBot" as string | null,
+
+  // EmailJS (envio do formulário). Esses três valores são públicos por natureza:
+  // ficam no código do navegador. Nenhuma chave privada entra no repositório.
+  // Enquanto algum estiver vazio, o formulário mostra WhatsApp e e-mail no lugar do envio.
+  emailjs: {
+    serviceId: "",
+    templateId: "",
+    publicKey: "",
+  },
 };
 
 export type Area = "negocios" | "comunidade" | "home";

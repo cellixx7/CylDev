@@ -4,14 +4,18 @@ import "../../styles/base.css";
 import "../../styles/negocios.css";
 import { site } from "../../content/site";
 import { servicosDa } from "../../content/servicos";
-import { negocios as t } from "../../content/textos";
-import { vagasPiloto, vagasPilotoTotal } from "../../content/orcamento";
+import { negocios as t, piloto, pilotoNota } from "../../content/textos";
+import { parametros } from "../../content/orcamento";
 import { Avatar } from "../../shared/components/Avatar";
 import { Cabecalho } from "../../shared/components/Cabecalho";
 import { Catalogo } from "../../shared/components/Catalogo";
 import { Contatos } from "../../shared/components/Contatos";
 import { Rodape } from "../../shared/components/Rodape";
+import { brl } from "../../shared/lib/formato";
+import { descontoPilotoAtual } from "../../shared/lib/orcamento";
 import { linkContato } from "../../shared/lib/whatsapp";
+
+const desconto = descontoPilotoAtual();
 
 function Negocios() {
   return (
@@ -36,14 +40,18 @@ function Negocios() {
         <section className="entregas" id="entregas" aria-labelledby="entregas-titulo">
           <h2 id="entregas-titulo">{t.entregas.titulo}</h2>
           <p className="entregas__intro">{t.entregas.intro}</p>
-          {vagasPiloto > 0 && <p className="piloto">{t.piloto(vagasPiloto, vagasPilotoTotal)}</p>}
+          {desconto && (
+            <p className="piloto">
+              {piloto(desconto.restam, desconto.percentual, desconto.percentual === 10)}
+              <span className="piloto__nota">{pilotoNota}</span>
+            </p>
+          )}
           <Catalogo
             servicos={servicosDa("negocios")}
             origem="negocios"
             textoPedir={t.entregas.pedir}
-            textoInclui={t.entregas.inclui}
-            textoPrazo={t.entregas.prazo}
           />
+          <p className="entregas__extra">{t.entregas.ajustes(brl(parametros.valorHoraAvulsa))}</p>
         </section>
 
         <section className="como" id="como-funciona" aria-labelledby="como-titulo">

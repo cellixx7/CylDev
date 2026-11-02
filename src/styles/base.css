@@ -333,3 +333,44 @@ main > section {
     animation: none !important;
   }
 }
+
+/* Formulário: escolha do canal de resposta e falha no envio */
+.formulario__escolha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2) var(--espaco-5);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.formulario__escolha legend {
+  width: 100%;
+  margin-bottom: var(--espaco-2);
+  font-weight: 600;
+}
+
+.formulario__escolha label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  min-height: var(--alvo-toque);
+}
+
+.formulario .botao:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.formulario__falha {
+  padding: var(--espaco-3);
+  border-left: 3px solid var(--cor-destaque);
+  background: var(--cor-realce);
+}
+
+.formulario__alternativas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-2);
+}

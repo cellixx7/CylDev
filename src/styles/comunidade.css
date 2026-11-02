@@ -28,16 +28,6 @@
   gap: var(--espaco-3);
 }
 
-.projeto__video-pendente {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 16 / 9;
-  max-width: 40rem;
-  border: 1px dashed var(--cor-texto-suave);
-  color: var(--cor-texto-suave);
-  font-family: var(--fonte-mono);
-}
-
 .projeto--cylsense {
   border-top: 1px solid var(--cor-linha);
 }

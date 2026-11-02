@@ -101,6 +101,12 @@
   margin: var(--espaco-2) 0 var(--espaco-3);
 }
 
+.catalogo__nota {
+  margin: var(--espaco-3) 0;
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
 .catalogo__detalhes {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -159,9 +165,21 @@
     margin-top: var(--espaco-2);
   }
 
+  .catalogo__nota,
   .catalogo__pedir {
     grid-column: 1;
   }
+}
+
+.entregas__extra {
+  margin-top: var(--espaco-5);
+  color: var(--cor-texto-suave);
+}
+
+.piloto__nota {
+  display: block;
+  font-weight: 400;
+  font-size: 0.9rem;
 }
 
 .contato {
