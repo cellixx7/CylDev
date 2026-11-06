@@ -1,7 +1,7 @@
 .home {
   max-width: var(--largura-max);
   margin-inline: auto;
-  padding: var(--espaco-6) var(--espaco-4) var(--espaco-8);
+  padding: var(--espaco-6) var(--margem) var(--espaco-8);
 }
 
 .home__titulo {
@@ -95,5 +95,5 @@
 .aviso {
   max-width: var(--largura-max);
   margin-inline: auto;
-  padding: var(--espaco-8) var(--espaco-4);
+  padding: var(--espaco-8) var(--margem);
 }

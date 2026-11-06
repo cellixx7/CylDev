@@ -6,19 +6,30 @@ type Link = { href: string; rotulo: string };
 
 type Props = {
   area: string;
+  /** Barra fixa e flutuante, em formato de pílula com vidro fosco. */
+  flutuante?: boolean;
   temaPadrao: Tema;
   marca: string;
   links?: Link[];
 };
 
-export function Cabecalho({ area, temaPadrao, marca, links = [] }: Props) {
+export function Cabecalho({ area, temaPadrao, marca, links = [], flutuante = false }: Props) {
   const [tema, setTema] = useState<Tema>(() => lerTema(area, temaPadrao));
   const [menuAberto, setMenuAberto] = useState(false);
+  const [rolado, setRolado] = useState(false);
   const temLinks = links.length > 0;
 
   useEffect(() => {
     aplicarTema(tema);
   }, [tema]);
+
+  useEffect(() => {
+    if (!flutuante) return;
+    const aoRolar = () => setRolado(window.scrollY > 8);
+    aoRolar();
+    window.addEventListener("scroll", aoRolar, { passive: true });
+    return () => window.removeEventListener("scroll", aoRolar);
+  }, [flutuante]);
 
   useEffect(() => {
     if (!menuAberto) return;
@@ -42,7 +53,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [] }: Props) {
     .join(" ");
 
   return (
-    <header className="cabecalho">
+    <header className={["cabecalho", flutuante && "cabecalho--flutuante", rolado && "cabecalho--rolado"].filter(Boolean).join(" ")}>
       <div className="cabecalho__barra">
         <a className="cabecalho__marca" href="/">
           {marca}

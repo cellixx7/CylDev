@@ -171,6 +171,18 @@
   }
 }
 
+@media (min-width: 80rem) {
+  .catalogo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--espaco-7);
+  }
+
+  .catalogo__item--sobConsulta {
+    grid-column: 1 / -1;
+  }
+}
+
 .entregas__extra {
   margin-top: var(--espaco-5);
   color: var(--cor-texto-suave);
@@ -189,4 +201,33 @@
 .catalogo__inclui {
   margin: 0;
   padding-left: 1.1em;
+}
+
+/* Seta personalizada: chamada para a página "Como funciona". */
+.seta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  min-height: var(--alvo-toque);
+  padding: 0 var(--espaco-4);
+  border: 2px solid var(--cor-destaque);
+  border-radius: 999px;
+  color: var(--cor-destaque);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.seta__icone {
+  transition: transform 0.2s ease;
+}
+
+.seta:hover,
+.seta:focus-visible {
+  background: var(--cor-destaque);
+  color: var(--cor-destaque-texto);
+}
+
+.seta:hover .seta__icone,
+.seta:focus-visible .seta__icone {
+  transform: translateX(6px);
 }

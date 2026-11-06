@@ -10,6 +10,18 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+@media (min-width: 90rem) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
+@media (min-width: 120rem) {
+  html {
+    font-size: 125%;
+  }
+}
+
 body {
   margin: 0;
   background: var(--cor-fundo);
@@ -35,7 +47,7 @@ h2 {
 
 p {
   margin: 0 0 var(--espaco-4);
-  max-width: 62ch;
+  max-width: 70ch;
 }
 
 a {
@@ -55,7 +67,7 @@ main {
 main > section {
   max-width: var(--largura-max);
   margin-inline: auto;
-  padding: var(--espaco-7) var(--espaco-4);
+  padding: var(--espaco-7) var(--margem);
   scroll-margin-top: 4rem;
 }
 
@@ -119,7 +131,7 @@ main > section {
   gap: var(--espaco-3);
   max-width: var(--largura-max);
   margin-inline: auto;
-  padding: var(--espaco-2) var(--espaco-4);
+  padding: var(--espaco-2) var(--margem);
 }
 
 .cabecalho__marca {
@@ -161,7 +173,7 @@ main > section {
   top: 100%;
   left: 0;
   right: 0;
-  padding: var(--espaco-3) var(--espaco-4) var(--espaco-5);
+  padding: var(--espaco-3) var(--margem) var(--espaco-5);
   background: var(--cor-fundo);
   border-bottom: 1px solid var(--cor-linha);
 }
@@ -300,7 +312,7 @@ main > section {
 .rodape {
   max-width: var(--largura-max);
   margin-inline: auto;
-  padding: var(--espaco-6) var(--espaco-4) var(--espaco-7);
+  padding: var(--espaco-6) var(--margem) var(--espaco-7);
   border-top: 1px solid var(--cor-linha);
   font-size: 0.95rem;
   color: var(--cor-texto-suave);

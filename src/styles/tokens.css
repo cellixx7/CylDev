@@ -15,7 +15,8 @@
 
   --raio-pequeno: 3px;
   --raio: 6px;
-  --largura-max: 68rem;
+  --largura-max: 96rem;
+  --margem: clamp(1rem, 4vw, 4rem);
   --alvo-toque: 44px;
 }
 
