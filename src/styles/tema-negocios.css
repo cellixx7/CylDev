@@ -1,0 +1,62 @@
+/*
+ * Identidade de Negócios: grafite neutro e terracota, assinada "Marcelo Vaz".
+ * Fontes: Schibsted Grotesk (títulos), Source Sans 3 (texto), JetBrains Mono (números).
+ * Os arquivos em /public/fonts são variáveis, subconjunto latino, licença SIL OFL.
+ */
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("/fonts/schibsted-grotesk-latin.woff2") format("woff2");
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/fonts/source-sans-3-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --font-titulo: "Schibsted Grotesk", system-ui, sans-serif;
+  --font-texto: "Source Sans 3", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --radius-pequeno: 2px;
+  --radius-padrao: 2px;
+}
+
+[data-theme="claro"] {
+  --color-fundo: #f2f3f4;
+  --color-superficie: #ffffff;
+  --color-texto: #1e1f22;
+  --color-texto-suave: #585b61;
+  --color-linha: #d3d5d8;
+  --color-destaque: #a83f25;
+  --color-destaque-texto: #ffffff;
+  --color-realce: #e6e8ea;
+  --color-foco: #1e1f22;
+}
+
+[data-theme="escuro"] {
+  --color-fundo: #141517;
+  --color-superficie: #1d1f22;
+  --color-texto: #ecedef;
+  --color-texto-suave: #a2a5ab;
+  --color-linha: #33363a;
+  --color-destaque: #ee9272;
+  --color-destaque-texto: #241008;
+  --color-realce: #26282c;
+  --color-foco: #ecedef;
+  --color-serie-1: #ee9272;
+  --color-serie-2: #8db4c8;
+  --color-serie-3: #a2a5ab;
+  --color-serie-4: #6b6f76;
+  --color-serie-5: #43464b;
+}

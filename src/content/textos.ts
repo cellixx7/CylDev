@@ -48,17 +48,67 @@ export const pilotoNota = "O desconto vale sobre o preço de criação.";
 
 export const negocios = {
   nav: [
-    { href: "#entregas", rotulo: "Entregas" },
-    { href: "#como-funciona", rotulo: "Como funciona" },
-    { href: "#sobre", rotulo: "Sobre" },
-    { href: "#contato", rotulo: "Contato" },
+    { href: "/negocios/#entregas", rotulo: "Entregas" },
+    { href: "/negocios/como-funciona/", rotulo: "Como funciona" },
+    { href: "/negocios/#sobre", rotulo: "Sobre" },
+    { href: "/negocios/#contato", rotulo: "Contato" },
   ],
   apresentacao: {
-    titulo: "Eu organizo a sua planilha e construo painéis para você ver como o seu negócio está indo.",
+    titulo: "Marcelo Vaz",
+    subtitulo:
+      "Transformo a sua planilha bagunçada em um painel que mostra o que vende, o que encalha e o que está acabando. Também crio a página do seu negócio e sistemas completos na internet.",
     texto:
-      "Meu nome é Marcelo e sou desenvolvedor de sistemas e sites. Pego a planilha que você já usa para vendas, estoque ou caixa, deixo ela em ordem e entrego um painel com os números que importam para você. Também faço páginas para apresentar o seu negócio.",
+      "Planilhas organizadas, painéis com os seus números, páginas de apresentação e sistemas sob medida. Tudo explicado em português claro, sem complicação.",
     acao: "Chamar no WhatsApp",
     acaoSecundaria: "Ver preços",
+    botaoOrcamento: "Realize seu orçamento",
+    botaoComoFunciona: "Como funciona?",
+    seta: "Entenda como Funciona",
+    // Painel de exemplo (loja fictícia) mostrado ao lado do título.
+    painel: {
+      rotulo: "Exemplo de painel · loja fictícia",
+      selo: "Exemplo",
+      titulo: "Painel de vendas",
+      descricao: "Todos os números da loja em uma única tela: quanto vendeu, o que mais sai e o que está parado. Os dados abaixo são de mentira.",
+      periodo: "Ano de 2026",
+      indicadores: [
+        { nome: "Vendas no ano", valor: "R$ 214 mil", variacao: "+14% vs. 2025" },
+        { nome: "Pedidos", valor: "2.860", variacao: "+9%" },
+        { nome: "Ticket médio", valor: "R$ 75", variacao: "+4%" },
+        { nome: "Estoque parado", valor: "R$ 8,4 mil", variacao: "-11%" },
+      ],
+      mensalTitulo: "Vendas por mês (R$ mil)",
+      meses: [
+        { nome: "Jan", valor: 12 },
+        { nome: "Fev", valor: 13 },
+        { nome: "Mar", valor: 15 },
+        { nome: "Abr", valor: 16 },
+        { nome: "Mai", valor: 18 },
+        { nome: "Jun", valor: 17 },
+        { nome: "Jul", valor: 19 },
+        { nome: "Ago", valor: 18 },
+        { nome: "Set", valor: 20 },
+        { nome: "Out", valor: 22 },
+        { nome: "Nov", valor: 24 },
+        { nome: "Dez", valor: 30 },
+      ],
+      categoriasTitulo: "Vendas por categoria",
+      categorias: [
+        { nome: "Camisetas", valor: 38 },
+        { nome: "Bonés", valor: 24 },
+        { nome: "Canecas", valor: 18 },
+        { nome: "Casacos", valor: 12 },
+        { nome: "Outros", valor: 8 },
+      ],
+      regioesTitulo: "Vendas por região (R$ mil)",
+      regioes: [
+        { nome: "Sudeste", valor: 96 },
+        { nome: "Sul", valor: 52 },
+        { nome: "Nordeste", valor: 34 },
+        { nome: "Centro-Oeste", valor: 20 },
+        { nome: "Norte", valor: 12 },
+      ],
+    },
   },
   entregas: {
     titulo: "O que eu entrego e quanto custa",
@@ -125,7 +175,7 @@ export const comunidade = {
     { href: "#cylbot", rotulo: "CylBot" },
     { href: "#cylsense", rotulo: "CylSense" },
     { href: "#bots", rotulo: "Bots sob medida" },
-    { href: "#contato", rotulo: "Contato" },
+    { href: "/negocios/#contato", rotulo: "Contato" },
   ],
   apresentacao: {
     titulo: "Eu faço bots e ferramentas para quem joga.",

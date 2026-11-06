@@ -1,0 +1,15 @@
+/* Pistas da identidade anterior do CylDev; a direção visual final sai dos mockups (V0). */
+[data-theme="escuro"] {
+  --color-fundo: #17141f;
+  --color-superficie: #211c2c;
+  --color-linha: #3a3248;
+  --color-destaque: #c9b8ff;
+  --color-destaque-texto: #17141f;
+  --color-realce: #2b2438;
+}
+
+[data-theme="claro"] {
+  --color-destaque: #4b3a8a;
+  --color-destaque-texto: #f5f4ef;
+  --color-realce: #e9e4f5;
+}

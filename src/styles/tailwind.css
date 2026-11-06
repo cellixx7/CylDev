@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* Tema escuro = atributo data-theme="escuro" no <html> (ver src/shared/tema.ts). */
+@custom-variant dark (&:where([data-theme="escuro"], [data-theme="escuro"] *));
+
+/*
+ * Tokens da identidade (antigo tokens.css). Trocar a identidade = mexer só aqui
+ * e em tema-comunidade.css.
+ *
+ * Espaçamentos: usa a escala padrão do Tailwind (1 = 0.25rem). Os antigos
+ * --espaco-1..8 equivalem a: 1, 2, 3, 4, 6, 9, 14, 20 (p-1 ... p-20).
+ */
+@theme static {
+  --font-titulo: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --color-*: initial;
+  /* Tema claro (padrão). O escuro sobrescreve logo abaixo. */
+  --color-fundo: #f5f4ef;
+  --color-superficie: #ffffff;
+  --color-texto: #1b1b18;
+  --color-texto-suave: #55544d;
+  --color-linha: #d6d4ca;
+  --color-destaque: #1d4b3c;
+  --color-destaque-texto: #f5f4ef;
+  --color-realce: #efe6c8;
+  --color-foco: #b4530f;
+  /* Cores fixas (iguais nos dois temas). */
+  --color-branco: #ffffff;
+  --color-roxo-noite: #17141f;
+  --color-lilas: #c9b8ff;
+  --color-papel: #ecebe6;
+  /* Séries de gráficos (claro). O escuro sobrescreve em tema-negocios.css. */
+  --color-serie-1: #a83f25;
+  --color-serie-2: #2f4b5c;
+  --color-serie-3: #6b6f76;
+  --color-serie-4: #a3a6ac;
+  --color-serie-5: #cbcdd1;
+
+  --spacing-margem: clamp(1rem, 4vw, 4rem);
+  --spacing-alvo: 44px;
+
+  --radius-pequeno: 3px;
+  --radius-padrao: 6px;
+
+  --container-site: 96rem;
+  --container-hero: 86rem;
+
+  /* Pontos de quebra além dos padrão (sm 40rem, md 48rem, xl 80rem). */
+  --breakpoint-tab: 56rem;
+  --breakpoint-pc: 62rem;
+}
+
+[data-theme="escuro"] {
+  --color-fundo: #16161a;
+  --color-superficie: #1f1f25;
+  --color-texto: #ecebe6;
+  --color-texto-suave: #aeada6;
+  --color-linha: #383840;
+  --color-destaque: #9fd4bd;
+  --color-destaque-texto: #10231b;
+  --color-realce: #2c2a20;
+  --color-foco: #ffb26b;
+  color-scheme: dark;
+}
+
+:root,
+[data-theme="claro"] {
+  color-scheme: light;
+}
+
+/* Padrões de elementos (o Preflight do Tailwind zera tudo; aqui voltam os da identidade). */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (min-width: 90rem) {
+    html {
+      font-size: 112.5%;
+    }
+  }
+
+  @media (min-width: 120rem) {
+    html {
+      font-size: 125%;
+    }
+  }
+
+  body {
+    background: var(--color-fundo);
+    color: var(--color-texto);
+    font-family: var(--font-texto);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-titulo);
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+
+  h3 {
+    font-size: 1.17em;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    max-width: 70ch;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-foco);
+    outline-offset: 2px;
+  }
+
+  main > section {
+    max-width: var(--container-site);
+    margin-inline: auto;
+    padding: 3.5rem var(--spacing-margem);
+    scroll-margin-top: 4rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}

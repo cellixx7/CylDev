@@ -36,22 +36,33 @@ export function textoMensalidade(s: Servico): string | null {
 
 export function Catalogo({ servicos, origem, textoPedir }: Props) {
   return (
-    <ol className="catalogo">
+    <ol className="mt-6 list-none p-0 border-t-2 border-texto xl:grid xl:grid-cols-2 xl:gap-x-14">
       {servicos.map((s) => {
         const prazo = textoPrazo(s);
         const mensalidade = textoMensalidade(s);
         const mensagem = `Quero um orçamento de: ${s.nome} (${textoPreco(s.preco)}).`;
+        const consulta = s.preco.tipo === "sobConsulta";
+        const precoQuebra = s.preco.tipo === "aula" || s.preco.tipo === "aPartirDe";
         return (
-          <li key={s.id} className={`catalogo__item catalogo__item--${s.preco.tipo}`}>
-            <div className="catalogo__cabeca">
-              <h3 className="catalogo__nome">{s.nome}</h3>
-              <p className="catalogo__preco">{textoPreco(s.preco)}</p>
+          <li
+            key={s.id}
+            className={
+              consulta
+                ? "mt-3 bg-realce p-4 xl:col-span-full"
+                : "border-b border-linha py-6 tab:grid tab:grid-cols-[5fr_4fr] tab:gap-x-9"
+            }
+          >
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 tab:col-span-full">
+              <h3 className="m-0 text-[1.35rem]">{s.nome}</h3>
+              <p className={`m-0 font-mono text-[1.05rem] font-bold ${precoQuebra ? "whitespace-normal" : "whitespace-nowrap"}`}>
+                {textoPreco(s.preco)}
+              </p>
             </div>
-            <p className="catalogo__resultado">{s.resultado}</p>
-            <dl className="catalogo__detalhes">
-              <dt>{t.inclui}</dt>
-              <dd>
-                <ul className="catalogo__inclui">
+            <p className="mt-2 mb-3 tab:col-start-1">{s.resultado}</p>
+            <dl className="mb-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[0.95rem] text-texto-suave tab:col-start-2 tab:row-[2/span_2] tab:mt-2">
+              <dt className="font-semibold text-texto">{t.inclui}</dt>
+              <dd className="m-0">
+                <ul className="m-0 list-disc pl-[1.1em]">
                   {s.inclui.map((i) => (
                     <li key={i}>{i}</li>
                   ))}
@@ -59,20 +70,20 @@ export function Catalogo({ servicos, origem, textoPedir }: Props) {
               </dd>
               {prazo && (
                 <>
-                  <dt>{t.prazo}</dt>
-                  <dd>{prazo}</dd>
+                  <dt className="font-semibold text-texto">{t.prazo}</dt>
+                  <dd className="m-0">{prazo}</dd>
                 </>
               )}
               {mensalidade && (
                 <>
-                  <dt>{t.mensalidade}</dt>
-                  <dd>{mensalidade}</dd>
+                  <dt className="font-semibold text-texto">{t.mensalidade}</dt>
+                  <dd className="m-0">{mensalidade}</dd>
                 </>
               )}
             </dl>
-            {s.nota && <p className="catalogo__nota">{s.nota}</p>}
+            {s.nota && <p className="my-3 text-[0.9rem] text-texto-suave tab:col-start-1">{s.nota}</p>}
             <a
-              className="catalogo__pedir"
+              className="inline-flex min-h-alvo items-center font-semibold text-destaque tab:col-start-1"
               href={linkContato(`${origem}-${s.id}`, mensagem)}
               target="_blank"
               rel="noopener"

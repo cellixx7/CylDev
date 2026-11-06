@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="claro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marcelo Vaz | Desenvolvedor em Brasília</title>
+    <meta name="description" content="Painéis, planilhas e páginas para pequenos negócios. Bots de Discord para comunidades de jogos." />
+    <meta name="theme-color" content="#f5f4ef" />
+    <link rel="icon" href="/favicon-home.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Marcelo Vaz | Desenvolvedor em Brasília" />
+    <meta property="og:description" content="Painéis, planilhas e páginas para pequenos negócios. Bots de Discord para comunidades de jogos." />
+    <meta property="og:url" content="__URL__/home/" />
+    <meta property="og:image" content="__URL__/og-home-v1.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      try {
+        var t = localStorage.getItem("tema-home");
+        if (t === "claro" || t === "escuro") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="absolute top-[-4rem] left-2 z-100 bg-texto px-3 py-2 text-fundo focus:top-2" href="#conteudo">Pular para o conteúdo</a>
+    <div id="raiz"></div>
+    <script type="module" src="/src/pages/home/main.tsx"></script>
+  </body>
+</html>
