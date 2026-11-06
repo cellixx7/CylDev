@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>V0 · Negócios A · Livro-caixa</title>
+<style>
+  /* Direção A: livro-caixa. Papel, tinta verde, régua de contabilidade. */
+  :root {
+    --papel: #f3efe4;
+    --papel-2: #ebe5d5;
+    --tinta: #1f2a24;
+    --suave: #5b6159;
+    --verde: #1e5a44;
+    --regua: #c9bfa6;
+    --vermelho: #9c3b26;
+    --serif: "Sitka Heading", Georgia, "Times New Roman", serif;
+    --texto: "Segoe UI", system-ui, sans-serif;
+    --mono: Consolas, "Courier New", monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--papel); color: var(--tinta); font: 17px/1.6 var(--texto); }
+  a { color: var(--verde); }
+  .topo { display: flex; justify-content: space-between; align-items: baseline; padding: 20px 6vw; border-bottom: 1px solid var(--regua); }
+  .topo strong { font-family: var(--serif); font-size: 1.2rem; }
+  .topo nav a { margin-left: 22px; color: var(--tinta); text-decoration: none; font-size: .95rem; }
+  .abertura { display: grid; grid-template-columns: 7fr 4fr; gap: 6vw; padding: 9vh 6vw 7vh; align-items: end; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.2rem, 4.6vw, 3.8rem); line-height: 1.08; margin: 0; letter-spacing: -.01em; }
+  .abertura p { margin: 0 0 22px; color: var(--suave); }
+  .botao { display: inline-block; padding: 12px 20px; background: var(--verde); color: #fff; text-decoration: none; font-weight: 600; border-radius: 2px; }
+  .link { margin-left: 18px; }
+  .livro { margin: 0 6vw; border-top: 3px double var(--tinta); }
+  .livro h2 { font-family: var(--serif); font-size: 1.9rem; margin: 40px 0 6px; }
+  .livro > p { color: var(--suave); max-width: 46rem; margin: 0 0 18px; }
+  .piloto { display: inline-block; border: 1px dashed var(--vermelho); color: var(--vermelho); padding: 6px 12px; font-size: .92rem; margin-bottom: 28px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font: 600 .75rem var(--texto); text-transform: uppercase; letter-spacing: .08em; color: var(--suave); padding: 8px 0; border-bottom: 1px solid var(--tinta); }
+  td { vertical-align: top; padding: 20px 18px 20px 0; border-bottom: 1px solid var(--regua); }
+  td:first-child { width: 26%; font-family: var(--serif); font-size: 1.2rem; font-weight: 600; }
+  td:nth-child(3) { white-space: nowrap; }
+  td.valor { text-align: right; font-family: var(--mono); font-size: 1.05rem; white-space: nowrap; padding-right: 0; }
+  td small { display: block; color: var(--suave); font-size: .88rem; margin-top: 6px; }
+  tr:nth-child(even) td { background: var(--papel-2); }
+  .passos { display: grid; grid-template-columns: 220px 1fr; gap: 6vw; margin: 80px 6vw; }
+  .passos h2 { font-family: var(--serif); font-size: 1.9rem; margin: 0; }
+  .passos ol { margin: 0; padding: 0; list-style: none; counter-reset: p; }
+  .passos li { counter-increment: p; display: grid; grid-template-columns: 48px 1fr; padding: 12px 0; border-bottom: 1px solid var(--regua); }
+  .passos li::before { content: counter(p, decimal-leading-zero); font-family: var(--mono); color: var(--verde); }
+  .rotulo { position: fixed; right: 12px; bottom: 12px; background: var(--tinta); color: var(--papel); font: 12px var(--mono); padding: 6px 10px; }
+  @media (max-width: 760px) {
+    .abertura, .passos { grid-template-columns: 1fr; }
+    td:first-child { width: auto; }
+    .topo nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<header class="topo"><strong>Marcelo Vaz</strong><nav><a href="#">Entregas</a><a href="#">Como funciona</a><a href="#">Sobre</a><a href="#">Contato</a></nav></header>
+
+<section class="abertura">
+  <h1>Eu organizo a sua planilha e construo painéis para você ver como o seu negócio está indo.</h1>
+  <div>
+    <p>Meu nome é Marcelo e sou desenvolvedor de sistemas e sites. Pego a planilha que você já usa para vendas, estoque ou caixa, deixo ela em ordem e entrego um painel com os números que importam para você.</p>
+    <a class="botao" href="#">Chamar no WhatsApp</a><a class="link" href="#">Ver preços</a>
+  </div>
+</section>
+
+<section class="livro">
+  <h2>O que eu entrego e quanto custa</h2>
+  <p>Os valores abaixo são pela criação. Nos pacotes básicos o preço é fechado; quando o trabalho varia, mostro o valor mínimo e confirmo depois de ver o seu caso.</p>
+  <span class="piloto">Restam 5 vagas com 10% de desconto.</span>
+  <table>
+    <thead><tr><th>Pacote</th><th>O que você recebe</th><th>Prazo</th><th style="text-align:right">Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Planilha organizada</td><td>Uma aba por assunto, colunas padronizadas e totais que conferem.<small>Limpeza dos dados, fórmulas de total, instruções em uma página</small></td><td>2 dias úteis</td><td class="valor">R$ 100</td></tr>
+      <tr><td>Painel básico</td><td>Você abre um arquivo e vê quanto vendeu, o que mais sai e como está o mês.<small>Excel (padrão) ou Power BI Desktop, até 5 indicadores</small></td><td>3 dias úteis</td><td class="valor">R$ 200</td></tr>
+      <tr><td>Automação em Excel</td><td>A tarefa que você repete toda semana passa a rodar com um clique.<small>VBA ou Power Query</small></td><td>a combinar</td><td class="valor">a partir de R$ 300</td></tr>
+      <tr><td>Landing page básica</td><td>Uma página com o seu serviço, seus preços e um botão para o seu WhatsApp.<small>Versão para celular, publicação em hospedagem gratuita na sua conta</small></td><td>4 dias úteis</td><td class="valor">R$ 300</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="passos">
+  <h2>Como funciona</h2>
+  <ol>
+    <li><span><strong>Conversa de 10 minutos.</strong> Pelo Google Meet ou pelo WhatsApp.</span></li>
+    <li><span><strong>Proposta.</strong> Por escrito: o que entra, o valor e a data.</span></li>
+    <li><span><strong>Entrada de 50% por Pix.</strong> Começo depois da entrada.</span></li>
+    <li><span><strong>Entrega por etapas.</strong> Você acompanha e corrige o rumo.</span></li>
+    <li><span><strong>Saldo antes da entrega final.</strong> Uma rodada de revisão incluída.</span></li>
+  </ol>
+</section>
+<div class="rotulo">V0 · Negócios · Direção A: livro-caixa</div>
+</body>
+</html>

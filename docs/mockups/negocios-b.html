@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>V0 · Negócios B · Balcão</title>
+<style>
+  /* Direção B: balcão. Sans firme, branco limpo, faixa azul-petróleo, preço grande. */
+  :root {
+    --fundo: #fbfaf7;
+    --texto: #15202b;
+    --suave: #57616b;
+    --petroleo: #0f3d4c;
+    --laranja: #c8561c;
+    --linha: #d9dde0;
+    --sans: Bahnschrift, "Segoe UI", system-ui, sans-serif;
+    --corpo: "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fundo); color: var(--texto); font: 17px/1.6 var(--corpo); }
+  .topo { display: flex; justify-content: space-between; align-items: center; padding: 18px 5vw; }
+  .topo strong { font: 700 1.15rem var(--sans); letter-spacing: .02em; }
+  .topo a.zap { color: var(--petroleo); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--laranja); }
+  .abertura { padding: 7vh 5vw 0; max-width: 1180px; }
+  h1 { font: 700 clamp(2.3rem, 5.4vw, 4.4rem)/1.02 var(--sans); margin: 0 0 28px; letter-spacing: -.02em; max-width: 15ch; }
+  .abertura .lado { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+  .abertura p { max-width: 36rem; margin: 0; color: var(--suave); }
+  .botao { display: inline-block; padding: 14px 22px; background: var(--laranja); color: #fff; font-weight: 700; text-decoration: none; border-radius: 4px; }
+  .faixa { margin-top: 8vh; background: var(--petroleo); color: #e9f1f3; padding: 56px 5vw 64px; }
+  .faixa h2 { font: 700 2rem var(--sans); margin: 0 0 8px; }
+  .faixa > p { margin: 0 0 6px; color: #b6cbd1; max-width: 46rem; }
+  .piloto { color: #ffd2b8; font-weight: 600; margin-bottom: 30px !important; }
+  .lista { display: grid; grid-template-columns: 1.3fr 1fr; gap: 0 48px; }
+  .item { display: grid; grid-template-columns: 1fr auto; gap: 4px 24px; padding: 22px 0; border-top: 1px solid #2c5a68; }
+  .item:first-child { grid-row: span 2; border-top-width: 3px; border-top-color: var(--laranja); padding-right: 12px; }
+  .item h3 { font: 700 1.3rem var(--sans); margin: 0; }
+  .item .preco { font: 700 1.6rem var(--sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item:first-child .preco { font-size: 3rem; line-height: 1; }
+  .item p { grid-column: 1 / -1; margin: 0; color: #c9dade; }
+  .item .prazo { font-size: .85rem; color: #8fb0b9; }
+  .item a { grid-column: 1 / -1; color: #ffd2b8; font-weight: 600; }
+  .passos { padding: 72px 5vw; max-width: 1180px; }
+  .passos h2 { font: 700 2rem var(--sans); margin: 0 0 24px; }
+  .passos ol { margin: 0; padding: 0; list-style: none; border-left: 3px solid var(--laranja); }
+  .passos li { padding: 10px 0 10px 22px; }
+  .passos li + li { border-top: 1px solid var(--linha); }
+  .passos strong { font-family: var(--sans); }
+  .rotulo { position: fixed; right: 12px; bottom: 12px; background: var(--texto); color: #fff; font: 12px Consolas, monospace; padding: 6px 10px; }
+  @media (max-width: 760px) { .lista { grid-template-columns: 1fr; } .item:first-child { grid-row: auto; } }
+</style>
+</head>
+<body>
+<header class="topo"><strong>MARCELO VAZ</strong><a class="zap" href="#">WhatsApp (61) 99629-1118</a></header>
+
+<section class="abertura">
+  <h1>Eu organizo a sua planilha e construo painéis para você ver como o seu negócio está indo.</h1>
+  <div class="lado">
+    <p>Pego a planilha que você já usa para vendas, estoque ou caixa, deixo ela em ordem e entrego um painel com os números que importam para você. Também faço páginas para apresentar o seu negócio.</p>
+    <a class="botao" href="#">Chamar no WhatsApp</a>
+  </div>
+</section>
+
+<section class="faixa">
+  <h2>O que eu entrego e quanto custa</h2>
+  <p>Valores pela criação. Preço fechado nos pacotes básicos.</p>
+  <p class="piloto">As 5 primeiras vagas têm 10% de desconto. Restam 5.</p>
+  <div class="lista">
+    <div class="item">
+      <h3>Painel básico</h3><span class="preco">R$ 200</span>
+      <p>Você abre um arquivo e vê quanto vendeu, o que mais sai e como está o mês, sem montar conta. Dá para controlar estoque e vendas com número, e não no chute.</p>
+      <p class="prazo">Excel ou Power BI Desktop · até 5 indicadores · 3 dias úteis</p>
+      <a href="#">Pedir orçamento</a>
+    </div>
+    <div class="item">
+      <h3>Planilha organizada</h3><span class="preco">R$ 100</span>
+      <p>Uma aba por assunto e totais que conferem.</p>
+      <p class="prazo">2 dias úteis</p>
+    </div>
+    <div class="item">
+      <h3>Landing page básica</h3><span class="preco">R$ 300</span>
+      <p>Seu serviço, seus preços e um botão para o WhatsApp.</p>
+      <p class="prazo">4 dias úteis</p>
+    </div>
+    <div class="item">
+      <h3>Automação em Excel</h3><span class="preco">a partir de R$ 300</span>
+      <p>A tarefa da semana passa a rodar com um clique.</p>
+    </div>
+  </div>
+</section>
+
+<section class="passos">
+  <h2>Como funciona</h2>
+  <ol>
+    <li><strong>Conversa de 10 minutos</strong>, pelo Google Meet ou pelo WhatsApp.</li>
+    <li><strong>Proposta</strong> por escrito, com o valor e a data.</li>
+    <li><strong>Entrada de 50% por Pix.</strong> Começo depois da entrada.</li>
+    <li><strong>Entrega por etapas.</strong> Você acompanha o andamento.</li>
+    <li><strong>Saldo antes da entrega final.</strong> Uma revisão incluída.</li>
+  </ol>
+</section>
+<div class="rotulo">V0 · Negócios · Direção B: balcão</div>
+</body>
+</html>
