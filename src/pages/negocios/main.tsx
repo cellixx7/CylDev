@@ -1,10 +1,10 @@
-import { StrictMode, useEffect, useRef } from "react";
+import { StrictMode, useEffect, useRef, type CSSProperties } from "react";
 import { createRoot } from "react-dom/client";
-import "../../styles/base.css";
-import "../../styles/negocios.css";
+import "../../styles/tailwind.css";
 import { negocios as t } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/CabecalhoNegocios";
 import { Rodape } from "../../shared/components/Rodape";
+import { botao, botaoCheio } from "../../shared/estilos";
 
 const painel = t.apresentacao.painel;
 const maxMes = Math.max(...painel.meses.map((m) => m.valor));
@@ -51,7 +51,7 @@ function ValorAnimado({ valor, variacao, atraso }: { valor: string; variacao: st
     const pintar = (p: number) => {
       const atual = inicio + (v.numero - inicio) * p;
       el.textContent = `${v.prefixo}${atual.toLocaleString("pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas })}${v.sufixo}`;
-      el.style.color = `color-mix(in srgb, var(--cor-destaque) ${Math.round(p * 100)}%, var(--cor-texto))`;
+      el.style.color = `color-mix(in srgb, var(--color-destaque) ${Math.round(p * 100)}%, var(--color-texto))`;
     };
     const passo = (agora: number) => {
       const p = Math.min(Math.max((agora - t0) / duracao, 0), 1);
@@ -61,7 +61,7 @@ function ValorAnimado({ valor, variacao, atraso }: { valor: string; variacao: st
         quadro = requestAnimationFrame(passo);
       } else {
         el.textContent = valor;
-        el.style.color = "var(--cor-destaque)";
+        el.style.color = "var(--color-destaque)";
       }
     };
     pintar(0);
@@ -73,14 +73,18 @@ function ValorAnimado({ valor, variacao, atraso }: { valor: string; variacao: st
     };
   }, [valor, variacao, atraso]);
 
-  return <strong className="painel__valor" ref={ref}>{valor}</strong>;
+  return <strong className="text-[1.5em] leading-[1.1]" ref={ref}>{valor}</strong>;
 }
 
 function SetaSobre({ className }: { className: string }) {
   return (
-    <a className={`seta-sobre ${className}`} href="#sobre" aria-label="Ir para a seção Sobre">
-      <span className="seta-sobre__texto">Sobre</span>
-      <svg className="seta-sobre__icone" viewBox="0 0 32 18" width="32" height="18" aria-hidden="true">
+    <a
+      className={`group flex flex-col items-center gap-1 font-semibold text-texto no-underline ${className}`}
+      href="#sobre"
+      aria-label="Ir para a seção Sobre"
+    >
+      <span>Sobre</span>
+      <svg className="animate-seta-pulo group-hover:text-destaque" viewBox="0 0 32 18" width="32" height="18" aria-hidden="true">
         <path d="M3 3l13 12L29 3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </a>
@@ -92,67 +96,81 @@ function Negocios() {
   return (
     <>
       <CabecalhoNegocios />
-      <main id="conteudo">
-        <section className="apresentacao" id="apresentacao">
-          <div className="apresentacao__grade">
-            <div className="apresentacao__conteudo">
-              <h1 className="apresentacao__titulo">{t.apresentacao.titulo}</h1>
-              <p className="apresentacao__subtitulo">{t.apresentacao.subtitulo}</p>
-              <p className="apresentacao__texto">{t.apresentacao.texto}</p>
-              <div className="apresentacao__acoes">
-                <a className="botao botao--cheio" href="#orcamento">
+      <main id="conteudo" className="pt-20 [&>section]:scroll-mt-24">
+        <section className="flex flex-col items-center px-margem pt-9 pb-14 pc:min-h-[calc(100svh-5rem)] pc:pb-6" id="apresentacao">
+          <div className="mx-auto grid w-full max-w-hero items-center gap-9 pc:my-auto pc:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] pc:gap-[clamp(2rem,4vw,4rem)]">
+            <div>
+              <h1 className="mb-3 text-[clamp(2.75rem,7vw,7.5rem)] leading-[1.02]">{t.apresentacao.titulo}</h1>
+              <p className="mb-3 text-[clamp(1.15rem,1.8vw,2rem)] leading-[1.4]">{t.apresentacao.subtitulo}</p>
+              <p className="m-0 max-w-[44rem] text-[clamp(1rem,1.2vw,1.3rem)] text-texto-suave">{t.apresentacao.texto}</p>
+              <div className="mt-6 flex flex-wrap gap-3 max-pc:justify-center">
+                <a className={`${botaoCheio} max-pc:max-w-[22rem] max-pc:flex-[1_1_14rem] max-pc:justify-center`} href="#orcamento">
                   {t.apresentacao.botaoOrcamento}
                 </a>
-                <a className="botao" href="/negocios/como-funciona/">
+                <a className={`${botao} max-pc:max-w-[22rem] max-pc:flex-[1_1_14rem] max-pc:justify-center`} href="/negocios/como-funciona/">
                   {t.apresentacao.botaoComoFunciona}
                 </a>
               </div>
-              <SetaSobre className="seta-sobre--celular" />
+              <SetaSobre className="mt-6 pc:hidden" />
             </div>
-            <figure className="painel" aria-label={painel.rotulo}>
-              <figcaption className="painel__cabecalho">
-                <span className="painel__selo">{painel.selo}</span>
-                <span className="painel__titulo">{painel.titulo}</span>
-                <span className="painel__periodo">{painel.periodo}</span>
-                <span className="painel__descricao">{painel.descricao}</span>
+            <figure
+              className="m-0 grid animate-painel gap-[clamp(0.75rem,1vw,1.25rem)] rounded-[16px] border border-linha bg-superficie p-[clamp(1rem,1.4vw,1.5rem)] text-[clamp(0.875rem,0.85vw,1rem)] shadow-painel"
+              aria-label={painel.rotulo}
+            >
+              <figcaption className="grid animate-painel-item grid-cols-[auto_1fr_auto] items-center gap-x-3 gap-y-1 [--atraso:0.2s]">
+                <span className="rounded-full bg-destaque px-[0.7em] py-[0.1em] text-[0.75em] font-bold tracking-[0.05em] text-branco uppercase">{painel.selo}</span>
+                <span className="text-[1.25em] font-bold">{painel.titulo}</span>
+                <span className="rounded-full bg-realce px-3 font-medium">{painel.periodo}</span>
+                <span className="col-span-full text-[0.85em] leading-[1.4] text-texto-suave">{painel.descricao}</span>
               </figcaption>
-              <div className="painel__indicadores">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(7.5rem,1fr))] gap-3">
                 {painel.indicadores.map((i, idx) => (
-                  <div className="painel__cartao" key={i.nome}>
-                    <span className="painel__nome">{i.nome}</span>
+                  <div
+                    className="grid animate-painel-item content-start gap-2 rounded-[10px] border border-linha p-3"
+                    style={{ "--atraso": `${0.35 + idx * 0.1}s` } as CSSProperties}
+                    key={i.nome}
+                  >
+                    <span className="text-[0.85em] text-texto-suave">{i.nome}</span>
                     <ValorAnimado valor={i.valor} variacao={i.variacao} atraso={350 + idx * 100} />
-                    <span className="painel__variacao">{i.variacao}</span>
+                    <span className="text-[0.8em] text-destaque">{i.variacao}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="painel__cartao">
-                <span className="painel__nome">{painel.mensalTitulo}</span>
-                <div className="painel__meses" role="img" aria-label={painel.mensalTitulo}>
-                  {painel.meses.map((m) => (
-                    <div className="painel__mes" key={m.nome}>
-                      <span className="painel__mes-valor">{m.valor}</span>
-                      <div className="painel__barra" style={{ height: `${(m.valor / maxMes) * 100}%` }} />
+              <div className="grid animate-painel-item content-start gap-2 rounded-[10px] border border-linha p-3 [--atraso:0.75s]">
+                <span className="text-[0.85em] text-texto-suave">{painel.mensalTitulo}</span>
+                <div className="grid h-[clamp(7rem,14vh,10rem)] grid-cols-[repeat(12,1fr)] items-end gap-[clamp(2px,0.5vw,8px)]" role="img" aria-label={painel.mensalTitulo}>
+                  {painel.meses.map((m, i) => (
+                    <div className="flex h-full flex-col items-center justify-end gap-[2px] text-[0.72em] text-texto-suave" key={m.nome}>
+                      <span className="animate-painel-aparecer-valor text-[0.9em] [--atraso:1.5s]">{m.valor}</span>
+                      <div
+                        className="min-h-[2px] w-full origin-bottom animate-painel-barra rounded-t-[4px] bg-destaque"
+                        style={{ height: `${(m.valor / maxMes) * 100}%`, "--atraso": `${0.9 + i * 0.05}s` } as CSSProperties}
+                      />
                       <span>{m.nome}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="painel__duplo">
-                <div className="painel__cartao">
-                  <span className="painel__nome">{painel.categoriasTitulo}</span>
-                  <div className="painel__pizza-area">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid animate-painel-item content-start gap-2 rounded-[10px] border border-linha p-3 [--atraso:1.1s]">
+                  <span className="text-[0.85em] text-texto-suave">{painel.categoriasTitulo}</span>
+                  <div className="flex flex-wrap items-center gap-4">
                     <div
-                      className="painel__pizza"
+                      className="aspect-square w-[clamp(5.5rem,8vw,7.5rem)] flex-none animate-painel-pizza rounded-full [-webkit-mask:conic-gradient(#000_var(--pizza-revelada),transparent_0)] [mask:conic-gradient(#000_var(--pizza-revelada),transparent_0)]"
                       role="img"
                       aria-label={painel.categoriasTitulo}
                       style={{ background: pizza }}
                     />
-                    <ul className="painel__legenda">
+                    <ul className="m-0 grid list-none gap-1 p-0 text-[0.85em]">
                       {painel.categorias.map((c, i) => (
-                        <li key={c.nome}>
-                          <span className="painel__cor" style={{ background: cores[i % cores.length] }} />
+                        <li
+                          className="flex animate-painel-aparecer items-center gap-2"
+                          style={{ "--atraso": `${1.8 + i * 0.1}s` } as CSSProperties}
+                          key={c.nome}
+                        >
+                          <span className="size-[0.7em] flex-none rounded-[2px]" style={{ background: cores[i % cores.length] }} />
                           {c.nome} <strong>{Math.round((c.valor / totalCategorias) * 100)}%</strong>
                         </li>
                       ))}
@@ -160,14 +178,17 @@ function Negocios() {
                   </div>
                 </div>
 
-                <div className="painel__cartao">
-                  <span className="painel__nome">{painel.regioesTitulo}</span>
-                  <ul className="painel__regioes">
-                    {painel.regioes.map((r) => (
-                      <li key={r.nome}>
-                        <span className="painel__regiao-nome">{r.nome}</span>
-                        <span className="painel__trilho">
-                          <span className="painel__preenchimento" style={{ width: `${(r.valor / maxRegiao) * 100}%` }} />
+                <div className="grid animate-painel-item content-start gap-2 rounded-[10px] border border-linha p-3 [--atraso:1.25s]">
+                  <span className="text-[0.85em] text-texto-suave">{painel.regioesTitulo}</span>
+                  <ul className="m-0 grid list-none gap-2 p-0 text-[0.85em]">
+                    {painel.regioes.map((r, i) => (
+                      <li className="grid grid-cols-[6em_1fr_2.2em] items-center gap-2" key={r.nome}>
+                        <span className="text-texto-suave">{r.nome}</span>
+                        <span className="h-[0.7em] overflow-hidden rounded-full bg-[color-mix(in_srgb,var(--color-texto)_8%,transparent)]">
+                          <span
+                            className="block h-full origin-left animate-painel-preencher rounded-full bg-grafico-azul"
+                            style={{ width: `${(r.valor / maxRegiao) * 100}%`, "--atraso": `${1.5 + i * 0.1}s` } as CSSProperties}
+                          />
                         </span>
                         <strong>{r.valor}</strong>
                       </li>
@@ -177,15 +198,15 @@ function Negocios() {
               </div>
             </figure>
           </div>
-          <SetaSobre className="seta-sobre--pc" />
+          <SetaSobre className="mt-6 max-pc:hidden" />
         </section>
-        <section className="orcamento" id="orcamento">
+        <section className="mx-auto max-w-hero px-margem py-14" id="orcamento">
           <h2>Orçamento</h2>
         </section>
-        <section className="entregas" id="entregas"></section>
-        <section className="como" id="como-funciona"></section>
-        <section className="sobre" id="sobre"></section>
-        <section className="contato" id="contato"></section>
+        <section id="entregas"></section>
+        <section id="como-funciona"></section>
+        <section id="sobre"></section>
+        <section id="contato"></section>
       </main>
       <Rodape ponte={{ ...t.ponte, href: "/comunidade/" }} />
     </>

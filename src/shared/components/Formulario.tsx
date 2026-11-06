@@ -3,6 +3,13 @@ import { site } from "../../content/site";
 import { formulario as t } from "../../content/textos";
 import { enviarContato, pareceSpam } from "../lib/emailjs";
 import { linkContato } from "../lib/whatsapp";
+import { botao, botaoCheio } from "../estilos";
+
+const campo =
+  "grid gap-1 font-semibold";
+const entrada =
+  "min-h-alvo rounded-pequeno border border-texto-suave bg-superficie px-3 py-2 font-normal text-texto";
+const radio = "m-[3px_3px_3px_4px]";
 
 type Estado = "pronto" | "enviando" | "falhou";
 
@@ -15,10 +22,10 @@ export function Formulario({ origem }: { origem: string }) {
   async function aoEnviar(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const campo = (nome: string) => String(f.get(nome) ?? "").trim();
+    const valor = (nome: string) => String(f.get(nome) ?? "").trim();
 
     // Spam: finge sucesso para não ensinar o robô a contornar a proteção.
-    if (pareceSpam(campo("site_empresa"), abertoEm.current)) {
+    if (pareceSpam(valor("site_empresa"), abertoEm.current)) {
       window.location.assign("/obrigado/");
       return;
     }
@@ -26,11 +33,11 @@ export function Formulario({ origem }: { origem: string }) {
     setEstado("enviando");
     try {
       await enviarContato({
-        nome: campo("nome"),
+        nome: valor("nome"),
         preferencia,
-        contato: campo(preferencia),
-        assunto: preferencia === "email" ? campo("assunto") : "",
-        mensagem: campo("mensagem"),
+        contato: valor(preferencia),
+        assunto: preferencia === "email" ? valor("assunto") : "",
+        mensagem: valor("mensagem"),
         origem,
       });
       window.location.assign("/obrigado/");
@@ -40,20 +47,21 @@ export function Formulario({ origem }: { origem: string }) {
   }
 
   return (
-    <form className="formulario" onSubmit={aoEnviar}>
-      <p className="formulario__isca" aria-hidden="true">
+    <form className="grid gap-4" onSubmit={aoEnviar}>
+      <p className="absolute -left-[9999px]" aria-hidden="true">
         <label>
           {t.isca} <input name="site_empresa" tabIndex={-1} autoComplete="off" />
         </label>
       </p>
-      <label className="formulario__campo">
+      <label className={campo}>
         <span>{t.nome}</span>
-        <input name="nome" required maxLength={80} autoComplete="name" />
+        <input className={entrada} name="nome" required maxLength={80} autoComplete="name" />
       </label>
-      <fieldset className="formulario__escolha">
-        <legend>{t.preferencia}</legend>
-        <label>
+      <fieldset className="m-0 flex flex-wrap gap-x-6 gap-y-2 border-0 p-0">
+        <legend className="mb-2 w-full px-[2px] font-semibold">{t.preferencia}</legend>
+        <label className="inline-flex min-h-alvo items-center gap-2">
           <input
+            className={radio}
             type="radio"
             name="preferencia"
             value="whatsapp"
@@ -62,8 +70,9 @@ export function Formulario({ origem }: { origem: string }) {
           />{" "}
           {t.porWhatsapp}
         </label>
-        <label>
+        <label className="inline-flex min-h-alvo items-center gap-2">
           <input
+            className={radio}
             type="radio"
             name="preferencia"
             value="email"
@@ -74,9 +83,10 @@ export function Formulario({ origem }: { origem: string }) {
         </label>
       </fieldset>
       {preferencia === "whatsapp" ? (
-        <label className="formulario__campo">
+        <label className={campo}>
           <span>{t.whatsapp}</span>
           <input
+            className={entrada}
             name="whatsapp"
             type="tel"
             required
@@ -88,31 +98,31 @@ export function Formulario({ origem }: { origem: string }) {
         </label>
       ) : (
         <>
-          <label className="formulario__campo">
+          <label className={campo}>
             <span>{t.email}</span>
-            <input name="email" type="email" required maxLength={120} autoComplete="email" />
+            <input className={entrada} name="email" type="email" required maxLength={120} autoComplete="email" />
           </label>
-          <label className="formulario__campo">
+          <label className={campo}>
             <span>{t.assunto}</span>
-            <input name="assunto" maxLength={120} />
+            <input className={entrada} name="assunto" maxLength={120} />
           </label>
         </>
       )}
-      <label className="formulario__campo">
+      <label className={campo}>
         <span>{t.mensagem}</span>
-        <textarea name="mensagem" rows={4} required maxLength={2000} />
+        <textarea className={`${entrada} resize`} name="mensagem" rows={4} required maxLength={2000} />
       </label>
-      <button className="botao botao--cheio" type="submit" disabled={estado === "enviando"}>
+      <button className={`${botaoCheio} cursor-pointer justify-self-start disabled:cursor-wait disabled:opacity-60`} type="submit" disabled={estado === "enviando"}>
         {estado === "enviando" ? t.enviando : t.enviar}
       </button>
       {estado === "falhou" && (
-        <div className="formulario__falha" role="alert">
+        <div className="border-l-[3px] border-destaque bg-realce p-3" role="alert">
           <p>{t.falhou}</p>
-          <p className="formulario__alternativas">
-            <a className="botao" href={linkContato(origem)} target="_blank" rel="noopener">
+          <p className="mt-2 flex flex-wrap gap-3">
+            <a className={botao} href={linkContato(origem)} target="_blank" rel="noopener">
               WhatsApp
             </a>
-            <a className="botao" href={`mailto:${site.email}`}>
+            <a className={botao} href={`mailto:${site.email}`}>
               {site.email}
             </a>
           </p>

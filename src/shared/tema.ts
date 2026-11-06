@@ -22,6 +22,6 @@ export function salvarTema(area: string, tema: Tema): void {
 
 export function aplicarTema(tema: Tema): void {
   document.documentElement.dataset.theme = tema;
-  const cor = getComputedStyle(document.documentElement).getPropertyValue("--cor-fundo").trim();
+  const cor = getComputedStyle(document.documentElement).getPropertyValue("--color-fundo").trim();
   document.querySelector('meta[name="theme-color"]')?.setAttribute("content", cor);
 }

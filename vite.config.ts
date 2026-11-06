@@ -2,6 +2,7 @@ import { resolve } from "node:path";
 import type { Plugin } from "vite";
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import { site } from "./src/content/site.ts";
 
 // A Netlify injeta `URL` no build. Sem ela, vale o endereço padrão de site.ts.
@@ -17,7 +18,7 @@ function urlAbsoluta(): Plugin {
 const raiz = import.meta.dirname;
 
 export default defineConfig({
-  plugins: [react(), urlAbsoluta()],
+  plugins: [react(), tailwindcss(), urlAbsoluta()],
   build: {
     rollupOptions: {
       input: {

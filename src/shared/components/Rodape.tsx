@@ -8,12 +8,15 @@ type Props = {
 
 export function Rodape({ ponte, children }: Props) {
   return (
-    <footer className="rodape">
-      <p className="rodape__ponte">
-        {ponte.texto} <a href={ponte.href}>{ponte.link}</a>
+    <footer className="mx-auto max-w-site border-t border-linha px-margem pt-9 pb-14 text-[0.95rem] text-texto-suave">
+      <p className="font-semibold text-texto">
+        {ponte.texto}{" "}
+        <a className="inline-block min-h-alvo leading-[44px]" href={ponte.href}>
+          {ponte.link}
+        </a>
       </p>
       {children}
-      <p className="rodape__privacidade">{comum.privacidade}</p>
+      <p>{comum.privacidade}</p>
     </footer>
   );
 }
