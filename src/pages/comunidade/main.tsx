@@ -6,7 +6,7 @@ import { site } from "../../content/site";
 import { servicosDa } from "../../content/servicos";
 import { mensalidadeBots, parametros } from "../../content/orcamento";
 import { comunidade as t, piloto, pilotoNota } from "../../content/textos";
-import { Cabecalho } from "../../shared/components/Cabecalho";
+import { Cabecalho } from "../../shared/components/cabecalho/Cabecalho";
 import { Catalogo } from "../../shared/components/Catalogo";
 import { Contatos } from "../../shared/components/Contatos";
 import { Rodape } from "../../shared/components/Rodape";

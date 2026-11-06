@@ -5,7 +5,7 @@ import "../../styles/tema-negocios.css";
 import { comoFunciona as t, exemplos, type Exemplo } from "../../content/exemplos";
 import { servicoPorId } from "../../content/servicos";
 import { negocios } from "../../content/textos";
-import { CabecalhoNegocios } from "../../shared/components/CabecalhoNegocios";
+import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
 import { Rodape } from "../../shared/components/Rodape";
 import { botaoCheio, rotuloFicticio } from "../../shared/estilos";
 import { linkContato } from "../../shared/lib/whatsapp";

@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "../../styles/tailwind.css";
 import "../../styles/tema-negocios.css";
 import { negocios as t } from "../../content/textos";
-import { CabecalhoNegocios } from "../../shared/components/CabecalhoNegocios";
+import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
 import { Rodape } from "../../shared/components/Rodape";
 import { botao, botaoCheio } from "../../shared/estilos";
 import { PainelExemplo } from "./PainelExemplo";

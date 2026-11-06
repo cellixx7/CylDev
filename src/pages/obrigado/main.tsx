@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "../../styles/tailwind.css";
 import { site } from "../../content/site";
 import { naoEncontrado, obrigado } from "../../content/textos";
-import { Cabecalho } from "../../shared/components/Cabecalho";
+import { Cabecalho } from "../../shared/components/cabecalho/Cabecalho";
 import { botao } from "../../shared/estilos";
 
 const raiz = document.getElementById("raiz")!;

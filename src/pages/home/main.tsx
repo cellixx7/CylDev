@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "../../styles/tailwind.css";
 import { home } from "../../content/textos";
-import { Cabecalho } from "../../shared/components/Cabecalho";
+import { Cabecalho } from "../../shared/components/cabecalho/Cabecalho";
 
 function Home() {
   return (
