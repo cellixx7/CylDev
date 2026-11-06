@@ -31,7 +31,12 @@
   --color-roxo-noite: #17141f;
   --color-lilas: #c9b8ff;
   --color-papel: #ecebe6;
-  --color-grafico-azul: #3b6ea8;
+  /* Séries de gráficos (claro). O escuro sobrescreve em tema-negocios.css. */
+  --color-serie-1: #a83f25;
+  --color-serie-2: #2f4b5c;
+  --color-serie-3: #6b6f76;
+  --color-serie-4: #a3a6ac;
+  --color-serie-5: #cbcdd1;
 
   --spacing-margem: clamp(1rem, 4vw, 4rem);
   --spacing-alvo: 44px;
@@ -45,83 +50,6 @@
   /* Pontos de quebra além dos padrão (sm 40rem, md 48rem, xl 80rem). */
   --breakpoint-tab: 56rem;
   --breakpoint-pc: 62rem;
-
-  --shadow-painel: 0 24px 50px -24px rgb(0 0 0 / 0.3);
-  --shadow-pilula:
-    inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent), 0 1px 2px rgb(0 0 0 / 0.06),
-    0 10px 30px -12px rgb(0 0 0 / 0.25);
-  --shadow-pilula-rolada:
-    inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent), 0 2px 4px rgb(0 0 0 / 0.08),
-    0 18px 40px -14px rgb(0 0 0 / 0.35);
-  --shadow-menu: 0 18px 40px -14px rgb(0 0 0 / 0.35);
-
-  /* Animações de entrada do painel de exemplo. --atraso vem de cada elemento. */
-  --animate-painel: painel-entrada 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
-  --animate-painel-item: painel-entrada 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
-  --animate-painel-barra: painel-barra 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
-  --animate-painel-preencher: painel-preencher 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
-  --animate-painel-aparecer-valor: painel-aparecer 0.4s ease-out var(--atraso, 0s) both;
-  --animate-painel-aparecer: painel-aparecer 0.5s ease-out var(--atraso, 0s) both;
-  --animate-painel-pizza: painel-pizza 1s cubic-bezier(0.4, 0, 0.2, 1) 1.3s both;
-  --animate-seta-pulo: seta-sobre-pulo 1.8s ease-in-out infinite;
-
-  @keyframes painel-entrada {
-    from {
-      opacity: 0;
-      transform: translateY(14px) scale(0.98);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-  @keyframes painel-barra {
-    from {
-      transform: scaleY(0);
-    }
-    to {
-      transform: scaleY(1);
-    }
-  }
-  @keyframes painel-preencher {
-    from {
-      transform: scaleX(0);
-    }
-    to {
-      transform: scaleX(1);
-    }
-  }
-  @keyframes painel-pizza {
-    from {
-      --pizza-revelada: 0%;
-    }
-    to {
-      --pizza-revelada: 100%;
-    }
-  }
-  @keyframes painel-aparecer {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  @keyframes seta-sobre-pulo {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(6px);
-    }
-  }
-}
-
-@property --pizza-revelada {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 100%;
 }
 
 [data-theme="escuro"] {

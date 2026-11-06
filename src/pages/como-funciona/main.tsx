@@ -1,6 +1,7 @@
 import { StrictMode, useState, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import "../../styles/tailwind.css";
+import "../../styles/tema-negocios.css";
 import { comoFunciona as t, exemplos, type Exemplo } from "../../content/exemplos";
 import { servicoPorId } from "../../content/servicos";
 import { negocios } from "../../content/textos";
@@ -233,7 +234,7 @@ function ComoFunciona() {
   return (
     <>
       <CabecalhoNegocios />
-      <main id="conteudo" className="pt-20 [&>section]:scroll-mt-24">
+      <main id="conteudo">
         <section className="pb-9">
           <h1 className="max-w-[20ch] text-[clamp(2rem,7.5vw,3.6rem)] tracking-[-0.01em]">{t.titulo}</h1>
           <p className="text-[1.1rem] text-texto-suave">{t.intro}</p>
