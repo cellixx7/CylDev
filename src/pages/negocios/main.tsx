@@ -6,6 +6,7 @@ import { negocios as t } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
 import { Rodape } from "../../shared/components/Rodape";
 import { botao, botaoCheio } from "../../shared/estilos";
+import { Orcamento } from "./Orcamento";
 import { PainelExemplo } from "./PainelExemplo";
 
 // Estrutura em branco da área Negócios. O conteúdo e o design serão refeitos.
@@ -15,7 +16,7 @@ function Negocios() {
       <CabecalhoNegocios />
       <main id="conteudo">
         <section
-          className="grid gap-10 px-margem pt-10 pb-14 pc:min-h-[calc(100svh-4rem)] pc:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] pc:items-center pc:gap-[clamp(2.5rem,5vw,5rem)]"
+          className="mx-auto grid w-full max-w-hero gap-10 px-margem pt-10 pb-14 pc:min-h-[calc(100svh-4.5rem)] pc:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] pc:items-center pc:gap-[clamp(2rem,4vw,4.5rem)] pc:py-6"
           id="apresentacao"
         >
           <div>
@@ -38,9 +39,7 @@ function Negocios() {
           </div>
           <PainelExemplo />
         </section>
-        <section className="mx-auto max-w-hero px-margem py-14" id="orcamento">
-          <h2>Orçamento</h2>
-        </section>
+        <Orcamento />
         <section id="entregas"></section>
         <section id="como-funciona"></section>
         <section id="sobre"></section>

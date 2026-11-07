@@ -50,6 +50,96 @@
   /* Pontos de quebra além dos padrão (sm 40rem, md 48rem, xl 80rem). */
   --breakpoint-tab: 56rem;
   --breakpoint-pc: 62rem;
+
+  /* Entrada do painel de exemplo, uma vez no carregamento. --atraso vem de cada elemento. */
+  --animate-painel: painel-entrada 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
+  --animate-painel-item: painel-entrada 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
+  --animate-painel-barra: painel-barra 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
+  --animate-painel-preencher: painel-preencher 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
+  --animate-painel-aparecer: painel-aparecer 0.4s ease-out var(--atraso, 0s) both;
+  /* Fatia da pizza: abre de 0 até o stroke-dasharray definido no próprio elemento. */
+  --animate-painel-fatia: painel-fatia 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
+
+  /* Controle do header ao clicar: alinha, cresce e some; faíscas saem; um círculo cobre a tela. */
+  --animate-controle-explodir: controle-explodir 0.55s cubic-bezier(0.3, 0.7, 0.2, 1) both;
+  --animate-controle-faisca: controle-faisca 0.45s cubic-bezier(0.1, 0.8, 0.3, 1) 0.22s both;
+  --animate-controle-cobrir: controle-cobrir 0.5s cubic-bezier(0.6, 0, 0.3, 1) 0.28s both;
+
+  @keyframes controle-explodir {
+    0% {
+      transform: rotate(-14deg) scale(1);
+    }
+    35% {
+      transform: rotate(0deg) scale(1.15);
+    }
+    55% {
+      transform: rotate(0deg) scale(1.6);
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(0deg) scale(2.4);
+      opacity: 0;
+    }
+  }
+  @keyframes controle-faisca {
+    from {
+      transform: rotate(var(--ang)) translateX(4px) scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: rotate(var(--ang)) translateX(var(--dist, 44px)) scale(0.2);
+      opacity: 0;
+    }
+  }
+  @keyframes controle-cobrir {
+    from {
+      transform: translate(-50%, -50%) scale(0);
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  @keyframes painel-fatia {
+    from {
+      stroke-dasharray: 0 100;
+    }
+  }
+
+  @keyframes painel-entrada {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes painel-barra {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+  @keyframes painel-preencher {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes painel-aparecer {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 [data-theme="escuro"] {

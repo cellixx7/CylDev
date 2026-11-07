@@ -6,7 +6,8 @@ import {
   type Complexidade,
 } from "../../content/orcamento";
 import type { Servico } from "../../content/servicos";
-import { prazoEmDias } from "./prazo";
+import { brl, horasTexto } from "./formato";
+import { formatarPrazo, prazoEmDias } from "./prazo";
 
 export type DescontoPiloto = { percentual: 10 | 5; restam: number };
 
@@ -38,4 +39,36 @@ export function estimar(s: Servico, complexidade: Complexidade): Estimativa | nu
     dias: prazoEmDias(horas),
     aPartirDe: s.preco.tipo === "aPartirDe",
   };
+}
+
+/** Preço com o desconto de piloto aplicado, arredondado para reais inteiros. */
+export function comDesconto(preco: number, percentual: number): number {
+  return Math.round(preco * (1 - percentual / 100));
+}
+
+export type FormatoAula = "avulsa" | "pacote";
+
+/**
+ * Linha que vai na mensagem do WhatsApp e no formulário, com o que o cliente escolheu na calculadora.
+ * O desconto de piloto só entra em pacotes com preço de criação (nunca em aulas).
+ */
+export function resumoOrcamento(
+  s: Servico,
+  complexidade: Complexidade,
+  formatoAula: FormatoAula,
+  desconto: DescontoPiloto | null = descontoPilotoAtual(),
+): string {
+  const pedido = `Quero um orçamento de: ${s.nome}`;
+  if (s.preco.tipo === "aula") {
+    const { porHora, pacote } = s.preco;
+    return formatoAula === "pacote"
+      ? `${pedido}, pacote de ${pacote.aulas} aulas (${brl(pacote.valor)}).`
+      : `${pedido}, aula avulsa (${brl(porHora)} por hora).`;
+  }
+  const e = estimar(s, complexidade);
+  if (!e) return `${pedido} (sob consulta).`;
+  const aPartir = e.aPartirDe ? "a partir de " : "";
+  const piloto = desconto ? `, ${aPartir}${brl(comDesconto(e.preco, desconto.percentual))} com ${desconto.percentual}% de piloto` : "";
+  const tamanho = complexidades[complexidade].rotulo.toLowerCase();
+  return `${pedido}, tamanho ${tamanho} (estimativa ${aPartir}${brl(e.preco)}${piloto}; ${horasTexto(e.horas)}; ${formatarPrazo(e.dias)}).`;
 }

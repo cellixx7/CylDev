@@ -9,12 +9,18 @@ const campo =
   "grid gap-1 font-semibold";
 const entrada =
   "min-h-alvo rounded-pequeno border border-texto-suave bg-superficie px-3 py-2 font-normal text-texto";
-const radio = "m-[3px_3px_3px_4px]";
+const radio = "m-[3px_3px_3px_4px] accent-destaque";
 
 type Estado = "pronto" | "enviando" | "falhou";
 
+type Props = {
+  origem: string;
+  /** Resumo do pedido (vem da calculadora). Vai antes da mensagem, que passa a ser opcional. */
+  resumo?: string;
+};
+
 /** Formulário de contato enviado pelo EmailJS. Se falhar, mostra WhatsApp e e-mail. */
-export function Formulario({ origem }: { origem: string }) {
+export function Formulario({ origem, resumo }: Props) {
   const [preferencia, setPreferencia] = useState<"whatsapp" | "email">("whatsapp");
   const [estado, setEstado] = useState<Estado>("pronto");
   const abertoEm = useRef(Date.now());
@@ -37,7 +43,7 @@ export function Formulario({ origem }: { origem: string }) {
         preferencia,
         contato: valor(preferencia),
         assunto: preferencia === "email" ? valor("assunto") : "",
-        mensagem: valor("mensagem"),
+        mensagem: [resumo, valor("mensagem")].filter(Boolean).join("\n\n"),
         origem,
       });
       window.location.assign("/obrigado/");
@@ -108,9 +114,23 @@ export function Formulario({ origem }: { origem: string }) {
           </label>
         </>
       )}
+      {resumo && (
+        <div className="border-l-[3px] border-destaque bg-realce px-3 py-2 text-[0.95rem]">
+          <p className="m-0 font-semibold">{t.resumo}</p>
+          <p className="m-0 text-texto-suave" aria-live="polite">
+            {resumo}
+          </p>
+        </div>
+      )}
       <label className={campo}>
-        <span>{t.mensagem}</span>
-        <textarea className={`${entrada} resize`} name="mensagem" rows={4} required maxLength={2000} />
+        <span>{resumo ? t.mensagemOpcional : t.mensagem}</span>
+        <textarea
+          className={`${entrada} resize`}
+          name="mensagem"
+          rows={resumo ? 3 : 4}
+          required={!resumo}
+          maxLength={2000}
+        />
       </label>
       <button className={`${botaoCheio} cursor-pointer justify-self-start disabled:cursor-wait disabled:opacity-60`} type="submit" disabled={estado === "enviando"}>
         {estado === "enviando" ? t.enviando : t.enviar}
@@ -119,7 +139,7 @@ export function Formulario({ origem }: { origem: string }) {
         <div className="border-l-[3px] border-destaque bg-realce p-3" role="alert">
           <p>{t.falhou}</p>
           <p className="mt-2 flex flex-wrap gap-3">
-            <a className={botao} href={linkContato(origem)} target="_blank" rel="noopener">
+            <a className={botao} href={linkContato(origem, resumo)} target="_blank" rel="noopener">
               WhatsApp
             </a>
             <a className={botao} href={`mailto:${site.email}`}>
