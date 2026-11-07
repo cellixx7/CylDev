@@ -46,13 +46,53 @@ export const piloto = (restam: number, percentual: number, primeiraFaixa: boolea
 
 export const pilotoNota = "O desconto vale sobre o preço de criação.";
 
+/** Calculadora da seção #orcamento (Negócios). Valores saem de servicos.ts e orcamento.ts. */
+export const orcamento = {
+  titulo: "Monte o seu orçamento",
+  intro:
+    "Escolha o que você precisa e o tamanho do trabalho. A estimativa aparece na hora. O valor final vai na proposta por escrito, depois que eu vir o seu caso.",
+  passoServico: "O que você precisa?",
+  passoTamanho: "Qual o tamanho do trabalho?",
+  passoAula: "Como prefere as aulas?",
+  tamanhos: {
+    basico: "O que está descrito no pacote.",
+    medio: "Mais dados, abas ou regras do que o pacote básico.",
+    complexo: "Várias fontes de dados ou regras próprias do seu negócio.",
+  },
+  aulaAvulsa: "Aula avulsa",
+  aulaPacote: (aulas: number) => `Pacote de ${aulas} aulas`,
+  estimativa: "Estimativa",
+  aPartirDe: "a partir de",
+  porHora: "por hora",
+  comPiloto: (percentual: number, restam: number) =>
+    `Com ${percentual}% de desconto de piloto. Restam ${restam} ${restam === 1 ? "vaga" : "vagas"} nessa faixa.`,
+  trabalho: "Trabalho",
+  prazo: "Prazo",
+  notaAPartirDe: "O valor depende do que a automação vai fazer. Este é o mínimo para o tamanho escolhido.",
+  notaEstimativa: "É uma estimativa. O valor e a data de entrega ficam fechados na proposta.",
+  consulta: "Começa com uma conversa. Me conte o caso e eu mando uma proposta por escrito com valor e prazo.",
+  enviarWhatsapp: "Enviar pelo WhatsApp",
+  formularioTitulo: "Prefere deixar o seu contato?",
+  formularioTexto: "Eu respondo pelo canal que você escolher.",
+};
+
 export const negocios = {
   nav: [
-    { href: "/negocios/#entregas", rotulo: "Entregas" },
+    { href: "/negocios/#orcamento", rotulo: "Orçamento" },
     { href: "/negocios/como-funciona/", rotulo: "Como funciona" },
     { href: "/negocios/#sobre", rotulo: "Sobre" },
+    { href: "/negocios/#entregas", rotulo: "Entregas" },
     { href: "/negocios/#contato", rotulo: "Contato" },
   ],
+  /** Controle no centro do header: leva para a área de comunidade. */
+  atalhoComunidade: {
+    href: "/comunidade/",
+    rotulo: "Ir para a área de comunidade (Discord e jogos)",
+    dicaTitulo: "Conheça o CylDev",
+    dicaTexto: "Tenha o seu próprio BOT do Discord com interface única sua e muito mais",
+    /** Só aparece no toque (celular/tablet): no mouse o próprio controle já é o link. */
+    dicaAcao: "Ir para o CylDev",
+  },
   apresentacao: {
     titulo: "Marcelo Vaz",
     subtitulo:
@@ -164,6 +204,9 @@ export const formulario = {
   email: "Seu e-mail",
   assunto: "Assunto",
   mensagem: "O que você precisa",
+  /** Rótulo da mensagem quando a calculadora já mandou o resumo do pedido. */
+  mensagemOpcional: "Quer contar mais alguma coisa? (opcional)",
+  resumo: "Vai junto com a sua mensagem:",
   enviar: "Enviar",
   enviando: "Enviando…",
   falhou: "Não consegui enviar agora. Me chame por um destes canais:",

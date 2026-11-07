@@ -11,7 +11,7 @@ export const parametros = {
 
 /**
  * Multiplicador sobre horas e preço do pacote básico.
- * "medio" ainda é proposta (1,5): confirmar com o Marcelo.
+ * "medio" (1,5) confirmado pelo Marcelo em 06/11/2026.
  */
 export const complexidades = {
   basico: { rotulo: "Básico", fator: 1 },

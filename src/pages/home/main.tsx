@@ -7,7 +7,7 @@ import { Cabecalho } from "../../shared/components/cabecalho/Cabecalho";
 function Home() {
   return (
     <>
-      <Cabecalho area="home" temaPadrao="claro" marca={home.titulo} />
+      <Cabecalho area="home" temaPadrao="escuro" marca={home.titulo} />
       <main className="mx-auto max-w-site px-margem pt-9 pb-20" id="conteudo">
         <h1 className="mb-9 max-w-[24ch] text-[clamp(1.5rem,5vw,2.2rem)]">{home.linha}</h1>
         <ul className="m-0 grid list-none gap-4 p-0 md:grid-cols-[3fr_2fr] md:items-stretch">

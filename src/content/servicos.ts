@@ -60,7 +60,7 @@ export const servicos: Servico[] = [
     resultado: "A tarefa que você repete toda semana na planilha passa a rodar com um clique.",
     inclui: ["VBA ou Power Query", "Instruções de uso"],
     preco: { tipo: "aPartirDe", valor: 300 },
-    // PENDENTE: horas base ainda não definidas pelo Marcelo (valor provisório).
+    // Horas base confirmadas pelo Marcelo em 06/11/2026.
     horasBase: 6,
     disponivel: true,
   },

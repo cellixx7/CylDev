@@ -12,7 +12,7 @@ const t = raiz.dataset.pagina === "404" ? naoEncontrado : obrigado;
 function Aviso() {
   return (
     <>
-      <Cabecalho area="home" temaPadrao="claro" marca={site.nome} />
+      <Cabecalho area="home" temaPadrao="escuro" marca={site.nome} />
       <main className="mx-auto max-w-site px-margem py-20" id="conteudo">
         <h1>{t.titulo}</h1>
         <p>{t.texto}</p>
