@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { complexidades, type Complexidade } from "../../content/orcamento";
-import { servicos, type Servico } from "../../content/servicos";
+import { prazoACombinar, servicos, type Servico } from "../../content/servicos";
 import { orcamento as t, pilotoNota } from "../../content/textos";
 import { Formulario } from "../../shared/components/Formulario";
 import { textoPreco } from "../../shared/components/Catalogo";
@@ -155,7 +155,7 @@ export function Orcamento() {
                 )}
                 <dt className="font-semibold">{t.prazo}</dt>
                 <dd className="m-0 text-right font-mono">
-                  {estimativa ? formatarPrazo(estimativa.dias) : (s.prazoTexto ?? "")}
+                  {estimativa ? (s.horasProvisorias ? prazoACombinar : formatarPrazo(estimativa.dias)) : (s.prazoTexto ?? "")}
                 </dd>
               </dl>
             </div>

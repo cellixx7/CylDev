@@ -18,11 +18,19 @@ export type Servico = {
   preco: Preco;
   /** Horas base do pacote básico. Sem horas, o prazo não é calculado. */
   horasBase?: number;
+  /**
+   * As horas base ainda não foram confirmadas. Enquanto for `true`, o site mostra
+   * "prazo a combinar" no lugar dos dias. Remover a marca quando o Marcelo confirmar as horas.
+   */
+  horasProvisorias?: boolean;
   prazoTexto?: string;
   /** Tem mensalidade de hospedagem e manutenção (ver `mensalidadeBots` em orcamento.ts). */
   mensalidade?: boolean;
   disponivel: boolean;
 };
+
+/** Texto do prazo dos pacotes com horas provisórias. */
+export const prazoACombinar = "prazo a combinar";
 
 export const servicos: Servico[] = [
   {
@@ -108,6 +116,7 @@ export const servicos: Servico[] = [
     preco: { tipo: "fixo", valor: 300 },
     // PENDENTE: horas base ainda não definidas pelo Marcelo (valor provisório).
     horasBase: 4,
+    horasProvisorias: true,
     mensalidade: true,
     disponivel: true,
   },
@@ -121,6 +130,7 @@ export const servicos: Servico[] = [
     preco: { tipo: "aPartirDe", valor: 500 },
     // PENDENTE: horas base ainda não definidas pelo Marcelo (valor provisório).
     horasBase: 8,
+    horasProvisorias: true,
     mensalidade: true,
     disponivel: true,
   },

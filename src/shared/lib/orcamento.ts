@@ -5,7 +5,7 @@ import {
   vagasPiloto5,
   type Complexidade,
 } from "../../content/orcamento";
-import type { Servico } from "../../content/servicos";
+import { prazoACombinar, type Servico } from "../../content/servicos";
 import { brl, horasTexto } from "./formato";
 import { formatarPrazo, prazoEmDias } from "./prazo";
 
@@ -69,6 +69,7 @@ export function resumoOrcamento(
   if (!e) return `${pedido} (sob consulta).`;
   const aPartir = e.aPartirDe ? "a partir de " : "";
   const piloto = desconto ? `, ${aPartir}${brl(comDesconto(e.preco, desconto.percentual))} com ${desconto.percentual}% de piloto` : "";
+  const prazo = s.horasProvisorias ? prazoACombinar : formatarPrazo(e.dias);
   const tamanho = complexidades[complexidade].rotulo.toLowerCase();
-  return `${pedido}, tamanho ${tamanho} (estimativa ${aPartir}${brl(e.preco)}${piloto}; ${horasTexto(e.horas)}; ${formatarPrazo(e.dias)}).`;
+  return `${pedido}, tamanho ${tamanho} (estimativa ${aPartir}${brl(e.preco)}${piloto}; ${horasTexto(e.horas)}; ${prazo}).`;
 }

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { servicoPorId } from "../../content/servicos";
+import { prazoACombinar, servicoPorId } from "../../content/servicos";
+import { textoPrazo } from "../components/Catalogo";
 import { comDesconto, descontoPilotoAtual, estimar, mensalidadeDe, resumoOrcamento } from "./orcamento";
 
 describe("descontoPilotoAtual", () => {
@@ -68,5 +69,33 @@ describe("resumoOrcamento", () => {
     expect(resumoOrcamento(servicoPorId("sistema")!, "basico", "avulsa", null)).toBe(
       "Quero um orçamento de: Sistema sob medida (sob consulta).",
     );
+  });
+
+  it("bots com horas provisórias trazem 'prazo a combinar'", () => {
+    const essencial = limpo(resumoOrcamento(servicoPorId("bot-essencial")!, "basico", "avulsa", null));
+    expect(essencial).toBe("Quero um orçamento de: Bot de Discord essencial, tamanho básico (estimativa R$ 300; 4 h; prazo a combinar).");
+    const ia = limpo(resumoOrcamento(servicoPorId("bot-ia")!, "basico", "avulsa", null));
+    expect(ia).toContain("; prazo a combinar).");
+    expect(ia).not.toContain("dias úteis");
+  });
+
+  it("pacotes com horas confirmadas seguem com dias úteis", () => {
+    for (const id of ["planilha", "painel", "landing", "automacao"]) {
+      const r = resumoOrcamento(servicoPorId(id)!, "basico", "avulsa", null);
+      expect(r).toMatch(/dias? úte(is|l)\)\.$/);
+      expect(r).not.toContain(prazoACombinar);
+    }
+  });
+});
+
+describe("textoPrazo (catálogo)", () => {
+  it("mostra 'prazo a combinar' nos bots provisórios", () => {
+    expect(textoPrazo(servicoPorId("bot-essencial")!)).toBe("prazo a combinar");
+    expect(textoPrazo(servicoPorId("bot-ia")!)).toBe("prazo a combinar");
+  });
+
+  it("mantém dias úteis nos demais", () => {
+    expect(textoPrazo(servicoPorId("painel")!)).toMatch(/dias úteis$/);
+    expect(textoPrazo(servicoPorId("planilha")!)).toMatch(/dias? útei?s?$/);
   });
 });
