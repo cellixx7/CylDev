@@ -1,6 +1,6 @@
 # Marcelo Vaz e CylDev
 
-Site de vendas de serviços: área **Negócios** (`/negocios/`) e área **Comunidade** (`/comunidade/`), com a home servindo de porta para as duas. Hospedado na Netlify (plano gratuito).
+Site de vendas de serviços: área **Negócios** (raiz `/`) e área **Comunidade** (`/comunidade/`), com um atalho no cabeçalho entre as duas. Hospedado na Netlify (plano gratuito).
 
 ## Rodar
 

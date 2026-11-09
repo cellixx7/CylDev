@@ -19,7 +19,7 @@ npx vitest run src/shared/lib/orcamento.test.ts   # um arquivo de teste
 
 Não é SPA: cada área tem o seu HTML e a sua raiz React.
 
-- `home/`, `negocios/` (padrão: `/` redireciona), `negocios/como-funciona/`, `comunidade/`, `obrigado/`, `404.html`. Página nova exige o HTML e uma entrada em `build.rollupOptions.input` no `vite.config.ts`.
+- `index.html` (Negócios, é a raiz `/`), `como-funciona/`, `comunidade/`, `obrigado/`, `404.html`. Não existe mais `/negocios/` (a Netlify redireciona o endereço antigo). Página nova exige o HTML e uma entrada em `build.rollupOptions.input` no `vite.config.ts`.
 - `src/pages/<area>/main.tsx`: monta a árvore React e importa `src/styles/tema-<area>.css` e `tailwind.css`. Componentes só de uma área ficam ao lado (ex.: `src/pages/negocios/Orcamento.tsx`).
 - `src/content/`: dados e textos editáveis (`site.ts`, `servicos.ts`, `orcamento.ts`, `textos.ts`, `exemplos.ts`).
 - `src/shared/`: `components/` (Formulario, Catalogo, Rodape, cabecalho/*), `lib/` (lógica pura e testada: orcamento, prazo, whatsapp, emailjs, formato), `estilos.ts` (classes repetidas, como strings literais completas; o Tailwind lê texto, então nada de montar classe dinamicamente), `tema.ts`.
@@ -37,8 +37,8 @@ Não é SPA: cada área tem o seu HTML e a sua raiz React.
 
 ## Design
 
-- Negócios: paleta N2, grafite com terracota. Comunidade: tema próprio em `tema-comunidade.css`.
-- Fontes: Schibsted Grotesk (títulos), Source Sans 3 (texto), JetBrains Mono (preços e números), todas locais.
+- Negócios: cobalto sobre off-white frio (claro) e azul-noite (escuro), um só acento. Comunidade: tema próprio em `tema-comunidade.css`.
+- Fontes de Negócios: Space Grotesk (títulos e texto), Space Mono (preços e números), todas locais.
 - Sem degradê, vidro ou blur. Sem emoji como ícone.
 - Mobile em primeiro lugar: desenhe e teste no celular antes do desktop.
 - `.claude/skills/design-taste-frontend` é a skill de design do projeto.
