@@ -12,7 +12,14 @@ export type DadosContato = {
   assunto: string;
   mensagem: string;
   origem: string;
+  /** Dados da calculadora, em texto. Sem calculadora, o envio usa "—". */
+  pacote?: string;
+  tamanho?: string;
+  estimativa?: string;
 };
+
+/** Valor enviado quando o pedido não vem da calculadora. */
+export const SEM_DADO = "—";
 
 export function emailjsConfigurado(cfg = site.emailjs): boolean {
   return Boolean(cfg.serviceId && cfg.templateId && cfg.publicKey);
@@ -43,6 +50,9 @@ export async function enviarContato(dados: DadosContato, cfg = site.emailjs): Pr
         assunto: dados.assunto || "Contato pelo site",
         mensagem: dados.mensagem,
         origem: dados.origem,
+        pacote: dados.pacote || SEM_DADO,
+        tamanho: dados.tamanho || SEM_DADO,
+        estimativa: dados.estimativa || SEM_DADO,
       },
     }),
   });

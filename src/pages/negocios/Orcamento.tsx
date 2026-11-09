@@ -30,6 +30,25 @@ function precoNaLista(s: Servico): string {
   return s.preco.tipo === "aula" ? `${brl(s.preco.porHora)}/h` : textoPreco(s.preco);
 }
 
+/** Pacote, tamanho e estimativa em texto, para o e-mail do formulário. */
+function detalhesDoPedido(s: Servico, tamanho: Complexidade, formatoAula: FormatoAula) {
+  const e = estimar(s, tamanho);
+  if (s.preco.tipo === "aula") {
+    const pacote = formatoAula === "pacote";
+    return {
+      pacote: s.nome,
+      tamanho: "—",
+      estimativa: pacote ? `${brl(s.preco.pacote.valor)} (${s.preco.pacote.aulas} aulas)` : `${brl(s.preco.porHora)} por hora`,
+    };
+  }
+  if (!e) return { pacote: s.nome, tamanho: "—", estimativa: textoPreco(s.preco) };
+  return {
+    pacote: s.nome,
+    tamanho: complexidades[tamanho].rotulo,
+    estimativa: `${e.aPartirDe ? "a partir de " : ""}${brl(e.preco)}`,
+  };
+}
+
 export function Orcamento() {
   const [servicoId, setServicoId] = useState("painel");
   const [tamanho, setTamanho] = useState<Complexidade>("basico");
@@ -157,7 +176,7 @@ export function Orcamento() {
           <div className="mt-10 border-t border-linha pt-6">
             <h3 className="mb-1">{t.formularioTitulo}</h3>
             <p className="text-texto-suave">{t.formularioTexto}</p>
-            <Formulario origem={origem} resumo={resumo} />
+            <Formulario origem={origem} resumo={resumo} detalhes={detalhesDoPedido(s, tamanho, formatoAula)} />
           </div>
         </div>
       </div>
