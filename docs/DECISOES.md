@@ -70,3 +70,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - [ ] Escolher o nome do site na Netlify e atualizar `site.urlPadrao`.
 - [ ] Foto (opcional): colocar em `public/` e apontar `site.foto`.
 - [ ] Vídeo do CylBot (talvez Uniser e CylSense). Nenhum vídeo para a planilha.
+
+## Orçamento compacto (09/11/2026)
+
+- **Interface:** a seção virou um fluxo único em 3 passos (1 escolha o serviço, 2 responda, 3 seu pedido), sem as três telas do celular. Serviços em grade de botões (nome e preço); perguntas com opções em botões lado a lado; "O que está incluso" e "Como chegamos a esse valor" recolhidos; no desktop o passo 3 (estimativa e carrinho) fica fixo ao lado. Lógica, preços e perguntas não mudaram.

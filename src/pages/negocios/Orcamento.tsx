@@ -1,32 +1,37 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { servicoOrcamentoPorId } from "../../content/perguntas";
 import { orcamento as t } from "../../content/textos";
 import { botaoCheio } from "../../shared/estilos";
 import { calcularCarrinho, calcularServico, type Respostas } from "../../shared/lib/orcamento";
 import { Carrinho } from "./Carrinho";
 import { ListaServicos } from "./ListaServicos";
-import { PainelServico, precoDaBarra } from "./PainelServico";
-
-type Tela = "lista" | "servico" | "carrinho";
+import { PainelEstimativa, PainelPerguntas, precoDaBarra } from "./PainelServico";
 
 const COMBO = ["planilha", "painel", "automacao"];
-/** Abaixo do breakpoint lg (64rem) o orçamento mostra uma tela por vez. */
-const consultaCelular = "(max-width: 63.99rem)";
 
 /** Aulas começam no formato avulso, que é o que o preço mostra sem resposta. */
 const respostasIniciais: Record<string, Respostas> = { aulas: { pagamento: "avulsa" } };
 
-const botaoNav =
-  "inline-flex min-h-alvo cursor-pointer items-center border-0 bg-transparent px-2 font-[inherit] font-semibold text-texto underline underline-offset-4 hover:text-destaque";
+function Passo({ n, titulo, children }: { n: number; titulo: string; children: ReactNode }) {
+  return (
+    <section className="mb-8" aria-label={titulo}>
+      <h3 className="mb-3 flex items-center gap-2 text-[1.1rem] font-bold">
+        <span className="grid size-7 place-items-center rounded-full bg-texto font-mono text-[0.85rem] text-fundo" aria-hidden="true">
+          {n}
+        </span>
+        {titulo}
+      </h3>
+      {children}
+    </section>
+  );
+}
 
 export function Orcamento() {
   const [servicoId, setServicoId] = useState("planilha");
-  const [tela, setTela] = useState<Tela>("lista");
   const [ids, setIds] = useState<string[]>([]);
   const [respostas, setRespostas] = useState<Record<string, Respostas>>(respostasIniciais);
   const [visivel, setVisivel] = useState(false);
   const secao = useRef<HTMLElement>(null);
-  const primeiraTela = useRef(true);
 
   const modelo = servicoOrcamentoPorId(servicoId) ?? servicoOrcamentoPorId("planilha")!;
   const carrinho = useMemo(() => calcularCarrinho(ids, respostas), [ids, respostas]);
@@ -42,27 +47,13 @@ export function Orcamento() {
     return () => o.disconnect();
   }, []);
 
-  // No celular, trocar de tela leva ao topo da seção e o foco ao título da nova tela.
-  useEffect(() => {
-    if (primeiraTela.current) {
-      primeiraTela.current = false;
-      return;
-    }
-    if (!window.matchMedia(consultaCelular).matches) return;
-    secao.current?.scrollIntoView({ block: "start" });
-    document.getElementById(`orc-foco-${tela}`)?.focus({ preventScroll: true });
-  }, [tela]);
-
   const abrir = (id: string) => {
     setServicoId(id);
-    setTela("servico");
+    document.getElementById("orc-passo-perguntas")?.scrollIntoView({ block: "nearest" });
   };
   const alternar = (id: string) =>
     setIds((atual) => (atual.includes(id) ? atual.filter((i) => i !== id) : [...atual, id]));
-  const montarCombo = () => {
-    setIds((atual) => [...atual, ...COMBO.filter((id) => !atual.includes(id))]);
-    setTela("carrinho");
-  };
+  const montarCombo = () => setIds((atual) => [...atual, ...COMBO.filter((id) => !atual.includes(id))]);
   const responder = (perguntaId: string, opcaoId: string) => {
     const pergunta = modelo.perguntas.find((p) => p.id === perguntaId);
     if (!pergunta) return;
@@ -75,13 +66,10 @@ export function Orcamento() {
     });
   };
 
-  const barraFixa = tela === "servico" && visivel;
-  const mostra = (alvo: Tela) => (tela === alvo ? "" : "hidden");
-
   return (
     <section
       ref={secao}
-      className={`mx-auto max-w-hero px-margem pt-14 lg:pb-14 ${barraFixa ? "pb-32" : "pb-14"}`}
+      className={`mx-auto max-w-hero px-margem pt-14 lg:pb-14 ${visivel ? "pb-32" : "pb-14"}`}
       id="orcamento"
       aria-labelledby="orcamento-titulo"
     >
@@ -91,44 +79,35 @@ export function Orcamento() {
       </h2>
       <p className="max-w-[40rem] text-texto-suave">{t.intro}</p>
 
-      <div className="revela mt-8">
-        {/* Celular: cabeçalho para ir e voltar entre as três telas. */}
-        <div className="mb-4 flex items-center justify-between gap-2 border-y border-linha lg:hidden">
-          {tela === "lista" ? (
-            <span className="px-2 font-mono text-[0.85rem] text-texto-suave">{t.lista.titulo}</span>
-          ) : (
-            <button type="button" className={botaoNav} onClick={() => setTela("lista")}>
-              {t.navegacao.voltar}
-            </button>
-          )}
-          {tela !== "carrinho" && (
-            <button type="button" className={botaoNav} onClick={() => setTela("carrinho")}>
-              {t.navegacao.carrinho(carrinho.itens.length)}
-            </button>
-          )}
+      <div className="revela mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(22rem,26rem)] lg:items-start lg:gap-x-12">
+        <div className="min-w-0">
+          <Passo n={1} titulo={t.passos.servico}>
+            <ListaServicos servicoId={modelo.id} noCarrinho={ids} aoAbrir={abrir} aoMontarCombo={montarCombo} />
+          </Passo>
+          <div id="orc-passo-perguntas">
+            <Passo n={2} titulo={t.passos.perguntas}>
+              <PainelPerguntas modelo={modelo} respostas={respostas[modelo.id] ?? {}} aoResponder={responder} />
+            </Passo>
+          </div>
         </div>
 
-        <div className="lg:grid lg:grid-cols-[20rem_minmax(0,1fr)] lg:items-start lg:gap-x-10 lg:gap-y-12 xl:grid-cols-[minmax(19rem,22rem)_minmax(0,1fr)_minmax(20rem,25rem)]">
-          <div className={`${mostra("lista")} lg:row-span-2 lg:block xl:row-span-1`}>
-            <ListaServicos servicoId={modelo.id} noCarrinho={ids} aoAbrir={abrir} aoMontarCombo={montarCombo} />
-          </div>
-          <div className={`${mostra("servico")} min-w-0 lg:block`}>
-            <PainelServico
-              modelo={modelo}
-              respostas={respostas[modelo.id] ?? {}}
-              noCarrinho={noCarrinho}
-              aoResponder={responder}
-              aoAlternar={() => alternar(modelo.id)}
-            />
-          </div>
-          <div className={`${mostra("carrinho")} min-w-0 lg:col-start-2 lg:block xl:col-start-3 xl:row-start-1`}>
-            <Carrinho carrinho={carrinho} aoEditar={abrir} aoTirar={alternar} />
-          </div>
+        <div className="min-w-0 lg:sticky lg:top-6 lg:max-h-[calc(100dvh-3rem)] lg:overflow-y-auto">
+          <Passo n={3} titulo={t.passos.pedido}>
+            <div className="grid gap-6">
+              <PainelEstimativa
+                modelo={modelo}
+                respostas={respostas[modelo.id] ?? {}}
+                noCarrinho={noCarrinho}
+                aoAlternar={() => alternar(modelo.id)}
+              />
+              <Carrinho carrinho={carrinho} aoEditar={abrir} aoTirar={alternar} />
+            </div>
+          </Passo>
         </div>
       </div>
 
       {/* Fora do bloco `revela`: o transform dele prenderia o `fixed` ao bloco. */}
-      {barraFixa && calculo && (
+      {visivel && calculo && (
         <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3 border-t-2 border-texto bg-fundo px-margem py-2 lg:hidden">
           {/* pl-12: o botão de tema da página fica fixo no canto inferior esquerdo. */}
           <p className="m-0 min-w-0 pl-12 font-mono text-[1.05rem] leading-tight font-bold [word-spacing:-0.3em]">{precoDaBarra(calculo)}</p>

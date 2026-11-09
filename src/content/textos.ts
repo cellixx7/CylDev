@@ -31,26 +31,25 @@ export const pilotoNota = "O desconto vale sobre o preço de criação.";
 export const orcamento = {
   titulo: "Monte o seu orçamento",
   intro:
-    "Escolha um serviço e responda às perguntas. A estimativa muda na hora e mostra como chegamos ao valor. Você fecha o pedido pelo site ou fala direto comigo no WhatsApp. O valor final vai na proposta por escrito, depois que eu vir o seu caso.",
+    "Três passos: escolha o serviço, responda às perguntas e feche o pedido. A estimativa muda na hora. O valor final vai na proposta por escrito.",
+  passos: {
+    servico: "Escolha o serviço",
+    perguntas: "Responda às perguntas",
+    pedido: "Seu pedido",
+  },
   lista: {
     titulo: "Serviços",
     rotuloLista: "Lista de serviços",
     noCarrinho: "no carrinho",
     porHora: "/h",
     sobConsulta: "sob consulta",
-    comboTitulo: "Precisa de mais de uma coisa?",
-    comboTexto: "Planilha, painel e automação no mesmo pedido têm desconto de combo e um prazo só.",
+    comboTexto: "Planilha, painel e automação juntos têm desconto e um prazo só.",
     comboBotao: "Montar combo",
-  },
-  navegacao: {
-    voltar: "← Serviços",
-    carrinho: (n: number) => `Carrinho (${n})`,
   },
   painel: {
     inclui: "O que está incluso",
     perguntas: "Perguntas",
-    mudaValor: "Muda o valor.",
-    naoMudaValor: "Não muda o valor.",
+    mudaValorCurto: "muda o valor",
     marqueQuantas: "Marque quantas quiser.",
     oQueEIsso: "O que é isso?",
     incluso: (n: number) => `Já ${n === 1 ? "incluso" : "inclusos"}: ${n}.`,
@@ -94,7 +93,6 @@ export const orcamento = {
     notaEstimativa: "Estimativa, confirmada na conversa.",
     comoFechar: "Como você prefere fechar?",
     pelosite: "Fechar o pedido pelo site",
-    pelositeTexto: "Deixe o seu nome e o WhatsApp. Eu respondo por lá.",
     nome: "Nome",
     whatsapp: "WhatsApp (com DDD)",
     enviar: "Fechar pedido pelo site",
@@ -102,7 +100,6 @@ export const orcamento = {
     falhou: "Não consegui enviar agora. Chame no WhatsApp ou mande um e-mail com o mesmo pedido.",
     vazioAviso: "Adicione ao menos um serviço para fechar o pedido pelo site.",
     whatsappBotao: "Chamar o Marcelo no WhatsApp",
-    whatsappTexto: "O seu carrinho vai na mensagem.",
     privacidade: "Seu nome e WhatsApp são usados só para responder este pedido. Eu confirmo por WhatsApp e combinamos o Pix.",
   },
 };

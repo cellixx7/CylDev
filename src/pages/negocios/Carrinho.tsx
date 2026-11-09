@@ -15,7 +15,7 @@ import {
 const t = orcamento.carrinho;
 const origem = "negocios-carrinho";
 
-const campo = "grid gap-1 font-semibold";
+const campo = "grid gap-1 text-[0.9rem] font-semibold";
 const entrada = "min-h-alvo rounded-pequeno border border-texto-suave bg-superficie px-3 py-2 font-normal text-texto";
 const botaoTexto =
   "min-h-alvo cursor-pointer border-0 bg-transparent px-2 font-[inherit] text-[0.95rem] font-semibold text-destaque underline underline-offset-4";
@@ -58,12 +58,13 @@ function FecharPeloSite({ carrinho }: { carrinho: DadosCarrinho }) {
   }
 
   return (
-    <form className="grid gap-4" onSubmit={aoEnviar}>
+    <form className="grid gap-3" onSubmit={aoEnviar}>
       <p className="absolute -left-[9999px]" aria-hidden="true">
         <label>
           {tf.isca} <input name="site_empresa" tabIndex={-1} autoComplete="off" />
         </label>
       </p>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
       <label className={campo}>
         <span>{t.nome}</span>
         <input className={entrada} name="nome" required maxLength={80} autoComplete="name" />
@@ -81,6 +82,7 @@ function FecharPeloSite({ carrinho }: { carrinho: DadosCarrinho }) {
           maxLength={20}
         />
       </label>
+      </div>
       <button
         className={`${botaoCheio} w-full cursor-pointer justify-center font-[inherit] aria-disabled:cursor-not-allowed aria-disabled:opacity-50 disabled:cursor-wait disabled:opacity-60`}
         type="submit"
@@ -119,30 +121,26 @@ export function Carrinho({ carrinho: c, aoEditar, aoTirar }: Props) {
 
   return (
     <div>
-      <h3 id="orc-foco-carrinho" tabIndex={-1} className="mb-3 text-[1.15rem] font-bold focus:outline-none">
-        {t.titulo}
-      </h3>
+      <h3 className="mb-2 text-[1.15rem] font-bold">{t.titulo}</h3>
 
       {vazio ? (
-        <p className="border-t-2 border-texto pt-4 text-texto-suave">{t.vazio}</p>
+        <p className="border-t-2 border-texto pt-3 text-[0.95rem] text-texto-suave">{t.vazio}</p>
       ) : (
         <ul className="m-0 list-none border-t-2 border-texto p-0">
           {c.itens.map((i) => (
-            <li key={i.id} className="border-b border-linha py-3">
-              <div className="flex items-baseline justify-between gap-3">
-                <span className="font-semibold">{i.nome}</span>
-                <span className="shrink-0 text-right font-mono text-[0.9rem]">{textoPrecoItem(i)}</span>
-              </div>
-              <div className="-ml-2 flex gap-2">
-                <button type="button" className={botaoTexto} onClick={() => aoEditar(i.id)}>
-                  {t.editar}
-                  <span className="sr-only">: {i.nome}</span>
-                </button>
-                <button type="button" className={botaoTexto} onClick={() => aoTirar(i.id)}>
-                  {t.tirar}
-                  <span className="sr-only">: {i.nome}</span>
-                </button>
-              </div>
+            <li key={i.id} className="flex items-center justify-between gap-2 border-b border-linha py-1">
+              <span className="min-w-0 flex-1">
+                <span className="block text-[0.95rem] font-semibold">{i.nome}</span>
+                <span className="block font-mono text-[0.85rem] text-texto-suave">{textoPrecoItem(i)}</span>
+              </span>
+              <button type="button" className={botaoTexto} onClick={() => aoEditar(i.id)}>
+                {t.editar}
+                <span className="sr-only">: {i.nome}</span>
+              </button>
+              <button type="button" className={botaoTexto} onClick={() => aoTirar(i.id)}>
+                {t.tirar}
+                <span className="sr-only">: {i.nome}</span>
+              </button>
             </li>
           ))}
         </ul>
@@ -150,11 +148,11 @@ export function Carrinho({ carrinho: c, aoEditar, aoTirar }: Props) {
 
       {!vazio && (
         <>
-          <dl className="my-4 grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 text-[0.95rem]">
-            <dt>{t.soma}</dt>
-            <dd className="m-0 text-right font-mono">{brl(c.somaTabela)}</dd>
+          <dl className="my-3 grid grid-cols-[1fr_auto] gap-x-4 gap-y-0.5 text-[0.9rem]">
             {c.desconto && (
               <>
+                <dt>{t.soma}</dt>
+                <dd className="m-0 text-right font-mono">{brl(c.somaTabela)}</dd>
                 <dt>{t.desconto(c.desconto.rotulo)}</dt>
                 <dd className="m-0 text-right font-mono text-destaque">− {brl(c.desconto.valor)}</dd>
               </>
@@ -178,34 +176,32 @@ export function Carrinho({ carrinho: c, aoEditar, aoTirar }: Props) {
               </>
             )}
           </dl>
-          {c.desconto && <p className="text-[0.85rem] text-texto-suave">{t.descontoNota}</p>}
+          {c.desconto && <p className="mb-2 text-[0.82rem] text-texto-suave">{t.descontoNota}</p>}
 
-          <div className="border-t-2 border-texto pt-3" aria-live="polite" aria-atomic="true">
-            <p className="mb-1 text-[0.95rem] font-semibold">
+          <div className="flex items-baseline justify-between gap-3 border-t-2 border-texto pt-2" aria-live="polite" aria-atomic="true">
+            <p className="m-0 text-[0.95rem] font-semibold">
               {t.total}
               {c.totalAPartirDe && <span className="font-normal text-texto-suave"> · {orcamento.estimativa.aPartirDe}</span>}
             </p>
-            <p className="m-0 font-mono [word-spacing:-0.3em] text-[clamp(2rem,7vw,2.6rem)] leading-none font-bold tracking-[-0.02em]">{brl(c.total)}</p>
+            <p className="m-0 font-mono [word-spacing:-0.3em] text-[1.7rem] leading-none font-bold tracking-[-0.02em]">{brl(c.total)}</p>
           </div>
-          {c.temSobConsulta && <p className="mt-2 text-[0.85rem] text-texto-suave">{t.totalSobConsulta}</p>}
-          <p className="mt-2 text-[0.85rem] text-texto-suave">{t.notaEstimativa}</p>
+          {c.temSobConsulta && <p className="mt-2 mb-0 text-[0.82rem] text-texto-suave">{t.totalSobConsulta}</p>}
+          <p className="mt-1 mb-0 text-[0.82rem] text-texto-suave">{t.notaEstimativa}</p>
         </>
       )}
 
-      <h3 className="mt-8 mb-3 text-[1.15rem] font-bold">{t.comoFechar}</h3>
-      <div className="grid gap-6">
-        <section className="border border-linha p-4" aria-labelledby="orc-fechar-site">
-          <h4 id="orc-fechar-site" className="mb-1 text-[1rem] font-bold">
+      <h3 className="mt-6 mb-2 text-[1.05rem] font-bold">{t.comoFechar}</h3>
+      <div className="grid gap-3">
+        <section className="border border-linha p-3" aria-labelledby="orc-fechar-site">
+          <h4 id="orc-fechar-site" className="mb-2 text-[0.95rem] font-bold">
             {t.pelosite}
           </h4>
-          <p className="mb-3 text-[0.95rem] text-texto-suave">{t.pelositeTexto}</p>
           <FecharPeloSite carrinho={c} />
         </section>
-        <section className="border border-linha p-4" aria-labelledby="orc-fechar-whatsapp">
-          <h4 id="orc-fechar-whatsapp" className="mb-1 text-[1rem] font-bold">
+        <section className="border border-linha p-3" aria-labelledby="orc-fechar-whatsapp">
+          <h4 id="orc-fechar-whatsapp" className="mb-2 text-[0.95rem] font-bold">
             WhatsApp
           </h4>
-          <p className="mb-3 text-[0.95rem] text-texto-suave">{t.whatsappTexto}</p>
           <a
             className={`${botaoCheio} w-full justify-center`}
             href={linkWhatsappCarrinho(c, origem)}
@@ -216,7 +212,7 @@ export function Carrinho({ carrinho: c, aoEditar, aoTirar }: Props) {
           </a>
         </section>
       </div>
-      <p className="mt-4 text-[0.85rem] text-texto-suave">{t.privacidade}</p>
+      <p className="mt-3 mb-0 text-[0.82rem] text-texto-suave">{t.privacidade}</p>
     </div>
   );
 }
