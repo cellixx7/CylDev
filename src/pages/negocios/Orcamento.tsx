@@ -1,198 +1,146 @@
-import { useState } from "react";
-import { servicos, type Servico } from "../../content/servicos";
-import { orcamento as t, pilotoNota } from "../../content/textos";
-import { Formulario } from "../../shared/components/Formulario";
-import { textoPreco } from "../../shared/components/Catalogo";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { servicoOrcamentoPorId } from "../../content/perguntas";
+import { orcamento as t } from "../../content/textos";
 import { botaoCheio } from "../../shared/estilos";
-import { brl, horasTexto } from "../../shared/lib/formato";
-import {
-  calcularCarrinho,
-  calcularServico,
-  comDesconto,
-  descontoPilotoAtual,
-  mensagemCarrinho,
-  textoEstimativa,
-  type FormatoAula,
-} from "../../shared/lib/orcamento";
-import { linkContato } from "../../shared/lib/whatsapp";
+import { calcularCarrinho, calcularServico, type Respostas } from "../../shared/lib/orcamento";
+import { Carrinho } from "./Carrinho";
+import { ListaServicos } from "./ListaServicos";
+import { PainelServico, precoDaBarra } from "./PainelServico";
 
-const pacotes = servicos.filter((s) => s.area === "negocios" && s.disponivel);
-const desconto = descontoPilotoAtual();
+type Tela = "lista" | "servico" | "carrinho";
 
-const legenda = "mb-3 p-0 font-titulo text-[1.15rem] font-bold";
-const opcaoSegmentada =
-  "flex min-h-alvo flex-1 cursor-pointer items-center justify-center border-r border-texto px-3 py-2 text-center font-semibold last:border-r-0 has-checked:bg-texto has-checked:text-fundo has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-foco";
-const escondido = "absolute size-px overflow-hidden opacity-0";
+const COMBO = ["planilha", "painel", "automacao"];
+/** Abaixo do breakpoint lg (64rem) o orçamento mostra uma tela por vez. */
+const consultaCelular = "(max-width: 63.99rem)";
 
-/** Preço curto na lista de pacotes: as aulas mostram só o valor da hora. */
-function precoNaLista(s: Servico): string {
-  return s.preco.tipo === "aula" ? `${brl(s.preco.porHora)}/h` : textoPreco(s.preco);
-}
+/** Aulas começam no formato avulso, que é o que o preço mostra sem resposta. */
+const respostasIniciais: Record<string, Respostas> = { aulas: { pagamento: "avulsa" } };
 
-/** Pacote e estimativa em texto, para o e-mail do formulário. */
-function detalhesDoPedido(s: Servico, formatoAula: FormatoAula) {
-  const c = calcularCarrinho([s.id], { [s.id]: { pagamento: formatoAula } }, { piloto: null });
-  return { pacote: s.nome, tamanho: "—", estimativa: textoEstimativa(c) || textoPreco(s.preco) };
-}
+const botaoNav =
+  "inline-flex min-h-alvo cursor-pointer items-center border-0 bg-transparent px-2 font-[inherit] font-semibold text-texto underline underline-offset-4 hover:text-destaque";
 
 export function Orcamento() {
-  const [servicoId, setServicoId] = useState("painel");
-  const [formatoAula, setFormatoAula] = useState<FormatoAula>("pacote");
+  const [servicoId, setServicoId] = useState("planilha");
+  const [tela, setTela] = useState<Tela>("lista");
+  const [ids, setIds] = useState<string[]>([]);
+  const [respostas, setRespostas] = useState<Record<string, Respostas>>(respostasIniciais);
+  const [visivel, setVisivel] = useState(false);
+  const secao = useRef<HTMLElement>(null);
+  const primeiraTela = useRef(true);
 
-  const s = pacotes.find((p) => p.id === servicoId) ?? pacotes[0];
-  const calculo = calcularServico(s.id, { pagamento: formatoAula });
-  const estimativa = calculo && calculo.horas !== null ? calculo : null;
-  const resumo = mensagemCarrinho(calcularCarrinho([s.id], { [s.id]: { pagamento: formatoAula } }, { piloto: desconto }));
-  const origem = `negocios-orcamento-${s.id}`;
+  const modelo = servicoOrcamentoPorId(servicoId) ?? servicoOrcamentoPorId("planilha")!;
+  const carrinho = useMemo(() => calcularCarrinho(ids, respostas), [ids, respostas]);
+  const calculo = calcularServico(modelo.id, respostas[modelo.id]);
+  const noCarrinho = ids.includes(modelo.id);
+
+  // A barra fixa do celular só aparece enquanto a seção está na tela.
+  useEffect(() => {
+    const el = secao.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const o = new IntersectionObserver(([entrada]) => setVisivel(entrada.isIntersecting));
+    o.observe(el);
+    return () => o.disconnect();
+  }, []);
+
+  // No celular, trocar de tela leva ao topo da seção e o foco ao título da nova tela.
+  useEffect(() => {
+    if (primeiraTela.current) {
+      primeiraTela.current = false;
+      return;
+    }
+    if (!window.matchMedia(consultaCelular).matches) return;
+    secao.current?.scrollIntoView({ block: "start" });
+    document.getElementById(`orc-foco-${tela}`)?.focus({ preventScroll: true });
+  }, [tela]);
+
+  const abrir = (id: string) => {
+    setServicoId(id);
+    setTela("servico");
+  };
+  const alternar = (id: string) =>
+    setIds((atual) => (atual.includes(id) ? atual.filter((i) => i !== id) : [...atual, id]));
+  const montarCombo = () => {
+    setIds((atual) => [...atual, ...COMBO.filter((id) => !atual.includes(id))]);
+    setTela("carrinho");
+  };
+  const responder = (perguntaId: string, opcaoId: string) => {
+    const pergunta = modelo.perguntas.find((p) => p.id === perguntaId);
+    if (!pergunta) return;
+    setRespostas((atual) => {
+      const dele = atual[modelo.id] ?? {};
+      if (pergunta.tipo === "unica") return { ...atual, [modelo.id]: { ...dele, [perguntaId]: opcaoId } };
+      const marcadas = Array.isArray(dele[perguntaId]) ? (dele[perguntaId] as string[]) : [];
+      const novas = marcadas.includes(opcaoId) ? marcadas.filter((i) => i !== opcaoId) : [...marcadas, opcaoId];
+      return { ...atual, [modelo.id]: { ...dele, [perguntaId]: novas } };
+    });
+  };
+
+  const barraFixa = tela === "servico" && visivel;
+  const mostra = (alvo: Tela) => (tela === alvo ? "" : "hidden");
 
   return (
-    <section className="mx-auto max-w-hero px-margem py-14" id="orcamento" aria-labelledby="orcamento-titulo">
+    <section
+      ref={secao}
+      className={`mx-auto max-w-hero px-margem pt-14 lg:pb-14 ${barraFixa ? "pb-32" : "pb-14"}`}
+      id="orcamento"
+      aria-labelledby="orcamento-titulo"
+    >
       <span className="revela-barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
-      <h2 id="orcamento-titulo" className="revela-titulo">{t.titulo}</h2>
+      <h2 id="orcamento-titulo" className="revela-titulo">
+        {t.titulo}
+      </h2>
       <p className="max-w-[40rem] text-texto-suave">{t.intro}</p>
 
-      <div className="revela mt-8 grid gap-12 pc:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] pc:items-start pc:gap-[clamp(2rem,5vw,5rem)]">
-        <div className="grid gap-10">
-          <fieldset className="m-0 border-0 p-0">
-            <legend className={legenda}>{t.passoServico}</legend>
-            <div className="border-t-2 border-texto">
-              {pacotes.map((p) => (
-                <label
-                  key={p.id}
-                  className="flex min-h-alvo cursor-pointer items-baseline gap-3 border-b border-linha px-2 py-3 hover:bg-realce has-checked:bg-realce has-checked:shadow-[inset_3px_0_0_var(--color-destaque)]"
-                >
-                  <input
-                    className="translate-y-[2px] accent-destaque"
-                    type="radio"
-                    name="orcamento-servico"
-                    value={p.id}
-                    checked={p.id === s.id}
-                    onChange={() => setServicoId(p.id)}
-                  />
-                  <span className="flex-1 font-semibold">{p.nome}</span>
-                  <span className="text-right font-mono text-[0.9rem] text-texto-suave">{precoNaLista(p)}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          {s.preco.tipo === "aula" && (
-            <fieldset className="m-0 border-0 p-0">
-              <legend className={legenda}>{t.passoAula}</legend>
-              <div className="flex rounded-pequeno border border-texto">
-                {(["pacote", "avulsa"] as const).map((f) => (
-                  <label key={f} className={opcaoSegmentada}>
-                    <input
-                      className={escondido}
-                      type="radio"
-                      name="orcamento-aula"
-                      value={f}
-                      checked={f === formatoAula}
-                      onChange={() => setFormatoAula(f)}
-                    />
-                    {f === "pacote" && s.preco.tipo === "aula" ? t.aulaPacote(s.preco.pacote.aulas) : t.aulaAvulsa}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+      <div className="revela mt-8">
+        {/* Celular: cabeçalho para ir e voltar entre as três telas. */}
+        <div className="mb-4 flex items-center justify-between gap-2 border-y border-linha lg:hidden">
+          {tela === "lista" ? (
+            <span className="px-2 font-mono text-[0.85rem] text-texto-suave">{t.lista.titulo}</span>
+          ) : (
+            <button type="button" className={botaoNav} onClick={() => setTela("lista")}>
+              {t.navegacao.voltar}
+            </button>
+          )}
+          {tela !== "carrinho" && (
+            <button type="button" className={botaoNav} onClick={() => setTela("carrinho")}>
+              {t.navegacao.carrinho(carrinho.itens.length)}
+            </button>
           )}
         </div>
 
-        <div>
-          <div className="border-t-2 border-texto pt-5">
-            <p className="mb-1 font-mono text-[0.8rem] tracking-[0.08em] text-texto-suave uppercase">{t.estimativa}</p>
-            <h3 className="mb-2 text-[1.5rem]">
-              {s.nome}
-                          </h3>
-            <p className="mb-5 text-[0.95rem] text-texto-suave">{s.resultado}</p>
-
-            <div aria-live="polite">
-              <Valor servico={s} formatoAula={formatoAula} preco={calculo?.preco ?? null} aPartirDe={calculo?.aPartirDe ?? false} />
-
-              <dl className="my-5 grid grid-cols-[auto_1fr] gap-x-6 border-y border-linha py-3 text-[0.95rem]">
-                {estimativa?.horas != null && (
-                  <>
-                    <dt className="font-semibold">{t.trabalho}</dt>
-                    <dd className="m-0 text-right font-mono">{horasTexto(estimativa.horas)}</dd>
-                  </>
-                )}
-                <dt className="font-semibold">{t.prazo}</dt>
-                <dd className="m-0 text-right font-mono">
-                  {calculo?.prazo ?? ""}
-                </dd>
-              </dl>
-            </div>
-
-            {calculo?.aPartirDe && <p className="text-[0.9rem] text-texto-suave">{t.notaAPartirDe}</p>}
-            <p className="text-[0.9rem] text-texto-suave">{calculo?.preco != null && s.preco.tipo !== "aula" ? t.notaEstimativa : s.preco.tipo === "sobConsulta" ? t.consulta : ""}</p>
-
-            <a
-              data-magnetico
-              className={`${botaoCheio} w-full justify-center sm:w-auto`}
-              href={linkContato(origem, resumo)}
-              target="_blank"
-              rel="noopener"
-            >
-              {t.enviarWhatsapp}
-            </a>
+        <div className="lg:grid lg:grid-cols-[20rem_minmax(0,1fr)] lg:items-start lg:gap-x-10 lg:gap-y-12 xl:grid-cols-[minmax(19rem,22rem)_minmax(0,1fr)_minmax(20rem,25rem)]">
+          <div className={`${mostra("lista")} lg:row-span-2 lg:block xl:row-span-1`}>
+            <ListaServicos servicoId={modelo.id} noCarrinho={ids} aoAbrir={abrir} aoMontarCombo={montarCombo} />
           </div>
-
-          <div className="mt-10 border-t border-linha pt-6">
-            <h3 className="mb-1">{t.formularioTitulo}</h3>
-            <p className="text-texto-suave">{t.formularioTexto}</p>
-            <Formulario origem={origem} resumo={resumo} detalhes={detalhesDoPedido(s, formatoAula)} />
+          <div className={`${mostra("servico")} min-w-0 lg:block`}>
+            <PainelServico
+              modelo={modelo}
+              respostas={respostas[modelo.id] ?? {}}
+              noCarrinho={noCarrinho}
+              aoResponder={responder}
+              aoAlternar={() => alternar(modelo.id)}
+            />
+          </div>
+          <div className={`${mostra("carrinho")} min-w-0 lg:col-start-2 lg:block xl:col-start-3 xl:row-start-1`}>
+            <Carrinho carrinho={carrinho} aoEditar={abrir} aoTirar={alternar} />
           </div>
         </div>
       </div>
-    </section>
-  );
-}
 
-type ValorProps = {
-  servico: Servico;
-  formatoAula: FormatoAula;
-  preco: number | null;
-  aPartirDe: boolean;
-};
-
-/** Valor em destaque: preço de tabela riscado e preço com desconto de piloto, quando houver vaga. */
-function Valor({ servico: s, formatoAula, preco, aPartirDe }: ValorProps) {
-  const grande = "font-mono text-[clamp(2.2rem,6vw,3rem)] leading-none font-bold tracking-[-0.02em]";
-
-  if (s.preco.tipo === "aula") {
-    const pacote = formatoAula === "pacote";
-    return (
-      <p className="m-0">
-        <span className={grande}>{brl(pacote ? s.preco.pacote.valor : s.preco.porHora)}</span>
-        {!pacote && <span className="ml-2 text-texto-suave">{t.porHora}</span>}
-      </p>
-    );
-  }
-
-  if (preco === null) {
-    return <p className={`m-0 ${grande}`}>{textoPreco(s.preco)}</p>;
-  }
-
-  return (
-    <div>
-      {aPartirDe && <p className="mb-1 text-[0.95rem] text-texto-suave">{t.aPartirDe}</p>}
-      <p className="m-0 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-        {desconto && (
-          <s className="font-mono text-[1.25rem] text-texto-suave">
-            <span className="sr-only">Preço de tabela: </span>
-            {brl(preco)}
-          </s>
-        )}
-        <span className={`${grande} ${desconto ? "text-destaque" : ""}`}>
-          {brl(desconto ? comDesconto(preco, desconto.percentual) : preco)}
-        </span>
-      </p>
-      {desconto && (
-        <p className="mt-3 mb-0 text-[0.9rem]">
-          {t.comPiloto(desconto.percentual, desconto.restam)}{" "}
-          <span className="text-texto-suave">{pilotoNota}</span>
-        </p>
+      {/* Fora do bloco `revela`: o transform dele prenderia o `fixed` ao bloco. */}
+      {barraFixa && calculo && (
+        <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3 border-t-2 border-texto bg-fundo px-margem py-2 lg:hidden">
+          {/* pl-12: o botão de tema da página fica fixo no canto inferior esquerdo. */}
+          <p className="m-0 min-w-0 pl-12 font-mono text-[1.05rem] leading-tight font-bold [word-spacing:-0.3em]">{precoDaBarra(calculo)}</p>
+          <button
+            type="button"
+            className={`${botaoCheio} shrink-0 cursor-pointer font-[inherit]`}
+            onClick={() => alternar(modelo.id)}
+          >
+            {noCarrinho ? t.estimativa.tirar : t.estimativa.adicionar}
+          </button>
+        </div>
       )}
-    </div>
+    </section>
   );
 }
