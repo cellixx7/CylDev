@@ -16,7 +16,7 @@ const listaPassos = "m-0 list-decimal pl-[1.2em] text-[0.95rem]";
 const precoLinha = "flex justify-between border-b border-linha py-2";
 const botaoFalso = "mb-2 inline-block rounded-pequeno bg-destaque px-4 py-2 font-semibold text-destaque-texto";
 
-const caminho = "/negocios/como-funciona/";
+const caminho = "/como-funciona/";
 
 function Ficticio() {
   return <span className={rotuloFicticio}>dados fictícios</span>;
@@ -39,7 +39,7 @@ function CopiarLink({ id }: { id: string }) {
   return (
     <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
       <a href={`#${id}`} className="font-mono text-[0.9rem] text-texto-suave [overflow-wrap:anywhere]">
-        {`negocios/como-funciona#${id}`}
+        {`como-funciona#${id}`}
       </a>
       <button type="button" className="min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[0.9rem] text-texto hover:bg-superficie" onClick={copiar}>
         {t.copiar}

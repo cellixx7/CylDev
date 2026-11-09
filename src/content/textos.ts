@@ -11,25 +11,6 @@ export const comum = {
   menuFechar: "Fechar menu",
 };
 
-export const home = {
-  titulo: "Marcelo Vaz",
-  linha: "Desenvolvedor e analista de dados. Atendo online, para todo o Brasil.",
-  portas: [
-    {
-      href: "/negocios/",
-      rotulo: "Para o seu negócio",
-      guia: "Painéis, páginas e automação para quem vende e controla tudo em planilha.",
-      assinatura: "Marcelo Vaz",
-    },
-    {
-      href: "/comunidade/",
-      rotulo: "Para o seu Discord e jogos",
-      guia: "Bots de Discord e ferramentas para quem joga.",
-      assinatura: "CylDev",
-    },
-  ],
-};
-
 export const catalogo = {
   inclui: "Inclui",
   prazo: "Prazo",
@@ -78,11 +59,11 @@ export const orcamento = {
 
 export const negocios = {
   nav: [
-    { href: "/negocios/#orcamento", rotulo: "Orçamento" },
-    { href: "/negocios/como-funciona/", rotulo: "Como funciona" },
-    { href: "/negocios/#sobre", rotulo: "Sobre" },
-    { href: "/negocios/#entregas", rotulo: "Entregas" },
-    { href: "/negocios/#contato", rotulo: "Contato" },
+    { href: "/#orcamento", rotulo: "Orçamento" },
+    { href: "/como-funciona/", rotulo: "Como funciona" },
+    { href: "/#sobre", rotulo: "Sobre" },
+    { href: "/#entregas", rotulo: "Entregas" },
+    { href: "/#contato", rotulo: "Contato" },
   ],
   /** Controle no centro do header: leva para a área de comunidade. */
   atalhoComunidade: {
@@ -218,7 +199,7 @@ export const comunidade = {
     { href: "#cylbot", rotulo: "CylBot" },
     { href: "#cylsense", rotulo: "CylSense" },
     { href: "#bots", rotulo: "Bots sob medida" },
-    { href: "/negocios/#contato", rotulo: "Contato" },
+    { href: "/#contato", rotulo: "Contato" },
   ],
   apresentacao: {
     titulo: "Eu faço bots e ferramentas para quem joga.",

@@ -29,4 +29,4 @@ export const site = {
   },
 };
 
-export type Area = "negocios" | "comunidade" | "home";
+export type Area = "negocios" | "comunidade";

@@ -84,7 +84,7 @@ function Comunidade() {
           <Contatos origem="comunidade-contato" comFormulario={false} />
         </section>
       </main>
-      <Rodape ponte={{ ...t.ponte, href: "/negocios/" }}>
+      <Rodape ponte={{ ...t.ponte, href: "/" }}>
         <p className="font-mono text-[0.85rem]">{t.avisoRiot}</p>
       </Rodape>
     </>
