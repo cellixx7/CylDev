@@ -61,11 +61,11 @@ export function Orcamento() {
 
   return (
     <section className="mx-auto max-w-hero px-margem py-14" id="orcamento" aria-labelledby="orcamento-titulo">
-      <span className="mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
-      <h2 id="orcamento-titulo">{t.titulo}</h2>
+      <span className="revela-barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
+      <h2 id="orcamento-titulo" className="revela-titulo">{t.titulo}</h2>
       <p className="max-w-[40rem] text-texto-suave">{t.intro}</p>
 
-      <div className="mt-8 grid gap-12 pc:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] pc:items-start pc:gap-[clamp(2rem,5vw,5rem)]">
+      <div className="revela mt-8 grid gap-12 pc:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] pc:items-start pc:gap-[clamp(2rem,5vw,5rem)]">
         <div className="grid gap-10">
           <fieldset className="m-0 border-0 p-0">
             <legend className={legenda}>{t.passoServico}</legend>
@@ -164,6 +164,7 @@ export function Orcamento() {
             <p className="text-[0.9rem] text-texto-suave">{estimativa ? t.notaEstimativa : s.preco.tipo === "sobConsulta" ? t.consulta : ""}</p>
 
             <a
+              data-magnetico
               className={`${botaoCheio} w-full justify-center sm:w-auto`}
               href={linkContato(origem, resumo)}
               target="_blank"

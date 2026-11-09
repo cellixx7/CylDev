@@ -1,62 +1,223 @@
 /*
- * Identidade de Negócios: grafite neutro e terracota, assinada "Marcelo Vaz".
- * Fontes: Schibsted Grotesk (títulos), Source Sans 3 (texto), JetBrains Mono (números).
- * Os arquivos em /public/fonts são variáveis, subconjunto latino, licença SIL OFL.
+ * Identidade de Negócios: cobalto sobre off-white frio (claro) e azul-noite (escuro).
+ * Fontes: Space Grotesk (títulos e texto), Space Mono (preços, números e rótulos).
+ * Os arquivos em /public/fonts são subconjunto latino, licença SIL OFL.
  */
 @font-face {
-  font-family: "Schibsted Grotesk";
-  src: url("/fonts/schibsted-grotesk-latin.woff2") format("woff2");
-  font-weight: 400 900;
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk-latin.woff2") format("woff2");
+  font-weight: 300 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Source Sans 3";
-  src: url("/fonts/source-sans-3-latin.woff2") format("woff2");
-  font-weight: 400 700;
+  font-family: "Space Mono";
+  src: url("/fonts/space-mono-latin-400.woff2") format("woff2");
+  font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
-  src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
-  font-weight: 400 700;
+  font-family: "Space Mono";
+  src: url("/fonts/space-mono-latin-700.woff2") format("woff2");
+  font-weight: 700;
   font-display: swap;
 }
 
 :root {
-  --font-titulo: "Schibsted Grotesk", system-ui, sans-serif;
-  --font-texto: "Source Sans 3", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --font-titulo: "Space Grotesk", system-ui, sans-serif;
+  --font-texto: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
   --radius-pequeno: 2px;
   --radius-padrao: 2px;
 }
 
 [data-theme="claro"] {
-  --color-fundo: #f2f3f4;
+  --color-fundo: #f2f4f8;
   --color-superficie: #ffffff;
-  --color-texto: #1e1f22;
-  --color-texto-suave: #585b61;
-  --color-linha: #d3d5d8;
-  --color-destaque: #a83f25;
+  --color-texto: #0c1226;
+  --color-texto-suave: #4b5368;
+  --color-linha: #cfd5e2;
+  --color-destaque: #1a3fe0;
   --color-destaque-texto: #ffffff;
-  --color-realce: #e6e8ea;
-  --color-foco: #1e1f22;
+  --color-realce: #e3e8f5;
+  --color-foco: #0c1226;
+  --color-serie-1: #1a3fe0;
+  --color-serie-2: #5f7bd9;
+  --color-serie-3: #8892a8;
+  --color-serie-4: #b4bccd;
+  --color-serie-5: #d5dae6;
 }
 
 [data-theme="escuro"] {
-  --color-fundo: #141517;
-  --color-superficie: #1d1f22;
-  --color-texto: #ecedef;
-  --color-texto-suave: #a2a5ab;
-  --color-linha: #33363a;
-  --color-destaque: #ee9272;
-  --color-destaque-texto: #241008;
-  --color-realce: #26282c;
-  --color-foco: #ecedef;
-  --color-serie-1: #ee9272;
-  --color-serie-2: #8db4c8;
-  --color-serie-3: #a2a5ab;
-  --color-serie-4: #6b6f76;
-  --color-serie-5: #43464b;
+  --color-fundo: #090c18;
+  --color-superficie: #11162a;
+  --color-texto: #e9edf8;
+  --color-texto-suave: #9ba4bd;
+  --color-linha: #252c47;
+  --color-destaque: #6c8cff;
+  --color-destaque-texto: #060919;
+  --color-realce: #181f3a;
+  --color-foco: #e9edf8;
+  --color-serie-1: #6c8cff;
+  --color-serie-2: #3f5ad6;
+  --color-serie-3: #8792ad;
+  --color-serie-4: #566078;
+  --color-serie-5: #333b55;
+}
+
+/*
+ * Animações de Negócios. Tudo gira em torno de transform e opacity.
+ * As ligadas ao scroll usam animation-timeline (CSS puro, sem listener de scroll);
+ * onde o navegador não suporta, o conteúdo simplesmente aparece parado.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  /* Título cinético: cada letra sobe de dentro de uma máscara, em cascata. */
+  .palavra {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .mascara {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+  .letra {
+    display: inline-block;
+    animation: letra-sobe 0.95s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 55ms + 120ms) both;
+  }
+  @keyframes letra-sobe {
+    from {
+      transform: translateY(110%) rotate(6deg);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  /* Entrada do texto do hero, depois do título. */
+  .entra {
+    animation: entra 0.8s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--atraso, 0) * 1s + 0.5s) both;
+  }
+  @keyframes entra {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+
+  /* Barra de destaque: cresce da esquerda. */
+  .barra {
+    transform-origin: left;
+    animation: barra 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+  @keyframes barra {
+    from {
+      transform: scaleX(0);
+    }
+  }
+
+  /* Botões com puxão magnético: o script só grava --mx e --my. */
+  [data-magnetico] {
+    transform: translate(var(--mx, 0px), var(--my, 0px));
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+  [data-magnetico]:active {
+    transform: translate(var(--mx, 0px), var(--my, 0px)) scale(0.97);
+    transition-duration: 0.08s;
+  }
+
+  @supports (animation-timeline: view()) {
+    /* Progresso de leitura no topo da página. */
+    .progresso {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 60;
+      height: 3px;
+      background: var(--color-destaque);
+      transform-origin: left;
+      animation: progresso linear both;
+      animation-timeline: scroll(root block);
+      pointer-events: none;
+    }
+    @keyframes progresso {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    /* Hero: o texto se afasta e o painel sobe mais devagar, criando profundidade. */
+    .hero-sai {
+      animation: hero-sai linear both;
+      animation-timeline: view();
+      animation-range: exit 10% exit 90%;
+    }
+    @keyframes hero-sai {
+      to {
+        opacity: 0.15;
+        transform: translateY(-48px);
+      }
+    }
+    .hero-painel {
+      animation: hero-painel linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+    @keyframes hero-painel {
+      to {
+        transform: translateY(-90px) scale(0.96);
+      }
+    }
+
+    /* Seções: entram subindo, conforme entram na tela. */
+    .revela {
+      animation: revela linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+    @keyframes revela {
+      from {
+        opacity: 0;
+        transform: translateY(56px);
+      }
+    }
+
+    /* Títulos de seção: aparecem varridos da esquerda para a direita. */
+    .revela-titulo {
+      animation: revela-titulo linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 50%;
+    }
+    @keyframes revela-titulo {
+      from {
+        clip-path: inset(0 100% 0 0);
+        transform: translateX(-24px);
+      }
+      to {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    /* Barra de destaque de cada seção cresce com o scroll. */
+    .revela-barra {
+      transform-origin: left;
+      animation: revela-barra linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+    @keyframes revela-barra {
+      from {
+        transform: scaleX(0);
+      }
+    }
+  }
 }
