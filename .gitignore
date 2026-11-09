@@ -12,3 +12,6 @@ skills-lock.json
 
 # Cópia de skills de ferramentas (a do projeto fica em .claude/skills)
 .agents/
+
+# Grafo gerado pelo Graphify (regenere com `graphify update .`)
+graphify-out/

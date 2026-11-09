@@ -48,6 +48,13 @@ Não é SPA: cada área tem o seu HTML e a sua raiz React.
 - Todo dado de exemplo é rotulado como exemplo.
 - Nada de prazo, métrica, depoimento ou número inventado.
 
+## Como explorar o código (economia de tokens)
+
+- Antes de buscar ou ler arquivos, consulte `graphify-out/GRAPH_REPORT.md` e use `graphify query "<pergunta>"`, `graphify path "A" "B"` e `graphify explain "X"` para localizar o que importa.
+- Abra o arquivo inteiro só quando for editá-lo.
+- Depois de mudanças no código, rode `graphify update .` (sem LLM, sem custo) para o grafo não ficar defasado.
+- Não versione `graphify-out/` (está no `.gitignore`).
+
 ## Fluxo
 
 - Branches: `commit_HH-MM_DD-MM_VXN` (hora, minuto, dia, mês, versão, nº do commit), nunca com "claude" no nome. Merge por PR (cada PR gera um deploy preview na Netlify); só vai para a `main` versão fechada, pois o deploy de produção gasta crédito.
