@@ -1,24 +1,23 @@
 import { useState } from "react";
-import { complexidades, type Complexidade } from "../../content/orcamento";
-import { prazoACombinar, servicos, type Servico } from "../../content/servicos";
+import { servicos, type Servico } from "../../content/servicos";
 import { orcamento as t, pilotoNota } from "../../content/textos";
 import { Formulario } from "../../shared/components/Formulario";
 import { textoPreco } from "../../shared/components/Catalogo";
 import { botaoCheio } from "../../shared/estilos";
 import { brl, horasTexto } from "../../shared/lib/formato";
 import {
+  calcularCarrinho,
+  calcularServico,
   comDesconto,
   descontoPilotoAtual,
-  estimar,
-  resumoOrcamento,
+  mensagemCarrinho,
+  textoEstimativa,
   type FormatoAula,
 } from "../../shared/lib/orcamento";
-import { formatarPrazo } from "../../shared/lib/prazo";
 import { linkContato } from "../../shared/lib/whatsapp";
 
 const pacotes = servicos.filter((s) => s.area === "negocios" && s.disponivel);
 const desconto = descontoPilotoAtual();
-const tamanhos = Object.keys(complexidades) as Complexidade[];
 
 const legenda = "mb-3 p-0 font-titulo text-[1.15rem] font-bold";
 const opcaoSegmentada =
@@ -30,33 +29,20 @@ function precoNaLista(s: Servico): string {
   return s.preco.tipo === "aula" ? `${brl(s.preco.porHora)}/h` : textoPreco(s.preco);
 }
 
-/** Pacote, tamanho e estimativa em texto, para o e-mail do formulário. */
-function detalhesDoPedido(s: Servico, tamanho: Complexidade, formatoAula: FormatoAula) {
-  const e = estimar(s, tamanho);
-  if (s.preco.tipo === "aula") {
-    const pacote = formatoAula === "pacote";
-    return {
-      pacote: s.nome,
-      tamanho: "—",
-      estimativa: pacote ? `${brl(s.preco.pacote.valor)} (${s.preco.pacote.aulas} aulas)` : `${brl(s.preco.porHora)} por hora`,
-    };
-  }
-  if (!e) return { pacote: s.nome, tamanho: "—", estimativa: textoPreco(s.preco) };
-  return {
-    pacote: s.nome,
-    tamanho: complexidades[tamanho].rotulo,
-    estimativa: `${e.aPartirDe ? "a partir de " : ""}${brl(e.preco)}`,
-  };
+/** Pacote e estimativa em texto, para o e-mail do formulário. */
+function detalhesDoPedido(s: Servico, formatoAula: FormatoAula) {
+  const c = calcularCarrinho([s.id], { [s.id]: { pagamento: formatoAula } }, { piloto: null });
+  return { pacote: s.nome, tamanho: "—", estimativa: textoEstimativa(c) || textoPreco(s.preco) };
 }
 
 export function Orcamento() {
   const [servicoId, setServicoId] = useState("painel");
-  const [tamanho, setTamanho] = useState<Complexidade>("basico");
   const [formatoAula, setFormatoAula] = useState<FormatoAula>("pacote");
 
   const s = pacotes.find((p) => p.id === servicoId) ?? pacotes[0];
-  const estimativa = estimar(s, tamanho);
-  const resumo = resumoOrcamento(s, tamanho, formatoAula, desconto);
+  const calculo = calcularServico(s.id, { pagamento: formatoAula });
+  const estimativa = calculo && calculo.horas !== null ? calculo : null;
+  const resumo = mensagemCarrinho(calcularCarrinho([s.id], { [s.id]: { pagamento: formatoAula } }, { piloto: desconto }));
   const origem = `negocios-orcamento-${s.id}`;
 
   return (
@@ -90,28 +76,6 @@ export function Orcamento() {
             </div>
           </fieldset>
 
-          {estimativa && (
-            <fieldset className="m-0 border-0 p-0">
-              <legend className={legenda}>{t.passoTamanho}</legend>
-              <div className="flex rounded-pequeno border border-texto">
-                {tamanhos.map((c) => (
-                  <label key={c} className={opcaoSegmentada}>
-                    <input
-                      className={escondido}
-                      type="radio"
-                      name="orcamento-tamanho"
-                      value={c}
-                      checked={c === tamanho}
-                      onChange={() => setTamanho(c)}
-                    />
-                    {complexidades[c].rotulo}
-                  </label>
-                ))}
-              </div>
-              <p className="mt-3 mb-0 text-[0.95rem] text-texto-suave">{t.tamanhos[tamanho]}</p>
-            </fieldset>
-          )}
-
           {s.preco.tipo === "aula" && (
             <fieldset className="m-0 border-0 p-0">
               <legend className={legenda}>{t.passoAula}</legend>
@@ -139,15 +103,14 @@ export function Orcamento() {
             <p className="mb-1 font-mono text-[0.8rem] tracking-[0.08em] text-texto-suave uppercase">{t.estimativa}</p>
             <h3 className="mb-2 text-[1.5rem]">
               {s.nome}
-              {estimativa && <span className="font-normal text-texto-suave"> · {complexidades[tamanho].rotulo}</span>}
-            </h3>
+                          </h3>
             <p className="mb-5 text-[0.95rem] text-texto-suave">{s.resultado}</p>
 
             <div aria-live="polite">
-              <Valor servico={s} formatoAula={formatoAula} preco={estimativa?.preco ?? null} aPartirDe={estimativa?.aPartirDe ?? false} />
+              <Valor servico={s} formatoAula={formatoAula} preco={calculo?.preco ?? null} aPartirDe={calculo?.aPartirDe ?? false} />
 
               <dl className="my-5 grid grid-cols-[auto_1fr] gap-x-6 border-y border-linha py-3 text-[0.95rem]">
-                {estimativa && (
+                {estimativa?.horas != null && (
                   <>
                     <dt className="font-semibold">{t.trabalho}</dt>
                     <dd className="m-0 text-right font-mono">{horasTexto(estimativa.horas)}</dd>
@@ -155,13 +118,13 @@ export function Orcamento() {
                 )}
                 <dt className="font-semibold">{t.prazo}</dt>
                 <dd className="m-0 text-right font-mono">
-                  {estimativa ? (s.horasProvisorias ? prazoACombinar : formatarPrazo(estimativa.dias)) : (s.prazoTexto ?? "")}
+                  {calculo?.prazo ?? ""}
                 </dd>
               </dl>
             </div>
 
-            {estimativa?.aPartirDe && <p className="text-[0.9rem] text-texto-suave">{t.notaAPartirDe}</p>}
-            <p className="text-[0.9rem] text-texto-suave">{estimativa ? t.notaEstimativa : s.preco.tipo === "sobConsulta" ? t.consulta : ""}</p>
+            {calculo?.aPartirDe && <p className="text-[0.9rem] text-texto-suave">{t.notaAPartirDe}</p>}
+            <p className="text-[0.9rem] text-texto-suave">{calculo?.preco != null && s.preco.tipo !== "aula" ? t.notaEstimativa : s.preco.tipo === "sobConsulta" ? t.consulta : ""}</p>
 
             <a
               data-magnetico
@@ -177,7 +140,7 @@ export function Orcamento() {
           <div className="mt-10 border-t border-linha pt-6">
             <h3 className="mb-1">{t.formularioTitulo}</h3>
             <p className="text-texto-suave">{t.formularioTexto}</p>
-            <Formulario origem={origem} resumo={resumo} detalhes={detalhesDoPedido(s, tamanho, formatoAula)} />
+            <Formulario origem={origem} resumo={resumo} detalhes={detalhesDoPedido(s, formatoAula)} />
           </div>
         </div>
       </div>

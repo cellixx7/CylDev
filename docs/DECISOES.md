@@ -36,6 +36,25 @@
 - **EmailJS:** `serviceId` configurado (`service_2qsfdk9`) em `site.emailjs`. `templateId` e `publicKey` continuam vazios; enquanto faltarem, o formulário cai no WhatsApp e no e-mail. `Orcamento.tsx` envia ao `Formulario` os campos `pacote`, `tamanho` e `estimativa` (ex.: "a partir de R$ 300"), além do `resumo`.
 - **Prazo provisório:** o campo `horasProvisorias: true` em `servicos.ts` marca pacotes com horas ainda não confirmadas (hoje: bot essencial e bot com IA). Neles o site mostra "prazo a combinar" no catálogo (`textoPrazo`), na calculadora e no `resumoOrcamento` (WhatsApp e e-mail). Os demais seguem com dias úteis calculados. Quando o Marcelo confirmar as horas, remover a marca. As horas provisórias (4 h e 8 h) ainda aparecem na calculadora e no resumo.
 
+## Orçamento por respostas e carrinho (09/11/2026, em andamento)
+
+Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complexo) e o fator 1,5, que deixaram de existir (`complexidades` e `estimar()` removidos).
+
+- **Modelo de perguntas:** `src/content/perguntas.ts` (textos, opções, ajuda e horas por resposta).
+- **Preço:** base do serviço (`servicos.ts`, sem alteração) + horas extras das respostas × `VALOR_HORA_EXTRA` (R$ 50, igual a `parametros.valorHoraAvulsa`). Múltipla: `max(0, n - gratis) * horasPorExtra`. Aulas: só o formato. Sistema: sob consulta.
+- **Prazo:** `ceil(horas / 2) + 1` dia de revisão ("estimado: N dias úteis"). Bots: sempre "prazo a combinar"; o preço varia pelas respostas e aparece como estimativa. Os dois bots não mostram horas.
+- **Carrinho** (`calcularCarrinho()` em `src/shared/lib/orcamento.ts`): soma de tabela, desconto, prazo único dos combináveis (horas somadas, uma só revisão), mensalidade dos bots (10% da criação já com as extras, sem piloto) e total.
+- **Combo e piloto não se somam:** vale o que abate mais reais. O combo incide só nos combináveis (planilha, painel, automação, landing); o piloto, em toda a criação (combináveis e bots), nunca em aulas, sistema ou mensalidade. Em empate, vale o combo. Essa leitura do "vale o maior" é minha, confirmar.
+
+### Pendências desta mudança (valores PROPOSTOS, a confirmar)
+
+- [ ] Horas extras por resposta (todas em `perguntas.ts`; marcadas como PENDENTE no topo do arquivo).
+- [ ] Combo: `COMBO_2` = 10% (2 combináveis) e `COMBO_3` = 15% (3 ou mais), em `src/content/orcamento.ts`.
+- [ ] Combo e piloto: regra do "maior" (acima).
+- [ ] Horas base dos bots (provisórias): o prazo fica "a combinar".
+- [ ] "Ainda não tenho" no painel soma 2 h: manter ou sugerir a planilha antes.
+- [ ] Desconto do plano de 6 meses dos bots.
+
 ## Pendências do Marcelo
 
 - [ ] Conferir o termo de estágio com o supervisor **antes do merge na main** (`mostrarMinisterio: true` em `src/content/site.ts`).
