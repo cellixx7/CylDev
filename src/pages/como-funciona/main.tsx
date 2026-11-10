@@ -38,10 +38,10 @@ function CopiarLink({ id }: { id: string }) {
 
   return (
     <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
-      <a href={`#${id}`} className="font-mono text-[1rem] text-texto-suave [overflow-wrap:anywhere]">
+      <a href={`#${id}`} className="inline-flex min-h-alvo items-center font-mono text-[1rem] text-texto-suave [overflow-wrap:anywhere]">
         {`como-funciona#${id}`}
       </a>
-      <button type="button" className="min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[1rem] text-texto hover:bg-superficie" onClick={copiar}>
+      <button type="button" className="min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[1rem] text-texto hover:bg-superficie active:bg-superficie" onClick={copiar}>
         {t.copiar}
       </button>
       <span role="status" className="text-[1rem] font-semibold text-destaque">
@@ -244,7 +244,7 @@ function ComoFunciona() {
               {exemplos.map((e) => (
                 <li key={e.id}>
                   <a
-                    className="inline-flex min-h-alvo items-center rounded-full border border-texto px-4 font-semibold no-underline hover:bg-realce"
+                    className="inline-flex min-h-alvo items-center rounded-full border border-texto px-4 font-semibold no-underline hover:bg-realce active:bg-realce"
                     href={`#${e.id}`}
                   >
                     {e.rotulo}

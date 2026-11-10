@@ -103,7 +103,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
                   {links.map((l) => (
                     <li key={l.href}>
                       <a
-                        className="flex min-h-alvo items-center text-[1.1rem] whitespace-nowrap no-underline hover:underline pc:text-[1rem]"
+                        className="flex min-h-alvo items-center text-[1.1rem] whitespace-nowrap no-underline hover:underline active:underline pc:text-[1rem]"
                         href={l.href}
                         onClick={() => setMenuAberto(false)}
                       >

@@ -134,7 +134,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
               type="button"
               onClick={aoFechar}
               aria-label={t.fechar}
-              className={`grid size-alvo shrink-0 cursor-pointer place-items-center rounded-pequeno border border-linha bg-transparent p-0 text-texto hover:bg-realce ${focoVisivel}`}
+              className={`grid size-alvo shrink-0 cursor-pointer place-items-center rounded-pequeno border border-linha bg-transparent p-0 text-texto hover:bg-realce active:bg-realce ${focoVisivel}`}
             >
               <IconeFechar />
             </button>

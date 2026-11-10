@@ -53,7 +53,7 @@ export function BotaoCarrinho({ nome, dentro, combinavel, aoAlternar }: Props) {
           setFechada(false);
         }}
         onBlur={() => setFoco(false)}
-        className={`grid size-alvo cursor-pointer place-items-center rounded-pequeno border-0 bg-transparent p-0 transition-colors motion-reduce:transition-none hover:bg-realce focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco ${
+        className={`grid size-alvo cursor-pointer place-items-center rounded-pequeno border-0 bg-transparent p-0 transition-colors motion-reduce:transition-none hover:bg-realce active:bg-realce focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco ${
           dentro ? "text-destaque" : "text-texto"
         }`}
       >

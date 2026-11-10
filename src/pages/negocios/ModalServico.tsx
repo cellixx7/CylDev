@@ -98,7 +98,7 @@ export function ModalServico({ aberto, respostas, noCarrinho, aviso, aoMudarAba,
                 type="button"
                 onClick={aoFechar}
                 aria-label={t.fechar}
-                className={`grid size-alvo shrink-0 cursor-pointer place-items-center rounded-pequeno border border-linha bg-transparent p-0 text-texto hover:bg-realce ${focoVisivel}`}
+                className={`grid size-alvo shrink-0 cursor-pointer place-items-center rounded-pequeno border border-linha bg-transparent p-0 text-texto hover:bg-realce active:bg-realce ${focoVisivel}`}
               >
                 <IconeFechar />
               </button>
@@ -118,7 +118,7 @@ export function ModalServico({ aberto, respostas, noCarrinho, aviso, aoMudarAba,
                     onClick={() => aoMudarAba(aba)}
                     onKeyDown={aoTeclarAba}
                     className={`min-h-alvo cursor-pointer border-0 border-b-[3px] bg-transparent px-4 font-[inherit] text-[1rem] font-semibold ${focoVisivel} ${
-                      ativa ? "border-destaque text-texto" : "border-transparent text-texto-suave hover:text-texto"
+                      ativa ? "border-destaque text-texto" : "border-transparent text-texto-suave hover:text-texto active:text-texto"
                     }`}
                   >
                     {t.abas[aba]}
