@@ -147,7 +147,7 @@ export function ModalServico({ aberto, respostas, noCarrinho, aviso, aoMudarAba,
 
           <footer className="shrink-0 border-t border-linha bg-superficie px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:px-6">
             <p className="m-0 mb-2 text-[1.05rem]" aria-live="polite" aria-atomic="true">
-              <PrecoRodape c={calculo} />
+              <PrecoRodape c={calculo} progresso={progresso} />
             </p>
             {noCarrinho ? (
               <div className="grid grid-cols-2 gap-2">

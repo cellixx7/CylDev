@@ -75,8 +75,8 @@ export const orcamento = {
     sobConsulta: "sob consulta",
     adicionado: (nome: string) => `${nome} no carrinho.`,
     removido: (nome: string) => `${nome} fora do carrinho.`,
-    comboTexto: "Dois ou mais entre planilha, painel, automação e landing têm desconto e um prazo só. Para começar,",
-    comboBotao: "ponha planilha, painel e automação no carrinho",
+    comboTexto: "Dois ou mais entre planilha, painel, automação e landing têm desconto e um prazo só.",
+    comboBotao: "Pôr planilha, painel e automação no carrinho",
     comboAdicionado: "Planilha, painel e automação no carrinho.",
     linhas: {
       planilha: "Controles soltos viram uma planilha única, com totais que conferem.",
@@ -123,8 +123,10 @@ export const orcamento = {
   estimativa: {
     titulo: "Estimativa",
     comoChegamos: "Como chegamos a esse valor",
+    /** Rótulo do preço no modal: com pergunta sem resposta, é "a partir de"; com tudo respondido, é só estimativa. */
     aPartirDe: "a partir de",
-    estimativaBot: "estimativa",
+    estimativaAPartirDe: "estimativa a partir de",
+    estimativaFinal: "estimativa",
     sobConsulta: "Sob consulta",
     porHora: "por hora",
     tabela: "Preço de tabela: ",

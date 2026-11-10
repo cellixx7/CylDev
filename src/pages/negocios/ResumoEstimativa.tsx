@@ -11,7 +11,16 @@ const precoGrande = "[word-spacing:-0.3em] font-mono text-[clamp(1.7rem,6vw,2.2r
 /** O piloto só vale na criação: nunca em aulas nem no sob consulta. */
 const temPiloto = (c: CalculoServico) => piloto !== null && c.preco !== null && c.tipoPreco !== "aula";
 
-function Valor({ c }: { c: CalculoServico }) {
+/**
+ * Rótulo do preço. Só texto: o valor vem de calcularServico(). Enquanto houver pergunta sem resposta é "estimativa a partir de";
+ * com tudo respondido, "estimativa". Aulas e sob consulta não ganham rótulo.
+ */
+export function rotuloDoPreco(c: CalculoServico, p: Progresso): string | null {
+  if (c.preco === null || c.tipoPreco === "aula") return null;
+  return p.faltam > 0 ? e.estimativaAPartirDe : e.estimativaFinal;
+}
+
+function Valor({ c, progresso }: { c: CalculoServico; progresso: Progresso }) {
   if (c.preco === null) return <p className={`m-0 ${precoGrande}`}>{e.sobConsulta}</p>;
 
   if (c.tipoPreco === "aula") {
@@ -23,7 +32,7 @@ function Valor({ c }: { c: CalculoServico }) {
     );
   }
 
-  const prefixo = c.aPartirDe ? e.aPartirDe : c.estimativa ? e.estimativaBot : null;
+  const prefixo = rotuloDoPreco(c, progresso);
   const comPiloto = temPiloto(c) && piloto;
   const final = comPiloto ? comDesconto(c.preco, comPiloto.percentual) : c.preco;
   return (
@@ -84,7 +93,7 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
       </div>
 
       <div>
-        <Valor c={c} />
+        <Valor c={c} progresso={progresso} />
       </div>
       {nota && <p className="mt-2 mb-0 text-[0.85rem] text-texto-suave">{nota}</p>}
 
@@ -132,7 +141,7 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
 }
 
 /** Preço curto do rodapé do modal (mesma regra do Valor, sem o tamanho grande). O contêiner dele tem aria-live. */
-export function PrecoRodape({ c }: { c: CalculoServico }) {
+export function PrecoRodape({ c, progresso }: { c: CalculoServico; progresso: Progresso }) {
   if (c.preco === null) return <span className="font-mono font-bold">{e.sobConsulta}</span>;
   if (c.tipoPreco === "aula") {
     return (
@@ -142,7 +151,7 @@ export function PrecoRodape({ c }: { c: CalculoServico }) {
       </>
     );
   }
-  const prefixo = c.aPartirDe ? e.aPartirDe : c.estimativa ? e.estimativaBot : null;
+  const prefixo = rotuloDoPreco(c, progresso);
   const comPiloto = temPiloto(c) && piloto;
   const final = comPiloto ? comDesconto(c.preco, comPiloto.percentual) : c.preco;
   return (
