@@ -244,20 +244,21 @@
   }
 }
 
-/* Carrinho do card: ao entrar, o contorno vira preenchimento com um pequeno "pop". Sem movimento reduzido, troca direta. */
+/* Carrinho do card: ao entrar, os itens caem na cesta, um depois do outro (~400 ms no total), enquanto o contorno vira
+   preenchimento. Com movimento reduzido, troca direta. */
 @media (prefers-reduced-motion: no-preference) {
-  .carrinho-pop {
-    animation: carrinho-pop 0.26s ease-out;
+  .carrinho-item {
+    animation: carrinho-cai 0.22s ease-out both;
+    animation-delay: calc(var(--i) * 90ms);
   }
-  @keyframes carrinho-pop {
-    0% {
-      transform: scale(0.8);
+  @keyframes carrinho-cai {
+    from {
+      opacity: 0;
+      transform: translateY(-9px);
     }
-    60% {
-      transform: scale(1.25);
-    }
-    100% {
-      transform: scale(1);
+    to {
+      opacity: 1;
+      transform: none;
     }
   }
 }

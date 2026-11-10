@@ -1,4 +1,4 @@
-import { useId, useState, type KeyboardEvent } from "react";
+import { useId, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { orcamento } from "../../content/textos";
 
 const t = orcamento.cards.carrinho;
@@ -53,24 +53,35 @@ export function BotaoCarrinho({ nome, dentro, combinavel, aoAlternar }: Props) {
           setFechada(false);
         }}
         onBlur={() => setFoco(false)}
-        className="grid size-alvo cursor-pointer place-items-center rounded-pequeno border-0 bg-transparent p-0 text-destaque transition-colors hover:bg-realce focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco"
+        className={`grid size-alvo cursor-pointer place-items-center rounded-pequeno border-0 bg-transparent p-0 transition-colors motion-reduce:transition-none hover:bg-realce focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco ${
+          dentro ? "text-destaque" : "text-texto"
+        }`}
       >
+        {/* Decorativo. Vazio: só contorno, na cor do texto. No carrinho: cesta e itens preenchidos com a cor do botão principal. */}
         <svg
           className={
             dentro
-              ? "carrinho-pop size-6 fill-current transition-[fill] duration-200 motion-reduce:transition-none"
+              ? "size-6 fill-current transition-[fill] duration-200 motion-reduce:transition-none"
               : "size-6 fill-transparent transition-[fill] duration-200 motion-reduce:transition-none"
           }
           viewBox="0 0 24 24"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
         >
-          <path d="M2.5 3.5h3l2.2 11h10.6l2-8H6.2" />
-          <circle cx="9.5" cy="19.5" r="1.4" />
-          <circle cx="17" cy="19.5" r="1.4" />
+          {dentro && (
+            <>
+              <rect className="carrinho-item" style={{ "--i": 0 } as CSSProperties} x="8.6" y="3" width="3" height="3.2" rx="0.5" strokeWidth="1" />
+              <rect className="carrinho-item" style={{ "--i": 1 } as CSSProperties} x="12.8" y="1.2" width="3" height="5" rx="0.5" strokeWidth="1" />
+              <rect className="carrinho-item" style={{ "--i": 2 } as CSSProperties} x="17" y="3.4" width="3" height="2.8" rx="0.5" strokeWidth="1" />
+            </>
+          )}
+          <path d="M2 3.5h2.8l2.6 12h10.8" fill="none" />
+          <path d="M5.4 8.5h15.6l-2.4 7H7.4z" />
+          <circle cx="9.6" cy="19.6" r="1.3" />
+          <circle cx="16.4" cy="19.6" r="1.3" />
         </svg>
       </button>
       {aberta && (

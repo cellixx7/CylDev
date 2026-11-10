@@ -69,15 +69,21 @@ describe("card: botões e ícone de carrinho", () => {
     expect(html).toContain('aria-pressed="false"');
     expect(html).toContain('aria-label="Pôr Planilha organizada no carrinho"');
     expect(html).toContain("fill-transparent");
-    expect(html).not.toContain("carrinho-pop");
+    // só contorno, na cor do texto: nada de destaque nem itens dentro da cesta
+    expect(html).toMatch(/<button[^>]*aria-pressed="false"[^>]*class="[^"]*text-texto/);
+    expect(html).not.toMatch(/<button[^>]*class="[^"]*text-destaque"/);
+    expect(html).not.toContain("carrinho-item");
   });
 
-  it("no carrinho: aria-pressed true, rótulo 'Tirar ... do carrinho' e ícone preenchido", () => {
+  it("no carrinho: aria-pressed true, rótulo 'Tirar ... do carrinho' e cesta cheia com itens", () => {
     const html = card("planilha", true);
     expect(html).toContain('aria-pressed="true"');
     expect(html).toContain('aria-label="Tirar Planilha organizada do carrinho"');
     expect(html).toContain("fill-current");
-    expect(html).toContain("carrinho-pop");
+    // cesta cheia, na cor do botão principal (token do tema), com 3 itens saindo por cima
+    expect(html).toMatch(/<button[^>]*aria-pressed="true"[^>]*class="[^"]*text-destaque"/);
+    expect(html.match(/class="carrinho-item"/g)).toHaveLength(3);
+    expect(html).not.toMatch(/#[0-9a-fA-F]{3,8}/);
   });
 
   it("o título reserva espaço para o ícone", () => {
