@@ -10,8 +10,18 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Endereços antigos de /negocios/ agora vivem na raiz.
 [[redirects]]
-  from = "/"
-  to = "/negocios/"
-  status = 302
-  force = true
+  from = "/negocios/como-funciona/*"
+  to = "/como-funciona/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/negocios/*"
+  to = "/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/negocios"
+  to = "/"
+  status = 301

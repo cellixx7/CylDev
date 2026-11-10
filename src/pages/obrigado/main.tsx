@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "../../styles/tailwind.css";
-import { site } from "../../content/site";
+import "../../styles/tema-negocios.css";
 import { naoEncontrado, obrigado } from "../../content/textos";
-import { Cabecalho } from "../../shared/components/cabecalho/Cabecalho";
+import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
 import { botao } from "../../shared/estilos";
 
 const raiz = document.getElementById("raiz")!;
@@ -12,7 +12,7 @@ const t = raiz.dataset.pagina === "404" ? naoEncontrado : obrigado;
 function Aviso() {
   return (
     <>
-      <Cabecalho area="home" temaPadrao="escuro" marca={site.nome} />
+      <CabecalhoNegocios />
       <main className="mx-auto max-w-site px-margem py-20" id="conteudo">
         <h1>{t.titulo}</h1>
         <p>{t.texto}</p>

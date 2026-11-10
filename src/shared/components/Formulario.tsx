@@ -1,7 +1,7 @@
 import { useRef, useState, type FormEvent } from "react";
 import { site } from "../../content/site";
 import { formulario as t } from "../../content/textos";
-import { enviarContato, pareceSpam } from "../lib/emailjs";
+import { enviarContato, pareceSpam, type DadosContato } from "../lib/emailjs";
 import { linkContato } from "../lib/whatsapp";
 import { botao, botaoCheio } from "../estilos";
 
@@ -17,10 +17,12 @@ type Props = {
   origem: string;
   /** Resumo do pedido (vem da calculadora). Vai antes da mensagem, que passa a ser opcional. */
   resumo?: string;
+  /** Pacote, tamanho e estimativa já em texto, para o e-mail. */
+  detalhes?: Pick<DadosContato, "pacote" | "tamanho" | "estimativa">;
 };
 
 /** Formulário de contato enviado pelo EmailJS. Se falhar, mostra WhatsApp e e-mail. */
-export function Formulario({ origem, resumo }: Props) {
+export function Formulario({ origem, resumo, detalhes }: Props) {
   const [preferencia, setPreferencia] = useState<"whatsapp" | "email">("whatsapp");
   const [estado, setEstado] = useState<Estado>("pronto");
   const abertoEm = useRef(Date.now());
@@ -45,6 +47,7 @@ export function Formulario({ origem, resumo }: Props) {
         assunto: preferencia === "email" ? valor("assunto") : "",
         mensagem: [resumo, valor("mensagem")].filter(Boolean).join("\n\n"),
         origem,
+        ...detalhes,
       });
       window.location.assign("/obrigado/");
     } catch {

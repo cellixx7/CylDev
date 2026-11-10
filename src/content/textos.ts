@@ -11,25 +11,6 @@ export const comum = {
   menuFechar: "Fechar menu",
 };
 
-export const home = {
-  titulo: "Marcelo Vaz",
-  linha: "Desenvolvedor e analista de dados. Atendo online, para todo o Brasil.",
-  portas: [
-    {
-      href: "/negocios/",
-      rotulo: "Para o seu negócio",
-      guia: "Painéis, páginas e automação para quem vende e controla tudo em planilha.",
-      assinatura: "Marcelo Vaz",
-    },
-    {
-      href: "/comunidade/",
-      rotulo: "Para o seu Discord e jogos",
-      guia: "Bots de Discord e ferramentas para quem joga.",
-      assinatura: "CylDev",
-    },
-  ],
-};
-
 export const catalogo = {
   inclui: "Inclui",
   prazo: "Prazo",
@@ -46,43 +27,90 @@ export const piloto = (restam: number, percentual: number, primeiraFaixa: boolea
 
 export const pilotoNota = "O desconto vale sobre o preço de criação.";
 
-/** Calculadora da seção #orcamento (Negócios). Valores saem de servicos.ts e orcamento.ts. */
+/** Seção #orcamento (Negócios): lista, painel com perguntas e carrinho. Valores saem de servicos.ts, perguntas.ts e orcamento.ts. */
 export const orcamento = {
   titulo: "Monte o seu orçamento",
   intro:
-    "Escolha o que você precisa e o tamanho do trabalho. A estimativa aparece na hora. O valor final vai na proposta por escrito, depois que eu vir o seu caso.",
-  passoServico: "O que você precisa?",
-  passoTamanho: "Qual o tamanho do trabalho?",
-  passoAula: "Como prefere as aulas?",
-  tamanhos: {
-    basico: "O que está descrito no pacote.",
-    medio: "Mais dados, abas ou regras do que o pacote básico.",
-    complexo: "Várias fontes de dados ou regras próprias do seu negócio.",
+    "Três passos: escolha o serviço, responda às perguntas e feche o pedido. A estimativa muda na hora. O valor final vai na proposta por escrito.",
+  passos: {
+    servico: "Escolha o serviço",
+    perguntas: "Responda às perguntas",
+    pedido: "Seu pedido",
   },
-  aulaAvulsa: "Aula avulsa",
-  aulaPacote: (aulas: number) => `Pacote de ${aulas} aulas`,
-  estimativa: "Estimativa",
-  aPartirDe: "a partir de",
-  porHora: "por hora",
-  comPiloto: (percentual: number, restam: number) =>
-    `Com ${percentual}% de desconto de piloto. Restam ${restam} ${restam === 1 ? "vaga" : "vagas"} nessa faixa.`,
-  trabalho: "Trabalho",
-  prazo: "Prazo",
-  notaAPartirDe: "O valor depende do que a automação vai fazer. Este é o mínimo para o tamanho escolhido.",
-  notaEstimativa: "É uma estimativa. O valor e a data de entrega ficam fechados na proposta.",
-  consulta: "Começa com uma conversa. Me conte o caso e eu mando uma proposta por escrito com valor e prazo.",
-  enviarWhatsapp: "Enviar pelo WhatsApp",
-  formularioTitulo: "Prefere deixar o seu contato?",
-  formularioTexto: "Eu respondo pelo canal que você escolher.",
+  lista: {
+    titulo: "Serviços",
+    rotuloLista: "Lista de serviços",
+    noCarrinho: "no carrinho",
+    porHora: "/h",
+    sobConsulta: "sob consulta",
+    comboTexto: "Planilha, painel e automação juntos têm desconto e um prazo só.",
+    comboBotao: "Montar combo",
+  },
+  painel: {
+    inclui: "O que está incluso",
+    perguntas: "Perguntas",
+    mudaValorCurto: "muda o valor",
+    marqueQuantas: "Marque quantas quiser.",
+    oQueEIsso: "O que é isso?",
+    incluso: (n: number) => `Já ${n === 1 ? "incluso" : "inclusos"}: ${n}.`,
+    cadaExtra: (valor: string) => `Cada a mais: + ${valor}.`,
+    custo: (valor: string) => `+ ${valor}`,
+  },
+  estimativa: {
+    titulo: "Estimativa",
+    comoChegamos: "Como chegamos a esse valor",
+    aPartirDe: "a partir de",
+    estimativaBot: "estimativa",
+    sobConsulta: "Sob consulta",
+    porHora: "por hora",
+    tabela: "Preço de tabela: ",
+    comPiloto: (percentual: number, restam: number) =>
+      `Com ${percentual}% de desconto de piloto. Restam ${restam} ${restam === 1 ? "vaga" : "vagas"} nessa faixa.`,
+    horas: "Trabalho",
+    prazo: "Prazo",
+    mensalidade: "Mensalidade",
+    valorMensalidade: (valor: string) => `${valor} por mês, mais a hospedagem à parte`,
+    notaAPartirDe: "O valor depende do que a automação vai fazer. Este é o mínimo para as suas respostas.",
+    notaBot: "É uma estimativa pelas suas respostas. O prazo é combinado na conversa.",
+    notaEstimativa: "É uma estimativa. O valor e a data de entrega ficam fechados na proposta.",
+    consulta: "Começa com uma conversa. Me conte o caso e eu mando uma proposta por escrito com valor e prazo.",
+    adicionar: "Adicionar ao carrinho",
+    tirar: "No carrinho (tirar)",
+  },
+  carrinho: {
+    titulo: "Seu carrinho",
+    vazio: "Nada por aqui ainda. Escolha um serviço na lista e adicione.",
+    editar: "Editar",
+    tirar: "Tirar",
+    soma: "Soma de tabela",
+    desconto: (rotulo: string) => `Desconto (${rotulo})`,
+    descontoNota: "Combo e piloto não se somam: vale o maior.",
+    prazo: "Prazo",
+    prazoCombinaveis: "Planilha, painel, automação e landing, juntos",
+    mensalidade: "Mensalidade dos bots",
+    total: "Total estimado",
+    totalSobConsulta: "Sistema sob medida fica fora do total: o valor sai na proposta.",
+    notaEstimativa: "Estimativa, confirmada na conversa.",
+    comoFechar: "Como você prefere fechar?",
+    pelosite: "Fechar o pedido pelo site",
+    nome: "Nome",
+    whatsapp: "WhatsApp (com DDD)",
+    enviar: "Fechar pedido pelo site",
+    enviando: "Enviando…",
+    falhou: "Não consegui enviar agora. Chame no WhatsApp ou mande um e-mail com o mesmo pedido.",
+    vazioAviso: "Adicione ao menos um serviço para fechar o pedido pelo site.",
+    whatsappBotao: "Chamar o Marcelo no WhatsApp",
+    privacidade: "Seu nome e WhatsApp são usados só para responder este pedido. Eu confirmo por WhatsApp e combinamos o Pix.",
+  },
 };
 
 export const negocios = {
   nav: [
-    { href: "/negocios/#orcamento", rotulo: "Orçamento" },
-    { href: "/negocios/como-funciona/", rotulo: "Como funciona" },
-    { href: "/negocios/#sobre", rotulo: "Sobre" },
-    { href: "/negocios/#entregas", rotulo: "Entregas" },
-    { href: "/negocios/#contato", rotulo: "Contato" },
+    { href: "/#orcamento", rotulo: "Orçamento" },
+    { href: "/como-funciona/", rotulo: "Como funciona" },
+    { href: "/#sobre", rotulo: "Sobre" },
+    { href: "/#entregas", rotulo: "Entregas" },
+    { href: "/#contato", rotulo: "Contato" },
   ],
   /** Controle no centro do header: leva para a área de comunidade. */
   atalhoComunidade: {
@@ -218,7 +246,7 @@ export const comunidade = {
     { href: "#cylbot", rotulo: "CylBot" },
     { href: "#cylsense", rotulo: "CylSense" },
     { href: "#bots", rotulo: "Bots sob medida" },
-    { href: "/negocios/#contato", rotulo: "Contato" },
+    { href: "/#contato", rotulo: "Contato" },
   ],
   apresentacao: {
     titulo: "Eu faço bots e ferramentas para quem joga.",

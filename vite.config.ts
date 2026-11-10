@@ -23,9 +23,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         inicio: resolve(raiz, "index.html"),
-        home: resolve(raiz, "home/index.html"),
-        negocios: resolve(raiz, "negocios/index.html"),
-        comoFunciona: resolve(raiz, "negocios/como-funciona/index.html"),
+        comoFunciona: resolve(raiz, "como-funciona/index.html"),
         comunidade: resolve(raiz, "comunidade/index.html"),
         obrigado: resolve(raiz, "obrigado/index.html"),
         naoEncontrado: resolve(raiz, "404.html"),

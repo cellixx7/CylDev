@@ -9,17 +9,15 @@ export const parametros = {
   valorHoraAvulsa: 50,
 };
 
-/**
- * Multiplicador sobre horas e preço do pacote básico.
- * "medio" (1,5) confirmado pelo Marcelo em 06/11/2026.
- */
-export const complexidades = {
-  basico: { rotulo: "Básico", fator: 1 },
-  medio: { rotulo: "Médio", fator: 1.5 },
-  complexo: { rotulo: "Complexo", fator: 2 },
-} as const;
+/** R$ por hora de trabalho extra que uma resposta do orçamento acrescenta ao preço base. */
+export const VALOR_HORA_EXTRA = parametros.valorHoraAvulsa;
 
-export type Complexidade = keyof typeof complexidades;
+// PENDENTE (proposta, a confirmar pelo Marcelo; ver docs/DECISOES.md):
+// desconto do combo de serviços combináveis (planilha, painel, automação, landing).
+/** PENDENTE: 10% com 2 combináveis no carrinho. */
+export const COMBO_2 = 10;
+/** PENDENTE: 15% com 3 ou mais combináveis no carrinho. */
+export const COMBO_3 = 15;
 
 // Contadores reais das vagas de piloto. Diminua 1 a cada venda fechada com desconto:
 // primeiro o de 10%; quando ele zerar, o de 5%. Com os dois em 0, o aviso some.

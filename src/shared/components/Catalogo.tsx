@@ -1,4 +1,4 @@
-import type { Preco, Servico } from "../../content/servicos";
+import { prazoACombinar, type Preco, type Servico } from "../../content/servicos";
 import { catalogo as t } from "../../content/textos";
 import { brl } from "../lib/formato";
 import { mensalidadeDe } from "../lib/orcamento";
@@ -25,6 +25,7 @@ export function textoPreco(preco: Preco): string {
 }
 
 export function textoPrazo(s: Servico): string | null {
+  if (s.horasProvisorias) return prazoACombinar;
   if (s.horasBase) return formatarPrazo(prazoEmDias(s.horasBase));
   return s.prazoTexto ?? null;
 }
