@@ -172,7 +172,7 @@ describe("canais de envio usam o mesmo pedido", () => {
     expect(d.contato).toBe("(61) 99999-0000");
     expect(d.preferencia).toBe("whatsapp");
     expect(d.assunto).toBe("Pedido pelo site");
-    expect(d.pacote).toBe("Painel de dados");
+    expect(d.pacote).toBe("Painel básico");
     expect(d.estimativa).toContain("R$");
   });
 

@@ -170,7 +170,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
   {
     id: "painel",
     numero: "02",
-    nome: "Painel de dados",
+    nome: "Painel básico",
     resumo:
       "Transformo os seus números em um painel com poucos gráficos e indicadores, feito para responder as perguntas do seu dia a dia: quanto vendi, quem compra mais, o que está parado.",
     inclui: [
