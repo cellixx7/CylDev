@@ -187,6 +187,7 @@ export const orcamento = {
 };
 
 export const negocios = {
+  exemploTitulo: "Um exemplo do que eu entrego",
   nav: [
     { href: "/#orcamento", rotulo: "Orçamento" },
     { href: "/como-funciona/", rotulo: "Como funciona" },
@@ -211,6 +212,10 @@ export const negocios = {
       "Planilhas organizadas, painéis com os seus números, páginas de apresentação e sistemas sob medida. Tudo explicado em português claro, sem complicação.",
     acao: "Chamar no WhatsApp",
     acaoSecundaria: "Ver preços",
+    /** Linha de partida do celular: o menor preço de pacote, direto de servicos.ts. */
+    partida: (nome: string) => `${nome},`,
+    aPartirDe: (valor: string) => `a partir de ${valor}`,
+    comoPedir: "Monte o orçamento aqui e envie pelo site ou pelo WhatsApp.",
     botaoOrcamento: "Realize seu orçamento",
     botaoComoFunciona: "Como funciona?",
     seta: "Entenda como Funciona",

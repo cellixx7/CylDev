@@ -116,7 +116,7 @@ function GraficoPizza() {
   );
 }
 
-const titulo = "mb-3 font-texto text-[0.75rem] font-semibold tracking-[0.06em] text-texto-suave uppercase";
+const titulo = "mb-3 font-texto text-[0.875rem] font-semibold tracking-[0.06em] text-texto-suave uppercase";
 
 // Atraso de entrada (em segundos) como variável CSS lida pelas classes animate-painel-*.
 const atraso = (s: number) => ({ "--atraso": `${s}s` }) as CSSProperties;
@@ -189,23 +189,23 @@ export function PainelExemplo() {
     >
       <figcaption className="mb-4 animate-painel-item" style={atraso(0.2)}>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <span className="rounded-pequeno border border-destaque px-2 font-mono text-[0.7rem] font-bold tracking-[0.08em] text-destaque uppercase">
+          <span className="rounded-pequeno border border-destaque px-2 font-mono text-[0.875rem] font-bold tracking-[0.08em] text-destaque uppercase">
             {painel.selo}
           </span>
           <span className="font-titulo text-[1.1rem] font-bold">{painel.titulo}</span>
-          <span className="ml-auto font-mono text-[0.8rem] text-texto-suave">{painel.periodo}</span>
+          <span className="ml-auto font-mono text-[0.875rem] text-texto-suave">{painel.periodo}</span>
         </div>
-        <p className="mt-1.5 mb-0 max-w-none text-[0.85rem] leading-[1.45] text-texto-suave">{painel.descricao}</p>
+        <p className="mt-1.5 mb-0 max-w-none text-[1rem] leading-[1.45] text-texto-suave">{painel.descricao}</p>
       </figcaption>
 
       <dl className="m-0 grid grid-cols-2 gap-x-4 gap-y-4 xl:grid-cols-4">
         {painel.indicadores.map((i, idx) => (
           <div className="animate-painel-item border-t-2 border-texto pt-2" style={atraso(0.35 + idx * 0.1)} key={i.nome}>
-            <dt className="text-[0.8rem] text-texto-suave">{i.nome}</dt>
+            <dt className="text-[0.875rem] text-texto-suave">{i.nome}</dt>
             <dd className="m-0 font-mono text-[1.35rem] leading-[1.2] font-bold whitespace-nowrap tabular-nums xl:text-[1.15rem]">
               <ValorAnimado valor={i.valor} variacao={i.variacao} atrasoMs={350 + idx * 100} />
             </dd>
-            <dd className="m-0 font-mono text-[0.72rem] text-texto-suave">{i.variacao}</dd>
+            <dd className="m-0 font-mono text-[0.875rem] text-texto-suave">{i.variacao}</dd>
           </div>
         ))}
       </dl>
@@ -220,7 +220,7 @@ export function PainelExemplo() {
         >
           {painel.meses.map((m, i) => (
             <li className="flex h-full flex-col items-center justify-end gap-1" key={m.nome}>
-              <span className="animate-painel-aparecer font-mono text-[0.62rem] text-texto-suave" style={atraso(1.5)}>
+              <span className="animate-painel-aparecer font-mono text-[0.875rem] text-texto-suave" style={atraso(1.5)}>
                 {m.valor}
               </span>
               <span
@@ -232,8 +232,9 @@ export function PainelExemplo() {
         </ol>
         <ol className="m-0 mt-1 grid list-none grid-cols-[repeat(12,1fr)] gap-[3px] p-0 sm:gap-1.5" aria-hidden="true">
           {painel.meses.map((m) => (
-            <li className="text-center font-mono text-[0.6rem] text-texto-suave" key={m.nome}>
-              {m.nome}
+            <li className="text-center font-mono text-[0.875rem] text-texto-suave" key={m.nome}>
+              <span className="sm:hidden">{m.nome[0]}</span>
+              <span className="hidden sm:inline">{m.nome}</span>
             </li>
           ))}
         </ol>
@@ -251,7 +252,7 @@ export function PainelExemplo() {
           <h3 className={titulo} id="painel-regioes">
             {painel.regioesTitulo}
           </h3>
-          <ul className="m-0 grid list-none gap-3 p-0 text-[0.85rem]">
+          <ul className="m-0 grid list-none gap-3 p-0 text-[0.9375rem]">
             {painel.regioes.map((r, i) => (
               <li className="grid grid-cols-[6.25rem_1fr_2rem] items-center gap-2" key={r.nome}>
                 <span className="text-texto-suave">{r.nome}</span>

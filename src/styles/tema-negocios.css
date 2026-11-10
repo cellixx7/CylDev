@@ -76,6 +76,7 @@
   .palavra {
     display: inline-block;
     white-space: nowrap;
+    margin-right: 0.26em;
   }
   .mascara {
     display: inline-block;
