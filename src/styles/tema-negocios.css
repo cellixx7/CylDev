@@ -223,12 +223,26 @@
 }
 
 /*
- * Orçamento no celular: a barra fixa publica a própria altura em --altura-barra (ver BarraPedidoMobile).
- * O botão de tema sobe junto, para nunca ficar por baixo dela nem exigir espaço reservado dentro dela.
+ * A barra fixa do carrinho publica a própria altura em --altura-barra (ver BarraCarrinho).
+ * O botão de tema sobe junto e o fim da página ganha o mesmo espaço, para nada ficar por baixo dela.
  */
-@media (max-width: 63.99rem) {
-  .botao-tema {
-    bottom: calc(var(--altura-barra, 0px) + 1.25rem);
+.botao-tema {
+  bottom: calc(var(--altura-barra, 0px) + 1.25rem);
+}
+body {
+  padding-bottom: var(--altura-barra, 0px);
+}
+
+/* Gaveta do carrinho: entra pela direita no tablet e no desktop. No celular é tela cheia, sem movimento. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 48rem) {
+  dialog.painel-carrinho[open] {
+    animation: gaveta-entra 0.24s ease-out;
+  }
+  @keyframes gaveta-entra {
+    from {
+      transform: translateX(2rem);
+      opacity: 0;
+    }
   }
 }
 

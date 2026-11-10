@@ -2,39 +2,68 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { servicoOrcamentoPorId } from "../../content/perguntas";
 import { orcamento as t } from "../../content/textos";
 import { adicionar, estadoInicial, montarCombo, remover, responder, type EstadoCarrinho } from "../../shared/lib/carrinho-estado";
+import type { AbaModal } from "../../shared/lib/hashServico";
 import { montarPedido } from "../../shared/lib/pedido";
+import { BarraCarrinho, ID_BOTAO_BARRA } from "./BarraCarrinho";
 import { CardsServicos } from "./CardsServicos";
 import { ModalServico } from "./ModalServico";
+import { PainelCarrinho } from "./PainelCarrinho";
 import { useServicoNaUrl } from "./useServicoNaUrl";
 
 /**
- * Orquestra a seção: cards, carrinho e modal do serviço (o painel do carrinho entra no bloco 3).
- * O estado do carrinho e das respostas vive aqui, fora do modal, para sobreviver a fechar e reabrir.
+ * Orquestra a seção: cards, modal do serviço, barra do carrinho e painel do carrinho.
+ * O estado do carrinho e das respostas vive aqui, fora dos dialogs, para sobreviver a fechar e reabrir.
+ *
+ * Regra: nunca há dois dialogs abertos. Quem abre o carrinho a partir do modal fecha o modal antes
+ * (sequencial, com o painel entrando só depois que o serviço saiu); e "Ajustar respostas" no carrinho
+ * fecha o painel antes de abrir o serviço.
  */
 export function Orcamento() {
   const [carrinho, setCarrinho] = useState<EstadoCarrinho>(estadoInicial);
+  const [observacoes, setObservacoes] = useState("");
+  const [painelAberto, setPainelAberto] = useState(false);
   const [aviso, setAviso] = useState("");
   const { aberto, abrir, trocarAba, fechar } = useServicoNaUrl();
 
-  // Elemento que abriu o modal: o foco volta a ele ao fechar. Em abertura por link direto não há origem, e o foco vai ao card.
+  // Foco: o modal devolve o foco ao botão que o abriu (ou ao card, sem origem). O painel devolve à barra.
   const origem = useRef<HTMLElement | null>(null);
   const idAnterior = useRef<string | null>(aberto?.id ?? null);
+  const painelDepoisDoModal = useRef(false);
+  const painelAnterior = useRef(false);
+  const pularFocoDoPainel = useRef(false);
 
-  // Será usado pela barra e pelo painel do carrinho (bloco 3).
-  const pedido = useMemo(() => montarPedido(carrinho.ids, carrinho.respostas), [carrinho]);
+  const pedido = useMemo(() => montarPedido(carrinho.ids, carrinho.respostas, observacoes), [carrinho, observacoes]);
 
   useEffect(() => {
     const anterior = idAnterior.current;
     idAnterior.current = aberto?.id ?? null;
+    if (aberto && painelAberto) setPainelAberto(false); // link direto com o carrinho aberto: só um dialog por vez
     if (aberto || !anterior) return;
+    if (painelDepoisDoModal.current) {
+      painelDepoisDoModal.current = false;
+      origem.current = null;
+      setPainelAberto(true);
+      return;
+    }
     const alvo = origem.current?.isConnected ? origem.current : document.getElementById(`card-${anterior}`);
     origem.current = null;
     alvo?.focus();
-  }, [aberto]);
+  }, [aberto, painelAberto]);
+
+  useEffect(() => {
+    const estava = painelAnterior.current;
+    painelAnterior.current = painelAberto;
+    if (painelAberto || !estava) return;
+    if (pularFocoDoPainel.current) {
+      pularFocoDoPainel.current = false;
+      return;
+    }
+    (document.getElementById(ID_BOTAO_BARRA) ?? document.getElementById("orcamento-titulo"))?.focus();
+  }, [painelAberto]);
 
   const nome = (id: string) => servicoOrcamentoPorId(id)?.nome ?? "Serviço";
 
-  const abrirModal = (id: string, aba: "detalhes" | "orcamento") => {
+  const abrirModal = (id: string, aba: AbaModal) => {
     origem.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     abrir(id, aba);
   };
@@ -52,15 +81,27 @@ export function Orcamento() {
     setAviso(t.cards.comboAdicionado);
   };
 
+  // Do modal para o carrinho: o modal sai primeiro; o painel abre quando `aberto` voltar a ser nulo.
+  const verCarrinhoDoModal = () => {
+    painelDepoisDoModal.current = true;
+    fechar();
+  };
+  // Do carrinho para o serviço: o painel sai e o modal abre na aba Orçamento, com o foco voltando ao card ao fechar.
+  const ajustar = (id: string) => {
+    pularFocoDoPainel.current = true;
+    origem.current = null;
+    setPainelAberto(false);
+    abrir(id, "orcamento");
+  };
+
   return (
     <section
       className="mx-auto max-w-hero scroll-mt-24 px-margem pt-14 pb-14"
       id="orcamento"
       aria-labelledby="orcamento-titulo"
-      data-itens-no-carrinho={pedido.itens.length}
     >
       <span className="revela-barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
-      <h2 id="orcamento-titulo" className="revela-titulo">
+      <h2 id="orcamento-titulo" tabIndex={-1} className="revela-titulo outline-none">
         {t.titulo}
       </h2>
       <p className="max-w-[40rem] text-texto-suave">{t.intro}</p>
@@ -79,6 +120,17 @@ export function Orcamento() {
         />
       </div>
 
+      {/* Os dialogs ficam fora do bloco `.revela`, e o painel antes do modal na ordem de efeitos. */}
+      <PainelCarrinho
+        aberto={painelAberto}
+        pedido={pedido}
+        aviso={aviso}
+        observacoes={observacoes}
+        aoMudarObservacoes={setObservacoes}
+        aoAjustar={ajustar}
+        aoTirar={tirar}
+        aoFechar={() => setPainelAberto(false)}
+      />
       <ModalServico
         aberto={aberto}
         respostas={carrinho.respostas}
@@ -88,8 +140,12 @@ export function Orcamento() {
         aoResponder={(servicoId, perguntaId, opcaoId) => setCarrinho((e) => responder(e, servicoId, perguntaId, opcaoId))}
         aoAdicionar={colocar}
         aoRemover={tirar}
+        aoVerCarrinho={verCarrinhoDoModal}
         aoFechar={fechar}
       />
+
+      {/* Fora do bloco `.revela`: o transform dele prenderia o `fixed` ao bloco. */}
+      <BarraCarrinho pedido={pedido} aoAbrir={() => setPainelAberto(true)} />
     </section>
   );
 }

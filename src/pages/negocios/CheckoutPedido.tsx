@@ -92,13 +92,13 @@ function EnviarPeloSite({ pedido }: { pedido: Pedido }) {
 
 type Props = { pedido: Pedido };
 
-/** Etapa 3, parte final: duas formas de enviar o mesmo pedido, com o mesmo peso visual. */
+/** Duas formas de enviar o mesmo pedido, com o mesmo peso visual: mesmo cartão e mesmo botão cheio, uma sobre a outra. */
 export function CheckoutPedido({ pedido }: Props) {
   const link = linkWhatsappPedido(pedido, origem);
   return (
     <div>
       <h4 className="mb-3 text-[1.1rem] font-bold">{t.comoFechar}</h4>
-      <div className="grid gap-3 md:grid-cols-2 md:items-start">
+      <div className="grid gap-3">
         <section className="border border-linha bg-superficie p-4" aria-labelledby="orc-fechar-site">
           <h5 id="orc-fechar-site" className="mb-1 text-[1rem] font-bold">
             {t.pelosite}

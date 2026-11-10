@@ -1,4 +1,5 @@
 import { useEffect, useRef, type KeyboardEvent } from "react";
+import { useTravaRolagem } from "./useTravaRolagem";
 import { servicoOrcamentoPorId } from "../../content/perguntas";
 import { orcamento } from "../../content/textos";
 import type { AbaModal, ServicoNaUrl } from "../../shared/lib/hashServico";
@@ -27,6 +28,8 @@ type Props = {
   aoResponder: (servicoId: string, perguntaId: string, opcaoId: string) => void;
   aoAdicionar: (servicoId: string) => void;
   aoRemover: (servicoId: string) => void;
+  /** Fecha este modal e, só depois, abre o painel do carrinho (nunca modal sobre modal). */
+  aoVerCarrinho: () => void;
   aoFechar: () => void;
 };
 
@@ -34,7 +37,7 @@ type Props = {
  * Modal do serviço em <dialog> nativo: showModal() deixa o resto inerte e prende o foco, e o Esc fecha.
  * O estado (serviço, aba, respostas) vive em Orcamento.tsx, então trocar de aba ou reabrir não perde respostas.
  */
-export function ModalServico({ aberto, respostas, noCarrinho, aviso, aoMudarAba, aoResponder, aoAdicionar, aoRemover, aoFechar }: Props) {
+export function ModalServico({ aberto, respostas, noCarrinho, aviso, aoMudarAba, aoResponder, aoAdicionar, aoRemover, aoVerCarrinho, aoFechar }: Props) {
   const dialogo = useRef<HTMLDialogElement>(null);
   const titulo = useRef<HTMLHeadingElement>(null);
   const modelo = aberto ? servicoOrcamentoPorId(aberto.id) : undefined;
@@ -52,12 +55,8 @@ export function ModalServico({ aberto, respostas, noCarrinho, aviso, aoMudarAba,
     }
   }, [visivel]);
 
-  // A página atrás não rola enquanto o modal está aberto. A limpeza fica num só lugar.
-  useEffect(() => {
-    if (!visivel) return;
-    document.documentElement.classList.add("modal-aberto");
-    return () => document.documentElement.classList.remove("modal-aberto");
-  }, [visivel]);
+  // A página atrás não rola enquanto o modal está aberto. O contador fica no hook.
+  useTravaRolagem(visivel);
 
   const respostasDele = (aberto && respostas[aberto.id]) || {};
   const calculo = aberto && modelo ? calcularServico(aberto.id, respostasDele) : null;
@@ -150,13 +149,18 @@ export function ModalServico({ aberto, respostas, noCarrinho, aviso, aoMudarAba,
               <PrecoRodape c={calculo} progresso={progresso} />
             </p>
             {noCarrinho ? (
-              <div className="grid grid-cols-2 gap-2">
-                <button type="button" aria-disabled="true" className={`${botaoRodape} cursor-default border-linha bg-realce text-texto`}>
-                  {t.noCarrinho}
+              <div className="grid gap-2">
+                <button type="button" className={cheio} onClick={aoVerCarrinho}>
+                  {t.verCarrinho}
                 </button>
-                <button type="button" className={contorno} onClick={() => aoRemover(modelo.id)}>
-                  {t.tirar}
-                </button>
+                <div className="grid grid-cols-2 gap-2">
+                  <button type="button" aria-disabled="true" className={`${botaoRodape} cursor-default border-linha bg-realce text-texto`}>
+                    {t.noCarrinho}
+                  </button>
+                  <button type="button" className={contorno} onClick={() => aoRemover(modelo.id)}>
+                    {t.tirar}
+                  </button>
+                </div>
               </div>
             ) : (
               <button type="button" className={cheio} onClick={() => aoAdicionar(modelo.id)}>

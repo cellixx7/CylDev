@@ -47,6 +47,10 @@ export type ItemPedido = {
   aproximado: boolean;
   perguntasRespondidas: number;
   perguntasTotal: number;
+  /** Perguntas ainda sem resposta (`perguntasTotal - perguntasRespondidas`). */
+  perguntasSemResposta: number;
+  /** Tem valor e ainda há pergunta sem resposta: o valor é estimativa e pode mudar. */
+  estimativa: boolean;
 };
 
 export type Pedido = {
@@ -70,6 +74,7 @@ function respostasDoItem(modelo: ServicoOrcamento, respostas: Respostas): Respos
 function itemDoPedido(c: CalculoServico, respostas: Respostas): ItemPedido {
   const modelo = servicoOrcamentoPorId(c.id)!;
   const lista = respostasDoItem(modelo, respostas);
+  const respondidas = lista.filter((r) => r.escolhas.length > 0).length;
   return {
     id: c.id,
     nome: c.nome,
@@ -82,8 +87,10 @@ function itemDoPedido(c: CalculoServico, respostas: Respostas): ItemPedido {
     mensalidade: c.mensalidade,
     sobConsulta: c.tipoPreco === "sobConsulta",
     aproximado: c.aPartirDe || c.estimativa,
-    perguntasRespondidas: lista.filter((r) => r.escolhas.length > 0).length,
+    perguntasRespondidas: respondidas,
     perguntasTotal: lista.length,
+    perguntasSemResposta: lista.length - respondidas,
+    estimativa: c.preco !== null && lista.length - respondidas > 0,
   };
 }
 
@@ -135,7 +142,11 @@ function blocoDoItem(i: ItemPedido): string {
     linhas.push(`  ${r.pergunta} ${escolha}${extra}`);
   }
   if (i.precoBase !== null) linhas.push(`  Preço-base: ${brl(i.precoBase)}`);
-  linhas.push(`  Valor: ${i.textoPreco}`);
+  linhas.push(`  Valor${i.estimativa ? " (estimativa)" : ""}: ${i.textoPreco}`);
+  if (i.estimativa) {
+    const n = i.perguntasSemResposta;
+    linhas.push(`  Estimativa: ${n} ${n === 1 ? "pergunta" : "perguntas"} sem resposta (de ${i.perguntasTotal}); o valor pode mudar.`);
+  }
   if (i.horas !== null) linhas.push(`  Trabalho: ${horasTexto(i.horas)}`);
   linhas.push(`  Prazo: ${i.prazo}`);
   if (i.mensalidade !== null) linhas.push(`  Mensalidade: ${brl(i.mensalidade)} por mês (hospedagem à parte)`);
@@ -155,6 +166,8 @@ export function textoPedidoCompleto(p: Pedido): string {
   if (c.temSobConsulta) {
     resumo.push(`Sob consulta (fora do total): ${p.itens.filter((i) => i.sobConsulta).map((i) => i.nome).join(", ")}`);
   }
+  const emEstimativa = p.itens.filter((i) => i.estimativa).map((i) => i.nome);
+  if (emEstimativa.length > 0) resumo.push(`Valores em estimativa (há pergunta sem resposta): ${emEstimativa.join(", ")}`);
   resumo.push(`Total estimado: ${textoEstimativa(c)}`);
   const fim = p.observacoes ? [`Observações do cliente: ${p.observacoes}`] : [];
   return [...partes, resumo.join("\n"), ...fim].join("\n\n");

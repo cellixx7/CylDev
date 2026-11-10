@@ -201,3 +201,45 @@ describe("regras de preço seguem as de orcamento.ts", () => {
     expect(item.prazo).toMatch(/combinar/i);
   });
 });
+
+describe("aviso de estimativa (pergunta sem resposta)", () => {
+  const todas = (id: string): Respostas =>
+    Object.fromEntries(modelo(id).perguntas.map((p) => [p.id, p.tipo === "unica" ? p.opcoes[0].id : [p.opcoes[0].id]]));
+
+  it("item sem respostas é estimativa; com tudo respondido, não", () => {
+    const vazio = montarPedido(["planilha"], {}, "", semPiloto).itens[0];
+    expect(vazio.estimativa).toBe(true);
+    expect(vazio.perguntasSemResposta).toBe(vazio.perguntasTotal);
+    const cheio = montarPedido(["planilha"], { planilha: todas("planilha") }, "", semPiloto).itens[0];
+    expect(cheio.estimativa).toBe(false);
+    expect(cheio.perguntasSemResposta).toBe(0);
+  });
+
+  it("estimativa é perguntasRespondidas < perguntasTotal, e sob consulta não ganha o aviso", () => {
+    for (const id of ["planilha", "painel", "bot-ia"]) {
+      const i = montarPedido([id], { [id]: respostasPainel }, "", semPiloto).itens[0];
+      expect(i.estimativa).toBe(i.perguntasRespondidas < i.perguntasTotal);
+    }
+    expect(montarPedido(["sistema"], {}, "", semPiloto).itens[0].estimativa).toBe(false);
+  });
+
+  it("o texto do WhatsApp e do e-mail marcam o item como estimativa", () => {
+    const pedido = montarPedido(["planilha", "painel"], { painel: todas("painel") }, "", semPiloto);
+    const whats = decodeURIComponent(linkWhatsappPedido(pedido)!.split("text=")[1]).replace(/\+/g, " ");
+    const email = dadosEmailPedido(pedido, { nome: "Ana", whatsapp: "11999999999" }).mensagem;
+    for (const t of [limpo(whats), limpo(email)]) {
+      expect(t).toContain("Valor (estimativa):");
+      expect(t).toMatch(/Estimativa: \d+ perguntas? sem resposta \(de \d+\)/);
+      expect(t).toContain("Valores em estimativa (há pergunta sem resposta): Planilha organizada");
+      expect(t).not.toContain("Painel básico, ");
+    }
+  });
+
+  it("pedido todo respondido não traz aviso de estimativa", () => {
+    const pedido = montarPedido(["painel"], { painel: todas("painel") }, "", semPiloto);
+    const t = textoPedidoCompleto(pedido);
+    expect(t).not.toContain("Valor (estimativa)");
+    expect(t).not.toContain("Valores em estimativa");
+    expect(t).toContain("Valor:");
+  });
+});
