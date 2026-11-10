@@ -243,3 +243,21 @@
     }
   }
 }
+
+/* Carrinho do card: ao entrar, o contorno vira preenchimento com um pequeno "pop". Sem movimento reduzido, troca direta. */
+@media (prefers-reduced-motion: no-preference) {
+  .carrinho-pop {
+    animation: carrinho-pop 0.26s ease-out;
+  }
+  @keyframes carrinho-pop {
+    0% {
+      transform: scale(0.8);
+    }
+    60% {
+      transform: scale(1.25);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}

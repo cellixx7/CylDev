@@ -37,6 +37,7 @@ export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternar
         >
           {t.comboBotao}
         </button>
+        .
       </p>
     </div>
   );

@@ -1,8 +1,9 @@
+import { servicoOrcamentoPorId } from "../../content/perguntas";
 import { servicoPorId, type Servico } from "../../content/servicos";
 import { orcamento } from "../../content/textos";
 import { textoMensalidade } from "../../shared/components/Catalogo";
 import { brl } from "../../shared/lib/formato";
-import { IconeCheck } from "./icones";
+import { BotaoCarrinho } from "./BotaoCarrinho";
 
 const t = orcamento.cards;
 
@@ -40,14 +41,17 @@ export function CardServico({ servicoId, noCarrinho, aoVerDetalhes, aoFazerOrcam
   if (!s) return null;
   const titulo = `card-${s.id}-titulo`;
   const mensalidade = textoMensalidade(s);
+  const combinavel = servicoOrcamentoPorId(s.id)?.combinavel ?? false;
   return (
     <li
       id={`card-${s.id}`}
       tabIndex={-1}
       aria-labelledby={titulo}
-      className="flex min-w-0 scroll-mt-24 flex-col rounded-pequeno border border-linha bg-superficie p-4 outline-none"
+      className="relative flex min-w-0 scroll-mt-24 flex-col rounded-pequeno border border-linha bg-superficie p-4 outline-none"
     >
-      <h3 id={titulo} className="m-0 text-[1.2rem] leading-tight">
+      <BotaoCarrinho nome={s.nome} dentro={noCarrinho} combinavel={combinavel} aoAlternar={() => aoAlternarCarrinho(s.id)} />
+      {/* pr-11: o ícone de carrinho ocupa o canto, o título nunca fica por baixo dele. */}
+      <h3 id={titulo} className="m-0 pr-11 text-[1.2rem] leading-tight">
         {s.nome}
       </h3>
       <p className="mt-2 mb-3 text-texto-suave">{t.linhas[s.id]}</p>
@@ -62,31 +66,12 @@ export function CardServico({ servicoId, noCarrinho, aoVerDetalhes, aoFazerOrcam
       </ul>
 
       <div className="mt-auto grid gap-2 pt-5">
-        {noCarrinho && (
-          <p className="m-0 inline-flex items-center gap-1.5 text-[0.85rem] font-semibold">
-            <span className="grid size-4 place-items-center rounded-pequeno bg-destaque text-destaque-texto">
-              <IconeCheck className="size-3" />
-            </span>
-            {t.noCarrinho}
-          </p>
-        )}
         <button type="button" className={cheio} onClick={() => aoFazerOrcamento(s.id)} aria-label={`${t.fazerOrcamento}: ${s.nome}`}>
           {t.fazerOrcamento}
         </button>
-        <div className="grid grid-cols-2 gap-2">
-          <button type="button" className={contorno} onClick={() => aoVerDetalhes(s.id)} aria-label={`${t.verDetalhes}: ${s.nome}`}>
-            {t.verDetalhes}
-          </button>
-          <button
-            type="button"
-            className={contorno}
-            aria-pressed={noCarrinho}
-            onClick={() => aoAlternarCarrinho(s.id)}
-            aria-label={`${noCarrinho ? t.tirarDoCarrinho : t.porNoCarrinho}: ${s.nome}`}
-          >
-            {noCarrinho ? t.tirarDoCarrinho : t.porNoCarrinho}
-          </button>
-        </div>
+        <button type="button" className={contorno} onClick={() => aoVerDetalhes(s.id)} aria-label={`${t.verDetalhes}: ${s.nome}`}>
+          {t.verDetalhes}
+        </button>
       </div>
     </li>
   );

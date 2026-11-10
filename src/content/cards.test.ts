@@ -1,10 +1,23 @@
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { inclusosDoCard, precoDoCard } from "../pages/negocios/CardServico";
+import { CardServico, inclusosDoCard, precoDoCard } from "../pages/negocios/CardServico";
 import { servicosOrcamento } from "./perguntas";
 import { servicoPorId } from "./servicos";
 import { orcamento } from "./textos";
 
 const ids = servicosOrcamento.map((s) => s.id);
+
+const card = (id: string, noCarrinho: boolean) =>
+  renderToStaticMarkup(
+    createElement(CardServico, {
+      servicoId: id,
+      noCarrinho,
+      aoVerDetalhes: () => {},
+      aoFazerOrcamento: () => {},
+      aoAlternarCarrinho: () => {},
+    }),
+  );
 
 describe("cards de serviço", () => {
   it("são 8 e cada um tem uma linha própria em textos.ts", () => {
@@ -35,5 +48,46 @@ describe("cards de serviço", () => {
       expect(txt).not.toMatch(/\b\d+\s*(dias?|horas?|h)\b/i);
       expect(txt).not.toMatch(/\p{Extended_Pictographic}/u);
     }
+  });
+});
+
+describe("card: botões e ícone de carrinho", () => {
+  it("embaixo só há 'Fazer orçamento' e 'Ver detalhes'; o carrinho é o ícone", () => {
+    const html = card("planilha", false);
+    expect(html).toContain("Fazer orçamento");
+    expect(html).toContain("Ver detalhes");
+    expect(html).not.toContain(">Pôr no carrinho<");
+    expect(html).not.toContain(">Tirar do carrinho<");
+    expect(html).not.toContain(">No carrinho<");
+    expect(html).not.toMatch(/type="checkbox"/);
+    // dois botões de texto + o ícone
+    expect(html.match(/<button/g)).toHaveLength(3);
+  });
+
+  it("vazio: aria-pressed false e rótulo completo 'Pôr ... no carrinho'", () => {
+    const html = card("planilha", false);
+    expect(html).toContain('aria-pressed="false"');
+    expect(html).toContain('aria-label="Pôr Planilha organizada no carrinho"');
+    expect(html).toContain("fill-transparent");
+    expect(html).not.toContain("carrinho-pop");
+  });
+
+  it("no carrinho: aria-pressed true, rótulo 'Tirar ... do carrinho' e ícone preenchido", () => {
+    const html = card("planilha", true);
+    expect(html).toContain('aria-pressed="true"');
+    expect(html).toContain('aria-label="Tirar Planilha organizada do carrinho"');
+    expect(html).toContain("fill-current");
+    expect(html).toContain("carrinho-pop");
+  });
+
+  it("o título reserva espaço para o ícone", () => {
+    expect(card("painel", false)).toMatch(/<h3[^>]*class="[^"]*pr-11/);
+  });
+
+  it("a dica não traz número de desconto e só menciona o combo para quem entra nele", () => {
+    const { dica, dicaCombinavel, dicaDentro } = orcamento.cards.carrinho;
+    for (const txt of [dica, dicaCombinavel, dicaDentro]) expect(txt).not.toMatch(/\d/);
+    expect(dicaCombinavel).toMatch(/desconto/);
+    expect(dica).not.toMatch(/desconto/);
   });
 });

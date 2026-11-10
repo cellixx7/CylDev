@@ -66,6 +66,18 @@ describe("carrinho-estado", () => {
     expect(item.perguntasTotal).toBeGreaterThan(0);
   });
 
+  it("o combo vale para quaisquer 2 ou mais entre planilha, painel, automação e landing", () => {
+    const combinaveis = ["planilha", "painel", "automacao", "landing"];
+    for (let i = 0; i < combinaveis.length; i++) {
+      for (let j = i + 1; j < combinaveis.length; j++) {
+        let e = estadoInicial();
+        e = adicionar(adicionar(e, combinaveis[i]), combinaveis[j]);
+        const c = montarPedido(e.ids, e.respostas, "", { piloto: null }).carrinho;
+        expect(c.desconto, `${combinaveis[i]} + ${combinaveis[j]}`).not.toBeNull();
+      }
+    }
+  });
+
   it("serviço sob consulta entra no carrinho sem valor", () => {
     const e = adicionar(estadoInicial(), "sistema");
     const item = montarPedido(e.ids, e.respostas).itens[0];
