@@ -10,12 +10,12 @@ const t = orcamento.barra;
  * Total em texto curto: "R$ 900", "a partir de R$ 900" ou, havendo pergunta sem resposta em algum item,
  * "estimativa a partir de R$ 900" (as respostas que faltam podem somar horas).
  */
-export function totalCurto(p: Pedido): string {
+export function totalCurto(p: Pedido, curto = false): string {
   const c = p.carrinho;
   if (c.itens.length === 0) return "";
   if (c.total === 0 && c.temSobConsulta) return orcamento.estimativa.sobConsulta;
   const prefixo = p.itens.some((i) => i.estimativa)
-    ? `${orcamento.estimativa.estimativaAPartirDe} `
+    ? `${curto ? orcamento.estimativa.aPartirDe : orcamento.estimativa.estimativaAPartirDe} `
     : c.totalAPartirDe
       ? `${orcamento.estimativa.aPartirDe} `
       : "";
@@ -54,6 +54,8 @@ export function BarraCarrinho({ pedido, aoAbrir }: Props) {
 
   if (!visivel) return null;
   const total = totalCurto(pedido);
+  // Na barra, uma linha: "a partir de R$ X". O leitor de tela ouve a versão completa ("estimativa a partir de").
+  const totalNaBarra = totalCurto(pedido, true);
 
   return (
     <div
@@ -68,12 +70,12 @@ export function BarraCarrinho({ pedido, aoAbrir }: Props) {
         aria-haspopup="dialog"
         aria-label={t.rotuloBotao(qtd, total)}
         onClick={aoAbrir}
-        className="mx-auto flex min-h-alvo w-full max-w-hero cursor-pointer items-center justify-between gap-3 border-0 bg-transparent p-0 text-left font-[inherit] text-texto focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco"
+        className="mx-auto flex min-h-alvo w-full max-w-hero cursor-pointer items-center justify-between gap-3 border-0 bg-transparent p-0 text-left font-[inherit] text-[1rem] text-texto active:bg-realce focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco"
       >
         <span className="min-w-0">
           <span className="font-semibold">{t.titulo(qtd)}</span>
           <span aria-hidden="true"> · </span>
-          <span className="font-mono font-bold [word-spacing:-0.3em]">{total}</span>
+          <span className="font-mono font-bold [word-spacing:-0.3em]">{totalNaBarra}</span>
         </span>
         <IconeSeta className="size-5 shrink-0" />
       </button>

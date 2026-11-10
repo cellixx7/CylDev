@@ -8,7 +8,7 @@ import { Formulario } from "./Formulario";
 type Props = { origem: string; comFormulario?: boolean };
 
 const t = negocios.contato;
-const nomeCanal = "mb-2 font-texto text-[0.85rem] uppercase tracking-[0.06em] text-texto-suave";
+const nomeCanal = "mb-2 font-texto text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave";
 
 /** WhatsApp, e-mail e formulário com o mesmo peso. */
 export function Contatos({ origem, comFormulario = true }: Props) {

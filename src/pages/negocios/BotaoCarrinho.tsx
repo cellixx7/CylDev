@@ -88,7 +88,7 @@ export function BotaoCarrinho({ nome, dentro, combinavel, aoAlternar }: Props) {
         <span
           id={idDica}
           role="tooltip"
-          className="absolute top-full right-0 z-20 mt-1 w-max max-w-[16rem] rounded-pequeno border border-linha bg-superficie px-3 py-2 text-left text-[0.85rem] leading-snug font-normal text-texto"
+          className="absolute top-full right-0 z-20 mt-1 w-max max-w-[16rem] rounded-pequeno border border-linha bg-superficie px-3 py-2 text-left text-[0.875rem] leading-snug font-normal text-texto"
         >
           {dica}
         </span>

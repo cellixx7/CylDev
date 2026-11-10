@@ -33,8 +33,8 @@ type Props = {
 
 const base =
   "inline-flex min-h-alvo w-full cursor-pointer items-center justify-center rounded-pequeno border px-4 py-2 text-center font-[inherit] font-semibold transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
-const cheio = `${base} border-destaque bg-destaque text-destaque-texto hover:border-texto hover:bg-texto hover:text-fundo`;
-const contorno = `${base} border-texto bg-transparent text-texto hover:bg-realce`;
+const cheio = `${base} border-destaque bg-destaque text-destaque-texto hover:border-texto hover:bg-texto hover:text-fundo active:border-texto active:bg-texto active:text-fundo`;
+const contorno = `${base} border-texto bg-transparent text-texto hover:bg-realce active:bg-realce`;
 
 export function CardServico({ servicoId, noCarrinho, aoVerDetalhes, aoFazerOrcamento, aoAlternarCarrinho }: Props) {
   const s = servicoPorId(servicoId);
@@ -56,10 +56,12 @@ export function CardServico({ servicoId, noCarrinho, aoVerDetalhes, aoFazerOrcam
       </h3>
       <p className="mt-2 mb-3 text-texto-suave">{t.linhas[s.id]}</p>
       <p className="m-0 font-mono text-[1.05rem] font-bold">{precoDoCard(s)}</p>
-      {mensalidade && <p className="mt-1 mb-0 font-mono text-[0.85rem] text-texto-suave">+ {mensalidade}</p>}
+      {mensalidade && <p className="mt-1 mb-0 font-mono text-[0.875rem] text-texto-suave">+ {mensalidade}</p>}
+      {/* Visível sempre: no toque não há hover, então o combo não pode depender da dica do ícone. */}
+      {combinavel && <p className="mt-2 mb-0 text-[0.875rem] font-semibold text-destaque">{t.comboNoCard}</p>}
 
-      <p className="mt-4 mb-1 text-[0.85rem] font-semibold">{t.inclui}</p>
-      <ul className="m-0 list-disc pl-[1.1em] text-[0.95rem] text-texto-suave">
+      <p className="mt-4 mb-1 text-[0.875rem] font-semibold">{t.inclui}</p>
+      <ul className="m-0 list-disc pl-[1.1em] text-[1rem] text-texto-suave">
         {inclusosDoCard(s).map((i) => (
           <li key={i}>{i}</li>
         ))}

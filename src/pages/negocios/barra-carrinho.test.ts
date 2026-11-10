@@ -18,6 +18,11 @@ describe("total da barra do carrinho", () => {
     expect(totalCurto(pedidoDe(["planilha"]))).toMatch(/^estimativa a partir de R\$\s?100/);
   });
 
+  it("na barra (uma linha) o rótulo é curto: \"a partir de\"", () => {
+    expect(totalCurto(pedidoDe(["planilha"]), true)).toMatch(/^a partir de R\$\s?100/);
+    expect(totalCurto(pedidoDe(["planilha"]), true)).not.toMatch(/estimativa/);
+  });
+
   it("sob consulta puro mostra 'Sob consulta'", () => {
     expect(totalCurto(pedidoDe(["sistema"]))).toBe("Sob consulta");
   });

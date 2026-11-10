@@ -15,8 +15,8 @@ const abas: AbaModal[] = ["detalhes", "orcamento"];
 
 const focoVisivel = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
 const botaoRodape = `inline-flex min-h-alvo w-full cursor-pointer items-center justify-center rounded-pequeno border px-4 py-2 text-center font-[inherit] font-semibold transition-colors ${focoVisivel}`;
-const cheio = `${botaoRodape} border-destaque bg-destaque text-destaque-texto hover:border-texto hover:bg-texto hover:text-fundo`;
-const contorno = `${botaoRodape} border-texto bg-transparent text-texto hover:bg-realce`;
+const cheio = `${botaoRodape} border-destaque bg-destaque text-destaque-texto hover:border-texto hover:bg-texto hover:text-fundo active:border-texto active:bg-texto active:text-fundo`;
+const contorno = `${botaoRodape} border-texto bg-transparent text-texto hover:bg-realce active:bg-realce`;
 
 type Props = {
   aberto: ServicoNaUrl | null;
@@ -89,7 +89,7 @@ export function ModalServico({ aberto, respostas, noCarrinho, aviso, aoMudarAba,
     >
       {visivel && aberto && modelo && calculo && progresso && estado && (
         <>
-          <header className="shrink-0 border-b border-linha px-4 pt-3 md:px-6">
+          <header className="shrink-0 border-b border-linha px-4 pt-[max(0.75rem,env(safe-area-inset-top))] md:px-6">
             <div className="flex items-start justify-between gap-3">
               <h2 id="modal-servico-titulo" ref={titulo} tabIndex={-1} className="m-0 py-2 text-[1.35rem] leading-tight outline-none">
                 {modelo.nome}

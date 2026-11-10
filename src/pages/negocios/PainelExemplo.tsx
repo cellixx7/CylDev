@@ -252,7 +252,7 @@ export function PainelExemplo() {
           <h3 className={titulo} id="painel-regioes">
             {painel.regioesTitulo}
           </h3>
-          <ul className="m-0 grid list-none gap-3 p-0 text-[0.9375rem]">
+          <ul className="m-0 grid list-none gap-3 p-0 text-[1rem]">
             {painel.regioes.map((r, i) => (
               <li className="grid grid-cols-[6.25rem_1fr_2rem] items-center gap-2" key={r.nome}>
                 <span className="text-texto-suave">{r.nome}</span>

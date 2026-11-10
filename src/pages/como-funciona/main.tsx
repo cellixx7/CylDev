@@ -10,9 +10,9 @@ import { Rodape } from "../../shared/components/Rodape";
 import { botaoCheio, rotuloFicticio } from "../../shared/estilos";
 import { linkContato } from "../../shared/lib/whatsapp";
 
-const rotuloLista = "mb-2 text-[0.8rem] uppercase tracking-[0.06em] text-texto-suave";
+const rotuloLista = "mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave";
 const celula = "border border-linha px-2 py-1 text-left";
-const listaPassos = "m-0 list-decimal pl-[1.2em] text-[0.95rem]";
+const listaPassos = "m-0 list-decimal pl-[1.2em] text-[1rem]";
 const precoLinha = "flex justify-between border-b border-linha py-2";
 const botaoFalso = "mb-2 inline-block rounded-pequeno bg-destaque px-4 py-2 font-semibold text-destaque-texto";
 
@@ -38,13 +38,13 @@ function CopiarLink({ id }: { id: string }) {
 
   return (
     <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
-      <a href={`#${id}`} className="font-mono text-[0.9rem] text-texto-suave [overflow-wrap:anywhere]">
+      <a href={`#${id}`} className="font-mono text-[1rem] text-texto-suave [overflow-wrap:anywhere]">
         {`como-funciona#${id}`}
       </a>
-      <button type="button" className="min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[0.9rem] text-texto hover:bg-superficie" onClick={copiar}>
+      <button type="button" className="min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[1rem] text-texto hover:bg-superficie" onClick={copiar}>
         {t.copiar}
       </button>
-      <span role="status" className="text-[0.9rem] font-semibold text-destaque">
+      <span role="status" className="text-[1rem] font-semibold text-destaque">
         {estado === "ok" && t.copiado}
         {estado === "falhou" && t.copiarFalhou}
       </span>
@@ -55,7 +55,7 @@ function CopiarLink({ id }: { id: string }) {
 function Quadro({ legenda, children }: { legenda: string; children: ReactNode }) {
   return (
     <figure className="m-0 overflow-x-auto rounded-padrao border border-linha bg-superficie p-4">
-      <figcaption className="mb-4 text-[0.9rem] font-semibold">
+      <figcaption className="mb-4 text-[1rem] font-semibold">
         {legenda} <Ficticio />
       </figcaption>
       {children}
@@ -68,7 +68,7 @@ function VisualPlanilha() {
     <div className="grid gap-4 sm:grid-cols-2">
       <div>
         <p className={rotuloLista}>Antes</p>
-        <table className="w-full border-collapse text-[0.85rem]">
+        <table className="w-full border-collapse text-[0.875rem]">
           <tbody>
             <tr><td className={celula}>maria camisa</td><td className={celula}>2x 40</td><td className={celula}>jan</td></tr>
             <tr><td className={celula}>Camisa - João</td><td className={celula}>R$ 40,00</td><td className={celula}>03/01</td></tr>
@@ -79,7 +79,7 @@ function VisualPlanilha() {
       </div>
       <div>
         <p className={rotuloLista}>Depois</p>
-        <table className="w-full border-collapse text-[0.85rem]">
+        <table className="w-full border-collapse text-[0.875rem]">
           <thead>
             <tr><th className={`${celula} bg-realce`}>Data</th><th className={`${celula} bg-realce`}>Cliente</th><th className={`${celula} bg-realce`}>Item</th><th className={`${celula} bg-realce`}>Valor</th></tr>
           </thead>
@@ -104,11 +104,11 @@ function VisualPainel() {
   return (
     <div>
       <div className="mb-4 grid grid-cols-[repeat(auto-fit,minmax(8rem,1fr))] gap-3">
-        <div className="rounded-pequeno border border-linha p-3"><span className="block text-[0.8rem] text-texto-suave">Vendas no mês</span><strong className="font-mono text-[1.2rem]">R$ 4.820</strong></div>
-        <div className="rounded-pequeno border border-linha p-3"><span className="block text-[0.8rem] text-texto-suave">Pedidos</span><strong className="font-mono text-[1.2rem]">63</strong></div>
-        <div className="rounded-pequeno border border-linha p-3"><span className="block text-[0.8rem] text-texto-suave">Estoque baixo</span><strong className="font-mono text-[1.2rem]">3 itens</strong></div>
+        <div className="rounded-pequeno border border-linha p-3"><span className="block text-[0.875rem] text-texto-suave">Vendas no mês</span><strong className="font-mono text-[1.2rem]">R$ 4.820</strong></div>
+        <div className="rounded-pequeno border border-linha p-3"><span className="block text-[0.875rem] text-texto-suave">Pedidos</span><strong className="font-mono text-[1.2rem]">63</strong></div>
+        <div className="rounded-pequeno border border-linha p-3"><span className="block text-[0.875rem] text-texto-suave">Estoque baixo</span><strong className="font-mono text-[1.2rem]">3 itens</strong></div>
       </div>
-      <ul className="m-0 grid list-none gap-2 p-0 text-[0.85rem]" aria-label="Itens mais vendidos">
+      <ul className="m-0 grid list-none gap-2 p-0 text-[0.875rem]" aria-label="Itens mais vendidos">
         {barras.map(([nome, v]) => (
           <li className="grid grid-cols-[5rem_1fr] items-center gap-3" key={nome}>
             <span>{nome}</span>
@@ -137,7 +137,7 @@ function VisualAutomacao() {
       <div>
         <p className={rotuloLista}>Depois</p>
         <p className={botaoFalso} aria-hidden="true">Atualizar relatório</p>
-        <p className="text-[0.9rem] text-texto-suave">Um clique faz os quatro passos.</p>
+        <p className="text-[1rem] text-texto-suave">Um clique faz os quatro passos.</p>
       </div>
     </div>
   );
@@ -198,14 +198,14 @@ function Bloco({ e }: { e: Exemplo }) {
   const mensagem = `Quero algo como o exemplo "${e.rotulo}"${servico ? ` (${servico.nome})` : ""}.`;
   return (
     <section className="border-t border-linha target:bg-realce" id={e.id} aria-labelledby={`${e.id}-titulo`}>
-      <p className="mb-2 font-mono text-[0.85rem] font-bold text-destaque">{e.rotulo}</p>
+      <p className="mb-2 font-mono text-[0.875rem] font-bold text-destaque">{e.rotulo}</p>
       <h2 id={`${e.id}-titulo`}>{e.titulo}</h2>
       <CopiarLink id={e.id} />
       <div className="grid gap-9 tab:grid-cols-2 tab:items-start">
         <div>
-          <h3 className="mt-0 mb-2 font-texto text-[0.85rem] uppercase tracking-[0.06em] text-texto-suave first:mt-0">{t.problemaRotulo}</h3>
+          <h3 className="mt-0 mb-2 font-texto text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave first:mt-0">{t.problemaRotulo}</h3>
           <p>{e.problema}</p>
-          <h3 className="mt-4 mb-2 font-texto text-[0.85rem] uppercase tracking-[0.06em] text-texto-suave first:mt-0">{t.colaboraRotulo}</h3>
+          <h3 className="mt-4 mb-2 font-texto text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave first:mt-0">{t.colaboraRotulo}</h3>
           <ul className="my-[1em] list-disc pl-[40px]">
             {e.colabora.map((c) => (
               <li key={c}>{c}</li>
@@ -239,7 +239,7 @@ function ComoFunciona() {
           <h1 className="max-w-[20ch] text-[clamp(2rem,7.5vw,3.6rem)] tracking-[-0.01em]">{t.titulo}</h1>
           <p className="text-[1.1rem] text-texto-suave">{t.intro}</p>
           <nav aria-label={t.indice} className="mt-6">
-            <p className="mb-2 text-[0.85rem] uppercase tracking-[0.06em] text-texto-suave">{t.indice}</p>
+            <p className="mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave">{t.indice}</p>
             <ul className="m-0 flex list-none flex-wrap gap-x-3 gap-y-2 p-0">
               {exemplos.map((e) => (
                 <li key={e.id}>

@@ -37,7 +37,7 @@ function Valor({ c, progresso }: { c: CalculoServico; progresso: Progresso }) {
   const final = comPiloto ? comDesconto(c.preco, comPiloto.percentual) : c.preco;
   return (
     <div>
-      {prefixo && <p className="mb-1 text-[0.9rem] text-texto-suave">{prefixo}</p>}
+      {prefixo && <p className="mb-1 text-[1rem] text-texto-suave">{prefixo}</p>}
       <p className="m-0 flex flex-wrap items-baseline gap-x-3 gap-y-1">
         {comPiloto && (
           <s className="font-mono text-[1.05rem] text-texto-suave">
@@ -51,7 +51,7 @@ function Valor({ c, progresso }: { c: CalculoServico; progresso: Progresso }) {
         </span>
       </p>
       {comPiloto && (
-        <p className="mt-2 mb-0 text-[0.85rem]">
+        <p className="mt-2 mb-0 text-[0.875rem]">
           {e.comPiloto(comPiloto.percentual, comPiloto.restam)} <span className="text-texto-suave">{pilotoNota}</span>
         </p>
       )}
@@ -86,8 +86,8 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
   return (
     <div className="border-2 border-texto bg-superficie p-4">
       <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-        <p className="m-0 min-w-0 text-[0.95rem] font-bold [overflow-wrap:anywhere]">{nome}</p>
-        <p className="m-0 border border-destaque px-1.5 font-mono text-[0.72rem] leading-5 whitespace-nowrap text-destaque">
+        <p className="m-0 min-w-0 text-[1rem] font-bold [overflow-wrap:anywhere]">{nome}</p>
+        <p className="m-0 border border-destaque px-1.5 font-mono text-[0.875rem] leading-5 whitespace-nowrap text-destaque">
           {e.estados[estado]}
         </p>
       </div>
@@ -95,9 +95,9 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
       <div>
         <Valor c={c} progresso={progresso} />
       </div>
-      {nota && <p className="mt-2 mb-0 text-[0.85rem] text-texto-suave">{nota}</p>}
+      {nota && <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">{nota}</p>}
 
-      <dl className="my-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-0.5 border-t border-linha pt-3 text-[0.9rem]">
+      <dl className="my-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-0.5 border-t border-linha pt-3 text-[1rem]">
         {c.horas !== null && (
           <>
             <dt className="font-semibold">{e.horas}</dt>
@@ -115,7 +115,7 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
       </dl>
 
       {c.linhas.length > 0 && (
-        <details className="mb-3 text-[0.9rem]">
+        <details className="mb-3 text-[1rem]">
           <summary className="min-h-alvo cursor-pointer py-2 font-semibold text-destaque">{e.comoChegamos}</summary>
           <ul className="m-0 list-none p-0">
             {c.linhas.map((l, i) => (
@@ -132,8 +132,8 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
       )}
 
 
-      {c.aPartirDe && <p className="mt-3 mb-0 text-[0.82rem] text-texto-suave">{e.notaAPartirDe}</p>}
-      <p className="mt-2 mb-0 text-[0.82rem] text-texto-suave">
+      {c.aPartirDe && <p className="mt-3 mb-0 text-[0.875rem] text-texto-suave">{e.notaAPartirDe}</p>}
+      <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">
         {c.preco === null ? e.consulta : c.estimativa ? e.notaBot : c.tipoPreco === "aula" ? "" : e.notaEstimativa}
       </p>
     </div>
@@ -164,7 +164,7 @@ export function PrecoRodape({ c, progresso }: { c: CalculoServico; progresso: Pr
         </s>
       )}
       <span className="font-mono font-bold">{brl(final)}</span>
-      {comPiloto && <span className="ml-2 text-[0.85rem] text-texto-suave">{e.pilotoCurto(comPiloto.percentual)}</span>}
+      {comPiloto && <span className="ml-2 text-[0.875rem] text-texto-suave">{e.pilotoCurto(comPiloto.percentual)}</span>}
     </>
   );
 }

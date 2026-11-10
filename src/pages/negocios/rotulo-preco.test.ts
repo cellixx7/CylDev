@@ -40,7 +40,7 @@ describe("rótulo do preço no modal", () => {
     const html = renderToStaticMarkup(createElement(PrecoRodape, { c, progresso: progressoDoServico(servicoOrcamentoPorId("planilha")!, {}) }));
     expect(html).toContain("estimativa a partir de");
     expect(html).toContain("<s ");
-    expect(html).toMatch(/com \d+% de desconto de piloto/);
+    expect(html).toMatch(/\d+% de desconto \(piloto\)/);
   });
 
   it("o valor continua sendo o de calcularServico (o rótulo não muda número)", () => {

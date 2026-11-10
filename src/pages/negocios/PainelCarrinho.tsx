@@ -1,33 +1,34 @@
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, useState, type FocusEvent } from "react";
 import { orcamento } from "../../content/textos";
 import { botao, botaoCheio } from "../../shared/estilos";
 import { brl } from "../../shared/lib/formato";
 import { resumoPrecoItem, type ItemPedido, type Pedido } from "../../shared/lib/pedido";
-import { CheckoutPedido } from "./CheckoutPedido";
+import { totalCurto } from "./BarraCarrinho";
+import { AcoesDoPedido, DadosDoPedido, useEnvioPedido } from "./CheckoutPedido";
 import { IconeFechar } from "./icones";
 import { useTravaRolagem } from "./useTravaRolagem";
 
 const t = orcamento.carrinho;
 
 const focoVisivel = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
-const botaoTexto = `min-h-alvo cursor-pointer border-0 bg-transparent px-3 font-[inherit] text-[0.95rem] font-semibold text-destaque underline underline-offset-4 ${focoVisivel}`;
+const botaoTexto = `min-h-alvo cursor-pointer border-0 bg-transparent px-3 font-[inherit] text-[1rem] font-semibold text-destaque underline underline-offset-4 ${focoVisivel}`;
 
 function ItemCarrinho({ item: i, aoAjustar, aoTirar }: { item: ItemPedido; aoAjustar: () => void; aoTirar: () => void }) {
   return (
     <li className="border-b border-linha py-3 last:border-b-0">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <h3 className="m-0 min-w-0 text-[1.02rem] font-bold [overflow-wrap:anywhere]">{i.nome}</h3>
-        <p className="m-0 text-right font-mono text-[0.95rem] font-bold">{resumoPrecoItem(i)}</p>
+        <p className="m-0 text-right font-mono text-[1rem] font-bold">{resumoPrecoItem(i)}</p>
       </div>
-      <p className="mt-0.5 mb-0 font-mono text-[0.82rem] text-texto-suave">{i.prazo}</p>
+      <p className="mt-0.5 mb-0 font-mono text-[0.875rem] text-texto-suave">{i.prazo}</p>
       {i.estimativa && (
-        <p className="mt-1.5 mb-0 text-[0.85rem]">
-          <span className="mr-2 border border-destaque px-1.5 font-mono text-[0.72rem] leading-5 text-destaque">estimativa</span>
+        <p className="mt-1.5 mb-0 text-[0.875rem]">
+          <span className="mr-2 border border-destaque px-1.5 font-mono text-[0.875rem] leading-5 text-destaque">estimativa</span>
           <span className="text-texto-suave">{t.estimativaItem(i.perguntasSemResposta)}</span>
         </p>
       )}
 
-      <details className="mt-1 text-[0.9rem]">
+      <details className="mt-1 text-[1rem]">
         <summary className="min-h-alvo cursor-pointer py-2 font-semibold text-destaque">
           {t.mostrarRespostas} <span className="font-normal text-texto-suave">({t.respondidas(i.perguntasRespondidas, i.perguntasTotal)})</span>
         </summary>
@@ -39,7 +40,7 @@ function ItemCarrinho({ item: i, aoAjustar, aoTirar }: { item: ItemPedido; aoAju
                 <span className="min-w-0 [overflow-wrap:anywhere]">
                   {r.escolhas.length > 0 ? r.escolhas.join(", ") : <span className="font-normal text-texto-suave">{t.semResposta}</span>}
                 </span>
-                {r.acrescimo > 0 && <span className="shrink-0 font-mono text-[0.82rem] text-destaque">+ {brl(r.acrescimo)}</span>}
+                {r.acrescimo > 0 && <span className="shrink-0 font-mono text-[0.875rem] text-destaque">+ {brl(r.acrescimo)}</span>}
               </dd>
             </div>
           ))}
@@ -85,6 +86,18 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
   const qtd = pedido.itens.length;
   const vazio = qtd === 0;
   const temEstimativa = pedido.itens.some((i) => i.estimativa);
+  const { estado, aoEnviar } = useEnvioPedido(pedido);
+
+  // Teclado virtual: o campo em foco rola para o meio da área de rolagem e o rodapé encolhe para só o botão de enviar.
+  const [editando, setEditando] = useState(false);
+  const aoFocar = (e: FocusEvent<HTMLElement>) => {
+    const alvo = e.target;
+    if (!(alvo instanceof HTMLInputElement || alvo instanceof HTMLTextAreaElement)) return;
+    setEditando(true);
+    const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.setTimeout(() => alvo.scrollIntoView({ block: "center", behavior: reduzido ? "auto" : "smooth" }), 300);
+  };
+  const aoDesfocar = () => setEditando(false);
 
   useEffect(() => {
     const d = dialogo.current;
@@ -104,6 +117,8 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
       ref={dialogo}
       aria-labelledby="painel-carrinho-titulo"
       onClose={aoFechar}
+      onFocusCapture={aoFocar}
+      onBlurCapture={aoDesfocar}
       onClick={(e) => {
         if (e.target === e.currentTarget) aoFechar();
       }}
@@ -131,7 +146,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
             </p>
             {vazio ? (
               <div className="border border-dashed border-texto-suave p-5">
-                <p className="mb-4 text-[0.95rem]">{t.vazio}</p>
+                <p className="mb-4 text-[1rem]">{t.vazio}</p>
                 <button type="button" className={`${botaoCheio} cursor-pointer font-[inherit] ${focoVisivel}`} onClick={aoFechar}>
                   {t.escolher}
                 </button>
@@ -144,7 +159,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
                   ))}
                 </ul>
 
-                <dl className="my-3 grid grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-1 text-[0.92rem]">
+                <dl className="my-3 grid grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-1 text-[1rem]">
                   {c.desconto && (
                     <>
                       <dt>{t.soma}</dt>
@@ -166,33 +181,33 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
                     </>
                   )}
                 </dl>
-                {c.desconto && <p className="mb-2 text-[0.82rem] text-texto-suave">{t.descontoNota}</p>}
+                {c.desconto && <p className="mb-2 text-[0.875rem] text-texto-suave">{t.descontoNota}</p>}
 
                 <div className="flex items-baseline justify-between gap-3 border-t-2 border-texto pt-2" aria-live="polite" aria-atomic="true">
-                  <p className="m-0 text-[0.95rem] font-semibold">
+                  <p className="m-0 text-[1rem] font-semibold">
                     {t.total}
                     {c.totalAPartirDe && <span className="font-normal text-texto-suave"> ({orcamento.estimativa.aPartirDe})</span>}
                   </p>
                   <p className="m-0 font-mono text-[1.7rem] leading-none font-bold tracking-[-0.02em] [word-spacing:-0.3em]">{brl(c.total)}</p>
                 </div>
-                {temEstimativa && <p className="mt-2 mb-0 text-[0.85rem] font-semibold">{t.avisoEstimativa}</p>}
+                {temEstimativa && <p className="mt-2 mb-0 text-[0.875rem] font-semibold">{t.avisoEstimativa}</p>}
                 {c.temSobConsulta && (
-                  <p className="mt-2 mb-0 text-[0.85rem] text-texto-suave">
+                  <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">
                     {t.totalSobConsulta}
                     {pedido.itens.filter((i) => i.sobConsulta).map((i) => i.nome).join(", ")}.
                   </p>
                 )}
-                <p className="mt-1 mb-0 text-[0.82rem] text-texto-suave">{t.notaEstimativa}</p>
+                <p className="mt-1 mb-0 text-[0.875rem] text-texto-suave">{t.notaEstimativa}</p>
 
                 <button type="button" className={`${botao} mt-4 cursor-pointer font-[inherit] ${focoVisivel}`} onClick={aoFechar}>
                   {t.voltar}
                 </button>
 
                 <div className="mt-6 grid gap-1">
-                  <label htmlFor={idObs} className="text-[0.9rem] font-semibold">
+                  <label htmlFor={idObs} className="text-[1rem] font-semibold">
                     {t.observacoes}
                   </label>
-                  <p className="m-0 text-[0.85rem] text-texto-suave">{t.observacoesDica}</p>
+                  <p className="m-0 text-[0.875rem] text-texto-suave">{t.observacoesDica}</p>
                   <textarea
                     id={idObs}
                     rows={3}
@@ -204,11 +219,23 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
                 </div>
 
                 <div className="mt-6 border-t-2 border-texto pt-4">
-                  <CheckoutPedido pedido={pedido} />
+                  <DadosDoPedido pedido={pedido} estado={estado} aoEnviar={aoEnviar} />
                 </div>
               </>
             )}
           </div>
+
+          {/* Rodapé fixo: o total e as duas formas de fechar, sempre à vista (celular e desktop). */}
+          {!vazio && (
+            <footer className="shrink-0 border-t-2 border-texto bg-superficie px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:px-6">
+              {!editando && (
+                <p className="m-0 mb-2 text-[1rem] font-semibold">
+                  {t.totalRodape}: <span className="font-mono font-bold [word-spacing:-0.3em]">{totalCurto(pedido)}</span>
+                </p>
+              )}
+              <AcoesDoPedido pedido={pedido} estado={estado} compacto={editando} />
+            </footer>
+          )}
         </>
       )}
     </dialog>

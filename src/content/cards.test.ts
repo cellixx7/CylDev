@@ -86,6 +86,13 @@ describe("card: botões e ícone de carrinho", () => {
     expect(html).not.toMatch(/#[0-9a-fA-F]{3,8}/);
   });
 
+  it("o combo é comunicado por frase visível só nos combináveis (no toque não há hover)", () => {
+    for (const s of servicosOrcamento) {
+      expect(card(s.id, false).includes(orcamento.cards.comboNoCard), s.id).toBe(s.combinavel);
+    }
+    expect(orcamento.cards.comboNoCard).not.toMatch(/d+s*%/);
+  });
+
   it("o título reserva espaço para o ícone", () => {
     expect(card("painel", false)).toMatch(/<h3[^>]*class="[^"]*pr-11/);
   });

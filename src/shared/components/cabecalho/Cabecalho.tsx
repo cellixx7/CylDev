@@ -46,7 +46,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
     "justify-self-start inline-flex min-h-alvo items-center font-titulo text-[1.05rem] font-bold tracking-[-0.01em] no-underline";
 
   const botaoBase =
-    "min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[0.95rem] text-texto aria-pressed:bg-texto aria-pressed:text-fundo";
+    "min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[1rem] text-texto aria-pressed:bg-texto aria-pressed:text-fundo";
 
   // Mobile e tablet: some até abrir o menu. Desktop (pc+): sempre em linha, dentro da barra.
   // O corte é em "pc" (e não "md") porque cada lado da barra fica com só metade da largura.
@@ -103,7 +103,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
                   {links.map((l) => (
                     <li key={l.href}>
                       <a
-                        className="flex min-h-alvo items-center text-[1.1rem] whitespace-nowrap no-underline hover:underline pc:text-[0.95rem]"
+                        className="flex min-h-alvo items-center text-[1.1rem] whitespace-nowrap no-underline hover:underline pc:text-[1rem]"
                         href={l.href}
                         onClick={() => setMenuAberto(false)}
                       >

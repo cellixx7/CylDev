@@ -28,7 +28,7 @@ export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternar
           />
         ))}
       </ul>
-      <p className="mt-4 mb-0 text-[0.95rem] text-texto-suave">
+      <p className="mt-4 mb-0 text-[1rem] text-texto-suave">
         {t.comboTexto}{" "}
         <button
           type="button"

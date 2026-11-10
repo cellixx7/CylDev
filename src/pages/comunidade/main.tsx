@@ -50,7 +50,7 @@ function Comunidade() {
 
         <section className="border-t border-linha" id="cylsense" aria-labelledby="cylsense-titulo">
           <h2 className="flex flex-wrap items-baseline gap-3" id="cylsense-titulo">
-            {t.cylsense.titulo} <span className="border border-destaque px-2 font-mono text-[0.85rem] font-normal text-destaque">{t.cylsense.status}</span>
+            {t.cylsense.titulo} <span className="border border-destaque px-2 font-mono text-[0.875rem] font-normal text-destaque">{t.cylsense.status}</span>
           </h2>
           <p>{t.cylsense.texto}</p>
         </section>
@@ -60,7 +60,7 @@ function Comunidade() {
           {desconto && (
             <p className="mt-2 mb-6 inline-block border-l-[3px] border-destaque bg-realce px-3 py-2 font-semibold">
               {piloto(desconto.restam, desconto.percentual, desconto.percentual === 10)}
-              <span className="block text-[0.9rem] font-normal">{pilotoNota}</span>
+              <span className="block text-[1rem] font-normal">{pilotoNota}</span>
             </p>
           )}
           <Catalogo
@@ -85,7 +85,7 @@ function Comunidade() {
         </section>
       </main>
       <Rodape ponte={{ ...t.ponte, href: "/" }}>
-        <p className="font-mono text-[0.85rem]">{t.avisoRiot}</p>
+        <p className="font-mono text-[0.875rem]">{t.avisoRiot}</p>
       </Rodape>
     </>
   );

@@ -166,6 +166,18 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* Toque: sem espera de 300 ms nem zoom por toque duplo nos controles. */
+  a,
+  button,
+  summary,
+  label,
+  input,
+  select,
+  textarea,
+  [role="tab"] {
+    touch-action: manipulation;
+  }
+
   @media (min-width: 90rem) {
     html {
       font-size: 112.5%;

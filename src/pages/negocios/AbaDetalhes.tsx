@@ -26,7 +26,7 @@ export function AbaDetalhes({ modelo }: { modelo: ServicoOrcamento }) {
       </ul>
 
       {(prazo || mensalidade) && (
-        <dl className="mt-6 mb-0 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 text-[0.95rem]">
+        <dl className="mt-6 mb-0 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 text-[1rem]">
           {prazo && (
             <>
               <dt className="font-semibold">{t.prazo}</dt>
@@ -46,7 +46,7 @@ export function AbaDetalhes({ modelo }: { modelo: ServicoOrcamento }) {
         <>
           <h3 className={titulo}>{t.notas}</h3>
           {notas.map((n) => (
-            <p key={n} className="mt-0 mb-2 max-w-[60ch] text-[0.95rem] text-texto-suave">
+            <p key={n} className="mt-0 mb-2 max-w-[60ch] text-[1rem] text-texto-suave">
               {n}
             </p>
           ))}
