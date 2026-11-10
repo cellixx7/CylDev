@@ -105,3 +105,16 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Removidos:** `ResumoPedido.tsx` (barra e lateral antigas) e as chaves de texto de etapas, passos, lista e resumo. `RevisaoPedido.tsx` virou `PainelCarrinho.tsx`.
 - **Nomes diferentes:** o card mostra "Painel básico" (`servicos.ts`) e o modal e o carrinho mostram "Painel de dados" (`perguntas.ts`). Os dois arquivos são protegidos; a unificação do nome fica pendente de pedido do Marcelo.
 - **Validação:** fluxo completo conferido no Chrome via DevTools Protocol, em 390 px (emulação de dispositivo) e 1024 px: abrir e fechar por barra, Esc, "voltar", retorno do foco, um só dialog por vez, trava de rolagem e texto do WhatsApp.
+
+## Revisão mobile-first (360, 390, 412 e 768 px)
+
+- **Método:** Chrome real com emulação de dispositivo (CDP), nos dois temas, sem captura headless de desktop. Auditoria automática de texto abaixo de 14 px, alvos abaixo de 44 px e rolagem horizontal; tudo limpo (o único "alvo" pequeno é o campo isca do spam, fora da tela).
+- **Hero:** de ~1620 px para ~500 px no celular. Mostra o que é o serviço, o preço de partida (calculado de `servicos.ts`, sem número novo) e como pedir. O parágrafo secundário fica oculto no celular.
+- **Exemplo de painel:** no celular vem depois do orçamento, para o orçamento aparecer antes. Continua rotulado como exemplo.
+- **Textos:** nenhum abaixo de 14 px; corpo em 16 px. Campos de formulário em 16 px (evita zoom no iPhone).
+- **Combo sem hover:** frase visível no card e no modal; o tooltip virou só reforço no desktop.
+- **Modal e painel:** tela cheia no celular, cabeçalho e rodapé fixos, rolagem só no meio, `dvh` e `env(safe-area-inset-*)`. No painel, "Enviar pelo site" e "Chamar no WhatsApp" ficam no rodapé. Com o teclado aberto o rodapé fica só com o botão de enviar e o campo focado é centralizado (`interactive-widget=resizes-content`).
+- **Barra do carrinho:** uma linha, rótulo curto "a partir de"; empurra o rodapé do site (`--altura-barra`) e o botão de tema.
+- **Toque:** `touch-action: manipulation` e variantes `:active` onde havia só `:hover`.
+- **Desempenho (CPU 4x, ~Fast 3G, 360 e 412 px):** CLS 0, LCP ~1,8 s, 167 KB transferidos, zero animações infinitas. A única animação (itens do carrinho) usa transform/opacidade e some com `prefers-reduced-motion`.
+- **Pendências para decidir:** ver o relatório final (exemplo depois do orçamento, parágrafo do hero oculto, "Painel básico" x "Painel de dados", granularidade dos commits).
