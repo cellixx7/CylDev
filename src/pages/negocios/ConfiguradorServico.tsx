@@ -1,4 +1,4 @@
-import { useId, useState, type ReactNode } from "react";
+import { useId, useState } from "react";
 import { VALOR_HORA_EXTRA } from "../../content/orcamento";
 import type { Pergunta, ServicoOrcamento } from "../../content/perguntas";
 import { servicoPorId } from "../../content/servicos";
@@ -128,36 +128,16 @@ type Props = {
   respostas: Respostas;
   progresso: Progresso;
   aoResponder: (perguntaId: string, opcaoId: string) => void;
-  /** Estimativa do serviço, mostrada aqui no celular (no desktop ela fica na lateral). */
-  estimativa?: ReactNode;
 };
 
-/** Etapa 2: o serviço aberto, o que ele inclui, o progresso e as perguntas. */
-export function ConfiguradorServico({ modelo, respostas, progresso, aoResponder, estimativa }: Props) {
+/** Corpo da aba Orçamento: o progresso e as perguntas. O nome, o resumo e a estimativa ficam no modal. */
+export function ConfiguradorServico({ modelo, respostas, progresso, aoResponder }: Props) {
   return (
     <div>
-      <h4 className="mb-1 text-[1.35rem] leading-tight font-bold">{modelo.nome}</h4>
-      <p className="mb-2 max-w-[60ch] text-[0.95rem] text-texto-suave">{modelo.resumo}</p>
-      <details className="mb-4 text-[0.95rem]">
-        <summary className="min-h-alvo cursor-pointer py-2 font-semibold text-destaque">{t.inclui}</summary>
-        <ul className="mt-1 mb-2 list-disc pl-5">
-          {modelo.inclui.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-        {modelo.notas.map((n) => (
-          <p key={n} className="mb-1 text-[0.9rem] text-texto-suave">
-            {n}
-          </p>
-        ))}
-      </details>
-
-      <div className="mb-5 grid gap-1 border-t border-linha pt-3">
+      <div className="mb-5 grid gap-1">
         <ProgressoConfiguracao progresso={progresso} />
         {progresso.total > 0 && <p className="m-0 text-[0.85rem] text-texto-suave">{t.legendaValor}</p>}
       </div>
-
-      {estimativa && <div className="mb-6 lg:hidden">{estimativa}</div>}
 
       <div className="grid gap-6">
         {modelo.perguntas.map((p) => (

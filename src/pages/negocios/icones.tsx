@@ -16,3 +16,11 @@ export function IconeSeta({ className = "size-4" }: Props) {
     </svg>
   );
 }
+
+export function IconeFechar({ className = "size-5" }: Props) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true">
+      <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+    </svg>
+  );
+}

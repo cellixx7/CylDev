@@ -1,5 +1,4 @@
 import { orcamento, pilotoNota } from "../../content/textos";
-import { botao, botaoCheio } from "../../shared/estilos";
 import { brl, horasTexto } from "../../shared/lib/formato";
 import { comDesconto, descontoPilotoAtual, type CalculoServico } from "../../shared/lib/orcamento";
 import type { EstadoEstimativa, Progresso } from "../../shared/lib/pedido";
@@ -8,7 +7,6 @@ const e = orcamento.estimativa;
 const piloto = descontoPilotoAtual();
 
 const precoGrande = "[word-spacing:-0.3em] font-mono text-[clamp(1.7rem,6vw,2.2rem)] leading-none font-bold tracking-[-0.02em]";
-const acaoBase = "w-full cursor-pointer justify-center font-[inherit] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
 
 /** O piloto só vale na criação: nunca em aulas nem no sob consulta. */
 const temPiloto = (c: CalculoServico) => piloto !== null && c.preco !== null && c.tipoPreco !== "aula";
@@ -70,14 +68,10 @@ type Props = {
   calculo: CalculoServico;
   progresso: Progresso;
   estado: EstadoEstimativa;
-  noCarrinho: boolean;
-  aoAdicionar: () => void;
-  aoRemover: () => void;
-  aoOutroServico: () => void;
 };
 
 /** Responde "quanto custa o serviço que estou configurando?". O conjunto do pedido fica em ResumoPedido. */
-export function ResumoEstimativa({ nome, calculo: c, progresso, estado, noCarrinho, aoAdicionar, aoRemover, aoOutroServico }: Props) {
+export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props) {
   const nota = notaDoEstado(estado, progresso);
 
   return (
@@ -89,7 +83,7 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado, noCarrin
         </p>
       </div>
 
-      <div aria-live="polite" aria-atomic="true">
+      <div>
         <Valor c={c} />
       </div>
       {nota && <p className="mt-2 mb-0 text-[0.85rem] text-texto-suave">{nota}</p>}
@@ -128,26 +122,40 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado, noCarrin
         </details>
       )}
 
-      {noCarrinho ? (
-        <div className="grid gap-2">
-          <p className="m-0 text-[0.9rem] font-semibold">{e.incluido}</p>
-          <button type="button" className={`${botao} ${acaoBase}`} onClick={aoOutroServico}>
-            {e.outroServico}
-          </button>
-          <button type="button" className={`${acaoBase} min-h-alvo cursor-pointer border-0 bg-transparent px-2 text-[0.9rem] font-semibold text-destaque underline underline-offset-4`} onClick={aoRemover}>
-            {e.tirar}
-          </button>
-        </div>
-      ) : (
-        <button type="button" className={`${botaoCheio} ${acaoBase}`} onClick={aoAdicionar}>
-          {e.adicionar}
-        </button>
-      )}
 
       {c.aPartirDe && <p className="mt-3 mb-0 text-[0.82rem] text-texto-suave">{e.notaAPartirDe}</p>}
       <p className="mt-2 mb-0 text-[0.82rem] text-texto-suave">
         {c.preco === null ? e.consulta : c.estimativa ? e.notaBot : c.tipoPreco === "aula" ? "" : e.notaEstimativa}
       </p>
     </div>
+  );
+}
+
+/** Preço curto do rodapé do modal (mesma regra do Valor, sem o tamanho grande). O contêiner dele tem aria-live. */
+export function PrecoRodape({ c }: { c: CalculoServico }) {
+  if (c.preco === null) return <span className="font-mono font-bold">{e.sobConsulta}</span>;
+  if (c.tipoPreco === "aula") {
+    return (
+      <>
+        <span className="font-mono font-bold">{brl(c.preco)}</span>{" "}
+        <span className="text-texto-suave">{c.formatoAula === "avulsa" ? e.porHora : c.linhas[0]?.rotulo.toLowerCase()}</span>
+      </>
+    );
+  }
+  const prefixo = c.aPartirDe ? e.aPartirDe : c.estimativa ? e.estimativaBot : null;
+  const comPiloto = temPiloto(c) && piloto;
+  const final = comPiloto ? comDesconto(c.preco, comPiloto.percentual) : c.preco;
+  return (
+    <>
+      {prefixo && <span className="text-texto-suave">{prefixo} </span>}
+      {comPiloto && (
+        <s className="mr-2 font-mono text-texto-suave">
+          <span className="sr-only">{e.tabela}</span>
+          {brl(c.preco)}
+        </s>
+      )}
+      <span className="font-mono font-bold">{brl(final)}</span>
+      {comPiloto && <span className="ml-2 text-[0.85rem] text-texto-suave">{e.pilotoCurto(comPiloto.percentual)}</span>}
+    </>
   );
 }

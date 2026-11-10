@@ -261,3 +261,8 @@
     }
   }
 }
+
+/* Modal aberto: a página atrás não rola (o conteúdo do modal rola por dentro). */
+html.modal-aberto {
+  overflow: hidden;
+}

@@ -89,6 +89,21 @@ export const orcamento = {
       "bot-ia": "Um bot que responde com IA e um painel web para ajustar o que ele faz.",
     } as Record<string, string>,
   },
+  /** Modal do serviço (abas Detalhes e Orçamento). */
+  modal: {
+    fechar: "Fechar",
+    rotuloAbas: "Seções do serviço",
+    abas: { detalhes: "Detalhes", orcamento: "Orçamento" },
+    oQueE: "O que é",
+    voceRecebe: "O que você recebe",
+    notas: "Notas",
+    prazo: "Prazo",
+    mensalidade: "Mensalidade",
+    perguntas: "Perguntas",
+    adicionar: "Adicionar ao carrinho",
+    noCarrinho: "No carrinho",
+    tirar: "Tirar do carrinho",
+  },
   painel: {
     inclui: "O que está incluso",
     perguntas: "Perguntas",
@@ -113,6 +128,7 @@ export const orcamento = {
     sobConsulta: "Sob consulta",
     porHora: "por hora",
     tabela: "Preço de tabela: ",
+    pilotoCurto: (percentual: number) => `com ${percentual}% de desconto de piloto`,
     comPiloto: (percentual: number, restam: number) =>
       `Com ${percentual}% de desconto de piloto. Restam ${restam} ${restam === 1 ? "vaga" : "vagas"} nessa faixa.`,
     horas: "Trabalho",
