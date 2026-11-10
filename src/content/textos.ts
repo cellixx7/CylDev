@@ -40,8 +40,8 @@ export const orcamento = {
     fazerOrcamento: "Fazer orçamento",
     /** Ícone de carrinho do card: rótulo completo, dica (sem número de desconto) e estados. */
     carrinho: {
-      por: (nome: string) => `Pôr ${nome} no carrinho`,
-      tirar: (nome: string) => `Tirar ${nome} do carrinho`,
+      /** Rótulo fixo: o estado (no carrinho ou não) vai em aria-pressed, não no texto. */
+      rotulo: (nome: string) => `Carrinho: ${nome}`,
       dicaCombinavel: "Adicionar ao carrinho. Planilha, painel, automação e landing juntos têm desconto.",
       dica: "Adicionar ao carrinho.",
       dicaDentro: "No carrinho. Clique para tirar.",

@@ -64,10 +64,10 @@ describe("card: botões e ícone de carrinho", () => {
     expect(html.match(/<button/g)).toHaveLength(3);
   });
 
-  it("vazio: aria-pressed false e rótulo completo 'Pôr ... no carrinho'", () => {
+  it("vazio: aria-pressed false e rótulo fixo 'Carrinho: ...'", () => {
     const html = card("planilha", false);
     expect(html).toContain('aria-pressed="false"');
-    expect(html).toContain('aria-label="Pôr Planilha organizada no carrinho"');
+    expect(html).toContain('aria-label="Carrinho: Planilha organizada"');
     expect(html).toContain("fill-transparent");
     // só contorno, na cor do texto: nada de destaque nem itens dentro da cesta
     expect(html).toMatch(/<button[^>]*aria-pressed="false"[^>]*class="[^"]*text-texto/);
@@ -75,10 +75,10 @@ describe("card: botões e ícone de carrinho", () => {
     expect(html).not.toContain("carrinho-item");
   });
 
-  it("no carrinho: aria-pressed true, rótulo 'Tirar ... do carrinho' e cesta cheia com itens", () => {
+  it("no carrinho: aria-pressed true, o mesmo rótulo (o estado vai em aria-pressed) e cesta cheia com itens", () => {
     const html = card("planilha", true);
     expect(html).toContain('aria-pressed="true"');
-    expect(html).toContain('aria-label="Tirar Planilha organizada do carrinho"');
+    expect(html).toContain('aria-label="Carrinho: Planilha organizada"');
     expect(html).toContain("fill-current");
     // cesta cheia, na cor do botão principal (token do tema), com 3 itens saindo por cima
     expect(html).toMatch(/<button[^>]*aria-pressed="true"[^>]*class="[^"]*text-destaque"/);

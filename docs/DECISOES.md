@@ -103,7 +103,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Nunca modal sobre modal:** "Ver carrinho" no rodapé do modal fecha o modal e só depois abre o painel; "Ajustar respostas" fecha o painel e abre o modal na aba Orçamento (`#servico/orcamento`). Um contador (`useTravaRolagem`) cuida da trava de rolagem. Foco: o painel devolve à barra; o modal, ao botão que abriu ou ao card.
 - **Aviso de estimativa:** `ItemPedido.estimativa` = tem valor e `perguntasRespondidas < perguntasTotal` (`pedido.ts`, fora dos arquivos protegidos). Aparece no painel (etiqueta e frase por item, aviso no total), na barra ("estimativa a partir de R$ X") e no texto do WhatsApp e do EmailJS ("Valor (estimativa)", "Estimativa: N perguntas sem resposta" e "Valores em estimativa: ..."). Os dois canais usam o mesmo `textoPedidoCompleto`.
 - **Removidos:** `ResumoPedido.tsx` (barra e lateral antigas) e as chaves de texto de etapas, passos, lista e resumo. `RevisaoPedido.tsx` virou `PainelCarrinho.tsx`.
-- **Nomes diferentes:** o card mostra "Painel básico" (`servicos.ts`) e o modal e o carrinho mostram "Painel de dados" (`perguntas.ts`). Os dois arquivos são protegidos; a unificação do nome fica pendente de pedido do Marcelo.
+- **Nome unificado:** o serviço 02 agora se chama "Painel básico" no card, no modal, no carrinho e na mensagem (antes o modal e o carrinho diziam "Painel de dados"). Pedido do Marcelo; mudou só `nome` em `perguntas.ts` (protegido) e a expectativa do nome em `pedido.test.ts` e `orcamento.test.ts`.
 - **Validação:** fluxo completo conferido no Chrome via DevTools Protocol, em 390 px (emulação de dispositivo) e 1024 px: abrir e fechar por barra, Esc, "voltar", retorno do foco, um só dialog por vez, trava de rolagem e texto do WhatsApp.
 
 ## Revisão mobile-first (360, 390, 412 e 768 px)
@@ -117,4 +117,12 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Barra do carrinho:** uma linha, rótulo curto "a partir de"; empurra o rodapé do site (`--altura-barra`) e o botão de tema.
 - **Toque:** `touch-action: manipulation` e variantes `:active` onde havia só `:hover`.
 - **Desempenho (CPU 4x, ~Fast 3G, 360 e 412 px):** CLS 0, LCP ~1,8 s, 167 KB transferidos, zero animações infinitas. A única animação (itens do carrinho) usa transform/opacidade e some com `prefers-reduced-motion`.
-- **Pendências para decidir:** ver o relatório final (exemplo depois do orçamento, parágrafo do hero oculto, "Painel básico" x "Painel de dados", granularidade dos commits).
+- **Pendências para decidir:** ver o relatório final (exemplo depois do orçamento, parágrafo do hero oculto, granularidade dos commits).
+
+## Acessibilidade dos controles novos (bloco 4)
+
+- **Verificado no Chrome real (CDP), tema claro e escuro:** ordem de tabulação nos cards (ícone, Fazer orçamento, Ver detalhes), foco visível (contorno de 3 px em todos), tooltip ligado por `aria-describedby` e fechado com Esc, abas com `aria-selected`/`aria-controls`/`aria-labelledby` e setas, foco no título ao abrir o modal e de volta ao card ao fechar, tabulação presa dentro do dialog, barra como região nomeada, painel com campos rotulados.
+- **Corrigido:** o ícone do carrinho trocava o rótulo ("Pôr…"/"Tirar…") e também usava `aria-pressed`, e o leitor de tela anunciava o estado duas vezes. Agora o rótulo é fixo ("Carrinho: Planilha organizada") e o estado vai só em `aria-pressed`. Os textos `por`/`tirar` saíram de `textos.ts`.
+- **Contraste do ícone vazio (claro):** usa `text-texto` (#0c1226) sobre o card (#ffffff), contraste acima de 15:1; cheio usa o azul do botão principal. Nos dois temas passa dos 3:1 exigidos para componente gráfico.
+- **Campo isca do spam:** continua em `<p aria-hidden="true">` com `tabindex="-1"`; regras do EmailJS intactas. Coberto por teste.
+- **Fica como está:** os anúncios `role="status"` do carrinho ("X no carrinho.") e do rodapé do modal já existiam; o painel e o modal nunca abrem juntos, então não há anúncio duplicado.

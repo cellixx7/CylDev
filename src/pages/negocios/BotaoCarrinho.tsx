@@ -45,7 +45,7 @@ export function BotaoCarrinho({ nome, dentro, combinavel, aoAlternar }: Props) {
       <button
         type="button"
         aria-pressed={dentro}
-        aria-label={dentro ? t.tirar(nome) : t.por(nome)}
+        aria-label={t.rotulo(nome)}
         aria-describedby={aberta ? idDica : undefined}
         onClick={aoAlternar}
         onFocus={() => {
