@@ -221,3 +221,25 @@
     }
   }
 }
+
+/*
+ * Orçamento no celular: a barra fixa publica a própria altura em --altura-barra (ver BarraPedidoMobile).
+ * O botão de tema sobe junto, para nunca ficar por baixo dela nem exigir espaço reservado dentro dela.
+ */
+@media (max-width: 63.99rem) {
+  .botao-tema {
+    bottom: calc(var(--altura-barra, 0px) + 1.25rem);
+  }
+}
+
+/* Realce discreto quando a estimativa muda: só opacidade, e some com movimento reduzido. */
+@media (prefers-reduced-motion: no-preference) {
+  .valor-atualiza {
+    animation: valor-atualiza 0.5s ease-out;
+  }
+  @keyframes valor-atualiza {
+    from {
+      opacity: 0.35;
+    }
+  }
+}

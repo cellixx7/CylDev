@@ -1,0 +1,203 @@
+import { describe, expect, it } from "vitest";
+import { servicoOrcamentoPorId } from "../../content/perguntas";
+import { site } from "../../content/site";
+import { calcularServico, type Respostas } from "./orcamento";
+import {
+  dadosEmailPedido,
+  estadoDaEstimativa,
+  linkWhatsappPedido,
+  mensagemWhatsappPedido,
+  montarPedido,
+  progressoDoServico,
+  textoPedidoCompleto,
+} from "./pedido";
+
+const semPiloto = { piloto: null };
+const limpo = (t: string) => t.replace(/ /g, " ");
+const modelo = (id: string) => servicoOrcamentoPorId(id)!;
+
+const respostasPainel: Respostas = {
+  negocio: "loja",
+  origem: "varios", // +2 h
+  responder: ["vendi", "compra-mais", "parado", "lucro"], // 2 inclusos, 2 a mais = +2 h
+};
+
+describe("progressoDoServico e estado da estimativa", () => {
+  it("sem respostas: preço inicial", () => {
+    const p = progressoDoServico(modelo("painel"), {});
+    expect(p.respondidas).toBe(0);
+    expect(p.total).toBe(modelo("painel").perguntas.length);
+    expect(estadoDaEstimativa(calcularServico("painel", {})!, p)).toBe("inicial");
+  });
+
+  it("respostas parciais: em configuração, com o que falta", () => {
+    const p = progressoDoServico(modelo("painel"), { negocio: "loja" });
+    expect(p.respondidas).toBe(1);
+    expect(p.faltam).toBe(p.total - 1);
+    expect(estadoDaEstimativa(calcularServico("painel", { negocio: "loja" })!, p)).toBe("configurando");
+  });
+
+  it("múltipla vazia não conta; marcada conta", () => {
+    expect(progressoDoServico(modelo("painel"), { responder: [] }).respondidas).toBe(0);
+    expect(progressoDoServico(modelo("painel"), { responder: ["vendi"] }).respondidas).toBe(1);
+  });
+
+  it("ignora ids de opção que não existem", () => {
+    expect(progressoDoServico(modelo("painel"), { negocio: "inexistente" }).respondidas).toBe(0);
+  });
+
+  it("todas respondidas: configurada", () => {
+    const m = modelo("painel");
+    const tudo: Respostas = {};
+    for (const q of m.perguntas) tudo[q.id] = q.tipo === "multipla" ? [q.opcoes[0].id] : q.opcoes[0].id;
+    const p = progressoDoServico(m, tudo);
+    expect(p.faltam).toBe(0);
+    expect(estadoDaEstimativa(calcularServico("painel", tudo)!, p)).toBe("configurada");
+  });
+
+  it("sob consulta: estado próprio, mesmo sem respostas", () => {
+    const c = calcularServico("sistema", {})!;
+    expect(estadoDaEstimativa(c, progressoDoServico(modelo("sistema"), {}))).toBe("consulta");
+  });
+});
+
+describe("montarPedido: o escopo acompanha o valor", () => {
+  it("guarda pergunta, rótulo escolhido e acréscimo de cada resposta", () => {
+    const p = montarPedido(["painel"], { painel: respostasPainel }, "", semPiloto);
+    const item = p.itens[0];
+    const origem = item.respostas.find((r) => r.perguntaId === "origem")!;
+    expect(origem.escolhas).toEqual(["Vários arquivos soltos"]);
+    expect(origem.acrescimo).toBe(2 * 50);
+    const mult = item.respostas.find((r) => r.perguntaId === "responder")!;
+    expect(mult.escolhas).toHaveLength(4);
+    expect(mult.acrescimo).toBe(2 * 50);
+    expect(item.respostas.find((r) => r.perguntaId === "negocio")!.acrescimo).toBe(0);
+  });
+
+  it("preço-base mais acréscimos bate com o valor do serviço", () => {
+    const item = montarPedido(["painel"], { painel: respostasPainel }, "", semPiloto).itens[0];
+    const soma = item.respostas.reduce((acc, r) => acc + r.acrescimo, 0);
+    expect(item.precoBase! + soma).toBe(item.preco);
+  });
+
+  it("pergunta sem resposta fica registrada como vazia", () => {
+    const item = montarPedido(["painel"], { painel: { negocio: "loja" } }, "", semPiloto).itens[0];
+    expect(item.perguntasRespondidas).toBe(1);
+    expect(item.respostas.filter((r) => r.escolhas.length === 0).length).toBe(item.perguntasTotal - 1);
+  });
+
+  it("sob consulta: sem preço, marcado como tal", () => {
+    const item = montarPedido(["sistema"], {}, "", semPiloto).itens[0];
+    expect(item.sobConsulta).toBe(true);
+    expect(item.preco).toBeNull();
+    expect(item.precoBase).toBeNull();
+  });
+
+  it("remover e readicionar preserva as respostas (elas vivem fora do carrinho)", () => {
+    const respostas = { painel: respostasPainel };
+    const com = montarPedido(["painel"], respostas, "", semPiloto);
+    const sem = montarPedido([], respostas, "", semPiloto);
+    const de_novo = montarPedido(["painel"], respostas, "", semPiloto);
+    expect(sem.itens).toHaveLength(0);
+    expect(de_novo.itens[0]).toEqual(com.itens[0]);
+  });
+
+  it("editar uma resposta depois de incluir muda o item e o total", () => {
+    const antes = montarPedido(["planilha"], { planilha: {} }, "", semPiloto);
+    const depois = montarPedido(["planilha"], { planilha: { existente: "bagunca" } }, "", semPiloto);
+    expect(depois.carrinho.total).toBe(antes.carrinho.total + 50);
+    expect(depois.itens[0].respostas.find((r) => r.perguntaId === "existente")!.escolhas).toEqual([
+      "Sim, mas está bagunçada",
+    ]);
+  });
+});
+
+describe("textoPedidoCompleto", () => {
+  const pedido = montarPedido(
+    ["planilha", "painel", "sistema"],
+    { planilha: { negocio: "loja", existente: "bagunca" }, painel: respostasPainel },
+    "Preciso para o mês que vem.",
+    semPiloto,
+  );
+  const texto = limpo(textoPedidoCompleto(pedido));
+
+  it("inclui nome, perguntas, escolhas, acréscimos, prazo e valor de cada serviço", () => {
+    expect(texto).toContain("Planilha organizada");
+    expect(texto).toContain("Você já tem uma planilha? Sim, mas está bagunçada (+ R$ 50)");
+    expect(texto).toContain("Que tipo de negócio é? Loja ou varejo");
+    expect(texto).toContain("Vários arquivos soltos (+ R$ 100)");
+    expect(texto).toContain("Preço-base: R$ 100");
+    expect(texto).toContain("Prazo: estimado:");
+  });
+
+  it("marca pergunta sem resposta", () => {
+    expect(texto).toContain("sem resposta");
+  });
+
+  it("inclui soma, desconto, total, sob consulta e observações", () => {
+    expect(texto).toContain("Soma de tabela:");
+    expect(texto).toContain(`Desconto (combo ${pedido.carrinho.desconto!.percentual}%)`);
+    expect(texto).toContain("Total estimado:");
+    expect(texto).toContain("Sob consulta (fora do total):");
+    expect(texto).toContain("Observações do cliente: Preciso para o mês que vem.");
+  });
+
+  it("não escreve observações quando vazias", () => {
+    const t = textoPedidoCompleto(montarPedido(["planilha"], {}, "   ", semPiloto));
+    expect(t).not.toContain("Observações");
+  });
+
+  it("mensalidade de bot aparece com o valor", () => {
+    const t = limpo(textoPedidoCompleto(montarPedido(["bot-essencial"], {}, "", semPiloto)));
+    expect(t).toMatch(/Mensalidade: R\$ \d+ por mês/);
+  });
+});
+
+describe("canais de envio usam o mesmo pedido", () => {
+  const pedido = montarPedido(["painel"], { painel: respostasPainel }, "Obs.", semPiloto);
+
+  it("WhatsApp leva o mesmo texto completo e a origem", () => {
+    const link = linkWhatsappPedido(pedido, "negocios-carrinho")!;
+    expect(link.startsWith(`https://wa.me/${site.whatsapp.replace(/\D/g, "")}?text=`)).toBe(true);
+    const msg = decodeURIComponent(link.split("text=")[1]);
+    expect(msg).toContain("origem: negocios-carrinho");
+    expect(msg).toContain(textoPedidoCompleto(pedido));
+    expect(mensagemWhatsappPedido(pedido)).toContain("Vários arquivos soltos");
+  });
+
+  it("e-mail leva o mesmo texto em `mensagem`, com os campos de sempre", () => {
+    const d = dadosEmailPedido(pedido, { nome: "Ana", whatsapp: "(61) 99999-0000" });
+    expect(d.mensagem).toBe(textoPedidoCompleto(pedido));
+    expect(d.nome).toBe("Ana");
+    expect(d.contato).toBe("(61) 99999-0000");
+    expect(d.preferencia).toBe("whatsapp");
+    expect(d.assunto).toBe("Pedido pelo site");
+    expect(d.pacote).toBe("Painel de dados");
+    expect(d.estimativa).toContain("R$");
+  });
+
+  it("pedido vazio: sem link de WhatsApp e sem mensagem", () => {
+    const vazio = montarPedido([], {}, "", semPiloto);
+    expect(linkWhatsappPedido(vazio)).toBeNull();
+    expect(mensagemWhatsappPedido(vazio)).toBe("");
+  });
+});
+
+describe("regras de preço seguem as de orcamento.ts", () => {
+  it("combo de dois aplica o percentual vigente e o total do pedido é o do carrinho", () => {
+    const p = montarPedido(["planilha", "painel"], {}, "", semPiloto);
+    expect(p.carrinho.desconto?.tipo).toBe("combo");
+    expect(p.carrinho.total).toBe(p.carrinho.somaTabela - p.carrinho.desconto!.valor);
+  });
+
+  it("piloto vence o combo quando abate mais reais", () => {
+    const p = montarPedido(["planilha", "painel"], {}, "", { piloto: { percentual: 10, restam: 5 }, combo2: 5, combo3: 5 });
+    expect(p.carrinho.desconto?.tipo).toBe("piloto");
+  });
+
+  it("bots não ganham prazo inventado", () => {
+    const item = montarPedido(["bot-essencial"], {}, "", semPiloto).itens[0];
+    expect(item.horas).toBeNull();
+    expect(item.prazo).toMatch(/combinar/i);
+  });
+});

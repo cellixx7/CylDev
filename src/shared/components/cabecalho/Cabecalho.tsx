@@ -119,7 +119,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
       </header>
       <button
         type="button"
-        className="fixed bottom-5 left-5 z-50 inline-flex size-12 cursor-pointer items-center justify-center rounded-full border border-linha bg-fundo text-texto shadow-lg"
+        className="botao-tema fixed bottom-5 left-5 z-50 inline-flex size-12 cursor-pointer items-center justify-center rounded-full border border-linha bg-fundo text-texto shadow-lg"
         aria-label={tema === "escuro" ? comum.temaClaro : comum.temaEscuro}
         title={tema === "escuro" ? comum.temaClaro : comum.temaEscuro}
         onClick={alternarTema}
