@@ -21,3 +21,12 @@ describe("atalho da Comunidade", () => {
     expect(a.rotulo.toLowerCase()).toContain(a.rotuloCurto.toLowerCase());
   });
 });
+
+describe("menu da Comunidade", () => {
+  it("Contato aponta para a seção da própria página, não para a home de Negócios", async () => {
+    const { comunidade } = await import("../../../content/textos");
+    const contato = comunidade.nav.find((l) => l.rotulo === "Contato")!;
+    expect(contato.href).toBe("#contato");
+    expect(comunidade.nav.every((l) => l.href.startsWith("#"))).toBe(true);
+  });
+});

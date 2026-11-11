@@ -342,7 +342,8 @@ export const comunidade = {
     { href: "#cylbot", rotulo: "CylBot" },
     { href: "#cylsense", rotulo: "CylSense" },
     { href: "#bots", rotulo: "Bots sob medida" },
-    { href: "/#contato", rotulo: "Contato" },
+    // Seção de contato da própria Comunidade (WhatsApp e e-mail), não a da home de Negócios.
+    { href: "#contato", rotulo: "Contato" },
   ],
   apresentacao: {
     titulo: "Eu faço bots e ferramentas para quem joga.",
