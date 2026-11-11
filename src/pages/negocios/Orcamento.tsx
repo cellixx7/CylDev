@@ -7,6 +7,7 @@ import type { AbaModal } from "../../shared/lib/hashServico";
 import { montarPedido } from "../../shared/lib/pedido";
 import { BarraCarrinho, ID_BOTAO_BARRA } from "./BarraCarrinho";
 import { CardsServicos } from "./CardsServicos";
+import { GuiaEscolha } from "./GuiaEscolha";
 import { ModalServico } from "./ModalServico";
 import { PainelCarrinho } from "./PainelCarrinho";
 import { useServicoNaUrl } from "./useServicoNaUrl";
@@ -111,6 +112,7 @@ export function Orcamento() {
         {t.titulo}
       </h2>
       <p className="max-w-[40rem] text-texto-suave">{t.intro}</p>
+      <GuiaEscolha aoVerDetalhes={(id) => abrirModal(id, "detalhes")} aoFazerOrcamento={(id) => abrirModal(id, "orcamento")} />
 
       <p className="sr-only" role="status">
         {aviso}
