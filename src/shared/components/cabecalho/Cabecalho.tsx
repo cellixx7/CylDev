@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { comum } from "../../../content/textos";
+import { rolarParaAncora } from "../../lib/ancora";
 import { aplicarTema, lerTema, salvarTema, type Tema } from "../../tema";
 
 type Link = { href: string; rotulo: string };
@@ -21,6 +22,9 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
   useEffect(() => {
     aplicarTema(tema);
   }, [tema]);
+
+  // O cabeçalho existe em todas as páginas: é aqui que a âncora da URL é honrada depois da montagem.
+  useEffect(() => rolarParaAncora(), []);
 
   useEffect(() => {
     if (!menuAberto) return;
@@ -46,7 +50,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
     "justify-self-start inline-flex min-h-alvo items-center font-titulo text-[1.05rem] font-bold tracking-[-0.01em] no-underline";
 
   const botaoBase =
-    "min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[0.95rem] text-texto aria-pressed:bg-texto aria-pressed:text-fundo";
+    "min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[1rem] text-texto aria-pressed:bg-texto aria-pressed:text-fundo";
 
   // Mobile e tablet: some até abrir o menu. Desktop (pc+): sempre em linha, dentro da barra.
   // O corte é em "pc" (e não "md") porque cada lado da barra fica com só metade da largura.
@@ -103,7 +107,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
                   {links.map((l) => (
                     <li key={l.href}>
                       <a
-                        className="flex min-h-alvo items-center text-[1.1rem] whitespace-nowrap no-underline hover:underline pc:text-[0.95rem]"
+                        className="flex min-h-alvo items-center text-[1.1rem] whitespace-nowrap no-underline hover:underline active:underline pc:text-[1rem]"
                         href={l.href}
                         onClick={() => setMenuAberto(false)}
                       >
@@ -119,7 +123,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
       </header>
       <button
         type="button"
-        className="fixed bottom-5 left-5 z-50 inline-flex size-12 cursor-pointer items-center justify-center rounded-full border border-linha bg-fundo text-texto shadow-lg"
+        className="botao-tema fixed bottom-5 left-5 z-50 inline-flex size-12 cursor-pointer items-center justify-center rounded-full border border-linha bg-fundo text-texto shadow-lg"
         aria-label={tema === "escuro" ? comum.temaClaro : comum.temaEscuro}
         title={tema === "escuro" ? comum.temaClaro : comum.temaEscuro}
         onClick={alternarTema}

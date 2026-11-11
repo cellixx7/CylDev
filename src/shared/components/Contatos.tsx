@@ -1,4 +1,5 @@
 import { site } from "../../content/site";
+import { emailjsConfigurado } from "../lib/emailjs";
 import { negocios } from "../../content/textos";
 import { linkContato } from "../lib/whatsapp";
 import { botao } from "../estilos";
@@ -8,7 +9,7 @@ import { Formulario } from "./Formulario";
 type Props = { origem: string; comFormulario?: boolean };
 
 const t = negocios.contato;
-const nomeCanal = "mb-2 font-texto text-[0.85rem] uppercase tracking-[0.06em] text-texto-suave";
+const nomeCanal = "mb-2 font-texto text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave";
 
 /** WhatsApp, e-mail e formulário com o mesmo peso. */
 export function Contatos({ origem, comFormulario = true }: Props) {
@@ -27,7 +28,7 @@ export function Contatos({ origem, comFormulario = true }: Props) {
           {site.email}
         </a>
       </div>
-      {comFormulario && (
+      {comFormulario && emailjsConfigurado() && (
         <div className="md:col-span-full md:max-w-xl">
           <h3 className={nomeCanal}>{t.formulario}</h3>
           <Formulario origem={origem} />

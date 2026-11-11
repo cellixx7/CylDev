@@ -48,7 +48,7 @@ export const exemplos: Exemplo[] = [
   {
     id: "paineis",
     servicoId: "painel",
-    rotulo: "Painel",
+    rotulo: "Painel básico",
     titulo: "Os números do mês numa tela só",
     problema:
       "Você quer saber quanto vendeu e o que mais sai, mas precisa montar conta toda vez que pergunta.",

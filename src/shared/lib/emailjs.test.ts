@@ -64,4 +64,25 @@ describe("enviarContato", () => {
     expect(params()).toMatchObject({ pacote: SEM_DADO, tamanho: SEM_DADO, estimativa: SEM_DADO });
     expect(SEM_DADO).toBe("—");
   });
+
+  it("envia itens (array de objetos), total e observações do carrinho", async () => {
+    const params = espiar();
+    const itens = [
+      { titulo: "Painel básico", valor: "a partir de R$ 300 (estimativa)", respostas: "Que tipo de negócio é? Loja\nOnde? não respondeu" },
+      { titulo: "Aulas", valor: "R$ 50 por hora", respostas: "" },
+    ];
+    await enviarContato({ ...base, itens, total: "estimativa a partir de R$ 350", observacoes: 'Até 10/12 & "urgente" <b>' }, cfg);
+    const p = params();
+    expect(p.itens).toEqual([itens[0], { ...itens[1], respostas: SEM_DADO }]);
+    expect(p.total).toBe("estimativa a partir de R$ 350");
+    expect(p.observacoes).toBe('Até 10/12 & "urgente" <b>');
+    // Os de sempre continuam indo.
+    expect(p).toMatchObject({ nome: "Ana", mensagem: "Oi", origem: "negocios-contato" });
+  });
+
+  it("sem carrinho: itens vazio, total e observações com '—'", async () => {
+    const params = espiar();
+    await enviarContato(base, cfg);
+    expect(params()).toMatchObject({ itens: [], total: SEM_DADO, observacoes: SEM_DADO });
+  });
 });

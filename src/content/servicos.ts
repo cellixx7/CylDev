@@ -75,7 +75,7 @@ export const servicos: Servico[] = [
   {
     id: "landing",
     area: "negocios",
-    nome: "Landing page básica",
+    nome: "Site de uma página",
     resultado: "Uma página com o seu serviço, seus preços e um botão que leva o cliente direto para o seu WhatsApp.",
     inclui: [
       "Uma página",

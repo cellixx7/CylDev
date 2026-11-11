@@ -68,7 +68,7 @@ describe("escolha única com horas", () => {
   it("soma as horas da opção marcada, R$ 50 cada", () => {
     const c = servico("planilha", { existente: "bagunca" });
     expect(c).toMatchObject({ preco: 150, horas: 3, horasExtras: 1, dias: 3 });
-    expect(c.linhas[1]).toEqual({ rotulo: "Material de partida: Sim, mas está bagunçada", valor: 50, horas: 1 });
+    expect(c.linhas[1]).toEqual({ rotulo: "Material de partida: Sim, e precisa de arrumação grande", valor: 50, horas: 1 });
   });
 
   it("opção sem efeito não muda o valor", () => {
@@ -300,7 +300,7 @@ describe("mensagem do WhatsApp", () => {
       [
         "Quero fazer um orçamento com:",
         "- Planilha organizada: R$ 100; 2 h; estimado: 2 dias úteis",
-        "- Painel de dados: R$ 200; 4 h; estimado: 3 dias úteis",
+        "- Painel básico: R$ 200; 4 h; estimado: 3 dias úteis",
         "- Bot de Discord essencial: estimativa R$ 300; prazo a combinar",
         "- Aulas de Excel e Power BI: R$ 180; Começa quando você quiser",
         "Prazo dos combináveis, juntos: estimado: 4 dias úteis",

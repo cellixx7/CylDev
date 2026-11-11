@@ -76,6 +76,7 @@
   .palavra {
     display: inline-block;
     white-space: nowrap;
+    margin-right: 0.26em;
   }
   .mascara {
     display: inline-block;
@@ -219,5 +220,83 @@
         transform: scaleX(0);
       }
     }
+  }
+}
+
+/*
+ * A barra fixa do carrinho publica a própria altura em --altura-barra (ver BarraCarrinho).
+ * O botão de tema sobe junto e o fim da página ganha o mesmo espaço, para nada ficar por baixo dela.
+ */
+.botao-tema {
+  bottom: calc(var(--altura-barra, 0px) + 1.25rem);
+}
+body {
+  padding-bottom: var(--altura-barra, 0px);
+}
+
+/* Gaveta do carrinho: entra pela direita no tablet e no desktop. No celular é tela cheia, sem movimento. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 48rem) {
+  dialog.painel-carrinho[open] {
+    animation: gaveta-entra 0.24s ease-out;
+  }
+  @keyframes gaveta-entra {
+    from {
+      transform: translateX(2rem);
+      opacity: 0;
+    }
+  }
+}
+
+/* Realce discreto quando a estimativa muda: só opacidade, e some com movimento reduzido. */
+@media (prefers-reduced-motion: no-preference) {
+  .valor-atualiza {
+    animation: valor-atualiza 0.5s ease-out;
+  }
+  @keyframes valor-atualiza {
+    from {
+      opacity: 0.35;
+    }
+  }
+}
+
+/* Carrinho do card: ao entrar, os itens caem na cesta, um depois do outro (~400 ms no total), enquanto o contorno vira
+   preenchimento. Com movimento reduzido, troca direta. */
+@media (prefers-reduced-motion: no-preference) {
+  .carrinho-item {
+    animation: carrinho-cai 0.22s ease-out both;
+    animation-delay: calc(var(--i) * 90ms);
+  }
+  @keyframes carrinho-cai {
+    from {
+      opacity: 0;
+      transform: translateY(-9px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Modal aberto: a página atrás não rola (o conteúdo do modal rola por dentro). */
+html.modal-aberto {
+  overflow: hidden;
+}
+
+/* Demonstração da planilha: só opacity e transform. Sem animação com movimento reduzido. */
+@keyframes demo-entra {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .demo-entra {
+    animation: demo-entra 0.5s ease-out both;
   }
 }

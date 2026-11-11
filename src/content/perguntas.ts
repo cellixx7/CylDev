@@ -4,6 +4,8 @@
 // PENDENTE: todas as horas extras abaixo (`horas`, `gratis` e `horasPorExtra`) são PROPOSTAS
 // do spec, a confirmar pelo Marcelo (docs/DECISOES.md). Cada hora extra soma VALOR_HORA_EXTRA
 // ao preço e 1 hora ao tempo de trabalho. Enquanto for `true`, nada no site as trata como fechadas.
+import { servicoPorId } from "./servicos";
+
 export const horasExtrasPendentes = true;
 
 export type Opcao = {
@@ -127,12 +129,13 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         curto: "Material de partida",
         tipo: "unica",
         opcoes: [
-          { id: "bagunca", rotulo: "Sim, mas está bagunçada", horas: 1 },
+          { id: "organizada", rotulo: "Sim, e está em boa ordem", horas: 0 },
+          { id: "bagunca", rotulo: "Sim, e precisa de arrumação grande", horas: 1 },
           { id: "papel", rotulo: "Só tenho anotações ou papel", horas: 1 },
           { id: "zero", rotulo: "Não, começo do zero", horas: 0 },
         ],
         ajuda:
-          "Se já existe uma planilha, eu aproveito o que funciona e arrumo o resto. Se for caderno ou papel, a gente monta o modelo juntos. Arrumar ou montar dá mais trabalho do que começar do zero, por isso soma 1 hora.",
+          "Os R$ 100 do pacote já incluem a limpeza simples: tirar linhas vazias e repetidas e padronizar as colunas. Se os dados estão espalhados em várias abas, com datas e valores digitados de jeitos diferentes, a arrumação passa de uma hora e soma 1 hora (R$ 50). Se for caderno ou papel, a gente monta o modelo juntos, e isso também soma 1 hora.",
       },
       {
         id: "controles",
@@ -170,7 +173,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
   {
     id: "painel",
     numero: "02",
-    nome: "Painel de dados",
+    nome: "Painel básico",
     resumo:
       "Transformo os seus números em um painel com poucos gráficos e indicadores, feito para responder as perguntas do seu dia a dia: quanto vendi, quem compra mais, o que está parado.",
     inclui: [
@@ -284,7 +287,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
   {
     id: "landing",
     numero: "04",
-    nome: "Landing page",
+    nome: "Site de uma página",
     resumo:
       "Uma página simples e rápida que apresenta o seu negócio e leva a pessoa a chamar você, de preferência pelo WhatsApp.",
     inclui: [
@@ -544,3 +547,12 @@ export const servicosOrcamento: ServicoOrcamento[] = [
 ];
 
 export const servicoOrcamentoPorId = (id: string) => servicosOrcamento.find((s) => s.id === id);
+
+/**
+ * O que a página de Negócios oferece (cards, link direto, carrinho e restauração do carrinho).
+ * Os bots continuam aqui só para o cálculo e para a Comunidade; em Negócios eles não são vendidos.
+ */
+export const servicosDoCatalogo: ServicoOrcamento[] = servicosOrcamento.filter(
+  (s) => servicoPorId(s.id)?.area === "negocios",
+);
+export const estaNoCatalogo = (id: string) => servicosDoCatalogo.some((s) => s.id === id);
