@@ -67,7 +67,7 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 - CylSense, selo "Em desenvolvimento": "Uma ferramenta de análise de desempenho para quem joga VALORANT. Ainda não está aberta ao público. Quando sair, toda métrica vai mostrar o tamanho da amostra, e o que for hipótese vai aparecer como hipótese."
 - Bot de Discord essencial, R$ 300 pela criação: "Seu servidor ganha tickets, mensagem de boas-vindas e moderação básica."
 - Bot com IA e painel web, a partir de R$ 500 pela criação: "Um bot que responde com IA e um painel no navegador para você ajustar o que ele faz. O uso da IA é cobrado pelo provedor, na sua própria conta."
-- Mensalidade dos bots (proposta, `[PERGUNTA 3]`): "O bot precisa ficar ligado o tempo todo. A mensalidade cobre hospedagem, monitoramento e correção de erros. Valor: 10% do preço de criação por mês, mais o custo da hospedagem. No plano de 6 meses pago adiantado, há desconto."
+- Mensalidade dos bots (proposta, `[PERGUNTA 3]`): "O bot precisa ficar ligado o tempo todo. A mensalidade cobre o monitoramento e a correção de erros: 10% do preço de criação por mês. A hospedagem é um custo à parte e o uso da IA é cobrado pelo provedor, na conta de quem contrata. No plano de 6 meses pago adiantado, há desconto."
 - Rodapé fixo: "CYL Sense não é afiliado à Riot Games."
 - Ponte: "Quer algo assim para o seu negócio? Veja a área Negócios."
 

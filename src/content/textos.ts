@@ -284,7 +284,7 @@ export const negocios = {
   entregas: {
     titulo: "O que eu entrego e quanto custa",
     intro:
-      "Os valores abaixo são pela criação. Nos pacotes básicos o preço é fechado; quando o trabalho varia, mostro o valor mínimo e confirmo depois de ver o seu caso. Bots têm mensalidade de hospedagem e manutenção; sites e planilhas não precisam.",
+      "Os valores abaixo são pela criação. Nos pacotes básicos o preço é fechado; quando o trabalho varia, mostro o valor mínimo e confirmo depois de ver o seu caso. Bots têm mensalidade de manutenção, mais a hospedagem à parte; sites e planilhas não precisam.",
     pedir: "Pedir orçamento",
     ajustes: (valorHora: string) =>
       `Ajustes depois da entrega (planilha, painel e página): ${valorHora} por hora, sem mensalidade.`,
@@ -373,7 +373,7 @@ export const comunidade = {
     titulo: "Bot sob medida para o seu servidor",
     pedir: "Conversar sobre esse bot",
     mensalidade: (percentualDaCriacao: number, meses: number, descontoPlano: number | null) =>
-      `O bot precisa ficar ligado o tempo todo. A mensalidade cobre hospedagem, monitoramento e correção de erros: ${percentualDaCriacao}% do preço de criação por mês, mais o custo da hospedagem. ` +
+      `O bot precisa ficar ligado o tempo todo. A mensalidade cobre o monitoramento e a correção de erros: ${percentualDaCriacao}% do preço de criação por mês. A hospedagem, onde o bot fica ligado, é um custo à parte, e o uso da IA, quando há, é cobrado pelo provedor na sua conta. ` +
       (descontoPlano
         ? `No plano de ${meses} meses pago adiantado, o desconto é de ${descontoPlano}%.`
         : `No plano de ${meses} meses pago adiantado, há desconto.`),
