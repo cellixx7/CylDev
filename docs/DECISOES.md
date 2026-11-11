@@ -185,3 +185,16 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Telefone vazio:** o campo é `required`, então quem barra o envio é a validação nativa do navegador (balão do próprio navegador), e não a mensagem do site; o teste confere isso. As outras formas de telefone inválido mostram a mensagem do site.
 - **Não coberto:** Safari e Firefox, celular de verdade (teclado virtual, área segura do iPhone), leitor de tela, e o envio real pelo EmailJS (template e entrega do e-mail).
 
+
+## Bloco 6: demonstração animada da planilha (piloto, 11/11/2026)
+
+- **Onde:** dentro do bloco `#planilhas` de Como funciona (id que já existia), abaixo do "antes e depois" estático, que ficou como estava. Componente em `src/pages/como-funciona/DemoPlanilha.tsx`; texto e dados fictícios em `src/content/demoPlanilha.ts`; máquina de passos pura em `src/shared/lib/demoPassos.ts` (testada). Só React e CSS, sem dependência nova.
+- **História:** tabela bagunçada → padroniza datas → padroniza nomes → remove repetida e vazia → separa em colunas → confere o total. Rótulo fixo "Exemplo com dados fictícios". Os totais (R$ 185 com a linha repetida, R$ 145 no final) são só a soma dos dados fictícios, não resultado de cliente.
+- **Controles:** "Reproduzir" vira "Pausar" enquanto toca; "Ver resultado" e "Recomeçar". Botões nativos de 44 px. "Ver resultado" no final usa `aria-disabled` (não perde o foco). Começa parada: o visitante decide tocar. Sem loop: ao chegar ao fim, para; "Reproduzir" no final recomeça.
+- **Pausa automática:** o relógio só anda com a aba em primeiro plano e a seção na tela (`visibilitychange` + `IntersectionObserver`); ao voltar, continua do mesmo passo.
+- **Movimento reduzido:** `prefers-reduced-motion: reduce` troca a animação por antes e depois lado a lado (empilhados no celular) e a lista dos passos, sem controles. A troca acompanha a preferência do sistema em tempo real.
+- **Acessibilidade:** cada passo aparece em texto visível e na lista de passos (`aria-current="step"`). Não há região `aria-live` que fale a cada passo; só a frase de resultado tem `role="status"`, uma vez, ao chegar ao fim.
+- **Animação:** só `opacity` e `transform` (`@keyframes demo-entra` em `tema-negocios.css`, também restrito a `no-preference`). As linhas removidas somem de uma vez (animar a altura exigiria layout).
+- **Modal:** a aba Detalhes do serviço `planilha` ganhou o link "Ver como funciona" para `/como-funciona/#planilhas`. O mapa `servicosComDemo` em `demoPlanilha.ts` controla quais serviços têm o link; o card não mudou.
+- **Testes:** `src/shared/lib/demoPassos.test.ts` (Vitest) e `e2e/demo.spec.ts` (reproduzir/pausar, saída da tela, link do modal, 360 e 390 px, movimento reduzido).
+- **Não validado:** aparência em celular de verdade e em outros navegadores, leitor de tela, e se o ritmo (2,2 s por passo) agrada; falta o olhar do Marcelo no navegador antes de replicar para painel e automação.
