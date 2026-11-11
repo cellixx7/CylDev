@@ -17,6 +17,9 @@ export const site = {
   // Caminho em /public. Sem foto, o site usa o avatar de iniciais.
   foto: null as string | null,
 
+  // Links do menu de Negócios cujas seções ainda estão vazias. Religue (true) quando a seção existir.
+  menuSecoes: { sobre: false, entregas: false, contato: false },
+
   repositorioCylBot: "https://github.com/cellixx7/CylBot" as string | null,
 
   // EmailJS (envio do formulário). Esses três valores são públicos por natureza:

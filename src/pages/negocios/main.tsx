@@ -5,7 +5,7 @@ import "../../styles/tema-negocios.css";
 import { servicosDa } from "../../content/servicos";
 import { negocios as t } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
-import { Rodape } from "../../shared/components/Rodape";
+import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { botao, botaoCheio } from "../../shared/estilos";
 import { brl } from "../../shared/lib/formato";
 import { ativarMagnetico } from "./magnetico";
@@ -108,7 +108,9 @@ function Negocios() {
         <section id="sobre"></section>
         <section id="contato"></section>
       </main>
-      <Rodape ponte={{ ...t.ponte, href: "/comunidade/" }} />
+      <Rodape ponte={{ ...t.ponte, href: "/comunidade/" }}>
+        <ContatoRodape origem="negocios-rodape" />
+      </Rodape>
     </>
   );
 }

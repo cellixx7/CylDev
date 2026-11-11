@@ -193,10 +193,13 @@ export const negocios = {
   nav: [
     { href: "/#orcamento", rotulo: "Orçamento" },
     { href: "/como-funciona/", rotulo: "Como funciona" },
-    { href: "/#sobre", rotulo: "Sobre" },
-    { href: "/#entregas", rotulo: "Entregas" },
-    { href: "/#contato", rotulo: "Contato" },
-  ],
+    { href: "/#sobre", rotulo: "Sobre", secao: "sobre" },
+    { href: "/#entregas", rotulo: "Entregas", secao: "entregas" },
+    { href: "/#contato", rotulo: "Contato", secao: "contato" },
+  ] as { href: string; rotulo: string; secao?: "sobre" | "entregas" | "contato" }[],
+  /** Contato discreto no rodapé de Negócios, enquanto a seção Contato não existe. */
+  rodapeWhatsapp: "Prefere falar direto?",
+  rodapeWhatsappLink: "Chame no WhatsApp",
   /** Controle no centro do header: leva para a área de comunidade. */
   atalhoComunidade: {
     href: "/comunidade/",

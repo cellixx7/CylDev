@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { comum } from "../../content/textos";
+import { comum, negocios } from "../../content/textos";
+import { linkContato } from "../lib/whatsapp";
 
 type Props = {
   ponte: { texto: string; link: string; href: string };
@@ -18,5 +19,17 @@ export function Rodape({ ponte, children }: Props) {
       {children}
       <p>{comum.privacidade}</p>
     </footer>
+  );
+}
+
+/** Link discreto de WhatsApp para o rodapé das páginas de Negócios. */
+export function ContatoRodape({ origem }: { origem: string }) {
+  return (
+    <p>
+      {negocios.rodapeWhatsapp}{" "}
+      <a className="inline-block min-h-alvo leading-[44px]" href={linkContato(origem)} target="_blank" rel="noopener">
+        {negocios.rodapeWhatsappLink}
+      </a>
+    </p>
   );
 }

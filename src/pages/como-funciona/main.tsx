@@ -6,7 +6,7 @@ import { comoFunciona as t, exemplos, type Exemplo } from "../../content/exemplo
 import { servicoPorId } from "../../content/servicos";
 import { negocios } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
-import { Rodape } from "../../shared/components/Rodape";
+import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { botaoCheio, rotuloFicticio } from "../../shared/estilos";
 import { linkContato } from "../../shared/lib/whatsapp";
 
@@ -258,7 +258,9 @@ function ComoFunciona() {
           <Bloco key={e.id} e={e} />
         ))}
       </main>
-      <Rodape ponte={{ ...negocios.ponte, href: "/comunidade/" }} />
+      <Rodape ponte={{ ...negocios.ponte, href: "/comunidade/" }}>
+        <ContatoRodape origem="como-funciona-rodape" />
+      </Rodape>
     </>
   );
 }
