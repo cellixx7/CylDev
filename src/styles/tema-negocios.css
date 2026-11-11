@@ -282,3 +282,21 @@ body {
 html.modal-aberto {
   overflow: hidden;
 }
+
+/* Demonstração da planilha: só opacity e transform. Sem animação com movimento reduzido. */
+@keyframes demo-entra {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .demo-entra {
+    animation: demo-entra 0.5s ease-out both;
+  }
+}

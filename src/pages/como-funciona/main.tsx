@@ -9,6 +9,7 @@ import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNe
 import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { botaoCheio, rotuloFicticio } from "../../shared/estilos";
 import { linkContato } from "../../shared/lib/whatsapp";
+import { DemoPlanilha } from "./DemoPlanilha";
 
 const rotuloLista = "mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave";
 const celula = "border border-linha px-2 py-1 text-left";
@@ -226,6 +227,7 @@ function Bloco({ e }: { e: Exemplo }) {
           <Visual />
         </Quadro>
       </div>
+      {e.id === "planilhas" && <DemoPlanilha />}
     </section>
   );
 }
