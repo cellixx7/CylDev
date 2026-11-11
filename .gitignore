@@ -15,3 +15,7 @@ skills-lock.json
 
 # Grafo gerado pelo Graphify (regenere com `graphify update .`)
 graphify-out/
+
+# Saídas do Playwright (npm run test:e2e)
+test-results/
+playwright-report/
