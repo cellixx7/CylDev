@@ -4,6 +4,8 @@ import { site } from "../../content/site";
 import { calcularServico, type Respostas } from "./orcamento";
 import {
   dadosEmailPedido,
+  emailReal,
+  linkEmailPedido,
   estadoDaEstimativa,
   linkWhatsappPedido,
   mensagemWhatsappPedido,
@@ -241,5 +243,24 @@ describe("aviso de estimativa (pergunta sem resposta)", () => {
     expect(t).not.toContain("Valor (estimativa)");
     expect(t).not.toContain("Valores em estimativa");
     expect(t).toContain("Valor:");
+  });
+});
+
+describe("linkEmailPedido: só com e-mail real em site.ts", () => {
+  const p = montarPedido(["planilha"], {}, "", semPiloto);
+
+  it("usa o endereço de site.email", () => {
+    expect(linkEmailPedido(p)).toContain(`mailto:${site.email}?subject=`);
+  });
+
+  it("sem e-mail ou com placeholder, não há link", () => {
+    for (const e of [null, "", "[SEU E-MAIL]", "[email@dominio.com]", "sem-arroba", "nome@exemplo.com", "a@b"]) {
+      expect(emailReal(e), String(e)).toBe(false);
+      expect(linkEmailPedido(p, "negocios-carrinho", e)).toBeNull();
+    }
+  });
+
+  it("pedido vazio não gera link", () => {
+    expect(linkEmailPedido(montarPedido([], {}, "", semPiloto))).toBeNull();
   });
 });

@@ -185,13 +185,22 @@ export function linkWhatsappPedido(p: Pedido, origem = "negocios-carrinho"): str
   return msg ? whatsappLink(site.whatsapp, mensagemComOrigem(origem, msg)) : null;
 }
 
-/** Link mailto com o pedido completo. `null` quando o pedido está vazio ou não há e-mail em site.ts. */
-export function linkEmailPedido(p: Pedido, origem = "negocios-carrinho"): string | null {
-  if (p.itens.length === 0 || !site.email) return null;
+/** E-mail de verdade: formato de endereço, sem placeholder (colchetes, "exemplo", vazio). */
+export function emailReal(email: string | null | undefined): email is string {
+  if (!email) return false;
+  return /^[^\s@\[\]<>]+@[^\s@\[\]<>]+\.[a-z]{2,}$/i.test(email) && !/exemplo|example/i.test(email);
+}
+
+/**
+ * Link mailto com o pedido completo, para o endereço de `site.email` (src/content/site.ts).
+ * `null` quando o pedido está vazio ou quando não há um e-mail real em site.ts.
+ */
+export function linkEmailPedido(p: Pedido, origem = "negocios-carrinho", email: string | null = site.email): string | null {
+  if (p.itens.length === 0 || !emailReal(email)) return null;
   const corpo = `${textoPedidoCompleto(p)}
 
 (Estimativa, confirmada na conversa. Origem: ${origem})`;
-  return `mailto:${site.email}?subject=${encodeURIComponent("Pedido pelo site")}&body=${encodeURIComponent(corpo)}`;
+  return `mailto:${email}?subject=${encodeURIComponent("Pedido pelo site")}&body=${encodeURIComponent(corpo)}`;
 }
 
 /** Dados do EmailJS: mesmos nomes de campo de sempre, com o escopo completo em `mensagem`. */
