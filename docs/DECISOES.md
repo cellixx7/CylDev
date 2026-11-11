@@ -164,3 +164,11 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Resultado:** o serviço recomendado com o porquê e os mesmos caminhos dos cards ("Fazer orçamento" abre o modal na aba Orçamento; "Ver detalhes", na aba Detalhes). "Quero um bot" não recomenda card: leva a `/comunidade/#bots` (a seção existe em `comunidade/main.tsx`).
 - **Lógica:** `shared/lib/guia.ts` (pura): escolha inválida é ignorada, não avança depois do resultado, "Voltar" e "Recomeçar". Acessibilidade: botões nativos, `aria-expanded`/`aria-controls`, foco no título de cada etapa.
 - **Pendente (do relatório da auditoria):** validar com pessoas do público se conseguem escolher e justificar a escolha; não foi feito. Os textos das perguntas e dos "porquês" são propostas minhas.
+
+## E-mail do pedido com os dados por serviço (11/11/2026)
+
+- **O que mudou:** o envio pelo site (EmailJS) passa a levar, além dos parâmetros de sempre, `itens` (array de objetos `{ titulo, valor, respostas }`, um por serviço do carrinho), `total` e `observacoes`. `mensagem` continua com o pedido inteiro em texto, como reserva. Sem dado, `total` e `observacoes` vão como "—" e `itens` como lista vazia. Formato completo e sugestão de template em `docs/emailjs-template.md`.
+- **Formato:** `titulo` = nome do serviço; `valor` = o mesmo texto do carrinho (`resumoPrecoItem`), com " (estimativa)" quando `ItemPedido.estimativa` (tem valor e há pergunta sem resposta; "sob consulta" não ganha o aviso, como no carrinho); `respostas` = uma linha por pergunta, "não respondeu" quando faltar; `assunto` = "Pedido: A + B"; `total` = `totalCurto`, o mesmo texto do rodapé do carrinho (a função saiu de `BarraCarrinho.tsx` para `pedido.ts`, sem mudar).
+- **Linha da resposta:** as perguntas terminam em "?", então a linha sai "Pergunta? resposta"; os dois-pontos ("Pergunta: resposta") só entram quando a pergunta não termina em pontuação. Decisão minha, para não escrever "?:".
+- **Texto simples:** nenhum HTML é montado no código; o template do EmailJS decide a aparência. Regras de spam (isca e 3 s) e lógica de preço intactas.
+- **Pendente:** a sintaxe de lista do template não foi testada com conta real (faltam `templateId` e `publicKey`).

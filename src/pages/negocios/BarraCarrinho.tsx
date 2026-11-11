@@ -1,26 +1,12 @@
 import { useEffect, useRef } from "react";
 import { orcamento } from "../../content/textos";
-import { brl } from "../../shared/lib/formato";
-import type { Pedido } from "../../shared/lib/pedido";
+import { totalCurto, type Pedido } from "../../shared/lib/pedido";
 import { IconeSeta } from "./icones";
 
 const t = orcamento.barra;
 
-/**
- * Total em texto curto: "R$ 900", "a partir de R$ 900" ou, havendo pergunta sem resposta em algum item,
- * "estimativa a partir de R$ 900" (as respostas que faltam podem somar horas).
- */
-export function totalCurto(p: Pedido, curto = false): string {
-  const c = p.carrinho;
-  if (c.itens.length === 0) return "";
-  if (c.total === 0 && c.temSobConsulta) return orcamento.estimativa.sobConsulta;
-  const prefixo = p.itens.some((i) => i.estimativa)
-    ? `${curto ? orcamento.estimativa.aPartirDe : orcamento.estimativa.estimativaAPartirDe} `
-    : c.totalAPartirDe
-      ? `${orcamento.estimativa.aPartirDe} `
-      : "";
-  return `${prefixo}${brl(c.total)}`;
-}
+// O total curto mora em pedido.ts (o e-mail usa o mesmo texto); reexportado para quem já importava daqui.
+export { totalCurto };
 
 export const ID_BOTAO_BARRA = "barra-carrinho-botao";
 

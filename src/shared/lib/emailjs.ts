@@ -5,6 +5,16 @@ const ENDPOINT = "https://api.emailjs.com/api/v1.0/email/send";
 /** Tempo mínimo entre abrir a página e enviar. Bots costumam enviar na hora. */
 export const TEMPO_MINIMO_MS = 3000;
 
+/** Um serviço do pedido, já em texto simples, para o template do e-mail. */
+export type ItemEmail = {
+  /** Nome do serviço. */
+  titulo: string;
+  /** Preço no formato do carrinho, com "(estimativa)" quando falta resposta. */
+  valor: string;
+  /** Uma linha por pergunta: "Pergunta resposta". */
+  respostas: string;
+};
+
 export type DadosContato = {
   nome: string;
   preferencia: "whatsapp" | "email";
@@ -16,6 +26,12 @@ export type DadosContato = {
   pacote?: string;
   tamanho?: string;
   estimativa?: string;
+  /** Pedido do carrinho, um item por serviço. Sem carrinho, vai uma lista vazia. */
+  itens?: ItemEmail[];
+  /** Total no formato do carrinho. */
+  total?: string;
+  /** Texto livre do cliente. */
+  observacoes?: string;
 };
 
 /** Valor enviado quando o pedido não vem da calculadora. */
@@ -53,6 +69,14 @@ export async function enviarContato(dados: DadosContato, cfg = site.emailjs): Pr
         pacote: dados.pacote || SEM_DADO,
         tamanho: dados.tamanho || SEM_DADO,
         estimativa: dados.estimativa || SEM_DADO,
+        // Texto simples: o template do EmailJS é que decide a aparência (ver docs/emailjs-template.md).
+        itens: (dados.itens ?? []).map((i) => ({
+          titulo: i.titulo || SEM_DADO,
+          valor: i.valor || SEM_DADO,
+          respostas: i.respostas || SEM_DADO,
+        })),
+        total: dados.total || SEM_DADO,
+        observacoes: dados.observacoes || SEM_DADO,
       },
     }),
   });

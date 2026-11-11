@@ -1,7 +1,8 @@
 import { VALOR_HORA_EXTRA } from "../../content/orcamento";
 import { servicoOrcamentoPorId, type ServicoOrcamento } from "../../content/perguntas";
 import { site } from "../../content/site";
-import type { DadosContato } from "./emailjs";
+import { orcamento as textos } from "../../content/textos";
+import { SEM_DADO, type DadosContato, type ItemEmail } from "./emailjs";
 import { brl, horasTexto } from "./formato";
 import {
   calcularCarrinho,
@@ -203,25 +204,66 @@ export function linkEmailPedido(p: Pedido, origem = "negocios-carrinho", email: 
   return `mailto:${email}?subject=${encodeURIComponent("Pedido pelo site")}&body=${encodeURIComponent(corpo)}`;
 }
 
-/** Dados do EmailJS: mesmos nomes de campo de sempre, com o escopo completo em `mensagem`. */
+/** Texto curto de um item para as listas: valor e, quando houver, a mensalidade. */
+export function resumoPrecoItem(i: ItemPedido): string {
+  return i.mensalidade !== null ? `${i.textoPreco} + ${brl(i.mensalidade)}/mês` : i.textoPreco;
+}
+
+/**
+ * Total em texto curto, como o carrinho mostra: "R$ 900", "a partir de R$ 900" ou, havendo pergunta sem resposta
+ * em algum item, "estimativa a partir de R$ 900" (as respostas que faltam podem somar horas).
+ */
+export function totalCurto(p: Pedido, curto = false): string {
+  const c = p.carrinho;
+  if (c.itens.length === 0) return "";
+  if (c.total === 0 && c.temSobConsulta) return textos.estimativa.sobConsulta;
+  const prefixo = p.itens.some((i) => i.estimativa)
+    ? `${curto ? textos.estimativa.aPartirDe : textos.estimativa.estimativaAPartirDe} `
+    : c.totalAPartirDe
+      ? `${textos.estimativa.aPartirDe} `
+      : "";
+  return `${prefixo}${brl(c.total)}`;
+}
+
+/** Texto das perguntas sem resposta no e-mail. */
+export const NAO_RESPONDEU = "não respondeu";
+
+/** "Pergunta? resposta" (ou "Pergunta: resposta" quando a pergunta não termina em pontuação). */
+function linhaDaResposta(r: RespostaPedido): string {
+  const resposta = r.escolhas.length > 0 ? r.escolhas.join(", ") : NAO_RESPONDEU;
+  return /[?:.!]$/.test(r.pergunta) ? `${r.pergunta} ${resposta}` : `${r.pergunta}: ${resposta}`;
+}
+
+/** Um item do e-mail por serviço do carrinho, tudo em texto simples. */
+export function itensDoEmail(p: Pedido): ItemEmail[] {
+  return p.itens.map((i) => ({
+    titulo: i.nome,
+    valor: `${resumoPrecoItem(i)}${i.estimativa ? " (estimativa)" : ""}`,
+    respostas: i.respostas.length > 0 ? i.respostas.map(linhaDaResposta).join("\n") : SEM_DADO,
+  }));
+}
+
+/**
+ * Dados do EmailJS. Os campos de sempre continuam (o escopo completo segue em `mensagem`, como reserva),
+ * e o pedido vai também separado: `itens` (um por serviço), `total` e `observacoes`.
+ */
 export function dadosEmailPedido(
   p: Pedido,
   contato: { nome: string; whatsapp: string },
   origem = "negocios-carrinho",
 ): DadosContato {
+  const nomes = p.itens.map((i) => i.nome);
   return {
     nome: contato.nome,
     preferencia: "whatsapp",
     contato: contato.whatsapp,
-    assunto: "Pedido pelo site",
+    assunto: nomes.length > 0 ? `Pedido: ${nomes.join(" + ")}` : "Pedido pelo site",
     mensagem: textoPedidoCompleto(p),
     origem,
-    pacote: p.itens.map((i) => i.nome).join(", "),
+    pacote: nomes.join(", "),
     estimativa: textoEstimativa(p.carrinho),
+    itens: itensDoEmail(p),
+    total: totalCurto(p) || SEM_DADO,
+    observacoes: p.observacoes || SEM_DADO,
   };
-}
-
-/** Texto curto de um item para as listas: valor e, quando houver, a mensalidade. */
-export function resumoPrecoItem(i: ItemPedido): string {
-  return i.mensalidade !== null ? `${i.textoPreco} + ${brl(i.mensalidade)}/mês` : i.textoPreco;
 }

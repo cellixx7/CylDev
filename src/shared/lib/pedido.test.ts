@@ -4,6 +4,10 @@ import { site } from "../../content/site";
 import { calcularServico, type Respostas } from "./orcamento";
 import {
   dadosEmailPedido,
+  itensDoEmail,
+  NAO_RESPONDEU,
+  resumoPrecoItem,
+  totalCurto,
   emailReal,
   linkEmailPedido,
   estadoDaEstimativa,
@@ -173,7 +177,7 @@ describe("canais de envio usam o mesmo pedido", () => {
     expect(d.nome).toBe("Ana");
     expect(d.contato).toBe("(61) 99999-0000");
     expect(d.preferencia).toBe("whatsapp");
-    expect(d.assunto).toBe("Pedido pelo site");
+    expect(d.assunto).toBe("Pedido: Painel básico");
     expect(d.pacote).toBe("Painel básico");
     expect(d.estimativa).toContain("R$");
   });
@@ -262,5 +266,79 @@ describe("linkEmailPedido: só com e-mail real em site.ts", () => {
 
   it("pedido vazio não gera link", () => {
     expect(linkEmailPedido(montarPedido([], {}, "", semPiloto))).toBeNull();
+  });
+});
+
+describe("e-mail com os dados por serviço", () => {
+  const contato = { nome: "Cliente de teste", whatsapp: "5500000000000" };
+
+  it("um item: título, valor no formato do carrinho e uma linha por pergunta", () => {
+    const pedido = montarPedido(["painel"], { painel: respostasPainel }, "", semPiloto);
+    const d = dadosEmailPedido(pedido, contato);
+    expect(d.itens).toHaveLength(1);
+    const [item] = d.itens!;
+    expect(item.titulo).toBe("Painel básico");
+    const linhas = item.respostas.split("\n");
+    expect(linhas).toHaveLength(modelo("painel").perguntas.length);
+    expect(linhas).toContain("Que tipo de negócio é? Loja ou varejo");
+    expect(item.respostas).toContain("Vários arquivos soltos");
+    expect(item.valor.startsWith(resumoPrecoItem(pedido.itens[0]))).toBe(true);
+    expect(d.assunto).toBe("Pedido: Painel básico");
+    expect(d.total).toBe(totalCurto(pedido));
+  });
+
+  it("tudo respondido: o valor não leva '(estimativa)'", () => {
+    const todas: Respostas = {};
+    for (const p of modelo("painel").perguntas) todas[p.id] = p.tipo === "unica" ? p.opcoes[0].id : [p.opcoes[0].id];
+    const pedido = montarPedido(["painel"], { painel: todas }, "", semPiloto);
+    expect(pedido.itens[0].estimativa).toBe(false);
+    const [item] = itensDoEmail(pedido);
+    expect(item.valor).toBe(resumoPrecoItem(pedido.itens[0]));
+    expect(item.respostas).not.toContain(NAO_RESPONDEU);
+  });
+
+  it("pergunta sem resposta: 'não respondeu' na linha e '(estimativa)' no valor", () => {
+    const pedido = montarPedido(["painel"], { painel: { negocio: "loja" } }, "", semPiloto);
+    const [item] = itensDoEmail(pedido);
+    expect(item.valor.endsWith(" (estimativa)")).toBe(true);
+    const linhas = item.respostas.split("\n");
+    expect(linhas[0]).toBe("Que tipo de negócio é? Loja ou varejo");
+    expect(linhas.filter((l) => l.endsWith(NAO_RESPONDEU))).toHaveLength(modelo("painel").perguntas.length - 1);
+  });
+
+  it("sob consulta não ganha '(estimativa)', mesmo sem respostas", () => {
+    const [item] = itensDoEmail(montarPedido(["sistema"], {}, "", semPiloto));
+    expect(item.valor).toBe("sob consulta");
+  });
+
+  it("vários itens: um por serviço, na ordem do carrinho, e o assunto junta os nomes com ' + '", () => {
+    const pedido = montarPedido(["planilha", "painel", "aulas"], { painel: respostasPainel }, "", semPiloto);
+    const d = dadosEmailPedido(pedido, contato);
+    expect(d.itens!.map((i) => i.titulo)).toEqual(pedido.itens.map((i) => i.nome));
+    expect(d.itens).toHaveLength(3);
+    expect(d.assunto).toBe(`Pedido: ${pedido.itens.map((i) => i.nome).join(" + ")}`);
+    expect(d.total).toBe(totalCurto(pedido));
+    expect(d.total).toContain("R$");
+  });
+
+  it("observação vazia vira '—'", () => {
+    const d = dadosEmailPedido(montarPedido(["painel"], {}, "   ", semPiloto), contato);
+    expect(d.observacoes).toBe("—");
+  });
+
+  it("observação com caracteres especiais vai como texto, sem escapar nem montar HTML", () => {
+    const obs = `Entrega até 10/12 & "urgente" <b>já</b>\nSegunda linha: R$ 1.000,00 — ok? çãé {{nome}}`;
+    const d = dadosEmailPedido(montarPedido(["painel"], {}, obs, semPiloto), contato);
+    expect(d.observacoes).toBe(obs);
+    for (const i of d.itens!) expect(`${i.titulo}${i.valor}${i.respostas}`).not.toMatch(/<[a-z/]/i);
+  });
+
+  it("mantém os campos de sempre, com `mensagem` como reserva", () => {
+    const pedido = montarPedido(["painel"], { painel: respostasPainel }, "Obs.", semPiloto);
+    const d = dadosEmailPedido(pedido, contato);
+    expect(d.mensagem).toBe(textoPedidoCompleto(pedido));
+    expect(d.pacote).toBe("Painel básico");
+    expect(d.origem).toBe("negocios-carrinho");
+    expect(d.observacoes).toBe("Obs.");
   });
 });
