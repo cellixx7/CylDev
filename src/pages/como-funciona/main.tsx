@@ -9,6 +9,8 @@ import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNe
 import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { botaoCheio, rotuloFicticio } from "../../shared/estilos";
 import { linkContato } from "../../shared/lib/whatsapp";
+import { DemoAutomacao } from "./DemoAutomacao";
+import { DemoPainel } from "./DemoPainel";
 import { DemoPlanilha } from "./DemoPlanilha";
 
 const rotuloLista = "mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave";
@@ -193,8 +195,16 @@ const visuais: Record<string, () => ReactNode> = {
   sistema: VisualSistema,
 };
 
+/** Demonstrações animadas por bloco (o id é o do próprio bloco, sem ids novos). */
+const demos: Record<string, () => ReactNode> = {
+  planilhas: DemoPlanilha,
+  paineis: DemoPainel,
+  automacao: DemoAutomacao,
+};
+
 function Bloco({ e }: { e: Exemplo }) {
   const Visual = visuais[e.id];
+  const Demo = demos[e.id];
   const servico = servicoPorId(e.servicoId);
   const mensagem = `Quero algo como o exemplo "${e.rotulo}"${servico && servico.nome !== e.rotulo ? ` (${servico.nome})` : ""}.`;
   return (
@@ -227,7 +237,7 @@ function Bloco({ e }: { e: Exemplo }) {
           <Visual />
         </Quadro>
       </div>
-      {e.id === "planilhas" && <DemoPlanilha />}
+      {Demo && <Demo />}
     </section>
   );
 }
