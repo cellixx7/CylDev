@@ -13,6 +13,7 @@ npm run typecheck    # tsc --noEmit
 npm run build        # typecheck + vite build -> dist/
 npm run preview
 npx vitest run src/shared/lib/orcamento.test.ts   # um arquivo de teste
+npm run test:e2e     # jornadas no navegador (Playwright, só Chromium); faz o build e sobe o vite preview sozinho; fora do build e do `npm test`
 ```
 
 ## Estrutura
