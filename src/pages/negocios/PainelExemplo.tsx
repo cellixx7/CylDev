@@ -220,12 +220,14 @@ export function PainelExemplo() {
         >
           {painel.meses.map((m, i) => (
             <li className="flex h-full flex-col items-center justify-end gap-1" key={m.nome}>
-              <span className="animate-painel-aparecer font-mono text-[0.875rem] text-texto-suave" style={atraso(1.5)}>
+              <span className="sr-only">{painel.mesFalado(m.completo, m.valor)}</span>
+              <span className="animate-painel-aparecer font-mono text-[0.875rem] text-texto-suave" style={atraso(1.5)} aria-hidden="true">
                 {m.valor}
               </span>
               <span
                 className={`w-full origin-bottom animate-painel-barra rounded-t-pequeno ${i === painel.meses.length - 1 ? "bg-destaque" : "bg-serie-3"}`}
                 style={{ height: `${(m.valor / maxMes) * 100}%`, ...atraso(0.9 + i * 0.05) }}
+                aria-hidden="true"
               />
             </li>
           ))}
