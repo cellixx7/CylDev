@@ -63,7 +63,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 ## Pendências do Marcelo
 
 - [ ] Conferir o termo de estágio com o supervisor **antes do merge na main** (`mostrarMinisterio: true` em `src/content/site.ts`).
-- [ ] Preencher `templateId` e `publicKey` em `site.emailjs` **antes do merge** e criar o template com os campos acima (o `serviceId` já está preenchido).
+- [x] `serviceId`, `templateId` e `publicKey` preenchidos em `site.emailjs` (11/11/2026). Falta conferir no painel do EmailJS que o template tem os campos de `docs/emailjs-template.md` (`itens`, `total`, `observacoes`) e que as origens permitidas são só o domínio do site.
 - [ ] Horas base do bot essencial e do bot com IA (hoje provisórias: 4 h e 8 h). Ao confirmar, remover `horasProvisorias` em `servicos.ts`.
 - [ ] Desconto do plano de 6 meses dos bots (`mensalidadeBots.descontoPlanoAdiantado`).
 - [ ] Confirmar que o desconto de piloto vale só sobre a criação.

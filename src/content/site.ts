@@ -26,9 +26,9 @@ export const site = {
   // ficam no código do navegador. Nenhuma chave privada entra no repositório.
   // Enquanto algum estiver vazio, o formulário mostra WhatsApp e e-mail no lugar do envio.
   emailjs: {
-    serviceId: "service_2qsfdk9",
-    templateId: "",
-    publicKey: "",
+    serviceId: "service_lwnft8l",
+    templateId: "template_5lbj1qa",
+    publicKey: "k7v0xn9QPlTQv7xnn",
   },
 };
 
