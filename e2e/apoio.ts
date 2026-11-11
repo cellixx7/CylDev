@@ -1,6 +1,8 @@
 import { expect, test as base, type Locator, type Page } from "@playwright/test";
 import { servicoOrcamentoPorId } from "../src/content/perguntas";
+import { site } from "../src/content/site";
 import { orcamento as t } from "../src/content/textos";
+import { emailjsConfigurado } from "../src/shared/lib/emailjs";
 import { CHAVE_CARRINHO } from "../src/shared/lib/carrinho-persistencia";
 
 // Apoio dos testes de jornada. Regras:
@@ -15,7 +17,19 @@ export const TELEFONE_FICTICIO_DIGITOS = "5561999999999";
 export const NOME_FICTICIO = "Cliente de Teste";
 
 /** Ids claramente falsos, usados só no navegador do teste. Nada disso vai para site.ts. */
-export const EMAILJS_FALSO = { templateId: "template_e2e", publicKey: "chave_e2e" };
+export const EMAILJS_FALSO = { serviceId: "service_e2e", templateId: "template_e2e", publicKey: "chave_e2e" };
+
+/**
+ * Os ids que o navegador do teste de fato usa: os de site.ts quando estão preenchidos e, para cada um que estiver
+ * vazio, o id falso. Com os três reais, nada é trocado; com algum vazio, só o vazio é preenchido.
+ */
+export const emailjsEfetivo = {
+  serviceId: site.emailjs.serviceId || EMAILJS_FALSO.serviceId,
+  templateId: site.emailjs.templateId || EMAILJS_FALSO.templateId,
+  publicKey: site.emailjs.publicKey || EMAILJS_FALSO.publicKey,
+};
+/** Os três já estão preenchidos em site.ts: o site mostra o envio sem nenhuma troca. */
+export const emailjsRealConfigurado = emailjsConfigurado(site.emailjs);
 
 export type CorpoEmailjs = {
   service_id: string;
@@ -28,8 +42,9 @@ type Emailjs = {
   /** Corpos das chamadas feitas à API (interceptadas). */
   enviados: CorpoEmailjs[];
   /**
-   * Faz o site se comportar como se `templateId` e `publicKey` estivessem preenchidos: troca os valores vazios
-   * no JS servido pelo preview. Chame antes do `goto`. `conferir()` falha se a troca não aconteceu.
+   * Garante que o site tem os três ids do EmailJS. Só os ids que estão vazios em site.ts são trocados (no JS servido
+   * pelo preview); com os três preenchidos, nada é trocado. A API continua interceptada nos dois casos.
+   * Chame antes do `goto`. `conferir()` falha se o site não ficou com os ids esperados.
    */
   ligar: () => Promise<void>;
   conferir: () => void;
@@ -53,18 +68,22 @@ export const test = base.extend<{ emailjs: Emailjs }>({
             try {
               const resposta = await rota.fetch();
               const original = await resposta.text();
-              const novo = original.replace(
-                /templateId:(``|""|''),publicKey:(``|""|'')/,
-                `templateId:"${EMAILJS_FALSO.templateId}",publicKey:"${EMAILJS_FALSO.publicKey}"`,
-              );
-              if (novo !== original) trocou = true;
+              const novo = emailjsRealConfigurado
+                ? original
+                : original.replace(
+                    /serviceId:(["'`])(.*?)\1,templateId:(["'`])(.*?)\3,publicKey:(["'`])(.*?)\5/,
+                    (_todo, _a, servico, _b, modelo, _c, chave) =>
+                      `serviceId:"${servico || emailjsEfetivo.serviceId}",templateId:"${modelo || emailjsEfetivo.templateId}",publicKey:"${chave || emailjsEfetivo.publicKey}"`,
+                  );
+              // Com ids reais não há troca; sem eles, a troca precisa ter casado.
+              if (emailjsRealConfigurado || novo !== original) trocou = true;
               await rota.fulfill({ response: resposta, body: novo });
             } catch {
               // O teste acabou (ou a página navegou) com o pedido em andamento: nada a entregar.
             }
           });
         },
-        conferir: () => expect(trocou, "a configuração falsa do EmailJS deveria ter sido aplicada ao JS").toBe(true),
+        conferir: () => expect(trocou, "os ids do EmailJS deveriam estar no JS (trocados só onde vazios em site.ts)").toBe(true),
       });
       await page.unrouteAll({ behavior: "ignoreErrors" });
       // Sem `ligar()`, o site está sem EmailJS e nenhuma chamada pode sair.

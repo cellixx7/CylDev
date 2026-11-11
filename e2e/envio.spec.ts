@@ -8,7 +8,8 @@ import {
   barraCarrinho,
   card,
   carrinhoSalvo,
-  EMAILJS_FALSO,
+  emailjsEfetivo,
+  emailjsRealConfigurado,
   expect,
   iconeCarrinho,
   modalServico,
@@ -43,7 +44,7 @@ async function abrirCarrinhoComPedido(page: Page) {
 test.describe("4. EmailJS sem configuração (o build como está hoje)", () => {
   test("não há 'Enviar pelo site'; WhatsApp e e-mail aparecem com o pedido", async ({ page }) => {
     // Este teste descreve o site.ts de hoje. Com os três valores preenchidos, ele deixa de valer.
-    test.skip(Boolean(site.emailjs.serviceId && site.emailjs.templateId && site.emailjs.publicKey), "EmailJS já configurado em site.ts");
+    test.skip(emailjsRealConfigurado, "EmailJS já configurado em site.ts");
     await page.goto("/");
     await iconeCarrinho(page, ID).click();
     await barraCarrinho(page).click();
@@ -126,9 +127,10 @@ test.describe("5. envio pelo site: corpo enviado, isca e falha", () => {
 
     expect(emailjs.enviados).toHaveLength(1);
     const corpo = emailjs.enviados[0];
-    expect(corpo.service_id).toBe(site.emailjs.serviceId);
-    expect(corpo.template_id).toBe(EMAILJS_FALSO.templateId);
-    expect(corpo.user_id).toBe(EMAILJS_FALSO.publicKey);
+    // Comparações em booleano: com ids reais, eles não vão para o log.
+    expect(corpo.service_id === emailjsEfetivo.serviceId, "service_id").toBe(true);
+    expect(corpo.template_id === emailjsEfetivo.templateId, "template_id").toBe(true);
+    expect(corpo.user_id === emailjsEfetivo.publicKey, "user_id").toBe(true);
 
     const p = corpo.template_params;
     expect(p.nome).toBe(NOME_FICTICIO);
