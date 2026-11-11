@@ -1,11 +1,12 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { TEMPO_MINIMO_MS } from "../../shared/lib/emailjs";
 import { adicionar, estadoInicial } from "../../shared/lib/carrinho-estado";
 import { montarPedido } from "../../shared/lib/pedido";
 import { BarraCarrinho } from "./BarraCarrinho";
 import { BotaoCarrinho } from "./BotaoCarrinho";
-import { AcoesDoPedido, DadosDoPedido } from "./CheckoutPedido";
+import { AcoesDoPedido, DadosDoPedido, envioLiberado } from "./CheckoutPedido";
 
 const pedido = (ids: string[]) => {
   const e = ids.reduce(adicionar, estadoInicial());
@@ -71,5 +72,23 @@ describe("acessibilidade dos controles novos", () => {
     expect(acoes).toContain("https://wa.me/");
     expect(acoes).toContain("mailto:");
     expect(acoes).not.toContain("Não consegui");
+  });
+
+  it("antes dos 3 s: envio desabilitado e aviso 'Um instante…' em role=status; depois, habilitado e sem aviso", () => {
+    const p = pedido(["planilha"]);
+    const antes = renderToStaticMarkup(createElement(AcoesDoPedido, { pedido: p, estado: "pronto", envioAtivo: true, liberado: false }));
+    expect(antes).toMatch(/<button[^>]*type="submit"[^>]*disabled/);
+    const avisoAntes = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "pronto", aoEnviar: noop, envioAtivo: true, liberado: false }));
+    expect(avisoAntes).toMatch(/role="status"[^>]*>Um instante/);
+    const depois = renderToStaticMarkup(createElement(AcoesDoPedido, { pedido: p, estado: "pronto", envioAtivo: true, liberado: true }));
+    expect(depois).not.toMatch(/<button[^>]*type="submit"[^>]*disabled/);
+    const avisoDepois = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "pronto", aoEnviar: noop, envioAtivo: true, liberado: true }));
+    expect(avisoDepois).not.toContain("Um instante");
+  });
+
+  it("envioLiberado segue a regra dos 3 s com relógio controlado", () => {
+    expect(envioLiberado(1000, 1000)).toBe(false);
+    expect(envioLiberado(1000, 1000 + TEMPO_MINIMO_MS - 1)).toBe(false);
+    expect(envioLiberado(1000, 1000 + TEMPO_MINIMO_MS)).toBe(true);
   });
 });

@@ -180,6 +180,7 @@ export const orcamento = {
     whatsapp: "WhatsApp (com DDD)",
     enviar: "Enviar pelo site",
     enviando: "Enviando…",
+    aguarde: "Um instante…",
     falhou: "Não consegui enviar agora. Chame no WhatsApp ou mande um e-mail com o mesmo pedido.",
     whatsappBotao: "Chamar no WhatsApp",
     emailBotao: "Enviar por e-mail",

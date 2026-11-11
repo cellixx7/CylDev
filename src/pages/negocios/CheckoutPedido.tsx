@@ -1,8 +1,8 @@
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { site } from "../../content/site";
 import { formulario as tf, orcamento } from "../../content/textos";
 import { botao, botaoCheio } from "../../shared/estilos";
-import { emailjsConfigurado, enviarContato, pareceSpam } from "../../shared/lib/emailjs";
+import { emailjsConfigurado, enviarContato, pareceSpam, TEMPO_MINIMO_MS } from "../../shared/lib/emailjs";
 import { dadosEmailPedido, linkEmailPedido, linkWhatsappPedido, type Pedido } from "../../shared/lib/pedido";
 
 const t = orcamento.carrinho;
@@ -19,15 +19,31 @@ const focoVisivel = "focus-visible:outline-3 focus-visible:outline-offset-2 focu
 
 export type EstadoEnvio = "pronto" | "enviando" | "falhou";
 
+/** Folga para o relógio: o envio só é liberado quando a regra dos 3 s de emailjs.ts já passaria. */
+const FOLGA_MS = 150;
+
+/** Passados os 3 s mínimos desde `abertoEm`, o envio pode ser liberado. Reaproveita a regra de spam, sem alterá-la. */
+export function envioLiberado(abertoEm: number, agora = Date.now()): boolean {
+  return !pareceSpam("", abertoEm, agora);
+}
+
 /** Envio pelo site (EmailJS). As regras de spam (campo isca e 3 s mínimos) ficam em emailjs.ts, sem mudança. */
 export function useEnvioPedido(pedido: Pedido) {
   const [estado, setEstado] = useState<EstadoEnvio>("pronto");
   const abertoEm = useRef(Date.now());
   const vazio = pedido.itens.length === 0;
+  // O botão só habilita depois dos 3 s: quem usa o site de verdade nunca cai no descarte silencioso.
+  const [liberado, setLiberado] = useState(false);
+  useEffect(() => {
+    const id = window.setTimeout(() => setLiberado(true), TEMPO_MINIMO_MS + FOLGA_MS);
+    return () => window.clearTimeout(id);
+  }, []);
 
   async function aoEnviar(ev: FormEvent<HTMLFormElement>) {
     ev.preventDefault();
     if (vazio) return;
+    // Enter num campo antes da hora: espera, sem descartar nada.
+    if (!liberado || !envioLiberado(abertoEm.current)) return;
     const f = new FormData(ev.currentTarget);
     const valor = (nome: string) => String(f.get(nome) ?? "").trim();
 
@@ -46,7 +62,7 @@ export function useEnvioPedido(pedido: Pedido) {
     }
   }
 
-  return { estado, aoEnviar };
+  return { estado, aoEnviar, liberado };
 }
 
 type DadosProps = {
@@ -55,10 +71,12 @@ type DadosProps = {
   aoEnviar: (ev: FormEvent<HTMLFormElement>) => void;
   /** Envio pelo site disponível. Sem EmailJS configurado, o formulário nem aparece. */
   envioAtivo?: boolean;
+  /** Passaram os 3 s mínimos. Antes disso, aviso curto e envio desabilitado. */
+  liberado?: boolean;
 };
 
 /** Dados de contato para o envio pelo site. Nome e WhatsApp com tipo, autocomplete e teclado certos. */
-export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsConfigurado() }: DadosProps) {
+export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsConfigurado(), liberado = true }: DadosProps) {
   if (!envioAtivo) return null;
   return (
     <section aria-labelledby="orc-dados-titulo">
@@ -90,6 +108,11 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
             maxLength={20}
           />
         </label>
+        {!liberado && (
+          <p className="m-0 text-[1rem] text-texto-suave" role="status">
+            {t.aguarde}
+          </p>
+        )}
         {estado === "falhou" && (
           <div className="border-l-[3px] border-destaque bg-realce p-3" role="alert">
             <p className="mb-2">{t.falhou}</p>
@@ -116,13 +139,14 @@ type AcoesProps = {
   compacto?: boolean;
   /** Envio pelo site disponível. Sem EmailJS configurado, ficam só WhatsApp e e-mail. */
   envioAtivo?: boolean;
+  liberado?: boolean;
 };
 
 /**
  * As duas formas de fechar, com o mesmo peso visual (mesmo botão cheio, mesma largura e altura):
  * pelo site e direto no WhatsApp (link wa.me, que abre o app no celular).
  */
-export function AcoesDoPedido({ pedido, estado, compacto = false, envioAtivo = emailjsConfigurado() }: AcoesProps) {
+export function AcoesDoPedido({ pedido, estado, compacto = false, envioAtivo = emailjsConfigurado(), liberado = true }: AcoesProps) {
   const link = linkWhatsappPedido(pedido, origem);
   const linkEmail = envioAtivo ? null : linkEmailPedido(pedido, origem);
   const vazio = pedido.itens.length === 0;
@@ -130,7 +154,7 @@ export function AcoesDoPedido({ pedido, estado, compacto = false, envioAtivo = e
   return (
     <div className="grid gap-2 min-[26rem]:grid-cols-2">
       {envioAtivo && (
-        <button className={base} type="submit" form={ID_FORM_PEDIDO} disabled={vazio || estado === "enviando"}>
+        <button className={base} type="submit" form={ID_FORM_PEDIDO} disabled={vazio || !liberado || estado === "enviando"}>
           {estado === "enviando" ? t.enviando : t.enviar}
         </button>
       )}

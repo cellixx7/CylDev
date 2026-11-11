@@ -87,7 +87,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
   const qtd = pedido.itens.length;
   const vazio = qtd === 0;
   const temEstimativa = pedido.itens.some((i) => i.estimativa);
-  const { estado, aoEnviar } = useEnvioPedido(pedido);
+  const { estado, aoEnviar, liberado } = useEnvioPedido(pedido);
 
   // Teclado virtual: o campo em foco rola para o meio da área de rolagem e o rodapé encolhe para só o botão de enviar.
   const [editando, setEditando] = useState(false);
@@ -221,7 +221,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
 
                 {emailjsConfigurado() && (
                   <div className="mt-6 border-t-2 border-texto pt-4">
-                    <DadosDoPedido pedido={pedido} estado={estado} aoEnviar={aoEnviar} envioAtivo />
+                    <DadosDoPedido pedido={pedido} estado={estado} aoEnviar={aoEnviar} envioAtivo liberado={liberado} />
                   </div>
                 )}
               </>
@@ -236,7 +236,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
                   {t.totalRodape}: <span className="font-mono font-bold [word-spacing:-0.3em]">{totalCurto(pedido)}</span>
                 </p>
               )}
-              <AcoesDoPedido pedido={pedido} estado={estado} compacto={editando} envioAtivo={emailjsConfigurado()} />
+              <AcoesDoPedido pedido={pedido} estado={estado} compacto={editando} envioAtivo={emailjsConfigurado()} liberado={liberado} />
             </footer>
           )}
         </>
