@@ -126,3 +126,14 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Contraste do ícone vazio (claro):** usa `text-texto` (#0c1226) sobre o card (#ffffff), contraste acima de 15:1; cheio usa o azul do botão principal. Nos dois temas passa dos 3:1 exigidos para componente gráfico.
 - **Campo isca do spam:** continua em `<p aria-hidden="true">` com `tabindex="-1"`; regras do EmailJS intactas. Coberto por teste.
 - **Fica como está:** os anúncios `role="status"` do carrinho ("X no carrinho.") e do rodapé do modal já existiam; o painel e o modal nunca abrem juntos, então não há anúncio duplicado.
+
+## Correções da auditoria do PR #7 (11/11/2026), bloco 1
+
+- **P0-01 EmailJS sem configuração:** `templateId` e `publicKey` seguem vazios em `site.ts` (o Marcelo fornece). Sem os três valores, o carrinho não mostra formulário nem "Enviar pelo site": só "Chamar no WhatsApp" e "Enviar por e-mail" (mailto com o pedido, `linkEmailPedido` em `pedido.ts`). Com configuração válida, o comportamento anterior continua. `Contatos` também só mostra o formulário com EmailJS configurado.
+- **P1-03 antispam sem falso sucesso:** a regra (isca e 3 s) não mudou. O botão "Enviar pelo site" fica desabilitado até 3 s depois da montagem, com o aviso "Um instante…" (`role="status"`); `envioLiberado` só reaproveita `pareceSpam`. Enter num campo antes da hora é ignorado, sem descartar. Isca preenchida continua com descarte silencioso. O `Formulario` compartilhado (hoje sem uso com formulário) não ganhou o botão desabilitado.
+- **P1-01 menu:** Sobre, Entregas e Contato saem do menu pelas flags `site.menuSecoes` (religue com `true` quando a seção existir; as seções vazias continuam no HTML). Não havia contato visível fora do carrinho, então o rodapé de Negócios e de Como funciona ganhou "Prefere falar direto? Chame no WhatsApp".
+- **P2-03 telefone:** `validarTelefone` (`telefone.ts`): só dígitos, 10 ou 11 dígitos, DDD de 11 a 99, 55 opcional (removido só com 12 ou 13 dígitos). O envio leva `55` + número. Erro específico no campo, com `aria-invalid`, `aria-describedby` e `role="alert"`. O `pattern` antigo saiu.
+- **P2-02 gráfico mensal:** cada mês expõe "Janeiro, R$ 12 mil" em texto só para leitor de tela; o valor visível e a barra ficam `aria-hidden`; a lista de iniciais continua `aria-hidden`.
+- **P2-01 painel de exemplo:** os meses somavam R$ 224 mil e o KPI e as regiões R$ 214 mil. Menos números mexidos: só **Dezembro, de 30 para 20** (mantém KPI, regiões, pedidos x ticket e variação). Teste: soma mensal = KPI = soma das regiões. Continua rotulado como exemplo.
+- **P3-01 Comunidade:** rótulo visível "Comunidade" ao lado do ícone a partir de 640 px (`sm`). No celular não cabe ao lado da marca em 360 e 390 px; o `aria-label` longo continua.
+- **P3-02 nomenclatura:** em Como funciona, o rótulo do exemplo do painel passou de "Painel" para "Painel básico" (`exemplos.ts`, a pedido), com o título de apoio mantido.
