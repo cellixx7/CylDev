@@ -115,3 +115,23 @@ describe("Como funciona: nomenclatura", () => {
     expect(e.titulo).toBe("Os números do mês numa tela só");
   });
 });
+
+describe("bots fora de Negócios", () => {
+  it("o catálogo de Negócios só tem serviços da área negocios, sem os bots", async () => {
+    const { servicosDoCatalogo } = await import("./perguntas");
+    const catalogo = servicosDoCatalogo.map((s) => s.id);
+    expect(catalogo).toEqual(["planilha", "painel", "automacao", "landing", "aulas", "sistema"]);
+    for (const id of catalogo) expect(servicoPorId(id)!.area).toBe("negocios");
+  });
+
+  it("a grade de cards não tem bot e tem a chamada para a Comunidade", async () => {
+    const { CardsServicos } = await import("../pages/negocios/CardsServicos");
+    const html = renderToStaticMarkup(
+      createElement(CardsServicos, { ids: [], aoVerDetalhes: () => {}, aoFazerOrcamento: () => {}, aoAlternarCarrinho: () => {}, aoMontarCombo: () => {} }),
+    );
+    expect(html).not.toContain("Bot de Discord");
+    expect(html).not.toContain("Bot com IA");
+    expect(html).toContain(`href="${orcamento.cards.chamadaComunidade.href}"`);
+    expect(orcamento.cards.chamadaComunidade.href).toBe("/comunidade/#bots");
+  });
+});

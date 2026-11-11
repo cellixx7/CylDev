@@ -1,9 +1,9 @@
-import { servicosOrcamento } from "../../content/perguntas";
+import { servicosDoCatalogo } from "../../content/perguntas";
 
 export type AbaModal = "detalhes" | "orcamento";
 export type ServicoNaUrl = { id: string; aba: AbaModal };
 
-const ids = new Set(servicosOrcamento.map((s) => s.id));
+const ids = new Set(servicosDoCatalogo.map((s) => s.id));
 
 /**
  * Lê o hash da URL. `#planilha` abre a aba Detalhes; `#planilha/orcamento`, a aba Orçamento.

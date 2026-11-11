@@ -1,4 +1,4 @@
-import { servicoOrcamentoPorId } from "../../content/perguntas";
+import { estaNoCatalogo, servicoOrcamentoPorId } from "../../content/perguntas";
 import type { Respostas } from "./orcamento";
 
 // Estado do carrinho como funções puras. Os ids dos serviços no carrinho e as respostas de cada serviço
@@ -23,7 +23,7 @@ export const estaNoCarrinho = (e: EstadoCarrinho, id: string) => e.ids.includes(
 
 /** Coloca o serviço no carrinho, com as respostas que ele já tiver (ou só o preço de tabela). Não duplica. */
 export function adicionar(e: EstadoCarrinho, id: string): EstadoCarrinho {
-  if (!servicoOrcamentoPorId(id) || e.ids.includes(id)) return e;
+  if (!estaNoCatalogo(id) || e.ids.includes(id)) return e;
   return { ...e, ids: [...e.ids, id] };
 }
 

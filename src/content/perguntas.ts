@@ -4,6 +4,8 @@
 // PENDENTE: todas as horas extras abaixo (`horas`, `gratis` e `horasPorExtra`) são PROPOSTAS
 // do spec, a confirmar pelo Marcelo (docs/DECISOES.md). Cada hora extra soma VALOR_HORA_EXTRA
 // ao preço e 1 hora ao tempo de trabalho. Enquanto for `true`, nada no site as trata como fechadas.
+import { servicoPorId } from "./servicos";
+
 export const horasExtrasPendentes = true;
 
 export type Opcao = {
@@ -544,3 +546,12 @@ export const servicosOrcamento: ServicoOrcamento[] = [
 ];
 
 export const servicoOrcamentoPorId = (id: string) => servicosOrcamento.find((s) => s.id === id);
+
+/**
+ * O que a página de Negócios oferece (cards, link direto, carrinho e restauração do carrinho).
+ * Os bots continuam aqui só para o cálculo e para a Comunidade; em Negócios eles não são vendidos.
+ */
+export const servicosDoCatalogo: ServicoOrcamento[] = servicosOrcamento.filter(
+  (s) => servicoPorId(s.id)?.area === "negocios",
+);
+export const estaNoCatalogo = (id: string) => servicosDoCatalogo.some((s) => s.id === id);

@@ -1,4 +1,4 @@
-import { servicosOrcamento } from "../../content/perguntas";
+import { servicosDoCatalogo } from "../../content/perguntas";
 import { orcamento } from "../../content/textos";
 import { CardServico } from "./CardServico";
 
@@ -17,7 +17,7 @@ export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternar
   return (
     <div>
       <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-3 p-0" aria-label={t.rotuloLista}>
-        {servicosOrcamento.map((s) => (
+        {servicosDoCatalogo.map((s) => (
           <CardServico
             key={s.id}
             servicoId={s.id}
@@ -38,6 +38,18 @@ export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternar
           {t.comboBotao}
         </button>
       </p>
+      <aside className="mt-6 border-l-[3px] border-destaque bg-realce px-4 py-3" aria-labelledby="chamada-comunidade-titulo">
+        <h3 id="chamada-comunidade-titulo" className="m-0 text-[1.0625rem]">
+          {t.chamadaComunidade.titulo}
+        </h3>
+        <p className="mt-1 mb-2 text-texto-suave">{t.chamadaComunidade.texto}</p>
+        <a
+          className="inline-flex min-h-alvo items-center font-semibold text-destaque underline underline-offset-4 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco"
+          href={t.chamadaComunidade.href}
+        >
+          {t.chamadaComunidade.link}
+        </a>
+      </aside>
     </div>
   );
 }

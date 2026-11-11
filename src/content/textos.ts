@@ -57,6 +57,13 @@ export const orcamento = {
     comboTexto: "Dois ou mais entre planilha, painel, automação e landing têm desconto e um prazo só.",
     comboBotao: "Pôr planilha, painel e automação no carrinho",
     comboAdicionado: "Planilha, painel e automação no carrinho.",
+    /** Os bots de Discord não são vendidos aqui; a chamada leva para a seção de bots da Comunidade. */
+    chamadaComunidade: {
+      titulo: "Quer um bot para o seu servidor de Discord?",
+      texto: "Os bots ficam na área Comunidade, com o preço e a mensalidade explicados lá.",
+      link: "Ver os bots na Comunidade",
+      href: "/comunidade/#bots",
+    },
     linhas: {
       planilha: "Controles soltos viram uma planilha única, com totais que conferem.",
       painel: "Um arquivo que mostra o que vendeu, o que mais sai e como está o mês.",

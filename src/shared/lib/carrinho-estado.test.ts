@@ -4,6 +4,12 @@ import { adicionar, COMBO_IDS, estadoInicial, montarCombo, remover, responder } 
 import { montarPedido } from "./pedido";
 
 describe("carrinho-estado", () => {
+  it("adicionar ignora os bots, que não são vendidos em Negócios", () => {
+    const e = estadoInicial();
+    expect(adicionar(e, "bot-essencial")).toBe(e);
+    expect(adicionar(e, "bot-ia")).toBe(e);
+  });
+
   it("adicionar não duplica e ignora id desconhecido", () => {
     const a = adicionar(adicionar(estadoInicial(), "planilha"), "planilha");
     expect(a.ids).toEqual(["planilha"]);

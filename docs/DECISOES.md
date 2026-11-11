@@ -149,3 +149,8 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Regra:** restaura ao navegar entre páginas e ao recarregar (mesma aba); limpa depois de um envio pelo site com sucesso (o descarte silencioso de spam não limpa); o abre/fecha do modal e do painel não é persistido; as observações também não.
 - **Não limpa:** clicar em "Chamar no WhatsApp" ou "Enviar por e-mail" (o site não tem como saber se a mensagem foi enviada). Fechar a aba encerra a sessão e o carrinho some.
 - **Pendente:** verificação no navegador (ida a Como funciona e volta) fica para os testes de jornada do P4-03.
+
+## Bloco 3 da auditoria: bots, mensalidade e planilha
+
+- **A. Bots fora de Negócios:** `servicosDoCatalogo` (`perguntas.ts`) é a lista do que Negócios vende (área `negocios`); cards, link direto (`#bot-ia` não abre mais modal), `adicionar` do carrinho e a restauração do `sessionStorage` usam essa lista. Os bots seguem em `servicosOrcamento` só para o cálculo e a Comunidade (`servicos.ts`, `orcamento.ts` e as perguntas dos bots não mudaram). Carrinho salvo antes com `bot-essencial`/`bot-ia`: ids e respostas dos bots são descartados em silêncio e o resto fica (teste em `carrinho-persistencia.test.ts`).
+- **Chamada para a Comunidade:** bloco abaixo dos cards ("Quer um bot para o seu servidor de Discord?") com link para `/comunidade/#bots`. Textos em `orcamento.cards.chamadaComunidade`.

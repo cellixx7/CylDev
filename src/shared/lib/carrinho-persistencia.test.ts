@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { servicoOrcamentoPorId, servicosOrcamento } from "../../content/perguntas";
+import { servicoOrcamentoPorId, servicosDoCatalogo } from "../../content/perguntas";
 import { adicionar, estadoInicial, responder } from "./carrinho-estado";
 import {
   CHAVE_CARRINHO,
@@ -79,11 +79,37 @@ describe("restaurarCarrinho", () => {
   });
 
   it("serviço que saiu do catálogo some do carrinho e das respostas", () => {
-    const semPainel = servicosOrcamento.filter((s) => s.id !== "painel");
+    const semPainel = servicosDoCatalogo.filter((s) => s.id !== "painel");
     const r = restaurarCarrinho(serializarCarrinho(estadoCheio()), semPainel);
     expect(r.ids).toEqual(["planilha"]);
     expect(r.respostas.painel).toBeUndefined();
     expect(r.respostas.planilha).toEqual(estadoCheio().respostas.planilha);
+  });
+
+  it("carrinho antigo com bots: descarta os ids e as respostas dos bots sem erro e mantém o resto", () => {
+    const texto = JSON.stringify({
+      v: VERSAO_CARRINHO,
+      ids: ["bot-essencial", "planilha", "bot-ia"],
+      respostas: {
+        "bot-essencial": { funcoes: ["tickets"] },
+        "bot-ia": { papeis: ["duvidas"] },
+        planilha: estadoCheio().respostas.planilha,
+      },
+    });
+    let r!: ReturnType<typeof restaurarCarrinho>;
+    expect(() => (r = restaurarCarrinho(texto))).not.toThrow();
+    expect(r.ids).toEqual(["planilha"]);
+    expect(r.respostas["bot-essencial"]).toBeUndefined();
+    expect(r.respostas["bot-ia"]).toBeUndefined();
+    expect(r.respostas.planilha).toEqual(estadoCheio().respostas.planilha);
+    // E o estado restaurado ainda vira um pedido, sem bot e sem mensalidade.
+    const p = montarPedido(r.ids, r.respostas, "", semPiloto);
+    expect(p.itens.map((i) => i.id)).toEqual(["planilha"]);
+  });
+
+  it("só bots salvos: volta ao carrinho vazio", () => {
+    const texto = JSON.stringify({ v: VERSAO_CARRINHO, ids: ["bot-essencial", "bot-ia"], respostas: {} });
+    expect(restaurarCarrinho(texto)).toEqual(estadoInicial());
   });
 
   it("descarta pergunta e opção que não existem mais, e resposta em formato errado", () => {

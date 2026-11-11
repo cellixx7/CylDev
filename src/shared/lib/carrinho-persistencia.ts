@@ -1,4 +1,4 @@
-import { servicosOrcamento, type ServicoOrcamento } from "../../content/perguntas";
+import { servicosDoCatalogo, type ServicoOrcamento } from "../../content/perguntas";
 import { estadoInicial, respostasIniciais, type EstadoCarrinho } from "./carrinho-estado";
 import type { Respostas } from "./orcamento";
 
@@ -39,9 +39,9 @@ function respostasValidas(servico: ServicoOrcamento, bruto: unknown): Respostas 
 /**
  * Reconstrói o estado a partir do texto salvo, validando contra os serviços e perguntas de hoje.
  * Texto ausente, corrompido ou de versão desconhecida devolve o estado inicial.
- * Ids e respostas que não existem mais são descartados. Não há preço salvo: quem usa o estado recalcula.
+ * Ids e respostas que não existem mais (ou que saíram do catálogo de Negócios, como os bots) são descartados em silêncio. Não há preço salvo: quem usa o estado recalcula.
  */
-export function restaurarCarrinho(texto: string | null | undefined, servicos: ServicoOrcamento[] = servicosOrcamento): EstadoCarrinho {
+export function restaurarCarrinho(texto: string | null | undefined, servicos: ServicoOrcamento[] = servicosDoCatalogo): EstadoCarrinho {
   if (!texto) return estadoInicial();
   let bruto: unknown;
   try {
