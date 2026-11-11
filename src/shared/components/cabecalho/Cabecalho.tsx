@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { comum } from "../../../content/textos";
+import { rolarParaAncora } from "../../lib/ancora";
 import { aplicarTema, lerTema, salvarTema, type Tema } from "../../tema";
 
 type Link = { href: string; rotulo: string };
@@ -21,6 +22,9 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
   useEffect(() => {
     aplicarTema(tema);
   }, [tema]);
+
+  // O cabeçalho existe em todas as páginas: é aqui que a âncora da URL é honrada depois da montagem.
+  useEffect(() => rolarParaAncora(), []);
 
   useEffect(() => {
     if (!menuAberto) return;
