@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { guia, type ResultadoGuia } from "../../content/guia";
 import { servicoPorId } from "../../content/servicos";
 import { botao, botaoCheio } from "../../shared/estilos";
+import { linkContato } from "../../shared/lib/whatsapp";
 import { escolher, passoDoGuia, voltar } from "../../shared/lib/guia";
 
 const foco = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
@@ -33,7 +34,11 @@ export function Resultado({ r, aoVerDetalhes, aoFazerOrcamento }: { r: Resultado
         ))}
       </ul>
       {r.saida && (
-        <a className={`${botaoCheio} ${foco}`} href={r.saida.href}>
+        <a
+          className={`${botaoCheio} ${foco}`}
+          href={r.saida.tipo === "link" ? r.saida.href : linkContato(guia.origemWhatsapp, guia.mensagemWhatsapp)}
+          {...(r.saida.tipo === "whatsapp" ? { target: "_blank", rel: "noopener" } : {})}
+        >
           {r.saida.rotulo}
         </a>
       )}

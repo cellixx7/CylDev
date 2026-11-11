@@ -2,7 +2,11 @@
 // Regras: nenhum preço, prazo ou número aqui (o valor de cada serviço sai de servicos.ts e do orçamento).
 // Cada resultado aponta para ids de serviços de Negócios, ou para uma saída externa (bots, na Comunidade).
 
-export type Saida = { href: string; rotulo: string };
+/**
+ * Saída de um resultado sem serviços. `link` tem endereço próprio; `whatsapp` usa o número de site.ts
+ * (o mesmo do carrinho), então nenhum endereço de contato fica escrito neste arquivo.
+ */
+export type Saida = { tipo: "link"; href: string; rotulo: string } | { tipo: "whatsapp"; rotulo: string };
 
 export type OpcaoGuia = {
   id: string;
@@ -40,6 +44,9 @@ export const guia = {
   resultadoTitulo: "Por onde começar",
   verDetalhes: "Ver detalhes",
   fazerOrcamento: "Fazer orçamento",
+  /** Mensagem pré-preenchida do WhatsApp do resultado "conversar". */
+  mensagemWhatsapp: "Não sei qual serviço escolher e queria conversar.",
+  origemWhatsapp: "negocios-guia",
   semCompromisso: "É só uma sugestão. O valor e o prazo você vê nos detalhes e na estimativa de cada serviço.",
   raiz: "objetivo",
 } as const;
@@ -54,6 +61,7 @@ export const perguntasGuia: PerguntaGuia[] = [
       { id: "aprender", rotulo: "Aprender Excel ou programação", resultado: "aulas" },
       { id: "sistema", rotulo: "A planilha já não dá conta e preciso de um sistema", resultado: "sistema" },
       { id: "bot", rotulo: "Quero um bot para o meu servidor de Discord", resultado: "bot" },
+      { id: "conversar", rotulo: "Não sei, prefiro conversar", resultado: "conversar" },
     ],
   },
   {
@@ -71,7 +79,7 @@ export const resultadosGuia: ResultadoGuia[] = [
   {
     id: "planilha",
     servicos: ["planilha"],
-    porque: "Primeiro os dados ficam em ordem, com totais que conferem. É a base para qualquer painel ou automação depois.",
+    porque: "Primeiro os dados ficam em ordem, com totais que conferem. É a base para qualquer painel ou automação depois. Juntando serviços, há desconto.",
   },
   {
     id: "painel",
@@ -102,6 +110,12 @@ export const resultadosGuia: ResultadoGuia[] = [
     id: "bot",
     servicos: [],
     porque: "Bots de Discord ficam na área Comunidade, com o preço e a mensalidade explicados lá.",
-    saida: { href: "/comunidade/#bots", rotulo: "Ver os bots na Comunidade" },
+    saida: { tipo: "link", href: "/comunidade/#bots", rotulo: "Ver os bots na Comunidade" },
+  },
+  {
+    id: "conversar",
+    servicos: [],
+    porque: "Sem problema, me conta o seu caso e eu te ajudo a escolher.",
+    saida: { tipo: "whatsapp", rotulo: "Falar comigo no WhatsApp" },
   },
 ];

@@ -2,6 +2,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { guia, resultadosGuia } from "../../content/guia";
+import { site } from "../../content/site";
 import { GuiaEscolha, Resultado } from "./GuiaEscolha";
 
 const props = { aoVerDetalhes: () => {}, aoFazerOrcamento: () => {} };
@@ -28,6 +29,13 @@ describe("GuiaEscolha", () => {
   it("resultado de bot: link para /comunidade/#bots e nenhum botão de orçamento", () => {
     const html = renderToStaticMarkup(createElement(Resultado, { r: resultadosGuia.find((r) => r.id === "bot")!, ...props }));
     expect(html).toContain('href="/comunidade/#bots"');
+    expect(html).not.toContain(guia.fazerOrcamento);
+  });
+
+  it("resultado 'conversar': botão do WhatsApp com o número de site.ts e sem botão de orçamento", () => {
+    const html = renderToStaticMarkup(createElement(Resultado, { r: resultadosGuia.find((r) => r.id === "conversar")!, ...props }));
+    expect(html).toContain("Falar comigo no WhatsApp");
+    expect(html).toContain(`https://wa.me/${site.whatsapp.replace(/\D/g, "")}?text=`);
     expect(html).not.toContain(guia.fazerOrcamento);
   });
 });

@@ -40,7 +40,26 @@ describe("conteúdo do guia", () => {
   it("a saída 'quero um bot' vai para /comunidade/#bots", () => {
     const bot = resultadosGuia.find((r) => r.id === "bot")!;
     expect(bot.servicos).toEqual([]);
-    expect(bot.saida?.href).toBe("/comunidade/#bots");
+    expect(bot.saida).toEqual({ tipo: "link", href: "/comunidade/#bots", rotulo: "Ver os bots na Comunidade" });
+  });
+
+  it("'Não sei, prefiro conversar' leva a um resultado sem serviços, com texto curto e saída pelo WhatsApp", () => {
+    const opcao = perguntasGuia.find((p) => p.id === guia.raiz)!.opcoes.find((o) => o.id === "conversar")!;
+    expect(opcao.rotulo).toBe("Não sei, prefiro conversar");
+    const r = resultadosGuia.find((x) => x.id === opcao.resultado)!;
+    expect(r.servicos).toEqual([]);
+    expect(r.porque).toBe("Sem problema, me conta o seu caso e eu te ajudo a escolher.");
+    expect(r.saida).toEqual({ tipo: "whatsapp", rotulo: "Falar comigo no WhatsApp" });
+  });
+
+  it("nenhum endereço de contato fica escrito no conteúdo do guia", () => {
+    const json = JSON.stringify({ guia, perguntasGuia, resultadosGuia });
+    expect(json).not.toMatch(/wa\.me|@|\d{8,}/);
+  });
+
+  it("o resultado de planilha termina avisando do desconto, sem número", () => {
+    const r = resultadosGuia.find((x) => x.id === "planilha")!;
+    expect(r.porque.endsWith("Juntando serviços, há desconto.")).toBe(true);
   });
 
   it("nenhum texto traz número, preço ou prazo", () => {
@@ -67,7 +86,8 @@ describe("passoDoGuia", () => {
     expect(passoDoGuia(["numeros"]).pergunta?.id).toBe("numeros");
     expect(passoDoGuia(["numeros", "repeticao"]).resultado?.id).toBe("automacao");
     expect(passoDoGuia(["pagina"]).resultado?.servicos).toEqual(["landing"]);
-    expect(passoDoGuia(["bot"]).resultado?.saida?.href).toBe("/comunidade/#bots");
+    expect(passoDoGuia(["bot"]).resultado?.saida).toMatchObject({ href: "/comunidade/#bots" });
+    expect(passoDoGuia(["conversar"]).resultado?.id).toBe("conversar");
   });
 
   it("escolha inválida é ignorada, sem erro", () => {
