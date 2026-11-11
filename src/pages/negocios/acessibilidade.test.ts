@@ -91,4 +91,15 @@ describe("acessibilidade dos controles novos", () => {
     expect(envioLiberado(1000, 1000 + TEMPO_MINIMO_MS - 1)).toBe(false);
     expect(envioLiberado(1000, 1000 + TEMPO_MINIMO_MS)).toBe(true);
   });
+
+  it("telefone: sem pattern que aceite hífen solto; erro específico ligado ao campo e anunciado", () => {
+    const p = pedido(["planilha"]);
+    const ok = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "pronto", aoEnviar: noop, envioAtivo: true }));
+    expect(ok).not.toContain("pattern=");
+    expect(ok).not.toContain("aria-invalid");
+    const erro = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "pronto", aoEnviar: noop, envioAtivo: true, erroTelefone: "Informe o WhatsApp com DDD" }));
+    expect(erro).toContain('aria-invalid="true"');
+    expect(erro).toContain('aria-describedby="erro-telefone-pedido"');
+    expect(erro).toMatch(/id="erro-telefone-pedido"[^>]*role="alert"[^>]*>Informe o WhatsApp com DDD/);
+  });
 });

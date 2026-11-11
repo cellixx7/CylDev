@@ -87,7 +87,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
   const qtd = pedido.itens.length;
   const vazio = qtd === 0;
   const temEstimativa = pedido.itens.some((i) => i.estimativa);
-  const { estado, aoEnviar, liberado } = useEnvioPedido(pedido);
+  const { estado, aoEnviar, liberado, erroTelefone, limparErroTelefone } = useEnvioPedido(pedido);
 
   // Teclado virtual: o campo em foco rola para o meio da área de rolagem e o rodapé encolhe para só o botão de enviar.
   const [editando, setEditando] = useState(false);
@@ -221,7 +221,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
 
                 {emailjsConfigurado() && (
                   <div className="mt-6 border-t-2 border-texto pt-4">
-                    <DadosDoPedido pedido={pedido} estado={estado} aoEnviar={aoEnviar} envioAtivo liberado={liberado} />
+                    <DadosDoPedido pedido={pedido} estado={estado} aoEnviar={aoEnviar} envioAtivo liberado={liberado} erroTelefone={erroTelefone} aoEditarTelefone={limparErroTelefone} />
                   </div>
                 )}
               </>

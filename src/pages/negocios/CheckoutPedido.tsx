@@ -3,6 +3,7 @@ import { site } from "../../content/site";
 import { formulario as tf, orcamento } from "../../content/textos";
 import { botao, botaoCheio } from "../../shared/estilos";
 import { emailjsConfigurado, enviarContato, pareceSpam, TEMPO_MINIMO_MS } from "../../shared/lib/emailjs";
+import { validarTelefone } from "../../shared/lib/telefone";
 import { dadosEmailPedido, linkEmailPedido, linkWhatsappPedido, type Pedido } from "../../shared/lib/pedido";
 
 const t = orcamento.carrinho;
@@ -34,6 +35,7 @@ export function useEnvioPedido(pedido: Pedido) {
   const vazio = pedido.itens.length === 0;
   // O botão só habilita depois dos 3 s: quem usa o site de verdade nunca cai no descarte silencioso.
   const [liberado, setLiberado] = useState(false);
+  const [erroTelefone, setErroTelefone] = useState("");
   useEffect(() => {
     const id = window.setTimeout(() => setLiberado(true), TEMPO_MINIMO_MS + FOLGA_MS);
     return () => window.clearTimeout(id);
@@ -53,16 +55,24 @@ export function useEnvioPedido(pedido: Pedido) {
       return;
     }
 
+    const tel = validarTelefone(valor("whatsapp"));
+    if (!tel.valido) {
+      setErroTelefone(tel.erro);
+      (ev.currentTarget.elements.namedItem("whatsapp") as HTMLInputElement | null)?.focus();
+      return;
+    }
+    setErroTelefone("");
+
     setEstado("enviando");
     try {
-      await enviarContato(dadosEmailPedido(pedido, { nome: valor("nome"), whatsapp: valor("whatsapp") }, origem));
+      await enviarContato(dadosEmailPedido(pedido, { nome: valor("nome"), whatsapp: tel.digitos }, origem));
       window.location.assign("/obrigado/");
     } catch {
       setEstado("falhou");
     }
   }
 
-  return { estado, aoEnviar, liberado };
+  return { estado, aoEnviar, liberado, erroTelefone, limparErroTelefone: () => setErroTelefone("") };
 }
 
 type DadosProps = {
@@ -73,10 +83,13 @@ type DadosProps = {
   envioAtivo?: boolean;
   /** Passaram os 3 s mínimos. Antes disso, aviso curto e envio desabilitado. */
   liberado?: boolean;
+  /** Mensagem de erro do telefone (vazia quando está certo). */
+  erroTelefone?: string;
+  aoEditarTelefone?: () => void;
 };
 
 /** Dados de contato para o envio pelo site. Nome e WhatsApp com tipo, autocomplete e teclado certos. */
-export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsConfigurado(), liberado = true }: DadosProps) {
+export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsConfigurado(), liberado = true, erroTelefone = "", aoEditarTelefone }: DadosProps) {
   if (!envioAtivo) return null;
   return (
     <section aria-labelledby="orc-dados-titulo">
@@ -104,9 +117,16 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
             inputMode="tel"
             autoComplete="tel"
             enterKeyHint="send"
-            pattern="[0-9()+\-\s]{10,20}"
             maxLength={20}
+            aria-invalid={erroTelefone ? true : undefined}
+            aria-describedby={erroTelefone ? "erro-telefone-pedido" : undefined}
+            onChange={aoEditarTelefone}
           />
+          {erroTelefone && (
+            <span id="erro-telefone-pedido" className="text-[1rem] font-normal text-destaque" role="alert">
+              {erroTelefone}
+            </span>
+          )}
         </label>
         {!liberado && (
           <p className="m-0 text-[1rem] text-texto-suave" role="status">

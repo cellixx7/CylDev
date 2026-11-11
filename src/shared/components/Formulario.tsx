@@ -2,6 +2,7 @@ import { useRef, useState, type FormEvent } from "react";
 import { site } from "../../content/site";
 import { formulario as t } from "../../content/textos";
 import { enviarContato, pareceSpam, type DadosContato } from "../lib/emailjs";
+import { validarTelefone } from "../lib/telefone";
 import { linkContato } from "../lib/whatsapp";
 import { botao, botaoCheio } from "../estilos";
 
@@ -26,6 +27,7 @@ export function Formulario({ origem, resumo, detalhes }: Props) {
   const [preferencia, setPreferencia] = useState<"whatsapp" | "email">("whatsapp");
   const [estado, setEstado] = useState<Estado>("pronto");
   const abertoEm = useRef(Date.now());
+  const [erroTelefone, setErroTelefone] = useState("");
 
   async function aoEnviar(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -38,12 +40,24 @@ export function Formulario({ origem, resumo, detalhes }: Props) {
       return;
     }
 
+    let contato = valor(preferencia);
+    if (preferencia === "whatsapp") {
+      const tel = validarTelefone(contato);
+      if (!tel.valido) {
+        setErroTelefone(tel.erro);
+        (e.currentTarget.elements.namedItem("whatsapp") as HTMLInputElement | null)?.focus();
+        return;
+      }
+      setErroTelefone("");
+      contato = tel.digitos;
+    }
+
     setEstado("enviando");
     try {
       await enviarContato({
         nome: valor("nome"),
         preferencia,
-        contato: valor(preferencia),
+        contato,
         assunto: preferencia === "email" ? valor("assunto") : "",
         mensagem: [resumo, valor("mensagem")].filter(Boolean).join("\n\n"),
         origem,
@@ -101,9 +115,16 @@ export function Formulario({ origem, resumo, detalhes }: Props) {
             required
             inputMode="tel"
             autoComplete="tel"
-            pattern="[0-9()+\-\s]{10,20}"
             maxLength={20}
+            aria-invalid={erroTelefone ? true : undefined}
+            aria-describedby={erroTelefone ? "erro-telefone" : undefined}
+            onChange={() => setErroTelefone("")}
           />
+          {erroTelefone && (
+            <span id="erro-telefone" className="font-normal text-destaque" role="alert">
+              {erroTelefone}
+            </span>
+          )}
         </label>
       ) : (
         <>
