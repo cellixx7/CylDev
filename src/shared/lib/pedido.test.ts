@@ -109,7 +109,7 @@ describe("montarPedido: o escopo acompanha o valor", () => {
     const depois = montarPedido(["planilha"], { planilha: { existente: "bagunca" } }, "", semPiloto);
     expect(depois.carrinho.total).toBe(antes.carrinho.total + 50);
     expect(depois.itens[0].respostas.find((r) => r.perguntaId === "existente")!.escolhas).toEqual([
-      "Sim, mas está bagunçada",
+      "Sim, e precisa de arrumação grande",
     ]);
   });
 });
@@ -125,7 +125,7 @@ describe("textoPedidoCompleto", () => {
 
   it("inclui nome, perguntas, escolhas, acréscimos, prazo e valor de cada serviço", () => {
     expect(texto).toContain("Planilha organizada");
-    expect(texto).toContain("Você já tem uma planilha? Sim, mas está bagunçada (+ R$ 50)");
+    expect(texto).toContain("Você já tem uma planilha? Sim, e precisa de arrumação grande (+ R$ 50)");
     expect(texto).toContain("Que tipo de negócio é? Loja ou varejo");
     expect(texto).toContain("Vários arquivos soltos (+ R$ 100)");
     expect(texto).toContain("Preço-base: R$ 100");

@@ -62,7 +62,7 @@ Inclui: Planilha pronta no Excel, com as colunas do seu negócio; Fórmulas e to
 Notas: "Pacote a partir de R$ 100. Cada hora de trabalho a mais soma R$ 50, e as suas respostas mostram onde isso acontece."; "Ajustes depois da entrega: R$ 50 por hora."
 Perguntas:
 1. Tipo de negócio.
-2. Você já tem uma planilha? [U]: Sim, mas está bagunçada +1h; Só tenho anotações ou papel +1h; Não, começo do zero +0. Ajuda: "Se já existe uma planilha, eu aproveito o que funciona e arrumo o resto. Se for caderno ou papel, a gente monta o modelo juntos. Arrumar ou montar dá mais trabalho do que começar do zero, por isso soma 1 hora."
+2. Você já tem uma planilha? [U]: Sim, e está em boa ordem +0; Sim, e precisa de arrumação grande +1h; Só tenho anotações ou papel +1h; Não, começo do zero +0. Ajuda: define a limpeza simples incluída nos R$ 100 (linhas vazias e repetidas, colunas padronizadas) e diz quando a arrumação soma 1 hora (R$ 50).
 3. Quais controles a planilha precisa ter? [M] gratis 1, +1h cada extra. Opções: Clientes; Estoque; Vendas; Contas a pagar e receber; Agenda e retornos; Outro. Ajuda: "Controle é uma aba para acompanhar uma coisa, como clientes ou estoque. O primeiro está incluso no pacote. Cada controle a mais soma 1 hora de trabalho (R$ 50)."
 4. A planilha vai ter valores em dinheiro? [U]: Sim: preços, vendas ou custos +1h; Não: só cadastros e listas +0. Ajuda: "Com preços, vendas ou custos, cada total e cada fórmula fica visível e explicada, para você conseguir conferir sozinho. Isso soma 1 hora."
 5. Dados sensíveis.

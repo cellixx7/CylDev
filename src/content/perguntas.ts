@@ -129,12 +129,13 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         curto: "Material de partida",
         tipo: "unica",
         opcoes: [
-          { id: "bagunca", rotulo: "Sim, mas está bagunçada", horas: 1 },
+          { id: "organizada", rotulo: "Sim, e está em boa ordem", horas: 0 },
+          { id: "bagunca", rotulo: "Sim, e precisa de arrumação grande", horas: 1 },
           { id: "papel", rotulo: "Só tenho anotações ou papel", horas: 1 },
           { id: "zero", rotulo: "Não, começo do zero", horas: 0 },
         ],
         ajuda:
-          "Se já existe uma planilha, eu aproveito o que funciona e arrumo o resto. Se for caderno ou papel, a gente monta o modelo juntos. Arrumar ou montar dá mais trabalho do que começar do zero, por isso soma 1 hora.",
+          "Os R$ 100 do pacote já incluem a limpeza simples: tirar linhas vazias e repetidas e padronizar as colunas. Se os dados estão espalhados em várias abas, com datas e valores digitados de jeitos diferentes, a arrumação passa de uma hora e soma 1 hora (R$ 50). Se for caderno ou papel, a gente monta o modelo juntos, e isso também soma 1 hora.",
       },
       {
         id: "controles",
