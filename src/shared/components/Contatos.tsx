@@ -1,4 +1,5 @@
 import { site } from "../../content/site";
+import { emailjsConfigurado } from "../lib/emailjs";
 import { negocios } from "../../content/textos";
 import { linkContato } from "../lib/whatsapp";
 import { botao } from "../estilos";
@@ -27,7 +28,7 @@ export function Contatos({ origem, comFormulario = true }: Props) {
           {site.email}
         </a>
       </div>
-      {comFormulario && (
+      {comFormulario && emailjsConfigurado() && (
         <div className="md:col-span-full md:max-w-xl">
           <h3 className={nomeCanal}>{t.formulario}</h3>
           <Formulario origem={origem} />

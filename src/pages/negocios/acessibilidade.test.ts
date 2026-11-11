@@ -27,21 +27,21 @@ describe("acessibilidade dos controles novos", () => {
 
   it("campo isca do spam fora da árvore de acessibilidade e da tabulação", () => {
     const p = pedido(["planilha"]);
-    const html = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "pronto", aoEnviar: noop }));
+    const html = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "pronto", aoEnviar: noop, envioAtivo: true }));
     expect(html).toMatch(/<p[^>]*aria-hidden="true"[^>]*><label>[^<]*<input[^>]*tabindex="-1"[^>]*name="site_empresa"/);
   });
 
   it("campos do pedido têm rótulo visível e tipo/autocomplete certos", () => {
-    const html = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: pedido(["planilha"]), estado: "pronto", aoEnviar: noop }));
+    const html = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: pedido(["planilha"]), estado: "pronto", aoEnviar: noop, envioAtivo: true }));
     expect(html).toMatch(/<label[^>]*><span>Nome<\/span><input[^>]*autoComplete="name"/i);
     expect(html).toMatch(/type="tel"[^>]*inputMode="tel"[^>]*autoComplete="tel"/i);
   });
 
   it("falha de envio é anunciada (role=alert) e os dois botões continuam com foco visível", () => {
     const p = pedido(["planilha"]);
-    const dados = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "falhou", aoEnviar: noop }));
+    const dados = renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "falhou", aoEnviar: noop, envioAtivo: true }));
     expect(dados).toContain('role="alert"');
-    const acoes = renderToStaticMarkup(createElement(AcoesDoPedido, { pedido: p, estado: "pronto" }));
+    const acoes = renderToStaticMarkup(createElement(AcoesDoPedido, { pedido: p, estado: "pronto", envioAtivo: true }));
     expect(acoes.match(/focus-visible:outline-3/g)).toHaveLength(2);
   });
 
@@ -51,5 +51,25 @@ describe("acessibilidade dos controles novos", () => {
     expect(html).toContain('aria-haspopup="dialog"');
     expect(html).toMatch(/aria-label="Abrir o carrinho: 1 serviço, estimativa a partir de/);
     expect(html).toContain("focus-visible:outline-3");
+  });
+
+  it("EmailJS configurado: formulário e botão 'Enviar pelo site' aparecem, sem botão de e-mail", () => {
+    const p = pedido(["planilha"]);
+    expect(renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "pronto", aoEnviar: noop, envioAtivo: true }))).toContain("<form");
+    const acoes = renderToStaticMarkup(createElement(AcoesDoPedido, { pedido: p, estado: "pronto", envioAtivo: true }));
+    expect(acoes).toContain("Enviar pelo site");
+    expect(acoes).toContain("Chamar no WhatsApp");
+    expect(acoes).not.toContain("mailto:");
+  });
+
+  it("EmailJS sem configuração: sem formulário nem botão de envio; ficam WhatsApp e e-mail, sem texto de erro", () => {
+    const p = pedido(["planilha"]);
+    expect(renderToStaticMarkup(createElement(DadosDoPedido, { pedido: p, estado: "pronto", aoEnviar: noop, envioAtivo: false }))).toBe("");
+    const acoes = renderToStaticMarkup(createElement(AcoesDoPedido, { pedido: p, estado: "pronto", envioAtivo: false }));
+    expect(acoes).not.toContain("Enviar pelo site");
+    expect(acoes).not.toContain('type="submit"');
+    expect(acoes).toContain("https://wa.me/");
+    expect(acoes).toContain("mailto:");
+    expect(acoes).not.toContain("Não consegui");
   });
 });

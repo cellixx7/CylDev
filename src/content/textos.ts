@@ -182,6 +182,7 @@ export const orcamento = {
     enviando: "Enviando…",
     falhou: "Não consegui enviar agora. Chame no WhatsApp ou mande um e-mail com o mesmo pedido.",
     whatsappBotao: "Chamar no WhatsApp",
+    emailBotao: "Enviar por e-mail",
     privacidade: "Seu nome e WhatsApp são usados só para responder este pedido. Eu confirmo por WhatsApp e combinamos o Pix.",
   },
 };

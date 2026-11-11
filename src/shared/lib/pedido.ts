@@ -185,6 +185,15 @@ export function linkWhatsappPedido(p: Pedido, origem = "negocios-carrinho"): str
   return msg ? whatsappLink(site.whatsapp, mensagemComOrigem(origem, msg)) : null;
 }
 
+/** Link mailto com o pedido completo. `null` quando o pedido está vazio ou não há e-mail em site.ts. */
+export function linkEmailPedido(p: Pedido, origem = "negocios-carrinho"): string | null {
+  if (p.itens.length === 0 || !site.email) return null;
+  const corpo = `${textoPedidoCompleto(p)}
+
+(Estimativa, confirmada na conversa. Origem: ${origem})`;
+  return `mailto:${site.email}?subject=${encodeURIComponent("Pedido pelo site")}&body=${encodeURIComponent(corpo)}`;
+}
+
 /** Dados do EmailJS: mesmos nomes de campo de sempre, com o escopo completo em `mensagem`. */
 export function dadosEmailPedido(
   p: Pedido,

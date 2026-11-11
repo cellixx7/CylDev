@@ -2,8 +2,8 @@ import { useRef, useState, type FormEvent } from "react";
 import { site } from "../../content/site";
 import { formulario as tf, orcamento } from "../../content/textos";
 import { botao, botaoCheio } from "../../shared/estilos";
-import { enviarContato, pareceSpam } from "../../shared/lib/emailjs";
-import { dadosEmailPedido, linkWhatsappPedido, type Pedido } from "../../shared/lib/pedido";
+import { emailjsConfigurado, enviarContato, pareceSpam } from "../../shared/lib/emailjs";
+import { dadosEmailPedido, linkEmailPedido, linkWhatsappPedido, type Pedido } from "../../shared/lib/pedido";
 
 const t = orcamento.carrinho;
 const origem = "negocios-carrinho";
@@ -49,10 +49,17 @@ export function useEnvioPedido(pedido: Pedido) {
   return { estado, aoEnviar };
 }
 
-type DadosProps = { pedido: Pedido; estado: EstadoEnvio; aoEnviar: (ev: FormEvent<HTMLFormElement>) => void };
+type DadosProps = {
+  pedido: Pedido;
+  estado: EstadoEnvio;
+  aoEnviar: (ev: FormEvent<HTMLFormElement>) => void;
+  /** Envio pelo site disponível. Sem EmailJS configurado, o formulário nem aparece. */
+  envioAtivo?: boolean;
+};
 
 /** Dados de contato para o envio pelo site. Nome e WhatsApp com tipo, autocomplete e teclado certos. */
-export function DadosDoPedido({ pedido, estado, aoEnviar }: DadosProps) {
+export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsConfigurado() }: DadosProps) {
+  if (!envioAtivo) return null;
   return (
     <section aria-labelledby="orc-dados-titulo">
       <h3 id="orc-dados-titulo" className="mb-1 text-[1.1rem] font-bold">
@@ -107,21 +114,26 @@ type AcoesProps = {
   estado: EstadoEnvio;
   /** Teclado aberto no celular: só o botão de enviar fica, para não tomar a tela. */
   compacto?: boolean;
+  /** Envio pelo site disponível. Sem EmailJS configurado, ficam só WhatsApp e e-mail. */
+  envioAtivo?: boolean;
 };
 
 /**
  * As duas formas de fechar, com o mesmo peso visual (mesmo botão cheio, mesma largura e altura):
  * pelo site e direto no WhatsApp (link wa.me, que abre o app no celular).
  */
-export function AcoesDoPedido({ pedido, estado, compacto = false }: AcoesProps) {
+export function AcoesDoPedido({ pedido, estado, compacto = false, envioAtivo = emailjsConfigurado() }: AcoesProps) {
   const link = linkWhatsappPedido(pedido, origem);
+  const linkEmail = envioAtivo ? null : linkEmailPedido(pedido, origem);
   const vazio = pedido.itens.length === 0;
   const base = `${botaoCheio} w-full cursor-pointer justify-center text-center font-[inherit] ${focoVisivel} disabled:cursor-not-allowed disabled:opacity-50`;
   return (
     <div className="grid gap-2 min-[26rem]:grid-cols-2">
-      <button className={base} type="submit" form={ID_FORM_PEDIDO} disabled={vazio || estado === "enviando"}>
-        {estado === "enviando" ? t.enviando : t.enviar}
-      </button>
+      {envioAtivo && (
+        <button className={base} type="submit" form={ID_FORM_PEDIDO} disabled={vazio || estado === "enviando"}>
+          {estado === "enviando" ? t.enviando : t.enviar}
+        </button>
+      )}
       {link ? (
         <a className={`${base} ${compacto ? "max-md:hidden" : ""}`} href={link} target="_blank" rel="noopener">
           {t.whatsappBotao}
@@ -130,6 +142,11 @@ export function AcoesDoPedido({ pedido, estado, compacto = false }: AcoesProps) 
         <button type="button" className={`${base} ${compacto ? "max-md:hidden" : ""}`} disabled>
           {t.whatsappBotao}
         </button>
+      )}
+      {linkEmail && (
+        <a className={`${base} ${compacto ? "max-md:hidden" : ""}`} href={linkEmail}>
+          {t.emailBotao}
+        </a>
       )}
     </div>
   );

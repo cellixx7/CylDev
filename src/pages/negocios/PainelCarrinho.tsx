@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type FocusEvent } from "react";
 import { orcamento } from "../../content/textos";
 import { botao, botaoCheio } from "../../shared/estilos";
+import { emailjsConfigurado } from "../../shared/lib/emailjs";
 import { brl } from "../../shared/lib/formato";
 import { resumoPrecoItem, type ItemPedido, type Pedido } from "../../shared/lib/pedido";
 import { totalCurto } from "./BarraCarrinho";
@@ -218,9 +219,11 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
                   />
                 </div>
 
-                <div className="mt-6 border-t-2 border-texto pt-4">
-                  <DadosDoPedido pedido={pedido} estado={estado} aoEnviar={aoEnviar} />
-                </div>
+                {emailjsConfigurado() && (
+                  <div className="mt-6 border-t-2 border-texto pt-4">
+                    <DadosDoPedido pedido={pedido} estado={estado} aoEnviar={aoEnviar} envioAtivo />
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -233,7 +236,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
                   {t.totalRodape}: <span className="font-mono font-bold [word-spacing:-0.3em]">{totalCurto(pedido)}</span>
                 </p>
               )}
-              <AcoesDoPedido pedido={pedido} estado={estado} compacto={editando} />
+              <AcoesDoPedido pedido={pedido} estado={estado} compacto={editando} envioAtivo={emailjsConfigurado()} />
             </footer>
           )}
         </>
