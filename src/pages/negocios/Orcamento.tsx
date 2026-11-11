@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { servicoOrcamentoPorId } from "../../content/perguntas";
 import { orcamento as t } from "../../content/textos";
-import { adicionar, estadoInicial, montarCombo, remover, responder, type EstadoCarrinho } from "../../shared/lib/carrinho-estado";
+import { adicionar, montarCombo, remover, responder, type EstadoCarrinho } from "../../shared/lib/carrinho-estado";
+import { lerCarrinho, salvarCarrinho } from "../../shared/lib/carrinho-persistencia";
 import type { AbaModal } from "../../shared/lib/hashServico";
 import { montarPedido } from "../../shared/lib/pedido";
 import { BarraCarrinho, ID_BOTAO_BARRA } from "./BarraCarrinho";
@@ -13,13 +14,15 @@ import { useServicoNaUrl } from "./useServicoNaUrl";
 /**
  * Orquestra a seção: cards, modal do serviço, barra do carrinho e painel do carrinho.
  * O estado do carrinho e das respostas vive aqui, fora dos dialogs, para sobreviver a fechar e reabrir.
+ * Ele também é guardado em sessionStorage (carrinho-persistencia.ts) e limpo depois de um envio com sucesso.
  *
  * Regra: nunca há dois dialogs abertos. Quem abre o carrinho a partir do modal fecha o modal antes
  * (sequencial, com o painel entrando só depois que o serviço saiu); e "Ajustar respostas" no carrinho
  * fecha o painel antes de abrir o serviço.
  */
 export function Orcamento() {
-  const [carrinho, setCarrinho] = useState<EstadoCarrinho>(estadoInicial);
+  // Restaura do sessionStorage (troca de página e recarregar). Só ids e respostas; o preço é recalculado.
+  const [carrinho, setCarrinho] = useState<EstadoCarrinho>(lerCarrinho);
   const [observacoes, setObservacoes] = useState("");
   const [painelAberto, setPainelAberto] = useState(false);
   const [aviso, setAviso] = useState("");
@@ -31,6 +34,9 @@ export function Orcamento() {
   const painelDepoisDoModal = useRef(false);
   const painelAnterior = useRef(false);
   const pularFocoDoPainel = useRef(false);
+
+  // Observações e o abre/fecha dos dialogs ficam de fora, de propósito.
+  useEffect(() => salvarCarrinho(carrinho), [carrinho]);
 
   const pedido = useMemo(() => montarPedido(carrinho.ids, carrinho.respostas, observacoes), [carrinho, observacoes]);
 

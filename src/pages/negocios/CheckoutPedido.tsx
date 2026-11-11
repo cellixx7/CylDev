@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { site } from "../../content/site";
 import { formulario as tf, orcamento } from "../../content/textos";
 import { botao, botaoCheio } from "../../shared/estilos";
+import { limparCarrinho } from "../../shared/lib/carrinho-persistencia";
 import { emailjsConfigurado, enviarContato, pareceSpam, TEMPO_MINIMO_MS } from "../../shared/lib/emailjs";
 import { validarTelefone } from "../../shared/lib/telefone";
 import { dadosEmailPedido, linkEmailPedido, linkWhatsappPedido, type Pedido } from "../../shared/lib/pedido";
@@ -66,6 +67,8 @@ export function useEnvioPedido(pedido: Pedido) {
     setEstado("enviando");
     try {
       await enviarContato(dadosEmailPedido(pedido, { nome: valor("nome"), whatsapp: tel.digitos }, origem));
+      // Envio confirmado: o pedido guardado sai, para a próxima visita começar vazia.
+      limparCarrinho();
       window.location.assign("/obrigado/");
     } catch {
       setEstado("falhou");
