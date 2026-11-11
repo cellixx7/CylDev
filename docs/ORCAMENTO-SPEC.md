@@ -89,7 +89,7 @@ Perguntas:
 2. Onde isso acontece hoje? [U]: No Excel +0; Em um sistema +2h; No WhatsApp ou e-mail +2h; Em vários lugares +3h. Ajuda: "Dentro do Excel é o mais simples. Quando a tarefa envolve um sistema, o WhatsApp ou vários lugares, é preciso ligar as peças, e isso soma horas."
 3. Dados sensíveis.
 
-### 04 Landing page (combinável)
+### 04 Site de uma página (combinável)
 Base R$ 300, 5 h. Prazo calculado.
 Resumo: "Uma página simples e rápida que apresenta o seu negócio e leva a pessoa a chamar você, de preferência pelo WhatsApp."
 Inclui: Página responsiva, pensada primeiro para o celular; Botão direto para o seu WhatsApp; Textos organizados com você na conversa; Um dia de revisão incluído no prazo.

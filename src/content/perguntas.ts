@@ -287,7 +287,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
   {
     id: "landing",
     numero: "04",
-    nome: "Landing page",
+    nome: "Site de uma página",
     resumo:
       "Uma página simples e rápida que apresenta o seu negócio e leva a pessoa a chamar você, de preferência pelo WhatsApp.",
     inclui: [

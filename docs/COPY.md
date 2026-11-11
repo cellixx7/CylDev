@@ -27,13 +27,13 @@ Versão 2, com as respostas de 02/11. Fonte dos textos em `src/content/textos.ts
 | Planilha organizada | R$ 100 | Sua planilha passa a ter uma aba por assunto, colunas padronizadas e totais que conferem. Fica mais fácil de preencher e de confiar nos números. | Limpeza dos dados que você já tem; fórmulas de total e resumo; instruções de uso em uma página |
 | Painel básico | R$ 200 | Você abre um arquivo e vê quanto vendeu, o que mais sai e como está o mês, sem montar conta. Dá para controlar estoque e vendas com número, e não no chute. | Excel (padrão) ou Power BI Desktop (arquivo `.pbix` e PDF); uma fonte de dados; até 5 indicadores; filtro por período |
 | Automação em Excel | a partir de R$ 300 | A tarefa que você repete toda semana na planilha passa a rodar com um clique. | VBA ou Power Query; instruções de uso |
-| Landing page básica | R$ 300 | Uma página com o seu serviço, seus preços e um botão que leva o cliente direto para o seu WhatsApp. | Uma página; versão para celular; publicação no ar, em hospedagem gratuita na sua conta; botão de WhatsApp |
+| Site de uma página | R$ 300 | Uma página com o seu serviço, seus preços e um botão que leva o cliente direto para o seu WhatsApp. | Uma página; versão para celular; publicação no ar, em hospedagem gratuita na sua conta; botão de WhatsApp |
 | Aulas de Excel ou programação | R$ 50/h ou 4 aulas por R$ 180 | Aula individual pelo computador, no seu ritmo, com os arquivos que você usa no trabalho. | Aula online; exercícios com o seu material |
 | Sistema sob medida | sob consulta | Quando a planilha já não dá conta e você precisa de um sistema próprio. Começa com uma conversa. | Conversa para entender o caso; proposta por escrito |
 
 Nota sob o painel: "Compartilhar um painel do Power BI online com a sua equipe exige licença paga do Power BI do lado de vocês. No Excel isso não é preciso. Eu explico as opções na conversa."
 
-Ajustes depois da entrega (planilha, painel e landing): R$ 50 por hora, sem mensalidade. `[PERGUNTA 7]`
+Ajustes depois da entrega (planilha, painel e site de uma página): R$ 50 por hora, sem mensalidade. `[PERGUNTA 7]`
 
 Dificuldade (para a calculadora): o preço e as horas dobram nos casos complexos (painel 4 h e R$ 200 no básico; 8 h e R$ 400 no complexo). `[PERGUNTA 4]`
 

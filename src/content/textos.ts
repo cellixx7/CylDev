@@ -42,7 +42,7 @@ export const orcamento = {
     carrinho: {
       /** Rótulo fixo: o estado (no carrinho ou não) vai em aria-pressed, não no texto. */
       rotulo: (nome: string) => `Carrinho: ${nome}`,
-      dicaCombinavel: "Adicionar ao carrinho. Planilha, painel, automação e landing juntos têm desconto.",
+      dicaCombinavel: "Adicionar ao carrinho. Planilha, painel, automação e site de uma página juntos têm desconto.",
       dica: "Adicionar ao carrinho.",
       dicaDentro: "No carrinho. Clique para tirar.",
     },
@@ -54,7 +54,7 @@ export const orcamento = {
     sobConsulta: "sob consulta",
     adicionado: (nome: string) => `${nome} no carrinho.`,
     removido: (nome: string) => `${nome} fora do carrinho.`,
-    comboTexto: "Dois ou mais entre planilha, painel, automação e landing têm desconto e um prazo só.",
+    comboTexto: "Dois ou mais entre planilha, painel, automação e site de uma página têm desconto e um prazo só.",
     comboBotao: "Pôr planilha, painel e automação no carrinho",
     comboAdicionado: "Planilha, painel e automação no carrinho.",
     /** Os bots de Discord não são vendidos aqui; a chamada leva para a seção de bots da Comunidade. */
