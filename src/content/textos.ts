@@ -252,7 +252,7 @@ export const negocios = {
         { nome: "Set", completo: "Setembro", valor: 20 },
         { nome: "Out", completo: "Outubro", valor: 22 },
         { nome: "Nov", completo: "Novembro", valor: 24 },
-        { nome: "Dez", completo: "Dezembro", valor: 30 },
+        { nome: "Dez", completo: "Dezembro", valor: 20 },
       ],
       categoriasTitulo: "Vendas por categoria",
       categorias: [
