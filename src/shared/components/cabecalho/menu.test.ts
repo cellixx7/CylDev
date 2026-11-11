@@ -13,3 +13,11 @@ describe("menu de Negócios", () => {
     expect(negocios.nav.map((l) => l.secao).filter(Boolean)).toEqual(["sobre", "entregas", "contato"]);
   });
 });
+
+describe("atalho da Comunidade", () => {
+  it("tem rótulo curto visível e mantém o aria-label longo contendo o texto visível", () => {
+    const a = negocios.atalhoComunidade;
+    expect(a.rotuloCurto).toBe("Comunidade");
+    expect(a.rotulo.toLowerCase()).toContain(a.rotuloCurto.toLowerCase());
+  });
+});

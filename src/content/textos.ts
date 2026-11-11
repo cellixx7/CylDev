@@ -204,6 +204,8 @@ export const negocios = {
   atalhoComunidade: {
     href: "/comunidade/",
     rotulo: "Ir para a área de comunidade (Discord e jogos)",
+    /** Texto visível ao lado do ícone (a partir de 640 px). O aria-label continua o rótulo longo. */
+    rotuloCurto: "Comunidade",
     dicaTitulo: "Conheça o CylDev",
     dicaTexto: "Tenha o seu próprio BOT do Discord com interface única sua e muito mais",
     /** Só aparece no toque (celular/tablet): no mouse o próprio controle já é o link. */
