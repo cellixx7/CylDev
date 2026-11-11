@@ -104,3 +104,14 @@ describe("card: botões e ícone de carrinho", () => {
     expect(dica).not.toMatch(/desconto/);
   });
 });
+
+describe("Como funciona: nomenclatura", () => {
+  it("o exemplo do painel usa o nome do serviço, com o título de apoio mantido", async () => {
+    const { exemplos } = await import("./exemplos");
+    const { servicoPorId } = await import("./servicos");
+    const e = exemplos.find((x) => x.id === "paineis")!;
+    expect(e.rotulo).toBe(servicoPorId("painel")!.nome);
+    expect(e.rotulo).toBe("Painel básico");
+    expect(e.titulo).toBe("Os números do mês numa tela só");
+  });
+});

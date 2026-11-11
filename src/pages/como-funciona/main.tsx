@@ -195,7 +195,7 @@ const visuais: Record<string, () => ReactNode> = {
 function Bloco({ e }: { e: Exemplo }) {
   const Visual = visuais[e.id];
   const servico = servicoPorId(e.servicoId);
-  const mensagem = `Quero algo como o exemplo "${e.rotulo}"${servico ? ` (${servico.nome})` : ""}.`;
+  const mensagem = `Quero algo como o exemplo "${e.rotulo}"${servico && servico.nome !== e.rotulo ? ` (${servico.nome})` : ""}.`;
   return (
     <section className="border-t border-linha target:bg-realce" id={e.id} aria-labelledby={`${e.id}-titulo`}>
       <p className="mb-2 font-mono text-[0.875rem] font-bold text-destaque">{e.rotulo}</p>
