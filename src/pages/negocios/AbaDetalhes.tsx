@@ -1,3 +1,4 @@
+import { servicosComDemo } from "../../content/demoPlanilha";
 import type { ServicoOrcamento } from "../../content/perguntas";
 import { servicoPorId } from "../../content/servicos";
 import { orcamento } from "../../content/textos";
@@ -10,6 +11,7 @@ const titulo = "mb-1 mt-6 text-[1rem] font-bold first:mt-0";
 /** Aba Detalhes: o que é, o que você recebe, prazo, mensalidade e notas. Tudo vem de perguntas.ts e servicos.ts. */
 export function AbaDetalhes({ modelo }: { modelo: ServicoOrcamento }) {
   const s = servicoPorId(modelo.id);
+  const demoId = servicosComDemo[modelo.id];
   const prazo = s ? textoPrazo(s) : null;
   const mensalidade = s ? textoMensalidade(s) : null;
   const notas = [...modelo.notas, ...(s?.nota && !modelo.notas.includes(s.nota) ? [s.nota] : [])];
@@ -24,6 +26,17 @@ export function AbaDetalhes({ modelo }: { modelo: ServicoOrcamento }) {
           <li key={item}>{item}</li>
         ))}
       </ul>
+
+      {demoId && (
+        <p className="mt-4 mb-0">
+          <a
+            className="inline-flex min-h-alvo items-center font-semibold"
+            href={`/como-funciona/#${demoId}`}
+          >
+            {t.verComoFunciona}
+          </a>
+        </p>
+      )}
 
       {(prazo || mensalidade) && (
         <dl className="mt-6 mb-0 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 text-[1rem]">

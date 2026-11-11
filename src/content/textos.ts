@@ -82,6 +82,7 @@ export const orcamento = {
     abas: { detalhes: "Detalhes", orcamento: "Orçamento" },
     oQueE: "O que é",
     voceRecebe: "O que você recebe",
+    verComoFunciona: "Ver como funciona",
     notas: "Notas",
     prazo: "Prazo",
     mensalidade: "Mensalidade",
