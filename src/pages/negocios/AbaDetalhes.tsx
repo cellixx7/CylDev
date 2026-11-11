@@ -1,4 +1,4 @@
-import { servicosComDemo } from "../../content/demoPlanilha";
+import { servicosComDemo } from "../../content/demos";
 import type { ServicoOrcamento } from "../../content/perguntas";
 import { servicoPorId } from "../../content/servicos";
 import { orcamento } from "../../content/textos";

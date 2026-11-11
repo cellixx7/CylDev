@@ -57,8 +57,8 @@ test.describe("demonstração animada da planilha", () => {
   test("o card e os outros serviços não ganham o link", async ({ page }) => {
     await page.goto("/");
     await expect(card(page, ID_SERVICO).getByRole("link", { name: t.modal.verComoFunciona })).toHaveCount(0);
-    const outro = servicoPorId("painel")!;
-    await card(page, "painel").getByRole("button", { name: `${t.cards.verDetalhes}: ${outro.nome}` }).click();
+    const outro = servicoPorId("aulas")!;
+    await card(page, "aulas").getByRole("button", { name: `${t.cards.verDetalhes}: ${outro.nome}` }).click();
     await expect(modalServico(page).getByRole("link", { name: t.modal.verComoFunciona })).toHaveCount(0);
   });
 

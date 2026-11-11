@@ -1,33 +1,15 @@
 import { demoPlanilha, type LinhaDemo } from "../../content/demoPlanilha";
+import { reduzirPassos, type AcaoDemo, type EstadoDemo } from "./demoMaquina";
 
-// Máquina de passos da demonstração. Lógica pura: o componente só desenha e liga o relógio.
+// Passos da demonstração da planilha, sobre a máquina comum (demoMaquina.ts).
 // Passo 0 = a tabela bagunçada. Passo N = depois de aplicar os N primeiros passos de `demoPlanilha.passos`.
 
-export type EstadoDemo = { passo: number; tocando: boolean };
-export type AcaoDemo = "reproduzir" | "pausar" | "avancar" | "verResultado" | "recomecar";
+export type { AcaoDemo, EstadoDemo } from "./demoMaquina";
+export { estadoInicialDemo } from "./demoMaquina";
 
 export const ultimoPasso = demoPlanilha.passos.length;
-export const estadoInicialDemo: EstadoDemo = { passo: 0, tocando: false };
 
-export function reduzirDemo(estado: EstadoDemo, acao: AcaoDemo): EstadoDemo {
-  switch (acao) {
-    case "reproduzir":
-      // No final, "Reproduzir" começa de novo em vez de não fazer nada.
-      return estado.passo >= ultimoPasso ? { passo: 0, tocando: true } : { ...estado, tocando: true };
-    case "pausar":
-      return { ...estado, tocando: false };
-    case "avancar": {
-      // Um relógio atrasado não anda depois de uma pausa.
-      if (!estado.tocando || estado.passo >= ultimoPasso) return estado;
-      const passo = estado.passo + 1;
-      return { passo, tocando: passo < ultimoPasso };
-    }
-    case "verResultado":
-      return { passo: ultimoPasso, tocando: false };
-    case "recomecar":
-      return estadoInicialDemo;
-  }
-}
+export const reduzirDemo = (estado: EstadoDemo, acao: AcaoDemo): EstadoDemo => reduzirPassos(estado, acao, ultimoPasso);
 
 export type CelulasLinha = {
   id: string;

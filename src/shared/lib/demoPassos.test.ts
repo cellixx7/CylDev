@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { demoPlanilha, servicosComDemo } from "../../content/demoPlanilha";
+import { demoPlanilha } from "../../content/demoPlanilha";
+import { servicosComDemo } from "../../content/demos";
 import { exemplos } from "../../content/exemplos";
 import { cabecalhoDoPasso, estadoInicialDemo, linhasDoPasso, reduzirDemo, totalDoPasso, ultimoPasso } from "./demoPassos";
 

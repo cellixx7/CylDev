@@ -1,4 +1,6 @@
 // Demonstração animada da planilha (página Como funciona). Todo texto e todo dado ficam aqui.
+import { demoComum, type PassoDemo } from "./demos";
+
 // Os dados são fictícios e a página os rotula assim. Nenhum número aqui é resultado real de cliente.
 
 export type LinhaDemo = {
@@ -13,28 +15,12 @@ export type LinhaDemo = {
   saiNoPasso?: number;
 };
 
-export type PassoDemo = { titulo: string; descricao: string };
-
 export const demoPlanilha = {
+  ...demoComum,
   titulo: "Veja uma planilha sendo arrumada",
-  rotulo: "Exemplo com dados fictícios",
-  intervaloMs: 2200,
   resultado: "Agora eu consigo preencher e conferir sem me perder.",
-  /** O que o visitante vê antes de apertar "Reproduzir". */
-  dica: "Aperte Reproduzir para ver cada passo, ou Ver resultado para ir direto ao final.",
-  controles: {
-    reproduzir: "Reproduzir",
-    pausar: "Pausar",
-    verResultado: "Ver resultado",
-    recomecar: "Recomeçar",
-  },
-  rotuloControles: "Controles da demonstração",
-  passoAtual: (n: number, total: number) => `Passo ${n} de ${total}`,
   comecoRotulo: "Como a planilha chega",
   comecoDescricao: "Datas e nomes escritos de jeitos diferentes, linhas repetidas e uma linha vazia.",
-  listaPassosRotulo: "O que muda em cada passo",
-  antes: "Antes",
-  depois: "Depois",
   tabelaAntes: "Tabela antes da arrumação",
   tabelaDepois: "Tabela depois da arrumação",
   tabelaAtual: "Tabela de exemplo",
