@@ -134,6 +134,18 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **P1-01 menu:** Sobre, Entregas e Contato saem do menu pelas flags `site.menuSecoes` (religue com `true` quando a seção existir; as seções vazias continuam no HTML). Não havia contato visível fora do carrinho, então o rodapé de Negócios e de Como funciona ganhou "Prefere falar direto? Chame no WhatsApp".
 - **P2-03 telefone:** `validarTelefone` (`telefone.ts`): só dígitos, 10 ou 11 dígitos, DDD de 11 a 99, 55 opcional (removido só com 12 ou 13 dígitos). O envio leva `55` + número. Erro específico no campo, com `aria-invalid`, `aria-describedby` e `role="alert"`. O `pattern` antigo saiu.
 - **P2-02 gráfico mensal:** cada mês expõe "Janeiro, R$ 12 mil" em texto só para leitor de tela; o valor visível e a barra ficam `aria-hidden`; a lista de iniciais continua `aria-hidden`.
-- **P2-01 painel de exemplo:** os meses somavam R$ 224 mil e o KPI e as regiões R$ 214 mil. Menos números mexidos: só **Dezembro, de 30 para 20** (mantém KPI, regiões, pedidos x ticket e variação). Teste: soma mensal = KPI = soma das regiões. Continua rotulado como exemplo.
+- **P2-01 painel de exemplo:** os meses somavam R$ 224 mil e o KPI e as regiões R$ 214 mil. Correção escolhida pelo Marcelo: Ago 18→16, Set 20→18, Out 22→20, Nov 24→20, com Dezembro em 30 (pico mantido); KPI, regiões, pedidos x ticket e variação não mudaram. Nenhum texto do site cita "melhor mês" ou crescimento do gráfico. Teste: soma mensal = KPI = soma das regiões. Continua rotulado como exemplo.
 - **P3-01 Comunidade:** rótulo visível "Comunidade" ao lado do ícone a partir de 640 px (`sm`). No celular não cabe ao lado da marca em 360 e 390 px; o `aria-label` longo continua.
 - **P3-02 nomenclatura:** em Como funciona, o rótulo do exemplo do painel passou de "Painel" para "Painel básico" (`exemplos.ts`, a pedido), com o título de apoio mantido.
+- **"Enviar por e-mail":** o endereço do mailto é o `site.email` de `src/content/site.ts`. O botão só aparece se esse valor for um e-mail real (`emailReal`: formato de endereço, sem colchetes nem "exemplo"); com placeholder ou vazio, fica só o WhatsApp.
+- **Menu da Comunidade:** "Contato" apontava para `/#contato`, a seção vazia da home de Negócios. Agora aponta para `#contato`, a seção de contato da própria Comunidade (WhatsApp e e-mail).
+
+## Pedido preservado entre páginas (P1-02, 11/11/2026)
+
+**Substitui a decisão D3 ("sem persistência", só memória) do prompt dos cards com modal.**
+
+- **O que é guardado:** em `sessionStorage`, chave `carrinho-negocios`: versão do formato (`v: 1`), ids dos serviços no carrinho e respostas (ids de pergunta e de opção). **Nunca** nome, telefone, e-mail, observações nem preço. Acesso sempre em try/catch (`carrinho-persistencia.ts`).
+- **Ao restaurar:** valida contra os serviços e perguntas atuais; id de serviço, pergunta ou opção que não existe mais é descartado; versão desconhecida ou texto corrompido volta ao carrinho vazio. Não existe preço salvo: o valor sai sempre de `montarPedido`/`calcularServico` com as respostas restauradas.
+- **Regra:** restaura ao navegar entre páginas e ao recarregar (mesma aba); limpa depois de um envio pelo site com sucesso (o descarte silencioso de spam não limpa); o abre/fecha do modal e do painel não é persistido; as observações também não.
+- **Não limpa:** clicar em "Chamar no WhatsApp" ou "Enviar por e-mail" (o site não tem como saber se a mensagem foi enviada). Fechar a aba encerra a sessão e o carrinho some.
+- **Pendente:** verificação no navegador (ida a Como funciona e volta) fica para os testes de jornada do P4-03.
