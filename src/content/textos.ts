@@ -391,7 +391,7 @@ export const comunidade = {
 
 export const obrigado = {
   titulo: "Mensagem recebida.",
-  texto: "Obrigado pelo contato. Respondo pelo WhatsApp ou e-mail que você deixou.",
+  texto: "Obrigado pelo contato. Respondo pelo WhatsApp que você deixou.",
   voltar: "Voltar para o site",
 };
 

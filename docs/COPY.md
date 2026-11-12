@@ -75,6 +75,6 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 ## Comum
 
 - Privacidade: "Este site não usa ferramentas de rastreamento. O que você mandar pelo formulário ou pelo WhatsApp serve só para eu responder o seu contato. O formulário é enviado pelo serviço EmailJS."
-- Obrigado: "Mensagem recebida." / "Obrigado pelo contato. Respondo pelo WhatsApp ou e-mail que você deixou."
+- Obrigado: "Mensagem recebida." / "Obrigado pelo contato. Respondo pelo WhatsApp que você deixou."
 - 404: "Essa página não existe." / "O link pode estar errado ou a página mudou de lugar. Se precisar de ajuda, escreva para marcelovaz.contato@gmail.com."
 - Mensagem do WhatsApp: "Oi, Marcelo! Vim pelo site (origem: negocios)." Nos pacotes, a origem vira `negocios-painel`, `comunidade-bot-essencial` etc., seguida de "Quero um orçamento de: [nome do pacote] ([preço])." O preço **sai do `servicos.ts`**, nunca escrito à mão no texto.
