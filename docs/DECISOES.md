@@ -275,3 +275,16 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Aulas:** o pedido citava "piloto não vale para aulas", mas as aulas saíram do catálogo (ver acima). O texto diz que o piloto não vale para a mensalidade nem para o sistema sob consulta.
 - **E-mail e WhatsApp:** nenhum texto novo entrou neles.
 - **Contraste:** só usa os tokens já auditados (texto, texto suave, destaque, linha); não rodei auditoria nova nos dois temas com o diálogo aberto.
+
+## Sistema sob medida com orçamento base (12/11/2026)
+
+- **PENDENTE (Marcelo confirmar):** preço-base provisório de **20 horas x R$ 50 = a partir de R$ 1.000** (`HORAS_BASE_SISTEMA` em `servicos.ts`) e **todas as horas das respostas** (`perguntasSistema.ts`, um arquivo só, sem número em componente). O sistema deixou de ser "sob consulta".
+- **Prazo:** o `prazo.ts` não cobre sistemas, então o item usa `horasProvisorias` e mostra "prazo a combinar", sem hora calculada (como os bots). A tela "Por que esse valor?" mostra o valor das respostas e "horas e prazo: a combinar".
+- **Combo e piloto (regras existentes, sem mudança):** o sistema **não** é combinável (continua fora do combo e do prazo único). Mudança de comportamento: como deixou de ser sob consulta, **agora recebe o piloto** como criação (antes ficava de fora). Se não for o desejado, é só voltar a tratá-lo à parte no `calcularCarrinho`.
+- **Modelo condicional:** `Opcao.abre?: Pergunta[]` (máx. 2 por opção), no máx. 2 níveis abaixo da principal (`LIMITES_ARVORE`), ids únicos no serviço; a mesma filha pode ser aberta por duas opções da mesma pai (ex.: clientes e público abrem login e cadastro). Teste percorre a árvore de todos os serviços (ciclos, níveis, ids).
+- **Visíveis:** `perguntasVisiveis*` (em `orcamento.ts`) decide o que aparece; preço, "X de Y", pedido, e-mail, WhatsApp e "Por que esse valor?" usam só as visíveis. `responder()` poda as filhas que sumiram (resposta descartada). Ao restaurar o carrinho, respostas órfãs ou de perguntas que não existem mais são ignoradas.
+- **Persistência:** formato igual (só ids e respostas), então `VERSAO_CARRINHO` continua 1; o descarte seguro já cobre as respostas antigas do sistema (`resolver`, `quando`), que deixaram de existir.
+- **Perguntas antigas:** "O que você precisa resolver?" e "Para quando?" saíram para caber no teto; o campo de observações do carrinho cobre esse contexto.
+- **Pior caso:** 8 principais + 12 filhas = **20 perguntas visíveis** (acima da meta de ~16; cada ramo abre 2). Caso típico: 8 a 12. No celular mantive a lista única com a barra de progresso (quebra de linha) em vez de etapas: é o padrão atual e o mais simples; filhas vêm recuadas, com fade curto (some com movimento reduzido) e sem roubar o foco.
+- **Textos:** "O valor depende do que a automação vai fazer" virou "do que vai ser feito" (valia também para o sistema); a regra geral do "Por que esse valor?" agora diz que o piloto não vale para a mensalidade.
+- **E-mail e WhatsApp:** nenhum texto novo; só passam a listar as perguntas visíveis do sistema.

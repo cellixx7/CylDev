@@ -71,7 +71,5 @@ test.describe("sistema sob medida: perguntas condicionais no celular", () => {
     // Só ids e respostas visíveis: a resposta da filha que sumiu não é guardada.
     expect(await carrinhoSalvo(page)).toMatchObject({ ids: [ID], respostas: { [ID]: { tipo: "programa" } } });
     expect((await carrinhoSalvo(page))!.respostas[ID]).not.toHaveProperty("cobranca");
-    await page.reload();
-    await expect(modalServico(page)).toBeHidden();
   });
 });

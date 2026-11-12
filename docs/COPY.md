@@ -102,3 +102,15 @@ Fonte: `orcamento.valor` em `src/content/textos.ts`. Botão "Por que esse valor?
 
 **2. No seu pedido** (só com serviço): por serviço, uma tabela com o preço-base, cada resposta que somou horas (resposta, horas x R$ por hora, valor) e a soma do serviço; avisos de "sem resposta (ainda não somam)", "horas e prazo: a combinar" (bots) e a mensalidade à parte. Fechamento: soma de tabela, desconto (qual e por quê, inclusive "o piloto abateu mais que o combo", "o combo abateu X; o piloto abateria Y" ou empate: vale o combo) e total estimado. Última linha: "O que mais mudaria este valor: <serviço>: <perguntas que somam horas>."
 - Carrinho vazio: "Seu pedido está vazio. Quando você adicionar um serviço, o detalhamento do valor aparece aqui." (só a parte 1)
+
+## Sistema sob medida: orçamento base (12/11/2026) — PENDENTE
+
+Fontes: `servicos.ts` (preço-base), `perguntasSistema.ts` (árvore de perguntas e horas) e `textos.ts`. **PENDENTE:** o preço-base (20 h x R$ 50 = a partir de R$ 1.000) e todas as horas das respostas são provisórios, a confirmar pelo Marcelo.
+
+- Card: "SaaS, site, aplicativo ou programa feito do zero. O valor é um ponto de partida; a proposta fecha o escopo." Nota: "O valor é um ponto de partida: a proposta por escrito fecha o escopo."
+- Guia: "Você monta um orçamento base respondendo às perguntas. O valor é um ponto de partida: depois da conversa, a proposta por escrito fecha o escopo."
+- Como funciona (passos): Orçamento base no site; Conversa e proposta escrita; Entrada de 50%; Entrega por etapas.
+- Perguntas principais (8): tipo de sistema; quem vai usar; pagamento; outros sistemas; volume de dados; relatórios e gráficos; hospedagem (à parte, não muda o valor); dados sensíveis. Cada resposta pode abrir até 2 perguntas (ex.: SaaS abre "Como será cobrado?" e "Quantos tipos de usuário?"; aplicativo abre "Onde vai rodar?" e "Precisa funcionar sem internet?"). O texto completo de cada pergunta, opção e ajuda está em `perguntasSistema.ts`.
+- Anúncio ao abrir filhas (role="status"): "2 perguntas novas sobre tipo de sistema, logo abaixo."
+- Prazo: "prazo a combinar" (o prazo.ts não cobre sistemas).
+- Política e termos: "Eu monto um texto-base com você. Não é parecer jurídico."
