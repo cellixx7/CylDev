@@ -5,7 +5,7 @@
 - **Stack:** Vite multi-page + React + TypeScript + Tailwind v4 (`@tailwindcss/vite`), com tokens nos temas em `src/styles/`. Produção depende só de `react` e `react-dom`. Classes repetidas ficam em `src/shared/estilos.ts`, como strings literais completas.
 - **Páginas:** `index.html` (Negócios na raiz), `como-funciona/`, `comunidade/`, `obrigado/`, `404.html`, declaradas em `vite.config.ts`.
 - **Open Graph:** o build troca `__URL__` nos HTML pela variável `URL` da Netlify (ou `site.urlPadrao`). Imagens em `public/og-*-v1.png`; ao trocar a imagem, mude o sufixo (`-v2`) por causa do cache do WhatsApp.
-- **Tema:** `data-theme` no `<html>`, escuro por padrão em todas as áreas; um script inline aplica a escolha salva antes da pintura. Chave por área (`tema-negocios`, `tema-comunidade`), leitura e escrita em `try/catch`.
+- **Tema:** `data-theme` no `<html>`, claro por padrão em Negócios (e nas páginas compartilhadas: /como-funciona/, /obrigado/, /privacidade/, 404, que usam a chave `tema-negocios`) e escuro por padrão na Comunidade, sem seguir `prefers-color-scheme`; um script inline aplica a escolha salva antes da pintura. Chave por área (`tema-negocios`, `tema-comunidade`), leitura e escrita em `try/catch`.
 - **Formulário:** ver V1.1 (EmailJS).
 - **Fontes:** locais, em `public/fonts/` (`font-display: swap`): Space Grotesk nos títulos e no texto e Space Mono nos preços e números (Negócios).
 - **Visual:** Negócios usa cobalto sobre off-white frio (claro) e azul-noite (escuro), com um só acento (`src/styles/tema-negocios.css`); a Comunidade tem tema próprio em `src/styles/tema-comunidade.css`. Sem degradê, vidro ou blur e sem emoji como ícone. (A paleta grafite com terracota das primeiras versões foi substituída.)
@@ -241,3 +241,11 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Prazo de guarda:** e-mails de pedidos por até 12 meses (escolha do Marcelo). É uma promessa a cumprir: apagar a cada 12 meses, e o registro do envio no painel do EmailJS, se houver. A conversa no WhatsApp: "enquanto precisar para atendimento e entrega", sem número.
 - **Limites:** não é parecer jurídico; não verifiquei a política interna de retenção do EmailJS nem os logs da Netlify (a página só diz que podem existir). A linha do carrinho aparece só com o EmailJS ativo (é o formulário que a contém).
 
+
+## Tema claro como padrão em Negócios (2026-11-12)
+
+- **Regra:** sem escolha salva, Negócios abre em claro mesmo com o sistema em modo escuro. Escolha salva em `tema-negocios` é mantida; o botão de alternar continua. Comunidade segue escura por padrão. O padrão está em três lugares que precisam andar juntos: `data-theme` e `meta theme-color` (`#f2f4f8`) de cada HTML e `temaPadrao` em `CabecalhoNegocios.tsx`.
+- **Páginas compartilhadas:** /como-funciona/, /obrigado/, /privacidade/ e 404 usam a chave `tema-negocios`; sem escolha salva, claro. Não há rastreio de "área de origem" além da escolha salva.
+- **CSP:** o script inline não mudou (lê só a escolha salva) e a política usa `'unsafe-inline'`, sem hash; `netlify.toml` ficou como estava. Conferi no build: hash do script de Negócios `I7j5xP3oeM2+PeDUHqJxAW3nPCMfDUS6gkkJRkQmAJI=`, igual em todas as páginas.
+- **Contraste (claro):** tokens passam AA (texto 16,9:1; texto suave 7,0:1; destaque 6,7:1; botão 7,4:1). Auditoria automática do texto renderizado (home, como funciona, privacidade, obrigado, 404 e modal, em 360 e 1280 px, nos dois temas): nenhuma falha, nada foi alterado na paleta. Não cobri o painel do carrinho com itens.
+- **Testes:** `src/shared/tema.test.ts` e `e2e/tema.spec.ts` (claro mesmo com o sistema escuro, Comunidade escura, escolha salva mantida).
