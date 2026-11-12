@@ -12,6 +12,8 @@ export const horasExtrasPendentes = true;
 export type Opcao = {
   id: string;
   rotulo: string;
+  /** Explicação curta da resposta, no botão "i" ao lado dela. Opcional: só onde a resposta tem jargão ou pode ser confundida. */
+  ajuda?: string;
   /** Horas extras que esta opção soma (escolha única). Sem o campo, não muda o valor. */
   horas?: number;
   /**
@@ -204,7 +206,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         tipo: "unica",
         opcoes: [
           { id: "planilha", rotulo: "Uma planilha minha", horas: 0 },
-          { id: "exportacao", rotulo: "Exportação de um sistema", horas: 1 },
+          { id: "exportacao", rotulo: "Exportação de um sistema", ajuda: "Um arquivo que você baixa de outro programa (por exemplo, o sistema da loja), geralmente em Excel ou CSV.", horas: 1 },
           { id: "varios", rotulo: "Vários arquivos soltos", horas: 2 },
           { id: "nenhum", rotulo: "Ainda não tenho", horas: 2 },
         ],
@@ -235,7 +237,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         tipo: "unica",
         opcoes: [
           { id: "excel", rotulo: "Excel", horas: 0 },
-          { id: "powerbi", rotulo: "Power BI (arquivo)", horas: 1 },
+          { id: "powerbi", rotulo: "Power BI (arquivo)", ajuda: "Power BI é um programa da Microsoft para gráficos. Aqui eu entrego um arquivo para abrir nele; para compartilhar pela internet a Microsoft exige licença paga.", horas: 1 },
           { id: "nao-sei", rotulo: "Não sei", horas: 0 },
         ],
         ajuda:
@@ -267,7 +269,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         gratis: 1,
         horasPorExtra: 2,
         opcoes: [
-          { id: "planilha", rotulo: "Planilha que se preenche sozinha" },
+          { id: "planilha", rotulo: "Planilha que se preenche sozinha", ajuda: "A planilha recebe os dados sem você digitar, por exemplo vindos de outro arquivo." },
           { id: "avisos", rotulo: "Avisos e mensagens" },
           { id: "juntar", rotulo: "Juntar dados de vários lugares" },
           { id: "nao-sei", rotulo: "Ainda não sei" },
@@ -282,7 +284,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         tipo: "unica",
         opcoes: [
           { id: "excel", rotulo: "No Excel", horas: 0 },
-          { id: "sistema", rotulo: "Em um sistema", horas: 2 },
+          { id: "sistema", rotulo: "Em um sistema", ajuda: "O programa de gestão ou a loja virtual que você já usa.", horas: 2 },
           { id: "mensagens", rotulo: "No WhatsApp ou e-mail", horas: 2 },
           { id: "varios", rotulo: "Em vários lugares", horas: 3 },
         ],
@@ -321,7 +323,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "whatsapp", rotulo: "Receber contatos no WhatsApp" },
           { id: "servicos", rotulo: "Mostrar serviços e preços" },
           { id: "fotos", rotulo: "Mostrar fotos e trabalhos" },
-          { id: "agendamentos", rotulo: "Receber agendamentos" },
+          { id: "agendamentos", rotulo: "Receber agendamentos", ajuda: "O cliente escolhe dia e hora direto pela página." },
         ],
         ajuda:
           "A página funciona melhor com poucos objetivos. Os dois primeiros estão incluídos. Cada um a mais é trabalho extra, e a tela mostra quanto.",
@@ -345,8 +347,8 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         curto: "Número de páginas",
         tipo: "unica",
         opcoes: [
-          { id: "uma", rotulo: "Uma página só", horas: 0 },
-          { id: "tres", rotulo: "Até 3 páginas", horas: 3 },
+          { id: "uma", rotulo: "Uma página só", ajuda: "Tudo em uma só página, que rola de cima para baixo.", horas: 0 },
+          { id: "tres", rotulo: "Até 3 páginas", ajuda: "Páginas separadas, por exemplo serviços e contato, em vez de tudo em uma rolagem só.", horas: 3 },
         ],
         ajuda:
           "Uma página só rola de cima para baixo, com tudo. Várias páginas separam, por exemplo, serviços e contato, e isso muda o valor.",
@@ -382,7 +384,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "juntar", rotulo: "Juntar planilhas ou arquivos" },
           { id: "ler", rotulo: "Ler PDFs ou notas e passar para planilha" },
           { id: "enviar", rotulo: "Enviar e-mails ou mensagens" },
-          { id: "buscar", rotulo: "Buscar dados de sites" },
+          { id: "buscar", rotulo: "Buscar dados de sites", ajuda: "O programa abre páginas da internet e copia as informações que você precisa." },
           { id: "relatorio", rotulo: "Gerar um relatório pronto" },
           { id: "nao-sei", rotulo: "Ainda não sei" },
         ],
@@ -395,8 +397,8 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         curto: "Origem dos dados",
         tipo: "unica",
         opcoes: [
-          { id: "planilha", rotulo: "De planilhas ou arquivos CSV", horas: 0 },
-          { id: "pdf", rotulo: "De PDFs ou imagens", horas: 1 },
+          { id: "planilha", rotulo: "De planilhas ou arquivos CSV", ajuda: "CSV é um arquivo simples de tabela, que qualquer planilha abre. É o caso mais fácil de tratar.", horas: 0 },
+          { id: "pdf", rotulo: "De PDFs ou imagens", ajuda: "Ler o texto de PDFs e de fotos de notas pede conferência, porque a leitura automática pode errar.", horas: 1 },
           { id: "site", rotulo: "De um site ou sistema", horas: 2 },
           { id: "varios", rotulo: "De vários lugares", horas: 3 },
         ],
@@ -410,8 +412,8 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         tipo: "unica",
         opcoes: [
           { id: "manual", rotulo: "Eu rodo quando quiser", horas: 0 },
-          { id: "agendado", rotulo: "Sozinho, em horário marcado", horas: 1 },
-          { id: "tela", rotulo: "Com uma tela de botões", horas: 2 },
+          { id: "agendado", rotulo: "Sozinho, em horário marcado", ajuda: "O programa roda por conta própria, por exemplo todo dia às 8h, sem você abrir nada.", horas: 1 },
+          { id: "tela", rotulo: "Com uma tela de botões", ajuda: "Uma janelinha com botões, para qualquer pessoa usar sem mexer em código.", horas: 2 },
         ],
         ajuda:
           "Rodar quando você quiser é o mais simples. Em horário marcado exige configurar o agendamento, e uma tela de botões é um pequeno programa à parte.",
@@ -447,9 +449,9 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         horasPorExtra: 1,
         opcoes: [
           { id: "boas-vindas", rotulo: "Boas-vindas e regras" },
-          { id: "tickets", rotulo: "Tickets de suporte" },
+          { id: "tickets", rotulo: "Tickets de suporte", ajuda: "Um canal privado que o bot abre para atender uma pessoa." },
           { id: "anuncios", rotulo: "Anúncios" },
-          { id: "cargos", rotulo: "Cargos por reação" },
+          { id: "cargos", rotulo: "Cargos por reação", ajuda: "A pessoa ganha um cargo no servidor ao clicar em um emoji." },
         ],
         ajuda:
           "Ticket é um canal privado que o bot abre para atender uma pessoa. Cargo por reação é quando a pessoa ganha um cargo ao clicar em um emoji. As duas primeiras funções estão incluídas. Cada uma a mais é trabalho extra, e a tela mostra quanto.",
@@ -460,8 +462,8 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         curto: "Hospedagem",
         tipo: "unica",
         opcoes: [
-          { id: "marcelo", rotulo: "O Marcelo hospeda" },
-          { id: "eu", rotulo: "Eu mesmo hospedo" },
+          { id: "marcelo", rotulo: "O Marcelo hospeda", ajuda: "Eu mantenho o bot ligado o tempo todo em um servidor. Por isso existe a mensalidade." },
+          { id: "eu", rotulo: "Eu mesmo hospedo", ajuda: "Você mantém o bot ligado por conta própria, em um computador ou servidor seu." },
           { id: "nao-sei", rotulo: "Não sei" },
         ],
         ajuda:
@@ -496,9 +498,9 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         gratis: 1,
         horasPorExtra: 2,
         opcoes: [
-          { id: "duvidas", rotulo: "Dúvidas frequentes" },
-          { id: "conversa", rotulo: "Conversa livre" },
-          { id: "regras", rotulo: "Ajuda com regras" },
+          { id: "duvidas", rotulo: "Dúvidas frequentes", ajuda: "A IA responde as perguntas que se repetem, com base em textos que você me passa." },
+          { id: "conversa", rotulo: "Conversa livre", ajuda: "A IA responde sobre vários assuntos, não só os que você definiu. Pede mais cuidado com os limites." },
+          { id: "regras", rotulo: "Ajuda com regras", ajuda: "A IA explica as regras do servidor e orienta quem tem dúvida sobre elas." },
           { id: "nao-sei", rotulo: "Ainda não sei" },
         ],
         ajuda:
@@ -511,7 +513,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
         tipo: "unica",
         opcoes: [
           { id: "sim", rotulo: "Sim", horas: 0 },
-          { id: "ajuda", rotulo: "Não, preciso de ajuda", horas: 1 },
+          { id: "ajuda", rotulo: "Não, preciso de ajuda", ajuda: "Eu explico o caminho para abrir a conta no provedor de IA.", horas: 1 },
           { id: "nao-sei", rotulo: "Não sei o que é", horas: 1 },
         ],
         ajuda:

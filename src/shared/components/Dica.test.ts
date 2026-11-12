@@ -75,3 +75,21 @@ describe("toda pergunta tem `ajuda`", () => {
     }
   });
 });
+
+describe("`ajuda` nas respostas marcáveis", () => {
+  const opcoes = servicosOrcamento.flatMap((s) => todasAsPerguntas(s.perguntas).flatMap((p) => p.opcoes.map((o) => ({ servico: s.id, p, o }))));
+
+  it("as respostas do tipo de sistema (SaaS, site com login, aplicativo, programa) têm explicação", () => {
+    const tipo = servicosOrcamento.find((s) => s.id === "sistema")!.perguntas.find((p) => p.id === "tipo")!;
+    for (const o of tipo.opcoes) expect(o.ajuda, `tipo/${o.id}`).toBeTruthy();
+  });
+
+  it("textos curtos, sem preço nem prazo", () => {
+    const comAjuda = opcoes.filter(({ o }) => o.ajuda);
+    expect(comAjuda.length).toBeGreaterThan(20);
+    for (const { servico, p, o } of comAjuda) {
+      expect(o.ajuda, `${servico}/${p.id}/${o.id}`).not.toMatch(/R\$|\d+ horas?|prazo|dias?/i);
+      expect(o.ajuda!.length, `${servico}/${p.id}/${o.id}: longa demais`).toBeLessThanOrEqual(320);
+    }
+  });
+});

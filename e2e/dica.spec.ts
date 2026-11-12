@@ -46,6 +46,18 @@ test.describe("dica (i) das perguntas: celular de 360 px", () => {
     await expect(balaoVisivel(page)).toHaveCount(0);
   });
 
+  test("i na resposta (SaaS): abre a explicação sem marcar a opção e sem cortar", async ({ page }) => {
+    await page.goto("/#sistema/orcamento");
+    const saas = servico.perguntas.find((q) => q.id === "tipo")!.opcoes.find((o) => o.id === "saas")!;
+    const botao = modalServico(page).getByRole("button", { name: t.painel.ajudaRotulo(saas.rotulo) });
+    await botao.tap();
+    await expect(botao).toHaveAttribute("aria-expanded", "true");
+    await expect(balaoVisivel(page)).toContainText("SaaS é um sistema na internet");
+    await balaoDentroDaTela(page, balaoVisivel(page));
+    await expect(opcao(page, ID, "tipo", "saas").entrada).not.toBeChecked();
+    await semRolagemHorizontal(page);
+  });
+
   test("tocar fora fecha; tocar em outra dica fecha a primeira (uma por vez)", async ({ page }) => {
     await page.goto("/#sistema/orcamento");
     const a = botaoDica(page, pergunta("tipo").texto);

@@ -4,7 +4,14 @@ import type { Pergunta, ServicoOrcamento } from "../../content/perguntas";
 import { orcamento } from "../../content/textos";
 import { Dica } from "../../shared/components/Dica";
 import { brl } from "../../shared/lib/formato";
-import { horasExtrasDa, mudaOValor, opcoesMarcadas, perguntasVisiveisComNivel, todasAsPerguntas, type Respostas } from "../../shared/lib/orcamento";
+import {
+  horasExtrasDa,
+  mudaOValor,
+  opcoesMarcadas,
+  perguntasVisiveisComNivel,
+  todasAsPerguntas,
+  type Respostas,
+} from "../../shared/lib/orcamento";
 import type { Progresso } from "../../shared/lib/pedido";
 import { IconeCheck } from "./icones";
 
@@ -19,7 +26,9 @@ const marcaBase =
 /** Preço extra que a opção mostra ao lado do texto. */
 function custoDaOpcao(p: Pergunta, opcaoId: string): string | null {
   const horas = p.opcoes.find((o) => o.id === opcaoId)?.horas ?? 0;
-  return p.tipo === "unica" && horas > 0 ? t.custo(brl(horas * VALOR_HORA_EXTRA)) : null;
+  return p.tipo === "unica" && horas > 0
+    ? t.custo(brl(horas * VALOR_HORA_EXTRA))
+    : null;
 }
 
 type PerguntaProps = {
@@ -29,7 +38,12 @@ type PerguntaProps = {
   aoResponder: (perguntaId: string, opcaoId: string) => void;
 };
 
-function PerguntaCampo({ servicoId, pergunta: p, respostas, aoResponder }: PerguntaProps) {
+function PerguntaCampo({
+  servicoId,
+  pergunta: p,
+  respostas,
+  aoResponder,
+}: PerguntaProps) {
   const marcadas = opcoesMarcadas(p, respostas);
   const multipla = p.tipo === "multipla";
   const muda = mudaOValor(p);
@@ -57,32 +71,57 @@ function PerguntaCampo({ servicoId, pergunta: p, respostas, aoResponder }: Pergu
           </span>
         )}
       </legend>
-      {orientacao && <p className="mb-2 text-[0.875rem] text-texto-suave">{orientacao}</p>}
+      {orientacao && (
+        <p className="mb-2 text-[0.875rem] text-texto-suave">{orientacao}</p>
+      )}
       <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(min(100%,15rem),1fr))] gap-2.5">
         {p.opcoes.map((o) => {
           const custo = custoDaOpcao(p, o.id);
           return (
-            <label key={o.id} className={opcaoBase}>
-              <input
-                className={escondido}
-                type={multipla ? "checkbox" : "radio"}
-                name={`${servicoId}-${p.id}`}
-                value={o.id}
-                checked={marcadas.includes(o.id)}
-                onChange={() => aoResponder(p.id, o.id)}
-              />
-              <span className={`${marcaBase} ${multipla ? "" : "rounded-full"}`} aria-hidden="true">
-                <IconeCheck className="size-4" />
-              </span>
-              <span className="min-w-0 flex-1 [overflow-wrap:anywhere]">{o.rotulo}</span>
-              {custo && <span className="shrink-0 pl-2 font-mono text-[0.875rem] whitespace-nowrap text-texto-suave">{custo}</span>}
-            </label>
+            <div key={o.id} className="relative">
+              <label className={`${opcaoBase} ${o.ajuda ? "pr-12" : ""}`}>
+                <input
+                  className={escondido}
+                  type={multipla ? "checkbox" : "radio"}
+                  name={`${servicoId}-${p.id}`}
+                  value={o.id}
+                  checked={marcadas.includes(o.id)}
+                  onChange={() => aoResponder(p.id, o.id)}
+                />
+                <span
+                  className={`${marcaBase} ${multipla ? "" : "rounded-full"}`}
+                  aria-hidden="true"
+                >
+                  <IconeCheck className="size-4" />
+                </span>
+                <span className="min-w-0 flex-1 [overflow-wrap:anywhere]">
+                  {o.rotulo}
+                </span>
+                {custo && (
+                  <span className="shrink-0 pl-2 font-mono text-[0.875rem] whitespace-nowrap text-texto-suave">
+                    {custo}
+                  </span>
+                )}
+              </label>
+              {o.ajuda && (
+                <span className="absolute top-0 right-0">
+                  <Dica texto={o.ajuda} rotulo={t.ajudaRotulo(o.rotulo)} />
+                </span>
+              )}
+            </div>
           );
         })}
       </div>
       <div className="mt-1 flex flex-wrap items-center justify-between gap-x-4">
-        <p className="m-0 font-mono text-[0.875rem] text-texto-suave" aria-live="polite">
-          {acrescimo > 0 ? <span className="text-destaque">{t.somaAgora(brl(acrescimo))}</span> : muda ? t.mudaValorCurto : null}
+        <p
+          className="m-0 font-mono text-[0.875rem] text-texto-suave"
+          aria-live="polite"
+        >
+          {acrescimo > 0 ? (
+            <span className="text-destaque">{t.somaAgora(brl(acrescimo))}</span>
+          ) : muda ? (
+            t.mudaValorCurto
+          ) : null}
         </p>
       </div>
     </fieldset>
@@ -90,7 +129,8 @@ function PerguntaCampo({ servicoId, pergunta: p, respostas, aoResponder }: Pergu
 }
 
 function ProgressoConfiguracao({ progresso: p }: { progresso: Progresso }) {
-  if (p.total === 0) return <p className="m-0 text-[1rem] text-texto-suave">{t.semPerguntas}</p>;
+  if (p.total === 0)
+    return <p className="m-0 text-[1rem] text-texto-suave">{t.semPerguntas}</p>;
   return (
     <div>
       <p className="m-0 font-mono text-[0.875rem] font-bold" role="status">
@@ -98,7 +138,10 @@ function ProgressoConfiguracao({ progresso: p }: { progresso: Progresso }) {
       </p>
       <div className="mt-1.5 flex flex-wrap gap-1" aria-hidden="true">
         {Array.from({ length: p.total }, (_, i) => (
-          <span key={i} className={`h-1 w-6 ${i < p.respondidas ? "bg-destaque" : "bg-linha"}`} />
+          <span
+            key={i}
+            className={`h-1 w-6 ${i < p.respondidas ? "bg-destaque" : "bg-linha"}`}
+          />
         ))}
       </div>
     </div>
@@ -113,7 +156,12 @@ type Props = {
 };
 
 /** Corpo da aba Orçamento: o progresso e as perguntas. O nome, o resumo e a estimativa ficam no modal. */
-export function ConfiguradorServico({ modelo, respostas, progresso, aoResponder }: Props) {
+export function ConfiguradorServico({
+  modelo,
+  respostas,
+  progresso,
+  aoResponder,
+}: Props) {
   const visiveis = perguntasVisiveisComNivel(modelo.perguntas, respostas);
   const chave = visiveis.map((v) => v.pergunta.id).join("|");
   const anteriores = useRef<Set<string> | null>(null);
@@ -132,7 +180,9 @@ export function ConfiguradorServico({ modelo, respostas, progresso, aoResponder 
       setAviso("");
       return;
     }
-    const pai = todasAsPerguntas(modelo.perguntas).find((q) => q.id === abertas[0].paiId);
+    const pai = todasAsPerguntas(modelo.perguntas).find(
+      (q) => q.id === abertas[0].paiId,
+    );
     setAviso(t.novasPerguntas(abertas.length, pai?.curto.toLowerCase() ?? ""));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chave]);
@@ -141,7 +191,11 @@ export function ConfiguradorServico({ modelo, respostas, progresso, aoResponder 
     <div>
       <div className="mb-5 grid gap-1">
         <ProgressoConfiguracao progresso={progresso} />
-        {progresso.total > 0 && <p className="m-0 text-[0.875rem] text-texto-suave">{t.legendaValor}</p>}
+        {progresso.total > 0 && (
+          <p className="m-0 text-[0.875rem] text-texto-suave">
+            {t.legendaValor}
+          </p>
+        )}
       </div>
 
       <div className="grid gap-6">
@@ -150,7 +204,12 @@ export function ConfiguradorServico({ modelo, respostas, progresso, aoResponder 
             key={p.id}
             className={`${nivel > 0 ? "ml-2 border-l-[3px] border-linha pl-3 md:ml-4 md:pl-4" : ""} ${novas.has(p.id) ? "pergunta-nova" : ""}`}
           >
-            <PerguntaCampo servicoId={modelo.id} pergunta={p} respostas={respostas} aoResponder={aoResponder} />
+            <PerguntaCampo
+              servicoId={modelo.id}
+              pergunta={p}
+              respostas={respostas}
+              aoResponder={aoResponder}
+            />
           </div>
         ))}
       </div>
