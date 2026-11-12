@@ -1,5 +1,6 @@
 // Todos os textos das páginas. Fonte: docs/COPY.md (versão 2, respostas do Marcelo em 02/11/2026).
 // Preços nunca são escritos à mão aqui: saem de servicos.ts e orcamento.ts.
+import { COMBO_2, COMBO_3 } from "./orcamento";
 
 export const comum = {
   privacidade:
@@ -47,8 +48,8 @@ export const orcamento = {
       dicaDentro: "No carrinho. Clique para tirar.",
     },
     mensalidadeDe: "mensalidade",
-    /** Frase curta, visível no card combinável (sem número de desconto). */
-    comboNoCard: "Entra no combo: desconto a partir de 2 serviços.",
+    /** Frase curta, visível no card combinável. Os percentuais saem de orcamento.ts. */
+    comboNoCard: `Desconto a partir de 2 serviços: ${COMBO_2}% com 2, ${COMBO_3}% com 3 ou mais.`,
     aPartirDe: (valor: string) => `a partir de ${valor}`,
     porHora: (valor: string) => `${valor} por hora`,
     sobConsulta: "sob consulta",
@@ -285,7 +286,7 @@ export const negocios = {
   entregas: {
     titulo: "O que eu entrego e quanto custa",
     intro:
-      "Os valores abaixo são pela criação. Nos pacotes básicos o preço é fechado; quando o trabalho varia, mostro o valor mínimo e confirmo depois de ver o seu caso. Bots têm mensalidade de manutenção, mais a hospedagem à parte; sites e planilhas não precisam.",
+      "Os valores abaixo são pela criação. Cada pacote tem um preço-base a partir de um valor; no orçamento você vê a estimativa na hora, e eu confirmo o valor final depois de ver o seu caso. Bots têm mensalidade de manutenção, mais a hospedagem à parte; sites e planilhas não precisam.",
     pedir: "Pedir orçamento",
     ajustes: (valorHora: string) =>
       `Ajustes depois da entrega (planilha, painel e página): ${valorHora} por hora, sem mensalidade.`,
