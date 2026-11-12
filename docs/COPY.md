@@ -87,3 +87,18 @@ Fonte dos textos: `privacidade` em `src/content/textos.ts` (página `/privacidad
 - Rodapé de Negócios e Comunidade: o aviso de sempre + link "Política de privacidade".
 - Página: o que recebo; para que uso; por onde passa (EmailJS, WhatsApp, Netlify; sem fontes ou rastreadores de terceiros); o que fica no navegador (carrinho em sessionStorage, sem nome, telefone nem observações; tema em localStorage; sem cookies de rastreamento); guarda do e-mail por até 12 meses; como pedir exclusão (e-mail de `site.ts`). Não é parecer jurídico.
 
+
+## Por que esse valor? (12/11/2026)
+
+Fonte: `orcamento.valor` em `src/content/textos.ts`. Botão "Por que esse valor?" no resumo da aba Orçamento (explica só o serviço aberto) e no carrinho, abaixo do total (explica o pedido inteiro). Abre um diálogo com duas partes. Os números (R$ por hora, combo, piloto) saem de `orcamento.ts`; nada é escrito à mão.
+
+**1. Como o preço é montado** (sempre aparece)
+- Cada serviço tem um preço-base. É o "a partir de" que aparece no card.
+- Suas respostas podem somar horas extras de trabalho. Cada hora extra custa R$ 50 (`VALOR_HORA_EXTRA`).
+- Combo: com 2 serviços combináveis (planilha, painel, automação e site de uma página), 10% de desconto. Com 3 ou mais, 15%.
+- Piloto: enquanto houver vaga, há 10% (ou 5%, na segunda faixa) de desconto sobre o preço de criação. Sem vaga: "neste momento não há vaga de desconto de piloto."
+- Os descontos nunca se somam: vale o que abate mais reais. O combo só vale para os serviços combináveis. O piloto não vale para a mensalidade nem para o sistema sob consulta. Os bots de Discord são vendidos só na Comunidade.
+- Pergunta sem resposta deixa o valor aproximado. O valor final é confirmado na proposta. Hospedagem e o uso de IA dos bots são cobrados à parte.
+
+**2. No seu pedido** (só com serviço): por serviço, uma tabela com o preço-base, cada resposta que somou horas (resposta, horas x R$ por hora, valor) e a soma do serviço; avisos de "sem resposta (ainda não somam)", "horas e prazo: a combinar" (bots) e a mensalidade à parte. Fechamento: soma de tabela, desconto (qual e por quê, inclusive "o piloto abateu mais que o combo", "o combo abateu X; o piloto abateria Y" ou empate: vale o combo) e total estimado. Última linha: "O que mais mudaria este valor: <serviço>: <perguntas que somam horas>."
+- Carrinho vazio: "Seu pedido está vazio. Quando você adicionar um serviço, o detalhamento do valor aparece aqui." (só a parte 1)

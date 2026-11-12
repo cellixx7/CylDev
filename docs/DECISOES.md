@@ -263,3 +263,15 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Horas das respostas (propostas, confirmar):** tarefas a mais 1 h cada (a 1ª é inclusa); origem dos dados: planilha/CSV 0 h, PDF 1 h, site 2 h, vários lugares 3 h; como roda: manual 0 h, horário marcado 1 h, tela de botões 2 h. Caso simples (1 tarefa, só uma das extras) fica em R$ 350 a R$ 400; o prazo sai de `prazoEmDias` (6 h = 4 dias úteis com a revisão).
 - **Contra o Excel:** o card e o guia avisam que, se a tarefa couber no Excel, a Automação em Excel tem o mesmo valor de partida (R$ 300), e o Python fica para o que o Excel não alcança.
 - **Carrinho salvo:** um carrinho antigo com o id `aulas` é descartado ao restaurar (id fora do catálogo).
+
+## Tela "Por que esse valor?" (12/11/2026)
+
+- **O que é:** diálogo nativo com o botão "Por que esse valor?" no resumo da aba Orçamento (explica só o serviço aberto, no mesmo valor que o resumo mostra) e no painel do carrinho, abaixo do total (explica o pedido todo). Parte 1 geral, parte 2 "No seu pedido" (só com serviço). Textos em `orcamento.valor` (`textos.ts`), espelho em `COPY.md`.
+- **Sem regra de preço nova:** `src/shared/lib/explicacaoValor.ts` só lê o resultado de `calcularCarrinho()`. Os extras vêm de `horasExtrasDa()` x `VALOR_HORA_EXTRA`, e o desconto escolhido é o do carrinho. O único cálculo próprio é quanto a outra regra abateria, só para explicar por que a vencedora venceu. `orcamento.ts`, `servicos.ts`, `exemplos.ts`, `prazo.ts` e as regras de spam não foram tocados.
+- **A soma fecha:** `explicacaoValor.test.ts` confere, em 90 combinações (10 carrinhos x 3 pilotos x 3 níveis de resposta, com piloto vencendo, combo vencendo e empate), que preço-base + extras - desconto é igual a `carrinho.total`. O e2e confere os números na tela.
+- **Bots (horas provisórias):** sem hora e sem prazo; a tela diz "horas e prazo: a combinar".
+- **Sem hash `#valor` (decisão, avise se quiser):** o `popstate` do modal trata qualquer hash que não seja um serviço como "nenhum serviço" e fecharia o modal; o carrinho não usa hash. Para não arriscar o fluxo atual, o diálogo não mexe na URL (Esc, botão e fundo fecham; o foco volta ao botão).
+- **Diálogo dentro de diálogo:** abre por cima do modal do serviço ou do painel (camada superior do navegador); o Esc fecha só ele. O React propaga o evento `close` pela árvore, então o `onClose` dele chama `stopPropagation()`; sem isso o modal de baixo fechava junto (pego pelo e2e).
+- **Aulas:** o pedido citava "piloto não vale para aulas", mas as aulas saíram do catálogo (ver acima). O texto diz que o piloto não vale para a mensalidade nem para o sistema sob consulta.
+- **E-mail e WhatsApp:** nenhum texto novo entrou neles.
+- **Contraste:** só usa os tokens já auditados (texto, texto suave, destaque, linha); não rodei auditoria nova nos dois temas com o diálogo aberto.
