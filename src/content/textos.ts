@@ -253,7 +253,7 @@ export const negocios = {
       ],
       mensalTitulo: "Vendas por mês (R$ mil)",
       /** Texto lido pelo leitor de tela em cada mês: mês, valor e unidade. */
-      mesFalado: (mes: string, valor: number) => `${mes}, R$ ${valor} mil`,
+      mesFalado: (mes: string, valor: string) => `${mes}, R$ ${valor} mil`,
       meses: [
         { nome: "Jan", completo: "Janeiro", valor: 12 },
         { nome: "Fev", completo: "Fevereiro", valor: 13 },
@@ -276,6 +276,42 @@ export const negocios = {
         { nome: "Casacos", valor: 12 },
         { nome: "Outros", valor: 8 },
       ],
+      /**
+       * Vendas por mês (linhas, Jan a Dez) e categoria (colunas, na ordem de `categorias`), em R$ mil.
+       * Dado de exemplo. Cada linha soma o mês de `meses`; cada coluna dá a fatia de `categorias`.
+       * Out a Dez são os mesmos produtos da demonstração de Como funciona (que não tem "Outros").
+       */
+      vendasMesCategoria: [
+        [5, 3, 3, 0, 1],
+        [5, 3, 2, 1, 2],
+        [6, 4, 3, 1, 1],
+        [6, 4, 3, 2, 1],
+        [7, 4, 3, 2, 2],
+        [5, 3, 3, 4, 2],
+        [6, 3, 3, 5, 2],
+        [5, 3, 2, 3, 3],
+        [10, 4, 1, 0, 3],
+        [8, 6, 4, 2, 0],
+        [6, 7, 5, 2, 0],
+        [12, 8, 6, 4, 0],
+      ],
+      /**
+       * Peso de cada categoria (linhas) em cada região (colunas, na ordem de `regioes`). Só dá o formato:
+       * `painelVendas.ts` ajusta os valores para fechar com os totais por categoria e por região.
+       */
+      afinidadeRegiao: [
+        [5, 3, 2, 1, 1],
+        [4, 3, 2, 1, 1],
+        [4, 2, 2, 1, 1],
+        [3, 4, 2, 1, 1],
+        [3, 2, 2, 1, 1],
+      ],
+      /** Textos do roteiro: quando um item está em foco, os outros gráficos mostram só os números dele. */
+      foco: {
+        vendas: (nome: string) => `Vendas · ${nome}`,
+        doAno: (pct: number) => `${pct}% do ano`,
+        so: (nome: string) => `só ${nome}`,
+      },
       regioesTitulo: "Vendas por região (R$ mil)",
       regioes: [
         { nome: "Sudeste", valor: 96 },
