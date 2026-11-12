@@ -11,6 +11,7 @@ npm install
 npm run dev        # desenvolvimento
 npm run typecheck
 npm test
+npm run test:e2e   # jornadas no navegador (Playwright); faz o build e sobe o preview sozinho
 npm run build      # gera dist/
 npm run preview    # serve dist/
 ```
@@ -19,9 +20,9 @@ npm run preview    # serve dist/
 
 - `src/content/site.ts`: WhatsApp, e-mail, URL padrão, opções `mostrarMinisterio` e `mostrarUniser`, foto.
 - `src/content/servicos.ts`: catálogo de pacotes e preços.
-- `src/content/orcamento.ts`: parâmetros do orçamento e o contador `vagasPiloto` (diminua 1 a cada venda com desconto).
+- `src/content/orcamento.ts`: parâmetros do orçamento e o contador `vagasPiloto10` e `vagasPiloto5` (diminua 1 a cada venda com desconto).
 - `src/content/textos.ts`: todos os textos das páginas.
-- `src/styles/tokens.css`: cores, fontes e espaçamentos.
+- `src/styles/tema-negocios.css` e `tema-comunidade.css`: cores, fontes e espaçamentos de cada área. `e2e/`: testes de jornada.
 
 ## Publicação
 
