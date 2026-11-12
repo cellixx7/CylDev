@@ -10,7 +10,7 @@ O site manda só texto simples; a aparência do e-mail fica no template, dentro 
 | `preferencia` | "WhatsApp" ou "E-mail" | (obrigatório) |
 | `contato` | WhatsApp (só dígitos, com 55) ou e-mail | (obrigatório) |
 | `assunto` | No carrinho: "Pedido: A + B", com os nomes dos serviços | "Contato pelo site" |
-| `mensagem` | Pedido inteiro em um texto só (reserva, igual ao do WhatsApp) | vazio |
+| `mensagem` | Texto livre. **Vai vazia quando há `itens`** (o pedido já vai separado em `itens`, `total` e `observacoes`, sem repetir); sem itens (Comunidade, contato simples), é o conteúdo da mensagem. O WhatsApp continua com o pedido completo | vazio |
 | `origem` | De onde veio (ex.: `negocios-carrinho`) | (obrigatório) |
 | `pacote` | Nomes dos serviços, separados por vírgula | "—" |
 | `tamanho` | Legado da calculadora antiga | "—" |
@@ -27,7 +27,7 @@ Cada objeto de `itens`:
 
 ## Sugestão de template
 
-A confirmar no painel do EmailJS: a sintaxe de lista (`{{#itens}} ... {{/itens}}`) é a dos templates dinâmicos do EmailJS, e não foi testada com uma conta real (o `templateId` e a `publicKey` ainda não existem em `site.ts`). Se a lista não renderizar, use só `{{mensagem}}`, que traz o mesmo pedido.
+A confirmar no painel do EmailJS: a sintaxe de lista (`{{#itens}} ... {{/itens}}`) é a dos templates dinâmicos do EmailJS, e não foi testada com uma conta real (o `templateId` e a `publicKey` ainda não existem em `site.ts`). Atenção: como `mensagem` não repete mais o pedido, se a lista não renderizar o e-mail do carrinho chega sem os itens; teste um envio real antes de divulgar. (O `templateId` e a `publicKey` já estão em `site.ts`; o que falta é o teste real.)
 
 Assunto do e-mail: `{{assunto}}`
 
@@ -47,7 +47,6 @@ Corpo (HTML):
 <p style="white-space: pre-line">{{observacoes}}</p>
 
 <hr />
-<p>Pedido completo em texto (reserva):</p>
 <p style="white-space: pre-line">{{mensagem}}</p>
 <p>Origem: {{origem}}</p>
 ```

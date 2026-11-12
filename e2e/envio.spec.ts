@@ -147,7 +147,7 @@ test.describe("5. envio pelo site: corpo enviado, isca e falha", () => {
     expect(linhas).toContain(`${pergunta.texto} ${escolha.rotulo}`);
     expect(linhas.filter((l) => l.endsWith(NAO_RESPONDEU))).toHaveLength(servico.perguntas.length - 1);
     expect(String(p.total)).toContain("R$");
-    expect(String(p.mensagem)).toContain(servico.nome);
+    expect(p.mensagem, "com itens, o pedido não se repete em `mensagem`").toBe("");
 
     // O corpo é exatamente o que a lib monta para o mesmo pedido (tela e e-mail não divergem).
     const esperado = dadosEmailPedido(
@@ -158,7 +158,6 @@ test.describe("5. envio pelo site: corpo enviado, isca e falha", () => {
     expect(p).toMatchObject({
       itens: esperado.itens,
       total: esperado.total,
-      mensagem: esperado.mensagem,
       estimativa: esperado.estimativa,
       pacote: esperado.pacote,
     });
