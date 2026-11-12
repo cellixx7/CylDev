@@ -1,7 +1,8 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { VALOR_HORA_EXTRA } from "../../content/orcamento";
 import type { Pergunta, ServicoOrcamento } from "../../content/perguntas";
 import { orcamento } from "../../content/textos";
+import { Dica } from "../../shared/components/Dica";
 import { brl } from "../../shared/lib/formato";
 import { horasExtrasDa, mudaOValor, opcoesMarcadas, perguntasVisiveisComNivel, todasAsPerguntas, type Respostas } from "../../shared/lib/orcamento";
 import type { Progresso } from "../../shared/lib/pedido";
@@ -14,8 +15,6 @@ const opcaoBase =
   "group relative flex min-h-alvo cursor-pointer items-start gap-3 rounded-pequeno border border-linha bg-superficie px-3 py-3 text-[1rem] leading-snug transition-colors hover:border-texto-suave hover:bg-realce active:bg-realce has-checked:border-destaque has-checked:bg-realce has-checked:shadow-[inset_0_0_0_1px_var(--color-destaque)] has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-foco";
 const marcaBase =
   "mt-px grid size-6 shrink-0 place-items-center border-2 border-texto-suave text-destaque-texto peer-checked:border-destaque peer-checked:bg-destaque [&_svg]:opacity-0 peer-checked:[&_svg]:opacity-100";
-const botaoLink =
-  "inline-flex min-h-alvo cursor-pointer items-center border-0 bg-transparent px-1 font-[inherit] text-[1rem] font-semibold text-destaque underline underline-offset-4 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
 
 /** Preço extra que a opção mostra ao lado do texto. */
 function custoDaOpcao(p: Pergunta, opcaoId: string): string | null {
@@ -31,8 +30,6 @@ type PerguntaProps = {
 };
 
 function PerguntaCampo({ servicoId, pergunta: p, respostas, aoResponder }: PerguntaProps) {
-  const base = useId();
-  const [ajudaAberta, setAjudaAberta] = useState(false);
   const marcadas = opcoesMarcadas(p, respostas);
   const multipla = p.tipo === "multipla";
   const muda = mudaOValor(p);
@@ -49,9 +46,12 @@ function PerguntaCampo({ servicoId, pergunta: p, respostas, aoResponder }: Pergu
   return (
     <fieldset className="m-0 min-w-0 border-0 p-0">
       <legend className="mb-1 flex w-full items-start gap-2 p-0 text-[1.02rem] leading-snug font-bold">
-        <span className="min-w-0 flex-1">{p.texto}</span>
+        <span className="min-w-0 flex-1 self-center">{p.texto}</span>
+        <span className="-my-2 -mr-1.5 flex shrink-0 items-center">
+          <Dica texto={p.ajuda} rotulo={t.ajudaRotulo(p.texto)} />
+        </span>
         {marcadas.length > 0 && (
-          <span className="mt-1 shrink-0 text-destaque">
+          <span className="shrink-0 self-center text-destaque">
             <IconeCheck />
             <span className="sr-only">respondida</span>
           </span>
@@ -84,19 +84,7 @@ function PerguntaCampo({ servicoId, pergunta: p, respostas, aoResponder }: Pergu
         <p className="m-0 font-mono text-[0.875rem] text-texto-suave" aria-live="polite">
           {acrescimo > 0 ? <span className="text-destaque">{t.somaAgora(brl(acrescimo))}</span> : muda ? t.mudaValorCurto : null}
         </p>
-        <button
-          type="button"
-          className={botaoLink}
-          aria-expanded={ajudaAberta}
-          aria-controls={`${base}-ajuda`}
-          onClick={() => setAjudaAberta((a) => !a)}
-        >
-          {t.oQueEIsso}
-        </button>
       </div>
-      <p id={`${base}-ajuda`} hidden={!ajudaAberta} className="mb-1 border-l-[3px] border-destaque bg-realce px-3 py-2 text-[1rem]">
-        {p.ajuda}
-      </p>
     </fieldset>
   );
 }

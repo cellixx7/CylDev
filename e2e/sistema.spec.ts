@@ -17,7 +17,7 @@ test.describe("sistema sob medida: perguntas condicionais no celular", () => {
 
     // Ponto de partida: só as 8 principais.
     await expect(modal.getByText(p.progresso(0, 8))).toBeVisible();
-    await expect(rodape).toContainText("1.000");
+    await expect(rodape).toContainText("300");
     await semRolagemHorizontal(page);
 
     // SaaS abre duas perguntas, anunciadas em role="status", sem roubar o foco.
@@ -28,12 +28,12 @@ test.describe("sistema sob medida: perguntas condicionais no celular", () => {
     await expect(modal.getByRole("group", { name: /Como o sistema será cobrado/ })).toBeVisible();
     await expect(modal.getByRole("group", { name: /Quantos tipos de usuário/ })).toBeVisible();
     await expect(saas.entrada).toBeFocused();
-    await expect(rodape).toContainText("1.400"); // 8 h x R$ 50 a mais
+    await expect(rodape).toContainText("700"); // 8 h x R$ 50 a mais
 
     // Filha respondida (mensalidade, 2 h): soma.
     await opcao(page, ID, "cobranca", "mensal").etiqueta.click();
     await expect(modal.getByText(p.progresso(2, 10))).toBeVisible();
-    await expect(rodape).toContainText("1.500");
+    await expect(rodape).toContainText("800");
     await semRolagemHorizontal(page);
 
     // Muda a pai para "Programa de computador" (4 h): as filhas somem e a resposta delas é descartada.
@@ -41,13 +41,13 @@ test.describe("sistema sob medida: perguntas condicionais no celular", () => {
     await expect(modal.getByRole("group", { name: /Como o sistema será cobrado/ })).toHaveCount(0);
     await expect(modal.getByRole("group", { name: /Quantos tipos de usuário/ })).toHaveCount(0);
     await expect(modal.getByText(p.progresso(1, 8))).toBeVisible();
-    await expect(rodape).toContainText("1.200");
-    await expect(rodape).not.toContainText("1.500");
+    await expect(rodape).toContainText("500");
+    await expect(rodape).not.toContainText("800");
 
     // Voltar para SaaS reabre as filhas vazias: a resposta antiga não volta.
     await saas.etiqueta.click();
     await expect(opcao(page, ID, "cobranca", "mensal").entrada).not.toBeChecked();
-    await expect(rodape).toContainText("1.400");
+    await expect(rodape).toContainText("700");
   });
 
   test("teclado: espaço marca a opção e o anúncio aparece", async ({ page }) => {

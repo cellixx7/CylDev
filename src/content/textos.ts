@@ -151,8 +151,8 @@ export const orcamento = {
     mudaValorCurto: "pode mudar o valor",
     somaAgora: (valor: string) => `+ ${valor} no valor`,
     marqueQuantas: "Marque quantas quiser.",
-    oQueEIsso: "O que é isso?",
-    fecharAjuda: "Fechar ajuda",
+    /** Rótulo do botão "i" ao lado de cada pergunta. */
+    ajudaRotulo: (pergunta: string) => `O que significa: ${pergunta}`,
     incluso: (n: number) => `Já ${n === 1 ? "incluso" : "inclusos"}: ${n}.`,
     cadaExtra: (valor: string) => `Cada a mais: + ${valor}.`,
     custo: (valor: string) => `+ ${valor}`,

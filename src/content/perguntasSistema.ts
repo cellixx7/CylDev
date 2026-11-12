@@ -2,7 +2,8 @@
 // de aprofundamento (e elas, mais 2), no máximo 2 níveis abaixo da principal. Os limites são conferidos por teste.
 //
 // PENDENTE: todas as horas abaixo são PROPOSTAS provisórias, a confirmar pelo Marcelo (docs/DECISOES.md).
-// Cada hora extra soma VALOR_HORA_EXTRA ao preço. O preço base (20 horas) fica em servicos.ts.
+// Cada hora extra soma VALOR_HORA_EXTRA ao preço. O preço base (HORAS_BASE_SISTEMA)
+// fica em servicos.ts. Sem teto: o valor é "a partir de" e cresce com as respostas.
 // Só este arquivo guarda os números: nenhum componente os repete.
 import type { Pergunta } from "./perguntas";
 
@@ -19,7 +20,7 @@ const cobranca: Pergunta = {
     { id: "unica", rotulo: "Uma vez só", horas: 0 },
     { id: "nao-sei", rotulo: "Ainda não sei", horas: 0 },
   ],
-  ajuda: "Assinatura cobra todo mês e exige controlar quem pagou e quem atrasou, e isso soma 2 horas. Pelo uso soma 3 horas.",
+  ajuda: "É como você vai receber dos seus clientes pelo sistema. Assinatura exige controlar quem pagou e quem atrasou, e isso muda o valor.",
 };
 
 const tiposDeUsuario: Pergunta = {
@@ -33,7 +34,7 @@ const tiposDeUsuario: Pergunta = {
     { id: "tres", rotulo: "Três ou mais", horas: 4 },
     { id: "nao-sei", rotulo: "Não sei", horas: 0 },
   ],
-  ajuda: "Cada tipo de usuário vê e faz coisas diferentes: o dono vê tudo, o cliente vê só o dele. Dois tipos somam 2 horas; três ou mais, 4.",
+  ajuda: "Cada tipo de usuário vê e faz coisas diferentes: o dono vê tudo, o cliente vê só o dele. Quanto mais tipos, mais regras de acesso, e isso muda o valor.",
 };
 
 const ondeRoda: Pergunta = {
@@ -47,7 +48,7 @@ const ondeRoda: Pergunta = {
     { id: "os-dois", rotulo: "No celular e no navegador", horas: 8 },
     { id: "nao-sei", rotulo: "Não sei", horas: 0 },
   ],
-  ajuda: "No navegador, abre por um endereço, sem instalar nada. No celular, é um aplicativo instalado e soma 4 horas. Os dois juntos somam 8.",
+  ajuda: "No navegador, abre por um endereço, sem instalar nada. No celular, é um aplicativo instalado, e fazer os dois dá mais trabalho.",
 };
 
 const semInternet: Pergunta = {
@@ -60,7 +61,7 @@ const semInternet: Pergunta = {
     { id: "sim", rotulo: "Sim, precisa funcionar sem internet", horas: 6 },
     { id: "nao-sei", rotulo: "Não sei", horas: 0 },
   ],
-  ajuda: "Funcionar sem internet exige guardar os dados no aparelho e sincronizar depois. É mais trabalho e soma 6 horas.",
+  ajuda: "Funcionar sem internet exige guardar os dados no aparelho e sincronizar depois. É mais trabalho, e isso muda o valor.",
 };
 
 const login: Pergunta = {
@@ -72,7 +73,7 @@ const login: Pergunta = {
     { id: "nao", rotulo: "Não", horas: 0 },
     { id: "sim", rotulo: "Sim", horas: 3 },
   ],
-  ajuda: "Com login, cada pessoa entra com a sua conta e só vê o que é dela. Soma 3 horas.",
+  ajuda: "Com login, cada pessoa entra com a sua conta e só vê o que é dela.",
 };
 
 const cadastro: Pergunta = {
@@ -84,7 +85,7 @@ const cadastro: Pergunta = {
     { id: "nao", rotulo: "Não", horas: 0 },
     { id: "sim", rotulo: "Sim", horas: 2 },
   ],
-  ajuda: "A própria pessoa cria a conta e confirma o e-mail. Soma 2 horas.",
+  ajuda: "A própria pessoa cria a conta e confirma o e-mail.",
 };
 
 const meioDePagamento: Pergunta = {
@@ -98,7 +99,7 @@ const meioDePagamento: Pergunta = {
     { id: "banco", rotulo: "Banco ou maquininha", horas: 0 },
     { id: "nenhum", rotulo: "Ainda nenhum", horas: 2 },
   ],
-  ajuda: "É a empresa que recebe o dinheiro do cliente e avisa o sistema. Se você ainda não tem, eu ajudo a escolher e a abrir a conta, e isso soma 2 horas.",
+  ajuda: "É a empresa que recebe o dinheiro do cliente e avisa o sistema. Se você ainda não tem, eu ajudo a escolher e a abrir a conta, e isso muda o valor.",
 };
 
 const notaFiscal: Pergunta = {
@@ -111,7 +112,7 @@ const notaFiscal: Pergunta = {
     { id: "sim", rotulo: "Sim", horas: 4 },
     { id: "nao-sei", rotulo: "Não sei", horas: 0 },
   ],
-  ajuda: "Emitir nota pelo sistema depende do seu contador e do município. Soma 4 horas, e eu confirmo o caminho na conversa.",
+  ajuda: "Emitir nota pelo sistema depende do seu contador e do município. Eu confirmo o caminho na conversa.",
 };
 
 const quaisSistemas: Pergunta = {
@@ -128,7 +129,7 @@ const quaisSistemas: Pergunta = {
     { id: "banco", rotulo: "Banco de dados que já existe" },
     { id: "outro", rotulo: "Outro" },
   ],
-  ajuda: "Marque todos os que se aplicam. O primeiro está incluso. Cada um a mais soma 2 horas (R$ 100).",
+  ajuda: "Marque todos os que se aplicam. O primeiro está incluso; cada um a mais é trabalho extra, e a tela mostra quanto.",
 };
 
 const acessoApi: Pergunta = {
@@ -141,7 +142,7 @@ const acessoApi: Pergunta = {
     { id: "nao", rotulo: "Não", horas: 3 },
     { id: "nao-sei", rotulo: "Não sei o que é", horas: 2 },
   ],
-  ajuda: "API é a porta que o outro sistema abre para conversar com o seu. Sem acesso, eu preciso procurar outro caminho, e isso soma 3 horas.",
+  ajuda: "API é a porta que o outro sistema abre para conversar com o seu. Sem acesso, eu preciso procurar outro caminho, e isso muda o valor.",
 };
 
 const quaisRelatorios: Pergunta = {
@@ -157,7 +158,7 @@ const quaisRelatorios: Pergunta = {
     { id: "uso", rotulo: "Uso do sistema" },
     { id: "outro", rotulo: "Outro" },
   ],
-  ajuda: "O primeiro relatório está incluso. Cada um a mais soma 2 horas (R$ 100).",
+  ajuda: "O primeiro relatório está incluso; cada um a mais é trabalho extra, e a tela mostra quanto.",
 };
 
 const exportar: Pergunta = {
@@ -171,7 +172,7 @@ const exportar: Pergunta = {
     { id: "pdf", rotulo: "Para PDF", horas: 1 },
     { id: "os-dois", rotulo: "Para os dois", horas: 2 },
   ],
-  ajuda: "É um botão que baixa o relatório pronto. Cada formato soma 1 hora.",
+  ajuda: "É um botão que baixa o relatório pronto, em Excel ou PDF. Cada formato é um pouco de trabalho a mais.",
 };
 
 const tipoDeDado: Pergunta = {
@@ -187,7 +188,7 @@ const tipoDeDado: Pergunta = {
     { id: "financeiro", rotulo: "Dados financeiros" },
     { id: "outro", rotulo: "Outro" },
   ],
-  ajuda: "Marque os que o sistema vai guardar. O primeiro está incluso. Cada um a mais soma 1 hora.",
+  ajuda: "Marque os que o sistema vai guardar. O primeiro está incluso; cada um a mais pede mais cuidado, e a tela mostra quanto.",
 };
 
 const politicaPrivacidade: Pergunta = {
@@ -200,7 +201,7 @@ const politicaPrivacidade: Pergunta = {
     { id: "sim", rotulo: "Sim, um texto-base", horas: 2 },
     { id: "nao-sei", rotulo: "Não sei", horas: 0 },
   ],
-  ajuda: "Eu monto um texto-base com você. Não é parecer jurídico: para valer como contrato, vale uma revisão de quem entende de lei. Soma 2 horas.",
+  ajuda: "Eu monto um texto-base com você. Não é parecer jurídico: para valer como contrato, vale uma revisão de quem entende de lei.",
 };
 
 // Perguntas principais -----------------------------------------------------------------------------
@@ -219,7 +220,7 @@ export const perguntasSistema: Pergunta[] = [
       { id: "nao-sei", rotulo: "Ainda não sei", horas: 0 },
     ],
     ajuda:
-      "SaaS é um sistema que você vende por assinatura. Site com área logada tem uma parte só para quem entra com conta. Aplicativo roda no celular ou no navegador. Programa de computador se instala no PC. Cada tipo soma horas, e “ainda não sei” não soma nada: a gente decide na conversa.",
+      "SaaS é um sistema que você vende por assinatura. Site com área logada tem uma parte só para quem entra com conta. Aplicativo roda no celular ou no navegador. Programa de computador se instala no PC. “Ainda não sei” não muda o valor: a gente decide na conversa.",
   },
   {
     id: "usuarios",
@@ -231,7 +232,7 @@ export const perguntasSistema: Pergunta[] = [
       { id: "clientes", rotulo: "Os meus clientes", horas: 2, abre: [login, cadastro] },
       { id: "publico", rotulo: "Qualquer pessoa (público aberto)", horas: 3, abre: [login, cadastro] },
     ],
-    ajuda: "Sistema só para a equipe é mais simples. Para clientes ou para o público, entram regras de acesso e segurança, e isso soma horas.",
+    ajuda: "Sistema só para a equipe é mais simples. Para clientes ou para o público, entram regras de acesso e segurança, e isso muda o valor.",
   },
   {
     id: "pagamento",
@@ -243,7 +244,7 @@ export const perguntasSistema: Pergunta[] = [
       { id: "pix-cartao", rotulo: "Sim, Pix e cartão", horas: 6, abre: [meioDePagamento, notaFiscal] },
       { id: "recorrente", rotulo: "Sim, assinatura recorrente", horas: 10, abre: [meioDePagamento, notaFiscal] },
     ],
-    ajuda: "Receber pelo sistema exige ligar com uma empresa de pagamento e tratar pagamentos que falham. Pix e cartão somam 6 horas; assinatura recorrente, 10.",
+    ajuda: "Receber pelo sistema exige ligar com uma empresa de pagamento e tratar pagamentos que falham. Assinatura recorrente dá mais trabalho que Pix e cartão.",
   },
   {
     id: "integracao",
@@ -255,7 +256,7 @@ export const perguntasSistema: Pergunta[] = [
       { id: "whatsapp", rotulo: "Sim, com o WhatsApp", horas: 4, abre: [quaisSistemas, acessoApi] },
       { id: "outros", rotulo: "Sim, com ERP, planilha ou outro", horas: 6, abre: [quaisSistemas, acessoApi] },
     ],
-    ajuda: "É quando o sistema troca informação com outro que você já usa, para ninguém digitar duas vezes. WhatsApp soma 4 horas; os outros, 6.",
+    ajuda: "É quando o sistema troca informação com outro que você já usa, para ninguém digitar duas vezes. Cada tipo de ligação muda o valor.",
   },
   {
     id: "volume",
@@ -268,7 +269,7 @@ export const perguntasSistema: Pergunta[] = [
       { id: "grande", rotulo: "Muito (cresce todo dia)", horas: 10 },
       { id: "nao-sei", rotulo: "Não sei", horas: 0 },
     ],
-    ajuda: "Muito dado pede um banco de dados mais cuidadoso para o sistema continuar rápido. Médio soma 4 horas; muito, 10.",
+    ajuda: "Muito dado pede um banco de dados mais cuidadoso para o sistema continuar rápido. Quanto mais dado, mais trabalho.",
   },
   {
     id: "relatorios",
@@ -279,7 +280,7 @@ export const perguntasSistema: Pergunta[] = [
       { id: "nao", rotulo: "Não", horas: 0 },
       { id: "sim", rotulo: "Sim", horas: 4, abre: [quaisRelatorios, exportar] },
     ],
-    ajuda: "Relatórios resumem os números do sistema em tabelas e gráficos. Soma 4 horas, mais o que você escolher a seguir.",
+    ajuda: "Relatórios resumem os números do sistema em tabelas e gráficos. Você escolhe quais a seguir.",
   },
   {
     id: "hospedagem",
@@ -302,6 +303,6 @@ export const perguntasSistema: Pergunta[] = [
       { id: "nao", rotulo: "Não", horas: 0 },
       { id: "sim", rotulo: "Sim", horas: 4, abre: [tipoDeDado, politicaPrivacidade] },
     ],
-    ajuda: "Dado sensível é o que causa dano se vazar: saúde, documentos, finanças. Pede mais cuidado e soma 4 horas, mais o que você escolher a seguir.",
+    ajuda: "Dado sensível é o que causa dano se vazar: saúde, documentos, finanças. Pede mais cuidado, e você escolhe os detalhes a seguir.",
   },
 ];

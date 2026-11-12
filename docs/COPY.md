@@ -105,7 +105,7 @@ Fonte: `orcamento.valor` em `src/content/textos.ts`. Botão "Por que esse valor?
 
 ## Sistema sob medida: orçamento base (12/11/2026) — PENDENTE
 
-Fontes: `servicos.ts` (preço-base), `perguntasSistema.ts` (árvore de perguntas e horas) e `textos.ts`. **PENDENTE:** o preço-base (20 h x R$ 50 = a partir de R$ 1.000) e todas as horas das respostas são provisórios, a confirmar pelo Marcelo.
+Fontes: `servicos.ts` (preço-base), `perguntasSistema.ts` (árvore de perguntas e horas) e `textos.ts`. **PENDENTE:** o preço-base (6 h x R$ 50 = a partir de R$ 300, sem teto) e todas as horas das respostas são provisórios, a confirmar pelo Marcelo.
 
 - Card: "SaaS, site, aplicativo ou programa feito do zero. O valor é um ponto de partida; a proposta fecha o escopo." Nota: "O valor é um ponto de partida: a proposta por escrito fecha o escopo."
 - Guia: "Você monta um orçamento base respondendo às perguntas. O valor é um ponto de partida: depois da conversa, a proposta por escrito fecha o escopo."
@@ -114,3 +114,7 @@ Fontes: `servicos.ts` (preço-base), `perguntasSistema.ts` (árvore de perguntas
 - Anúncio ao abrir filhas (role="status"): "2 perguntas novas sobre tipo de sistema, logo abaixo."
 - Prazo: "prazo a combinar" (o prazo.ts não cobre sistemas).
 - Política e termos: "Eu monto um texto-base com você. Não é parecer jurídico."
+
+## Dica "i" ao lado de cada pergunta (12/11/2026)
+
+Botão "i" (`Dica.tsx`) em todas as perguntas, com aria-label "O que significa: <pergunta>". Abre ao passar o mouse, ao focar pelo teclado e ao tocar; fecha com Esc, toque fora, perda de foco e rolagem; uma por vez. Substitui o antigo botão "O que é isso?". Os textos de `ajuda` ficam em `perguntas.ts` e `perguntasSistema.ts`, em 1 a 2 frases, sem valor em reais, horas nem prazo (a tela já mostra "+ R$" nas opções que mudam o valor); um teste confere isso.

@@ -143,7 +143,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "zero", rotulo: "Não, começo do zero", horas: 0 },
         ],
         ajuda:
-          "Os R$ 100 do pacote já incluem a limpeza simples: tirar linhas vazias e repetidas e padronizar as colunas. Se os dados estão espalhados em várias abas, com datas e valores digitados de jeitos diferentes, a arrumação passa de uma hora e soma 1 hora (R$ 50). Se for caderno ou papel, a gente monta o modelo juntos, e isso também soma 1 hora.",
+          "A limpeza simples já está no pacote: tirar linhas vazias e repetidas e padronizar as colunas. Dados espalhados em várias abas, com datas e valores digitados de jeitos diferentes, dão mais trabalho de arrumar. Se for caderno ou papel, a gente monta o modelo juntos.",
       },
       {
         id: "controles",
@@ -161,7 +161,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "outro", rotulo: "Outro" },
         ],
         ajuda:
-          "Controle é uma aba para acompanhar uma coisa, como clientes ou estoque. O primeiro está incluso no pacote. Cada controle a mais soma 1 hora de trabalho (R$ 50).",
+          "Controle é uma aba para acompanhar uma coisa, como clientes ou estoque. O primeiro está incluso no pacote. Cada controle a mais é trabalho extra, e a tela mostra quanto.",
       },
       {
         id: "dinheiro",
@@ -173,7 +173,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "nao", rotulo: "Não: só cadastros e listas", horas: 0 },
         ],
         ajuda:
-          "Com preços, vendas ou custos, cada total e cada fórmula fica visível e explicada, para você conseguir conferir sozinho. Isso soma 1 hora.",
+          "Com preços, vendas ou custos, cada total e cada fórmula fica visível e explicada, para você conseguir conferir sozinho. Isso pede um cuidado a mais, e a tela mostra quanto.",
       },
       dadosSensiveis,
     ],
@@ -209,7 +209,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "nenhum", rotulo: "Ainda não tenho", horas: 2 },
         ],
         ajuda:
-          "Uma planilha sua é o caminho mais curto. Exportações de sistemas e vários arquivos soltos pedem tempo para juntar e limpar, e isso soma horas. Se ainda não tiver nada organizado, a planilha organizada pode vir antes.",
+          "Uma planilha sua é o caminho mais curto. Exportações de sistemas e vários arquivos soltos pedem tempo para juntar e limpar, e isso muda o valor. Se ainda não tiver nada organizado, a planilha organizada pode vir antes.",
       },
       {
         id: "responder",
@@ -226,7 +226,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "outra", rotulo: "Outra" },
         ],
         ajuda:
-          "Cada pergunta vira um indicador ou gráfico. As duas primeiras estão incluídas. Cada uma a mais soma 1 hora (R$ 50).",
+          "Cada pergunta vira um indicador ou gráfico. As duas primeiras estão incluídas. Cada uma a mais é trabalho extra, e a tela mostra quanto.",
       },
       {
         id: "formato",
@@ -239,7 +239,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "nao-sei", rotulo: "Não sei", horas: 0 },
         ],
         ajuda:
-          "Excel é o mais simples e abre em qualquer computador. Power BI é mais visual e soma 1 hora, mas para dividir com outras pessoas pela internet exige licença paga da Microsoft.",
+          "Excel é o mais simples e abre em qualquer computador. Power BI é mais visual e muda o valor, mas para dividir com outras pessoas pela internet exige licença paga da Microsoft.",
       },
       dadosSensiveis,
     ],
@@ -273,7 +273,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "nao-sei", rotulo: "Ainda não sei" },
         ],
         ajuda:
-          "Pense no que você refaz sempre do mesmo jeito. A primeira tarefa está inclusa. Cada tarefa a mais soma 2 horas (R$ 100). Se não souber descrever, conte pelo WhatsApp e eu ajudo.",
+          "Pense no que você refaz sempre do mesmo jeito. A primeira tarefa está inclusa. Cada tarefa a mais é trabalho extra, e a tela mostra quanto. Se não souber descrever, conte pelo WhatsApp e eu ajudo.",
       },
       {
         id: "onde",
@@ -287,7 +287,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "varios", rotulo: "Em vários lugares", horas: 3 },
         ],
         ajuda:
-          "Dentro do Excel é o mais simples. Quando a tarefa envolve um sistema, o WhatsApp ou vários lugares, é preciso ligar as peças, e isso soma horas.",
+          "Dentro do Excel é o mais simples. Quando a tarefa envolve um sistema, o WhatsApp ou vários lugares, é preciso ligar as peças, e isso muda o valor.",
       },
       dadosSensiveis,
     ],
@@ -324,7 +324,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "agendamentos", rotulo: "Receber agendamentos" },
         ],
         ajuda:
-          "A página funciona melhor com poucos objetivos. Os dois primeiros estão incluídos. Cada um a mais soma 1 hora (R$ 50).",
+          "A página funciona melhor com poucos objetivos. Os dois primeiros estão incluídos. Cada um a mais é trabalho extra, e a tela mostra quanto.",
       },
       {
         id: "material",
@@ -337,7 +337,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "nenhum", rotulo: "Ainda não tenho", horas: 1 },
         ],
         ajuda:
-          "Fotos reais do seu trabalho convencem mais do que imagem de banco. Sem material nenhum, eu preciso montar um visual simples com você, e isso soma 1 hora.",
+          "Fotos reais do seu trabalho convencem mais do que imagem de banco. Sem material nenhum, eu preciso montar um visual simples com você, e isso muda o valor.",
       },
       {
         id: "paginas",
@@ -349,7 +349,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "tres", rotulo: "Até 3 páginas", horas: 3 },
         ],
         ajuda:
-          "Uma página só rola de cima para baixo, com tudo. Até 3 páginas separa, por exemplo, serviços e contato, e soma 3 horas.",
+          "Uma página só rola de cima para baixo, com tudo. Várias páginas separam, por exemplo, serviços e contato, e isso muda o valor.",
       },
     ],
   },
@@ -387,7 +387,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "nao-sei", rotulo: "Ainda não sei" },
         ],
         ajuda:
-          "Pense no que você refaz sempre do mesmo jeito. A primeira tarefa está inclusa. Cada tarefa a mais soma 1 hora (R$ 50). Se não souber descrever, conte pelo WhatsApp e eu ajudo.",
+          "Pense no que você refaz sempre do mesmo jeito. A primeira tarefa está inclusa. Cada tarefa a mais é trabalho extra, e a tela mostra quanto. Se não souber descrever, conte pelo WhatsApp e eu ajudo.",
       },
       {
         id: "origem",
@@ -401,7 +401,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "varios", rotulo: "De vários lugares", horas: 3 },
         ],
         ajuda:
-          "Planilha e CSV são o caso mais simples e ficam no valor base. PDFs e imagens pedem leitura e conferência (1 hora, R$ 50). Sites ou sistemas pedem ligar as peças (2 horas), e vários lugares ao mesmo tempo somam 3 horas.",
+          "Planilha e CSV são o caso mais simples e ficam no valor base. PDFs e imagens pedem leitura e conferência. Sites ou sistemas pedem ligar as peças, e vários lugares ao mesmo tempo dão ainda mais trabalho.",
       },
       {
         id: "rodar",
@@ -414,7 +414,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "tela", rotulo: "Com uma tela de botões", horas: 2 },
         ],
         ajuda:
-          "Rodar quando você quiser é o mais simples. Em horário marcado exige configurar o agendamento (1 hora, R$ 50), e uma tela de botões é um pequeno programa à parte (2 horas).",
+          "Rodar quando você quiser é o mais simples. Em horário marcado exige configurar o agendamento, e uma tela de botões é um pequeno programa à parte.",
       },
       dadosSensiveis,
     ],
@@ -452,7 +452,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "cargos", rotulo: "Cargos por reação" },
         ],
         ajuda:
-          "Ticket é um canal privado que o bot abre para atender uma pessoa. Cargo por reação é quando a pessoa ganha um cargo ao clicar em um emoji. As duas primeiras funções estão incluídas. Cada uma a mais soma 1 hora (R$ 50).",
+          "Ticket é um canal privado que o bot abre para atender uma pessoa. Cargo por reação é quando a pessoa ganha um cargo ao clicar em um emoji. As duas primeiras funções estão incluídas. Cada uma a mais é trabalho extra, e a tela mostra quanto.",
       },
       {
         id: "hospedagem",
@@ -502,7 +502,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "nao-sei", rotulo: "Ainda não sei" },
         ],
         ajuda:
-          "A IA responde melhor quando o assunto é delimitado. O primeiro papel está incluso. Cada um a mais soma 2 horas (R$ 100).",
+          "A IA responde melhor quando o assunto é delimitado. O primeiro papel está incluso. Cada um a mais é trabalho extra, e a tela mostra quanto.",
       },
       {
         id: "provedor",
@@ -515,7 +515,7 @@ export const servicosOrcamento: ServicoOrcamento[] = [
           { id: "nao-sei", rotulo: "Não sei o que é", horas: 1 },
         ],
         ajuda:
-          "Provedor de IA é a empresa que fornece o modelo (por exemplo, OpenAI ou Anthropic). Você abre uma conta, e o uso aparece na sua fatura. Se nunca fez isso, eu explico o caminho, e isso soma 1 hora.",
+          "Provedor de IA é a empresa que fornece o modelo (por exemplo, OpenAI ou Anthropic). Você abre uma conta, e o uso aparece na sua fatura. Se nunca fez isso, eu explico o caminho, e isso muda o valor.",
       },
     ],
   },
