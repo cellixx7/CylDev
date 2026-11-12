@@ -143,14 +143,19 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
               <a className={botao} href={linkWhatsappPedido(pedido, origem) ?? "#"} target="_blank" rel="noopener">
                 WhatsApp
               </a>
-              <a className={botao} href={`mailto:${site.email}`}>
+              <a className={botao} href={linkEmailPedido(pedido, origem) ?? `mailto:${site.email}`}>
                 {site.email}
               </a>
             </p>
           </div>
         )}
       </form>
-      <p className="mt-3 mb-0 text-[0.875rem] text-texto-suave">{t.privacidade}</p>
+      <p className="mt-3 mb-0 text-[0.875rem] text-texto-suave">
+        {t.privacidade}{" "}
+        <a className="inline-block min-h-[44px] leading-[44px]" href="/privacidade/">
+          {t.privacidadeLink}
+        </a>
+      </p>
     </section>
   );
 }

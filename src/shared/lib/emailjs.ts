@@ -20,6 +20,7 @@ export type DadosContato = {
   preferencia: "whatsapp" | "email";
   contato: string;
   assunto: string;
+  /** Texto livre. Com `itens` no envio, ele não é enviado (o pedido já vai em `itens`, `total` e `observacoes`). */
   mensagem: string;
   origem: string;
   /** Dados da calculadora, em texto. Sem calculadora, o envio usa "—". */
@@ -64,7 +65,9 @@ export async function enviarContato(dados: DadosContato, cfg = site.emailjs): Pr
         preferencia: dados.preferencia === "whatsapp" ? "WhatsApp" : "E-mail",
         contato: dados.contato,
         assunto: dados.assunto || "Contato pelo site",
-        mensagem: dados.mensagem,
+        // Com itens, o pedido já vai separado em `itens`, `total` e `observacoes`: repetir tudo aqui duplicaria o e-mail.
+        // Sem itens (Comunidade, contato simples), a mensagem continua sendo o conteúdo.
+        mensagem: (dados.itens ?? []).length > 0 ? "" : dados.mensagem,
         origem: dados.origem,
         pacote: dados.pacote || SEM_DADO,
         tamanho: dados.tamanho || SEM_DADO,

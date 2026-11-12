@@ -333,7 +333,7 @@ describe("e-mail com os dados por serviço", () => {
     for (const i of d.itens!) expect(`${i.titulo}${i.valor}${i.respostas}`).not.toMatch(/<[a-z/]/i);
   });
 
-  it("mantém os campos de sempre, com `mensagem` como reserva", () => {
+  it("mantém os campos de sempre, com `mensagem` montada (o envio a omite quando há itens)", () => {
     const pedido = montarPedido(["painel"], { painel: respostasPainel }, "Obs.", semPiloto);
     const d = dadosEmailPedido(pedido, contato);
     expect(d.mensagem).toBe(textoPedidoCompleto(pedido));

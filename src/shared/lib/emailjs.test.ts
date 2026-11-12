@@ -77,7 +77,17 @@ describe("enviarContato", () => {
     expect(p.total).toBe("estimativa a partir de R$ 350");
     expect(p.observacoes).toBe('Até 10/12 & "urgente" <b>');
     // Os de sempre continuam indo.
-    expect(p).toMatchObject({ nome: "Ana", mensagem: "Oi", origem: "negocios-contato" });
+    expect(p).toMatchObject({ nome: "Ana", origem: "negocios-contato" });
+  });
+
+  it("com itens, `mensagem` vai vazia (o pedido não se repete); sem itens, vai como veio", async () => {
+    const comItens = espiar();
+    await enviarContato({ ...base, mensagem: "Pedido completo em texto", itens: [{ titulo: "Painel básico", valor: "R$ 200", respostas: "—" }] }, cfg);
+    expect(comItens().mensagem).toBe("");
+    vi.unstubAllGlobals();
+    const semItens = espiar();
+    await enviarContato({ ...base, mensagem: "Quero um bot" }, cfg);
+    expect(semItens().mensagem).toBe("Quero um bot");
   });
 
   it("sem carrinho: itens vazio, total e observações com '—'", async () => {

@@ -77,7 +77,7 @@ export const exemplos: Exemplo[] = [
   {
     id: "landing-page",
     servicoId: "landing",
-    rotulo: "Página para o seu negócio",
+    rotulo: "Site de uma página",
     titulo: "Uma página que leva o cliente ao seu WhatsApp",
     problema:
       "Os clientes perguntam sempre as mesmas coisas e você não tem um lugar para mostrar o serviço e os preços.",

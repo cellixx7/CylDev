@@ -19,3 +19,10 @@ graphify-out/
 # Saídas do Playwright (npm run test:e2e)
 test-results/
 playwright-report/
+
+# Material de auditoria e prompts de trabalho (locais)
+AGENTS.md
+docs/AUDITORIA-*.md
+docs/Auditoria_*.pdf
+docs/PROMPT-*.md
+docs/auditoria-capturas/

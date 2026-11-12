@@ -2,6 +2,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { CardServico, inclusosDoCard, precoDoCard } from "../pages/negocios/CardServico";
+import { COMBO_2, COMBO_3 } from "./orcamento";
 import { servicosOrcamento } from "./perguntas";
 import { servicoPorId } from "./servicos";
 import { orcamento } from "./textos";
@@ -90,7 +91,8 @@ describe("card: botões e ícone de carrinho", () => {
     for (const s of servicosOrcamento) {
       expect(card(s.id, false).includes(orcamento.cards.comboNoCard), s.id).toBe(s.combinavel);
     }
-    expect(orcamento.cards.comboNoCard).not.toMatch(/d+s*%/);
+    expect(orcamento.cards.comboNoCard).toContain(`${COMBO_2}% com 2`);
+    expect(orcamento.cards.comboNoCard).toContain(`${COMBO_3}% com 3 ou mais`);
   });
 
   it("o título reserva espaço para o ícone", () => {

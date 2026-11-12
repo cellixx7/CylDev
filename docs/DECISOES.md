@@ -8,10 +8,10 @@
 - **Tema:** `data-theme` no `<html>`, escuro por padrão em todas as áreas; um script inline aplica a escolha salva antes da pintura. Chave por área (`tema-negocios`, `tema-comunidade`), leitura e escrita em `try/catch`.
 - **Formulário:** ver V1.1 (EmailJS).
 - **Fontes:** locais, em `public/fonts/` (`font-display: swap`): Space Grotesk nos títulos e no texto e Space Mono nos preços e números (Negócios).
-- **Visual:** Negócios usa a paleta N2, grafite com terracota (`src/styles/tema-negocios.css`); a Comunidade tem tema próprio em `src/styles/tema-comunidade.css`. Sem degradê, vidro ou blur e sem emoji como ícone.
+- **Visual:** Negócios usa cobalto sobre off-white frio (claro) e azul-noite (escuro), com um só acento (`src/styles/tema-negocios.css`); a Comunidade tem tema próprio em `src/styles/tema-comunidade.css`. Sem degradê, vidro ou blur e sem emoji como ícone. (A paleta grafite com terracota das primeiras versões foi substituída.)
 - **Catálogo por área:** pacotes de Discord aparecem em `/comunidade/`; os demais na raiz `/`. Campo `area` em `servicos.ts`.
 - **Prazo calculado:** `ceil(horas / horasPorDiaUtil) + diasDeRevisao`.
-- **Demos:** ficam para a V2 (sem demo, não há dado fictício exposto na V1).
+- **Demos:** as demonstrações animadas de planilha, painel e automação já existem em Como funciona (ver Blocos 6 e 6b). Todo dado delas é rotulado como exemplo fictício.
 
 ## V1.1 (02/11/2026): mudanças de escopo
 
@@ -33,7 +33,7 @@
 
 ## EmailJS e prazo provisório (09/11/2026)
 
-- **EmailJS:** `serviceId` configurado (`service_2qsfdk9`) em `site.emailjs`. `templateId` e `publicKey` continuam vazios; enquanto faltarem, o formulário cai no WhatsApp e no e-mail. `Orcamento.tsx` envia ao `Formulario` os campos `pacote`, `tamanho` e `estimativa` (ex.: "a partir de R$ 300"), além do `resumo`.
+- **EmailJS (atualizado em 11/11/2026):** `serviceId`, `templateId` e `publicKey` estão preenchidos em `site.emailjs`, então o envio pelo site está ativo. Falta só conferir no painel do EmailJS o template e as origens permitidas (ver Pendências do Marcelo). O texto original desta linha falava em ids vazios e no serviceId antigo.
 - **Prazo provisório:** o campo `horasProvisorias: true` em `servicos.ts` marca pacotes com horas ainda não confirmadas (hoje: bot essencial e bot com IA). Neles o site mostra "prazo a combinar" no catálogo (`textoPrazo`), na calculadora e no `resumoOrcamento` (WhatsApp e e-mail). Os demais seguem com dias úteis calculados. Quando o Marcelo confirmar as horas, remover a marca. As horas provisórias (4 h e 8 h) ainda aparecem na calculadora e no resumo.
 
 ## Orçamento por respostas e carrinho (09/11/2026, em andamento)
@@ -54,8 +54,8 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 ### Pendências desta mudança (valores PROPOSTOS, a confirmar)
 
 - [ ] Horas extras por resposta (todas em `perguntas.ts`; marcadas como PENDENTE no topo do arquivo).
-- [ ] Combo: `COMBO_2` = 10% (2 combináveis) e `COMBO_3` = 15% (3 ou mais), em `src/content/orcamento.ts`.
-- [ ] Combo e piloto: regra do "maior" (acima).
+- [x] Combo: `COMBO_2` = 10% (2 combináveis) e `COMBO_3` = 15% (3 ou mais), em `src/content/orcamento.ts`. **Confirmado pelo Marcelo em 12/11/2026.**
+- [x] Combo e piloto: regra do "maior" (acima). Mantida em 12/11/2026: não contradiz a regra do combo (o cliente nunca recebe menos que o combo).
 - [ ] Horas base dos bots (provisórias): o prazo fica "a combinar".
 - [ ] "Ainda não tenho" no painel soma 2 h: manter ou sugerir a planilha antes.
 - [ ] Desconto do plano de 6 meses dos bots.
@@ -81,7 +81,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Pedido estruturado:** `src/shared/lib/pedido.ts` (novo) monta o pedido (respostas, acréscimos, preço-base, prazo, mensalidade, desconto, sob consulta, observações) a partir de `calcularCarrinho()` e alimenta tela de revisão, WhatsApp e EmailJS. `orcamento.ts` não foi alterado; `textoPedido()` dele (sem respostas) ficou sem uso na interface.
 - **Perguntas não são obrigatórias:** o spec não define obrigatoriedade. O progresso ("3 de 5") informa, não bloqueia. Estados da estimativa: preço inicial, em configuração, configurada, sob consulta.
 - **Pedido vazio:** sem formulário nem WhatsApp; a revisão mostra o caminho de volta aos serviços.
-- **Pendências comerciais inalteradas:** horas extras, combos e piloto continuam como propostas a confirmar.
+- **Pendências comerciais inalteradas:** horas extras e piloto continuam como propostas a confirmar. (Combos: confirmados em 12/11/2026, ver o fim deste arquivo.)
 
 ## Orçamento em cards com modal (10/11/2026)
 
@@ -129,7 +129,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 
 ## Correções da auditoria do PR #7 (11/11/2026), bloco 1
 
-- **P0-01 EmailJS sem configuração:** `templateId` e `publicKey` seguem vazios em `site.ts` (o Marcelo fornece). Sem os três valores, o carrinho não mostra formulário nem "Enviar pelo site": só "Chamar no WhatsApp" e "Enviar por e-mail" (mailto com o pedido, `linkEmailPedido` em `pedido.ts`). Com configuração válida, o comportamento anterior continua. `Contatos` também só mostra o formulário com EmailJS configurado.
+- **P0-01 EmailJS sem configuração:** `templateId` e `publicKey` seguem vazios em `site.ts` (o Marcelo fornece). Sem os três valores, o carrinho não mostra formulário nem "Enviar pelo site": só "Chamar no WhatsApp" e "Enviar por e-mail" (mailto com o pedido, `linkEmailPedido` em `pedido.ts`). Com configuração válida, o comportamento anterior continua. `Contatos` também só mostra o formulário com EmailJS configurado. **Superado:** os três ids foram preenchidos depois (ver EmailJS acima); o comportamento sem configuração continua como fallback.
 - **P1-03 antispam sem falso sucesso:** a regra (isca e 3 s) não mudou. O botão "Enviar pelo site" fica desabilitado até 3 s depois da montagem, com o aviso "Um instante…" (`role="status"`); `envioLiberado` só reaproveita `pareceSpam`. Enter num campo antes da hora é ignorado, sem descartar. Isca preenchida continua com descarte silencioso. O `Formulario` compartilhado (hoje sem uso com formulário) não ganhou o botão desabilitado.
 - **P1-01 menu:** Sobre, Entregas e Contato saem do menu pelas flags `site.menuSecoes` (religue com `true` quando a seção existir; as seções vazias continuam no HTML). Não havia contato visível fora do carrinho, então o rodapé de Negócios e de Como funciona ganhou "Prefere falar direto? Chame no WhatsApp".
 - **P2-03 telefone:** `validarTelefone` (`telefone.ts`): só dígitos, 10 ou 11 dígitos, DDD de 11 a 99, 55 opcional (removido só com 12 ou 13 dígitos). O envio leva `55` + número. Erro específico no campo, com `aria-invalid`, `aria-describedby` e `role="alert"`. O `pattern` antigo saiu.
@@ -171,7 +171,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Formato:** `titulo` = nome do serviço; `valor` = o mesmo texto do carrinho (`resumoPrecoItem`), com " (estimativa)" quando `ItemPedido.estimativa` (tem valor e há pergunta sem resposta; "sob consulta" não ganha o aviso, como no carrinho); `respostas` = uma linha por pergunta, "não respondeu" quando faltar; `assunto` = "Pedido: A + B"; `total` = `totalCurto`, o mesmo texto do rodapé do carrinho (a função saiu de `BarraCarrinho.tsx` para `pedido.ts`, sem mudar).
 - **Linha da resposta:** as perguntas terminam em "?", então a linha sai "Pergunta? resposta"; os dois-pontos ("Pergunta: resposta") só entram quando a pergunta não termina em pontuação. Decisão minha, para não escrever "?:".
 - **Texto simples:** nenhum HTML é montado no código; o template do EmailJS decide a aparência. Regras de spam (isca e 3 s) e lógica de preço intactas.
-- **Pendente:** a sintaxe de lista do template não foi testada com conta real (faltam `templateId` e `publicKey`).
+- **Pendente:** a sintaxe de lista do template não foi testada com envio real (os ids já estão configurados; os testes e2e interceptam a API).
 
 ## Bloco 5: testes de jornada no navegador (P4-03, 11/11/2026)
 
@@ -185,6 +185,13 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Telefone vazio:** o campo é `required`, então quem barra o envio é a validação nativa do navegador (balão do próprio navegador), e não a mensagem do site; o teste confere isso. As outras formas de telefone inválido mostram a mensagem do site.
 - **Não coberto:** Safari e Firefox, celular de verdade (teclado virtual, área segura do iPhone), leitor de tela, e o envio real pelo EmailJS (template e entrega do e-mail).
 
+
+## Estado atual e ajustes finais antes do merge (11/11/2026)
+
+- **Resumo do que vale hoje:** Negócios vende 6 serviços (planilha, painel básico, automação em Excel, site de uma página, aulas, sistema sob medida); **bots só na Comunidade** (`/comunidade/#bots`), com mensalidade explicada lá. EmailJS ativo. Carrinho em `sessionStorage`. Demonstrações de planilha, painel e automação em Como funciona. Testes: Vitest (`npm test`) e jornadas no navegador com Playwright (`npm run test:e2e`, fora do build).
+- **Nome unificado:** o assunto de Como funciona que era "Página para o seu negócio" agora se chama **"Site de uma página"**, igual ao card. O id interno (`landing`) e a âncora `#landing-page` não mudaram.
+- **`Formulario.tsx` está dormente.** `Contatos` só o renderiza com `comFormulario=true` (e o EmailJS configurado), e a Comunidade usa `comFormulario={false}`; hoje nenhuma página o mostra. Ele ainda não tem o botão desabilitado por 3 s do checkout (`CheckoutPedido.tsx`): se o usuário envia antes disso, vai para `/obrigado/` sem envio nenhum (falso sucesso). **Antes de ligá-lo**, aplicar o mesmo `liberado` e o aviso "Um instante…". As regras de spam (isca e 3 s) não mudam.
+- **Revisão do comentário do carrinho em `Orcamento.tsx`:** conferido, está atual (estado em `Orcamento`, sessionStorage, limpeza após envio, regra de um dialog por vez).
 
 ## Bloco 6: demonstração animada da planilha (piloto, 11/11/2026)
 
@@ -208,3 +215,29 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Modal:** `servicosComDemo` agora liga planilha, painel e automação ao link "Ver como funciona". Os cards seguem com 3 botões (teste confere).
 - **Testes:** `demoPainel.test.ts`, `demoAutomacao.test.ts`; `e2e/demo.spec.ts` virou uma bateria por demonstração (controles, pausa fora da tela, link do modal, 360 e 390 px, movimento reduzido) mais cenários do filtro do painel e do clique da automação.
 - **Não validado:** celular de verdade, Safari/Firefox, leitor de tela, o ritmo de 2,2 s nas duas novas. Conferi só por captura em 390 px (escuro no painel, claro na automação).
+
+## Combo oficial, A-03 e e-mail sem duplicação (12/11/2026)
+
+- **Combo oficial:** 1 serviço, preço normal (com o piloto, se houver vaga); 2 combináveis, 10%; 3 ou mais, 15%. O rótulo "pendente" saiu de `orcamento.ts`. Teste novo: 1 combinável, e combinável + aula/sistema, não formam combo.
+- **Piloto x combo (como já era):** não se somam nem se multiplicam; o código calcula os dois sobre a soma de tabela e aplica só o que abate mais reais (empate: combo). O combo incide só nos combináveis; o piloto, em toda a criação (inclui bots) e nunca em aulas, sistema nem mensalidade. Não há desconto embutido no preço-base. Ordem mantida: só seria preciso mudar se o piloto desse ao cliente menos que o combo, o que não acontece.
+- **A-03:** "Preços fechados" saiu da descrição e do `og:description` de `index.html`: agora "Orçamento na hora, com preço a partir de R$ 100." (não há `twitter:description`).
+- **E-mail:** `enviarContato` manda `mensagem` vazia quando há `itens`; sem itens, vai como veio. O WhatsApp segue com a mensagem completa. `docs/emailjs-template.md` atualizado (precisa de teste real do template).
+
+## Segunda rodada de correções da auditoria (12/11/2026)
+
+- **Card do combo:** "Desconto a partir de 2 serviços: 10% com 2, 15% com 3 ou mais." Os números saem de `COMBO_2`/`COMBO_3` (`textos.ts` importa `orcamento.ts`); o teste exige esses mesmos valores.
+- **"Preço fechado":** saiu da intro do catálogo (`textos.ts` e `COPY.md`): "preço-base a partir de um valor; estimativa na hora, valor final confirmado depois". `notaEstimativa` ("o valor e a data ficam fechados na proposta") continua, pois fala da proposta, não do site.
+- **A-06:** o e-mail do aviso de falha usa `linkEmailPedido` (assunto e corpo com o pedido); e2e confere o `body=`.
+- **A-09:** `.gitignore` cobre `AGENTS.md`, `docs/AUDITORIA-*.md`, `docs/Auditoria_*.pdf`, `docs/PROMPT-*.md` e `docs/auditoria-capturas/`.
+- **A-05:** `robots.txt` e `sitemap.xml` (3 páginas) são gerados no build por um plugin de `vite.config.ts`, com a mesma URL do `__URL__` (`URL` da Netlify, senão `site.urlPadrao`). Canonical nas três páginas públicas. `/obrigado/` e `404` já tinham `noindex`. Observação: em deploy preview, a Netlify injeta a URL do site principal, então o canonical aponta para a produção.
+- **A-04 (parcial):** `netlify.toml` com `nosniff`, `Referrer-Policy`, `Permissions-Policy` e CSP só em `Report-Only` (nada é bloqueado). Testei a mesma política como bloqueante no build servido (Chromium): fontes, script inline de tema e estilos sem violação em `/`, `/como-funciona/`, `/comunidade/` e `/obrigado/`. Não testei o envio real ao EmailJS sob CSP (o `connect-src` libera `https://api.emailjs.com`, o endereço de `emailjs.ts`). Fica `'unsafe-inline'` em script e estilo; `frame-ancestors` não funciona em Report-Only. Depois de um deploy preview sem avisos no console, trocar para `Content-Security-Policy` (com hash do script inline, como em A-04).
+- **A-08, A-10, A-12, A-17:** cache longo de `/fonts/*` e `/og-*`; README atualizado; `/obrigado/` fala só do WhatsApp; 3 fontes sem uso removidas de `public/fonts/`.
+- **Ficou para depois:** A-11 (privacidade/LGPD: texto jurídico, decisão do Marcelo), A-15 (confirmar entrada de 50%), A-13 (Formulario dormente), A-14 (e2e da contingência sem EmailJS), A-16 (painel "Ano de 2026"), A-18 (WhatsApp longo), A-07 (alerta de cota no painel do EmailJS), teste real do template do EmailJS.
+
+## Privacidade e A-15 (12/11/2026)
+
+- **A-15:** entrada de 50% por Pix e saldo de 50% antes da entrega final ficam como estão (`textos.ts`, `como-funciona/main.tsx`, `COPY.md`). Confirmado pelo Marcelo em 12/11/2026. Nenhum outro texto contradiz (conferi "Pix", "entrada", "pagamento").
+- **A-11:** linha de privacidade no painel do carrinho (o que é enviado, para quê, por onde passa) e página `/privacidade/` (entrada no `vite.config.ts`, canonical, sitemap, link no rodapé de Negócios e Comunidade; `/obrigado/` e a 404 não têm rodapé). Texto em `textos.ts`/`COPY.md`.
+- **Prazo de guarda:** e-mails de pedidos por até 12 meses (escolha do Marcelo). É uma promessa a cumprir: apagar a cada 12 meses, e o registro do envio no painel do EmailJS, se houver. A conversa no WhatsApp: "enquanto precisar para atendimento e entrega", sem número.
+- **Limites:** não é parecer jurídico; não verifiquei a política interna de retenção do EmailJS nem os logs da Netlify (a página só diz que podem existir). A linha do carrinho aparece só com o EmailJS ativo (é o formulário que a contém).
+

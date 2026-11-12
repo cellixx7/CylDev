@@ -1,9 +1,11 @@
 // Todos os textos das páginas. Fonte: docs/COPY.md (versão 2, respostas do Marcelo em 02/11/2026).
 // Preços nunca são escritos à mão aqui: saem de servicos.ts e orcamento.ts.
+import { COMBO_2, COMBO_3 } from "./orcamento";
 
 export const comum = {
   privacidade:
     "Este site não usa ferramentas de rastreamento. O que você mandar pelo formulário ou pelo WhatsApp serve só para eu responder o seu contato. O formulário é enviado pelo serviço EmailJS.",
+  privacidadeLink: "Política de privacidade",
   dadosFicticios: "dados fictícios",
   temaClaro: "Tema claro",
   temaEscuro: "Tema escuro",
@@ -47,8 +49,8 @@ export const orcamento = {
       dicaDentro: "No carrinho. Clique para tirar.",
     },
     mensalidadeDe: "mensalidade",
-    /** Frase curta, visível no card combinável (sem número de desconto). */
-    comboNoCard: "Entra no combo: desconto a partir de 2 serviços.",
+    /** Frase curta, visível no card combinável. Os percentuais saem de orcamento.ts. */
+    comboNoCard: `Desconto a partir de 2 serviços: ${COMBO_2}% com 2, ${COMBO_3}% com 3 ou mais.`,
     aPartirDe: (valor: string) => `a partir de ${valor}`,
     porHora: (valor: string) => `${valor} por hora`,
     sobConsulta: "sob consulta",
@@ -192,7 +194,9 @@ export const orcamento = {
     falhou: "Não consegui enviar agora. Chame no WhatsApp ou mande um e-mail com o mesmo pedido.",
     whatsappBotao: "Chamar no WhatsApp",
     emailBotao: "Enviar por e-mail",
-    privacidade: "Seu nome e WhatsApp são usados só para responder este pedido. Eu confirmo por WhatsApp e combinamos o Pix.",
+    privacidade:
+      "Envio o seu nome, o WhatsApp, as respostas do orçamento e as observações, só para responder este pedido. Eles passam pelo EmailJS (envio pelo site) e pelo WhatsApp. Eu confirmo por WhatsApp e combinamos o Pix.",
+    privacidadeLink: "Política de privacidade",
   },
 };
 
@@ -285,7 +289,7 @@ export const negocios = {
   entregas: {
     titulo: "O que eu entrego e quanto custa",
     intro:
-      "Os valores abaixo são pela criação. Nos pacotes básicos o preço é fechado; quando o trabalho varia, mostro o valor mínimo e confirmo depois de ver o seu caso. Bots têm mensalidade de manutenção, mais a hospedagem à parte; sites e planilhas não precisam.",
+      "Os valores abaixo são pela criação. Cada pacote tem um preço-base a partir de um valor; no orçamento você vê a estimativa na hora, e eu confirmo o valor final depois de ver o seu caso. Bots têm mensalidade de manutenção, mais a hospedagem à parte; sites e planilhas não precisam.",
     pedir: "Pedir orçamento",
     ajustes: (valorHora: string) =>
       `Ajustes depois da entrega (planilha, painel e página): ${valorHora} por hora, sem mensalidade.`,
@@ -388,9 +392,61 @@ export const comunidade = {
   ponte: { texto: "Quer algo assim para o seu negócio?", link: "Veja a área Negócios" },
 };
 
+export const privacidade = {
+  titulo: "Política de privacidade",
+  atualizado: "Atualizado em 12/11/2026.",
+  intro: "Este texto explica, em linguagem simples, o que acontece com os seus dados quando você usa este site. Quem cuida deles é Marcelo Vaz.",
+  voltar: "Voltar para o site",
+  /** Em `secoes`, `{email}` é trocado por site.email na página. */
+  secoes: [
+    {
+      titulo: "O que eu recebo",
+      itens: [
+        "Se você enviar um pedido pelo site: o seu nome, o seu WhatsApp, as respostas do orçamento e as observações que escrever.",
+        "Se você me chamar pelo WhatsApp: o que você escrever na conversa, junto com o número e o nome do seu perfil.",
+        "O site não pede mais nada do que isso, e nada é enviado até você apertar o botão.",
+      ],
+    },
+    {
+      titulo: "Para que eu uso",
+      itens: ["Só para responder o seu pedido, conversar sobre o orçamento e, se fecharmos, fazer a entrega. Não uso para anúncio nem repasso a ninguém para isso."],
+    },
+    {
+      titulo: "Por onde os dados passam",
+      itens: [
+        "EmailJS: serviço que entrega o formulário do site no meu e-mail. O envio passa pelos servidores dele, que ficam fora do Brasil.",
+        "WhatsApp: se você usar o botão do WhatsApp, a mensagem sai do seu aparelho pelo próprio WhatsApp, que tem a política dele.",
+        "Netlify: hospeda o site e pode registrar dados técnicos de acesso, como o endereço IP, conforme a política dela.",
+        "As fontes do site ficam no próprio site: nenhuma fonte, estatística ou rastreador de terceiros é carregado.",
+      ],
+    },
+    {
+      titulo: "O que fica no seu navegador",
+      itens: [
+        "O carrinho fica no sessionStorage, só enquanto a aba está aberta, para não se perder ao trocar de página. Ele guarda apenas os serviços escolhidos e as respostas do orçamento; nunca o nome, o telefone nem as observações. É apagado depois de um envio com sucesso.",
+        "O tema claro ou escuro que você escolher fica no localStorage.",
+        "O site não usa cookies de rastreamento nem ferramentas de análise.",
+      ],
+    },
+    {
+      titulo: "Por quanto tempo eu guardo",
+      itens: [
+        "Os pedidos que chegam no meu e-mail ficam guardados por até 12 meses; depois eu apago.",
+        "A conversa no WhatsApp fica no meu aparelho e na minha conta enquanto eu precisar dela para o atendimento e a entrega.",
+      ],
+    },
+    {
+      titulo: "Como pedir para apagar ou saber o que tenho",
+      itens: [
+        "Escreva para {email} pedindo para apagar os seus dados ou para ver o que eu tenho sobre você. Eu respondo e apago o que estiver comigo, inclusive o registro do envio no painel do EmailJS, se houver.",
+      ],
+    },
+  ],
+};
+
 export const obrigado = {
   titulo: "Mensagem recebida.",
-  texto: "Obrigado pelo contato. Respondo pelo WhatsApp ou e-mail que você deixou.",
+  texto: "Obrigado pelo contato. Respondo pelo WhatsApp que você deixou.",
   voltar: "Voltar para o site",
 };
 

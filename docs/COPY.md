@@ -19,7 +19,8 @@ Versão 2, com as respostas de 02/11. Fonte dos textos em `src/content/textos.ts
 ### Entregas
 
 - Título: "O que eu entrego e quanto custa"
-- Intro: "Os valores abaixo são pela criação. Nos pacotes básicos o preço é fechado; quando o trabalho varia, mostro o valor mínimo e confirmo depois de ver o seu caso. Bots têm mensalidade de hospedagem e manutenção; sites e planilhas não precisam."
+- Intro: "Os valores abaixo são pela criação. Cada pacote tem um preço-base a partir de um valor; no orçamento você vê a estimativa na hora, e eu confirmo o valor final depois de ver o seu caso. Bots têm mensalidade de hospedagem e manutenção; sites e planilhas não precisam."
+- Combo (regra oficial, 12/11/2026), só para planilha, painel, automação e site de uma página: 1 serviço, preço normal; 2 serviços, 10% de desconto; 3 ou mais, 15%. No card: "Desconto a partir de 2 serviços: 10% com 2, 15% com 3 ou mais." (números lidos de `orcamento.ts`); o carrinho, a mensagem do WhatsApp e o e-mail mostram "combo 10%" ou "combo 15%" e o valor abatido. Combo e piloto não se somam: vale o que abate mais reais.
 - Aviso de desconto (aparece enquanto houver vaga): "As 5 primeiras vagas têm 10% de desconto. As 5 seguintes, 5%. Restam {vagasRestantes} com {desconto}%. Chame no WhatsApp e garanta a sua." Depois das 10 vagas, o aviso some e valem os preços de tabela. `[PERGUNTA 2]`
 
 | Pacote | Preço (criação) | Resultado | Inclui |
@@ -74,6 +75,15 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 ## Comum
 
 - Privacidade: "Este site não usa ferramentas de rastreamento. O que você mandar pelo formulário ou pelo WhatsApp serve só para eu responder o seu contato. O formulário é enviado pelo serviço EmailJS."
-- Obrigado: "Mensagem recebida." / "Obrigado pelo contato. Respondo pelo WhatsApp ou e-mail que você deixou."
+- Obrigado: "Mensagem recebida." / "Obrigado pelo contato. Respondo pelo WhatsApp que você deixou."
 - 404: "Essa página não existe." / "O link pode estar errado ou a página mudou de lugar. Se precisar de ajuda, escreva para marcelovaz.contato@gmail.com."
 - Mensagem do WhatsApp: "Oi, Marcelo! Vim pelo site (origem: negocios)." Nos pacotes, a origem vira `negocios-painel`, `comunidade-bot-essencial` etc., seguida de "Quero um orçamento de: [nome do pacote] ([preço])." O preço **sai do `servicos.ts`**, nunca escrito à mão no texto.
+
+## Privacidade (12/11/2026)
+
+Fonte dos textos: `privacidade` em `src/content/textos.ts` (página `/privacidade/`) e `carrinho.privacidade` / `comum.privacidadeLink`.
+
+- Carrinho (perto do envio): "Envio o seu nome, o WhatsApp, as respostas do orçamento e as observações, só para responder este pedido. Eles passam pelo EmailJS (envio pelo site) e pelo WhatsApp. Eu confirmo por WhatsApp e combinamos o Pix." + link "Política de privacidade".
+- Rodapé de Negócios e Comunidade: o aviso de sempre + link "Política de privacidade".
+- Página: o que recebo; para que uso; por onde passa (EmailJS, WhatsApp, Netlify; sem fontes ou rastreadores de terceiros); o que fica no navegador (carrinho em sessionStorage, sem nome, telefone nem observações; tema em localStorage; sem cookies de rastreamento); guarda do e-mail por até 12 meses; como pedir exclusão (e-mail de `site.ts`). Não é parecer jurídico.
+
