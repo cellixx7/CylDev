@@ -1,7 +1,8 @@
 import { orcamento, pilotoNota } from "../../content/textos";
 import { brl, horasTexto } from "../../shared/lib/formato";
-import { comDesconto, descontoPilotoAtual, type CalculoServico } from "../../shared/lib/orcamento";
+import { comDesconto, descontoPilotoAtual, type CalculoServico, type Respostas } from "../../shared/lib/orcamento";
 import type { EstadoEstimativa, Progresso } from "../../shared/lib/pedido";
+import { PorQueEsseValor } from "./PorQueEsseValor";
 
 const e = orcamento.estimativa;
 const piloto = descontoPilotoAtual();
@@ -66,12 +67,13 @@ function notaDoEstado(estado: EstadoEstimativa, p: Progresso): string | null {
 type Props = {
   nome: string;
   calculo: CalculoServico;
+  respostas: Respostas;
   progresso: Progresso;
   estado: EstadoEstimativa;
 };
 
 /** Responde "quanto custa o serviço que estou configurando?". O conjunto do pedido fica em ResumoPedido. */
-export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props) {
+export function ResumoEstimativa({ nome, calculo: c, respostas, progresso, estado }: Props) {
   const nota = notaDoEstado(estado, progresso);
 
   return (
@@ -87,6 +89,7 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
         <Valor c={c} progresso={progresso} />
       </div>
       {nota && <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">{nota}</p>}
+      <PorQueEsseValor ids={[c.id]} respostas={{ [c.id]: respostas }} />
 
       <dl className="my-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-0.5 border-t border-linha pt-3 text-[1rem]">
         {c.horas !== null && (

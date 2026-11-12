@@ -193,6 +193,58 @@ export const orcamento = {
       configurada: "Todas as perguntas respondidas.",
     },
   },
+  /** Tela "Por que esse valor?". Os números (R$ por hora, combo, piloto) chegam por parâmetro ou saem de orcamento.ts. */
+  valor: {
+    botao: "Por que esse valor?",
+    titulo: "Por que esse valor?",
+    fechar: "Fechar",
+    fecharRodape: "Entendi",
+    geral: {
+      titulo: "Como o preço é montado",
+      precoBase: "Cada serviço tem um preço-base. É o “a partir de” que aparece no card.",
+      horaExtra: (valor: string) =>
+        `Suas respostas podem somar horas extras de trabalho. Cada hora extra custa ${valor}.`,
+      combo: `Combo: com 2 serviços combináveis (planilha, painel, automação e site de uma página), ${COMBO_2}% de desconto. Com 3 ou mais, ${COMBO_3}%.`,
+      piloto: (percentual: number | null) =>
+        percentual === null
+          ? "Piloto: neste momento não há vaga de desconto de piloto."
+          : `Piloto: enquanto houver vaga, há ${percentual}% de desconto sobre o preço de criação.`,
+      regras:
+        "Os descontos nunca se somam: vale o que abate mais reais. O combo só vale para os serviços combináveis. O piloto não vale para a mensalidade nem para o sistema sob consulta. Os bots de Discord são vendidos só na Comunidade.",
+      estimativa:
+        "Pergunta sem resposta deixa o valor aproximado. O valor final é confirmado na proposta. Hospedagem e o uso de IA dos bots são cobrados à parte.",
+    },
+    pedido: {
+      titulo: "No seu pedido",
+      base: "Preço-base",
+      colunaItem: "Item",
+      colunaValor: "Valor",
+      /** Ex.: "2 h x R$ 50 por hora". */
+      horas: (horas: string, porHora: string) => `${horas} x ${porHora} por hora`,
+      horasACombinar: "Horas e prazo: a combinar na conversa.",
+      semResposta: (nomes: string) => `Sem resposta (ainda não somam): ${nomes}.`,
+      soma: "Soma do serviço",
+      sobConsulta: "Sob consulta: não entra no total. Eu mando uma proposta por escrito.",
+      mensalidade: (valor: string) => `Mensalidade: ${valor} por mês, à parte do total, mais a hospedagem.`,
+      fechamento: "Fechamento",
+      somaTabela: "Soma de tabela",
+      semDesconto: "Nenhum desconto vale para este pedido agora.",
+      descontoLinha: (rotulo: string) => `Desconto (${rotulo})`,
+      total: "Total estimado",
+      totalAPartirDe: "Total estimado (a partir de)",
+      comboPorque: (qtd: number, base: string) =>
+        `O combo vale porque há ${qtd} serviços combináveis. Ele incide só sobre eles (${base}).`,
+      pilotoPorque: (base: string) => `O piloto incide sobre o preço de criação (${base}).`,
+      pilotoMaior: (outro: string, mesmo: string) => `O piloto abateu mais que o combo: ${mesmo}, contra ${outro} do combo.`,
+      comboMaior: (outro: string, mesmo: string) => `O combo abateu ${mesmo}; o piloto abateria ${outro}, e eles não se somam.`,
+      empate: (valor: string) => `Combo e piloto abateriam o mesmo valor (${valor}); vale o combo.`,
+      mudaria: "O que mais mudaria este valor",
+      mudariaLinha: (nome: string, perguntas: string) => `${nome}: ${perguntas}`,
+      mudariaNota: "Respostas que somam horas extras aumentam o valor.",
+      estimativa: "Há perguntas sem resposta: o valor é aproximado e pode mudar.",
+    },
+    vazio: "Seu pedido está vazio. Quando você adicionar um serviço, o detalhamento do valor aparece aqui.",
+  },
   /** Barra fixa do carrinho. */
   barra: {
     rotulo: "Carrinho",

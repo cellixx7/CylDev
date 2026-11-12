@@ -18,7 +18,7 @@ export function AbaOrcamento({ modelo, respostas, calculo, progresso, estado, ao
   return (
     <div className="grid gap-8">
       <ConfiguradorServico modelo={modelo} respostas={respostas} progresso={progresso} aoResponder={aoResponder} />
-      <ResumoEstimativa nome={modelo.nome} calculo={calculo} progresso={progresso} estado={estado} />
+      <ResumoEstimativa nome={modelo.nome} respostas={respostas} calculo={calculo} progresso={progresso} estado={estado} />
     </div>
   );
 }
