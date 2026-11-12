@@ -63,7 +63,7 @@ async function cabecalhoInteiro(page: Page) {
   }
 }
 
-const paginas = ["/", "/como-funciona/", "/comunidade/", "/obrigado/"];
+const paginas = ["/", "/como-funciona/", "/comunidade/", "/privacidade/", "/obrigado/"];
 
 for (const largura of [360, 390]) {
   test.describe(`7. em ${largura} px`, () => {

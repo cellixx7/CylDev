@@ -17,7 +17,12 @@ export function Rodape({ ponte, children }: Props) {
         </a>
       </p>
       {children}
-      <p>{comum.privacidade}</p>
+      <p>
+        {comum.privacidade}{" "}
+        <a className="inline-block min-h-alvo leading-[44px]" href="/privacidade/">
+          {comum.privacidadeLink}
+        </a>
+      </p>
     </footer>
   );
 }

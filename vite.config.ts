@@ -16,7 +16,7 @@ function urlAbsoluta(): Plugin {
 }
 
 // Páginas públicas para o sitemap (obrigado e 404 ficam de fora e levam noindex).
-const paginasPublicas = ["/", "/como-funciona/", "/comunidade/"];
+const paginasPublicas = ["/", "/como-funciona/", "/comunidade/", "/privacidade/"];
 
 /** Gera robots.txt e sitemap.xml no build, com a mesma URL que troca o __URL__ dos HTML. */
 function seo(): Plugin {
@@ -48,6 +48,7 @@ export default defineConfig({
         inicio: resolve(raiz, "index.html"),
         comoFunciona: resolve(raiz, "como-funciona/index.html"),
         comunidade: resolve(raiz, "comunidade/index.html"),
+        privacidade: resolve(raiz, "privacidade/index.html"),
         obrigado: resolve(raiz, "obrigado/index.html"),
         naoEncontrado: resolve(raiz, "404.html"),
       },
