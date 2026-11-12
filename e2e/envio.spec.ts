@@ -202,6 +202,8 @@ test.describe("5. envio pelo site: corpo enviado, isca e falha", () => {
     await campoWhatsapp(page).fill(TELEFONE_FICTICIO);
     await enviar(page).click();
     await expect(painelCarrinho(page).getByRole("alert").filter({ hasText: t.carrinho.falhou })).toBeVisible();
+    const mail = painelCarrinho(page).getByRole("alert").locator('a[href^="mailto:"]');
+    expect(decodeURIComponent((await mail.getAttribute("href")) ?? ""), "o e-mail de falha leva o pedido").toContain("body=");
     await expect(page).not.toHaveURL(/obrigado/);
     expect(await carrinhoSalvo(page)).toMatchObject({ ids: [ID] });
   });

@@ -143,7 +143,7 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
               <a className={botao} href={linkWhatsappPedido(pedido, origem) ?? "#"} target="_blank" rel="noopener">
                 WhatsApp
               </a>
-              <a className={botao} href={`mailto:${site.email}`}>
+              <a className={botao} href={linkEmailPedido(pedido, origem) ?? `mailto:${site.email}`}>
                 {site.email}
               </a>
             </p>
