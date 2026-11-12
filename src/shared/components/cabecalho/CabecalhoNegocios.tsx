@@ -11,7 +11,7 @@ export function CabecalhoNegocios() {
   return (
     <Cabecalho
       area="negocios"
-      temaPadrao="escuro"
+      temaPadrao="claro"
       marca={site.nome}
       links={linksDoMenu}
       centro={<ControleComunidade {...negocios.atalhoComunidade} />}
