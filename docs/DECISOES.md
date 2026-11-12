@@ -54,8 +54,8 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 ### Pendências desta mudança (valores PROPOSTOS, a confirmar)
 
 - [ ] Horas extras por resposta (todas em `perguntas.ts`; marcadas como PENDENTE no topo do arquivo).
-- [ ] Combo: `COMBO_2` = 10% (2 combináveis) e `COMBO_3` = 15% (3 ou mais), em `src/content/orcamento.ts`.
-- [ ] Combo e piloto: regra do "maior" (acima).
+- [x] Combo: `COMBO_2` = 10% (2 combináveis) e `COMBO_3` = 15% (3 ou mais), em `src/content/orcamento.ts`. **Confirmado pelo Marcelo em 12/11/2026.**
+- [x] Combo e piloto: regra do "maior" (acima). Mantida em 12/11/2026: não contradiz a regra do combo (o cliente nunca recebe menos que o combo).
 - [ ] Horas base dos bots (provisórias): o prazo fica "a combinar".
 - [ ] "Ainda não tenho" no painel soma 2 h: manter ou sugerir a planilha antes.
 - [ ] Desconto do plano de 6 meses dos bots.
@@ -81,7 +81,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Pedido estruturado:** `src/shared/lib/pedido.ts` (novo) monta o pedido (respostas, acréscimos, preço-base, prazo, mensalidade, desconto, sob consulta, observações) a partir de `calcularCarrinho()` e alimenta tela de revisão, WhatsApp e EmailJS. `orcamento.ts` não foi alterado; `textoPedido()` dele (sem respostas) ficou sem uso na interface.
 - **Perguntas não são obrigatórias:** o spec não define obrigatoriedade. O progresso ("3 de 5") informa, não bloqueia. Estados da estimativa: preço inicial, em configuração, configurada, sob consulta.
 - **Pedido vazio:** sem formulário nem WhatsApp; a revisão mostra o caminho de volta aos serviços.
-- **Pendências comerciais inalteradas:** horas extras, combos e piloto continuam como propostas a confirmar.
+- **Pendências comerciais inalteradas:** horas extras e piloto continuam como propostas a confirmar. (Combos: confirmados em 12/11/2026, ver o fim deste arquivo.)
 
 ## Orçamento em cards com modal (10/11/2026)
 
@@ -215,3 +215,10 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Modal:** `servicosComDemo` agora liga planilha, painel e automação ao link "Ver como funciona". Os cards seguem com 3 botões (teste confere).
 - **Testes:** `demoPainel.test.ts`, `demoAutomacao.test.ts`; `e2e/demo.spec.ts` virou uma bateria por demonstração (controles, pausa fora da tela, link do modal, 360 e 390 px, movimento reduzido) mais cenários do filtro do painel e do clique da automação.
 - **Não validado:** celular de verdade, Safari/Firefox, leitor de tela, o ritmo de 2,2 s nas duas novas. Conferi só por captura em 390 px (escuro no painel, claro na automação).
+
+## Combo oficial, A-03 e e-mail sem duplicação (12/11/2026)
+
+- **Combo oficial:** 1 serviço, preço normal (com o piloto, se houver vaga); 2 combináveis, 10%; 3 ou mais, 15%. O rótulo "pendente" saiu de `orcamento.ts`. Teste novo: 1 combinável, e combinável + aula/sistema, não formam combo.
+- **Piloto x combo (como já era):** não se somam nem se multiplicam; o código calcula os dois sobre a soma de tabela e aplica só o que abate mais reais (empate: combo). O combo incide só nos combináveis; o piloto, em toda a criação (inclui bots) e nunca em aulas, sistema nem mensalidade. Não há desconto embutido no preço-base. Ordem mantida: só seria preciso mudar se o piloto desse ao cliente menos que o combo, o que não acontece.
+- **A-03:** "Preços fechados" saiu da descrição e do `og:description` de `index.html`: agora "Orçamento na hora, com preço a partir de R$ 100." (não há `twitter:description`).
+- **E-mail:** `enviarContato` manda `mensagem` vazia quando há `itens`; sem itens, vai como veio. O WhatsApp segue com a mensagem completa. `docs/emailjs-template.md` atualizado (precisa de teste real do template).

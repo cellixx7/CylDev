@@ -210,6 +210,15 @@ describe("carrinho", () => {
     expect(c.total).toBe(150);
   });
 
+  it("combo: 1 combinável paga o preço normal; combinável + aula ou sistema não forma combo", () => {
+    const um = calcularCarrinho(["painel"], {}, semPiloto);
+    expect(um.desconto).toBeNull();
+    expect(um.total).toBe(um.somaTabela);
+    const comAula = calcularCarrinho(["painel", "aulas"], { aulas: { pagamento: "pacote" } }, semPiloto);
+    expect(comAula.desconto).toBeNull();
+    expect(calcularCarrinho(["painel", "sistema"], {}, semPiloto).desconto).toBeNull();
+  });
+
   it("combo com 2 combináveis: 10% e prazo único", () => {
     const c = calcularCarrinho(["planilha", "painel"], {}, semPiloto);
     expect(c.somaTabela).toBe(300);

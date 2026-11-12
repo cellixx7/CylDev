@@ -20,6 +20,7 @@ Versão 2, com as respostas de 02/11. Fonte dos textos em `src/content/textos.ts
 
 - Título: "O que eu entrego e quanto custa"
 - Intro: "Os valores abaixo são pela criação. Nos pacotes básicos o preço é fechado; quando o trabalho varia, mostro o valor mínimo e confirmo depois de ver o seu caso. Bots têm mensalidade de hospedagem e manutenção; sites e planilhas não precisam."
+- Combo (regra oficial, 12/11/2026), só para planilha, painel, automação e site de uma página: 1 serviço, preço normal; 2 serviços, 10% de desconto; 3 ou mais, 15%. No card: "Entra no combo: desconto a partir de 2 serviços." (sem número); o carrinho, a mensagem do WhatsApp e o e-mail mostram "combo 10%" ou "combo 15%" e o valor abatido. Combo e piloto não se somam: vale o que abate mais reais.
 - Aviso de desconto (aparece enquanto houver vaga): "As 5 primeiras vagas têm 10% de desconto. As 5 seguintes, 5%. Restam {vagasRestantes} com {desconto}%. Chame no WhatsApp e garanta a sua." Depois das 10 vagas, o aviso some e valem os preços de tabela. `[PERGUNTA 2]`
 
 | Pacote | Preço (criação) | Resultado | Inclui |
