@@ -88,6 +88,6 @@ describe("carrinho-estado", () => {
     const e = adicionar(estadoInicial(), "sistema");
     const item = montarPedido(e.ids, e.respostas).itens[0];
     expect(item.sobConsulta).toBe(false);
-    expect(item.preco).toBe(1000);
+    expect(item.preco).toBe(300);
   });
 });

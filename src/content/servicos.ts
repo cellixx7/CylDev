@@ -3,8 +3,8 @@
 
 import { VALOR_HORA_EXTRA } from "./orcamento";
 
-/** PENDENTE: horas base provisórias do orçamento base do sistema. */
-export const HORAS_BASE_SISTEMA = 20;
+/** PENDENTE (Marcelo, 12/11/2026): horas base provisórias do orçamento base do sistema (6 h x VALOR_HORA_EXTRA). */
+export const HORAS_BASE_SISTEMA = 6;
 
 export type Preco =
   | { tipo: "fixo"; valor: number }
@@ -115,7 +115,7 @@ export const servicos: Servico[] = [
     resultado: "Quando a planilha já não dá conta e você precisa de um sistema próprio. Você monta o orçamento base e a proposta fecha o escopo.",
     inclui: ["Conversa para entender o caso", "Proposta por escrito", "Entrega em etapas"],
     nota: "O valor é um ponto de partida: a proposta por escrito fecha o escopo.",
-    // PENDENTE (Marcelo, 12/11/2026): 20 horas base x R$ 50 (VALOR_HORA_EXTRA) e as horas das respostas são provisórias.
+    // PENDENTE (Marcelo, 12/11/2026): 6 horas base x R$ 50 (VALOR_HORA_EXTRA) e as horas das respostas são provisórias.
     preco: { tipo: "aPartirDe", valor: HORAS_BASE_SISTEMA * VALOR_HORA_EXTRA },
     horasBase: HORAS_BASE_SISTEMA,
     // Sem prazo calculado: o prazo.ts não cobre sistemas, então o site mostra "prazo a combinar".

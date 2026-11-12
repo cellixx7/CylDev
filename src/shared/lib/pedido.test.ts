@@ -92,11 +92,11 @@ describe("montarPedido: o escopo acompanha o valor", () => {
     expect(item.respostas.filter((r) => r.escolhas.length === 0).length).toBe(item.perguntasTotal - 1);
   });
 
-  it("sistema: ponto de partida de R$ 1.000, aproximado", () => {
+  it("sistema: ponto de partida de R$ 300, aproximado", () => {
     const item = montarPedido(["sistema"], {}, "", semPiloto).itens[0];
     expect(item.sobConsulta).toBe(false);
-    expect(item.preco).toBe(1000);
-    expect(item.precoBase).toBe(1000);
+    expect(item.preco).toBe(300);
+    expect(item.precoBase).toBe(300);
     expect(item.aproximado).toBe(true);
   });
 
@@ -306,9 +306,9 @@ describe("e-mail com os dados por serviço", () => {
     expect(linhas.filter((l) => l.endsWith(NAO_RESPONDEU))).toHaveLength(modelo("painel").perguntas.length - 1);
   });
 
-  it("sistema sem respostas: a partir de R$ 1.000", () => {
+  it("sistema sem respostas: a partir de R$ 300", () => {
     const [item] = itensDoEmail(montarPedido(["sistema"], {}, "", semPiloto));
-    expect(limpo(item.valor)).toContain("a partir de R$ 1.000");
+    expect(limpo(item.valor)).toContain("a partir de R$ 300");
   });
 
   it("vários itens: um por serviço, na ordem do carrinho, e o assunto junta os nomes com ' + '", () => {

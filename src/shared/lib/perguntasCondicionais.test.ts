@@ -133,10 +133,10 @@ describe("contadores e horas só com as visíveis", () => {
     const pedido = montarPedido(["sistema"], respostas, "", semPiloto);
     const carrinho = calcularCarrinho(["sistema"], respostas, semPiloto);
     // 6 + 8 + 6 + 10 + 2 = 32 h extras
-    expect(carrinho.total).toBe(1000 + 32 * 50);
+    expect(carrinho.total).toBe(300 + 32 * 50);
     const total = totalCurto(pedido);
-    expect(total).toContain("2.600");
-    expect(mensagemWhatsappPedido(pedido)).toContain("2.600");
+    expect(total).toContain("1.900");
+    expect(mensagemWhatsappPedido(pedido)).toContain("1.900");
     expect(dadosEmailPedido(pedido, { nome: "X", whatsapp: "1" }).total).toBe(total);
     expect(somaDoDetalhamento(explicarValor(carrinho, respostas, semPiloto))).toBe(carrinho.total);
   });

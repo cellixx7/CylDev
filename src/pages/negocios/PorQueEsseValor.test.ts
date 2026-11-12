@@ -54,6 +54,6 @@ describe("Por que esse valor?", () => {
   it("sistema aparece com a base e as horas a combinar", () => {
     const html = render(true, ["sistema"]);
     expect(html).toContain(t.pedido.horasACombinar);
-    expect(html).toContain(brl(1000));
+    expect(html).toContain(brl(300));
   });
 });
