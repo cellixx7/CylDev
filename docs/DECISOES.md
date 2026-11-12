@@ -233,3 +233,11 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **A-04 (parcial):** `netlify.toml` com `nosniff`, `Referrer-Policy`, `Permissions-Policy` e CSP só em `Report-Only` (nada é bloqueado). Testei a mesma política como bloqueante no build servido (Chromium): fontes, script inline de tema e estilos sem violação em `/`, `/como-funciona/`, `/comunidade/` e `/obrigado/`. Não testei o envio real ao EmailJS sob CSP (o `connect-src` libera `https://api.emailjs.com`, o endereço de `emailjs.ts`). Fica `'unsafe-inline'` em script e estilo; `frame-ancestors` não funciona em Report-Only. Depois de um deploy preview sem avisos no console, trocar para `Content-Security-Policy` (com hash do script inline, como em A-04).
 - **A-08, A-10, A-12, A-17:** cache longo de `/fonts/*` e `/og-*`; README atualizado; `/obrigado/` fala só do WhatsApp; 3 fontes sem uso removidas de `public/fonts/`.
 - **Ficou para depois:** A-11 (privacidade/LGPD: texto jurídico, decisão do Marcelo), A-15 (confirmar entrada de 50%), A-13 (Formulario dormente), A-14 (e2e da contingência sem EmailJS), A-16 (painel "Ano de 2026"), A-18 (WhatsApp longo), A-07 (alerta de cota no painel do EmailJS), teste real do template do EmailJS.
+
+## Privacidade e A-15 (12/11/2026)
+
+- **A-15:** entrada de 50% por Pix e saldo de 50% antes da entrega final ficam como estão (`textos.ts`, `como-funciona/main.tsx`, `COPY.md`). Confirmado pelo Marcelo em 12/11/2026. Nenhum outro texto contradiz (conferi "Pix", "entrada", "pagamento").
+- **A-11:** linha de privacidade no painel do carrinho (o que é enviado, para quê, por onde passa) e página `/privacidade/` (entrada no `vite.config.ts`, canonical, sitemap, link no rodapé de Negócios e Comunidade; `/obrigado/` e a 404 não têm rodapé). Texto em `textos.ts`/`COPY.md`.
+- **Prazo de guarda:** e-mails de pedidos por até 12 meses (escolha do Marcelo). É uma promessa a cumprir: apagar a cada 12 meses, e o registro do envio no painel do EmailJS, se houver. A conversa no WhatsApp: "enquanto precisar para atendimento e entrega", sem número.
+- **Limites:** não é parecer jurídico; não verifiquei a política interna de retenção do EmailJS nem os logs da Netlify (a página só diz que podem existir). A linha do carrinho aparece só com o EmailJS ativo (é o formulário que a contém).
+
