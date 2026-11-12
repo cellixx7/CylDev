@@ -12,8 +12,8 @@ export type EstadoCarrinho = {
 /** Serviços que entram no combo (planilha, painel e automação). */
 export const COMBO_IDS = ["planilha", "painel", "automacao"];
 
-/** Aulas começam no formato avulso, que é o que o preço mostra sem resposta. */
-export const respostasIniciais: Record<string, Respostas> = { aulas: { pagamento: "avulsa" } };
+/** Respostas de partida por serviço. Hoje nenhum serviço precisa de uma. */
+export const respostasIniciais: Record<string, Respostas> = {};
 
 export function estadoInicial(): EstadoCarrinho {
   return { ids: [], respostas: { ...respostasIniciais } };

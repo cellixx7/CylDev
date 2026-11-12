@@ -52,7 +52,6 @@ export const orcamento = {
     /** Frase curta, visível no card combinável. Os percentuais saem de orcamento.ts. */
     comboNoCard: `Desconto a partir de 2 serviços: ${COMBO_2}% com 2, ${COMBO_3}% com 3 ou mais.`,
     aPartirDe: (valor: string) => `a partir de ${valor}`,
-    porHora: (valor: string) => `${valor} por hora`,
     sobConsulta: "sob consulta",
     adicionado: (nome: string) => `${nome} no carrinho.`,
     removido: (nome: string) => `${nome} fora do carrinho.`,
@@ -71,11 +70,56 @@ export const orcamento = {
       painel: "Um arquivo que mostra o que vendeu, o que mais sai e como está o mês.",
       automacao: "A tarefa que você repete toda semana na planilha roda com um clique.",
       landing: "Uma página com o seu serviço, os seus preços e um botão para o seu WhatsApp.",
-      aulas: "Aula individual online, no seu ritmo, com os arquivos do seu trabalho.",
-      sistema: "Para quando a planilha já não dá conta. Começa com uma conversa.",
+      python: "Um script em Python que faz por você a tarefa repetida: juntar arquivos, ler PDFs, enviar mensagens.",
+      sistema: "SaaS, site, aplicativo ou programa feito do zero para o seu caso. Começa com uma conversa.",
       "bot-essencial": "Tickets, boas-vindas e moderação básica para o seu servidor de Discord.",
       "bot-ia": "Um bot que responde com IA e um painel web para ajustar o que ele faz.",
     } as Record<string, string>,
+    /** Mini exemplo de cada card: sempre rotulado como exemplo, sem número, prazo ou dado real. */
+    miniExemplo: {
+      rotulo: "Exemplo",
+      antes: "Antes",
+      planilha: {
+        legenda: "Controles soltos viram uma tabela só, com total no fim.",
+        antes: ["controle_final.xlsx", "controle_final2.xlsx", "novo (copia).xlsx"],
+        colunas: ["Item", "Qtd", "Total"],
+        linhas: ["Produto A", "Produto B"],
+        total: "Total",
+      },
+      painel: {
+        legenda: "Vendas, mais vendidos e o mês numa tela só.",
+        indicadores: ["Vendas", "Pedidos", "Estoque"],
+        grafico: "Vendas por mês",
+      },
+      automacao: {
+        legenda: "O que você faz à mão toda semana vira um clique.",
+        passos: ["Importa os dados", "Confere e soma", "Gera o relatório"],
+        botao: "Atualizar",
+      },
+      landing: {
+        legenda: "Uma página com o serviço, o preço e o botão do WhatsApp.",
+        endereco: "seunegocio.com.br",
+        titulo: "Seu serviço",
+        preco: "Preços",
+        botao: "Chamar no WhatsApp",
+      },
+      python: {
+        legenda: "Uma pasta de arquivos entra, o script trabalha e a planilha sai pronta.",
+        entrada: ["PDFs", "Planilhas", "E-mails"],
+        script: "script.py",
+        saida: "Planilha pronta",
+      },
+      sistema: {
+        legenda: "Do desenho das telas ao sistema no ar: tudo feito por uma pessoa só.",
+        tipos: ["SaaS", "Site", "Aplicativo", "Programa"],
+        camadas: [
+          { nome: "Front", detalhe: "telas e navegação" },
+          { nome: "Back", detalhe: "regras e API" },
+          { nome: "Banco de dados", detalhe: "onde tudo fica salvo" },
+          { nome: "Deploy", detalhe: "no ar, para usar" },
+        ],
+      },
+    },
   },
   /** Modal do serviço (abas Detalhes e Orçamento). */
   modal: {

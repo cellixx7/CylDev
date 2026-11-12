@@ -6,7 +6,7 @@ import {
   vagasPiloto10,
   vagasPiloto5,
 } from "../../content/orcamento";
-import { servicoOrcamentoPorId, type Pergunta, type ServicoOrcamento } from "../../content/perguntas";
+import { servicoOrcamentoPorId, type Pergunta } from "../../content/perguntas";
 import { prazoACombinar, servicoPorId } from "../../content/servicos";
 import { site } from "../../content/site";
 import { brl, horasTexto } from "./formato";
@@ -37,11 +37,8 @@ export function comDesconto(preco: number, percentual: number): number {
 /** Respostas de um serviço: id da pergunta → id da opção (única) ou ids das opções (múltipla). */
 export type Respostas = Record<string, string | string[] | undefined>;
 
-export type FormatoAula = "avulsa" | "pacote";
-
 /** A pergunta muda o valor? Serve só para mostrar "Muda o valor." ou "Não muda o valor." na tela. */
 export function mudaOValor(p: Pergunta): boolean {
-  if (p.formato) return true;
   if (p.tipo === "multipla") return (p.horasPorExtra ?? 0) > 0;
   return p.opcoes.some((o) => (o.horas ?? 0) > 0);
 }
@@ -63,12 +60,6 @@ export function horasExtrasDa(p: Pergunta, respostas: Respostas): number {
   return p.opcoes.find((o) => o.id === ids[0])?.horas ?? 0;
 }
 
-/** Formato de aula escolhido (avulsa, se nada foi marcado). */
-export function formatoDeAula(s: ServicoOrcamento, respostas: Respostas): FormatoAula {
-  const p = s.perguntas.find((q) => q.formato);
-  return p && opcoesMarcadas(p, respostas)[0] === "pacote" ? "pacote" : "avulsa";
-}
-
 // Cálculo de um serviço ------------------------------------------------------------------
 
 export type LinhaCalculo = {
@@ -83,17 +74,15 @@ export type CalculoServico = {
   id: string;
   nome: string;
   combinavel: boolean;
-  tipoPreco: "fixo" | "aPartirDe" | "aula" | "sobConsulta";
+  tipoPreco: "fixo" | "aPartirDe" | "sobConsulta";
   /** Preço de tabela com as horas extras. `null` no sob consulta. */
   preco: number | null;
   aPartirDe: boolean;
   /** Bots: o preço varia pelas respostas, mas é só uma estimativa. */
   estimativa: boolean;
-  /** Aulas: formato escolhido. */
-  formatoAula: FormatoAula | null;
   /** Horas extras vindas das respostas. */
   horasExtras: number;
-  /** Horas totais de trabalho. `null` quando o prazo não é calculado (bots, aulas, sistema). */
+  /** Horas totais de trabalho. `null` quando o prazo não é calculado (bots, sistema). */
   horas: number | null;
   /** Dias úteis calculados. `null` quando o prazo não é calculado. */
   dias: number | null;
@@ -119,7 +108,6 @@ export function calcularServico(id: string, respostas: Respostas = {}): CalculoS
     combinavel: modelo.combinavel,
     aPartirDe: servico.preco.tipo === "aPartirDe",
     estimativa: false,
-    formatoAula: null as FormatoAula | null,
     mensalidade: null as number | null,
   };
 
@@ -133,23 +121,6 @@ export function calcularServico(id: string, respostas: Respostas = {}): CalculoS
       dias: null,
       prazo: servico.prazoTexto ?? "Combinado na proposta",
       linhas: [],
-    };
-  }
-
-  if (servico.preco.tipo === "aula") {
-    const { porHora, pacote } = servico.preco;
-    const formato = formatoDeAula(modelo, respostas);
-    const valor = formato === "pacote" ? pacote.valor : porHora;
-    return {
-      ...comum,
-      tipoPreco: "aula",
-      preco: valor,
-      formatoAula: formato,
-      horasExtras: 0,
-      horas: null,
-      dias: null,
-      prazo: servico.prazoTexto ?? "Começa quando você quiser",
-      linhas: [{ rotulo: formato === "pacote" ? `Pacote de ${pacote.aulas} aulas` : "Aula avulsa (1 hora)", valor, horas: 0 }],
     };
   }
 
@@ -228,7 +199,7 @@ export type Carrinho = {
   temSobConsulta: boolean;
   /** Prazo único dos combináveis: horas somadas, ceil(soma / horas por dia) + 1 dia de revisão. */
   prazoCombinaveis: { horas: number; dias: number; texto: string } | null;
-  /** Prazos dos demais itens (bots, aulas, sistema). */
+  /** Prazos dos demais itens (bots, sistema). */
   prazosOutros: { nome: string; texto: string }[];
   /** Soma das mensalidades dos bots (hospedagem à parte). */
   mensalidade: number;
@@ -250,7 +221,7 @@ export function percentualCombo(qtdCombinaveis: number, combo2 = COMBO_2, combo3
 /**
  * Carrinho a partir dos ids e das respostas atuais de cada serviço.
  * Combo e piloto não se somam: vale o que abate mais reais. O combo incide só nos combináveis;
- * o piloto, em toda a criação (combináveis e bots), nunca em aulas, sistema ou mensalidade.
+ * o piloto, em toda a criação (combináveis e bots), nunca em sistema ou mensalidade.
  * Em empate, vale o combo.
  */
 export function calcularCarrinho(
@@ -264,7 +235,7 @@ export function calcularCarrinho(
 
   const soma = (lista: CalculoServico[]) => lista.reduce((acc, i) => acc + (i.preco ?? 0), 0);
   const combinaveis = itens.filter((i) => i.combinavel);
-  const criacao = itens.filter((i) => i.tipoPreco !== "aula" && i.tipoPreco !== "sobConsulta");
+  const criacao = itens.filter((i) => i.tipoPreco !== "sobConsulta");
   const somaTabela = soma(itens);
 
   const pctCombo = percentualCombo(combinaveis.length, combo2, combo3);
@@ -302,11 +273,11 @@ export function calcularCarrinho(
 
 // Textos ---------------------------------------------------------------------------------
 
-/** Preço de um item em texto: "a partir de R$ 450", "R$ 50 por hora", "sob consulta". */
+/** Preço de um item em texto: "a partir de R$ 450", "sob consulta". */
 export function textoPrecoItem(i: CalculoServico): string {
   if (i.preco === null) return "sob consulta";
   const prefixo = i.aPartirDe ? "a partir de " : i.estimativa ? "estimativa " : "";
-  return `${prefixo}${brl(i.preco)}${i.formatoAula === "avulsa" ? " por hora" : ""}`;
+  return `${prefixo}${brl(i.preco)}`;
 }
 
 function linhaDoItem(i: CalculoServico): string {

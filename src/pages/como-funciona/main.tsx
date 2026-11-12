@@ -161,13 +161,12 @@ function VisualLanding() {
   );
 }
 
-function VisualAulas() {
+function VisualPython() {
   return (
     <ol className={listaPassos}>
-      <li className="mb-2"><strong>Aula 1.</strong> Organizar a sua planilha: tabelas e formatação.</li>
-      <li className="mb-2"><strong>Aula 2.</strong> Fórmulas de soma, média e procura (PROCV).</li>
-      <li className="mb-2"><strong>Aula 3.</strong> Tabela dinâmica com os seus dados de venda.</li>
-      <li className="mb-2"><strong>Aula 4.</strong> Gráficos e um resumo mensal pronto.</li>
+      <li className="mb-2"><strong>Entra.</strong> Uma pasta com PDFs, planilhas ou e-mails.</li>
+      <li className="mb-2"><strong>Trabalha.</strong> O script lê, confere e soma.</li>
+      <li className="mb-2"><strong>Sai.</strong> Uma planilha ou relatório pronto.</li>
     </ol>
   );
 }
@@ -191,7 +190,7 @@ const visuais: Record<string, () => ReactNode> = {
   paineis: VisualPainel,
   automacao: VisualAutomacao,
   "landing-page": VisualLanding,
-  aulas: VisualAulas,
+  python: VisualPython,
   sistema: VisualSistema,
 };
 

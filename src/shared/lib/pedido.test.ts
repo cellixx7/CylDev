@@ -312,7 +312,7 @@ describe("e-mail com os dados por serviço", () => {
   });
 
   it("vários itens: um por serviço, na ordem do carrinho, e o assunto junta os nomes com ' + '", () => {
-    const pedido = montarPedido(["planilha", "painel", "aulas"], { painel: respostasPainel }, "", semPiloto);
+    const pedido = montarPedido(["planilha", "painel", "python"], { painel: respostasPainel }, "", semPiloto);
     const d = dadosEmailPedido(pedido, contato);
     expect(d.itens!.map((i) => i.titulo)).toEqual(pedido.itens.map((i) => i.nome));
     expect(d.itens).toHaveLength(3);

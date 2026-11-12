@@ -65,7 +65,7 @@ export function restaurarCarrinho(texto: string | null | undefined, servicos: Se
       if (Object.keys(limpas).length > 0) respostas[servicoId] = limpas;
     }
   }
-  // Respostas de partida (ex.: aula avulsa) valem quando o salvo não trouxe a pergunta.
+  // Respostas de partida (se houver) valem quando o salvo não trouxe a pergunta.
   for (const [servicoId, iniciais] of Object.entries(respostasIniciais)) {
     respostas[servicoId] = { ...iniciais, ...respostas[servicoId] };
   }

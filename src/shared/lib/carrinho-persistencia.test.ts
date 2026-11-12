@@ -144,9 +144,9 @@ describe("restaurarCarrinho", () => {
     );
   });
 
-  it("mantém a resposta de partida das aulas quando o salvo não a traz", () => {
-    const texto = JSON.stringify({ v: VERSAO_CARRINHO, ids: ["aulas"], respostas: {} });
-    expect(restaurarCarrinho(texto).respostas.aulas).toEqual(estadoInicial().respostas.aulas);
+  it("um id que não existe mais (como o antigo 'aulas') é descartado ao restaurar", () => {
+    const texto = JSON.stringify({ v: VERSAO_CARRINHO, ids: ["aulas", "planilha"], respostas: {} });
+    expect(restaurarCarrinho(texto).ids).toEqual(["planilha"]);
   });
 });
 

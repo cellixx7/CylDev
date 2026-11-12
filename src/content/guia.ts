@@ -58,7 +58,7 @@ export const perguntasGuia: PerguntaGuia[] = [
     opcoes: [
       { id: "numeros", rotulo: "Cuidar dos números do meu negócio", pergunta: "numeros" },
       { id: "pagina", rotulo: "Ter uma página para apresentar o meu negócio", resultado: "landing" },
-      { id: "aprender", rotulo: "Aprender Excel ou programação", resultado: "aulas" },
+      { id: "scripts", rotulo: "Automatizar tarefas com um script, além do Excel", resultado: "python" },
       { id: "sistema", rotulo: "A planilha já não dá conta e preciso de um sistema", resultado: "sistema" },
       { id: "bot", rotulo: "Quero um bot para o meu servidor de Discord", resultado: "bot" },
       { id: "conversar", rotulo: "Não sei, prefiro conversar", resultado: "conversar" },
@@ -97,9 +97,9 @@ export const resultadosGuia: ResultadoGuia[] = [
     porque: "Uma página com o seu serviço e um botão que leva o cliente direto para o seu WhatsApp.",
   },
   {
-    id: "aulas",
-    servicos: ["aulas"],
-    porque: "Aula individual, no seu ritmo, com os arquivos que você usa no trabalho.",
+    id: "python",
+    servicos: ["python"],
+    porque: "Um script em Python faz a tarefa repetida por você, mesmo com PDFs, vários arquivos ou sites. Se a tarefa couber dentro do Excel, a automação em Excel pode servir melhor.",
   },
   {
     id: "sistema",

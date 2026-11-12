@@ -4,7 +4,6 @@
 export type Preco =
   | { tipo: "fixo"; valor: number }
   | { tipo: "aPartirDe"; valor: number }
-  | { tipo: "aula"; porHora: number; pacote: { aulas: number; valor: number } }
   | { tipo: "sobConsulta" };
 
 export type Servico = {
@@ -88,13 +87,20 @@ export const servicos: Servico[] = [
     disponivel: true,
   },
   {
-    id: "aulas",
+    id: "python",
     area: "negocios",
-    nome: "Aulas de Excel ou programação",
-    resultado: "Aula individual pelo computador, no seu ritmo, com os arquivos que você usa no trabalho.",
-    inclui: ["Aula online", "Exercícios com o seu material"],
-    preco: { tipo: "aula", porHora: 50, pacote: { aulas: 4, valor: 180 } },
-    prazoTexto: "Começa quando você quiser",
+    nome: "Automação com Python",
+    resultado:
+      "Um script feito para a sua tarefa: junta planilhas e arquivos, lê PDFs, envia mensagens ou busca dados de sites, e entrega o resultado pronto.",
+    inclui: [
+      "Script em Python feito para a sua tarefa",
+      "Teste com dados de exemplo antes de entregar",
+      "Instruções para rodar e ajustar",
+    ],
+    nota: "Se a tarefa couber dentro do Excel, a Automação em Excel resolve com o mesmo valor de partida; o Python é para o que o Excel não alcança. Eu aviso na conversa qual das duas serve melhor.",
+    // Regra (Marcelo, 12/11/2026): 6 horas base x R$ 50 por hora (VALOR_HORA_EXTRA), sem desconto embutido.
+    preco: { tipo: "aPartirDe", valor: 300 },
+    horasBase: 6,
     disponivel: true,
   },
   {

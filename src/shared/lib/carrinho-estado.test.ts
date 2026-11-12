@@ -53,8 +53,8 @@ describe("carrinho-estado", () => {
     expect(e.respostas.planilha[p.id]).toBe(p.opcoes[0].id);
   });
 
-  it("aulas começam no formato avulso", () => {
-    expect(estadoInicial().respostas.aulas).toEqual({ pagamento: "avulsa" });
+  it("nenhum serviço começa com resposta pré-marcada", () => {
+    expect(estadoInicial().respostas).toEqual({});
   });
 
   it("combo acrescenta só o que falta, sem duplicar", () => {

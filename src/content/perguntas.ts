@@ -27,8 +27,6 @@ export type Pergunta = {
   gratis?: number;
   /** Múltipla: horas extras por item acima de `gratis`. */
   horasPorExtra?: number;
-  /** Aulas: esta pergunta define o formato (avulsa ou pacote), que decide o preço. */
-  formato?: boolean;
   /** Texto do botão "O que é isso?". */
   ajuda: string;
 };
@@ -346,59 +344,69 @@ export const servicosOrcamento: ServicoOrcamento[] = [
     ],
   },
   {
-    id: "aulas",
+    id: "python",
     numero: "05",
-    nome: "Aulas de Excel e Power BI",
+    nome: "Automação com Python",
     resumo:
-      "Aulas individuais por videochamada, com os seus próprios exemplos. Você aprende o que precisa para o seu trabalho, sem curso longo.",
+      "Escrevo um script em Python para a tarefa que você repete: juntar planilhas e arquivos, ler PDFs e notas, enviar mensagens ou buscar dados de sites. O resultado sai pronto, como uma planilha ou um relatório.",
     inclui: [
-      "Aula ao vivo por videochamada",
-      "Exercícios com os seus dados, quando você quiser",
-      "Resumo do que foi visto, por escrito",
-      "Horário combinado conforme a sua agenda",
+      "Script em Python feito para a sua tarefa",
+      "Teste com dados de exemplo antes de entregar",
+      "Instruções para rodar e ajustar",
+      "Um dia de revisão incluído no prazo",
     ],
-    notas: ["Aula avulsa: R$ 50 por hora. Pacote de 4 aulas: R$ 180."],
+    notas: [
+      "O valor parte de R$ 300 e muda conforme as suas respostas: tarefa simples fica no valor base, tarefa mais complexa soma horas (R$ 50 por hora).",
+      "Se a tarefa couber dentro do Excel, a Automação em Excel resolve com o mesmo valor de partida. O Python é para o que o Excel não alcança.",
+    ],
     combinavel: false,
     perguntas: [
       {
-        id: "pagamento",
-        texto: "Como prefere pagar?",
-        curto: "Formato",
-        tipo: "unica",
-        formato: true,
-        opcoes: [
-          { id: "avulsa", rotulo: "Aula avulsa" },
-          { id: "pacote", rotulo: "Pacote de 4 aulas" },
-        ],
-        ajuda:
-          "A aula avulsa custa R$ 50 por hora. O pacote de 4 aulas sai por R$ 180 e serve bem para quem quer acompanhamento.",
-      },
-      {
-        id: "nivel",
-        texto: "Qual é o seu nível?",
-        curto: "Nível",
-        tipo: "unica",
-        opcoes: [
-          { id: "nunca", rotulo: "Nunca usei" },
-          { id: "basico", rotulo: "Uso o básico" },
-          { id: "avancar", rotulo: "Quero avançar" },
-        ],
-        ajuda: "Sem pressão: o nível só me diz onde começar. Não muda o valor.",
-      },
-      {
-        id: "foco",
-        texto: "Qual o foco?",
-        curto: "Foco",
+        id: "tarefas",
+        texto: "O que o script precisa fazer?",
+        curto: "Tarefas a mais",
         tipo: "multipla",
+        gratis: 1,
+        horasPorExtra: 1,
         opcoes: [
-          { id: "excel", rotulo: "Excel" },
-          { id: "powerbi", rotulo: "Power BI" },
-          { id: "formulas", rotulo: "Fórmulas e tabelas" },
-          { id: "graficos", rotulo: "Gráficos" },
+          { id: "juntar", rotulo: "Juntar planilhas ou arquivos" },
+          { id: "ler", rotulo: "Ler PDFs ou notas e passar para planilha" },
+          { id: "enviar", rotulo: "Enviar e-mails ou mensagens" },
+          { id: "buscar", rotulo: "Buscar dados de sites" },
+          { id: "relatorio", rotulo: "Gerar um relatório pronto" },
+          { id: "nao-sei", rotulo: "Ainda não sei" },
         ],
         ajuda:
-          "Pode marcar mais de um. Se estiver em dúvida, comece pelo Excel, que é a base para o Power BI. Não muda o valor.",
+          "Pense no que você refaz sempre do mesmo jeito. A primeira tarefa está inclusa. Cada tarefa a mais soma 1 hora (R$ 50). Se não souber descrever, conte pelo WhatsApp e eu ajudo.",
       },
+      {
+        id: "origem",
+        texto: "De onde vêm os dados?",
+        curto: "Origem dos dados",
+        tipo: "unica",
+        opcoes: [
+          { id: "planilha", rotulo: "De planilhas ou arquivos CSV", horas: 0 },
+          { id: "pdf", rotulo: "De PDFs ou imagens", horas: 1 },
+          { id: "site", rotulo: "De um site ou sistema", horas: 2 },
+          { id: "varios", rotulo: "De vários lugares", horas: 3 },
+        ],
+        ajuda:
+          "Planilha e CSV são o caso mais simples e ficam no valor base. PDFs e imagens pedem leitura e conferência (1 hora, R$ 50). Sites ou sistemas pedem ligar as peças (2 horas), e vários lugares ao mesmo tempo somam 3 horas.",
+      },
+      {
+        id: "rodar",
+        texto: "Como o script vai rodar?",
+        curto: "Como roda",
+        tipo: "unica",
+        opcoes: [
+          { id: "manual", rotulo: "Eu rodo quando quiser", horas: 0 },
+          { id: "agendado", rotulo: "Sozinho, em horário marcado", horas: 1 },
+          { id: "tela", rotulo: "Com uma tela de botões", horas: 2 },
+        ],
+        ajuda:
+          "Rodar quando você quiser é o mais simples. Em horário marcado exige configurar o agendamento (1 hora, R$ 50), e uma tela de botões é um pequeno programa à parte (2 horas).",
+      },
+      dadosSensiveis,
     ],
   },
   {

@@ -16,7 +16,7 @@ type Props = {
 export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternarCarrinho, aoMontarCombo }: Props) {
   return (
     <div>
-      <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(min(100%,17rem),1fr))] gap-3 p-0" aria-label={t.rotuloLista}>
+      <ul className="m-0 grid list-none grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 p-0" aria-label={t.rotuloLista}>
         {servicosDoCatalogo.map((s) => (
           <CardServico
             key={s.id}

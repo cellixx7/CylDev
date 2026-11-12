@@ -1,7 +1,6 @@
 import { useId, useState } from "react";
 import { VALOR_HORA_EXTRA } from "../../content/orcamento";
 import type { Pergunta, ServicoOrcamento } from "../../content/perguntas";
-import { servicoPorId } from "../../content/servicos";
 import { orcamento } from "../../content/textos";
 import { brl } from "../../shared/lib/formato";
 import { horasExtrasDa, mudaOValor, opcoesMarcadas, type Respostas } from "../../shared/lib/orcamento";
@@ -18,13 +17,8 @@ const marcaBase =
 const botaoLink =
   "inline-flex min-h-alvo cursor-pointer items-center border-0 bg-transparent px-1 font-[inherit] text-[1rem] font-semibold text-destaque underline underline-offset-4 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
 
-/** Preço extra (ou do formato) que a opção mostra ao lado do texto. */
-function custoDaOpcao(servicoId: string, p: Pergunta, opcaoId: string): string | null {
-  if (p.formato) {
-    const preco = servicoPorId(servicoId)?.preco;
-    if (preco?.tipo !== "aula") return null;
-    return opcaoId === "pacote" ? brl(preco.pacote.valor) : `${brl(preco.porHora)}/h`;
-  }
+/** Preço extra que a opção mostra ao lado do texto. */
+function custoDaOpcao(p: Pergunta, opcaoId: string): string | null {
   const horas = p.opcoes.find((o) => o.id === opcaoId)?.horas ?? 0;
   return p.tipo === "unica" && horas > 0 ? t.custo(brl(horas * VALOR_HORA_EXTRA)) : null;
 }
@@ -42,7 +36,7 @@ function PerguntaCampo({ servicoId, pergunta: p, respostas, aoResponder }: Pergu
   const marcadas = opcoesMarcadas(p, respostas);
   const multipla = p.tipo === "multipla";
   const muda = mudaOValor(p);
-  const acrescimo = p.formato ? 0 : horasExtrasDa(p, respostas) * VALOR_HORA_EXTRA;
+  const acrescimo = horasExtrasDa(p, respostas) * VALOR_HORA_EXTRA;
   const orientacao = [
     multipla ? t.marqueQuantas : null,
     multipla && muda && p.gratis !== undefined
@@ -66,7 +60,7 @@ function PerguntaCampo({ servicoId, pergunta: p, respostas, aoResponder }: Pergu
       {orientacao && <p className="mb-2 text-[0.875rem] text-texto-suave">{orientacao}</p>}
       <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(min(100%,15rem),1fr))] gap-2.5">
         {p.opcoes.map((o) => {
-          const custo = custoDaOpcao(servicoId, p, o.id);
+          const custo = custoDaOpcao(p, o.id);
           return (
             <label key={o.id} className={opcaoBase}>
               <input

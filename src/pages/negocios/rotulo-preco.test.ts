@@ -30,8 +30,7 @@ describe("rótulo do preço no modal", () => {
     }
   });
 
-  it("aulas e sob consulta não ganham rótulo", () => {
-    expect(rotulo("aulas", {})).toBeNull();
+  it("sob consulta não ganha rótulo", () => {
     expect(rotulo("sistema", {})).toBeNull();
   });
 
