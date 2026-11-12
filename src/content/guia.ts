@@ -104,7 +104,7 @@ export const resultadosGuia: ResultadoGuia[] = [
   {
     id: "sistema",
     servicos: ["sistema"],
-    porque: "Começa com uma conversa para entender o caso, e você recebe uma proposta por escrito.",
+    porque: "Você monta um orçamento base respondendo às perguntas. O valor é um ponto de partida: depois da conversa, a proposta por escrito fecha o escopo.",
   },
   {
     id: "bot",

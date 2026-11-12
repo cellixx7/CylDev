@@ -17,7 +17,7 @@ type Props = {
 export function AbaOrcamento({ modelo, respostas, calculo, progresso, estado, aoResponder }: Props) {
   return (
     <div className="grid gap-8">
-      <ConfiguradorServico modelo={modelo} respostas={respostas} progresso={progresso} aoResponder={aoResponder} />
+      <ConfiguradorServico key={modelo.id} modelo={modelo} respostas={respostas} progresso={progresso} aoResponder={aoResponder} />
       <ResumoEstimativa nome={modelo.nome} respostas={respostas} calculo={calculo} progresso={progresso} estado={estado} />
     </div>
   );

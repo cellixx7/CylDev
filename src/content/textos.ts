@@ -71,7 +71,7 @@ export const orcamento = {
       automacao: "A tarefa que você repete toda semana na planilha roda com um clique.",
       landing: "Uma página com o seu serviço, os seus preços e um botão para o seu WhatsApp.",
       python: "Um script em Python que faz por você a tarefa repetida: juntar arquivos, ler PDFs, enviar mensagens.",
-      sistema: "SaaS, site, aplicativo ou programa feito do zero para o seu caso. Começa com uma conversa.",
+      sistema: "SaaS, site, aplicativo ou programa feito do zero. O valor é um ponto de partida; a proposta fecha o escopo.",
       "bot-essencial": "Tickets, boas-vindas e moderação básica para o seu servidor de Discord.",
       "bot-ia": "Um bot que responde com IA e um painel web para ajustar o que ele faz.",
     } as Record<string, string>,
@@ -145,6 +145,9 @@ export const orcamento = {
     progresso: (feitas: number, total: number) =>
       `${feitas} de ${total} ${total === 1 ? "pergunta respondida" : "perguntas respondidas"}`,
     semPerguntas: "Este serviço não tem perguntas. Vale o valor da tabela.",
+    /** Anúncio (role="status") quando uma resposta abre perguntas de aprofundamento. */
+    novasPerguntas: (n: number, tema: string) =>
+      `${n} ${n === 1 ? "pergunta nova" : "perguntas novas"}${tema ? ` sobre ${tema}` : ""}, logo abaixo.`,
     mudaValorCurto: "pode mudar o valor",
     somaAgora: (valor: string) => `+ ${valor} no valor`,
     marqueQuantas: "Marque quantas quiser.",
@@ -171,7 +174,7 @@ export const orcamento = {
     prazo: "Prazo",
     mensalidade: "Mensalidade",
     valorMensalidade: (valor: string) => `${valor} por mês, mais a hospedagem à parte`,
-    notaAPartirDe: "O valor depende do que a automação vai fazer. Este é o mínimo para as suas respostas.",
+    notaAPartirDe: "O valor depende do que vai ser feito. Este é o mínimo para as suas respostas.",
     notaBot: "É uma estimativa pelas suas respostas. O prazo é combinado na conversa.",
     notaEstimativa: "É uma estimativa. O valor e a data de entrega ficam fechados na proposta.",
     consulta: "Começa com uma conversa. Me conte o caso e eu mando uma proposta por escrito com valor e prazo.",
@@ -210,7 +213,7 @@ export const orcamento = {
           ? "Piloto: neste momento não há vaga de desconto de piloto."
           : `Piloto: enquanto houver vaga, há ${percentual}% de desconto sobre o preço de criação.`,
       regras:
-        "Os descontos nunca se somam: vale o que abate mais reais. O combo só vale para os serviços combináveis. O piloto não vale para a mensalidade nem para o sistema sob consulta. Os bots de Discord são vendidos só na Comunidade.",
+        "Os descontos nunca se somam: vale o que abate mais reais. O combo só vale para os serviços combináveis. O piloto vale para a criação, mas não para a mensalidade. Os bots de Discord são vendidos só na Comunidade.",
       estimativa:
         "Pergunta sem resposta deixa o valor aproximado. O valor final é confirmado na proposta. Hospedagem e o uso de IA dos bots são cobrados à parte.",
     },

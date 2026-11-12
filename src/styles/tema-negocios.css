@@ -247,6 +247,19 @@ body {
   }
 }
 
+/* Pergunta de aprofundamento recém-aberta: entra com um fade curto. Sem movimento reduzido, aparece direto. */
+@media (prefers-reduced-motion: no-preference) {
+  .pergunta-nova {
+    animation: pergunta-entra 0.25s ease-out;
+  }
+  @keyframes pergunta-entra {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+}
+
 /* Realce discreto quando a estimativa muda: só opacidade, e some com movimento reduzido. */
 @media (prefers-reduced-motion: no-preference) {
   .valor-atualiza {

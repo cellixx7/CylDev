@@ -1,9 +1,9 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { VALOR_HORA_EXTRA } from "../../content/orcamento";
 import type { Pergunta, ServicoOrcamento } from "../../content/perguntas";
 import { orcamento } from "../../content/textos";
 import { brl } from "../../shared/lib/formato";
-import { horasExtrasDa, mudaOValor, opcoesMarcadas, type Respostas } from "../../shared/lib/orcamento";
+import { horasExtrasDa, mudaOValor, opcoesMarcadas, perguntasVisiveisComNivel, todasAsPerguntas, type Respostas } from "../../shared/lib/orcamento";
 import type { Progresso } from "../../shared/lib/pedido";
 import { IconeCheck } from "./icones";
 
@@ -108,7 +108,7 @@ function ProgressoConfiguracao({ progresso: p }: { progresso: Progresso }) {
       <p className="m-0 font-mono text-[0.875rem] font-bold" role="status">
         {t.progresso(p.respondidas, p.total)}
       </p>
-      <div className="mt-1.5 flex gap-1" aria-hidden="true">
+      <div className="mt-1.5 flex flex-wrap gap-1" aria-hidden="true">
         {Array.from({ length: p.total }, (_, i) => (
           <span key={i} className={`h-1 w-6 ${i < p.respondidas ? "bg-destaque" : "bg-linha"}`} />
         ))}
@@ -126,6 +126,29 @@ type Props = {
 
 /** Corpo da aba Orçamento: o progresso e as perguntas. O nome, o resumo e a estimativa ficam no modal. */
 export function ConfiguradorServico({ modelo, respostas, progresso, aoResponder }: Props) {
+  const visiveis = perguntasVisiveisComNivel(modelo.perguntas, respostas);
+  const chave = visiveis.map((v) => v.pergunta.id).join("|");
+  const anteriores = useRef<Set<string> | null>(null);
+  const [aviso, setAviso] = useState("");
+  const [novas, setNovas] = useState<Set<string>>(new Set());
+
+  // Perguntas que acabaram de abrir: animam por pouco tempo e são anunciadas, sem mover o foco.
+  useEffect(() => {
+    const atuais = new Set(visiveis.map((v) => v.pergunta.id));
+    const antes = anteriores.current;
+    anteriores.current = atuais;
+    if (!antes) return;
+    const abertas = visiveis.filter((v) => !antes.has(v.pergunta.id));
+    setNovas(new Set(abertas.map((v) => v.pergunta.id)));
+    if (abertas.length === 0) {
+      setAviso("");
+      return;
+    }
+    const pai = todasAsPerguntas(modelo.perguntas).find((q) => q.id === abertas[0].paiId);
+    setAviso(t.novasPerguntas(abertas.length, pai?.curto.toLowerCase() ?? ""));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chave]);
+
   return (
     <div>
       <div className="mb-5 grid gap-1">
@@ -134,10 +157,18 @@ export function ConfiguradorServico({ modelo, respostas, progresso, aoResponder 
       </div>
 
       <div className="grid gap-6">
-        {modelo.perguntas.map((p) => (
-          <PerguntaCampo key={p.id} servicoId={modelo.id} pergunta={p} respostas={respostas} aoResponder={aoResponder} />
+        {visiveis.map(({ pergunta: p, nivel }) => (
+          <div
+            key={p.id}
+            className={`${nivel > 0 ? "ml-2 border-l-[3px] border-linha pl-3 md:ml-4 md:pl-4" : ""} ${novas.has(p.id) ? "pergunta-nova" : ""}`}
+          >
+            <PerguntaCampo servicoId={modelo.id} pergunta={p} respostas={respostas} aoResponder={aoResponder} />
+          </div>
         ))}
       </div>
+      <p className="sr-only" role="status">
+        {aviso}
+      </p>
     </div>
   );
 }

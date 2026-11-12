@@ -112,7 +112,7 @@ export const servicos: Servico[] = [
     id: "sistema",
     area: "negocios",
     nome: "Sistema sob medida",
-    resultado: "Quando a planilha já não dá conta e você precisa de um sistema próprio. Começa com uma conversa.",
+    resultado: "Quando a planilha já não dá conta e você precisa de um sistema próprio. Você monta o orçamento base e a proposta fecha o escopo.",
     inclui: ["Conversa para entender o caso", "Proposta por escrito", "Entrega em etapas"],
     nota: "O valor é um ponto de partida: a proposta por escrito fecha o escopo.",
     // PENDENTE (Marcelo, 12/11/2026): 20 horas base x R$ 50 (VALOR_HORA_EXTRA) e as horas das respostas são provisórias.

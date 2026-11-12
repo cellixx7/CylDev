@@ -172,7 +172,7 @@ function VisualPython() {
 }
 
 function VisualSistema() {
-  const etapas = ["Conversa", "Proposta escrita", "Entrada de 50%", "Entrega por etapas"];
+  const etapas = ["Orçamento base no site", "Conversa e proposta escrita", "Entrada de 50%", "Entrega por etapas"];
   return (
     <ol className="m-0 grid list-none gap-2 p-0">
       {etapas.map((e, i) => (
