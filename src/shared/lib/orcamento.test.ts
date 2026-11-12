@@ -126,7 +126,7 @@ describe("mudaOValor", () => {
     const perguntas = (id: string) => servicosOrcamento.find((s) => s.id === id)!.perguntas;
     expect(perguntas("planilha").map(mudaOValor)).toEqual([false, true, true, true, false]);
     expect(perguntas("python").map(mudaOValor)).toEqual([true, true, true, false]);
-    expect(perguntas("sistema").map(mudaOValor)).toEqual([false, false]);
+    expect(perguntas("sistema").map(mudaOValor)).toEqual([true, true, true, true, true, true, false, true]);
   });
 });
 
@@ -161,9 +161,16 @@ describe("automação com Python", () => {
 });
 
 describe("sistema sob medida", () => {
-  it("é sempre sob consulta, com prazo na proposta", () => {
-    const c = servico("sistema", { resolver: ["pedidos", "agenda", "area-cliente"], quando: "urgencia" });
-    expect(c).toMatchObject({ preco: null, tipoPreco: "sobConsulta", prazo: "Combinado na proposta" });
+  it("sem respostas: a partir de R$ 1.000 (20 h x R$ 50), sem prazo calculado", () => {
+    expect(servico("sistema", {})).toMatchObject({ preco: 1000, tipoPreco: "aPartirDe", estimativa: true, horas: null, dias: null, prazo: prazoACombinar });
+  });
+
+  it("cada resposta soma as horas dela, e as filhas só contam quando abertas", () => {
+    // SaaS (8 h) abre a cobrança; mensalidade (2 h) soma 2 h.
+    expect(servico("sistema", { tipo: "saas" })!.preco).toBe(1000 + 8 * 50);
+    expect(servico("sistema", { tipo: "saas", cobranca: "mensal" })!.preco).toBe(1000 + 10 * 50);
+    // Resposta órfã: a cobrança não está aberta para "programa", então não soma.
+    expect(servico("sistema", { tipo: "programa", cobranca: "mensal" })!.preco).toBe(1000 + 4 * 50);
   });
 });
 
@@ -284,9 +291,9 @@ describe("carrinho", () => {
     const bots = calcularCarrinho(["bot-essencial", "bot-ia"], {}, piloto10);
     expect(bots.desconto).toMatchObject({ tipo: "piloto", valor: 80 });
     expect(bots.total).toBe(720);
-    // sistema fica fora do desconto; o python entra no piloto como criação
+    // sistema e python não são combináveis, mas entram no piloto como criação
     const comSistema = calcularCarrinho(["python", "sistema"], {}, piloto10);
-    expect(comSistema).toMatchObject({ somaTabela: 300, desconto: { tipo: "piloto", valor: 30 }, total: 270, temSobConsulta: true });
+    expect(comSistema).toMatchObject({ somaTabela: 1300, desconto: { tipo: "piloto", valor: 130 }, total: 1170, temSobConsulta: false });
     const misto = calcularCarrinho(["planilha", "python"], {}, piloto10);
     expect(misto.desconto).toMatchObject({ tipo: "piloto", valor: 40 });
     expect(misto.total).toBe(360);
@@ -298,7 +305,7 @@ describe("carrinho", () => {
     expect(c.prazosOutros).toEqual([
       { nome: "Bot de Discord essencial", texto: "prazo a combinar" },
       { nome: "Automação com Python", texto: "estimado: 4 dias úteis" },
-      { nome: "Sistema sob medida", texto: "Combinado na proposta" },
+      { nome: "Sistema sob medida", texto: "prazo a combinar" },
     ]);
   });
 
@@ -333,11 +340,11 @@ describe("mensagem do WhatsApp", () => {
     );
   });
 
-  it("python mostra 'a partir de'; sistema fica de fora do total", () => {
+  it("python e sistema mostram 'a partir de' e entram no total", () => {
     const c = calcularCarrinho(["python", "sistema"], {}, semPiloto);
     expect(limpo(mensagemCarrinho(c))).toContain("- Automação com Python: a partir de R$ 300;");
-    expect(mensagemCarrinho(c)).toContain("- Sistema sob medida: sob consulta; Combinado na proposta");
-    expect(limpo(textoEstimativa(c))).toBe("a partir de R$ 300, sistema sob consulta, fora do total");
+    expect(limpo(mensagemCarrinho(c))).toContain("- Sistema sob medida: a partir de R$ 1.000; prazo a combinar");
+    expect(limpo(textoEstimativa(c))).toBe("a partir de R$ 1.300");
   });
 
   it("o link leva a origem e a mensagem codificada", () => {

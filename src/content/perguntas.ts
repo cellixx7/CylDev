@@ -4,6 +4,7 @@
 // PENDENTE: todas as horas extras abaixo (`horas`, `gratis` e `horasPorExtra`) são PROPOSTAS
 // do spec, a confirmar pelo Marcelo (docs/DECISOES.md). Cada hora extra soma VALOR_HORA_EXTRA
 // ao preço e 1 hora ao tempo de trabalho. Enquanto for `true`, nada no site as trata como fechadas.
+import { perguntasSistema } from "./perguntasSistema";
 import { servicoPorId } from "./servicos";
 
 export const horasExtrasPendentes = true;
@@ -13,7 +14,16 @@ export type Opcao = {
   rotulo: string;
   /** Horas extras que esta opção soma (escolha única). Sem o campo, não muda o valor. */
   horas?: number;
+  /**
+   * Perguntas de aprofundamento que esta opção abre, logo abaixo da pergunta pai (no máximo 2).
+   * Cada uma pode abrir mais 2, até 2 níveis abaixo da principal (ver LIMITES_ARVORE e o teste da árvore).
+   * Os ids são únicos no serviço. A mesma pergunta pode ser aberta por mais de uma opção da mesma pai.
+   */
+  abre?: Pergunta[];
 };
+
+/** Limites da árvore de perguntas condicionais, conferidos por teste. */
+export const LIMITES_ARVORE = { filhasPorOpcao: 2, niveis: 2 };
 
 export type Pergunta = {
   id: string;
@@ -514,43 +524,19 @@ export const servicosOrcamento: ServicoOrcamento[] = [
     numero: "08",
     nome: "Sistema sob medida",
     resumo:
-      "Quando a necessidade é maior: um sistema pensado para o seu processo. Começamos por uma conversa, e eu devolvo uma proposta com escopo, prazo e valor.",
+      "Quando a necessidade é maior: um sistema pensado para o seu processo. O valor parte de um ponto de partida e as suas respostas mostram onde ele cresce. A proposta por escrito fecha o escopo, o prazo e o valor.",
     inclui: [
       "Conversa inicial para entender o processo",
       "Proposta por escrito antes de começar",
       "Entrega em etapas, para você acompanhar",
-      "Valor combinado de acordo com o tamanho",
+      "Valor fechado na proposta, de acordo com o tamanho",
     ],
-    notas: ["Projetos grandes entram em fila e dependem da minha agenda."],
+    notas: [
+      "O valor é um ponto de partida: a proposta fecha o escopo. Cada hora de trabalho a mais soma R$ 50.",
+      "Projetos grandes entram em fila e dependem da minha agenda.",
+    ],
     combinavel: false,
-    perguntas: [
-      {
-        id: "resolver",
-        texto: "O que você precisa resolver?",
-        curto: "O que resolver",
-        tipo: "multipla",
-        opcoes: [
-          { id: "pedidos", rotulo: "Clientes e pedidos" },
-          { id: "agenda", rotulo: "Agenda e reservas" },
-          { id: "area-cliente", rotulo: "Área do cliente" },
-          { id: "outra", rotulo: "Outra" },
-        ],
-        ajuda:
-          "Descreva o problema, não a solução. Pode marcar mais de um. O melhor jeito costuma aparecer na conversa, e o valor sai na proposta.",
-      },
-      {
-        id: "quando",
-        texto: "Para quando você precisa?",
-        curto: "Quando",
-        tipo: "unica",
-        opcoes: [
-          { id: "sem-pressa", rotulo: "Sem pressa" },
-          { id: "um-mes", rotulo: "Em um mês" },
-          { id: "urgencia", rotulo: "Com urgência" },
-        ],
-        ajuda: "Isso não é promessa. Serve para eu saber se consigo encaixar o trabalho.",
-      },
-    ],
+    perguntas: perguntasSistema,
   },
 ];
 

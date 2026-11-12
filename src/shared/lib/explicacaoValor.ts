@@ -7,6 +7,8 @@ import {
   mudaOValor,
   opcoesMarcadas,
   percentualCombo,
+  perguntasVisiveis,
+  todasAsPerguntas,
   type Carrinho,
   type OpcoesCarrinho,
   type Respostas,
@@ -75,7 +77,7 @@ export type ExplicacaoValor = {
 };
 
 function detalheDaResposta(id: string, perguntaId: string, respostas: Respostas): string {
-  const p = servicoOrcamentoPorId(id)?.perguntas.find((q) => q.id === perguntaId);
+  const p = todasAsPerguntas(servicoOrcamentoPorId(id)?.perguntas ?? []).find((q) => q.id === perguntaId);
   if (!p) return "";
   const marcadas = opcoesMarcadas(p, respostas);
   const rotulos = marcadas.map((m) => p.opcoes.find((o) => o.id === m)?.rotulo ?? m);
@@ -104,7 +106,7 @@ export function explicarValor(
     const mudariam: string[] = [];
 
     if (c.preco !== null) {
-      for (const p of modelo.perguntas) {
+      for (const p of perguntasVisiveis(modelo.perguntas, dele)) {
         const h = horasExtrasDa(p, dele);
         if (opcoesMarcadas(p, dele).length === 0) semResposta.push(p.curto);
         if (h > 0) {

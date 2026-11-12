@@ -1,6 +1,11 @@
 // Catálogo de pacotes. Preços definidos pelo Marcelo em 02/11/2026.
 // O preço que aparece no site e na mensagem do WhatsApp sai daqui, nunca escrito à mão em textos.
 
+import { VALOR_HORA_EXTRA } from "./orcamento";
+
+/** PENDENTE: horas base provisórias do orçamento base do sistema. */
+export const HORAS_BASE_SISTEMA = 20;
+
 export type Preco =
   | { tipo: "fixo"; valor: number }
   | { tipo: "aPartirDe"; valor: number }
@@ -108,9 +113,13 @@ export const servicos: Servico[] = [
     area: "negocios",
     nome: "Sistema sob medida",
     resultado: "Quando a planilha já não dá conta e você precisa de um sistema próprio. Começa com uma conversa.",
-    inclui: ["Conversa para entender o caso", "Proposta por escrito"],
-    preco: { tipo: "sobConsulta" },
-    prazoTexto: "Combinado na proposta",
+    inclui: ["Conversa para entender o caso", "Proposta por escrito", "Entrega em etapas"],
+    nota: "O valor é um ponto de partida: a proposta por escrito fecha o escopo.",
+    // PENDENTE (Marcelo, 12/11/2026): 20 horas base x R$ 50 (VALOR_HORA_EXTRA) e as horas das respostas são provisórias.
+    preco: { tipo: "aPartirDe", valor: HORAS_BASE_SISTEMA * VALOR_HORA_EXTRA },
+    horasBase: HORAS_BASE_SISTEMA,
+    // Sem prazo calculado: o prazo.ts não cobre sistemas, então o site mostra "prazo a combinar".
+    horasProvisorias: true,
     disponivel: true,
   },
   {

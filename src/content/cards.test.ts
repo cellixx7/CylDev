@@ -40,7 +40,7 @@ describe("cards de serviço", () => {
   it("preço sai de servicos.ts: a partir de ou sob consulta", () => {
     expect(precoDoCard(servicoPorId("planilha")!)).toMatch(/^a partir de R\$\s?100/);
     expect(precoDoCard(servicoPorId("python")!)).toMatch(/^a partir de R\$\s?300/);
-    expect(precoDoCard(servicoPorId("sistema")!)).toBe("sob consulta");
+    expect(precoDoCard(servicoPorId("sistema")!)).toMatch(/^a partir de R\$\s?1\.000/);
   });
 
   it("não prometem prazo nem usam emoji nos textos dos cards", () => {

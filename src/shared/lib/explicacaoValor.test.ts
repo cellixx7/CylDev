@@ -82,11 +82,13 @@ describe("explicarValor: desconto", () => {
     expect(e.total).toBe(e.somaTabela);
   });
 
-  it("sistema sob consulta fica fora do total e sem linhas", () => {
-    const e = explicarValor(calcularCarrinho(["planilha", "sistema"], {}, { piloto: null }), {}, { piloto: null });
+  it("sistema: base de R$ 1.000, horas a combinar e filhas no detalhamento", () => {
+    const respostas = { sistema: { tipo: "saas", cobranca: "mensal" } };
+    const e = explicarValor(calcularCarrinho(["planilha", "sistema"], respostas, { piloto: null }), respostas, { piloto: null });
     const s = e.itens.find((i) => i.id === "sistema")!;
-    expect(s).toMatchObject({ sobConsulta: true, precoBase: null, preco: null, extras: [] });
-    expect(e.temSobConsulta).toBe(true);
+    expect(s).toMatchObject({ sobConsulta: false, precoBase: 1000, preco: 1500, horasACombinar: true });
+    expect(s.extras.map((x) => x.pergunta)).toEqual(["Tipo de sistema", "Cobrança"]);
+    expect(s.semResposta).toContain("Tipos de usuário");
   });
 });
 

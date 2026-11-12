@@ -61,9 +61,9 @@ describe("progressoDoServico e estado da estimativa", () => {
     expect(estadoDaEstimativa(calcularServico("painel", tudo)!, p)).toBe("configurada");
   });
 
-  it("sob consulta: estado próprio, mesmo sem respostas", () => {
+  it("sistema sem respostas: preço inicial", () => {
     const c = calcularServico("sistema", {})!;
-    expect(estadoDaEstimativa(c, progressoDoServico(modelo("sistema"), {}))).toBe("consulta");
+    expect(estadoDaEstimativa(c, progressoDoServico(modelo("sistema"), {}))).toBe("inicial");
   });
 });
 
@@ -92,11 +92,12 @@ describe("montarPedido: o escopo acompanha o valor", () => {
     expect(item.respostas.filter((r) => r.escolhas.length === 0).length).toBe(item.perguntasTotal - 1);
   });
 
-  it("sob consulta: sem preço, marcado como tal", () => {
+  it("sistema: ponto de partida de R$ 1.000, aproximado", () => {
     const item = montarPedido(["sistema"], {}, "", semPiloto).itens[0];
-    expect(item.sobConsulta).toBe(true);
-    expect(item.preco).toBeNull();
-    expect(item.precoBase).toBeNull();
+    expect(item.sobConsulta).toBe(false);
+    expect(item.preco).toBe(1000);
+    expect(item.precoBase).toBe(1000);
+    expect(item.aproximado).toBe(true);
   });
 
   it("remover e readicionar preserva as respostas (elas vivem fora do carrinho)", () => {
@@ -140,11 +141,10 @@ describe("textoPedidoCompleto", () => {
     expect(texto).toContain("sem resposta");
   });
 
-  it("inclui soma, desconto, total, sob consulta e observações", () => {
+  it("inclui soma, desconto, total e observações", () => {
     expect(texto).toContain("Soma de tabela:");
     expect(texto).toContain(`Desconto (combo ${pedido.carrinho.desconto!.percentual}%)`);
     expect(texto).toContain("Total estimado:");
-    expect(texto).toContain("Sob consulta (fora do total):");
     expect(texto).toContain("Observações do cliente: Preciso para o mês que vem.");
   });
 
@@ -221,12 +221,12 @@ describe("aviso de estimativa (pergunta sem resposta)", () => {
     expect(cheio.perguntasSemResposta).toBe(0);
   });
 
-  it("estimativa é perguntasRespondidas < perguntasTotal, e sob consulta não ganha o aviso", () => {
+  it("estimativa é perguntasRespondidas < perguntasTotal, e o sistema sem respostas é estimativa", () => {
     for (const id of ["planilha", "painel", "bot-ia"]) {
       const i = montarPedido([id], { [id]: respostasPainel }, "", semPiloto).itens[0];
       expect(i.estimativa).toBe(i.perguntasRespondidas < i.perguntasTotal);
     }
-    expect(montarPedido(["sistema"], {}, "", semPiloto).itens[0].estimativa).toBe(false);
+    expect(montarPedido(["sistema"], {}, "", semPiloto).itens[0].estimativa).toBe(true);
   });
 
   it("o texto do WhatsApp e do e-mail marcam o item como estimativa", () => {
@@ -306,9 +306,9 @@ describe("e-mail com os dados por serviço", () => {
     expect(linhas.filter((l) => l.endsWith(NAO_RESPONDEU))).toHaveLength(modelo("painel").perguntas.length - 1);
   });
 
-  it("sob consulta não ganha '(estimativa)', mesmo sem respostas", () => {
+  it("sistema sem respostas: a partir de R$ 1.000", () => {
     const [item] = itensDoEmail(montarPedido(["sistema"], {}, "", semPiloto));
-    expect(item.valor).toBe("sob consulta");
+    expect(limpo(item.valor)).toContain("a partir de R$ 1.000");
   });
 
   it("vários itens: um por serviço, na ordem do carrinho, e o assunto junta os nomes com ' + '", () => {

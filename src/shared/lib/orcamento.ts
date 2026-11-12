@@ -51,6 +51,63 @@ export function opcoesMarcadas(p: Pergunta, respostas: Respostas): string[] {
   return [...new Set(ids)].filter((id) => validos.has(id));
 }
 
+// Perguntas condicionais -------------------------------------------------------------------
+
+export type PerguntaVisivel = {
+  pergunta: Pergunta;
+  /** 0 = principal; 1 e 2 = aberta por uma resposta de cima. */
+  nivel: number;
+  /** Pergunta que abriu esta. `null` nas principais. */
+  paiId: string | null;
+};
+
+/**
+ * Perguntas que aparecem hoje, na ordem da tela: cada filha logo abaixo da pai. Uma filha só existe enquanto
+ * a pai existe e a resposta dela abre essa filha. Sem resposta que abra, nada de filha.
+ */
+export function perguntasVisiveisComNivel(perguntas: Pergunta[], respostas: Respostas): PerguntaVisivel[] {
+  const vistos = new Set<string>();
+  const saida: PerguntaVisivel[] = [];
+  const visitar = (lista: Pergunta[], nivel: number, paiId: string | null) => {
+    for (const p of lista) {
+      if (vistos.has(p.id)) continue;
+      vistos.add(p.id);
+      saida.push({ pergunta: p, nivel, paiId });
+      for (const opcaoId of opcoesMarcadas(p, respostas)) {
+        const abre = p.opcoes.find((o) => o.id === opcaoId)?.abre;
+        if (abre) visitar(abre, nivel + 1, p.id);
+      }
+    }
+  };
+  visitar(perguntas, 0, null);
+  return saida;
+}
+
+export const perguntasVisiveis = (perguntas: Pergunta[], respostas: Respostas): Pergunta[] =>
+  perguntasVisiveisComNivel(perguntas, respostas).map((v) => v.pergunta);
+
+/** Todas as perguntas da árvore (visíveis ou não), sem repetir. Serve para validar e restaurar respostas. */
+export function todasAsPerguntas(perguntas: Pergunta[]): Pergunta[] {
+  const vistos = new Map<string, Pergunta>();
+  const visitar = (lista: Pergunta[]) => {
+    for (const p of lista) {
+      if (vistos.has(p.id)) continue;
+      vistos.set(p.id, p);
+      for (const o of p.opcoes) if (o.abre) visitar(o.abre);
+    }
+  };
+  visitar(perguntas);
+  return [...vistos.values()];
+}
+
+/** Descarta as respostas de perguntas que não estão visíveis (órfãs): elas não somam, não vão ao e-mail nem ao WhatsApp. */
+export function podarRespostas(perguntas: Pergunta[], respostas: Respostas): Respostas {
+  const visiveis = new Set(perguntasVisiveis(perguntas, respostas).map((p) => p.id));
+  const podadas: Respostas = {};
+  for (const [id, valor] of Object.entries(respostas)) if (visiveis.has(id)) podadas[id] = valor;
+  return podadas;
+}
+
 /** Horas extras de uma pergunta: única soma `horas` da opção; múltipla soma `max(0, n - gratis) * horasPorExtra`. */
 export function horasExtrasDa(p: Pergunta, respostas: Respostas): number {
   const ids = opcoesMarcadas(p, respostas);
@@ -131,7 +188,7 @@ export function calcularServico(id: string, respostas: Respostas = {}): CalculoS
     { rotulo: "Base do pacote", valor: servico.preco.valor, horas: provisorio ? 0 : horasBase },
   ];
   let horasExtras = 0;
-  for (const p of modelo.perguntas) {
+  for (const p of perguntasVisiveis(modelo.perguntas, respostas)) {
     const h = horasExtrasDa(p, respostas);
     if (h <= 0) continue;
     horasExtras += h;

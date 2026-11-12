@@ -51,7 +51,9 @@ describe("Por que esse valor?", () => {
     expect(html).toContain("safe-area-inset-bottom");
   });
 
-  it("sistema sob consulta aparece como fora do total", () => {
-    expect(render(true, ["planilha", "sistema"])).toContain(t.pedido.sobConsulta);
+  it("sistema aparece com a base e as horas a combinar", () => {
+    const html = render(true, ["sistema"]);
+    expect(html).toContain(t.pedido.horasACombinar);
+    expect(html).toContain(brl(1000));
   });
 });
