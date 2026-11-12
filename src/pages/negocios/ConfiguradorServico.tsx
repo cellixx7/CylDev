@@ -61,9 +61,6 @@ function PerguntaCampo({
     <fieldset className="m-0 min-w-0 border-0 p-0">
       <legend className="mb-1 flex w-full items-start gap-2 p-0 text-[1.02rem] leading-snug font-bold">
         <span className="min-w-0 flex-1 self-center">{p.texto}</span>
-        <span className="-my-2 -mr-1.5 flex shrink-0 items-center">
-          <Dica texto={p.ajuda} rotulo={t.ajudaRotulo(p.texto)} />
-        </span>
         {marcadas.length > 0 && (
           <span className="shrink-0 self-center text-destaque">
             <IconeCheck />
