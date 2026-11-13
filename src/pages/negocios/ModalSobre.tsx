@@ -73,6 +73,11 @@ export function ModalSobre({ aberto, imagens, destino, aoFechar, aoFalar }: Prop
               <section key={s.subtitulo} className="mb-5">
                 <h3 className="m-0 mb-2 text-[1.0625rem]">{s.subtitulo}</h3>
                 {s.texto && <p className="m-0 text-texto-suave">{s.texto}</p>}
+                {s.mais?.map((p) => (
+                  <p key={p} className="m-0 mt-3 text-texto-suave">
+                    {p}
+                  </p>
+                ))}
                 {s.itens && (
                   <ul className="m-0 list-disc pl-5 text-texto-suave">
                     {s.itens.map((item) => (

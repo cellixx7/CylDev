@@ -33,7 +33,7 @@ describe("paragrafosSobre", () => {
   it("o texto dos parágrafos não mudou (o 'Estagio' sem acento é o verbo)", () => {
     expect(textos(ligadas)[0]).toBe("Estudo Sistemas de Informação na Unieuro e trabalho como desenvolvedor fullstack.");
     expect(textos(ligadas)[1]).toMatch(/^Estagio em TI no Ministério da Defesa, onde faço análise de dados/);
-    expect(textos(ligadas)[2]).toMatch(/^Participo do Uniser, um portal do aluno/);
+    expect(textos(ligadas)[2]).toMatch(/^Participo do Uniser, a plataforma da UniSER, Universidade do Envelhecer da UnB\./);
   });
 });
 
@@ -88,7 +88,34 @@ describe("imagensDoUniser", () => {
     for (const img of site.imagensUniser) {
       expect(img.src).toMatch(/^\//);
       expect(img.alt.length).toBeGreaterThan(10);
+      expect(img.width).toBeGreaterThan(0);
+      expect(img.height).toBeGreaterThan(0);
     }
+  });
+});
+
+describe("descrição da UniSER", () => {
+  const tudo = JSON.stringify(t);
+  it("não fala em portal do aluno nem em parceria com a UnB", () => {
+    expect(tudo).not.toMatch(/portal do aluno/i);
+    expect(tudo).not.toContain("em parceria com a Universidade de Brasília");
+  });
+  it("o modal cita UniSER, UnB e Unieuro", () => {
+    const m = t.modais.uniser;
+    const texto = [m.titulo, m.texto, ...m.secoes.flatMap((s) => [s.texto ?? "", ...(s.itens ?? [])])].join(" ");
+    expect(texto).toContain("UniSER");
+    expect(texto).toContain("UnB");
+    expect(texto).toContain("Unieuro");
+  });
+  it("a galeria não leva mais rótulo de exemplo", () => {
+    expect(t.imagensUniser).toBe("Telas da plataforma da UniSER");
+    expect(tudo).not.toMatch(/imagem de exemplo/i);
+  });
+  it("o modal da faculdade traz o Simbionte, sem link", () => {
+    const m = t.modais.faculdade;
+    const ic = m.secoes.find((s) => s.subtitulo === "Iniciação científica")!;
+    expect((ic.mais ?? []).join(" ")).toContain("Simbionte");
+    expect(JSON.stringify(m)).not.toMatch(/https?:/);
   });
 });
 
