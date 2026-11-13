@@ -195,17 +195,20 @@ function Auditorio({ slide }: { slide: number }) {
 
 // ---------------------------------------------------------------- cenas
 
-/** Botão de pausa de uma cena (cada animação tem o seu). Some com movimento reduzido, quando nada anima. */
+/** Botão pequeno de pausa (só o ícone) de uma cena; cada animação tem o seu. Some com movimento reduzido, quando nada anima. Alvo de toque de 44 px. */
 function BotaoPausa({ pausado, aoAlternar, cena }: { pausado: boolean; aoAlternar: () => void; cena: string }) {
   return (
     <button
       type="button"
       aria-pressed={pausado}
       aria-label={`${pausado ? c.continuar : c.pausar}: ${cena}`}
+      title={pausado ? c.continuar : c.pausar}
       onClick={aoAlternar}
-      className={`min-h-alvo shrink-0 cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[0.8125rem] text-texto hover:bg-realce ${focoVisivel}`}
+      className={`-my-2 grid size-alvo shrink-0 cursor-pointer place-items-center rounded-pequeno border-0 bg-transparent p-0 text-texto-suave hover:text-texto ${focoVisivel}`}
     >
-      {pausado ? c.continuar : c.pausar}
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true" focusable="false">
+        {pausado ? <path d="M4 2.5v11l9-5.5z" /> : <path d="M3.5 2h3v12h-3zM9.5 2h3v12h-3z" />}
+      </svg>
     </button>
   );
 }

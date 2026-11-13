@@ -332,5 +332,5 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 
 - **Disposição:** a seção virou uma grade: avatar, texto e, em tela larga (a partir de `lg`), uma coluna lateral de 22 rem (`<aside>`); abaixo disso a coluna vai para baixo do texto. Antes a galeria ficava abaixo do parágrafo do Uniser.
 - **Coluna lateral:** em cima, a cena animada da planilha que vira painel (com pausa própria; aparece com `mostrarMinisterio`, pois é o assunto do estágio); embaixo, só 2 telas do Uniser (Editais e Login, marcadas com `naSecao` em `site.telasUniser`). As 6 telas continuam no modal do Uniser; o modal do Estágio mantém as duas cenas.
-- **Pausa por cena:** cada animação tem o seu botão ("Pausar animação: <cena>"), em vez de um só para as duas.
+- **Pausa por cena:** cada animação tem o seu botão pequeno, só com o ícone de pausa/continuar (rótulo acessível "Pausar animação: <cena>", alvo de toque de 44 px), ao lado da legenda.
 
