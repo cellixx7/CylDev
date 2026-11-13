@@ -6,14 +6,14 @@ import { botao } from "../../shared/estilos";
 import { DestaqueSobre as Destaque } from "./DestaqueSobre";
 import { GaleriaUniser } from "./GaleriaUniser";
 import { ModalSobre } from "./ModalSobre";
-import { destinoFalarComigo, imagensDoUniser, paragrafosSobre } from "./sobreLogica";
+import { destinoFalarComigo, telasDoUniser, paragrafosSobre } from "./sobreLogica";
 
 const t = negocios.sobre;
 
 /** Seção #sobre: avatar (foto ou iniciais), texto em primeira pessoa com destaques que abrem modal e, se houver, a galeria do Uniser. */
 export function Sobre() {
   const paragrafos = paragrafosSobre(site);
-  const imagens = imagensDoUniser(site);
+  const telas = telasDoUniser(site);
   const destino = destinoFalarComigo(site);
   const [aberto, setAberto] = useState<DestaqueSobre | null>(null);
   const origem = useRef<HTMLElement | null>(null);
@@ -68,7 +68,7 @@ export function Sobre() {
                 )}
               </p>
               {/* A galeria entra logo depois do parágrafo do Uniser. */}
-              {id === "uniser" && <GaleriaUniser imagens={imagens} layout="linha" />}
+              {id === "uniser" && <GaleriaUniser telas={telas} layout="linha" />}
             </Fragment>
           ))}
           <a
@@ -81,7 +81,7 @@ export function Sobre() {
           </a>
         </div>
       </div>
-      <ModalSobre aberto={aberto} imagens={imagens} destino={destino} aoFechar={() => setAberto(null)} aoFalar={falar} />
+      <ModalSobre aberto={aberto} telas={telas} destino={destino} aoFechar={() => setAberto(null)} aoFalar={falar} />
     </section>
   );
 }

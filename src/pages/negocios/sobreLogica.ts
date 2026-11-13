@@ -18,8 +18,8 @@ export function paragrafosSobre(flags: Pick<Flags, "mostrarMinisterio" | "mostra
 }
 
 /** A galeria só existe com o Uniser visível e com ao menos uma imagem cadastrada. */
-export function imagensDoUniser(flags: Pick<Flags, "mostrarUniser">, imagens: typeof site.imagensUniser = site.imagensUniser) {
-  return flags.mostrarUniser ? imagens : [];
+export function telasDoUniser(flags: Pick<Flags, "mostrarUniser">, telas: typeof site.telasUniser = site.telasUniser) {
+  return flags.mostrarUniser ? telas : [];
 }
 
 /** "Falar comigo" vai para #contato quando a seção existe (menu ligado); até lá, abre o WhatsApp. */

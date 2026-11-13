@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { site } from "../../content/site";
 import { negocios } from "../../content/textos";
-import { destinoFalarComigo, imagensDoUniser, paragrafosSobre, type BlocoSobre } from "./sobreLogica";
+import { destinoFalarComigo, telasDoUniser, paragrafosSobre, type BlocoSobre } from "./sobreLogica";
 
 const textoDoBloco = (b: BlocoSobre) => b.partes.map((p) => p.texto).join("");
 const destaquesDaSecao = (blocos: BlocoSobre[]) => blocos.flatMap((b) => b.partes.flatMap((p) => (p.destaque ? [p.destaque] : [])));
@@ -79,18 +79,21 @@ describe("destaques da seção", () => {
   });
 });
 
-describe("imagensDoUniser", () => {
+describe("telasDoUniser", () => {
   it("só aparecem com mostrarUniser", () => {
-    expect(imagensDoUniser({ mostrarUniser: false })).toEqual([]);
-    expect(imagensDoUniser({ mostrarUniser: true })).toBe(site.imagensUniser);
+    expect(telasDoUniser({ mostrarUniser: false })).toEqual([]);
+    expect(telasDoUniser({ mostrarUniser: true })).toBe(site.telasUniser);
   });
-  it("cada imagem tem src e alt descritivo", () => {
-    for (const img of site.imagensUniser) {
-      expect(img.src).toMatch(/^\//);
-      expect(img.alt.length).toBeGreaterThan(10);
-      expect(img.width).toBeGreaterThan(0);
-      expect(img.height).toBeGreaterThan(0);
+  it("são as seis telas, cada uma com título e alt descritivo", () => {
+    expect(site.telasUniser.map((x) => x.id)).toEqual(["editais", "login", "grade", "dados", "frequencia", "semestre"]);
+    for (const tela of site.telasUniser) {
+      expect(tela.titulo.length).toBeGreaterThan(0);
+      expect(tela.alt.length).toBeGreaterThan(30);
     }
+  });
+  it("os esquemas não trazem dado de teste nem de pessoa", () => {
+    const tudo = JSON.stringify(site.telasUniser);
+    expect(tudo).not.toMatch(/teste|CPF|@|Maria|Carlos/i);
   });
 });
 
@@ -107,8 +110,9 @@ describe("descrição da UniSER", () => {
     expect(texto).toContain("UnB");
     expect(texto).toContain("Unieuro");
   });
-  it("a galeria não leva mais rótulo de exemplo", () => {
+  it("a galeria é rotulada como esquema ilustrativo, sem 'imagem de exemplo'", () => {
     expect(t.imagensUniser).toBe("Telas da plataforma da UniSER");
+    expect(t.legendaTelas).toMatch(/ilustrativos/);
     expect(tudo).not.toMatch(/imagem de exemplo/i);
   });
   it("o modal da faculdade traz o Simbionte, sem link", () => {

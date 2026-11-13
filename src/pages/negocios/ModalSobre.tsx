@@ -10,8 +10,8 @@ const t = negocios.sobre;
 
 type Props = {
   aberto: DestaqueSobre | null;
-  /** Imagens do Uniser (vazio sem a flag); só o modal do Uniser as mostra. */
-  imagens: typeof site.imagensUniser;
+  /** Telas do Uniser (vazio sem a flag); só o modal do Uniser as mostra. */
+  telas: typeof site.telasUniser;
   destino: { href: string; externo: boolean };
   aoFechar: () => void;
   /** "Falar comigo" para a âncora interna: o pai fecha o modal e só então rola. */
@@ -22,7 +22,7 @@ type Props = {
  * Modal dos destaques da seção Sobre, em <dialog> nativo (mesmo padrão do ModalServico): showModal() torna o resto
  * inerte e o Esc fecha; clique no fundo e o "X" também. O foco vai para o título ao abrir; quem devolve o foco é o pai.
  */
-export function ModalSobre({ aberto, imagens, destino, aoFechar, aoFalar }: Props) {
+export function ModalSobre({ aberto, telas, destino, aoFechar, aoFalar }: Props) {
   const dialogo = useRef<HTMLDialogElement>(null);
   const titulo = useRef<HTMLHeadingElement>(null);
   const modal = aberto ? t.modais[aberto] : null;
@@ -90,7 +90,7 @@ export function ModalSobre({ aberto, imagens, destino, aoFechar, aoFalar }: Prop
               </section>
             ))}
             {modal.fecho && <p className="m-0 mb-5 text-texto-suave">{modal.fecho}</p>}
-            {aberto === "uniser" && <GaleriaUniser imagens={imagens} layout="coluna" />}
+            {aberto === "uniser" && <GaleriaUniser telas={telas} layout="grade" />}
           </div>
 
           <footer className="shrink-0 border-t border-linha bg-superficie px-4 pt-3 pb-3 md:px-6">
