@@ -34,7 +34,7 @@ describe("conteúdo do guia", () => {
 
   it("todo serviço do catálogo pode ser alcançado pelo guia", () => {
     const recomendados = new Set(resultadosGuia.flatMap((r) => r.servicos));
-    for (const id of ["planilha", "painel", "automacao", "landing", "aulas", "sistema"]) expect(recomendados.has(id), id).toBe(true);
+    for (const id of ["planilha", "painel", "automacao", "landing", "python", "sistema"]) expect(recomendados.has(id), id).toBe(true);
   });
 
   it("a saída 'quero um bot' vai para /comunidade/#bots", () => {

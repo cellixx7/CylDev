@@ -23,8 +23,8 @@ describe("total da barra do carrinho", () => {
     expect(totalCurto(pedidoDe(["planilha"]), true)).not.toMatch(/estimativa/);
   });
 
-  it("sob consulta puro mostra 'Sob consulta'", () => {
-    expect(totalCurto(pedidoDe(["sistema"]))).toBe("Sob consulta");
+  it("sistema: ponto de partida de R$ 300, a partir de", () => {
+    expect(totalCurto(pedidoDe(["sistema"]))).toMatch(/^estimativa a partir de R\$\s?300/);
   });
 
   it("o total é o do carrinho (desconto do combo incluso)", () => {

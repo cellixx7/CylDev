@@ -161,19 +161,18 @@ function VisualLanding() {
   );
 }
 
-function VisualAulas() {
+function VisualPython() {
   return (
     <ol className={listaPassos}>
-      <li className="mb-2"><strong>Aula 1.</strong> Organizar a sua planilha: tabelas e formatação.</li>
-      <li className="mb-2"><strong>Aula 2.</strong> Fórmulas de soma, média e procura (PROCV).</li>
-      <li className="mb-2"><strong>Aula 3.</strong> Tabela dinâmica com os seus dados de venda.</li>
-      <li className="mb-2"><strong>Aula 4.</strong> Gráficos e um resumo mensal pronto.</li>
+      <li className="mb-2"><strong>Entra.</strong> Uma pasta com PDFs, planilhas ou e-mails.</li>
+      <li className="mb-2"><strong>Trabalha.</strong> O script lê, confere e soma.</li>
+      <li className="mb-2"><strong>Sai.</strong> Uma planilha ou relatório pronto.</li>
     </ol>
   );
 }
 
 function VisualSistema() {
-  const etapas = ["Conversa", "Proposta escrita", "Entrada de 50%", "Entrega por etapas"];
+  const etapas = ["Orçamento base no site", "Conversa e proposta escrita", "Entrada de 50%", "Entrega por etapas"];
   return (
     <ol className="m-0 grid list-none gap-2 p-0">
       {etapas.map((e, i) => (
@@ -191,7 +190,7 @@ const visuais: Record<string, () => ReactNode> = {
   paineis: VisualPainel,
   automacao: VisualAutomacao,
   "landing-page": VisualLanding,
-  aulas: VisualAulas,
+  python: VisualPython,
   sistema: VisualSistema,
 };
 

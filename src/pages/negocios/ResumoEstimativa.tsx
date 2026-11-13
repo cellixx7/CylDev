@@ -1,36 +1,28 @@
 import { orcamento, pilotoNota } from "../../content/textos";
 import { brl, horasTexto } from "../../shared/lib/formato";
-import { comDesconto, descontoPilotoAtual, type CalculoServico } from "../../shared/lib/orcamento";
+import { comDesconto, descontoPilotoAtual, type CalculoServico, type Respostas } from "../../shared/lib/orcamento";
 import type { EstadoEstimativa, Progresso } from "../../shared/lib/pedido";
+import { PorQueEsseValor } from "./PorQueEsseValor";
 
 const e = orcamento.estimativa;
 const piloto = descontoPilotoAtual();
 
 const precoGrande = "[word-spacing:-0.3em] font-mono text-[clamp(1.7rem,6vw,2.2rem)] leading-none font-bold tracking-[-0.02em]";
 
-/** O piloto só vale na criação: nunca em aulas nem no sob consulta. */
-const temPiloto = (c: CalculoServico) => piloto !== null && c.preco !== null && c.tipoPreco !== "aula";
+/** O piloto só vale na criação: nunca no sob consulta. */
+const temPiloto = (c: CalculoServico) => piloto !== null && c.preco !== null;
 
 /**
  * Rótulo do preço. Só texto: o valor vem de calcularServico(). Enquanto houver pergunta sem resposta é "estimativa a partir de";
- * com tudo respondido, "estimativa". Aulas e sob consulta não ganham rótulo.
+ * com tudo respondido, "estimativa". Sob consulta não ganha rótulo.
  */
 export function rotuloDoPreco(c: CalculoServico, p: Progresso): string | null {
-  if (c.preco === null || c.tipoPreco === "aula") return null;
+  if (c.preco === null) return null;
   return p.faltam > 0 ? e.estimativaAPartirDe : e.estimativaFinal;
 }
 
 function Valor({ c, progresso }: { c: CalculoServico; progresso: Progresso }) {
   if (c.preco === null) return <p className={`m-0 ${precoGrande}`}>{e.sobConsulta}</p>;
-
-  if (c.tipoPreco === "aula") {
-    return (
-      <p className="m-0">
-        <span className={precoGrande}>{brl(c.preco)}</span>
-        <span className="ml-2 text-texto-suave">{c.formatoAula === "avulsa" ? e.porHora : c.linhas[0]?.rotulo.toLowerCase()}</span>
-      </p>
-    );
-  }
 
   const prefixo = rotuloDoPreco(c, progresso);
   const comPiloto = temPiloto(c) && piloto;
@@ -75,12 +67,13 @@ function notaDoEstado(estado: EstadoEstimativa, p: Progresso): string | null {
 type Props = {
   nome: string;
   calculo: CalculoServico;
+  respostas: Respostas;
   progresso: Progresso;
   estado: EstadoEstimativa;
 };
 
 /** Responde "quanto custa o serviço que estou configurando?". O conjunto do pedido fica em ResumoPedido. */
-export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props) {
+export function ResumoEstimativa({ nome, calculo: c, respostas, progresso, estado }: Props) {
   const nota = notaDoEstado(estado, progresso);
 
   return (
@@ -96,6 +89,7 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
         <Valor c={c} progresso={progresso} />
       </div>
       {nota && <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">{nota}</p>}
+      <PorQueEsseValor ids={[c.id]} respostas={{ [c.id]: respostas }} />
 
       <dl className="my-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-0.5 border-t border-linha pt-3 text-[1rem]">
         {c.horas !== null && (
@@ -134,7 +128,7 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
 
       {c.aPartirDe && <p className="mt-3 mb-0 text-[0.875rem] text-texto-suave">{e.notaAPartirDe}</p>}
       <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">
-        {c.preco === null ? e.consulta : c.estimativa ? e.notaBot : c.tipoPreco === "aula" ? "" : e.notaEstimativa}
+        {c.preco === null ? e.consulta : c.estimativa ? e.notaBot : e.notaEstimativa}
       </p>
     </div>
   );
@@ -143,14 +137,6 @@ export function ResumoEstimativa({ nome, calculo: c, progresso, estado }: Props)
 /** Preço curto do rodapé do modal (mesma regra do Valor, sem o tamanho grande). O contêiner dele tem aria-live. */
 export function PrecoRodape({ c, progresso }: { c: CalculoServico; progresso: Progresso }) {
   if (c.preco === null) return <span className="font-mono font-bold">{e.sobConsulta}</span>;
-  if (c.tipoPreco === "aula") {
-    return (
-      <>
-        <span className="font-mono font-bold">{brl(c.preco)}</span>{" "}
-        <span className="text-texto-suave">{c.formatoAula === "avulsa" ? e.porHora : c.linhas[0]?.rotulo.toLowerCase()}</span>
-      </>
-    );
-  }
   const prefixo = rotuloDoPreco(c, progresso);
   const comPiloto = temPiloto(c) && piloto;
   const final = comPiloto ? comDesconto(c.preco, comPiloto.percentual) : c.preco;

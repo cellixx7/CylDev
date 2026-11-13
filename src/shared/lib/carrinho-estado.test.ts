@@ -53,8 +53,8 @@ describe("carrinho-estado", () => {
     expect(e.respostas.planilha[p.id]).toBe(p.opcoes[0].id);
   });
 
-  it("aulas começam no formato avulso", () => {
-    expect(estadoInicial().respostas.aulas).toEqual({ pagamento: "avulsa" });
+  it("nenhum serviço começa com resposta pré-marcada", () => {
+    expect(estadoInicial().respostas).toEqual({});
   });
 
   it("combo acrescenta só o que falta, sem duplicar", () => {
@@ -84,10 +84,10 @@ describe("carrinho-estado", () => {
     }
   });
 
-  it("serviço sob consulta entra no carrinho sem valor", () => {
+  it("sistema entra no carrinho com o ponto de partida", () => {
     const e = adicionar(estadoInicial(), "sistema");
     const item = montarPedido(e.ids, e.respostas).itens[0];
-    expect(item.sobConsulta).toBe(true);
-    expect(item.preco).toBeNull();
+    expect(item.sobConsulta).toBe(false);
+    expect(item.preco).toBe(300);
   });
 });

@@ -26,7 +26,7 @@ Não é SPA: cada área tem o seu HTML e a sua raiz React.
 - `src/shared/`: `components/` (Formulario, Catalogo, Rodape, cabecalho/*), `lib/` (lógica pura e testada: orcamento, prazo, whatsapp, emailjs, formato), `estilos.ts` (classes repetidas, como strings literais completas; o Tailwind lê texto, então nada de montar classe dinamicamente), `tema.ts`.
 - `src/styles/`: `tailwind.css`, `tema-negocios.css`, `tema-comunidade.css`. Fontes locais em `public/fonts/`.
 - `docs/DECISOES.md` (decisões e pendências; atualize ao decidir algo relevante) e `docs/COPY.md`.
-- Tema: `data-theme="claro|escuro"` no `<html>`, escuro por padrão, salvo por área em `tema-<area>`; acesso ao localStorage sempre em try/catch. Os `__URL__` dos HTML são trocados no build; imagens OG levam versão no nome (`og-*-v1.png`), troque o sufixo ao mudar a imagem.
+- Tema: `data-theme="claro|escuro"` no `<html>`, claro por padrão em Negócios e escuro na Comunidade (sem seguir `prefers-color-scheme`; o padrão fica no `data-theme` do HTML, no `theme-color` e em `temaPadrao`), salvo por área em `tema-<area>`; acesso ao localStorage sempre em try/catch. Os `__URL__` dos HTML são trocados no build; imagens OG levam versão no nome (`og-*-v1.png`), troque o sufixo ao mudar a imagem.
 
 ## Regras
 

@@ -1,6 +1,6 @@
 import { servicosDoCatalogo, type ServicoOrcamento } from "../../content/perguntas";
 import { estadoInicial, respostasIniciais, type EstadoCarrinho } from "./carrinho-estado";
-import type { Respostas } from "./orcamento";
+import { podarRespostas, todasAsPerguntas, type Respostas } from "./orcamento";
 
 // Carrinho guardado em sessionStorage, para sobreviver à troca de página e ao recarregar.
 // Guarda SÓ: versão do formato, ids dos serviços e respostas (ids de pergunta e de opção).
@@ -23,7 +23,7 @@ const ehObjeto = (x: unknown): x is Record<string, unknown> => typeof x === "obj
 function respostasValidas(servico: ServicoOrcamento, bruto: unknown): Respostas {
   const limpas: Respostas = {};
   if (!ehObjeto(bruto)) return limpas;
-  for (const p of servico.perguntas) {
+  for (const p of todasAsPerguntas(servico.perguntas)) {
     const valor = bruto[p.id];
     const existe = (id: unknown): id is string => typeof id === "string" && p.opcoes.some((o) => o.id === id);
     if (p.tipo === "unica") {
@@ -33,7 +33,8 @@ function respostasValidas(servico: ServicoOrcamento, bruto: unknown): Respostas 
       if (marcadas.length > 0) limpas[p.id] = marcadas;
     }
   }
-  return limpas;
+  // Respostas órfãs (de filhas que a resposta pai de hoje não abre) são ignoradas.
+  return podarRespostas(servico.perguntas, limpas);
 }
 
 /**
@@ -65,7 +66,7 @@ export function restaurarCarrinho(texto: string | null | undefined, servicos: Se
       if (Object.keys(limpas).length > 0) respostas[servicoId] = limpas;
     }
   }
-  // Respostas de partida (ex.: aula avulsa) valem quando o salvo não trouxe a pergunta.
+  // Respostas de partida (se houver) valem quando o salvo não trouxe a pergunta.
   for (const [servicoId, iniciais] of Object.entries(respostasIniciais)) {
     respostas[servicoId] = { ...iniciais, ...respostas[servicoId] };
   }

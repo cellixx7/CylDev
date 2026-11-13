@@ -5,7 +5,7 @@
 - **Stack:** Vite multi-page + React + TypeScript + Tailwind v4 (`@tailwindcss/vite`), com tokens nos temas em `src/styles/`. Produção depende só de `react` e `react-dom`. Classes repetidas ficam em `src/shared/estilos.ts`, como strings literais completas.
 - **Páginas:** `index.html` (Negócios na raiz), `como-funciona/`, `comunidade/`, `obrigado/`, `404.html`, declaradas em `vite.config.ts`.
 - **Open Graph:** o build troca `__URL__` nos HTML pela variável `URL` da Netlify (ou `site.urlPadrao`). Imagens em `public/og-*-v1.png`; ao trocar a imagem, mude o sufixo (`-v2`) por causa do cache do WhatsApp.
-- **Tema:** `data-theme` no `<html>`, escuro por padrão em todas as áreas; um script inline aplica a escolha salva antes da pintura. Chave por área (`tema-negocios`, `tema-comunidade`), leitura e escrita em `try/catch`.
+- **Tema:** `data-theme` no `<html>`, claro por padrão em Negócios (e nas páginas compartilhadas: /como-funciona/, /obrigado/, /privacidade/, 404, que usam a chave `tema-negocios`) e escuro por padrão na Comunidade, sem seguir `prefers-color-scheme`; um script inline aplica a escolha salva antes da pintura. Chave por área (`tema-negocios`, `tema-comunidade`), leitura e escrita em `try/catch`.
 - **Formulário:** ver V1.1 (EmailJS).
 - **Fontes:** locais, em `public/fonts/` (`font-display: swap`): Space Grotesk nos títulos e no texto e Space Mono nos preços e números (Negócios).
 - **Visual:** Negócios usa cobalto sobre off-white frio (claro) e azul-noite (escuro), com um só acento (`src/styles/tema-negocios.css`); a Comunidade tem tema próprio em `src/styles/tema-comunidade.css`. Sem degradê, vidro ou blur e sem emoji como ícone. (A paleta grafite com terracota das primeiras versões foi substituída.)
@@ -188,7 +188,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 
 ## Estado atual e ajustes finais antes do merge (11/11/2026)
 
-- **Resumo do que vale hoje:** Negócios vende 6 serviços (planilha, painel básico, automação em Excel, site de uma página, aulas, sistema sob medida); **bots só na Comunidade** (`/comunidade/#bots`), com mensalidade explicada lá. EmailJS ativo. Carrinho em `sessionStorage`. Demonstrações de planilha, painel e automação em Como funciona. Testes: Vitest (`npm test`) e jornadas no navegador com Playwright (`npm run test:e2e`, fora do build).
+- **Resumo do que vale hoje:** Negócios vende 6 serviços (planilha, painel básico, automação em Excel, site de uma página, automação com Python, sistema sob medida); **bots só na Comunidade** (`/comunidade/#bots`), com mensalidade explicada lá. EmailJS ativo. Carrinho em `sessionStorage`. Demonstrações de planilha, painel e automação em Como funciona. Testes: Vitest (`npm test`) e jornadas no navegador com Playwright (`npm run test:e2e`, fora do build).
 - **Nome unificado:** o assunto de Como funciona que era "Página para o seu negócio" agora se chama **"Site de uma página"**, igual ao card. O id interno (`landing`) e a âncora `#landing-page` não mudaram.
 - **`Formulario.tsx` está dormente.** `Contatos` só o renderiza com `comFormulario=true` (e o EmailJS configurado), e a Comunidade usa `comFormulario={false}`; hoje nenhuma página o mostra. Ele ainda não tem o botão desabilitado por 3 s do checkout (`CheckoutPedido.tsx`): se o usuário envia antes disso, vai para `/obrigado/` sem envio nenhum (falso sucesso). **Antes de ligá-lo**, aplicar o mesmo `liberado` e o aviso "Um instante…". As regras de spam (isca e 3 s) não mudam.
 - **Revisão do comentário do carrinho em `Orcamento.tsx`:** conferido, está atual (estado em `Orcamento`, sessionStorage, limpeza após envio, regra de um dialog por vez).
@@ -241,3 +241,55 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Prazo de guarda:** e-mails de pedidos por até 12 meses (escolha do Marcelo). É uma promessa a cumprir: apagar a cada 12 meses, e o registro do envio no painel do EmailJS, se houver. A conversa no WhatsApp: "enquanto precisar para atendimento e entrega", sem número.
 - **Limites:** não é parecer jurídico; não verifiquei a política interna de retenção do EmailJS nem os logs da Netlify (a página só diz que podem existir). A linha do carrinho aparece só com o EmailJS ativo (é o formulário que a contém).
 
+
+## Tema claro como padrão em Negócios (2026-11-12)
+
+- **Regra:** sem escolha salva, Negócios abre em claro mesmo com o sistema em modo escuro. Escolha salva em `tema-negocios` é mantida; o botão de alternar continua. Comunidade segue escura por padrão. O padrão está em três lugares que precisam andar juntos: `data-theme` e `meta theme-color` (`#f2f4f8`) de cada HTML e `temaPadrao` em `CabecalhoNegocios.tsx`.
+- **Páginas compartilhadas:** /como-funciona/, /obrigado/, /privacidade/ e 404 usam a chave `tema-negocios`; sem escolha salva, claro. Não há rastreio de "área de origem" além da escolha salva.
+- **CSP:** o script inline não mudou (lê só a escolha salva) e a política usa `'unsafe-inline'`, sem hash; `netlify.toml` ficou como estava. Conferi no build: hash do script de Negócios `I7j5xP3oeM2+PeDUHqJxAW3nPCMfDUS6gkkJRkQmAJI=`, igual em todas as páginas.
+- **Contraste (claro):** tokens passam AA (texto 16,9:1; texto suave 7,0:1; destaque 6,7:1; botão 7,4:1). Auditoria automática do texto renderizado (home, como funciona, privacidade, obrigado, 404 e modal, em 360 e 1280 px, nos dois temas): nenhuma falha, nada foi alterado na paleta. Não cobri o painel do carrinho com itens.
+- **Testes:** `src/shared/tema.test.ts` e `e2e/tema.spec.ts` (claro mesmo com o sistema escuro, Comunidade escura, escolha salva mantida).
+
+## Painel de exemplo da home: roteiro com foco (12/11/2026)
+
+- **Entrada uma vez, roteiro em loop:** o painel entra animado só na primeira vez que aparece na tela (no carregamento, no desktop; ao rolar até ele, no celular). Depois, a cada ~3,8 s, um item ganha o foco (ao fim das três etapas há 5 s de descanso, sem nenhum filtro, e o roteiro recomeça): Dezembro (mês que mais vendeu), Camisetas (categoria) e Sudeste (região). O gráfico do item fica inteiro com ele em destaque; os outros dois e o indicador "Vendas no ano" passam a mostrar só as vendas dele ("só Dez", "só Camisetas"...). Os outros três indicadores esmaecem, pois não existem por mês, categoria ou região.
+- **Números de exemplo novos:** para os recortes baterem, `textos.ts` ganhou a matriz mês x categoria (`vendasMesCategoria`, R$ mil) e um peso categoria x região (`afinidadeRegiao`); `src/shared/lib/painelVendas.ts` ajusta o cruzamento categoria x região para fechar com os totais já mostrados. Tudo continua rotulado como exemplo, e `painelVendas.test.ts` confere que meses, categorias e regiões fecham com o ano (214 mil). Out a Dez usam os mesmos produtos da demonstração de Como funciona (por isso "Outros" é zero nesses meses).
+- **Movimento reduzido:** sem entrada animada e sem roteiro; o painel fica parado com os números do ano.
+
+## Aulas saem, entra Automação com Python (12/11/2026)
+
+- **Decisão do Marcelo:** as aulas de Excel/programação saem do catálogo (o tipo de preço `aula` e o formato avulsa/pacote foram removidos do código). No lugar entra o serviço `python` (Automação com Python), no mesmo lugar da grade (6 cards, 3 + 3). Não é combinável (fora do combo e do prazo único), mas recebe o piloto como criação e tem prazo calculado.
+- **Preço-base R$ 300 ("a partir de"), 6 h base (regra do Marcelo, 12/11/2026):** 6 horas x R$ 50 (`VALOR_HORA_EXTRA`), sem desconto embutido. Substitui a conta anterior (12 h e "média dos pisos de mercado menos 10%", R$ 585), que foi descartada. Mesmo esquema da planilha e do painel: cada resposta soma horas inteiras (R$ 50 cada).
+- **Horas das respostas (propostas, confirmar):** tarefas a mais 1 h cada (a 1ª é inclusa); origem dos dados: planilha/CSV 0 h, PDF 1 h, site 2 h, vários lugares 3 h; como roda: manual 0 h, horário marcado 1 h, tela de botões 2 h. Caso simples (1 tarefa, só uma das extras) fica em R$ 350 a R$ 400; o prazo sai de `prazoEmDias` (6 h = 4 dias úteis com a revisão).
+- **Contra o Excel:** o card e o guia avisam que, se a tarefa couber no Excel, a Automação em Excel tem o mesmo valor de partida (R$ 300), e o Python fica para o que o Excel não alcança.
+- **Carrinho salvo:** um carrinho antigo com o id `aulas` é descartado ao restaurar (id fora do catálogo).
+
+## Tela "Por que esse valor?" (12/11/2026)
+
+- **O que é:** diálogo nativo com o botão "Por que esse valor?" no resumo da aba Orçamento (explica só o serviço aberto, no mesmo valor que o resumo mostra) e no painel do carrinho, abaixo do total (explica o pedido todo). Parte 1 geral, parte 2 "No seu pedido" (só com serviço). Textos em `orcamento.valor` (`textos.ts`), espelho em `COPY.md`.
+- **Sem regra de preço nova:** `src/shared/lib/explicacaoValor.ts` só lê o resultado de `calcularCarrinho()`. Os extras vêm de `horasExtrasDa()` x `VALOR_HORA_EXTRA`, e o desconto escolhido é o do carrinho. O único cálculo próprio é quanto a outra regra abateria, só para explicar por que a vencedora venceu. `orcamento.ts`, `servicos.ts`, `exemplos.ts`, `prazo.ts` e as regras de spam não foram tocados.
+- **A soma fecha:** `explicacaoValor.test.ts` confere, em 90 combinações (10 carrinhos x 3 pilotos x 3 níveis de resposta, com piloto vencendo, combo vencendo e empate), que preço-base + extras - desconto é igual a `carrinho.total`. O e2e confere os números na tela.
+- **Bots (horas provisórias):** sem hora e sem prazo; a tela diz "horas e prazo: a combinar".
+- **Sem hash `#valor` (decisão, avise se quiser):** o `popstate` do modal trata qualquer hash que não seja um serviço como "nenhum serviço" e fecharia o modal; o carrinho não usa hash. Para não arriscar o fluxo atual, o diálogo não mexe na URL (Esc, botão e fundo fecham; o foco volta ao botão).
+- **Diálogo dentro de diálogo:** abre por cima do modal do serviço ou do painel (camada superior do navegador); o Esc fecha só ele. O React propaga o evento `close` pela árvore, então o `onClose` dele chama `stopPropagation()`; sem isso o modal de baixo fechava junto (pego pelo e2e).
+- **Aulas:** o pedido citava "piloto não vale para aulas", mas as aulas saíram do catálogo (ver acima). O texto diz que o piloto não vale para a mensalidade nem para o sistema sob consulta.
+- **E-mail e WhatsApp:** nenhum texto novo entrou neles.
+- **Contraste:** só usa os tokens já auditados (texto, texto suave, destaque, linha); não rodei auditoria nova nos dois temas com o diálogo aberto.
+
+## Sistema sob medida com orçamento base (12/11/2026)
+
+- **PENDENTE (Marcelo confirmar):** preço-base provisório de **6 horas x R$ 50 = a partir de R$ 300**, sem teto (`HORAS_BASE_SISTEMA` em `servicos.ts`) e **todas as horas das respostas** (`perguntasSistema.ts`, um arquivo só, sem número em componente). O sistema deixou de ser "sob consulta".
+- **Prazo:** o `prazo.ts` não cobre sistemas, então o item usa `horasProvisorias` e mostra "prazo a combinar", sem hora calculada (como os bots). A tela "Por que esse valor?" mostra o valor das respostas e "horas e prazo: a combinar".
+- **Combo e piloto (regras existentes, sem mudança):** o sistema **não** é combinável (continua fora do combo e do prazo único). Mudança de comportamento: como deixou de ser sob consulta, **agora recebe o piloto** como criação (antes ficava de fora). Se não for o desejado, é só voltar a tratá-lo à parte no `calcularCarrinho`.
+- **Modelo condicional:** `Opcao.abre?: Pergunta[]` (máx. 2 por opção), no máx. 2 níveis abaixo da principal (`LIMITES_ARVORE`), ids únicos no serviço; a mesma filha pode ser aberta por duas opções da mesma pai (ex.: clientes e público abrem login e cadastro). Teste percorre a árvore de todos os serviços (ciclos, níveis, ids).
+- **Visíveis:** `perguntasVisiveis*` (em `orcamento.ts`) decide o que aparece; preço, "X de Y", pedido, e-mail, WhatsApp e "Por que esse valor?" usam só as visíveis. `responder()` poda as filhas que sumiram (resposta descartada). Ao restaurar o carrinho, respostas órfãs ou de perguntas que não existem mais são ignoradas.
+- **Persistência:** formato igual (só ids e respostas), então `VERSAO_CARRINHO` continua 1; o descarte seguro já cobre as respostas antigas do sistema (`resolver`, `quando`), que deixaram de existir.
+- **Perguntas antigas:** "O que você precisa resolver?" e "Para quando?" saíram para caber no teto; o campo de observações do carrinho cobre esse contexto.
+- **Pior caso:** 8 principais + 12 filhas = **20 perguntas visíveis** (acima da meta de ~16; cada ramo abre 2). Caso típico: 8 a 12. No celular mantive a lista única com a barra de progresso (quebra de linha) em vez de etapas: é o padrão atual e o mais simples; filhas vêm recuadas, com fade curto (some com movimento reduzido) e sem roubar o foco.
+- **Textos:** "O valor depende do que a automação vai fazer" virou "do que vai ser feito" (valia também para o sistema); a regra geral do "Por que esse valor?" agora diz que o piloto não vale para a mensalidade.
+- **E-mail e WhatsApp:** nenhum texto novo; só passam a listar as perguntas visíveis do sistema.
+
+## Dica "i" nas perguntas e base de R$ 300 do sistema (12/11/2026)
+
+- **Sem teto:** o sistema é só "a partir de R$ 300" (6 h x `VALOR_HORA_EXTRA`, `HORAS_BASE_SISTEMA`); as respostas somam horas sem limite. **PENDENTE (Marcelo confirmar):** preço-base e horas das respostas.
+- **Dica "i"** (`src/shared/components/Dica.tsx`): componente reutilizável, balão `position: fixed` posicionado dentro da área visível (vira para cima ou para baixo), sem biblioteca. Substitui o botão "O que é isso?". `ajuda` já era obrigatório em `Pergunta`; novo teste falha se faltar e se o texto citar R$, horas ou prazo. Hover, foco, toque, Esc e "uma por vez" são cobertos em `e2e/dica.spec.ts` (o vitest roda em node, sem DOM, e não se adicionou dependência).

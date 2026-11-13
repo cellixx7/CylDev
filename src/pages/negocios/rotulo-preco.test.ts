@@ -30,9 +30,8 @@ describe("rótulo do preço no modal", () => {
     }
   });
 
-  it("aulas e sob consulta não ganham rótulo", () => {
-    expect(rotulo("aulas", {})).toBeNull();
-    expect(rotulo("sistema", {})).toBeNull();
+  it("sistema sem respostas: estimativa a partir de", () => {
+    expect(rotulo("sistema", {})).toBe("estimativa a partir de");
   });
 
   it("o rodapé mostra o rótulo, o preço de tabela riscado e o desconto de piloto", () => {

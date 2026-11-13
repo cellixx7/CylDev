@@ -1,10 +1,14 @@
 // Catálogo de pacotes. Preços definidos pelo Marcelo em 02/11/2026.
 // O preço que aparece no site e na mensagem do WhatsApp sai daqui, nunca escrito à mão em textos.
 
+import { VALOR_HORA_EXTRA } from "./orcamento";
+
+/** PENDENTE (Marcelo, 12/11/2026): horas base provisórias do orçamento base do sistema (6 h x VALOR_HORA_EXTRA). */
+export const HORAS_BASE_SISTEMA = 6;
+
 export type Preco =
   | { tipo: "fixo"; valor: number }
   | { tipo: "aPartirDe"; valor: number }
-  | { tipo: "aula"; porHora: number; pacote: { aulas: number; valor: number } }
   | { tipo: "sobConsulta" };
 
 export type Servico = {
@@ -88,23 +92,34 @@ export const servicos: Servico[] = [
     disponivel: true,
   },
   {
-    id: "aulas",
+    id: "python",
     area: "negocios",
-    nome: "Aulas de Excel ou programação",
-    resultado: "Aula individual pelo computador, no seu ritmo, com os arquivos que você usa no trabalho.",
-    inclui: ["Aula online", "Exercícios com o seu material"],
-    preco: { tipo: "aula", porHora: 50, pacote: { aulas: 4, valor: 180 } },
-    prazoTexto: "Começa quando você quiser",
+    nome: "Automação com Python",
+    resultado:
+      "Um script feito para a sua tarefa: junta planilhas e arquivos, lê PDFs, envia mensagens ou busca dados de sites, e entrega o resultado pronto.",
+    inclui: [
+      "Script em Python feito para a sua tarefa",
+      "Teste com dados de exemplo antes de entregar",
+      "Instruções para rodar e ajustar",
+    ],
+    nota: "Se a tarefa couber dentro do Excel, a Automação em Excel resolve com o mesmo valor de partida; o Python é para o que o Excel não alcança. Eu aviso na conversa qual das duas serve melhor.",
+    // Regra (Marcelo, 12/11/2026): 6 horas base x R$ 50 por hora (VALOR_HORA_EXTRA), sem desconto embutido.
+    preco: { tipo: "aPartirDe", valor: 300 },
+    horasBase: 6,
     disponivel: true,
   },
   {
     id: "sistema",
     area: "negocios",
     nome: "Sistema sob medida",
-    resultado: "Quando a planilha já não dá conta e você precisa de um sistema próprio. Começa com uma conversa.",
-    inclui: ["Conversa para entender o caso", "Proposta por escrito"],
-    preco: { tipo: "sobConsulta" },
-    prazoTexto: "Combinado na proposta",
+    resultado: "Quando a planilha já não dá conta e você precisa de um sistema próprio. Você monta o orçamento base e a proposta fecha o escopo.",
+    inclui: ["Conversa para entender o caso", "Proposta por escrito", "Entrega em etapas"],
+    nota: "O valor é um ponto de partida: a proposta por escrito fecha o escopo.",
+    // PENDENTE (Marcelo, 12/11/2026): 6 horas base x R$ 50 (VALOR_HORA_EXTRA) e as horas das respostas são provisórias.
+    preco: { tipo: "aPartirDe", valor: HORAS_BASE_SISTEMA * VALOR_HORA_EXTRA },
+    horasBase: HORAS_BASE_SISTEMA,
+    // Sem prazo calculado: o prazo.ts não cobre sistemas, então o site mostra "prazo a combinar".
+    horasProvisorias: true,
     disponivel: true,
   },
   {

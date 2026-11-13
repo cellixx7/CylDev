@@ -3,10 +3,12 @@ import { orcamento } from "../../content/textos";
 import { botao, botaoCheio } from "../../shared/estilos";
 import { emailjsConfigurado } from "../../shared/lib/emailjs";
 import { brl } from "../../shared/lib/formato";
+import type { Respostas } from "../../shared/lib/orcamento";
 import { resumoPrecoItem, type ItemPedido, type Pedido } from "../../shared/lib/pedido";
 import { totalCurto } from "./BarraCarrinho";
 import { AcoesDoPedido, DadosDoPedido, useEnvioPedido } from "./CheckoutPedido";
 import { IconeFechar } from "./icones";
+import { PorQueEsseValor } from "./PorQueEsseValor";
 import { useTravaRolagem } from "./useTravaRolagem";
 
 const t = orcamento.carrinho;
@@ -65,6 +67,8 @@ function ItemCarrinho({ item: i, aoAjustar, aoTirar }: { item: ItemPedido; aoAju
 type Props = {
   aberto: boolean;
   pedido: Pedido;
+  /** Respostas de cada serviço: a tela "Por que esse valor?" mostra quais somaram horas. */
+  respostas: Record<string, Respostas>;
   /** Aviso de "removido". O painel deixa o resto da página inerte, então ele tem a própria região de status. */
   aviso: string;
   observacoes: string;
@@ -79,7 +83,7 @@ type Props = {
  * Painel do carrinho, separado do modal do serviço: gaveta à direita a partir do tablet, tela cheia no celular.
  * É um <dialog> próprio, e nunca fica aberto junto com o modal do serviço (quem abre um fecha o outro antes).
  */
-export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObservacoes, aoAjustar, aoTirar, aoFechar }: Props) {
+export function PainelCarrinho({ aberto, pedido, respostas, aviso, observacoes, aoMudarObservacoes, aoAjustar, aoTirar, aoFechar }: Props) {
   const dialogo = useRef<HTMLDialogElement>(null);
   const titulo = useRef<HTMLHeadingElement>(null);
   const idObs = useId();
@@ -191,6 +195,7 @@ export function PainelCarrinho({ aberto, pedido, aviso, observacoes, aoMudarObse
                   </p>
                   <p className="m-0 font-mono text-[1.7rem] leading-none font-bold tracking-[-0.02em] [word-spacing:-0.3em]">{brl(c.total)}</p>
                 </div>
+                <PorQueEsseValor ids={pedido.itens.map((i) => i.id)} respostas={respostas} carrinho={c} />
                 {temEstimativa && <p className="mt-2 mb-0 text-[0.875rem] font-semibold">{t.avisoEstimativa}</p>}
                 {c.temSobConsulta && (
                   <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">

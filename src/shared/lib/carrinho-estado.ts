@@ -1,5 +1,5 @@
 import { estaNoCatalogo, servicoOrcamentoPorId } from "../../content/perguntas";
-import type { Respostas } from "./orcamento";
+import { podarRespostas, todasAsPerguntas, type Respostas } from "./orcamento";
 
 // Estado do carrinho como funções puras. Os ids dos serviços no carrinho e as respostas de cada serviço
 // vivem lado a lado: tirar um serviço do carrinho NÃO apaga as respostas dele, então readicionar volta como estava.
@@ -12,8 +12,8 @@ export type EstadoCarrinho = {
 /** Serviços que entram no combo (planilha, painel e automação). */
 export const COMBO_IDS = ["planilha", "painel", "automacao"];
 
-/** Aulas começam no formato avulso, que é o que o preço mostra sem resposta. */
-export const respostasIniciais: Record<string, Respostas> = { aulas: { pagamento: "avulsa" } };
+/** Respostas de partida por serviço. Hoje nenhum serviço precisa de uma. */
+export const respostasIniciais: Record<string, Respostas> = {};
 
 export function estadoInicial(): EstadoCarrinho {
   return { ids: [], respostas: { ...respostasIniciais } };
@@ -35,15 +35,20 @@ export function remover(e: EstadoCarrinho, id: string): EstadoCarrinho {
 
 /** Pergunta de escolha única troca a resposta; de múltipla liga e desliga a opção. */
 export function responder(e: EstadoCarrinho, servicoId: string, perguntaId: string, opcaoId: string): EstadoCarrinho {
-  const pergunta = servicoOrcamentoPorId(servicoId)?.perguntas.find((p) => p.id === perguntaId);
-  if (!pergunta) return e;
+  const modelo = servicoOrcamentoPorId(servicoId);
+  const pergunta = todasAsPerguntas(modelo?.perguntas ?? []).find((p) => p.id === perguntaId);
+  if (!modelo || !pergunta) return e;
   const dele = e.respostas[servicoId] ?? {};
+  let novo: Respostas;
   if (pergunta.tipo === "unica") {
-    return { ...e, respostas: { ...e.respostas, [servicoId]: { ...dele, [perguntaId]: opcaoId } } };
+    novo = { ...dele, [perguntaId]: opcaoId };
+  } else {
+    const marcadas = Array.isArray(dele[perguntaId]) ? (dele[perguntaId] as string[]) : [];
+    const novas = marcadas.includes(opcaoId) ? marcadas.filter((i) => i !== opcaoId) : [...marcadas, opcaoId];
+    novo = { ...dele, [perguntaId]: novas };
   }
-  const marcadas = Array.isArray(dele[perguntaId]) ? (dele[perguntaId] as string[]) : [];
-  const novas = marcadas.includes(opcaoId) ? marcadas.filter((i) => i !== opcaoId) : [...marcadas, opcaoId];
-  return { ...e, respostas: { ...e.respostas, [servicoId]: { ...dele, [perguntaId]: novas } } };
+  // Se a resposta mudou o que está visível, as filhas que sumiram perdem as respostas (não ficam órfãs).
+  return { ...e, respostas: { ...e.respostas, [servicoId]: podarRespostas(modelo.perguntas, novo) } };
 }
 
 /** Acrescenta só os serviços do combo que ainda faltam. */

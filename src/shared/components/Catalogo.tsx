@@ -17,8 +17,6 @@ export function textoPreco(preco: Preco): string {
       return brl(preco.valor);
     case "aPartirDe":
       return `a partir de ${brl(preco.valor)}`;
-    case "aula":
-      return `${brl(preco.porHora)} por hora, ou ${preco.pacote.aulas} aulas por ${brl(preco.pacote.valor)}`;
     case "sobConsulta":
       return "sob consulta";
   }
@@ -43,7 +41,7 @@ export function Catalogo({ servicos, origem, textoPedir }: Props) {
         const mensalidade = textoMensalidade(s);
         const mensagem = `Quero um orçamento de: ${s.nome} (${textoPreco(s.preco)}).`;
         const consulta = s.preco.tipo === "sobConsulta";
-        const precoQuebra = s.preco.tipo === "aula" || s.preco.tipo === "aPartirDe";
+        const precoQuebra = s.preco.tipo === "aPartirDe";
         return (
           <li
             key={s.id}

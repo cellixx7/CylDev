@@ -29,7 +29,7 @@ Versão 2, com as respostas de 02/11. Fonte dos textos em `src/content/textos.ts
 | Painel básico | R$ 200 | Você abre um arquivo e vê quanto vendeu, o que mais sai e como está o mês, sem montar conta. Dá para controlar estoque e vendas com número, e não no chute. | Excel (padrão) ou Power BI Desktop (arquivo `.pbix` e PDF); uma fonte de dados; até 5 indicadores; filtro por período |
 | Automação em Excel | a partir de R$ 300 | A tarefa que você repete toda semana na planilha passa a rodar com um clique. | VBA ou Power Query; instruções de uso |
 | Site de uma página | R$ 300 | Uma página com o seu serviço, seus preços e um botão que leva o cliente direto para o seu WhatsApp. | Uma página; versão para celular; publicação no ar, em hospedagem gratuita na sua conta; botão de WhatsApp |
-| Aulas de Excel ou programação | R$ 50/h ou 4 aulas por R$ 180 | Aula individual pelo computador, no seu ritmo, com os arquivos que você usa no trabalho. | Aula online; exercícios com o seu material |
+| Automação com Python | a partir de R$ 300 | Um script feito para a sua tarefa: junta planilhas e arquivos, lê PDFs, envia mensagens ou busca dados de sites. | Script em Python; teste com dados de exemplo; instruções para rodar e ajustar |
 | Sistema sob medida | sob consulta | Quando a planilha já não dá conta e você precisa de um sistema próprio. Começa com uma conversa. | Conversa para entender o caso; proposta por escrito |
 
 Nota sob o painel: "Compartilhar um painel do Power BI online com a sua equipe exige licença paga do Power BI do lado de vocês. No Excel isso não é preciso. Eu explico as opções na conversa."
@@ -87,3 +87,34 @@ Fonte dos textos: `privacidade` em `src/content/textos.ts` (página `/privacidad
 - Rodapé de Negócios e Comunidade: o aviso de sempre + link "Política de privacidade".
 - Página: o que recebo; para que uso; por onde passa (EmailJS, WhatsApp, Netlify; sem fontes ou rastreadores de terceiros); o que fica no navegador (carrinho em sessionStorage, sem nome, telefone nem observações; tema em localStorage; sem cookies de rastreamento); guarda do e-mail por até 12 meses; como pedir exclusão (e-mail de `site.ts`). Não é parecer jurídico.
 
+
+## Por que esse valor? (12/11/2026)
+
+Fonte: `orcamento.valor` em `src/content/textos.ts`. Botão "Por que esse valor?" no resumo da aba Orçamento (explica só o serviço aberto) e no carrinho, abaixo do total (explica o pedido inteiro). Abre um diálogo com duas partes. Os números (R$ por hora, combo, piloto) saem de `orcamento.ts`; nada é escrito à mão.
+
+**1. Como o preço é montado** (sempre aparece)
+- Cada serviço tem um preço-base. É o "a partir de" que aparece no card.
+- Suas respostas podem somar horas extras de trabalho. Cada hora extra custa R$ 50 (`VALOR_HORA_EXTRA`).
+- Combo: com 2 serviços combináveis (planilha, painel, automação e site de uma página), 10% de desconto. Com 3 ou mais, 15%.
+- Piloto: enquanto houver vaga, há 10% (ou 5%, na segunda faixa) de desconto sobre o preço de criação. Sem vaga: "neste momento não há vaga de desconto de piloto."
+- Os descontos nunca se somam: vale o que abate mais reais. O combo só vale para os serviços combináveis. O piloto não vale para a mensalidade nem para o sistema sob consulta. Os bots de Discord são vendidos só na Comunidade.
+- Pergunta sem resposta deixa o valor aproximado. O valor final é confirmado na proposta. Hospedagem e o uso de IA dos bots são cobrados à parte.
+
+**2. No seu pedido** (só com serviço): por serviço, uma tabela com o preço-base, cada resposta que somou horas (resposta, horas x R$ por hora, valor) e a soma do serviço; avisos de "sem resposta (ainda não somam)", "horas e prazo: a combinar" (bots) e a mensalidade à parte. Fechamento: soma de tabela, desconto (qual e por quê, inclusive "o piloto abateu mais que o combo", "o combo abateu X; o piloto abateria Y" ou empate: vale o combo) e total estimado. Última linha: "O que mais mudaria este valor: <serviço>: <perguntas que somam horas>."
+- Carrinho vazio: "Seu pedido está vazio. Quando você adicionar um serviço, o detalhamento do valor aparece aqui." (só a parte 1)
+
+## Sistema sob medida: orçamento base (12/11/2026) — PENDENTE
+
+Fontes: `servicos.ts` (preço-base), `perguntasSistema.ts` (árvore de perguntas e horas) e `textos.ts`. **PENDENTE:** o preço-base (6 h x R$ 50 = a partir de R$ 300, sem teto) e todas as horas das respostas são provisórios, a confirmar pelo Marcelo.
+
+- Card: "SaaS, site, aplicativo ou programa feito do zero. O valor é um ponto de partida; a proposta fecha o escopo." Nota: "O valor é um ponto de partida: a proposta por escrito fecha o escopo."
+- Guia: "Você monta um orçamento base respondendo às perguntas. O valor é um ponto de partida: depois da conversa, a proposta por escrito fecha o escopo."
+- Como funciona (passos): Orçamento base no site; Conversa e proposta escrita; Entrada de 50%; Entrega por etapas.
+- Perguntas principais (8): tipo de sistema; quem vai usar; pagamento; outros sistemas; volume de dados; relatórios e gráficos; hospedagem (à parte, não muda o valor); dados sensíveis. Cada resposta pode abrir até 2 perguntas (ex.: SaaS abre "Como será cobrado?" e "Quantos tipos de usuário?"; aplicativo abre "Onde vai rodar?" e "Precisa funcionar sem internet?"). O texto completo de cada pergunta, opção e ajuda está em `perguntasSistema.ts`.
+- Anúncio ao abrir filhas (role="status"): "2 perguntas novas sobre tipo de sistema, logo abaixo."
+- Prazo: "prazo a combinar" (o prazo.ts não cobre sistemas).
+- Política e termos: "Eu monto um texto-base com você. Não é parecer jurídico."
+
+## Dica "i" ao lado de cada pergunta (12/11/2026)
+
+Botão "i" (`Dica.tsx`) em todas as perguntas, com aria-label "O que significa: <pergunta>". Abre ao passar o mouse, ao focar pelo teclado e ao tocar; fecha com Esc, toque fora, perda de foco e rolagem; uma por vez. Substitui o antigo botão "O que é isso?". Os textos de `ajuda` ficam em `perguntas.ts` e `perguntasSistema.ts`, em 1 a 2 frases, sem valor em reais, horas nem prazo (a tela já mostra "+ R$" nas opções que mudam o valor); um teste confere isso.

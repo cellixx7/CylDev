@@ -125,31 +125,52 @@ describe("mudaOValor", () => {
   it("separa perguntas que mudam o valor das que não mudam", () => {
     const perguntas = (id: string) => servicosOrcamento.find((s) => s.id === id)!.perguntas;
     expect(perguntas("planilha").map(mudaOValor)).toEqual([false, true, true, true, false]);
-    expect(perguntas("aulas").map(mudaOValor)).toEqual([true, false, false]);
-    expect(perguntas("sistema").map(mudaOValor)).toEqual([false, false]);
+    expect(perguntas("python").map(mudaOValor)).toEqual([true, true, true, false]);
+    expect(perguntas("sistema").map(mudaOValor)).toEqual([true, true, true, true, true, true, false, true]);
   });
 });
 
-describe("aulas", () => {
-  it("o preço depende só do formato", () => {
-    expect(servico("aulas")).toMatchObject({ preco: 50, formatoAula: "avulsa", horas: null, dias: null });
-    expect(servico("aulas", { pagamento: "avulsa" }).preco).toBe(50);
-    expect(servico("aulas", { pagamento: "pacote" }).preco).toBe(180);
+describe("automação com Python", () => {
+  it("script simples fica no valor base, com prazo calculado", () => {
+    // 6 h: ceil(6 / 2) + 1 = 4 dias
+    expect(servico("python")).toMatchObject({ preco: 300, aPartirDe: true, horasExtras: 0, horas: 6, dias: 4, combinavel: false });
   });
 
-  it("nível e foco não mudam o valor", () => {
-    expect(servico("aulas", { pagamento: "pacote", nivel: "avancar", foco: ["excel", "powerbi", "graficos"] }).preco).toBe(180);
+  it("casos simples nunca passam de R$ 400", () => {
+    const simples = [
+      { origem: "pdf" },
+      { rodar: "agendado" },
+      { tarefas: ["juntar", "ler"] },
+      { tarefas: ["juntar", "ler"], origem: "planilha", rodar: "manual" },
+      { origem: "pdf", rodar: "agendado" },
+    ];
+    for (const r of simples) expect(servico("python", r).preco!, JSON.stringify(r)).toBeLessThanOrEqual(400);
   });
 
-  it("começa quando o cliente quiser", () => {
-    expect(servico("aulas").prazo).toBe("Começa quando você quiser");
+  it("tarefa mais complexa soma horas e valor, e o prazo acompanha", () => {
+    const r = { tarefas: ["juntar", "ler", "enviar"], origem: "site", rodar: "tela" };
+    // 2 tarefas a mais (2 h) + site (2 h) + tela de botões (2 h) = 6 h extras
+    const c = servico("python", r);
+    expect(c).toMatchObject({ preco: 300 + 6 * 50, horasExtras: 6, horas: 12, dias: 7 });
+    expect(c.preco!).toBeGreaterThan(servico("python").preco!);
+  });
+
+  it("dados sensíveis não mudam o valor", () => {
+    expect(servico("python", { sensiveis: "sim" }).preco).toBe(300);
   });
 });
 
 describe("sistema sob medida", () => {
-  it("é sempre sob consulta, com prazo na proposta", () => {
-    const c = servico("sistema", { resolver: ["pedidos", "agenda", "area-cliente"], quando: "urgencia" });
-    expect(c).toMatchObject({ preco: null, tipoPreco: "sobConsulta", prazo: "Combinado na proposta" });
+  it("sem respostas: a partir de R$ 300 (6 h x R$ 50), sem prazo calculado", () => {
+    expect(servico("sistema", {})).toMatchObject({ preco: 300, tipoPreco: "aPartirDe", estimativa: true, horas: null, dias: null, prazo: prazoACombinar });
+  });
+
+  it("cada resposta soma as horas dela, e as filhas só contam quando abertas", () => {
+    // SaaS (8 h) abre a cobrança; mensalidade (2 h) soma 2 h.
+    expect(servico("sistema", { tipo: "saas" })!.preco).toBe(300 + 8 * 50);
+    expect(servico("sistema", { tipo: "saas", cobranca: "mensal" })!.preco).toBe(300 + 10 * 50);
+    // Resposta órfã: a cobrança não está aberta para "programa", então não soma.
+    expect(servico("sistema", { tipo: "programa", cobranca: "mensal" })!.preco).toBe(300 + 4 * 50);
   });
 });
 
@@ -210,12 +231,12 @@ describe("carrinho", () => {
     expect(c.total).toBe(150);
   });
 
-  it("combo: 1 combinável paga o preço normal; combinável + aula ou sistema não forma combo", () => {
+  it("combo: 1 combinável paga o preço normal; combinável + python ou sistema não forma combo", () => {
     const um = calcularCarrinho(["painel"], {}, semPiloto);
     expect(um.desconto).toBeNull();
     expect(um.total).toBe(um.somaTabela);
-    const comAula = calcularCarrinho(["painel", "aulas"], { aulas: { pagamento: "pacote" } }, semPiloto);
-    expect(comAula.desconto).toBeNull();
+    const comPython = calcularCarrinho(["painel", "python"], {}, semPiloto);
+    expect(comPython.desconto).toBeNull();
     expect(calcularCarrinho(["painel", "sistema"], {}, semPiloto).desconto).toBeNull();
   });
 
@@ -266,24 +287,25 @@ describe("carrinho", () => {
     expect(c.total).toBe(270);
   });
 
-  it("itens fora do combo: bots só recebem piloto; aulas e sistema, nenhum", () => {
+  it("itens fora do combo: bots e python só recebem piloto; sistema, nenhum", () => {
     const bots = calcularCarrinho(["bot-essencial", "bot-ia"], {}, piloto10);
     expect(bots.desconto).toMatchObject({ tipo: "piloto", valor: 80 });
     expect(bots.total).toBe(720);
-    const semDesconto = calcularCarrinho(["aulas", "sistema"], { aulas: { pagamento: "pacote" } }, piloto10);
-    expect(semDesconto).toMatchObject({ somaTabela: 180, desconto: null, total: 180, temSobConsulta: true });
-    const misto = calcularCarrinho(["planilha", "aulas"], { aulas: { pagamento: "pacote" } }, piloto10);
-    expect(misto.desconto?.valor).toBe(10);
-    expect(misto.total).toBe(270);
+    // sistema e python não são combináveis, mas entram no piloto como criação
+    const comSistema = calcularCarrinho(["python", "sistema"], {}, piloto10);
+    expect(comSistema).toMatchObject({ somaTabela: 600, desconto: { tipo: "piloto", valor: 60 }, total: 540, temSobConsulta: false });
+    const misto = calcularCarrinho(["planilha", "python"], {}, piloto10);
+    expect(misto.desconto).toMatchObject({ tipo: "piloto", valor: 40 });
+    expect(misto.total).toBe(360);
   });
 
-  it("aulas e bots não entram no prazo único dos combináveis", () => {
-    const c = calcularCarrinho(["planilha", "bot-essencial", "aulas", "sistema"], {}, semPiloto);
+  it("python e bots não entram no prazo único dos combináveis", () => {
+    const c = calcularCarrinho(["planilha", "bot-essencial", "python", "sistema"], {}, semPiloto);
     expect(c.prazoCombinaveis).toMatchObject({ horas: 2, dias: 2 });
     expect(c.prazosOutros).toEqual([
       { nome: "Bot de Discord essencial", texto: "prazo a combinar" },
-      { nome: "Aulas de Excel e Power BI", texto: "Começa quando você quiser" },
-      { nome: "Sistema sob medida", texto: "Combinado na proposta" },
+      { nome: "Automação com Python", texto: "estimado: 4 dias úteis" },
+      { nome: "Sistema sob medida", texto: "prazo a combinar" },
     ]);
   });
 
@@ -304,25 +326,25 @@ describe("carrinho", () => {
 
 describe("mensagem do WhatsApp", () => {
   it("lista serviços, valores e o total estimado", () => {
-    const c = calcularCarrinho(["planilha", "painel", "bot-essencial", "aulas"], { aulas: { pagamento: "pacote" } }, piloto10);
+    const c = calcularCarrinho(["planilha", "painel", "bot-essencial", "python"], {}, piloto10);
     expect(limpo(mensagemCarrinho(c))).toBe(
       [
         "Quero fazer um orçamento com:",
         "- Planilha organizada: R$ 100; 2 h; estimado: 2 dias úteis",
         "- Painel básico: R$ 200; 4 h; estimado: 3 dias úteis",
         "- Bot de Discord essencial: estimativa R$ 300; prazo a combinar",
-        "- Aulas de Excel e Power BI: R$ 180; Começa quando você quiser",
+        "- Automação com Python: a partir de R$ 300; 6 h; estimado: 4 dias úteis",
         "Prazo dos combináveis, juntos: estimado: 4 dias úteis",
-        "Total estimado: a partir de R$ 720, com piloto 10%, mais mensalidade de R$ 30 (hospedagem à parte) (estimativa, confirmada na conversa).",
+        "Total estimado: a partir de R$ 810, com piloto 10%, mais mensalidade de R$ 30 (hospedagem à parte) (estimativa, confirmada na conversa).",
       ].join("\n"),
     );
   });
 
-  it("aula avulsa mostra o valor por hora; sistema fica de fora do total", () => {
-    const c = calcularCarrinho(["aulas", "sistema"], {}, semPiloto);
-    expect(limpo(mensagemCarrinho(c))).toContain("- Aulas de Excel e Power BI: R$ 50 por hora;");
-    expect(mensagemCarrinho(c)).toContain("- Sistema sob medida: sob consulta; Combinado na proposta");
-    expect(limpo(textoEstimativa(c))).toBe("R$ 50, sistema sob consulta, fora do total");
+  it("python e sistema mostram 'a partir de' e entram no total", () => {
+    const c = calcularCarrinho(["python", "sistema"], {}, semPiloto);
+    expect(limpo(mensagemCarrinho(c))).toContain("- Automação com Python: a partir de R$ 300;");
+    expect(limpo(mensagemCarrinho(c))).toContain("- Sistema sob medida: a partir de R$ 300; prazo a combinar");
+    expect(limpo(textoEstimativa(c))).toBe("a partir de R$ 600");
   });
 
   it("o link leva a origem e a mensagem codificada", () => {

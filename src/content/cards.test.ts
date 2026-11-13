@@ -37,10 +37,10 @@ describe("cards de serviço", () => {
     }
   });
 
-  it("preço sai de servicos.ts: a partir de, por hora ou sob consulta", () => {
+  it("preço sai de servicos.ts: a partir de ou sob consulta", () => {
     expect(precoDoCard(servicoPorId("planilha")!)).toMatch(/^a partir de R\$\s?100/);
-    expect(precoDoCard(servicoPorId("aulas")!)).toMatch(/R\$\s?50 por hora/);
-    expect(precoDoCard(servicoPorId("sistema")!)).toBe("sob consulta");
+    expect(precoDoCard(servicoPorId("python")!)).toMatch(/^a partir de R\$\s?300/);
+    expect(precoDoCard(servicoPorId("sistema")!)).toMatch(/^a partir de R\$\s?300/);
   });
 
   it("não prometem prazo nem usam emoji nos textos dos cards", () => {
@@ -122,7 +122,7 @@ describe("bots fora de Negócios", () => {
   it("o catálogo de Negócios só tem serviços da área negocios, sem os bots", async () => {
     const { servicosDoCatalogo } = await import("./perguntas");
     const catalogo = servicosDoCatalogo.map((s) => s.id);
-    expect(catalogo).toEqual(["planilha", "painel", "automacao", "landing", "aulas", "sistema"]);
+    expect(catalogo).toEqual(["planilha", "painel", "automacao", "landing", "python", "sistema"]);
     for (const id of catalogo) expect(servicoPorId(id)!.area).toBe("negocios");
   });
 

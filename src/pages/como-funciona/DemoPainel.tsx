@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { demoPainel as t, type FiltroDemo } from "../../content/demoPainel";
 import { filtroDoPasso, resumoDoFiltro } from "../../shared/lib/demoPainel";
 import { celulaDemo as celula, DemoMoldura } from "./DemoMoldura";
@@ -9,8 +9,14 @@ const filtros: { id: FiltroDemo; nome: string }[] = [{ id: "todos", nome: t.pain
 const botaoFiltro =
   "min-h-alvo min-w-alvo cursor-pointer rounded-pequeno border border-texto px-3 font-semibold hover:bg-realce active:bg-realce";
 
-function TabelaVendas({ filtro }: { filtro: FiltroDemo }) {
+// Intervalo (s) entre uma linha da tabela acender e a barra seguinte crescer: as duas andam juntas.
+const passoLinha = 0.3;
+const atraso = (s: number) => ({ "--atraso": `${s}s` }) as CSSProperties;
+
+/** `animar` muda a cada passo ou filtro: remonta as linhas e a tabela acende linha a linha, na ordem das barras. */
+function TabelaVendas({ filtro, animar }: { filtro: FiltroDemo; animar?: string }) {
   const destaque = (mes: string) => (filtro === mes ? " bg-realce" : "");
+  const acende = animar ? " demo-flash" : "";
   return (
     <table className="w-full table-fixed border-collapse text-[0.875rem]" aria-label={t.tabela.legenda}>
       <thead>
@@ -24,20 +30,20 @@ function TabelaVendas({ filtro }: { filtro: FiltroDemo }) {
         </tr>
       </thead>
       <tbody>
-        {t.produtos.map((p) => (
-          <tr key={p.nome}>
-            <td className={celula}>{p.nome}</td>
+        {t.produtos.map((p, i) => (
+          <tr key={`${p.nome}-${animar}`} style={atraso(i * passoLinha)}>
+            <td className={`${celula}${acende}`}>{p.nome}</td>
             {t.meses.map((m) => (
-              <td key={m.id} className={`${celula} text-right font-mono${destaque(m.id)}`}>
+              <td key={m.id} className={`${celula} text-right font-mono${destaque(m.id)}${acende}`}>
                 {p.vendas[m.id]}
               </td>
             ))}
           </tr>
         ))}
-        <tr className="font-bold">
-          <td className={celula}>{t.tabela.total}</td>
+        <tr className="font-bold" key={`total-${animar}`} style={atraso(t.produtos.length * passoLinha)}>
+          <td className={`${celula}${acende}`}>{t.tabela.total}</td>
           {t.meses.map((m) => (
-            <td key={m.id} className={`${celula} text-right font-mono${destaque(m.id)}`}>
+            <td key={m.id} className={`${celula} text-right font-mono${destaque(m.id)}${acende}`}>
               {t.produtos.reduce((s, p) => s + p.vendas[m.id], 0)}
             </td>
           ))}
@@ -98,15 +104,15 @@ function Painel({ passo, mesPadrao, aoFiltrar }: { passo: number; mesPadrao?: Fi
 
       <p className="mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave">{p.graficoTitulo}</p>
       <ul className="m-0 grid list-none gap-2 p-0 text-[0.875rem]">
-        {r.vendas.map((v) => {
+        {r.vendas.map((v, i) => {
           const cor = v.nome === r.maisVende.nome ? "bg-destaque" : v.nome === r.menosSai.nome ? "bg-serie-1" : "bg-serie-3";
           return (
-            <li key={v.nome} className="grid grid-cols-[5.5rem_minmax(0,1fr)_2rem] items-center gap-2">
+            <li key={`${v.nome}-${passo}-${filtro}`} className="grid grid-cols-[5.5rem_minmax(0,1fr)_2rem] items-center gap-2">
               <span>{v.nome}</span>
               <span className="block h-[0.9rem] bg-realce">
                 <span
-                  className={`block h-full origin-left rounded-pequeno motion-safe:transition-transform motion-safe:duration-500 ${cor}`}
-                  style={{ transform: `scaleX(${v.valor / r.maximo})` }}
+                  className={`demo-barra block h-full origin-left rounded-pequeno ${cor}`}
+                  style={{ transform: `scaleX(${v.valor / r.maximo})`, ...atraso(i * passoLinha) }}
                 />
               </span>
               <span className="text-right font-mono font-bold">{v.valor}</span>
@@ -138,7 +144,7 @@ function Visual({ passo }: { passo: number }) {
   const filtro = escolha && escolha.passo === passo ? escolha.filtro : filtroDoPasso(passo);
   return (
     <div className="grid gap-4">
-      <TabelaVendas filtro={passo === 0 ? "todos" : filtro} />
+      <TabelaVendas filtro={passo === 0 ? "todos" : filtro} animar={passo >= 1 ? `${passo}-${filtro}` : undefined} />
       {passo >= 1 && (
         <>
           <Painel passo={passo} aoFiltrar={(f) => setEscolha({ passo, filtro: f })} />

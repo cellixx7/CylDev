@@ -132,6 +132,7 @@ export function Orcamento() {
       <PainelCarrinho
         aberto={painelAberto}
         pedido={pedido}
+        respostas={carrinho.respostas}
         aviso={aviso}
         observacoes={observacoes}
         aoMudarObservacoes={setObservacoes}

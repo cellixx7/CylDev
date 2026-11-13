@@ -8,6 +8,7 @@ import {
   calcularCarrinho,
   horasExtrasDa,
   opcoesMarcadas,
+  perguntasVisiveis,
   textoEstimativa,
   textoPrecoItem,
   type Carrinho,
@@ -61,7 +62,7 @@ export type Pedido = {
 };
 
 function respostasDoItem(modelo: ServicoOrcamento, respostas: Respostas): RespostaPedido[] {
-  return modelo.perguntas.map((p) => {
+  return perguntasVisiveis(modelo.perguntas, respostas).map((p) => {
     const ids = opcoesMarcadas(p, respostas);
     return {
       perguntaId: p.id,
@@ -115,12 +116,14 @@ export function montarPedido(
 export type Progresso = { respondidas: number; total: number; faltam: number };
 
 /**
- * Quantas perguntas do serviço já têm resposta. Informa o cliente, não bloqueia nada:
+ * Quantas perguntas do serviço já têm resposta. Só contam as visíveis (as filhas abertas pelas respostas).
+ * Informa o cliente, não bloqueia nada:
  * o spec não define pergunta obrigatória, então todas são tratadas como opcionais.
  */
 export function progressoDoServico(modelo: ServicoOrcamento, respostas: Respostas): Progresso {
-  const total = modelo.perguntas.length;
-  const respondidas = modelo.perguntas.filter((p) => opcoesMarcadas(p, respostas).length > 0).length;
+  const visiveis = perguntasVisiveis(modelo.perguntas, respostas);
+  const total = visiveis.length;
+  const respondidas = visiveis.filter((p) => opcoesMarcadas(p, respostas).length > 0).length;
   return { respondidas, total, faltam: total - respondidas };
 }
 
