@@ -298,7 +298,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 ## Seção Sobre (13/11/2026)
 
 - **Onde:** `Sobre.tsx` em `#sobre` (depois do Orçamento e do exemplo de painel no celular, antes de Entregas e Contato). A lógica testável fica em `sobreLogica.ts` (parágrafos por flag, galeria, destino do botão); o nome não é `sobre.ts` porque o Windows não distingue de `Sobre.tsx`.
-- **Ministério:** liberado em 13/11/2026, só com o texto de `negocios.sobre.ministerio` (corrigido "Estagio" para "Estágio"). Sem siglas nem nomes internos de órgãos, programas ou sistemas; um teste barra palavras só em maiúsculas nesse texto.
+- **Ministério:** liberado em 13/11/2026, só com o texto de `negocios.sobre.ministerio`. Sem siglas nem nomes internos de órgãos, programas ou sistemas; um teste barra palavras só em maiúsculas nesse texto.
 - **Imagens do Uniser: provisórias, de exemplo.** Três SVGs próprios em `public/uniser-exemplo-*-v1.svg` (telas genéricas, sem logo, marca ou nome real), cada uma com o rótulo "Imagem de exemplo". Para trocar pelas reais: pôr os arquivos em `public/` e editar `site.imagensUniser`; o componente não muda.
 - **Botão "Falar comigo":** vai para `#contato` quando `menuSecoes.contato` for `true`; enquanto a seção Contato não existe, abre o WhatsApp (`linkContato("negocios-sobre")`). Passa para a âncora sozinho quando a flag for ligada.
 - **Menu:** `menuSecoes.sobre: true`; `scroll-mt-24` deixa o título livre do cabeçalho fixo.

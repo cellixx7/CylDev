@@ -5,25 +5,26 @@ import { destinoFalarComigo, imagensDoUniser, paragrafosSobre } from "./sobreLog
 
 const t = negocios.sobre;
 
+const textos = (flags: { mostrarMinisterio: boolean; mostrarUniser: boolean }) => paragrafosSobre(flags).map((b) => b.texto);
+
 describe("paragrafosSobre", () => {
   it("com as duas flags: fixos, Ministério, Uniser e atendimento, nessa ordem", () => {
-    expect(paragrafosSobre({ mostrarMinisterio: true, mostrarUniser: true })).toEqual([...t.paragrafos, t.ministerio, t.uniser, t.atendimento]);
+    expect(textos({ mostrarMinisterio: true, mostrarUniser: true })).toEqual([...t.paragrafos, t.ministerio, t.uniser, t.atendimento]);
   });
   it("sem Ministério", () => {
-    const r = paragrafosSobre({ mostrarMinisterio: false, mostrarUniser: true });
-    expect(r).not.toContain(t.ministerio);
-    expect(r).toContain(t.uniser);
+    expect(textos({ mostrarMinisterio: false, mostrarUniser: true })).toEqual([...t.paragrafos, t.uniser, t.atendimento]);
   });
   it("sem Uniser", () => {
-    const r = paragrafosSobre({ mostrarMinisterio: true, mostrarUniser: false });
-    expect(r).not.toContain(t.uniser);
-    expect(r).toContain(t.ministerio);
+    expect(textos({ mostrarMinisterio: true, mostrarUniser: false })).toEqual([...t.paragrafos, t.ministerio, t.atendimento]);
   });
   it("sem nenhuma: só os fixos e o atendimento", () => {
-    expect(paragrafosSobre({ mostrarMinisterio: false, mostrarUniser: false })).toEqual([...t.paragrafos, t.atendimento]);
+    expect(textos({ mostrarMinisterio: false, mostrarUniser: false })).toEqual([...t.paragrafos, t.atendimento]);
+  });
+  it("o bloco do Uniser tem id próprio (a galeria entra depois dele)", () => {
+    expect(paragrafosSobre({ mostrarMinisterio: true, mostrarUniser: true }).filter((b) => b.id === "uniser").map((b) => b.texto)).toEqual([t.uniser]);
   });
   it("o texto do Ministério não traz siglas (palavras só em maiúsculas)", () => {
-    expect(t.ministerio).not.toMatch(/b[A-Z]{4,}b/);
+    expect(t.ministerio).not.toMatch(/\b[A-Z]{4,}\b/);
   });
 });
 

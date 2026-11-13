@@ -51,7 +51,7 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 ### Sobre
 
 - "Estudo Sistemas de Informação na Unieuro e trabalho como desenvolvedor fullstack."
-- Se `mostrarMinisterio` (liberado em 13/11/2026; sem siglas nem nomes internos): "Estágio em TI no Ministério da Defesa, onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio."
+- Se `mostrarMinisterio` (liberado em 13/11/2026; sem siglas nem nomes internos): "Estagio em TI no Ministério da Defesa, onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio."
 - Se `mostrarUniser` (texto liberado; imagens por enquanto de exemplo, cada uma com o rótulo "Imagem de exemplo"): "Participo do Uniser, um portal do aluno desenvolvido pela Unieuro em parceria com a Universidade de Brasília. Faço parte da equipe que desenvolve o código do projeto."
 - Sempre, por último: "Atendo online, para todo o Brasil."
 - Botão: "Falar comigo" (vai para `#contato` quando a seção existir; antes disso, abre o WhatsApp).

@@ -5,13 +5,15 @@ import { linkContato } from "../../shared/lib/whatsapp";
 type Flags = Pick<typeof site, "mostrarMinisterio" | "mostrarUniser" | "menuSecoes">;
 type Textos = typeof negocios.sobre;
 
-/** Parágrafos da seção, na ordem: os fixos, o Ministério e o Uniser (só com a flag) e, por fim, o atendimento online. */
-export function paragrafosSobre(flags: Pick<Flags, "mostrarMinisterio" | "mostrarUniser">, t: Textos = negocios.sobre): string[] {
+export type BlocoSobre = { id: "fixo" | "ministerio" | "uniser" | "atendimento"; texto: string };
+
+/** Blocos da seção, na ordem: os fixos, o Ministério e o Uniser (só com a flag) e, por fim, o atendimento online. */
+export function paragrafosSobre(flags: Pick<Flags, "mostrarMinisterio" | "mostrarUniser">, t: Textos = negocios.sobre): BlocoSobre[] {
   return [
-    ...t.paragrafos,
-    ...(flags.mostrarMinisterio ? [t.ministerio] : []),
-    ...(flags.mostrarUniser ? [t.uniser] : []),
-    t.atendimento,
+    ...t.paragrafos.map((texto): BlocoSobre => ({ id: "fixo", texto })),
+    ...(flags.mostrarMinisterio ? [{ id: "ministerio" as const, texto: t.ministerio }] : []),
+    ...(flags.mostrarUniser ? [{ id: "uniser" as const, texto: t.uniser }] : []),
+    { id: "atendimento", texto: t.atendimento },
   ];
 }
 
