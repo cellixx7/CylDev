@@ -299,6 +299,18 @@ export const orcamento = {
   },
 };
 
+/** Id de cada destaque da seção Sobre (também é a chave em `negocios.sobre.modais`). */
+export type DestaqueSobre = "faculdade" | "estagio" | "uniser";
+/** Pedaço de um parágrafo: texto simples ou, com `destaque`, o trecho que abre um modal. */
+export type ParteSobre = { texto: string; destaque?: DestaqueSobre };
+export type ModalSobre = {
+  titulo: string;
+  dica: string;
+  texto: string;
+  secoes: { subtitulo: string; texto?: string; itens?: string[] }[];
+  fecho?: string;
+};
+
 export const negocios = {
   exemploTitulo: "Um exemplo do que eu entrego",
   nav: [
@@ -450,11 +462,96 @@ export const negocios = {
   },
   sobre: {
     titulo: "Sobre mim",
-    paragrafos: ["Estudo Sistemas de Informação na Unieuro e trabalho como desenvolvedor fullstack."],
-    ministerio:
-      "Estagio em TI no Ministério da Defesa, onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio.",
-    uniser:
-      "Participo do Uniser, um portal do aluno desenvolvido pela Unieuro em parceria com a Universidade de Brasília. Faço parte da equipe que desenvolve o código do projeto.",
+    // Cada parágrafo é uma lista de partes. A parte com `destaque` vira o trecho que abre o modal de mesmo id (em `modais`).
+    paragrafos: [
+      [
+        { texto: "Estudo " },
+        { texto: "Sistemas de Informação na Unieuro", destaque: "faculdade" },
+        { texto: " e trabalho como desenvolvedor fullstack." },
+      ],
+    ] as ParteSobre[][],
+    ministerio: [
+      { texto: "Estagio em TI no Ministério da Defesa", destaque: "estagio" },
+      {
+        texto:
+          ", onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio.",
+      },
+    ] as ParteSobre[],
+    uniser: [
+      { texto: "Participo do Uniser", destaque: "uniser" },
+      {
+        texto:
+          ", um portal do aluno desenvolvido pela Unieuro em parceria com a Universidade de Brasília. Faço parte da equipe que desenvolve o código do projeto.",
+      },
+    ] as ParteSobre[],
+    // Modais dos destaques. `dica` é o balão ao passar o mouse; `secoes` aceitam texto, lista ou os dois.
+    modais: {
+      faculdade: {
+        titulo: "Sistemas de Informação na Unieuro",
+        dica: "Saiba mais sobre o curso",
+        texto:
+          "Estou no 5º semestre do bacharelado em Sistemas de Informação na Unieuro, em Brasília, com formatura prevista para o 2º semestre de 2028.",
+        secoes: [
+          {
+            subtitulo: "O que mais uso do curso no seu projeto",
+            itens: [
+              "Banco de Dados e Banco de Dados Avançados",
+              "Estruturas de Dados",
+              "Programação Orientada a Objetos",
+              "Programação para Web",
+              "Engenharia de Software e Engenharia de Requisitos",
+              "Gestão de Processos",
+              "Inteligência Artificial",
+            ],
+          },
+          {
+            subtitulo: "Iniciação científica",
+            texto:
+              "Faço iniciação científica orientado pelo professor doutor Aldo Henrique, no grupo de pesquisa OpenVIRTEX-BR (Open Source Virtualization and Cloud Computing for Intelligent Systems in Brazil). O grupo estuda computação em nuvem, máquinas virtuais, inteligência artificial e análise de dados, com soluções de código aberto para gerenciar melhor máquinas virtuais e recursos em nuvem.",
+          },
+        ],
+      },
+      estagio: {
+        titulo: "Estágio em TI no Ministério da Defesa",
+        dica: "Saiba mais sobre o estágio",
+        texto: "Estagio na área de TI do Ministério da Defesa desde fevereiro de 2026.",
+        secoes: [
+          {
+            subtitulo: "O que eu faço",
+            itens: [
+              "Consolidação de dados de várias fontes",
+              "Transformação de planilhas em banco de dados",
+              "Painéis e apresentações, inclusive modelos de apresentação reutilizáveis",
+              "Apoio à gestão de processos",
+              "Apoio na escrita de um artigo sobre sistemas não tripulados",
+            ],
+          },
+          {
+            subtitulo: "Ferramentas do dia a dia",
+            texto: "Excel, Power BI, Python, PowerPoint, VS Code e ferramentas de IA para programação (Claude Code e Codex).",
+          },
+        ],
+        fecho:
+          "É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio.",
+      },
+      uniser: {
+        titulo: "Uniser",
+        dica: "Saiba mais sobre o Uniser",
+        texto:
+          "O Uniser é um portal do aluno desenvolvido pela Unieuro em parceria com a Universidade de Brasília. Participo da equipe desde novembro de 2025, como desenvolvedor fullstack.",
+        secoes: [
+          {
+            subtitulo: "O que o portal faz",
+            itens: ["Acesso a editais", "Presença e notas", "Áreas para alunos, professores e administração da faculdade"],
+          },
+          {
+            subtitulo: "Tecnologias que uso no projeto",
+            texto: "React 19 com TypeScript, Vite, styled-components, PostgreSQL e Prisma.",
+          },
+        ],
+      },
+    } as Record<DestaqueSobre, ModalSobre>,
+    fechar: "Fechar",
     imagensUniser: "Imagens de exemplo do portal",
     rotuloImagem: "Imagem de exemplo",
     atendimento: "Atendo online, para todo o Brasil.",

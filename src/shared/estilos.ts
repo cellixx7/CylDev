@@ -8,3 +8,6 @@ export const botaoCheio =
 
 export const rotuloFicticio =
   "inline-block border border-dashed border-texto-suave px-2 text-[0.875rem] text-texto-suave";
+
+/** Contorno de foco do teclado (só aparece com :focus-visible). */
+export const focoVisivel = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";

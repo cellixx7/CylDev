@@ -24,22 +24,13 @@ export function posicionarBalao(
   return { top: Math.max(MARGEM, top), left, width };
 }
 
-type Props = {
-  /** Texto do balão. */
-  texto: string;
-  /** Rótulo acessível do botão, por exemplo "O que significa: Quantos usuários?". */
-  rotulo: string;
-};
-
 /**
- * Botão "i" com balão de explicação. Abre ao passar o mouse, ao focar pelo teclado e ao tocar (o toque alterna).
- * Fecha com Esc (antes de fechar o diálogo), ao tocar fora, ao perder o foco e ao rolar. Um balão aberto por vez.
- * O balão é `position: fixed` dentro da área visível: não é cortado pelo overflow do diálogo nem empurra o conteúdo.
- * O alvo clicável tem 44 px; o ícone visual é menor.
+ * Estado e posicionamento do balão (aberto por mouse, foco ou toque fixo; Esc, toque fora, rolagem e resize fecham;
+ * um por vez). Compartilhado pelo botão "i" (`Dica`) e pelos destaques da seção Sobre.
  */
-export function Dica({ texto, rotulo }: Props) {
+export function useBalao<E extends HTMLElement>(texto: string) {
   const id = useId();
-  const botao = useRef<HTMLButtonElement>(null);
+  const botao = useRef<E>(null);
   const balao = useRef<HTMLSpanElement>(null);
   const [mouse, setMouse] = useState(false);
   const [foco, setFoco] = useState(false);
@@ -105,6 +96,25 @@ export function Dica({ texto, rotulo }: Props) {
   const estiloBalao: CSSProperties = pos
     ? { top: pos.top, left: pos.left, width: pos.width }
     : { top: 0, left: 0, width: Math.min(LARGURA_MAXIMA, 320), visibility: "hidden" };
+
+  return { id, botao, balao, aberta, estiloBalao, setMouse, setFoco, setFixa, fechar };
+}
+
+type Props = {
+  /** Texto do balão. */
+  texto: string;
+  /** Rótulo acessível do botão, por exemplo "O que significa: Quantos usuários?". */
+  rotulo: string;
+};
+
+/**
+ * Botão "i" com balão de explicação. Abre ao passar o mouse, ao focar pelo teclado e ao tocar (o toque alterna).
+ * Fecha com Esc (antes de fechar o diálogo), ao tocar fora, ao perder o foco e ao rolar. Um balão aberto por vez.
+ * O balão é `position: fixed` dentro da área visível: não é cortado pelo overflow do diálogo nem empurra o conteúdo.
+ * O alvo clicável tem 44 px; o ícone visual é menor.
+ */
+export function Dica({ texto, rotulo }: Props) {
+  const { id, botao, balao, aberta, estiloBalao, setMouse, setFoco, setFixa, fechar } = useBalao<HTMLButtonElement>(texto);
 
   return (
     <span

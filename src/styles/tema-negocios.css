@@ -347,3 +347,16 @@ html.modal-aberto {
     animation: painel-sobe 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s) both;
   }
 }
+
+/* Modal da seção Sobre: entra com fade e subida curta. Com movimento reduzido, aparece direto. */
+@media (prefers-reduced-motion: no-preference) {
+  dialog.modal-sobre[open] {
+    animation: modal-sobre-entra 0.22s ease-out;
+  }
+  @keyframes modal-sobre-entra {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+  }
+}

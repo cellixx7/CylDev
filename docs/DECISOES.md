@@ -303,3 +303,12 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Botão "Falar comigo":** vai para `#contato` quando `menuSecoes.contato` for `true`; enquanto a seção Contato não existe, abre o WhatsApp (`linkContato("negocios-sobre")`). Passa para a âncora sozinho quando a flag for ligada.
 - **Menu:** `menuSecoes.sobre: true`; `scroll-mt-24` deixa o título livre do cabeçalho fixo.
 - **Foto:** `site.foto` continua `null` (iniciais) até haver arquivo em `public/`.
+
+## Destaques com "Saiba mais" na seção Sobre (13/11/2026)
+
+- **Texto como dados:** cada parágrafo de `negocios.sobre` é uma lista de partes `{ texto, destaque? }` (`faculdade`, `estagio`, `uniser`); nada de achar trecho com `indexOf`. O texto dos parágrafos não mudou. Os modais ficam em `negocios.sobre.modais` (título, dica, texto, seções, fecho). O destaque do Estágio e o do Uniser somem com `mostrarMinisterio` e `mostrarUniser` desligadas (`sobreLogica.ts`).
+- **`<span role="button">` em vez de `<button>`:** botão é caixa atômica no Chromium e não quebra de linha como texto (testado: um único retângulo). O span quebra, tem `tabindex="0"`, Enter e Espaço abrem. O alvo de 44 px vem do padding vertical do span inline, que não empurra as linhas.
+- **Dica:** a lógica do balão saiu de `Dica.tsx` para o hook `useBalao`, usado pelo "i" e pelos destaques (mesma posição dentro da tela, uma dica por vez). No toque não há balão: o toque abre o modal.
+- **Modal:** `ModalSobre.tsx`, `<dialog>` nativo como o `ModalServico`; o pai (`Sobre.tsx`) devolve o foco ao destaque ao fechar. "Falar comigo" segue `destinoFalarComigo`; para `#contato`, fecha o modal e só depois rola (a rolagem da página estava travada).
+- **Galeria:** `GaleriaUniser.tsx` serve à seção (carrossel/3 colunas) e ao modal (uma abaixo da outra, maiores). Continuam imagens de exemplo, com rótulo.
+- **PENDENTE (Marcelo):** conferir os textos dos modais; trocar as imagens de exemplo pelas reais quando houver.

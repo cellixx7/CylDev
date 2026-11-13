@@ -24,3 +24,12 @@ export function IconeFechar({ className = "size-5" }: Props) {
     </svg>
   );
 }
+
+/** "Abrir mais": quadrado com seta para fora. Marca os trechos do texto que abrem um modal. */
+export function IconeAbrir({ className = "size-4" }: Props) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true">
+      <path d="M7 3H3v10h10V9M9.5 2.5H13.5V6.5M13 3L7.5 8.5" />
+    </svg>
+  );
+}
