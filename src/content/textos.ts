@@ -565,6 +565,7 @@ export const negocios = {
       },
     } as Record<DestaqueSobre, ModalSobre>,
     fechar: "Fechar",
+    lado: "Exemplos do meu trabalho",
     imagensUniser: "Telas da plataforma da UniSER",
     legendaTelas: "Esquemas ilustrativos das telas, sem dados reais.",
     atendimento: "Atendo online, para todo o Brasil.",

@@ -328,3 +328,9 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Apresentação:** auditório visto de trás, com plateia fardada da Marinha, do Exército e da Aeronáutica (só cores e quepes genéricos, sem insígnia), e um telão com dois slides que se alternam (painel do mês, fluxo do processo). O nome (`site.nome`) fica ao lado, fixo nos dois slides.
 - **Acessibilidade:** cada cena é `role="img"` com descrição própria; botão "Pausar animação" (aria-pressed) serve às duas; com `prefers-reduced-motion` nada anima, aparece o resultado final e o botão some. Os temporizadores só existem com o modal do Estágio aberto.
 
+## Cenas ao lado do texto da seção Sobre (13/11/2026)
+
+- **Disposição:** a seção virou uma grade: avatar, texto e, em tela larga (a partir de `lg`), uma coluna lateral de 22 rem (`<aside>`); abaixo disso a coluna vai para baixo do texto. Antes a galeria ficava abaixo do parágrafo do Uniser.
+- **Coluna lateral:** em cima, a cena animada da planilha que vira painel (com pausa própria; aparece com `mostrarMinisterio`, pois é o assunto do estágio); embaixo, só 2 telas do Uniser (Editais e Login, marcadas com `naSecao` em `site.telasUniser`). As 6 telas continuam no modal do Uniser; o modal do Estágio mantém as duas cenas.
+- **Pausa por cena:** cada animação tem o seu botão ("Pausar animação: <cena>"), em vez de um só para as duas.
+

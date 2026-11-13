@@ -14,15 +14,15 @@ export const site = {
   // Texto liberado.
   mostrarUniser: true,
   // Esquemas (HTML e CSS) das telas da UniSER, mostrados na seção Sobre e no modal. Os desenhos ficam em GaleriaUniser.tsx;
-  // aqui ficam só o nome e a descrição de cada tela. Nenhum dado real de pessoa entra.
+  // aqui ficam só o nome e a descrição de cada tela. `naSecao` marca as duas que também aparecem ao lado do texto; todas aparecem no modal. Nenhum dado real de pessoa entra.
   telasUniser: [
-    { id: "editais", titulo: "Editais", alt: "Esquema da página pública da UniSER: faixa verde com logo e menu, e três cartões de editais abaixo." },
-    { id: "login", titulo: "Login", alt: "Esquema da tela de login da área restrita: cartão central com campos de login e senha e um botão verde." },
+    { id: "editais", naSecao: true, titulo: "Editais", alt: "Esquema da página pública da UniSER: faixa verde com logo e menu, e três cartões de editais abaixo." },
+    { id: "login", naSecao: true, titulo: "Login", alt: "Esquema da tela de login da área restrita: cartão central com campos de login e senha e um botão verde." },
     { id: "grade", titulo: "Grade curricular", alt: "Esquema da grade curricular: tabela com código, disciplina e situação de cada matéria do período." },
     { id: "dados", titulo: "Meus dados", alt: "Esquema da tela Meus dados: cartões de dados pessoais, contato e endereço, cada um com botão de editar." },
     { id: "frequencia", titulo: "Frequência", alt: "Esquema da tela de frequência: resumo da situação e tabela com data, disciplina e justificativa das faltas." },
     { id: "semestre", titulo: "Meu semestre", alt: "Esquema da tela Meu semestre: cartões de segunda a sexta, cada um com a disciplina e a carga horária." },
-  ] as { id: "editais" | "login" | "grade" | "dados" | "frequencia" | "semestre"; titulo: string; alt: string }[],
+  ] as { id: "editais" | "login" | "grade" | "dados" | "frequencia" | "semestre"; naSecao?: true; titulo: string; alt: string }[],
 
   // Caminho em /public. Sem foto, o site usa o avatar de iniciais.
   foto: null as string | null,

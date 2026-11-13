@@ -3,7 +3,7 @@ import { site } from "../../content/site";
 import { cenasEstagio } from "../../content/cenasEstagio";
 import { negocios } from "../../content/textos";
 import { duracaoPassosPlanilha, proximo, resumoPlanilha } from "./cenasLogica";
-import { destinoFalarComigo, telasDoUniser, paragrafosSobre, type BlocoSobre } from "./sobreLogica";
+import { destinoFalarComigo, mostrarCenaPlanilha, paragrafosSobre, telasDaSecao, telasDoUniser, type BlocoSobre } from "./sobreLogica";
 
 const textoDoBloco = (b: BlocoSobre) => b.partes.map((p) => p.texto).join("");
 const destaquesDaSecao = (blocos: BlocoSobre[]) => blocos.flatMap((b) => b.partes.flatMap((p) => (p.destaque ? [p.destaque] : [])));
@@ -122,6 +122,17 @@ describe("descrição da UniSER", () => {
     const ic = m.secoes.find((s) => s.subtitulo === "Iniciação científica")!;
     expect((ic.mais ?? []).join(" ")).toContain("Simbionte");
     expect(JSON.stringify(m)).not.toMatch(/https?:/);
+  });
+});
+
+describe("o que fica ao lado do texto", () => {
+  it("só duas telas do Uniser vão para a seção (editais e login); as outras ficam só no modal", () => {
+    expect(telasDaSecao(site.telasUniser).map((x) => x.id)).toEqual(["editais", "login"]);
+    expect(site.telasUniser).toHaveLength(6);
+  });
+  it("a cena da planilha acompanha a flag do Ministério", () => {
+    expect(mostrarCenaPlanilha({ mostrarMinisterio: true })).toBe(true);
+    expect(mostrarCenaPlanilha({ mostrarMinisterio: false })).toBe(false);
   });
 });
 

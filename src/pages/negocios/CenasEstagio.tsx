@@ -193,49 +193,75 @@ function Auditorio({ slide }: { slide: number }) {
   );
 }
 
-// ---------------------------------------------------------------- conjunto
+// ---------------------------------------------------------------- cenas
 
-/** As duas cenas do modal do Estágio. Uma pausa serve às duas; com movimento reduzido nada anima e aparece o resultado final. */
-export function CenasEstagio() {
+/** Botão de pausa de uma cena (cada animação tem o seu). Some com movimento reduzido, quando nada anima. */
+function BotaoPausa({ pausado, aoAlternar, cena }: { pausado: boolean; aoAlternar: () => void; cena: string }) {
+  return (
+    <button
+      type="button"
+      aria-pressed={pausado}
+      aria-label={`${pausado ? c.continuar : c.pausar}: ${cena}`}
+      onClick={aoAlternar}
+      className={`min-h-alvo shrink-0 cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[0.8125rem] text-texto hover:bg-realce ${focoVisivel}`}
+    >
+      {pausado ? c.continuar : c.pausar}
+    </button>
+  );
+}
+
+/** Cena da planilha que vira painel, com a própria pausa. Usada na seção Sobre e no modal do Estágio. */
+export function CenaPlanilha() {
   const reduzido = useMovimentoReduzido();
   const [pausado, setPausado] = useState(false);
   const passo = useCiclo(duracaoPassosPlanilha, pausado, reduzido, 3);
-  const slide = useCiclo(duracaoSlides, pausado, reduzido, 0);
+  return (
+    <figure className="m-0">
+      <div role="img" aria-label={c.planilha.alt} className="relative aspect-[16/10] w-full overflow-hidden border border-linha">
+        <Planilha passo={passo} />
+        <Painel ativo={passo === 3} />
+      </div>
+      <figcaption className="mt-1 flex items-center justify-between gap-3 text-[0.8125rem] text-texto-suave">
+        <span>
+          {c.planilha.titulo}: <span data-passo={passo}>{c.planilha.passos[passo]}</span>
+        </span>
+        {!reduzido && <BotaoPausa pausado={pausado} aoAlternar={() => setPausado((v) => !v)} cena={c.planilha.titulo} />}
+      </figcaption>
+    </figure>
+  );
+}
 
+/** Cena do auditório com o telão, com a própria pausa. */
+export function CenaAuditorio() {
+  const reduzido = useMovimentoReduzido();
+  const [pausado, setPausado] = useState(false);
+  const slide = useCiclo(duracaoSlides, pausado, reduzido, 0);
+  return (
+    <figure className="m-0">
+      <div role="img" aria-label={c.apresentacao.alt} className="relative aspect-[16/10] w-full overflow-hidden border border-linha">
+        <Auditorio slide={slide} />
+      </div>
+      <figcaption className="mt-1 flex items-center justify-between gap-3 text-[0.8125rem] text-texto-suave">
+        <span>{c.apresentacao.titulo}</span>
+        {!reduzido && <BotaoPausa pausado={pausado} aoAlternar={() => setPausado((v) => !v)} cena={c.apresentacao.titulo} />}
+      </figcaption>
+    </figure>
+  );
+}
+
+/** As duas cenas no modal do Estágio. */
+export function CenasEstagio() {
   return (
     <section className="mb-5" aria-labelledby="cenas-estagio-titulo">
-      <div className="mb-2 flex items-center justify-between gap-3">
-        <h3 id="cenas-estagio-titulo" className="m-0 text-[1.0625rem]">
-          {c.titulo}
-        </h3>
-        {!reduzido && (
-          <button
-            type="button"
-            aria-pressed={pausado}
-            onClick={() => setPausado((v) => !v)}
-            className={`min-h-alvo shrink-0 cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[0.8125rem] text-texto hover:bg-realce ${focoVisivel}`}
-          >
-            {pausado ? c.continuar : c.pausar}
-          </button>
-        )}
+      <h3 id="cenas-estagio-titulo" className="m-0 mb-2 text-[1.0625rem]">
+        {c.titulo}
+      </h3>
+      <div className="mb-4">
+        <CenaPlanilha />
       </div>
-
-      <figure className="m-0 mb-4">
-        <div role="img" aria-label={c.planilha.alt} className="relative aspect-[16/10] w-full overflow-hidden border border-linha">
-          <Planilha passo={passo} />
-          <Painel ativo={passo === 3} />
-        </div>
-        <figcaption className="mt-1 text-[0.8125rem] text-texto-suave">
-          {c.planilha.titulo}: <span data-passo={passo}>{c.planilha.passos[passo]}</span>
-        </figcaption>
-      </figure>
-
-      <figure className="m-0 mb-2">
-        <div role="img" aria-label={c.apresentacao.alt} className="relative aspect-[16/10] w-full overflow-hidden border border-linha">
-          <Auditorio slide={slide} />
-        </div>
-        <figcaption className="mt-1 text-[0.8125rem] text-texto-suave">{c.apresentacao.titulo}</figcaption>
-      </figure>
+      <div className="mb-2">
+        <CenaAuditorio />
+      </div>
       <p className="m-0 text-[0.8125rem] text-texto-suave">{c.aviso}</p>
     </section>
   );

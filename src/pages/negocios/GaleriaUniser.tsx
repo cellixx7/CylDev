@@ -9,8 +9,8 @@ type Id = Telas[number]["id"];
 
 type Props = {
   telas: Telas;
-  /** "linha": carrossel no celular e três colunas a partir de `sm` (seção). "grade": duas colunas no celular e três a partir de `sm` (modal). */
-  layout: "linha" | "grade";
+  /** "lateral": duas colunas sempre (ao lado do texto). "grade": duas colunas no celular e três a partir de `sm` (modal). */
+  layout: "lateral" | "grade";
 };
 
 // Cores da UniSER, só para o esquema (o resto do site usa os tokens do tema).
@@ -189,16 +189,12 @@ const esquemas: Record<Id, () => ReactNode> = {
  */
 export function GaleriaUniser({ telas, layout }: Props) {
   if (telas.length === 0) return null;
-  const lista =
-    layout === "linha"
-      ? "mb-3 flex list-none snap-x gap-3 overflow-x-auto p-0 sm:grid sm:grid-cols-3 sm:overflow-visible"
-      : "m-0 mb-3 grid list-none grid-cols-2 gap-3 p-0 sm:grid-cols-3";
-  const item = layout === "linha" ? "w-[60%] shrink-0 snap-start sm:w-auto" : "";
+  const lista = layout === "lateral" ? "m-0 mb-3 grid list-none grid-cols-2 gap-3 p-0" : "m-0 mb-3 grid list-none grid-cols-2 gap-3 p-0 sm:grid-cols-3";
   return (
     <>
       <ul className={lista} aria-label={t.imagensUniser}>
         {telas.map((tela) => (
-          <li key={tela.id} className={item}>
+          <li key={tela.id}>
             <figure className="m-0">
               <div role="img" aria-label={tela.alt} className="aspect-[8/5] w-full overflow-hidden border border-linha">
                 {esquemas[tela.id]()}
@@ -208,7 +204,7 @@ export function GaleriaUniser({ telas, layout }: Props) {
           </li>
         ))}
       </ul>
-      <p className={`m-0 text-[0.8125rem] text-texto-suave ${layout === "linha" ? "mb-4" : "mb-5"}`}>{t.legendaTelas}</p>
+      <p className={`m-0 text-[0.8125rem] text-texto-suave ${layout === "lateral" ? "mb-0" : "mb-5"}`}>{t.legendaTelas}</p>
     </>
   );
 }
