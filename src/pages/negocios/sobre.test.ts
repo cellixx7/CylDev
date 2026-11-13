@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { site } from "../../content/site";
+import { cenasEstagio } from "../../content/cenasEstagio";
 import { negocios } from "../../content/textos";
-import { destinoFalarComigo, imagensDoUniser, paragrafosSobre, type BlocoSobre } from "./sobreLogica";
+import { duracaoPassosPlanilha, proximo, resumoPlanilha } from "./cenasLogica";
+import { destinoFalarComigo, mostrarCenaPlanilha, paragrafosSobre, telasDaSecao, telasDoUniser, type BlocoSobre } from "./sobreLogica";
 
 const textoDoBloco = (b: BlocoSobre) => b.partes.map((p) => p.texto).join("");
 const destaquesDaSecao = (blocos: BlocoSobre[]) => blocos.flatMap((b) => b.partes.flatMap((p) => (p.destaque ? [p.destaque] : [])));
@@ -33,7 +35,7 @@ describe("paragrafosSobre", () => {
   it("o texto dos parágrafos não mudou (o 'Estagio' sem acento é o verbo)", () => {
     expect(textos(ligadas)[0]).toBe("Estudo Sistemas de Informação na Unieuro e trabalho como desenvolvedor fullstack.");
     expect(textos(ligadas)[1]).toMatch(/^Estagio em TI no Ministério da Defesa, onde faço análise de dados/);
-    expect(textos(ligadas)[2]).toMatch(/^Participo do Uniser, um portal do aluno/);
+    expect(textos(ligadas)[2]).toMatch(/^Participo do Uniser, a plataforma da UniSER, Universidade do Envelhecer da UnB\./);
   });
 });
 
@@ -79,16 +81,58 @@ describe("destaques da seção", () => {
   });
 });
 
-describe("imagensDoUniser", () => {
+describe("telasDoUniser", () => {
   it("só aparecem com mostrarUniser", () => {
-    expect(imagensDoUniser({ mostrarUniser: false })).toEqual([]);
-    expect(imagensDoUniser({ mostrarUniser: true })).toBe(site.imagensUniser);
+    expect(telasDoUniser({ mostrarUniser: false })).toEqual([]);
+    expect(telasDoUniser({ mostrarUniser: true })).toBe(site.telasUniser);
   });
-  it("cada imagem tem src e alt descritivo", () => {
-    for (const img of site.imagensUniser) {
-      expect(img.src).toMatch(/^\//);
-      expect(img.alt.length).toBeGreaterThan(10);
+  it("são as seis telas, cada uma com título e alt descritivo", () => {
+    expect(site.telasUniser.map((x) => x.id)).toEqual(["editais", "login", "grade", "dados", "frequencia", "semestre"]);
+    for (const tela of site.telasUniser) {
+      expect(tela.titulo.length).toBeGreaterThan(0);
+      expect(tela.alt.length).toBeGreaterThan(30);
     }
+  });
+  it("os esquemas não trazem dado de teste nem de pessoa", () => {
+    const tudo = JSON.stringify(site.telasUniser);
+    expect(tudo).not.toMatch(/teste|CPF|@|Maria|Carlos/i);
+  });
+});
+
+describe("descrição da UniSER", () => {
+  const tudo = JSON.stringify(t);
+  it("não fala em portal do aluno nem em parceria com a UnB", () => {
+    expect(tudo).not.toMatch(/portal do aluno/i);
+    expect(tudo).not.toContain("em parceria com a Universidade de Brasília");
+  });
+  it("o modal cita UniSER, UnB e Unieuro", () => {
+    const m = t.modais.uniser;
+    const texto = [m.titulo, m.texto, ...m.secoes.flatMap((s) => [s.texto ?? "", ...(s.itens ?? [])])].join(" ");
+    expect(texto).toContain("UniSER");
+    expect(texto).toContain("UnB");
+    expect(texto).toContain("Unieuro");
+  });
+  it("a galeria é rotulada como esquema ilustrativo, sem 'imagem de exemplo'", () => {
+    expect(t.imagensUniser).toBe("Telas da plataforma da UniSER");
+    expect(t.legendaTelas).toMatch(/ilustrativos/);
+    expect(tudo).not.toMatch(/imagem de exemplo/i);
+  });
+  it("o modal da faculdade traz o Simbionte, sem link", () => {
+    const m = t.modais.faculdade;
+    const ic = m.secoes.find((s) => s.subtitulo === "Iniciação científica")!;
+    expect((ic.mais ?? []).join(" ")).toContain("Simbionte");
+    expect(JSON.stringify(m)).not.toMatch(/https?:/);
+  });
+});
+
+describe("o que fica ao lado do texto", () => {
+  it("só duas telas do Uniser vão para a seção (editais e login); as outras ficam só no modal", () => {
+    expect(telasDaSecao(site.telasUniser).map((x) => x.id)).toEqual(["editais", "login"]);
+    expect(site.telasUniser).toHaveLength(6);
+  });
+  it("a cena da planilha acompanha a flag do Ministério", () => {
+    expect(mostrarCenaPlanilha({ mostrarMinisterio: true })).toBe(true);
+    expect(mostrarCenaPlanilha({ mostrarMinisterio: false })).toBe(false);
   });
 });
 
@@ -102,5 +146,43 @@ describe("destinoFalarComigo", () => {
     expect(d.externo).toBe(true);
     expect(d.href).toContain(`wa.me/${site.whatsapp}`);
     expect(decodeURIComponent(d.href)).toContain("negocios-sobre");
+  });
+});
+
+describe("cenas do Estágio", () => {
+  const p = cenasEstagio.planilha;
+  it("cada linha tem o mesmo número de células antes e depois, e uma célula por coluna", () => {
+    for (const l of p.linhas) {
+      expect(l.sujo).toHaveLength(p.colunas.length);
+      expect(l.limpo).toHaveLength(p.colunas.length);
+    }
+  });
+  it("depois do ajuste os valores e as datas seguem um só padrão e os setores se repetem iguais", () => {
+    for (const l of p.linhas) {
+      expect(l.limpo[2]).toMatch(/^R\$ \d{1,3}(\.\d{3})*,\d{2}$/);
+      expect(l.limpo[3]).toMatch(/^\d{2}\/\d{2}\/\d{4}$/);
+      expect(l.limpo[0]).toBe(l.setor);
+    }
+  });
+  it("antes do ajuste há textos sem padrão (alguma célula muda)", () => {
+    const mudam = p.linhas.flatMap((l) => l.sujo.filter((s, j) => s !== l.limpo[j]));
+    expect(mudam.length).toBeGreaterThan(p.linhas.length);
+  });
+  it("o painel soma o que a planilha tem", () => {
+    const r = resumoPlanilha();
+    expect(r.quantidade).toBe(p.linhas.length);
+    expect(r.total).toBeCloseTo(1200 + 850.5 + 430 + 2100 + 700 + 950, 5);
+    expect(r.setores.map((s) => s.setor)).toEqual(["Financeiro", "RH", "TI"]);
+    expect(r.setores.reduce((s, x) => s + x.valor, 0)).toBeCloseTo(r.total, 5);
+  });
+  it("o ciclo dá a volta e tem um tempo por passo", () => {
+    expect(duracaoPassosPlanilha).toHaveLength(p.passos.length);
+    expect(proximo(3, 4)).toBe(0);
+    expect(proximo(0, 4)).toBe(1);
+  });
+  it("a apresentação mostra o nome do site e os textos não têm siglas", () => {
+    expect(cenasEstagio.apresentacao.nome).toBe(site.nome);
+    const tudo = [cenasEstagio.titulo, cenasEstagio.aviso, p.titulo, ...p.passos, cenasEstagio.apresentacao.titulo, cenasEstagio.apresentacao.alt, cenasEstagio.apresentacao.funcao, ...cenasEstagio.apresentacao.slides].join(" ");
+    expect(tudo).not.toMatch(SIGLA);
   });
 });

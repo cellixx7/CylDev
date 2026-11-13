@@ -1,16 +1,30 @@
 import { site } from "../src/content/site";
+import { cenasEstagio } from "../src/content/cenasEstagio";
 import { comum, negocios } from "../src/content/textos";
 import { destinoFalarComigo, paragrafosSobre } from "../src/pages/negocios/sobreLogica";
-import type { Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 import { expect, semRolagemHorizontal, test } from "./apoio";
 
 const t = negocios.sobre;
+
+/** Cada tela em esquema tem descrição acessível e caixa visível, sem estourar a largura do pai. */
+async function telasVisiveis(telas: Locator, esperadas: { alt: string }[] = site.telasUniser) {
+  await expect(telas).toHaveCount(esperadas.length);
+  for (let i = 0; i < esperadas.length; i++) {
+    const tela = telas.nth(i);
+    await tela.scrollIntoViewIfNeeded();
+    await expect(tela).toHaveAttribute("aria-label", esperadas[i].alt);
+    const caixa = await tela.boundingBox();
+    expect(caixa!.width).toBeGreaterThan(100);
+    expect(caixa!.height).toBeGreaterThan(60);
+  }
+}
 
 for (const [largura, altura] of [[360, 740], [390, 844], [768, 1024], [1440, 900]] as const) {
   test.describe(`seção Sobre: ${largura} px`, () => {
     test.use({ viewport: { width: largura, height: altura } });
 
-    test("/#sobre rola até o título (livre do cabeçalho), sem rolagem lateral e com imagens rotuladas", async ({ page }) => {
+    test("/#sobre rola até o título (livre do cabeçalho), sem rolagem lateral e com a planilha e duas telas do Uniser ao lado do texto", async ({ page }) => {
       await page.goto("/#sobre");
       const titulo = page.getByRole("heading", { name: t.titulo });
       await expect(titulo).toBeInViewport();
@@ -19,7 +33,19 @@ for (const [largura, altura] of [[360, 740], [390, 844], [768, 1024], [1440, 900
       expect(caixa!.y).toBeGreaterThanOrEqual(cabecalho!.y + cabecalho!.height - 1);
       await semRolagemHorizontal(page);
       const secao = page.locator("#sobre");
-      await expect(secao.getByText(t.rotuloImagem)).toHaveCount(site.imagensUniser.length);
+      const lado = secao.getByRole("complementary", { name: t.lado });
+      await telasVisiveis(lado.getByRole("list", { name: t.imagensUniser }).locator("[role=img]"), site.telasUniser.filter((x) => x.naSecao));
+      await expect(lado.locator("[role=img]")).toHaveCount(3);
+      // A planilha vem acima das telas do Uniser.
+      const caixaPlanilha = await lado.locator("[role=img]").first().boundingBox();
+      const caixaTela = await lado.getByRole("list", { name: t.imagensUniser }).boundingBox();
+      expect(caixaPlanilha!.y).toBeLessThan(caixaTela!.y);
+      if (largura >= 1024) {
+        // Em tela larga a coluna fica ao lado do texto, não abaixo.
+        const texto = await secao.getByText(t.atendimento).boundingBox();
+        expect(caixaPlanilha!.x).toBeGreaterThan(texto!.x + texto!.width - 1);
+      }
+      await semRolagemHorizontal(page);
       await expect(secao.getByText(t.atendimento)).toBeVisible();
       await expect(secao.getByText(/^Estagio em TI no Ministério da Defesa/)).toBeVisible();
     });
@@ -129,19 +155,33 @@ test.describe("destaques com modal: mouse e teclado, 1440 px", () => {
     await expect(destaque(page, "uniser")).toBeFocused();
   });
 
-  test("conteúdo de cada modal: textos certos, imagens de exemplo só no Uniser, sem siglas no estágio", async ({ page }) => {
+  test("conteúdo de cada modal: textos certos, esquemas de tela só no Uniser, sem siglas no estágio", async ({ page }) => {
     await page.goto("/#sobre");
     await destaque(page, "estagio").click();
     const estagio = modalDe(page, "estagio");
     await expect(estagio.getByText(t.modais.estagio.texto)).toBeVisible();
     await expect(estagio.getByRole("heading", { name: "Ferramentas do dia a dia" })).toBeVisible();
-    await expect(estagio.locator("img")).toHaveCount(0);
+    await expect(estagio.locator("[role=img]")).toHaveCount(2);
+    await expect(estagio.getByRole("button", { name: cenasEstagio.pausar })).toHaveCount(2);
+    await expect(estagio.getByText(cenasEstagio.aviso)).toBeVisible();
+    await estagio.locator("[role=img]").first().scrollIntoViewIfNeeded();
+    // A animação avança sozinha e a pausa a segura.
+    const passo = estagio.locator("[data-passo]");
+    await expect(passo).toHaveAttribute("data-passo", "0");
+    await estagio.getByRole("button", { name: `${cenasEstagio.pausar}: ${cenasEstagio.planilha.titulo}` }).click();
+    await page.waitForTimeout(3000);
+    await expect(passo).toHaveAttribute("data-passo", "0");
+    await estagio.getByRole("button", { name: `${cenasEstagio.continuar}: ${cenasEstagio.planilha.titulo}` }).click();
+    await expect(passo).not.toHaveAttribute("data-passo", "0");
+    await semRolagemHorizontal(page);
     await page.keyboard.press("Escape");
 
     await destaque(page, "uniser").click();
     const uniser = modalDe(page, "uniser");
-    await expect(uniser.locator("img")).toHaveCount(site.imagensUniser.length);
-    await expect(uniser.getByText(t.rotuloImagem)).toHaveCount(site.imagensUniser.length);
+    await expect(uniser.locator("img")).toHaveCount(0);
+    await telasVisiveis(uniser.locator("[role=img]"));
+    await expect(uniser.getByText(t.legendaTelas)).toBeVisible();
+    await semRolagemHorizontal(page);
   });
 
   test("Falar comigo no modal vai ao mesmo destino do botão da seção", async ({ page }) => {

@@ -18,8 +18,8 @@ export function paragrafosSobre(flags: Pick<Flags, "mostrarMinisterio" | "mostra
 }
 
 /** A galeria só existe com o Uniser visível e com ao menos uma imagem cadastrada. */
-export function imagensDoUniser(flags: Pick<Flags, "mostrarUniser">, imagens: typeof site.imagensUniser = site.imagensUniser) {
-  return flags.mostrarUniser ? imagens : [];
+export function telasDoUniser(flags: Pick<Flags, "mostrarUniser">, telas: typeof site.telasUniser = site.telasUniser) {
+  return flags.mostrarUniser ? telas : [];
 }
 
 /** "Falar comigo" vai para #contato quando a seção existe (menu ligado); até lá, abre o WhatsApp. */
@@ -27,4 +27,14 @@ export function destinoFalarComigo(flags: Pick<Flags, "menuSecoes">) {
   return flags.menuSecoes.contato
     ? { href: "#contato", externo: false }
     : { href: linkContato("negocios-sobre"), externo: true };
+}
+
+/** As telas do Uniser que aparecem ao lado do texto: só as marcadas com `naSecao` (as outras ficam só no modal). */
+export function telasDaSecao(telas: typeof site.telasUniser) {
+  return telas.filter((tela) => tela.naSecao);
+}
+
+/** A cena da planilha ao lado do texto acompanha o texto do estágio (flag do Ministério). */
+export function mostrarCenaPlanilha(flags: Pick<Flags, "mostrarMinisterio">) {
+  return flags.mostrarMinisterio;
 }

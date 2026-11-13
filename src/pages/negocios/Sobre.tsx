@@ -4,16 +4,20 @@ import { negocios, type DestaqueSobre } from "../../content/textos";
 import { Avatar } from "../../shared/components/Avatar";
 import { botao } from "../../shared/estilos";
 import { DestaqueSobre as Destaque } from "./DestaqueSobre";
+import { CenaPlanilha } from "./CenasEstagio";
 import { GaleriaUniser } from "./GaleriaUniser";
 import { ModalSobre } from "./ModalSobre";
-import { destinoFalarComigo, imagensDoUniser, paragrafosSobre } from "./sobreLogica";
+import { destinoFalarComigo, mostrarCenaPlanilha, paragrafosSobre, telasDaSecao, telasDoUniser } from "./sobreLogica";
 
 const t = negocios.sobre;
 
-/** Seção #sobre: avatar (foto ou iniciais), texto em primeira pessoa com destaques que abrem modal e, se houver, a galeria do Uniser. */
+/** Seção #sobre: avatar (foto ou iniciais), texto em primeira pessoa com destaques que abrem modal e, ao lado, a cena da planilha e duas telas do Uniser (as demais ficam só no modal). */
 export function Sobre() {
   const paragrafos = paragrafosSobre(site);
-  const imagens = imagensDoUniser(site);
+  const telas = telasDoUniser(site);
+  const telasLado = telasDaSecao(telas);
+  const cenaPlanilha = mostrarCenaPlanilha(site);
+  const temLado = cenaPlanilha || telasLado.length > 0;
   const destino = destinoFalarComigo(site);
   const [aberto, setAberto] = useState<DestaqueSobre | null>(null);
   const origem = useRef<HTMLElement | null>(null);
@@ -53,7 +57,7 @@ export function Sobre() {
       <h2 id="sobre-titulo" className="revela-titulo">
         {t.titulo}
       </h2>
-      <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:gap-8">
+      <div className="mt-6 grid gap-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-x-8 lg:grid-cols-[auto_minmax(0,40rem)_22rem]">
         <Avatar nome={site.nome} foto={site.foto} />
         <div className="min-w-0 max-w-[40rem]">
           {paragrafos.map(({ id, partes }, i) => (
@@ -67,8 +71,6 @@ export function Sobre() {
                   ),
                 )}
               </p>
-              {/* A galeria entra logo depois do parágrafo do Uniser. */}
-              {id === "uniser" && <GaleriaUniser imagens={imagens} layout="linha" />}
             </Fragment>
           ))}
           <a
@@ -80,8 +82,14 @@ export function Sobre() {
             {t.falarComigo}
           </a>
         </div>
+        {temLado && (
+          <aside className="flex min-w-0 max-w-[40rem] flex-col gap-5 sm:col-start-2 lg:col-start-3 lg:row-start-1 lg:max-w-none" aria-label={t.lado}>
+            {cenaPlanilha && <CenaPlanilha />}
+            <GaleriaUniser telas={telasLado} layout="lateral" />
+          </aside>
+        )}
       </div>
-      <ModalSobre aberto={aberto} imagens={imagens} destino={destino} aoFechar={() => setAberto(null)} aoFalar={falar} />
+      <ModalSobre aberto={aberto} telas={telas} destino={destino} aoFechar={() => setAberto(null)} aoFalar={falar} />
     </section>
   );
 }

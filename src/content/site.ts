@@ -11,15 +11,18 @@ export const site = {
 
   // Texto liberado pelo supervisor em 13/11/2026. Sem siglas nem nomes internos: só o texto de textos.ts.
   mostrarMinisterio: true,
-  // Texto liberado. As imagens abaixo são de exemplo.
+  // Texto liberado.
   mostrarUniser: true,
-  // PROVISÓRIO: imagens de exemplo (telas genéricas, sem marca). Serão trocadas pelas reais do Marcelo:
-  // basta pôr os arquivos novos em /public e editar esta lista; o componente não muda.
-  imagensUniser: [
-    { src: "/uniser-exemplo-1-v1.svg", alt: "Exemplo de tela inicial de um portal do aluno, com menu lateral, aviso e dois quadros." },
-    { src: "/uniser-exemplo-2-v1.svg", alt: "Exemplo de tela de listagem de um portal do aluno, com tabela de quatro linhas." },
-    { src: "/uniser-exemplo-3-v1.svg", alt: "Exemplo de tela de formulário de um portal do aluno, com campos e um gráfico de rosca." },
-  ] as { src: string; alt: string }[],
+  // Esquemas (HTML e CSS) das telas da UniSER, mostrados na seção Sobre e no modal. Os desenhos ficam em GaleriaUniser.tsx;
+  // aqui ficam só o nome e a descrição de cada tela. `naSecao` marca as duas que também aparecem ao lado do texto; todas aparecem no modal. Nenhum dado real de pessoa entra.
+  telasUniser: [
+    { id: "editais", naSecao: true, titulo: "Editais", alt: "Esquema da página pública da UniSER: faixa verde com logo e menu, e três cartões de editais abaixo." },
+    { id: "login", naSecao: true, titulo: "Login", alt: "Esquema da tela de login da área restrita: cartão central com campos de login e senha e um botão verde." },
+    { id: "grade", titulo: "Grade curricular", alt: "Esquema da grade curricular: tabela com código, disciplina e situação de cada matéria do período." },
+    { id: "dados", titulo: "Meus dados", alt: "Esquema da tela Meus dados: cartões de dados pessoais, contato e endereço, cada um com botão de editar." },
+    { id: "frequencia", titulo: "Frequência", alt: "Esquema da tela de frequência: resumo da situação e tabela com data, disciplina e justificativa das faltas." },
+    { id: "semestre", titulo: "Meu semestre", alt: "Esquema da tela Meu semestre: cartões de segunda a sexta, cada um com a disciplina e a carga horária." },
+  ] as { id: "editais" | "login" | "grade" | "dados" | "frequencia" | "semestre"; naSecao?: true; titulo: string; alt: string }[],
 
   // Caminho em /public. Sem foto, o site usa o avatar de iniciais.
   foto: null as string | null,

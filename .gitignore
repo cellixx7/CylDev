@@ -26,3 +26,6 @@ docs/AUDITORIA-*.md
 docs/Auditoria_*.pdf
 docs/PROMPT-*.md
 docs/auditoria-capturas/
+
+# Capturas originais do UniSER (grandes e sem tratamento): só as versões otimizadas de public/ vão para o repositório
+src/pages/uniser/
