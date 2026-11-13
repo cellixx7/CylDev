@@ -11,6 +11,7 @@ import { brl } from "../../shared/lib/formato";
 import { ativarMagnetico } from "./magnetico";
 import { Orcamento } from "./Orcamento";
 import { PainelExemplo } from "./PainelExemplo";
+import { Sobre } from "./Sobre";
 
 // Título cinético: cada letra sobe de uma máscara, em cascata (ver .letra em tema-negocios.css).
 function TituloCinetico({ texto }: { texto: string }) {
@@ -103,9 +104,9 @@ function Negocios() {
             <PainelExemplo />
           </section>
         )}
+        <Sobre />
         <section id="entregas"></section>
         <section id="como-funciona"></section>
-        <section id="sobre"></section>
         <section id="contato"></section>
       </main>
       <Rodape ponte={{ ...t.ponte, href: "/comunidade/" }}>

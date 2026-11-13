@@ -62,13 +62,14 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 
 ## Pendências do Marcelo
 
-- [ ] Conferir o termo de estágio com o supervisor **antes do merge na main** (`mostrarMinisterio: true` em `src/content/site.ts`).
+- [x] Termo de estágio: texto do Ministério liberado em 13/11/2026 (`mostrarMinisterio: true` em `src/content/site.ts`). Sem siglas nem nomes internos de órgãos, programas ou sistemas.
 - [x] `serviceId`, `templateId` e `publicKey` preenchidos em `site.emailjs` (11/11/2026). Falta conferir no painel do EmailJS que o template tem os campos de `docs/emailjs-template.md` (`itens`, `total`, `observacoes`) e que as origens permitidas são só o domínio do site.
 - [ ] Horas base do bot essencial e do bot com IA (hoje provisórias: 4 h e 8 h). Ao confirmar, remover `horasProvisorias` em `servicos.ts`.
 - [ ] Desconto do plano de 6 meses dos bots (`mensalidadeBots.descontoPlanoAdiantado`).
 - [ ] Confirmar que o desconto de piloto vale só sobre a criação.
 - [ ] Escolher o nome do site na Netlify e atualizar `site.urlPadrao`.
 - [ ] Foto (opcional): colocar em `public/` e apontar `site.foto`.
+- [ ] Imagens reais do Uniser: trocar as de exemplo (`public/uniser-exemplo-*-v1.svg`) e editar `site.imagensUniser`.
 - [ ] Vídeo do CylBot (talvez Uniser e CylSense). Nenhum vídeo para a planilha.
 
 ## Orçamento compacto (09/11/2026)
@@ -293,3 +294,12 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 
 - **Sem teto:** o sistema é só "a partir de R$ 300" (6 h x `VALOR_HORA_EXTRA`, `HORAS_BASE_SISTEMA`); as respostas somam horas sem limite. **PENDENTE (Marcelo confirmar):** preço-base e horas das respostas.
 - **Dica "i"** (`src/shared/components/Dica.tsx`): componente reutilizável, balão `position: fixed` posicionado dentro da área visível (vira para cima ou para baixo), sem biblioteca. Substitui o botão "O que é isso?". `ajuda` já era obrigatório em `Pergunta`; novo teste falha se faltar e se o texto citar R$, horas ou prazo. Hover, foco, toque, Esc e "uma por vez" são cobertos em `e2e/dica.spec.ts` (o vitest roda em node, sem DOM, e não se adicionou dependência).
+
+## Seção Sobre (13/11/2026)
+
+- **Onde:** `Sobre.tsx` em `#sobre` (depois do Orçamento e do exemplo de painel no celular, antes de Entregas e Contato). A lógica testável fica em `sobreLogica.ts` (parágrafos por flag, galeria, destino do botão); o nome não é `sobre.ts` porque o Windows não distingue de `Sobre.tsx`.
+- **Ministério:** liberado em 13/11/2026, só com o texto de `negocios.sobre.ministerio` (corrigido "Estagio" para "Estágio"). Sem siglas nem nomes internos de órgãos, programas ou sistemas; um teste barra palavras só em maiúsculas nesse texto.
+- **Imagens do Uniser: provisórias, de exemplo.** Três SVGs próprios em `public/uniser-exemplo-*-v1.svg` (telas genéricas, sem logo, marca ou nome real), cada uma com o rótulo "Imagem de exemplo". Para trocar pelas reais: pôr os arquivos em `public/` e editar `site.imagensUniser`; o componente não muda.
+- **Botão "Falar comigo":** vai para `#contato` quando `menuSecoes.contato` for `true`; enquanto a seção Contato não existe, abre o WhatsApp (`linkContato("negocios-sobre")`). Passa para a âncora sozinho quando a flag for ligada.
+- **Menu:** `menuSecoes.sobre: true`; `scroll-mt-24` deixa o título livre do cabeçalho fixo.
+- **Foto:** `site.foto` continua `null` (iniciais) até haver arquivo em `public/`.

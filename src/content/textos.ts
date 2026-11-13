@@ -452,9 +452,13 @@ export const negocios = {
     titulo: "Sobre mim",
     paragrafos: ["Estudo Sistemas de Informação na Unieuro e trabalho como desenvolvedor fullstack."],
     ministerio:
-      "Estagio em TI no Ministério da Defesa, onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio.",
+      "Estágio em TI no Ministério da Defesa, onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio.",
     uniser:
       "Participo do Uniser, um portal do aluno desenvolvido pela Unieuro em parceria com a Universidade de Brasília. Faço parte da equipe que desenvolve o código do projeto.",
+    imagensUniser: "Imagens de exemplo do portal",
+    rotuloImagem: "Imagem de exemplo",
+    atendimento: "Atendo online, para todo o Brasil.",
+    falarComigo: "Falar comigo",
   },
   contato: {
     titulo: "Contato",
