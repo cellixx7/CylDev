@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import type { site } from "../../content/site";
 import { negocios, type DestaqueSobre } from "../../content/textos";
 import { botaoCheio, focoVisivel } from "../../shared/estilos";
+import { CenasEstagio } from "./CenasEstagio";
 import { GaleriaUniser } from "./GaleriaUniser";
 import { IconeFechar } from "./icones";
 import { useTravaRolagem } from "./useTravaRolagem";
@@ -90,6 +91,7 @@ export function ModalSobre({ aberto, telas, destino, aoFechar, aoFalar }: Props)
               </section>
             ))}
             {modal.fecho && <p className="m-0 mb-5 text-texto-suave">{modal.fecho}</p>}
+            {aberto === "estagio" && <CenasEstagio />}
             {aberto === "uniser" && <GaleriaUniser telas={telas} layout="grade" />}
           </div>
 

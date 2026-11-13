@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { site } from "../../content/site";
+import { cenasEstagio } from "../../content/cenasEstagio";
 import { negocios } from "../../content/textos";
+import { duracaoPassosPlanilha, proximo, resumoPlanilha } from "./cenasLogica";
 import { destinoFalarComigo, telasDoUniser, paragrafosSobre, type BlocoSobre } from "./sobreLogica";
 
 const textoDoBloco = (b: BlocoSobre) => b.partes.map((p) => p.texto).join("");
@@ -133,5 +135,43 @@ describe("destinoFalarComigo", () => {
     expect(d.externo).toBe(true);
     expect(d.href).toContain(`wa.me/${site.whatsapp}`);
     expect(decodeURIComponent(d.href)).toContain("negocios-sobre");
+  });
+});
+
+describe("cenas do Estágio", () => {
+  const p = cenasEstagio.planilha;
+  it("cada linha tem o mesmo número de células antes e depois, e uma célula por coluna", () => {
+    for (const l of p.linhas) {
+      expect(l.sujo).toHaveLength(p.colunas.length);
+      expect(l.limpo).toHaveLength(p.colunas.length);
+    }
+  });
+  it("depois do ajuste os valores e as datas seguem um só padrão e os setores se repetem iguais", () => {
+    for (const l of p.linhas) {
+      expect(l.limpo[2]).toMatch(/^R\$ \d{1,3}(\.\d{3})*,\d{2}$/);
+      expect(l.limpo[3]).toMatch(/^\d{2}\/\d{2}\/\d{4}$/);
+      expect(l.limpo[0]).toBe(l.setor);
+    }
+  });
+  it("antes do ajuste há textos sem padrão (alguma célula muda)", () => {
+    const mudam = p.linhas.flatMap((l) => l.sujo.filter((s, j) => s !== l.limpo[j]));
+    expect(mudam.length).toBeGreaterThan(p.linhas.length);
+  });
+  it("o painel soma o que a planilha tem", () => {
+    const r = resumoPlanilha();
+    expect(r.quantidade).toBe(p.linhas.length);
+    expect(r.total).toBeCloseTo(1200 + 850.5 + 430 + 2100 + 700 + 950, 5);
+    expect(r.setores.map((s) => s.setor)).toEqual(["Financeiro", "RH", "TI"]);
+    expect(r.setores.reduce((s, x) => s + x.valor, 0)).toBeCloseTo(r.total, 5);
+  });
+  it("o ciclo dá a volta e tem um tempo por passo", () => {
+    expect(duracaoPassosPlanilha).toHaveLength(p.passos.length);
+    expect(proximo(3, 4)).toBe(0);
+    expect(proximo(0, 4)).toBe(1);
+  });
+  it("a apresentação mostra o nome do site e os textos não têm siglas", () => {
+    expect(cenasEstagio.apresentacao.nome).toBe(site.nome);
+    const tudo = [cenasEstagio.titulo, cenasEstagio.aviso, p.titulo, ...p.passos, cenasEstagio.apresentacao.titulo, cenasEstagio.apresentacao.alt, cenasEstagio.apresentacao.funcao, ...cenasEstagio.apresentacao.slides].join(" ");
+    expect(tudo).not.toMatch(SIGLA);
   });
 });

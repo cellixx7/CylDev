@@ -1,4 +1,5 @@
 import { site } from "../src/content/site";
+import { cenasEstagio } from "../src/content/cenasEstagio";
 import { comum, negocios } from "../src/content/textos";
 import { destinoFalarComigo, paragrafosSobre } from "../src/pages/negocios/sobreLogica";
 import type { Locator, Page } from "@playwright/test";
@@ -149,7 +150,18 @@ test.describe("destaques com modal: mouse e teclado, 1440 px", () => {
     const estagio = modalDe(page, "estagio");
     await expect(estagio.getByText(t.modais.estagio.texto)).toBeVisible();
     await expect(estagio.getByRole("heading", { name: "Ferramentas do dia a dia" })).toBeVisible();
-    await expect(estagio.locator("[role=img]")).toHaveCount(0);
+    await expect(estagio.locator("[role=img]")).toHaveCount(2);
+    await expect(estagio.getByText(cenasEstagio.aviso)).toBeVisible();
+    await estagio.locator("[role=img]").first().scrollIntoViewIfNeeded();
+    // A animação avança sozinha e a pausa a segura.
+    const passo = estagio.locator("[data-passo]");
+    await expect(passo).toHaveAttribute("data-passo", "0");
+    await estagio.getByRole("button", { name: cenasEstagio.pausar }).click();
+    await page.waitForTimeout(3000);
+    await expect(passo).toHaveAttribute("data-passo", "0");
+    await estagio.getByRole("button", { name: cenasEstagio.continuar }).click();
+    await expect(passo).not.toHaveAttribute("data-passo", "0");
+    await semRolagemHorizontal(page);
     await page.keyboard.press("Escape");
 
     await destaque(page, "uniser").click();

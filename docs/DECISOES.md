@@ -320,3 +320,11 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **Simbionte:** parágrafo novo no modal da faculdade, em "Iniciação científica" (campo `mais` da seção, para o segundo parágrafo), sem link para o repositório.
 - **Imagens reais trocadas por esquemas em HTML e CSS (decisão posterior, mesmo dia):** as capturas viraram desenhos "esqueleto" (barras, cartões e menu verde) em `GaleriaUniser.tsx`, sem imagem, sem dado de pessoa e sem os editais de teste. São seis telas: Editais, Login, Grade curricular, Meus dados, Frequência e Meu semestre, em grade de 3 colunas (2 no celular, dentro do modal; carrossel no celular, na seção). Nome e descrição de cada tela ficam em `site.telasUniser`; a legenda "Esquemas ilustrativos das telas, sem dados reais." fica em `negocios.sobre.legendaTelas`. Isso também tira a dúvida sobre a foto de pessoas e o logo do login. Os WebP e `site.imagensUniser` foram removidos.
 - **Originais fora do git:** `src/pages/uniser/` está no `.gitignore`; servem só de referência para os esquemas e não são versionados. SVGs de exemplo apagados.
+
+## Cenas animadas no modal do Estágio (13/11/2026)
+
+- **O que é:** duas cenas ilustrativas em HTML, CSS e SVG, sem imagem, em `CenasEstagio.tsx`; textos e dados em `src/content/cenasEstagio.ts` (dados fictícios, rotulados: "Cenas ilustrativas, com dados fictícios.").
+- **Planilha ao painel:** planilha com colunas e linhas fora do lugar e textos sem padrão (4 passos: solto, colunas e linhas no lugar, palavras e valores padronizados, painel). O painel (total, lançamentos, valor por setor) é calculado das mesmas linhas (`resumoPlanilha` em `cenasLogica.ts`), então bate com a planilha.
+- **Apresentação:** auditório visto de trás, com plateia fardada da Marinha, do Exército e da Aeronáutica (só cores e quepes genéricos, sem insígnia), e um telão com dois slides que se alternam (painel do mês, fluxo do processo). O nome (`site.nome`) fica ao lado, fixo nos dois slides.
+- **Acessibilidade:** cada cena é `role="img"` com descrição própria; botão "Pausar animação" (aria-pressed) serve às duas; com `prefers-reduced-motion` nada anima, aparece o resultado final e o botão some. Os temporizadores só existem com o modal do Estágio aberto.
+
