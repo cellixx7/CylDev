@@ -1,16 +1,27 @@
 import { site } from "../src/content/site";
 import { comum, negocios } from "../src/content/textos";
 import { destinoFalarComigo, paragrafosSobre } from "../src/pages/negocios/sobreLogica";
-import type { Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 import { expect, semRolagemHorizontal, test } from "./apoio";
 
 const t = negocios.sobre;
+
+/** Cada imagem rolada até a tela, carregada (naturalWidth > 0) e com alt. */
+async function imagensCarregadas(imgs: Locator) {
+  const n = await imgs.count();
+  for (let i = 0; i < n; i++) {
+    const img = imgs.nth(i);
+    await img.scrollIntoViewIfNeeded();
+    await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);
+    expect(((await img.getAttribute("alt")) ?? "").length).toBeGreaterThan(10);
+  }
+}
 
 for (const [largura, altura] of [[360, 740], [390, 844], [768, 1024], [1440, 900]] as const) {
   test.describe(`seção Sobre: ${largura} px`, () => {
     test.use({ viewport: { width: largura, height: altura } });
 
-    test("/#sobre rola até o título (livre do cabeçalho), sem rolagem lateral e com imagens rotuladas", async ({ page }) => {
+    test("/#sobre rola até o título (livre do cabeçalho), sem rolagem lateral e com as telas reais carregadas", async ({ page }) => {
       await page.goto("/#sobre");
       const titulo = page.getByRole("heading", { name: t.titulo });
       await expect(titulo).toBeInViewport();
@@ -19,7 +30,9 @@ for (const [largura, altura] of [[360, 740], [390, 844], [768, 1024], [1440, 900
       expect(caixa!.y).toBeGreaterThanOrEqual(cabecalho!.y + cabecalho!.height - 1);
       await semRolagemHorizontal(page);
       const secao = page.locator("#sobre");
-      await expect(secao.getByText(t.rotuloImagem)).toHaveCount(site.imagensUniser.length);
+      const imgs = secao.getByRole("list", { name: t.imagensUniser }).locator("img");
+      await expect(imgs).toHaveCount(site.imagensUniser.length);
+      await imagensCarregadas(imgs);
       await expect(secao.getByText(t.atendimento)).toBeVisible();
       await expect(secao.getByText(/^Estagio em TI no Ministério da Defesa/)).toBeVisible();
     });
@@ -129,7 +142,7 @@ test.describe("destaques com modal: mouse e teclado, 1440 px", () => {
     await expect(destaque(page, "uniser")).toBeFocused();
   });
 
-  test("conteúdo de cada modal: textos certos, imagens de exemplo só no Uniser, sem siglas no estágio", async ({ page }) => {
+  test("conteúdo de cada modal: textos certos, imagens reais só no Uniser, sem siglas no estágio", async ({ page }) => {
     await page.goto("/#sobre");
     await destaque(page, "estagio").click();
     const estagio = modalDe(page, "estagio");
@@ -141,7 +154,9 @@ test.describe("destaques com modal: mouse e teclado, 1440 px", () => {
     await destaque(page, "uniser").click();
     const uniser = modalDe(page, "uniser");
     await expect(uniser.locator("img")).toHaveCount(site.imagensUniser.length);
-    await expect(uniser.getByText(t.rotuloImagem)).toHaveCount(site.imagensUniser.length);
+    await imagensCarregadas(uniser.locator("img"));
+    await expect(uniser.getByText("Imagem de exemplo")).toHaveCount(0);
+    await semRolagemHorizontal(page);
   });
 
   test("Falar comigo no modal vai ao mesmo destino do botão da seção", async ({ page }) => {

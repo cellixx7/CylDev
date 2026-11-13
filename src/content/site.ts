@@ -13,13 +13,22 @@ export const site = {
   mostrarMinisterio: true,
   // Texto liberado. As imagens abaixo são de exemplo.
   mostrarUniser: true,
-  // PROVISÓRIO: imagens de exemplo (telas genéricas, sem marca). Serão trocadas pelas reais do Marcelo:
-  // basta pôr os arquivos novos em /public e editar esta lista; o componente não muda.
+  // Telas reais da plataforma da UniSER (recortadas e otimizadas; os originais ficam fora do git, em src/pages/uniser/).
+  // Para trocar: ponha os arquivos novos em /public e edite esta lista; o componente lê as dimensões de cada item.
   imagensUniser: [
-    { src: "/uniser-exemplo-1-v1.svg", alt: "Exemplo de tela inicial de um portal do aluno, com menu lateral, aviso e dois quadros." },
-    { src: "/uniser-exemplo-2-v1.svg", alt: "Exemplo de tela de listagem de um portal do aluno, com tabela de quatro linhas." },
-    { src: "/uniser-exemplo-3-v1.svg", alt: "Exemplo de tela de formulário de um portal do aluno, com campos e um gráfico de rosca." },
-  ] as { src: string; alt: string }[],
+    {
+      src: "/uniser-inicio-v1.webp",
+      alt: "Tela inicial da plataforma da UniSER, com o logo, o menu de páginas e o acesso ao login sobre uma foto de jardim.",
+      width: 1280,
+      height: 202,
+    },
+    {
+      src: "/uniser-login-v1.webp",
+      alt: "Tela de login da área restrita da plataforma da UniSER, com os campos de login e senha sobre uma foto de formandos.",
+      width: 1280,
+      height: 575,
+    },
+  ] as { src: string; alt: string; width: number; height: number }[],
 
   // Caminho em /public. Sem foto, o site usa o avatar de iniciais.
   foto: null as string | null,

@@ -69,7 +69,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - [ ] Confirmar que o desconto de piloto vale só sobre a criação.
 - [ ] Escolher o nome do site na Netlify e atualizar `site.urlPadrao`.
 - [ ] Foto (opcional): colocar em `public/` e apontar `site.foto`.
-- [ ] Imagens reais do Uniser: trocar as de exemplo (`public/uniser-exemplo-*-v1.svg`) e editar `site.imagensUniser`.
+- [x] Imagens reais do Uniser (13/11/2026): ver "UniSER corrigida, Simbionte e imagens reais".
 - [ ] Vídeo do CylBot (talvez Uniser e CylSense). Nenhum vídeo para a planilha.
 
 ## Orçamento compacto (09/11/2026)
@@ -299,7 +299,7 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 
 - **Onde:** `Sobre.tsx` em `#sobre` (depois do Orçamento e do exemplo de painel no celular, antes de Entregas e Contato). A lógica testável fica em `sobreLogica.ts` (parágrafos por flag, galeria, destino do botão); o nome não é `sobre.ts` porque o Windows não distingue de `Sobre.tsx`.
 - **Ministério:** liberado em 13/11/2026, só com o texto de `negocios.sobre.ministerio`. Sem siglas nem nomes internos de órgãos, programas ou sistemas; um teste barra palavras só em maiúsculas nesse texto.
-- **Imagens do Uniser: provisórias, de exemplo.** Três SVGs próprios em `public/uniser-exemplo-*-v1.svg` (telas genéricas, sem logo, marca ou nome real), cada uma com o rótulo "Imagem de exemplo". Para trocar pelas reais: pôr os arquivos em `public/` e editar `site.imagensUniser`; o componente não muda.
+- **Imagens do Uniser:** eram SVGs de exemplo; foram trocadas pelas telas reais (ver a seção "UniSER corrigida, Simbionte e imagens reais").
 - **Botão "Falar comigo":** vai para `#contato` quando `menuSecoes.contato` for `true`; enquanto a seção Contato não existe, abre o WhatsApp (`linkContato("negocios-sobre")`). Passa para a âncora sozinho quando a flag for ligada.
 - **Menu:** `menuSecoes.sobre: true`; `scroll-mt-24` deixa o título livre do cabeçalho fixo.
 - **Foto:** `site.foto` continua `null` (iniciais) até haver arquivo em `public/`.
@@ -310,5 +310,14 @@ Fonte: `docs/ORCAMENTO-SPEC.md`. Substitui o "tamanho" (Básico, Médio, Complex
 - **`<span role="button">` em vez de `<button>`:** botão é caixa atômica no Chromium e não quebra de linha como texto (testado: um único retângulo). O span quebra, tem `tabindex="0"`, Enter e Espaço abrem. O alvo de 44 px vem do padding vertical do span inline, que não empurra as linhas.
 - **Dica:** a lógica do balão saiu de `Dica.tsx` para o hook `useBalao`, usado pelo "i" e pelos destaques (mesma posição dentro da tela, uma dica por vez). No toque não há balão: o toque abre o modal.
 - **Modal:** `ModalSobre.tsx`, `<dialog>` nativo como o `ModalServico`; o pai (`Sobre.tsx`) devolve o foco ao destaque ao fechar. "Falar comigo" segue `destinoFalarComigo`; para `#contato`, fecha o modal e só depois rola (a rolagem da página estava travada).
-- **Galeria:** `GaleriaUniser.tsx` serve à seção (carrossel/3 colunas) e ao modal (uma abaixo da outra, maiores). Continuam imagens de exemplo, com rótulo.
-- **PENDENTE (Marcelo):** conferir os textos dos modais; trocar as imagens de exemplo pelas reais quando houver.
+- **Galeria:** `GaleriaUniser.tsx` serve à seção (carrossel/3 colunas) e ao modal (uma abaixo da outra, maiores). Hoje com as telas reais, sem rótulo.
+- **PENDENTE (Marcelo):** conferir os textos dos modais.
+
+## UniSER corrigida, Simbionte e imagens reais (13/11/2026)
+
+- **Descrição corrigida:** o projeto é a UniSER, Universidade do Envelhecer da UnB; a plataforma é desenvolvida por estudantes da Unieuro com orientação de professores da Unieuro. Não é "portal do aluno" nem "cursos para idosos", e não é "parceria com a UnB". Um teste barra essas frases em `negocios.sobre`. No destaque do parágrafo continua o nome curto "Uniser".
+- **Modal do Uniser:** título, o que o sistema faz, "O que isso tem a ver com o seu projeto" (login seguro, cada pessoa vê só o que é dela, registro e testes) e tecnologias (inclui Node.js com Express).
+- **Simbionte:** parágrafo novo no modal da faculdade, em "Iniciação científica" (campo `mais` da seção, para o segundo parágrafo), sem link para o repositório.
+- **Imagens reais:** das duas capturas de `src/pages/uniser/`, entram `uniser-login-v1.webp` (login, cortada sem a faixa branca do rodapé) e `uniser-inicio-v1.webp` (só o topo da tela inicial: logo e menu). Descartada a parte de baixo da tela inicial, porque os cards mostram os editais "teste" e "Edital teste 8.1.0" (parece inacabado). A tela de login mostra uma foto de pessoas e o logo da UniSER: **Marcelo confirma que podem aparecer no site**. Sem credenciais, e-mail ou nomes.
+- **Conversão:** WebP, 1280 px de largura, qualidade 80 (o Chromium do Playwright, já instalado, como conversor; não havia `cwebp`, `ffmpeg` nem `magick`, e nenhuma dependência nova). `width`/`height` reais em `site.imagensUniser`; a galeria lê as dimensões de cada item e fica em duas colunas a partir de `sm`.
+- **Originais fora do git:** `src/pages/uniser/` está no `.gitignore`; só as versões otimizadas de `public/` são versionadas. SVGs de exemplo apagados.
