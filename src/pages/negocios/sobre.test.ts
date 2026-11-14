@@ -1,7 +1,11 @@
-import { describe, expect, it } from "vitest";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it, vi } from "vitest";
 import { site } from "../../content/site";
 import { cenasEstagio } from "../../content/cenasEstagio";
 import { negocios } from "../../content/textos";
+import { DestaqueSobre } from "./DestaqueSobre";
+import { Sobre } from "./Sobre";
 import { duracaoPassosPlanilha, proximo, resumoPlanilha } from "./cenasLogica";
 import { destinoFalarComigo, mostrarCenaPlanilha, paragrafosSobre, telasDaSecao, telasDoUniser, type BlocoSobre } from "./sobreLogica";
 
@@ -133,6 +137,30 @@ describe("o que fica ao lado do texto", () => {
   it("a cena da planilha acompanha a flag do Ministério", () => {
     expect(mostrarCenaPlanilha({ mostrarMinisterio: true })).toBe(true);
     expect(mostrarCenaPlanilha({ mostrarMinisterio: false })).toBe(false);
+  });
+  it("a cena da planilha na seção vem com o aviso de dados fictícios logo abaixo", () => {
+    expect(cenasEstagio.avisoCena).toMatch(/ilustrativa.*fictícios/);
+    // A cena lê prefers-reduced-motion no primeiro render; no Node não há window.
+    vi.stubGlobal("window", { matchMedia: () => ({ matches: false, addEventListener() {}, removeEventListener() {} }) });
+    let html: string;
+    try {
+      html = renderToStaticMarkup(createElement(Sobre));
+    } finally {
+      vi.unstubAllGlobals();
+    }
+    const lado = html.slice(html.indexOf("<aside"), html.indexOf("</aside>"));
+    if (!mostrarCenaPlanilha(site)) return expect(lado).not.toContain(cenasEstagio.avisoCena);
+    const cena = lado.indexOf(`aria-label="${cenasEstagio.planilha.alt}"`);
+    const aviso = lado.indexOf(cenasEstagio.avisoCena);
+    expect(cena).toBeGreaterThan(-1);
+    expect(aviso).toBeGreaterThan(cena);
+    expect(aviso).toBeLessThan(lado.indexOf("<ul"));
+  });
+  it("o ícone dos destaques é de mais informações (círculo com +), não de link externo", () => {
+    const html = renderToStaticMarkup(createElement(DestaqueSobre, { texto: "Uniser", dica: "Saiba mais", aoAbrir: () => {} }));
+    expect(html).toMatch(/<svg[^>]*aria-hidden="true"[^>]*><circle/);
+    expect(html).toContain('d="M8 5v6M5 8h6"');
+    expect(html).not.toContain("M13 3L7.5 8.5");
   });
 });
 

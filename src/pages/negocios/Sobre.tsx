@@ -4,6 +4,7 @@ import { negocios, type DestaqueSobre } from "../../content/textos";
 import { Avatar } from "../../shared/components/Avatar";
 import { botao } from "../../shared/estilos";
 import { DestaqueSobre as Destaque } from "./DestaqueSobre";
+import { cenasEstagio } from "../../content/cenasEstagio";
 import { CenaPlanilha } from "./CenasEstagio";
 import { GaleriaUniser } from "./GaleriaUniser";
 import { ModalSobre } from "./ModalSobre";
@@ -84,7 +85,12 @@ export function Sobre() {
         </div>
         {temLado && (
           <aside className="flex min-w-0 max-w-[40rem] flex-col gap-5 sm:col-start-2 lg:col-start-3 lg:row-start-1 lg:max-w-none" aria-label={t.lado}>
-            {cenaPlanilha && <CenaPlanilha />}
+            {cenaPlanilha && (
+              <div>
+                <CenaPlanilha />
+                <p className="mt-1 mb-0 text-[0.8125rem] text-texto-suave">{cenasEstagio.avisoCena}</p>
+              </div>
+            )}
             <GaleriaUniser telas={telasLado} layout="lateral" />
           </aside>
         )}

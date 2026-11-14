@@ -5,6 +5,8 @@ import { site } from "./site";
 export const cenasEstagio = {
   titulo: "O que eu entrego, em duas cenas",
   aviso: "Cenas ilustrativas, com dados fictícios.",
+  /** Mesmo aviso, no singular, para a cena da planilha que aparece sozinha na seção Sobre. */
+  avisoCena: "Cena ilustrativa, com dados fictícios.",
   pausar: "Pausar animação",
   continuar: "Continuar animação",
 

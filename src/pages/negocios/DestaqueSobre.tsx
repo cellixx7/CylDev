@@ -1,7 +1,7 @@
 import type { KeyboardEvent } from "react";
 import { useBalao } from "../../shared/components/Dica";
 import { focoVisivel } from "../../shared/estilos";
-import { IconeAbrir } from "./icones";
+import { IconeMais } from "./icones";
 
 type Props = {
   /** Trecho do parágrafo. */
@@ -58,7 +58,7 @@ export function DestaqueSobre({ texto, dica, aoAbrir }: Props) {
         {inicio}
         <span className="whitespace-nowrap">
           {fim}
-          <IconeAbrir className="ml-1 inline-block size-[0.8em] align-[-0.05em] text-destaque" />
+          <IconeMais className="ml-1 inline-block size-[0.8em] align-[-0.05em] text-destaque" />
         </span>
       </span>
       <span
