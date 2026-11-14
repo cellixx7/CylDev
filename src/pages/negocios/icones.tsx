@@ -25,11 +25,12 @@ export function IconeFechar({ className = "size-5" }: Props) {
   );
 }
 
-/** "Abrir mais": quadrado com seta para fora. Marca os trechos do texto que abrem um modal. */
-export function IconeAbrir({ className = "size-4" }: Props) {
+/** "Mais informações": círculo com um "+". Marca os trechos do texto que abrem um modal, sem sugerir que o link sai do site. */
+export function IconeMais({ className = "size-4" }: Props) {
   return (
     <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true">
-      <path d="M7 3H3v10h10V9M9.5 2.5H13.5V6.5M13 3L7.5 8.5" />
+      <circle cx="8" cy="8" r="6" />
+      <path d="M8 5v6M5 8h6" />
     </svg>
   );
 }

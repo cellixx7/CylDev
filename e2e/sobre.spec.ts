@@ -40,6 +40,12 @@ for (const [largura, altura] of [[360, 740], [390, 844], [768, 1024], [1440, 900
       const caixaPlanilha = await lado.locator("[role=img]").first().boundingBox();
       const caixaTela = await lado.getByRole("list", { name: t.imagensUniser }).boundingBox();
       expect(caixaPlanilha!.y).toBeLessThan(caixaTela!.y);
+      // A cena vem com o aviso de dados fictícios, entre ela e as telas do Uniser.
+      const aviso = lado.getByText(cenasEstagio.avisoCena);
+      await expect(aviso).toBeVisible();
+      const caixaAviso = await aviso.boundingBox();
+      expect(caixaAviso!.y).toBeGreaterThan(caixaPlanilha!.y + caixaPlanilha!.height - 1);
+      expect(caixaAviso!.y).toBeLessThan(caixaTela!.y);
       if (largura >= 1024) {
         // Em tela larga a coluna fica ao lado do texto, não abaixo.
         const texto = await secao.getByText(t.atendimento).boundingBox();
