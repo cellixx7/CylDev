@@ -5,6 +5,7 @@ import "../../styles/tema-negocios.css";
 import { servicosDa } from "../../content/servicos";
 import { negocios as t } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
+import { Contatos } from "../../shared/components/Contatos";
 import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { botao, botaoCheio } from "../../shared/estilos";
 import { brl } from "../../shared/lib/formato";
@@ -107,7 +108,14 @@ function Negocios() {
         <Sobre />
         <section id="entregas"></section>
         <section id="como-funciona"></section>
-        <section id="contato"></section>
+        <section className="mx-auto max-w-hero scroll-mt-24 px-margem pt-14 pb-14" id="contato" aria-labelledby="contato-titulo">
+          <span className="revela-barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
+          <h2 id="contato-titulo" className="revela-titulo">
+            {t.contato.titulo}
+          </h2>
+          <p className="max-w-[40rem] text-texto-suave">{t.contato.intro}</p>
+          <Contatos origem="negocios-contato" />
+        </section>
       </main>
       <Rodape ponte={{ ...t.ponte, href: "/comunidade/" }}>
         <ContatoRodape origem="negocios-rodape" />

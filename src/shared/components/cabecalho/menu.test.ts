@@ -4,9 +4,9 @@ import { negocios } from "../../../content/textos";
 import { linksDoMenu } from "./CabecalhoNegocios";
 
 describe("menu de Negócios", () => {
-  it("mostra Sobre e esconde Entregas e Contato enquanto as flags estão desligadas", () => {
-    expect(site.menuSecoes).toEqual({ sobre: true, entregas: false, contato: false });
-    expect(linksDoMenu.map((l) => l.rotulo)).toEqual(["Orçamento", "Como funciona", "Sobre"]);
+  it("mostra Sobre e Contato e esconde Entregas enquanto a flag dela está desligada", () => {
+    expect(site.menuSecoes).toEqual({ sobre: true, entregas: false, contato: true });
+    expect(linksDoMenu.map((l) => l.rotulo)).toEqual(["Orçamento", "Como funciona", "Sobre", "Contato"]);
   });
 
   it("as seções continuam definidas em textos, prontas para religar", () => {

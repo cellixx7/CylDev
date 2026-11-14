@@ -28,7 +28,7 @@ export const site = {
   foto: null as string | null,
 
   // Links do menu de Negócios cujas seções ainda estão vazias. Religue (true) quando a seção existir.
-  menuSecoes: { sobre: true, entregas: false, contato: false },
+  menuSecoes: { sobre: true, entregas: false, contato: true },
 
   repositorioCylBot: "https://github.com/cellixx7/CylBot" as string | null,
 

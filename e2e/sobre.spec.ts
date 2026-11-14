@@ -63,9 +63,10 @@ for (const [largura, altura] of [[360, 740], [390, 844], [768, 1024], [1440, 900
       await expect(botao).toBeFocused();
       const contorno = await botao.evaluate((el) => getComputedStyle(el).outlineStyle);
       expect(contorno).not.toBe("none");
-      // Sem a seção Contato, o botão abre o WhatsApp em outra aba.
-      await expect(botao).toHaveAttribute("href", /wa\.me/);
-      await expect(botao).toHaveAttribute("rel", "noopener");
+      // Com a seção Contato ligada, o botão leva a ela; sem ela, abre o WhatsApp em outra aba.
+      const destino = destinoFalarComigo(site);
+      await expect(botao).toHaveAttribute("href", destino.href);
+      if (destino.externo) await expect(botao).toHaveAttribute("rel", "noopener");
     });
   });
 }

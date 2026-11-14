@@ -320,7 +320,7 @@ export const negocios = {
     { href: "/#entregas", rotulo: "Entregas", secao: "entregas" },
     { href: "/#contato", rotulo: "Contato", secao: "contato" },
   ] as { href: string; rotulo: string; secao?: "sobre" | "entregas" | "contato" }[],
-  /** Contato discreto no rodapé de Negócios, enquanto a seção Contato não existe. */
+  /** Atalho discreto de WhatsApp no rodapé de Negócios (a seção #contato tem os outros canais). */
   rodapeWhatsapp: "Prefere falar direto?",
   rodapeWhatsappLink: "Chame no WhatsApp",
   /** Controle no centro do header: leva para a área de comunidade. */
@@ -696,7 +696,7 @@ export const privacidade = {
 
 export const obrigado = {
   titulo: "Mensagem recebida.",
-  texto: "Obrigado pelo contato. Respondo pelo WhatsApp que você deixou.",
+  texto: "Obrigado pelo contato. Respondo pelo canal que você escolheu.",
   voltar: "Voltar para o site",
 };
 
