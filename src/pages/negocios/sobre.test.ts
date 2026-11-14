@@ -7,7 +7,7 @@ import { negocios } from "../../content/textos";
 import { DestaqueSobre } from "./DestaqueSobre";
 import { Sobre } from "./Sobre";
 import { duracaoPassosPlanilha, proximo, resumoPlanilha } from "./cenasLogica";
-import { destinoFalarComigo, mostrarCenaPlanilha, paragrafosSobre, telasDaSecao, telasDoUniser, type BlocoSobre } from "./sobreLogica";
+import { destinoBotaoSobre, mostrarCenaPlanilha, paragrafosSobre, telasDaSecao, telasDoUniser, type BlocoSobre } from "./sobreLogica";
 
 const textoDoBloco = (b: BlocoSobre) => b.partes.map((p) => p.texto).join("");
 const destaquesDaSecao = (blocos: BlocoSobre[]) => blocos.flatMap((b) => b.partes.flatMap((p) => (p.destaque ? [p.destaque] : [])));
@@ -164,16 +164,12 @@ describe("o que fica ao lado do texto", () => {
   });
 });
 
-describe("destinoFalarComigo", () => {
-  const menu = (contato: boolean) => ({ menuSecoes: { ...site.menuSecoes, contato } });
-  it("com a seção Contato: âncora interna", () => {
-    expect(destinoFalarComigo(menu(true))).toEqual({ href: "#contato", externo: false });
+describe("destinoBotaoSobre", () => {
+  it("leva à seção de orçamento, na mesma página", () => {
+    expect(destinoBotaoSobre()).toEqual({ href: "#orcamento", externo: false });
   });
-  it("sem a seção Contato: WhatsApp com a origem da seção", () => {
-    const d = destinoFalarComigo(menu(false));
-    expect(d.externo).toBe(true);
-    expect(d.href).toContain(`wa.me/${site.whatsapp}`);
-    expect(decodeURIComponent(d.href)).toContain("negocios-sobre");
+  it("o rótulo é Fazer orçamento", () => {
+    expect(negocios.sobre.botaoOrcamento).toBe("Fazer orçamento");
   });
 });
 

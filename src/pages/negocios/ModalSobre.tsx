@@ -15,7 +15,7 @@ type Props = {
   telas: typeof site.telasUniser;
   destino: { href: string; externo: boolean };
   aoFechar: () => void;
-  /** "Falar comigo" para a âncora interna: o pai fecha o modal e só então rola. */
+  /** "Fazer orçamento" para a âncora interna: o pai fecha o modal e só então rola. */
   aoFalar: () => void;
 };
 
@@ -108,7 +108,7 @@ export function ModalSobre({ aberto, telas, destino, aoFechar, aoFalar }: Props)
                     },
                   })}
             >
-              {t.falarComigo}
+              {t.botaoOrcamento}
             </a>
           </footer>
         </>
