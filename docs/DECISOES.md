@@ -6,6 +6,7 @@
 - **Páginas:** `index.html` (Negócios na raiz), `como-funciona/`, `comunidade/`, `obrigado/`, `404.html`, declaradas em `vite.config.ts`.
 - **Open Graph:** o build troca `__URL__` nos HTML pela variável `URL` da Netlify (ou `site.urlPadrao`). Imagens em `public/og-*-v1.png`; ao trocar a imagem, mude o sufixo (`-v2`) por causa do cache do WhatsApp.
 - **Tema:** `data-theme` no `<html>`, claro por padrão em Negócios (e nas páginas compartilhadas: /como-funciona/, /obrigado/, /privacidade/, 404, que usam a chave `tema-negocios`) e escuro por padrão na Comunidade, sem seguir `prefers-color-scheme`; um script inline aplica a escolha salva antes da pintura. Chave por área (`tema-negocios`, `tema-comunidade`), leitura e escrita em `try/catch`.
+- **Botão de tema:** no celular e no tablet (abaixo de `pc`) fica dentro da barra do cabeçalho, ao lado do menu, para não cobrir o texto. No desktop continua flutuando no canto inferior esquerdo (e sobe junto com a barra do carrinho).
 - **Formulário:** ver V1.1 (EmailJS).
 - **Fontes:** locais, em `public/fonts/` (`font-display: swap`): Space Grotesk nos títulos e no texto e Space Mono nos preços e números (Negócios).
 - **Visual:** Negócios usa cobalto sobre off-white frio (claro) e azul-noite (escuro), com um só acento (`src/styles/tema-negocios.css`); a Comunidade tem tema próprio em `src/styles/tema-comunidade.css`. Sem degradê, vidro ou blur e sem emoji como ícone. (A paleta grafite com terracota das primeiras versões foi substituída.)

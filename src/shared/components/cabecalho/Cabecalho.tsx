@@ -61,6 +61,33 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
       : "block";
   const classesNav = `${aberto} pc:static pc:flex pc:items-center pc:mt-0 pc:border-0 pc:p-0 pc:shadow-none`;
 
+  const rotuloTema = tema === "escuro" ? comum.temaClaro : comum.temaEscuro;
+  const propsTema = { "aria-label": rotuloTema, title: rotuloTema, onClick: alternarTema };
+  const iconeTema = (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      width="22"
+      height="22"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    >
+      {tema === "escuro" ? (
+        <>
+          <circle cx="12" cy="12" r="4.5" />
+          <path
+            fill="none"
+            d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"
+          />
+        </>
+      ) : (
+        <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" />
+      )}
+    </svg>
+  );
+
   return (
     <>
       <header className={classesHeader}>
@@ -69,7 +96,14 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
             {marca}
           </a>
           <div className="justify-self-center">{centro}</div>
-          <div className="flex items-center justify-self-end">
+          <div className="flex items-center gap-2 justify-self-end">
+            <button
+              type="button"
+              className={`${botaoBase} inline-flex items-center justify-center px-2 pc:hidden`}
+              {...propsTema}
+            >
+              {iconeTema}
+            </button>
             {temLinks && (
               <button
                 type="button"
@@ -121,36 +155,13 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
           </div>
         </div>
       </header>
+      {/* Desktop (pc+): flutua no canto, onde há margem livre. No celular e no tablet ele fica dentro da barra, para não cobrir o texto. */}
       <button
         type="button"
-        className="botao-tema fixed bottom-5 left-5 z-50 inline-flex size-12 cursor-pointer items-center justify-center rounded-full border border-linha bg-fundo text-texto shadow-lg"
-        aria-label={tema === "escuro" ? comum.temaClaro : comum.temaEscuro}
-        title={tema === "escuro" ? comum.temaClaro : comum.temaEscuro}
-        onClick={alternarTema}
+        className="botao-tema fixed bottom-5 left-5 z-50 hidden size-12 cursor-pointer items-center justify-center rounded-full border border-linha bg-fundo text-texto shadow-lg pc:inline-flex"
+        {...propsTema}
       >
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          width="22"
-          height="22"
-          fill="currentColor"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-
-        >
-          {tema === "escuro" ? (
-            <>
-              <circle cx="12" cy="12" r="4.5" />
-              <path
-                fill="none"
-                d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"
-              />
-            </>
-          ) : (
-            <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" />
-          )}
-        </svg>
+        {iconeTema}
       </button>
     </>
   );
