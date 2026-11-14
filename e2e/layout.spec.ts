@@ -187,3 +187,21 @@ test.describe("links com âncora vindos de outra página", () => {
     });
   }
 });
+
+test.describe("11. Negócios: seção Contato", () => {
+  test.use({ viewport: { width: 390, height: 780 }, hasTouch: true, isMobile: true });
+
+  test("o Contato do menu leva à seção com WhatsApp, e-mail e formulário, sem rolagem lateral", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: comum.menuAbrir, exact: true }).click();
+    await menu(page).getByRole("link", { name: "Contato", exact: true }).click();
+    await expect(page).toHaveURL(/#contato$/);
+    const secao = page.locator("section#contato");
+    await expect(secao).toBeInViewport();
+    await expect(secao.getByRole("heading", { level: 2, name: negocios.contato.titulo })).toBeVisible();
+    await expect(secao.getByRole("link", { name: site.email })).toHaveAttribute("href", /^mailto:/);
+    await expect(secao.locator('a[href*="wa.me"], a[href*="whatsapp"]').first()).toBeVisible();
+    await expect(secao.getByRole("heading", { level: 3, name: negocios.contato.formulario })).toBeVisible();
+    await semRolagemHorizontal(page);
+  });
+});
