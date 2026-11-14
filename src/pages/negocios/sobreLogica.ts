@@ -1,8 +1,7 @@
 import { site } from "../../content/site";
 import { negocios, type ParteSobre } from "../../content/textos";
-import { linkContato } from "../../shared/lib/whatsapp";
 
-type Flags = Pick<typeof site, "mostrarMinisterio" | "mostrarUniser" | "menuSecoes">;
+type Flags = Pick<typeof site, "mostrarMinisterio" | "mostrarUniser">;
 type Textos = typeof negocios.sobre;
 
 export type BlocoSobre = { id: "fixo" | "ministerio" | "uniser" | "atendimento"; partes: ParteSobre[] };
@@ -22,11 +21,9 @@ export function telasDoUniser(flags: Pick<Flags, "mostrarUniser">, telas: typeof
   return flags.mostrarUniser ? telas : [];
 }
 
-/** "Falar comigo" vai para #contato quando a seção existe (menu ligado); até lá, abre o WhatsApp. */
-export function destinoFalarComigo(flags: Pick<Flags, "menuSecoes">) {
-  return flags.menuSecoes.contato
-    ? { href: "#contato", externo: false }
-    : { href: linkContato("negocios-sobre"), externo: true };
+/** O botão do fim da seção (e dos modais) leva à seção de orçamento, na mesma página. */
+export function destinoBotaoSobre(): { href: string; externo: boolean } {
+  return { href: "#orcamento", externo: false };
 }
 
 /** As telas do Uniser que aparecem ao lado do texto: só as marcadas com `naSecao` (as outras ficam só no modal). */

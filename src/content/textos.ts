@@ -569,7 +569,7 @@ export const negocios = {
     imagensUniser: "Telas da plataforma da UniSER",
     legendaTelas: "Esquemas ilustrativos das telas, sem dados reais.",
     atendimento: "Atendo online, para todo o Brasil.",
-    falarComigo: "Falar comigo",
+    botaoOrcamento: "Fazer orçamento",
   },
   contato: {
     titulo: "Contato",

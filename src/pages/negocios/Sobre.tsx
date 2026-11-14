@@ -8,7 +8,7 @@ import { cenasEstagio } from "../../content/cenasEstagio";
 import { CenaPlanilha } from "./CenasEstagio";
 import { GaleriaUniser } from "./GaleriaUniser";
 import { ModalSobre } from "./ModalSobre";
-import { destinoFalarComigo, mostrarCenaPlanilha, paragrafosSobre, telasDaSecao, telasDoUniser } from "./sobreLogica";
+import { destinoBotaoSobre, mostrarCenaPlanilha, paragrafosSobre, telasDaSecao, telasDoUniser } from "./sobreLogica";
 
 const t = negocios.sobre;
 
@@ -19,7 +19,7 @@ export function Sobre() {
   const telasLado = telasDaSecao(telas);
   const cenaPlanilha = mostrarCenaPlanilha(site);
   const temLado = cenaPlanilha || telasLado.length > 0;
-  const destino = destinoFalarComigo(site);
+  const destino = destinoBotaoSobre();
   const [aberto, setAberto] = useState<DestaqueSobre | null>(null);
   const origem = useRef<HTMLElement | null>(null);
   const irParaDestino = useRef(false);
@@ -35,7 +35,7 @@ export function Sobre() {
   };
 
   // Depois que o modal fechou (o <dialog> e a trava de rolagem já foram desfeitos, pois efeitos de filho rodam antes):
-  // devolve o foco ao destaque que abriu, ou segue para a âncora do "Falar comigo".
+  // devolve o foco ao destaque que abriu, ou segue para a âncora do "Fazer orçamento".
   useEffect(() => {
     if (aberto) return;
     const alvo = origem.current;
@@ -80,7 +80,7 @@ export function Sobre() {
             href={destino.href}
             {...(destino.externo ? { target: "_blank", rel: "noopener" } : {})}
           >
-            {t.falarComigo}
+            {t.botaoOrcamento}
           </a>
         </div>
         {temLado && (

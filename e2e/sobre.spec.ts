@@ -1,7 +1,7 @@
 import { site } from "../src/content/site";
 import { cenasEstagio } from "../src/content/cenasEstagio";
 import { comum, negocios } from "../src/content/textos";
-import { destinoFalarComigo, paragrafosSobre } from "../src/pages/negocios/sobreLogica";
+import { destinoBotaoSobre, paragrafosSobre } from "../src/pages/negocios/sobreLogica";
 import type { Locator, Page } from "@playwright/test";
 import { expect, semRolagemHorizontal, test } from "./apoio";
 
@@ -56,17 +56,14 @@ for (const [largura, altura] of [[360, 740], [390, 844], [768, 1024], [1440, 900
       await expect(secao.getByText(/^Estagio em TI no Ministério da Defesa/)).toBeVisible();
     });
 
-    test("o botão Falar comigo recebe foco visível", async ({ page }) => {
+    test("o botão Fazer orçamento recebe foco visível", async ({ page }) => {
       await page.goto("/#sobre");
-      const botao = page.locator("#sobre").getByRole("link", { name: t.falarComigo });
+      const botao = page.locator("#sobre").getByRole("link", { name: t.botaoOrcamento });
       await botao.focus();
       await expect(botao).toBeFocused();
       const contorno = await botao.evaluate((el) => getComputedStyle(el).outlineStyle);
       expect(contorno).not.toBe("none");
-      // Com a seção Contato ligada, o botão leva a ela; sem ela, abre o WhatsApp em outra aba.
-      const destino = destinoFalarComigo(site);
-      await expect(botao).toHaveAttribute("href", destino.href);
-      if (destino.externo) await expect(botao).toHaveAttribute("rel", "noopener");
+      await expect(botao).toHaveAttribute("href", "#orcamento");
     });
   });
 }
@@ -191,20 +188,14 @@ test.describe("destaques com modal: mouse e teclado, 1440 px", () => {
     await semRolagemHorizontal(page);
   });
 
-  test("Falar comigo no modal vai ao mesmo destino do botão da seção", async ({ page }) => {
+  test("Fazer orçamento no modal fecha o modal e leva à seção de orçamento", async ({ page }) => {
     await page.goto("/#sobre");
     await destaque(page, "faculdade").click();
-    const falar = modalDe(page, "faculdade").getByRole("link", { name: t.falarComigo });
-    const destino = destinoFalarComigo(site);
-    await expect(falar).toHaveAttribute("href", destino.href);
-    if (destino.externo) {
-      await expect(falar).toHaveAttribute("target", "_blank");
-      await expect(falar).toHaveAttribute("rel", "noopener");
-    } else {
-      await falar.click();
-      await expect(modalDe(page, "faculdade")).toBeHidden();
-      await expect(page).toHaveURL(/#contato$/);
-    }
+    const falar = modalDe(page, "faculdade").getByRole("link", { name: t.botaoOrcamento });
+    await expect(falar).toHaveAttribute("href", destinoBotaoSobre().href);
+    await falar.click();
+    await expect(modalDe(page, "faculdade")).toBeHidden();
+    await expect(page).toHaveURL(/#orcamento$/);
   });
 });
 
