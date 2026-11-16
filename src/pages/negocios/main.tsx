@@ -10,9 +10,9 @@ import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { botao, botaoCheio } from "../../shared/estilos";
 import { brl } from "../../shared/lib/formato";
 import { ativarMagnetico } from "./magnetico";
-import { Orcamento } from "./Orcamento";
-import { PainelExemplo } from "./PainelExemplo";
-import { Sobre } from "./Sobre";
+import { Orcamento } from "./orcamento/Orcamento";
+import { PainelExemplo } from "./exemplo/PainelExemplo";
+import { Sobre } from "./sobre/Sobre";
 
 // Título cinético: cada letra sobe de uma máscara, em cascata (ver .letra em tema-negocios.css).
 function TituloCinetico({ texto }: { texto: string }) {

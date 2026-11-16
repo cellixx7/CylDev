@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { CardServico, inclusosDoCard, precoDoCard } from "../pages/negocios/CardServico";
+import { CardServico, inclusosDoCard, precoDoCard } from "../pages/negocios/orcamento/CardServico";
 import { COMBO_2, COMBO_3 } from "./orcamento";
 import { servicosOrcamento } from "./perguntas";
 import { servicoPorId } from "./servicos";
@@ -127,7 +127,7 @@ describe("bots fora de Negócios", () => {
   });
 
   it("a grade de cards não tem bot e tem a chamada para a Comunidade", async () => {
-    const { CardsServicos } = await import("../pages/negocios/CardsServicos");
+    const { CardsServicos } = await import("../pages/negocios/orcamento/CardsServicos");
     const html = renderToStaticMarkup(
       createElement(CardsServicos, { ids: [], aoVerDetalhes: () => {}, aoFazerOrcamento: () => {}, aoAlternarCarrinho: () => {}, aoMontarCombo: () => {} }),
     );
