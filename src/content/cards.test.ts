@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { CardServico, inclusosDoCard, precoDoCard } from "../pages/negocios/CardServico";
+import { CardServico, inclusosDoCard, precoDoCard } from "../pages/negocios/orcamento/CardServico";
 import { COMBO_2, COMBO_3 } from "./orcamento";
 import { servicosOrcamento } from "./perguntas";
 import { servicoPorId } from "./servicos";
@@ -21,7 +21,7 @@ const card = (id: string, noCarrinho: boolean) =>
   );
 
 describe("cards de serviço", () => {
-  it("são 8 e cada um tem uma linha própria em textos.ts", () => {
+  it("são 8 e cada um tem uma linha própria em textos/orcamento.ts", () => {
     expect(ids).toHaveLength(8);
     for (const id of ids) expect(orcamento.cards.linhas[id]?.length).toBeGreaterThan(10);
     expect(Object.keys(orcamento.cards.linhas).sort()).toEqual([...ids].sort());
@@ -127,7 +127,7 @@ describe("bots fora de Negócios", () => {
   });
 
   it("a grade de cards não tem bot e tem a chamada para a Comunidade", async () => {
-    const { CardsServicos } = await import("../pages/negocios/CardsServicos");
+    const { CardsServicos } = await import("../pages/negocios/orcamento/CardsServicos");
     const html = renderToStaticMarkup(
       createElement(CardsServicos, { ids: [], aoVerDetalhes: () => {}, aoFazerOrcamento: () => {}, aoAlternarCarrinho: () => {}, aoMontarCombo: () => {} }),
     );

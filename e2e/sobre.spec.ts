@@ -1,7 +1,7 @@
 import { site } from "../src/content/site";
 import { cenasEstagio } from "../src/content/cenasEstagio";
 import { comum, negocios } from "../src/content/textos";
-import { destinoBotaoSobre, paragrafosSobre } from "../src/pages/negocios/sobreLogica";
+import { destinoBotaoSobre, paragrafosSobre } from "../src/pages/negocios/sobre/sobreLogica";
 import type { Locator, Page } from "@playwright/test";
 import { expect, semRolagemHorizontal, test } from "./apoio";
 

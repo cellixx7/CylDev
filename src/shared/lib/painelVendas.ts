@@ -1,7 +1,7 @@
 import { negocios } from "../../content/textos";
 
 // Números do painel de exemplo da home quando um item está em foco (um mês, uma categoria ou uma região):
-// os outros gráficos mostram só as vendas desse item. Tudo sai da matriz mês x categoria de `textos.ts`
+// os outros gráficos mostram só as vendas desse item. Tudo sai da matriz mês x categoria de `textos/negocios.ts`
 // e dos totais por região, ajustados para fechar com os totais já mostrados (dado de exemplo).
 
 const p = negocios.apresentacao.painel;

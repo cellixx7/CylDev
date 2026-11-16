@@ -2,7 +2,7 @@
 // O preço base e as horas base de cada serviço continuam em servicos.ts.
 //
 // PENDENTE: todas as horas extras abaixo (`horas`, `gratis` e `horasPorExtra`) são PROPOSTAS
-// do spec, a confirmar pelo Marcelo (docs/DECISOES.md). Cada hora extra soma VALOR_HORA_EXTRA
+// do spec, a confirmar pelo Marcelo (docs/PENDENCIAS.md). Cada hora extra soma VALOR_HORA_EXTRA
 // ao preço e 1 hora ao tempo de trabalho. Enquanto for `true`, nada no site as trata como fechadas.
 import { perguntasSistema } from "./perguntasSistema";
 import { servicoPorId } from "./servicos";

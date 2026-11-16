@@ -52,6 +52,12 @@ export default defineConfig({
         obrigado: resolve(raiz, "obrigado/index.html"),
         naoEncontrado: resolve(raiz, "404.html"),
       },
+      output: {
+        // React e react-dom num arquivo próprio (vendor-react-*.js), com nome que diz o que é.
+        manualChunks(id) {
+          if (/node_modules[\\/](react|react-dom|scheduler)[\\/]/.test(id)) return "vendor-react";
+        },
+      },
     },
   },
   test: {
