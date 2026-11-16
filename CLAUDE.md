@@ -21,11 +21,11 @@ npm run test:e2e     # jornadas no navegador (Playwright, só Chromium); faz o b
 Não é SPA: cada área tem o seu HTML e a sua raiz React.
 
 - `index.html` (Negócios, é a raiz `/`), `como-funciona/`, `comunidade/`, `obrigado/`, `404.html`. Não existe mais `/negocios/` (a Netlify redireciona o endereço antigo). Página nova exige o HTML e uma entrada em `build.rollupOptions.input` no `vite.config.ts`.
-- `src/pages/<area>/main.tsx`: monta a árvore React e importa `src/styles/tema-<area>.css` e `tailwind.css`. Componentes só de uma área ficam ao lado (ex.: `src/pages/negocios/Orcamento.tsx`).
-- `src/content/`: dados e textos editáveis (`site.ts`, `servicos.ts`, `orcamento.ts`, `textos.ts`, `exemplos.ts`).
+- `src/pages/<area>/main.tsx`: monta a árvore React e importa `src/styles/tema-<area>.css` e `tailwind.css`. Componentes só de uma área ficam ao lado. Em Negócios, por seção: `orcamento/` (cards, modal, configurador, carrinho, checkout), `sobre/` (seção Sobre, modais, cenas, galeria UniSER) e `exemplo/` (painel de exemplo do hero); na raiz da pasta ficam `main.tsx` e o que as seções dividem (`icones.tsx`, `magnetico.ts`, `useTravaRolagem.ts`). Os testes ficam ao lado do que testam.
+- `src/content/`: dados e textos editáveis (`site.ts`, `servicos.ts`, `orcamento.ts`, `exemplos.ts`, `perguntas.ts`...). Os textos das páginas ficam em `src/content/textos/`, um arquivo por área (`comum`, `orcamento`, `negocios`, `sobre`, `comunidade`, `paginas`); importe sempre de `content/textos` (o `index.ts` reexporta tudo). Página nova ganha arquivo próprio ali e uma linha no `index.ts`.
 - `src/shared/`: `components/` (Formulario, Catalogo, Rodape, cabecalho/*), `lib/` (lógica pura e testada: orcamento, prazo, whatsapp, emailjs, formato), `estilos.ts` (classes repetidas, como strings literais completas; o Tailwind lê texto, então nada de montar classe dinamicamente), `tema.ts`.
 - `src/styles/`: `tailwind.css`, `tema-negocios.css`, `tema-comunidade.css`. Fontes locais em `public/fonts/`.
-- `docs/DECISOES.md` (decisões e pendências; atualize ao decidir algo relevante) e `docs/COPY.md`.
+- Documentação em `docs/`: `decisoes/` (um arquivo por tema; ao decidir algo relevante, acrescente uma seção no fim do arquivo do tema), `PENDENCIAS.md` (só o que falta, com dono e data), `DESIGN.md` (guia de estilo: cores, tamanhos, pontos de quebra, padrão de seção; siga ao criar seção nova), `COPY.md` (textos), `ORCAMENTO-SPEC.md` e `emailjs-template.md`. Mudanças publicadas na `main` vão no `CHANGELOG.md` da raiz.
 - Tema: `data-theme="claro|escuro"` no `<html>`, claro por padrão em Negócios e escuro na Comunidade (sem seguir `prefers-color-scheme`; o padrão fica no `data-theme` do HTML, no `theme-color` e em `temaPadrao`), salvo por área em `tema-<area>`; acesso ao localStorage sempre em try/catch. Os `__URL__` dos HTML são trocados no build; imagens OG levam versão no nome (`og-*-v1.png`), troque o sufixo ao mudar a imagem.
 
 ## Regras
@@ -49,11 +49,14 @@ Não é SPA: cada área tem o seu HTML e a sua raiz React.
 - Todo dado de exemplo é rotulado como exemplo.
 - Nada de prazo, métrica, depoimento ou número inventado.
 
-## Como explorar o código (economia de tokens)
+## Como explorar o código (economia de tokens, opcional)
 
-- Antes de buscar ou ler arquivos, consulte `graphify-out/GRAPH_REPORT.md` e use `graphify query "<pergunta>"`, `graphify path "A" "B"` e `graphify explain "X"` para localizar o que importa.
+O graphify é opcional: não é dependência do projeto e o site não precisa dele. Se não estiver instalado, use busca normal (`grep`, glob).
+
+- Instalar (Python 3.10+): `pip install graphifyy` (o pacote tem dois "y"; o comando é `graphify`). Gerar ou atualizar o grafo: `graphify update .` (só análise do código, sem LLM e sem custo; cria `graphify-out/`).
+- Com o grafo gerado, antes de buscar ou ler arquivos, consulte `graphify-out/GRAPH_REPORT.md` e use `graphify query "<pergunta>"`, `graphify path "A" "B"`, `graphify explain "X"` e `graphify affected "X"` (o que é afetado por X) para localizar o que importa.
 - Abra o arquivo inteiro só quando for editá-lo.
-- Depois de mudanças no código, rode `graphify update .` (sem LLM, sem custo) para o grafo não ficar defasado.
+- Depois de mudanças no código, rode `graphify update .` de novo (com `--force` depois de mover ou apagar arquivos) para o grafo não ficar defasado.
 - Não versione `graphify-out/` (está no `.gitignore`).
 
 ## Fluxo

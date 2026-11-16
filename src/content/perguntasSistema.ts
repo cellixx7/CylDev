@@ -1,7 +1,7 @@
 // Perguntas do orçamento base do "Sistema sob medida", em árvore: cada opção pode abrir até 2 perguntas
 // de aprofundamento (e elas, mais 2), no máximo 2 níveis abaixo da principal. Os limites são conferidos por teste.
 //
-// PENDENTE: todas as horas abaixo são PROPOSTAS provisórias, a confirmar pelo Marcelo (docs/DECISOES.md).
+// PENDENTE: todas as horas abaixo são PROPOSTAS provisórias, a confirmar pelo Marcelo (docs/PENDENCIAS.md).
 // Cada hora extra soma VALOR_HORA_EXTRA ao preço. O preço base (HORAS_BASE_SISTEMA)
 // fica em servicos.ts. Sem teto: o valor é "a partir de" e cresce com as respostas.
 // Só este arquivo guarda os números: nenhum componente os repete.

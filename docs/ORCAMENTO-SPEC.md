@@ -4,7 +4,7 @@ Data: 09/11/2026. Referência visual: design "Orçamento: lista de serviços + p
 
 ## 1. Objetivo
 
-Trocar a seção `#orcamento` (src/pages/negocios/Orcamento.tsx) por um fluxo em três partes:
+Trocar a seção `#orcamento` (src/pages/negocios/orcamento/Orcamento.tsx) por um fluxo em três partes:
 
 1. Lista de serviços (como uma lista de conversas).
 2. Painel do serviço, com perguntas que montam o preço, e uma estimativa que explica como se chegou ao valor.
@@ -156,7 +156,7 @@ Perguntas (sem efeito no valor):
 - Link do WhatsApp: `https://wa.me/<site.whatsapp>?text=<mensagem codificada>`; a mensagem lista os serviços, os valores e o total estimado.
 - Template do EmailJS precisa de linhas novas: `Pedido: {{pedido}}` e `Total estimado: {{estimativa}}` (o Marcelo ajusta no painel).
 
-## 7. Pendências de decisão do Marcelo (registrar em docs/DECISOES.md)
+## 7. Pendências de decisão do Marcelo (registrar em docs/PENDENCIAS.md)
 
 - [ ] Horas extras por resposta (valores acima são PROPOSTAS).
 - [ ] Combo: 10% com 2 serviços e 15% com 3 ou mais.

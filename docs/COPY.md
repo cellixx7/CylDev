@@ -1,6 +1,6 @@
 # Textos do site: versão 2 (com as suas respostas)
 
-Versão 2, com as respostas de 02/11. Fonte dos textos em `src/content/textos.ts` e `servicos.ts`. O que ainda depende de uma decisão sua aparece como `[PERGUNTA n]`. Nada disso aparece no site.
+Versão 2, com as respostas de 02/11. Fonte dos textos em `src/content/textos/` e `servicos.ts`. O que ainda depende de uma decisão sua aparece como `[PERGUNTA n]`. Nada disso aparece no site.
 
 ## Home
 
@@ -53,7 +53,7 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 - "Estudo Sistemas de Informação na Unieuro e trabalho como desenvolvedor fullstack."
 - Se `mostrarMinisterio` (liberado em 13/11/2026; sem siglas nem nomes internos): "Estagio em TI no Ministério da Defesa, onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio."
 - Se `mostrarUniser` (com os esquemas das telas da UniSER): "Participo do Uniser, a plataforma da UniSER, Universidade do Envelhecer da UnB. Ela é desenvolvida por uma equipe de estudantes da Unieuro, com orientação de professores da faculdade, e eu faço parte do time que escreve o código."
-- Destaques no texto (sublinhado pontilhado + ícone de "mais informações", um círculo com "+", que não sugere sair do site; abrem modal): "Sistemas de Informação na Unieuro" (dica "Saiba mais sobre o curso"), "Estagio em TI no Ministério da Defesa" (só com `mostrarMinisterio`; "Saiba mais sobre o estágio") e "Participo do Uniser" (só com `mostrarUniser`; "Saiba mais sobre o Uniser"). Os textos dos modais ficam em `negocios.sobre.modais` (`src/content/textos.ts`), em primeira pessoa e sem siglas no do Estágio. Cada modal termina com o botão "Fazer orçamento".
+- Destaques no texto (sublinhado pontilhado + ícone de "mais informações", um círculo com "+", que não sugere sair do site; abrem modal): "Sistemas de Informação na Unieuro" (dica "Saiba mais sobre o curso"), "Estagio em TI no Ministério da Defesa" (só com `mostrarMinisterio`; "Saiba mais sobre o estágio") e "Participo do Uniser" (só com `mostrarUniser`; "Saiba mais sobre o Uniser"). Os textos dos modais ficam em `negocios.sobre.modais` (`src/content/textos/`), em primeira pessoa e sem siglas no do Estágio. Cada modal termina com o botão "Fazer orçamento".
   - **Faculdade:** 5º semestre do bacharelado, formatura prevista para o 2º semestre de 2028; "O que mais uso do curso no seu projeto" (lista de disciplinas); "Iniciação científica" (orientação do professor doutor Aldo Henrique, grupo OpenVIRTEX-BR); mais um parágrafo sobre o Simbionte (simulação com vários agentes de IA; minha equipe constrói login, banco, filas e o motor dos ciclos, com testes e proteção contra instruções maliciosas enviadas à IA), sem link.
   - **Estágio:** na área de TI do Ministério da Defesa desde fevereiro de 2026; "O que eu faço" (lista); "Ferramentas do dia a dia"; duas cenas animadas ("Da planilha bagunçada ao painel" e "Apresentação para quem decide", texto em `src/content/cenasEstagio.ts`, aviso "Cenas ilustrativas, com dados fictícios."); fecho com a mesma rotina que levo para o seu negócio e o aviso de que os trabalhos de fora ficam fora do horário do estágio.
   - **Uniser:** título "UniSER, Universidade do Envelhecer"; equipe da Unieuro desde novembro de 2025 como desenvolvedor fullstack, com orientação de professores; "O que o sistema faz"; "O que isso tem a ver com o seu projeto"; "Tecnologias"; seis esquemas de tela em HTML e CSS (Editais, Login, Grade curricular, Meus dados, Frequência, Meu semestre), com a legenda "Esquemas ilustrativos das telas, sem dados reais.".
@@ -88,7 +88,7 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 
 ## Privacidade (12/11/2026)
 
-Fonte dos textos: `privacidade` em `src/content/textos.ts` (página `/privacidade/`) e `carrinho.privacidade` / `comum.privacidadeLink`.
+Fonte dos textos: `privacidade` em `src/content/textos/paginas.ts` (página `/privacidade/`) e `carrinho.privacidade` / `comum.privacidadeLink`.
 
 - Carrinho (perto do envio): "Envio o seu nome, o WhatsApp, as respostas do orçamento e as observações, só para responder este pedido. Eles passam pelo EmailJS (envio pelo site) e pelo WhatsApp. Eu confirmo por WhatsApp e combinamos o Pix." + link "Política de privacidade".
 - Rodapé de Negócios e Comunidade: o aviso de sempre + link "Política de privacidade".
@@ -97,7 +97,7 @@ Fonte dos textos: `privacidade` em `src/content/textos.ts` (página `/privacidad
 
 ## Por que esse valor? (12/11/2026)
 
-Fonte: `orcamento.valor` em `src/content/textos.ts`. Botão "Por que esse valor?" no resumo da aba Orçamento (explica só o serviço aberto) e no carrinho, abaixo do total (explica o pedido inteiro). Abre um diálogo com duas partes. Os números (R$ por hora, combo, piloto) saem de `orcamento.ts`; nada é escrito à mão.
+Fonte: `orcamento.valor` em `src/content/textos/orcamento.ts`. Botão "Por que esse valor?" no resumo da aba Orçamento (explica só o serviço aberto) e no carrinho, abaixo do total (explica o pedido inteiro). Abre um diálogo com duas partes. Os números (R$ por hora, combo, piloto) saem de `orcamento.ts`; nada é escrito à mão.
 
 **1. Como o preço é montado** (sempre aparece)
 - Cada serviço tem um preço-base. É o "a partir de" que aparece no card.

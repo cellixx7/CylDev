@@ -9,7 +9,7 @@ export const site = {
   // Endereço público usado no Open Graph quando a Netlify não injeta `URL` no build.
   urlPadrao: "https://cyldev.netlify.app",
 
-  // Texto liberado pelo supervisor em 13/11/2026. Sem siglas nem nomes internos: só o texto de textos.ts.
+  // Texto liberado pelo supervisor em 13/11/2026. Sem siglas nem nomes internos: só o texto de textos/sobre.ts.
   mostrarMinisterio: true,
   // Texto liberado.
   mostrarUniser: true,
