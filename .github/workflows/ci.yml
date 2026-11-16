@@ -1,0 +1,57 @@
+# Verificação de todo PR (e de todo push na main): typecheck, testes unitários, build e jornadas no navegador.
+# O nome do job ("verificar") é o check exigido na proteção da main. Ver docs/decisoes/testes-e-auditorias.md.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    name: verificar
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Histórico completo: o sitemap usa a data do último commit.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Testes unitários (Vitest)
+        run: npm test
+
+      - name: Build (o mesmo da Netlify)
+        run: npm run build
+
+      - name: Instalar o Chromium do Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Jornadas no navegador (Playwright)
+        run: npm run test:e2e
+
+      - name: Guardar o relatório do Playwright se falhar
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-results
+          path: test-results/
+          retention-days: 7

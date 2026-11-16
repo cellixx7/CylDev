@@ -2,13 +2,13 @@ import { StrictMode, useEffect, useState, type CSSProperties } from "react";
 import { createRoot } from "react-dom/client";
 import "../../styles/tailwind.css";
 import "../../styles/tema-negocios.css";
-import { servicosDa } from "../../content/servicos";
 import { negocios as t } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
 import { Contatos } from "../../shared/components/Contatos";
 import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { botao, botaoCheio } from "../../shared/estilos";
 import { brl } from "../../shared/lib/formato";
+import { precoDePartida } from "../../shared/lib/seo";
 import { ativarMagnetico } from "./magnetico";
 import { Orcamento } from "./orcamento/Orcamento";
 import { PainelExemplo } from "./exemplo/PainelExemplo";
@@ -33,12 +33,6 @@ function TituloCinetico({ texto }: { texto: string }) {
       ))}
     </span>
   );
-}
-
-/** Menor preço de partida entre os pacotes de Negócios (fixo ou "a partir de"), direto de servicos.ts. */
-function precoDePartida() {
-  const pacotes = servicosDa("negocios").flatMap((s) => (s.preco.tipo === "fixo" || s.preco.tipo === "aPartirDe" ? [{ nome: s.nome, valor: s.preco.valor }] : []));
-  return pacotes.reduce((a, b) => (b.valor < a.valor ? b : a));
 }
 
 /** No celular o exemplo de painel vem depois do orçamento (que é o que o cliente veio fazer); no desktop fica ao lado do título. */
@@ -106,8 +100,6 @@ function Negocios() {
           </section>
         )}
         <Sobre />
-        <section id="entregas"></section>
-        <section id="como-funciona"></section>
         <section className="mx-auto max-w-hero scroll-mt-24 px-margem pt-14 pb-14" id="contato" aria-labelledby="contato-titulo">
           <span className="revela-barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
           <h2 id="contato-titulo" className="revela-titulo">

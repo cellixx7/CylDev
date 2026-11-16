@@ -18,6 +18,7 @@ O site manda só texto simples; a aparência do e-mail fica no template, dentro 
 | `itens` | Lista, um objeto por serviço do carrinho (abaixo) | lista vazia |
 | `total` | Total como o carrinho mostra (ex.: "estimativa a partir de R$ 900") | "—" |
 | `observacoes` | Texto livre do cliente | "—" |
+| `aviso_valor` | No pedido do carrinho: "Valor estimado pelo site. O valor final vai na proposta por escrito." (`avisoValorEmail` em `src/content/textos/orcamento.ts`) | "—" |
 
 Cada objeto de `itens`:
 
@@ -45,10 +46,13 @@ Corpo (HTML):
 <p><strong>Total:</strong> {{total}}</p>
 <p><strong>Observações:</strong></p>
 <p style="white-space: pre-line">{{observacoes}}</p>
+<p><em>{{aviso_valor}}</em></p>
 
 <hr />
 <p style="white-space: pre-line">{{mensagem}}</p>
 <p>Origem: {{origem}}</p>
 ```
+
+`{{aviso_valor}}` (desde 16/11/2026) precisa ser acrescentado à mão no template do painel; sem ele, o aviso é enviado mas não aparece no e-mail.
 
 `white-space: pre-line` mantém as quebras de linha de `respostas`, `observacoes` e `mensagem`. Use chaves duplas (`{{ }}`), que escapam o que o cliente digitou; não use chaves triplas nesses campos.

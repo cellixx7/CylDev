@@ -139,6 +139,7 @@ test.describe("5. envio pelo site: corpo enviado, isca e falha", () => {
     expect(p.origem).toBe("negocios-carrinho");
     expect(p.assunto).toBe(`Pedido: ${servico.nome}`);
     expect(p.observacoes).toBe(observacao);
+    expect(p.aviso_valor).toBe(t.carrinho.avisoValorEmail);
     expect(p.itens).toHaveLength(1);
     expect(p.itens[0].titulo).toBe(servico.nome);
     expect(p.itens[0].valor).toMatch(/R\$.* \(estimativa\)$/);

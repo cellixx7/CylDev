@@ -180,6 +180,7 @@ describe("canais de envio usam o mesmo pedido", () => {
     expect(d.assunto).toBe("Pedido: Painel básico");
     expect(d.pacote).toBe("Painel básico");
     expect(d.estimativa).toContain("R$");
+    expect(d.avisoValor, "o e-mail diz que o valor do site é estimativa").toMatch(/estimado.*proposta por escrito/);
   });
 
   it("pedido vazio: sem link de WhatsApp e sem mensagem", () => {

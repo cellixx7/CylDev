@@ -6,7 +6,16 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
-### Etapa 2 da auditoria: pastas e documentação
+### Etapa 3 da auditoria: FrontEnd e BackEnd qualitativo
+
+- Verificação automática no GitHub (`.github/workflows/ci.yml`): typecheck, testes, build e jornadas no navegador em todo PR; a `main` só aceita merge com o check `verificar` verde.
+- Home sem JavaScript: `<noscript>` com a frase principal, o preço de partida e os contatos.
+- Dados estruturados (JSON-LD `ProfessionalService`) na home e `lastmod` no `sitemap.xml`.
+- Seções vazias `#entregas` e `#como-funciona` removidas da home (nenhuma mudança visível além de menos espaço em branco antes do Contato).
+- E-mail do pedido leva o aviso "Valor estimado pelo site. O valor final vai na proposta por escrito." (parâmetro `aviso_valor`; falta pôr no template do EmailJS).
+- Teste de jornada instável ("ida a Como funciona e volta, depois recarregar") corrigido.
+
+## 2026-11-16: Etapa 2 da auditoria, pastas e documentação (PR #16)
 
 - Textos das páginas divididos por área em `src/content/textos/` (os imports de `content/textos` continuam iguais).
 - `src/pages/negocios/` organizada em `orcamento/`, `sobre/` e `exemplo/`.

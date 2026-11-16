@@ -4,7 +4,7 @@ Texto, destaques, modais, UniSER e cenas animadas da seção Sobre. Seções em 
 
 ## Seção Sobre (13/11/2026)
 
-- **Onde:** `Sobre.tsx` em `#sobre` (depois do Orçamento e do exemplo de painel no celular, antes de Entregas e Contato). A lógica testável fica em `sobreLogica.ts` (parágrafos por flag, galeria, destino do botão); o nome não é `sobre.ts` porque o Windows não distingue de `Sobre.tsx`.
+- **Onde:** `Sobre.tsx` em `#sobre` (depois do Orçamento e do exemplo de painel no celular, antes do Contato; a seção Entregas ainda não existe). A lógica testável fica em `sobreLogica.ts` (parágrafos por flag, galeria, destino do botão); o nome não é `sobre.ts` porque o Windows não distingue de `Sobre.tsx`.
 - **Ministério:** liberado em 13/11/2026, só com o texto de `negocios.sobre.ministerio`. Sem siglas nem nomes internos de órgãos, programas ou sistemas; um teste barra palavras só em maiúsculas nesse texto.
 - **Imagens do Uniser:** eram SVGs de exemplo; foram trocadas pelas telas reais (ver a seção "UniSER corrigida, Simbionte e imagens reais").
 - **Botão "Fazer orçamento" (antes "Falar comigo"):** no fim da seção Sobre e de cada modal, leva a `#orcamento` (`destinoBotaoSobre`). Pedido do Marcelo em 14/11/2026: quem lê o Sobre segue direto para o orçamento; o Contato continua no menu.

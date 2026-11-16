@@ -143,6 +143,13 @@ export const negocios = {
     pagamento: "Pagamento por Pix. Emito recibo.",
   },
   sobre,
+  /** Conteúdo do <noscript> da home (sem JavaScript, robôs que não executam JS). Gerado no build por seo.ts. */
+  semJs: {
+    aviso: "O orçamento na hora precisa de JavaScript. Sem ele, fale comigo direto:",
+    whatsapp: "Chamar no WhatsApp",
+    email: "Mandar um e-mail",
+    comoFunciona: "Ver como funciona",
+  },
   contato: {
     titulo: "Contato",
     intro: "Escolha o jeito que for mais fácil para você. Respondo pelo mesmo canal.",

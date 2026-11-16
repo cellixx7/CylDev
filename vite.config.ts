@@ -1,9 +1,11 @@
+import { execSync } from "node:child_process";
 import { resolve } from "node:path";
 import type { Plugin } from "vite";
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { site } from "./src/content/site.ts";
+import { jsonLdNegocios, noscriptNegocios, scriptJsonLd } from "./src/shared/lib/seo.ts";
 
 // A Netlify injeta `URL` no build. Sem ela, vale o endereço padrão de site.ts.
 const urlDoSite = (process.env.URL ?? site.urlPadrao).replace(/\/$/, "");
@@ -18,12 +20,34 @@ function urlAbsoluta(): Plugin {
 // Páginas públicas para o sitemap (obrigado e 404 ficam de fora e levam noindex).
 const paginasPublicas = ["/", "/como-funciona/", "/comunidade/", "/privacidade/"];
 
-/** Gera robots.txt e sitemap.xml no build, com a mesma URL que troca o __URL__ dos HTML. */
+/** Data (AAAA-MM-DD) do último commit, para o `lastmod` do sitemap. Sem git (ou sem histórico), vale a data do build. */
+function dataDoConteudo(): string {
+  try {
+    const data = execSync("git log -1 --format=%cs", { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(data)) return data;
+  } catch {
+    // Sem git: segue para a data do build.
+  }
+  return new Date().toISOString().slice(0, 10);
+}
+
+/**
+ * SEO no build: na home, JSON-LD no <head> e <noscript> com a frase, o preço de partida e os contatos
+ * (o hero é React; sem JS a página ficaria vazia). Gera também robots.txt e sitemap.xml (com lastmod),
+ * com a mesma URL que troca o __URL__ dos HTML.
+ */
 function seo(): Plugin {
   return {
     name: "seo",
+    transformIndexHtml(html, ctx) {
+      if (ctx.path !== "/index.html") return html;
+      return html
+        .replace("</head>", `    ${scriptJsonLd(jsonLdNegocios(urlDoSite))}\n  </head>`)
+        .replace('<div id="raiz"></div>', `${noscriptNegocios()}\n    <div id="raiz"></div>`);
+    },
     generateBundle() {
-      const urls = paginasPublicas.map((p) => `  <url><loc>${urlDoSite}${p}</loc></url>`).join("\n");
+      const lastmod = dataDoConteudo();
+      const urls = paginasPublicas.map((p) => `  <url><loc>${urlDoSite}${p}</loc><lastmod>${lastmod}</lastmod></url>`).join("\n");
       this.emitFile({
         type: "asset",
         fileName: "sitemap.xml",

@@ -268,5 +268,6 @@ export function dadosEmailPedido(
     itens: itensDoEmail(p),
     total: totalCurto(p) || SEM_DADO,
     observacoes: p.observacoes || SEM_DADO,
+    avisoValor: textos.carrinho.avisoValorEmail,
   };
 }

@@ -254,6 +254,8 @@ export const orcamento = {
     totalRodape: "Total",
     totalSobConsulta: "Sob consulta, fora do total: ",
     notaEstimativa: "Estimativa, confirmada na conversa.",
+    /** Vai no e-mail do pedido (parâmetro `aviso_valor` do EmailJS): o valor do site é só estimativa. */
+    avisoValorEmail: "Valor estimado pelo site. O valor final vai na proposta por escrito.",
     observacoes: "Observações (opcional)",
     observacoesDica: "Datas, prazos, o que mais importa para você. Vai junto com o pedido.",
     dadosTitulo: "Seus dados para enviar pelo site",
