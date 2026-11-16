@@ -16,7 +16,7 @@ npm run build      # gera dist/
 npm run preview    # serve dist/
 ```
 
-Todo PR passa pelo CI do GitHub (`.github/workflows/ci.yml`: typecheck, testes, build e e2e); a `main` só aceita merge com ele verde.
+Todo PR passa pelo CI do GitHub (`.github/workflows/ci.yml`: typecheck, testes, build e e2e); só faça merge com ele verde.
 
 ## Onde mexer
 

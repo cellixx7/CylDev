@@ -16,7 +16,7 @@ npx vitest run src/shared/lib/orcamento.test.ts   # um arquivo de teste
 npm run test:e2e     # jornadas no navegador (Playwright, só Chromium); faz o build e sobe o vite preview sozinho; fora do build e do `npm test`
 ```
 
-O GitHub Actions (`.github/workflows/ci.yml`, job `verificar`) roda typecheck, `npm test`, build e `test:e2e` em todo PR, e a `main` só aceita merge com ele verde. A Netlify roda só `npm run build`.
+O GitHub Actions (`.github/workflows/ci.yml`, job `verificar`) roda typecheck, `npm test`, build e `test:e2e` em todo PR; não faça merge com ele vermelho (a proteção da `main` que exige esse check está em `docs/PENDENCIAS.md`). A Netlify roda só `npm run build`.
 
 ## Estrutura
 
@@ -63,6 +63,6 @@ O graphify é opcional: não é dependência do projeto e o site não precisa de
 
 ## Fluxo
 
-- Antes de abrir o PR, rode `npm test` e `npm run test:e2e`; o CI repete os dois e bloqueia o merge se falharem.
+- Antes de abrir o PR, rode `npm test` e `npm run test:e2e`; o CI repete os dois.
 - Branches: `commit_HH-MM_DD-MM_VXN` (hora, minuto, dia, mês, versão, nº do commit), nunca com "claude" no nome. Merge por PR (cada PR gera um deploy preview na Netlify); só vai para a `main` versão fechada, pois o deploy de produção gasta crédito.
 - Commits em pt-BR com prefixo (`feat:`, `fix:`, `docs:`, `chore:`).

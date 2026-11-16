@@ -8,7 +8,7 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ### Etapa 3 da auditoria: FrontEnd e BackEnd qualitativo
 
-- Verificação automática no GitHub (`.github/workflows/ci.yml`): typecheck, testes, build e jornadas no navegador em todo PR; a `main` só aceita merge com o check `verificar` verde.
+- Verificação automática no GitHub (`.github/workflows/ci.yml`): typecheck, testes, build e jornadas no navegador em todo PR. Falta ligar no GitHub a proteção da `main` que exige o check `verificar`.
 - Home sem JavaScript: `<noscript>` com a frase principal, o preço de partida e os contatos.
 - Dados estruturados (JSON-LD `ProfessionalService`) na home e `lastmod` no `sitemap.xml`.
 - Seções vazias `#entregas` e `#como-funciona` removidas da home (nenhuma mudança visível além de menos espaço em branco antes do Contato).
