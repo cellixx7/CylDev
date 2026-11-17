@@ -42,19 +42,20 @@ const SOLTO = [
   { cols: "18% 32% 24% 26%", x: 5, r: 0.6 },
   { cols: "26% 20% 30% 24%", x: -4, r: 0.4 },
 ];
-const ALINHADO = "22% 30% 24% 24%";
+// Larguras medidas para o texto de 14 px caber sem cortar em 360 px (valor e data são as células mais largas).
+const ALINHADO = "24% 23% 27% 26%";
 
 function Planilha({ passo }: { passo: number }) {
   const p = c.planilha;
   const alinhado = passo >= 1;
   const padronizado = passo >= 2;
-  const linhaClasse = "grid items-center gap-x-1 overflow-hidden whitespace-nowrap px-1 transition-[transform] duration-700 ease-out motion-reduce:transition-none";
+  const linhaClasse = "grid items-center gap-x-1 overflow-hidden whitespace-nowrap px-0.5 transition-[transform] duration-700 ease-out motion-reduce:transition-none";
   const estilo = (i: number) => ({
     gridTemplateColumns: alinhado ? ALINHADO : SOLTO[i].cols,
     transform: alinhado ? "none" : `translateX(${SOLTO[i].x}px) rotate(${SOLTO[i].r}deg)`,
   });
   return (
-    <div className="absolute inset-0 flex flex-col bg-white p-2 text-[10px] leading-none text-[#2b2f3c] sm:text-[11px]" style={{ opacity: passo === 3 ? 0 : 1, transition: "opacity 600ms" }}>
+    <div className="absolute inset-0 flex flex-col bg-white p-1.5 text-menor leading-none tracking-tight text-[#2b2f3c]" style={{ opacity: passo === 3 ? 0 : 1, transition: "opacity 600ms" }}>
       <div className={`${linhaClasse} flex-1 bg-[#e3e5ee] font-semibold`} style={estilo(0)}>
         {p.colunas.map((col) => (
           <span key={col}>{col}</span>
@@ -65,7 +66,7 @@ function Planilha({ passo }: { passo: number }) {
           {l.sujo.map((sujo, j) => {
             const muda = sujo !== l.limpo[j];
             return (
-              <span key={j} className="truncate rounded-[2px] px-0.5 transition-colors duration-500" style={{ backgroundColor: passo === 2 && muda ? "#d8f3df" : "transparent" }}>
+              <span key={j} className="truncate rounded-[2px] transition-colors duration-500" style={{ backgroundColor: passo === 2 && muda ? "#d8f3df" : "transparent" }}>
                 {padronizado ? l.limpo[j] : sujo || " "}
               </span>
             );
@@ -81,16 +82,16 @@ function Painel({ ativo }: { ativo: boolean }) {
   const maior = Math.max(...r.setores.map((s) => s.valor));
   const cartao = "flex flex-col gap-1 rounded-[3px] border border-[#e3e5ee] bg-white p-2";
   return (
-    <div className="absolute inset-0 flex flex-col gap-2 bg-[#f5f5fa] p-2 text-[10px] text-[#2b2f3c] sm:text-[11px]" style={{ opacity: ativo ? 1 : 0, transition: "opacity 600ms" }}>
+    <div className="absolute inset-0 flex flex-col gap-2 bg-[#f5f5fa] p-2 text-menor text-[#2b2f3c]" style={{ opacity: ativo ? 1 : 0, transition: "opacity 600ms" }}>
       <div className="font-semibold">{c.planilha.painel.titulo}</div>
       <div className="grid grid-cols-2 gap-2">
         <div className={cartao}>
           <span className="text-[#6b7080]">{c.planilha.painel.total}</span>
-          <strong className="text-sm sm:text-base">{brl(r.total)}</strong>
+          <strong className="text-base">{brl(r.total)}</strong>
         </div>
         <div className={cartao}>
           <span className="text-[#6b7080]">{c.planilha.painel.lancamentos}</span>
-          <strong className="text-sm sm:text-base">{r.quantidade}</strong>
+          <strong className="text-base">{r.quantidade}</strong>
         </div>
       </div>
       <div className={`${cartao} flex-1 justify-center`}>
@@ -220,11 +221,11 @@ export function CenaPlanilha() {
   const passo = useCiclo(duracaoPassosPlanilha, pausado, reduzido, 3);
   return (
     <figure className="m-0">
-      <div role="img" aria-label={c.planilha.alt} className="relative aspect-[16/10] w-full overflow-hidden border border-linha">
+      <div role="img" aria-label={c.planilha.alt} className="relative aspect-[4/3] w-full overflow-hidden border border-linha">
         <Planilha passo={passo} />
         <Painel ativo={passo === 3} />
       </div>
-      <figcaption className="mt-1 flex items-center justify-between gap-3 text-[0.8125rem] text-texto-suave">
+      <figcaption className="mt-1 flex items-center justify-between gap-3 text-menor text-texto-suave">
         <span>
           {c.planilha.titulo}: <span data-passo={passo}>{c.planilha.passos[passo]}</span>
         </span>
@@ -244,7 +245,7 @@ export function CenaAuditorio() {
       <div role="img" aria-label={c.apresentacao.alt} className="relative aspect-[16/10] w-full overflow-hidden border border-linha">
         <Auditorio slide={slide} />
       </div>
-      <figcaption className="mt-1 flex items-center justify-between gap-3 text-[0.8125rem] text-texto-suave">
+      <figcaption className="mt-1 flex items-center justify-between gap-3 text-menor text-texto-suave">
         <span>{c.apresentacao.titulo}</span>
         {!reduzido && <BotaoPausa pausado={pausado} aoAlternar={() => setPausado((v) => !v)} cena={c.apresentacao.titulo} />}
       </figcaption>
@@ -256,7 +257,7 @@ export function CenaAuditorio() {
 export function CenasEstagio() {
   return (
     <section className="mb-5" aria-labelledby="cenas-estagio-titulo">
-      <h3 id="cenas-estagio-titulo" className="m-0 mb-2 text-[1.0625rem]">
+      <h3 id="cenas-estagio-titulo" className="m-0 mb-2 text-medio">
         {c.titulo}
       </h3>
       <div className="mb-4">
@@ -265,7 +266,7 @@ export function CenasEstagio() {
       <div className="mb-2">
         <CenaAuditorio />
       </div>
-      <p className="m-0 text-[0.8125rem] text-texto-suave">{c.aviso}</p>
+      <p className="m-0 text-menor text-texto-suave">{c.aviso}</p>
     </section>
   );
 }

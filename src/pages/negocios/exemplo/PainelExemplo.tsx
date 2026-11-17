@@ -122,7 +122,7 @@ function GraficoPizza({ itens, destaque, intro }: { itens: Item[]; destaque: str
   );
 }
 
-const titulo = "mb-3 font-texto text-[0.875rem] font-semibold tracking-[0.06em] text-texto-suave uppercase";
+const titulo = "mb-3 font-texto text-menor font-semibold tracking-[0.06em] text-texto-suave uppercase";
 
 function querMenosMovimento() {
   return typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -248,7 +248,13 @@ function usarAnimacao(ref: RefObject<HTMLElement | null>) {
 const transicao = "motion-safe:transition-[opacity,background-color] motion-safe:duration-500";
 
 /** Painel de exemplo (loja fictícia). Entra animado uma vez e depois percorre os gráficos em loop. */
-export function PainelExemplo() {
+/**
+ * `nivel` é o nível do título do painel: 2 quando ele abre a hierarquia (hero do desktop, logo depois do h1),
+ * 3 quando já está dentro de uma seção com h2 (celular). Os títulos dos gráficos ficam um nível abaixo.
+ */
+export function PainelExemplo({ nivel }: { nivel: 2 | 3 }) {
+  const Titulo = nivel === 2 ? "h2" : "h3";
+  const Subtitulo = nivel === 2 ? "h3" : "h4";
   const figura = useRef<HTMLElement>(null);
   const { visto, etapa } = usarAnimacao(figura);
   const foco = roteiro[etapa] ?? null; // -1 (entrada) e o descanso não têm foco
@@ -280,13 +286,13 @@ export function PainelExemplo() {
     >
       <figcaption className={`mb-4 ${entra("animate-painel-item")}`} style={atraso(0.2)}>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <span className="rounded-pequeno border border-destaque px-2 font-mono text-[0.875rem] font-bold tracking-[0.08em] text-destaque uppercase">
+          <span className="rounded-pequeno border border-destaque px-2 font-mono text-menor font-bold tracking-[0.08em] text-destaque uppercase">
             {painel.selo}
           </span>
-          <span className="font-titulo text-[1.1rem] font-bold">{painel.titulo}</span>
-          <span className="ml-auto font-mono text-[0.875rem] text-texto-suave">{painel.periodo}</span>
+          <Titulo className="m-0 font-titulo text-medio font-bold">{painel.titulo}</Titulo>
+          <span className="ml-auto font-mono text-menor text-texto-suave">{painel.periodo}</span>
         </div>
-        <p className="mt-1.5 mb-0 max-w-none text-[1rem] leading-[1.45] text-texto-suave">{painel.descricao}</p>
+        <p className="mt-1.5 mb-0 max-w-none text-base leading-[1.45] text-texto-suave">{painel.descricao}</p>
       </figcaption>
 
       <dl className="m-0 grid grid-cols-2 gap-x-4 gap-y-4 xl:grid-cols-4">
@@ -298,11 +304,11 @@ export function PainelExemplo() {
           return (
             <div className={`${entra("animate-painel-item")} border-t-2 pt-2 ${segue ? "border-destaque" : "border-texto"}`} style={atraso(0.35 + idx * 0.1)} key={i.nome}>
               <div className={`${transicao} ${fora ? "opacity-40" : ""}`}>
-                <dt className={`text-[0.875rem] ${segue ? "font-bold text-destaque" : "text-texto-suave"}`}>{segue ? txt.vendas(foco.nome) : i.nome}</dt>
-                <dd className={`m-0 font-mono text-[1.35rem] leading-[1.2] font-bold whitespace-nowrap tabular-nums xl:text-[1.15rem] ${segue ? "text-destaque" : ""}`}>
+                <dt className={`text-menor ${segue ? "font-bold text-destaque" : "text-texto-suave"}`}>{segue ? txt.vendas(foco.nome) : i.nome}</dt>
+                <dd className={`m-0 font-mono text-grande leading-[1.2] font-bold whitespace-nowrap tabular-nums xl:text-medio ${segue ? "text-destaque" : ""}`}>
                   {segue ? <span key={foco.nome}>R$ {fmt(visao.total)} mil</span> : <ValorAnimado key={String(visto)} valor={i.valor} variacao={i.variacao} atrasoMs={350 + idx * 100} />}
                 </dd>
-                <dd className="m-0 font-mono text-[0.875rem] text-texto-suave">{segue ? txt.doAno(pct) : i.variacao}</dd>
+                <dd className="m-0 font-mono text-menor text-texto-suave">{segue ? txt.doAno(pct) : i.variacao}</dd>
               </div>
             </div>
           );
@@ -310,10 +316,10 @@ export function PainelExemplo() {
       </dl>
 
       <section className={`mt-6 ${entra("animate-painel-item")} pc:mt-5`} style={atraso(0.75)} aria-labelledby="painel-mensal">
-        <h3 className={titulo} id="painel-mensal">
+        <Subtitulo className={titulo} id="painel-mensal">
           {painel.mensalTitulo}
           {etiqueta("mes")}
-        </h3>
+        </Subtitulo>
         <ol
           key={chave("mes")}
           className="m-0 grid h-28 list-none pc:h-[clamp(4.5rem,13svh,7rem)] grid-cols-[repeat(12,1fr)] items-end gap-[3px] border-b border-linha p-0 sm:gap-1.5"
@@ -338,7 +344,7 @@ export function PainelExemplo() {
               <li className="flex h-full flex-col items-center justify-end gap-1" key={m.nome}>
                 <span className="sr-only">{painel.mesFalado(m.completo, fmt(v))}</span>
                 <span
-                  className={`animate-painel-aparecer font-mono text-[0.875rem] ${emFoco && m.nome === foco.nome ? "font-bold text-texto" : "text-texto-suave"}`}
+                  className={`animate-painel-aparecer font-mono text-menor ${emFoco && m.nome === foco.nome ? "font-bold text-texto" : "text-texto-suave"}`}
                   style={atraso(base(i, 0.04, 0.9, 0.05))}
                   aria-hidden="true"
                 >
@@ -355,7 +361,7 @@ export function PainelExemplo() {
         </ol>
         <ol className="m-0 mt-1 grid list-none grid-cols-[repeat(12,1fr)] gap-[3px] p-0 sm:gap-1.5" aria-hidden="true">
           {painel.meses.map((m) => (
-            <li className={`text-center font-mono text-[0.875rem] ${foco?.tipo === "mes" && m.nome === foco.nome ? "font-bold text-texto" : "text-texto-suave"}`} key={m.nome}>
+            <li className={`text-center font-mono text-menor ${foco?.tipo === "mes" && m.nome === foco.nome ? "font-bold text-texto" : "text-texto-suave"}`} key={m.nome}>
               <span className="sm:hidden">{m.nome[0]}</span>
               <span className="hidden sm:inline">{m.nome}</span>
             </li>
@@ -365,19 +371,19 @@ export function PainelExemplo() {
 
       <div className="mt-6 grid items-start gap-6 pc:mt-5 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <section className={entra("animate-painel-item")} style={atraso(1.1)} aria-labelledby="painel-categorias">
-          <h3 className={titulo} id="painel-categorias">
+          <Subtitulo className={titulo} id="painel-categorias">
             {painel.categoriasTitulo}
             {etiqueta("categoria")}
-          </h3>
+          </Subtitulo>
           <GraficoPizza key={chave("categoria")} itens={visao.categorias} destaque={foco?.tipo === "categoria" ? foco.nome : null} intro={intro} />
         </section>
 
         <section className={entra("animate-painel-item")} style={atraso(1.25)} aria-labelledby="painel-regioes">
-          <h3 className={titulo} id="painel-regioes">
+          <Subtitulo className={titulo} id="painel-regioes">
             {painel.regioesTitulo}
             {etiqueta("regiao")}
-          </h3>
-          <ul key={chave("regiao")} className="m-0 grid list-none gap-3 p-0 text-[1rem]">
+          </Subtitulo>
+          <ul key={chave("regiao")} className="m-0 grid list-none gap-3 p-0 text-base">
             {painel.regioes.map((r, i) => {
               const v = visao.regioes[i].valor;
               const emFoco = foco?.tipo === "regiao";

@@ -46,14 +46,14 @@ for (const [largura, altura] of [[360, 740], [390, 844], [768, 1024], [1440, 900
       const caixaAviso = await aviso.boundingBox();
       expect(caixaAviso!.y).toBeGreaterThan(caixaPlanilha!.y + caixaPlanilha!.height - 1);
       expect(caixaAviso!.y).toBeLessThan(caixaTela!.y);
-      if (largura >= 1024) {
+      if (largura >= 992) {
         // Em tela larga a coluna fica ao lado do texto, não abaixo.
         const texto = await secao.getByText(t.atendimento).boundingBox();
         expect(caixaPlanilha!.x).toBeGreaterThan(texto!.x + texto!.width - 1);
       }
       await semRolagemHorizontal(page);
       await expect(secao.getByText(t.atendimento)).toBeVisible();
-      await expect(secao.getByText(/^Estagio em TI no Ministério da Defesa/)).toBeVisible();
+      await expect(secao.getByText(/^Sou estagiário de TI no Ministério da Defesa/)).toBeVisible();
     });
 
     test("o botão Fazer orçamento recebe foco visível", async ({ page }) => {

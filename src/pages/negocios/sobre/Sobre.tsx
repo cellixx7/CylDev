@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { site } from "../../../content/site";
 import { negocios, type DestaqueSobre } from "../../../content/textos";
 import { Avatar } from "../../../shared/components/Avatar";
+import { Secao } from "../../../shared/components/Secao";
 import { botao } from "../../../shared/estilos";
 import { DestaqueSobre as Destaque } from "./DestaqueSobre";
 import { cenasEstagio } from "../../../content/cenasEstagio";
@@ -53,14 +54,10 @@ export function Sobre() {
   }, [aberto, destino.href]);
 
   return (
-    <section className="mx-auto max-w-hero scroll-mt-24 px-margem pt-14 pb-14" id="sobre" aria-labelledby="sobre-titulo">
-      <span className="revela-barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
-      <h2 id="sobre-titulo" className="revela-titulo">
-        {t.titulo}
-      </h2>
-      <div className="mt-6 grid gap-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-x-8 lg:grid-cols-[auto_minmax(0,40rem)_22rem]">
+    <Secao id="sobre" titulo={t.titulo}>
+      <div className="mt-6 grid gap-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-x-8 pc:grid-cols-[auto_minmax(0,40rem)_22rem]">
         <Avatar nome={site.nome} foto={site.foto} />
-        <div className="min-w-0 max-w-[40rem]">
+        <div className="min-w-0 max-w-leitura">
           {paragrafos.map(({ id, partes }, i) => (
             <Fragment key={`${id}-${i}`}>
               <p className="mb-4 text-texto-suave">
@@ -84,11 +81,11 @@ export function Sobre() {
           </a>
         </div>
         {temLado && (
-          <aside className="flex min-w-0 max-w-[40rem] flex-col gap-5 sm:col-start-2 lg:col-start-3 lg:row-start-1 lg:max-w-none" aria-label={t.lado}>
+          <aside className="flex min-w-0 max-w-leitura flex-col gap-5 sm:col-start-2 pc:col-start-3 pc:row-start-1 pc:max-w-none" aria-label={t.lado}>
             {cenaPlanilha && (
               <div>
                 <CenaPlanilha />
-                <p className="mt-1 mb-0 text-[0.8125rem] text-texto-suave">{cenasEstagio.avisoCena}</p>
+                <p className="mt-1 mb-0 text-menor text-texto-suave">{cenasEstagio.avisoCena}</p>
               </div>
             )}
             <GaleriaUniser telas={telasLado} layout="lateral" />
@@ -96,6 +93,6 @@ export function Sobre() {
         )}
       </div>
       <ModalSobre aberto={aberto} telas={telas} destino={destino} aoFechar={() => setAberto(null)} aoFalar={falar} />
-    </section>
+    </Secao>
   );
 }

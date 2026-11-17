@@ -6,8 +6,8 @@ import { linkContato } from "../../../shared/lib/whatsapp";
 import { escolher, passoDoGuia, voltar } from "../../../shared/lib/guia";
 
 const foco = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
-const opcaoClasse = `flex min-h-alvo w-full cursor-pointer items-center rounded-pequeno border border-texto bg-transparent px-4 py-3 text-left font-[inherit] text-[1rem] text-texto hover:bg-realce active:bg-realce ${foco}`;
-const textoClasse = `min-h-alvo cursor-pointer border-0 bg-transparent px-1 font-[inherit] text-[1rem] font-semibold text-destaque underline underline-offset-4 ${foco}`;
+const opcaoClasse = `flex min-h-alvo w-full cursor-pointer items-center rounded-pequeno border border-texto bg-transparent px-4 py-3 text-left font-[inherit] text-base text-texto hover:bg-realce active:bg-realce ${foco}`;
+const textoClasse = `min-h-alvo cursor-pointer border-0 bg-transparent px-1 font-[inherit] text-base font-semibold text-destaque underline underline-offset-4 ${foco}`;
 
 type Props = {
   aoVerDetalhes: (id: string) => void;
@@ -42,7 +42,7 @@ export function Resultado({ r, aoVerDetalhes, aoFazerOrcamento }: { r: Resultado
           {r.saida.rotulo}
         </a>
       )}
-      {r.servicos.length > 0 && <p className="mt-3 mb-0 text-[1rem] text-texto-suave">{guia.semCompromisso}</p>}
+      {r.servicos.length > 0 && <p className="mt-3 mb-0 text-base text-texto-suave">{guia.semCompromisso}</p>}
     </div>
   );
 }
@@ -85,11 +85,11 @@ export function GuiaEscolha({ aoVerDetalhes, aoFazerOrcamento }: Props) {
         {guia.botao}
       </button>
 
-      <section id={idPainel} hidden={!aberto} aria-label={guia.titulo} className="mt-3 max-w-[40rem] border-l-[3px] border-destaque bg-realce px-4 py-4">
+      <section id={idPainel} hidden={!aberto} aria-label={guia.titulo} className="mt-3 max-w-leitura border-l-[3px] border-destaque bg-realce px-4 py-4">
         {aberto && (
           <>
-            <p className="m-0 text-[1rem] text-texto-suave">{passo.pergunta ? guia.intro : guia.titulo}</p>
-            <h3 ref={titulo} tabIndex={-1} className="mt-2 mb-3 text-[1.25rem] outline-none">
+            <p className="m-0 text-base text-texto-suave">{passo.pergunta ? guia.intro : guia.titulo}</p>
+            <h3 ref={titulo} tabIndex={-1} className="mt-2 mb-3 text-grande outline-none">
               {passo.pergunta ? `${guia.rotuloPergunta(escolhas.length + 1)}: ${passo.pergunta.texto}` : guia.resultadoTitulo}
             </h3>
             {passo.pergunta ? (

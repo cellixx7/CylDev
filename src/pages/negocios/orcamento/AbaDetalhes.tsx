@@ -6,7 +6,7 @@ import { textoMensalidade, textoPrazo } from "../../../shared/components/Catalog
 
 const t = orcamento.modal;
 
-const titulo = "mb-1 mt-6 text-[1rem] font-bold first:mt-0";
+const titulo = "mb-1 mt-6 text-base font-bold first:mt-0";
 
 /** Aba Detalhes: o que é, o que você recebe, prazo, mensalidade e notas. Tudo vem de perguntas.ts e servicos.ts. */
 export function AbaDetalhes({ modelo }: { modelo: ServicoOrcamento }) {
@@ -18,7 +18,7 @@ export function AbaDetalhes({ modelo }: { modelo: ServicoOrcamento }) {
   return (
     <div>
       <h3 className={titulo}>{t.oQueE}</h3>
-      <p className="m-0 max-w-[60ch]">{modelo.resumo}</p>
+      <p className="m-0 max-w-leitura">{modelo.resumo}</p>
 
       <h3 className={titulo}>{t.voceRecebe}</h3>
       <ul className="m-0 list-disc pl-5">
@@ -39,7 +39,7 @@ export function AbaDetalhes({ modelo }: { modelo: ServicoOrcamento }) {
       )}
 
       {(prazo || mensalidade) && (
-        <dl className="mt-6 mb-0 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 text-[1rem]">
+        <dl className="mt-6 mb-0 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 text-base">
           {prazo && (
             <>
               <dt className="font-semibold">{t.prazo}</dt>
@@ -59,7 +59,7 @@ export function AbaDetalhes({ modelo }: { modelo: ServicoOrcamento }) {
         <>
           <h3 className={titulo}>{t.notas}</h3>
           {notas.map((n) => (
-            <p key={n} className="mt-0 mb-2 max-w-[60ch] text-[1rem] text-texto-suave">
+            <p key={n} className="mt-0 mb-2 max-w-leitura text-base text-texto-suave">
               {n}
             </p>
           ))}

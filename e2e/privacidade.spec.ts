@@ -8,7 +8,7 @@ test.describe("privacidade", () => {
   test("o rodapé de cada página leva à política", async ({ page }) => {
     for (const caminho of ["/", "/como-funciona/", "/comunidade/"]) {
       await page.goto(caminho);
-      await page.getByRole("link", { name: comum.privacidadeLink }).click();
+      await page.getByRole("contentinfo").getByRole("link", { name: comum.privacidadeLink, exact: true }).click();
       await expect(page).toHaveURL(/\/privacidade\/$/);
       await expect(page.getByRole("heading", { level: 1, name: privacidade.titulo })).toBeVisible();
     }

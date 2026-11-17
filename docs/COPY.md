@@ -12,6 +12,7 @@ Versão 2, com as respostas de 02/11. Fonte dos textos em `src/content/textos/` 
 
 ### Apresentação
 
+- No site hoje (16/11/2026, Etapa 4 da auditoria): acima do título, "Marcelo Vaz"; título (`h1`) "Transformo a sua planilha bagunçada em um painel."; subtítulo "Ele mostra o que vende, o que encalha e o que está acabando. Também crio a página do seu negócio e sistemas completos na internet."; botões "Realize seu orçamento", "Chamar no WhatsApp" (só no celular) e "Como funciona?". Fonte: `negocios.apresentacao`. As linhas abaixo são a versão 2, anterior.
 - Título: "Eu organizo a sua planilha e construo painéis para você ver como o seu negócio está indo."
 - Texto: "Meu nome é Marcelo e sou desenvolvedor de sistemas e sites. Pego a planilha que você já usa para vendas, estoque ou caixa, deixo ela em ordem e entrego um painel com os números que importam para você. Também faço páginas para apresentar o seu negócio."
 - Botões: "Chamar no WhatsApp", "Ver preços"
@@ -40,6 +41,8 @@ Dificuldade (para a calculadora): o preço e as horas dobram nos casos complexos
 
 ### Como funciona
 
+Na home, é a seção "Do pedido à entrega" (`#entregas`, link "Entregas" do menu), com a intro "Da primeira conversa ao arquivo final, em cinco passos." Fonte: `negocios.comoFunciona`.
+
 1. Conversa de 10 minutos. Pelo Google Meet, quando precisar ver tela, ajustar e apresentar com mais calma, ou pelo WhatsApp para uma dúvida rápida. Você me mostra a planilha ou conta o que precisa, e eu te digo o que preciso receber de você.
 2. Proposta. Mando por escrito o que entra, o valor e a data de entrega.
 3. Entrada de 50% por Pix. Começo depois da entrada.
@@ -51,9 +54,9 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 ### Sobre
 
 - "Estudo Sistemas de Informação na Unieuro e trabalho como desenvolvedor fullstack."
-- Se `mostrarMinisterio` (liberado em 13/11/2026; sem siglas nem nomes internos): "Estagio em TI no Ministério da Defesa, onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio."
+- Se `mostrarMinisterio` (liberado em 13/11/2026; sem siglas nem nomes internos): "Sou estagiário de TI no Ministério da Defesa, onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio."
 - Se `mostrarUniser` (com os esquemas das telas da UniSER): "Participo do Uniser, a plataforma da UniSER, Universidade do Envelhecer da UnB. Ela é desenvolvida por uma equipe de estudantes da Unieuro, com orientação de professores da faculdade, e eu faço parte do time que escreve o código."
-- Destaques no texto (sublinhado pontilhado + ícone de "mais informações", um círculo com "+", que não sugere sair do site; abrem modal): "Sistemas de Informação na Unieuro" (dica "Saiba mais sobre o curso"), "Estagio em TI no Ministério da Defesa" (só com `mostrarMinisterio`; "Saiba mais sobre o estágio") e "Participo do Uniser" (só com `mostrarUniser`; "Saiba mais sobre o Uniser"). Os textos dos modais ficam em `negocios.sobre.modais` (`src/content/textos/`), em primeira pessoa e sem siglas no do Estágio. Cada modal termina com o botão "Fazer orçamento".
+- Destaques no texto (sublinhado pontilhado + ícone de "mais informações", um círculo com "+", que não sugere sair do site; abrem modal): "Sistemas de Informação na Unieuro" (dica "Saiba mais sobre o curso"), "Sou estagiário de TI no Ministério da Defesa" (só com `mostrarMinisterio`; "Saiba mais sobre o estágio") e "Participo do Uniser" (só com `mostrarUniser`; "Saiba mais sobre o Uniser"). Os textos dos modais ficam em `negocios.sobre.modais` (`src/content/textos/`), em primeira pessoa e sem siglas no do Estágio. Cada modal termina com o botão "Fazer orçamento".
   - **Faculdade:** 5º semestre do bacharelado, formatura prevista para o 2º semestre de 2028; "O que mais uso do curso no seu projeto" (lista de disciplinas); "Iniciação científica" (orientação do professor doutor Aldo Henrique, grupo OpenVIRTEX-BR); mais um parágrafo sobre o Simbionte (simulação com vários agentes de IA; minha equipe constrói login, banco, filas e o motor dos ciclos, com testes e proteção contra instruções maliciosas enviadas à IA), sem link.
   - **Estágio:** na área de TI do Ministério da Defesa desde fevereiro de 2026; "O que eu faço" (lista); "Ferramentas do dia a dia"; duas cenas animadas ("Da planilha bagunçada ao painel" e "Apresentação para quem decide", texto em `src/content/cenasEstagio.ts`, aviso "Cenas ilustrativas, com dados fictícios."); fecho com a mesma rotina que levo para o seu negócio e o aviso de que os trabalhos de fora ficam fora do horário do estágio.
   - **Uniser:** título "UniSER, Universidade do Envelhecer"; equipe da Unieuro desde novembro de 2025 como desenvolvedor fullstack, com orientação de professores; "O que o sistema faz"; "O que isso tem a ver com o seu projeto"; "Tecnologias"; seis esquemas de tela em HTML e CSS (Editais, Login, Grade curricular, Meus dados, Frequência, Meu semestre), com a legenda "Esquemas ilustrativos das telas, sem dados reais.".
@@ -81,7 +84,7 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 
 ## Comum
 
-- Privacidade: "Este site não usa ferramentas de rastreamento. O que você mandar pelo formulário ou pelo WhatsApp serve só para eu responder o seu contato. O formulário é enviado pelo serviço EmailJS."
+- Rodapé: "Site sem rastreadores." + links "Privacidade" e "Contato" (o parágrafo longo saiu em 16/11/2026; o conteúdo dele está na página de privacidade).
 - Obrigado: "Mensagem recebida." / "Obrigado pelo contato. Respondo pelo WhatsApp que você deixou."
 - 404: "Essa página não existe." / "O link pode estar errado ou a página mudou de lugar. Se precisar de ajuda, escreva para marcelovaz.contato@gmail.com."
 - Mensagem do WhatsApp: "Oi, Marcelo! Vim pelo site (origem: negocios)." Nos pacotes, a origem vira `negocios-painel`, `comunidade-bot-essencial` etc., seguida de "Quero um orçamento de: [nome do pacote] ([preço])." O preço **sai do `servicos.ts`**, nunca escrito à mão no texto.
@@ -91,7 +94,7 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 Fonte dos textos: `privacidade` em `src/content/textos/paginas.ts` (página `/privacidade/`) e `carrinho.privacidade` / `comum.privacidadeLink`.
 
 - Carrinho (perto do envio): "Envio o seu nome, o WhatsApp, as respostas do orçamento e as observações, só para responder este pedido. Eles passam pelo EmailJS (envio pelo site) e pelo WhatsApp. Eu confirmo por WhatsApp e combinamos o Pix." + link "Política de privacidade".
-- Rodapé de Negócios e Comunidade: o aviso de sempre + link "Política de privacidade".
+- Rodapé de Negócios e Comunidade: "Site sem rastreadores." + links "Privacidade" e "Contato".
 - Página: o que recebo; para que uso; por onde passa (EmailJS, WhatsApp, Netlify; sem fontes ou rastreadores de terceiros); o que fica no navegador (carrinho em sessionStorage, sem nome, telefone nem observações; tema em localStorage; sem cookies de rastreamento); guarda do e-mail por até 12 meses; como pedir exclusão (e-mail de `site.ts`). Não é parecer jurídico.
 
 

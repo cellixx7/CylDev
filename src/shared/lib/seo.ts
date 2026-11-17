@@ -27,7 +27,7 @@ export function jsonLdNegocios(url: string): Record<string, unknown> {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: site.nome,
-    description: t.apresentacao.subtitulo,
+    description: `${t.apresentacao.titulo} ${t.apresentacao.subtitulo}`,
     url: `${url}/`,
     image: `${url}/og-negocios-v1.png`,
     telephone: `+${site.whatsapp}`,
@@ -74,7 +74,8 @@ export function noscriptNegocios(): string {
   return [
     `<noscript>`,
     `<main id="conteudo" class="mx-auto max-w-hero px-margem pt-6 pb-14">`,
-    `<h1>${e(site.nome)}</h1>`,
+    `<p><strong>${e(site.nome)}</strong></p>`,
+    `<h1>${e(t.apresentacao.titulo)}</h1>`,
     `<p>${e(t.apresentacao.subtitulo)}</p>`,
     `<p><strong>${e(linhaPartida)}</strong></p>`,
     `<p>${e(t.semJs.aviso)}</p>`,

@@ -24,7 +24,7 @@ export const sobre = {
     ],
   ] as ParteSobre[][],
   ministerio: [
-    { texto: "Estagio em TI no Ministério da Defesa", destaque: "estagio" },
+    { texto: "Sou estagiário de TI no Ministério da Defesa", destaque: "estagio" },
     {
       texto:
         ", onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio.",
@@ -70,7 +70,7 @@ export const sobre = {
     estagio: {
       titulo: "Estágio em TI no Ministério da Defesa",
       dica: "Saiba mais sobre o estágio",
-      texto: "Estagio na área de TI do Ministério da Defesa desde fevereiro de 2026.",
+      texto: "Sou estagiário na área de TI do Ministério da Defesa desde fevereiro de 2026.",
       secoes: [
         {
           subtitulo: "O que eu faço",

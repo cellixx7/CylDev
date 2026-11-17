@@ -53,7 +53,7 @@ export function DestaqueSobre({ texto, dica, aoAbrir }: Props) {
           else setFoco(el.matches(":focus-visible"));
         }}
         onBlur={fechar}
-        className={`cursor-pointer py-[0.7rem] font-semibold text-texto underline decoration-destaque decoration-2 underline-offset-4 [text-decoration-style:dotted] hover:[text-decoration-style:solid] active:[text-decoration-style:solid] ${focoVisivel}`}
+        className={`cursor-pointer py-3 font-semibold text-texto underline decoration-destaque decoration-2 underline-offset-4 [text-decoration-style:dotted] hover:[text-decoration-style:solid] active:[text-decoration-style:solid] ${focoVisivel}`}
       >
         {inicio}
         <span className="whitespace-nowrap">
@@ -67,7 +67,7 @@ export function DestaqueSobre({ texto, dica, aoAbrir }: Props) {
         role="tooltip"
         hidden={!aberta}
         style={estiloBalao}
-        className="fixed z-50 rounded-pequeno border border-linha bg-superficie px-3 py-2 text-left text-[0.9375rem] leading-snug font-normal text-texto"
+        className="pointer-events-none fixed z-50 rounded-pequeno border border-linha bg-superficie px-3 py-2 text-left text-base leading-snug font-normal text-texto"
       >
         {dica}
       </span>

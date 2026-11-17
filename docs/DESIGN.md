@@ -1,18 +1,19 @@
 # Guia de estilo
 
-Versão inicial (16/11/2026, Etapa 2 da auditoria): descreve **o que o site usa hoje**, para que uma seção nova não precise redecidir tudo. A escala de tipografia e o componente `<Secao>` entram na Etapa 4; quando entrarem, atualize as partes marcadas como **a definir**.
+Descreve **o que o site usa hoje**, para que uma seção nova não precise redecidir tudo. Primeira versão em 16/11/2026 (Etapa 2 da auditoria); a escala de texto, as larguras em token e o componente `<Secao>` entraram na Etapa 4 (16/11/2026).
 
 Onde as regras moram no código:
 
-- `src/styles/tailwind.css`: tokens base (`@theme`), pontos de quebra, animações.
+- `src/styles/tailwind.css`: tokens base (`@theme`): cores, escala de texto, larguras, pontos de quebra, animações.
 - `src/styles/tema-negocios.css` e `tema-comunidade.css`: cores e fontes de cada área (claro e escuro).
 - `src/shared/estilos.ts`: classes repetidas (botões, rótulo de exemplo, foco), sempre como string literal completa (o Tailwind lê o texto; não monte classe com variável).
+- `src/shared/components/Secao.tsx`: o esqueleto de toda seção.
 
 ## Princípios
 
 - Mobile em primeiro lugar: desenhe e teste em 360 a 390 px antes do desktop. Nada de rolagem lateral.
 - Um só acento por área. Sem degradê, vidro ou blur. Sem emoji como ícone.
-- Texto de leitura em 16 px; **nenhum texto abaixo de 14 px** (`0.875rem`).
+- Texto de leitura em 16 px; **nenhum texto abaixo de 14 px** (`text-menor`), nem dentro de ilustração ou mini exemplo. Se não couber, simplifique o desenho (menos colunas, palavra mais curta), não diminua a letra. O teste "12. guia de estilo" (`e2e/layout.spec.ts`) mede isso em todas as páginas.
 - Alvo de toque mínimo de 44 px (`min-h-alvo`).
 - Toda animação só dentro de `@media (prefers-reduced-motion: no-preference)`; sem ela, aparece o estado final.
 - Todo dado de exemplo leva o rótulo de exemplo (`rotuloFicticio`, texto `comum.dadosFicticios`: "dados fictícios").
@@ -43,61 +44,75 @@ A Comunidade tem a própria tabela em `tema-comunidade.css` (escura por padrão)
 
 ## Tamanhos de texto
 
-**A definir (Etapa 4):** escala única em tokens. Proposta da auditoria: `0.875rem`, `1rem`, `1.125rem`, `1.35rem`, `1.75rem` e títulos com `clamp`.
+Escala única, em tokens no `@theme` de `tailwind.css`. Use só as classes abaixo; **não escreva `text-[...]` com tamanho à mão**. Os tamanhos padrão do Tailwind (`text-xs`, `text-sm`, `text-lg`...) estão desligados de propósito (`--text-*: initial`), então não geram classe.
 
-Hoje os tamanhos estão escritos à mão (`text-[...]`). Os mais usados, para copiar enquanto a escala não existe:
+| Classe | Tamanho | Uso |
+|---|---|---|
+| `text-menor` | 0,875 rem (14 px) | legendas, rótulos, notas, selo de exemplo. É o mínimo |
+| `text-base` | 1 rem (16 px) | texto de leitura (é o padrão do `body`; só escreva a classe para voltar a ele) |
+| `text-medio` | 1,125 rem (18 px) | texto de destaque, preço do card, título pequeno (`h4`, título de bloco dentro de modal) |
+| `text-grande` | 1,35 rem | título de card, de modal e de bloco (`h3` padrão) |
+| `text-maior` | 1,75 rem | número em destaque (total do carrinho, iniciais do avatar) |
+| `text-preco` | `clamp(1.7rem, 6vw, 2.2rem)` | total da estimativa |
+| `text-secao` | `clamp(1.6rem, 4vw, 2.2rem)` | `h2` de seção (já é o padrão do `h2`) |
+| `text-pagina` | `clamp(2rem, 7.5vw, 3.6rem)` | `h1` das páginas internas (já é o padrão do `h1`) |
+| `text-hero` / `text-hero-pc` | `clamp(...)` | `h1` da home, no celular e no desktop |
 
-| Uso | Tamanho |
-|---|---|
-| Texto de leitura | `text-[1rem]` (16 px) |
-| Texto secundário, legendas, rótulos | `text-[0.875rem]` (14 px, o mínimo) |
-| Subtítulo de card ou bloco | `text-[1.2rem]` |
-| Título de bloco menor | `text-[1.35rem]` |
-
-Evite os valores fora disso (`0.6875`, `0.75`, `0.8125rem` ficam abaixo do mínimo e vão sair na Etapa 4; `1.05`, `1.1`, `1.15rem` são quase iguais e serão unificados).
+- Os tokens não trazem altura de linha: o corpo usa 1.6 e os títulos 1.2 (em `@layer base`); ajuste com `leading-*` quando precisar.
+- Em telas a partir de 1440 px o `html` cresce (112,5% e depois 125%), então tudo que está em `rem` cresce junto.
+- Títulos seguem a ordem `h1` > `h2` > `h3` > `h4`, sem pular nível (o mesmo teste confere).
 
 ## Espaçamento e larguras
 
-- Escala padrão do Tailwind (`1` = `0.25rem`). Respiro entre seções: `pt-14 pb-14`.
+- Escala padrão do Tailwind (`1` = `0.25rem`). Respiro entre seções: `pt-14 pb-14` (já vem no `<Secao>`).
 - Margem lateral da página: `px-margem` (`clamp(1rem, 4vw, 4rem)`).
-- Larguras máximas: `max-w-site` (96 rem) para a página, `max-w-hero` (86 rem) para o conteúdo das seções, `max-w-[40rem]` para parágrafos e intros. (Na Etapa 4 as larguras à mão viram tokens.)
+- Larguras máximas, todas em token (não escreva `max-w-[...]` para texto):
+
+| Classe | Largura | Uso |
+|---|---|---|
+| `max-w-site` | 96 rem | a página (cabeçalho, rodapé) |
+| `max-w-hero` | 86 rem | o conteúdo das seções |
+| `max-w-leitura` | 40 rem | parágrafos, intros, modais de texto, página de privacidade |
+| `max-w-titulo` | 20 ch | `h1` das páginas internas |
+
 - Raio: `rounded-pequeno` / `rounded-padrao` (2 px em Negócios).
 
 ## Pontos de quebra
 
-| Prefixo | A partir de | Para que serve hoje |
-|---|---|---|
-| (nenhum) | 0 | celular, o padrão |
-| `sm:` | 40 rem (640 px) | celular grande deitado: textos curtos ao lado do ícone, duas colunas simples |
-| `md:` | 48 rem (768 px) | tablet em pé: grades de 2 colunas |
-| `tab:` | 56 rem (896 px) | tablet deitado: layouts de 2 colunas com painel lateral |
-| `pc:` | 62 rem (992 px) | desktop: menu completo no cabeçalho, botão de tema flutuante |
-| `lg:` | 64 rem (1024 px) | coluna lateral do Sobre |
-| `xl:` | 80 rem (1280 px) | telas largas: grades mais abertas (ex.: painel de exemplo, catálogo) |
+| Prefixo | A partir de | Significa | Use para |
+|---|---|---|---|
+| (nenhum) | 0 | celular, o padrão | tudo em uma coluna |
+| `sm:` | 40 rem (640 px) | celular deitado, tablet pequeno | botões lado a lado, texto ao lado de ícone ou avatar |
+| `md:` | 48 rem (768 px) | tablet em pé | grades de 2 colunas; mini exemplos dos cards sempre abertos |
+| `tab:` | 56 rem (896 px) | tablet deitado | 2 colunas com painel lateral (Como funciona, Comunidade) |
+| `pc:` | 62 rem (992 px) | desktop | menu completo no cabeçalho, botão de tema flutuante, hero com o painel ao lado, cards em 3 colunas, coluna lateral do Sobre |
+| `xl:` | 80 rem (1280 px) | telas largas | grades mais abertas (painel de exemplo, catálogo) |
 
-`md` e `tab` são usados de forma parecida; ao criar algo novo, prefira `md` para "2 colunas" e `pc` para "layout de desktop".
+- O desktop tem **um só corte: `pc:`**. O `lg:` (1024 px) saiu na Etapa 4: entre 992 e 1023 px o hero já estava em duas colunas, mas o painel de exemplo ainda não aparecia ao lado. Não use `lg:`.
+- Quando o JavaScript precisar saber se é desktop (ex.: `useDesktop` em `negocios/main.tsx`), use a mesma medida do `pc:` (`min-width: 62rem`).
+- `md` e `tab` são parecidos; em algo novo, prefira `md` para "2 colunas" e `pc` para "layout de desktop". O `tab` fica onde já está.
 
 ## Padrão de seção
 
-Toda seção da home segue o mesmo esqueleto (hoje repetido em `Orcamento.tsx`, `Sobre.tsx` e no Contato de `main.tsx`; vira o componente `<Secao>` na Etapa 4):
+Toda seção da home usa o componente `<Secao>` (`src/shared/components/Secao.tsx`), que já traz largura (`max-w-hero`), margem lateral, respiro (`pt-14 pb-14`), `scroll-mt-24` (o título não fica embaixo do cabeçalho fixo), a barra de destaque, o `h2` ligado ao `aria-labelledby` e a intro na largura de leitura:
 
 ```tsx
-<section className="mx-auto max-w-hero scroll-mt-24 px-margem pt-14 pb-14" id="..." aria-labelledby="...-titulo">
-  <span className="revela-barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
-  <h2 id="...-titulo" className="revela-titulo">Título</h2>
-  <p className="max-w-[40rem] text-texto-suave">Intro curta.</p>
-  {/* conteúdo */}
-</section>
+<Secao id="entregas" titulo="Do pedido à entrega" intro="Intro curta, opcional.">
+  {/* conteúdo; títulos internos em h3 */}
+</Secao>
 ```
 
-- Um `h2` por seção, com `id` ligado ao `aria-labelledby`. Dentro da seção, `h3`; não pule nível.
-- `scroll-mt-24` para o título não ficar embaixo do cabeçalho fixo ao usar âncora.
-- Seção nova no menu: entrada em `negocios.nav` (`src/content/textos/negocios.ts`) e flag em `site.menuSecoes`.
+- O `id` vira a âncora (`/#entregas`) e o título recebe `id="entregas-titulo"`. Use `tituloFocavel` quando um script devolve o foco ao título (caso do Orçamento).
+- Um `h2` por seção. Dentro dela, `h3`; não pule nível.
+- Usam hoje: Orçamento, o exemplo de painel no celular, Entregas, Sobre e Contato. Ordem na home: hero, Orçamento, exemplo (só no celular), Entregas, Sobre, Contato.
+- Seção nova no menu: entrada em `negocios.nav` (`src/content/textos/negocios.ts`), na mesma ordem da página, e flag em `site.menuSecoes`.
+- A Comunidade ainda usa o esqueleto antigo (`main > section` em `tailwind.css`); passa para o `<Secao>` quando a área for revisada.
 
 ## Componentes base
 
 - Botões: `botao` (contorno) e `botaoCheio` (ação principal, uma por bloco), de `src/shared/estilos.ts`.
 - Foco: `focoVisivel` em todo elemento clicável que não seja link ou botão nativo.
-- Rótulo de exemplo: `rotuloFicticio`.
+- Rótulo de exemplo: `rotuloFicticio`. Nos cards, o mini exemplo leva o selo "Exemplo" e, no celular, vem recolhido atrás do botão "Ver exemplo" (`MiniExemplo.tsx`).
+- Rodapé: `Rodape.tsx`, com a ponte para a outra área e os links curtos (Privacidade, Contato; "Termos" entra na Etapa 5). Texto longo não vai no rodapé.
 - Dica "i": `src/shared/components/Dica.tsx`.
 - Modais: `<dialog>` nativo, foco preso e devolvido ao botão que abriu, `Esc` fecha.

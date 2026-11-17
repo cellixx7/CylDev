@@ -61,8 +61,9 @@ describe("card: botões e ícone de carrinho", () => {
     expect(html).not.toContain(">Tirar do carrinho<");
     expect(html).not.toContain(">No carrinho<");
     expect(html).not.toMatch(/type="checkbox"/);
-    // dois botões de texto + o ícone
-    expect(html.match(/<button/g)).toHaveLength(3);
+    // dois botões de texto + o ícone + o "Ver exemplo" da miniatura (só aparece no celular)
+    expect(html.match(/<button/g)).toHaveLength(4);
+    expect(html).toContain(">Ver exemplo<");
   });
 
   it("vazio: aria-pressed false e rótulo fixo 'Carrinho: ...'", () => {
@@ -126,14 +127,13 @@ describe("bots fora de Negócios", () => {
     for (const id of catalogo) expect(servicoPorId(id)!.area).toBe("negocios");
   });
 
-  it("a grade de cards não tem bot e tem a chamada para a Comunidade", async () => {
+  it("a grade de cards não tem bot nem chamada para a Comunidade (o atalho fica só no cabeçalho)", async () => {
     const { CardsServicos } = await import("../pages/negocios/orcamento/CardsServicos");
     const html = renderToStaticMarkup(
       createElement(CardsServicos, { ids: [], aoVerDetalhes: () => {}, aoFazerOrcamento: () => {}, aoAlternarCarrinho: () => {}, aoMontarCombo: () => {} }),
     );
     expect(html).not.toContain("Bot de Discord");
     expect(html).not.toContain("Bot com IA");
-    expect(html).toContain(`href="${orcamento.cards.chamadaComunidade.href}"`);
-    expect(orcamento.cards.chamadaComunidade.href).toBe("/comunidade/#bots");
+    expect(html).not.toContain("/comunidade/");
   });
 });

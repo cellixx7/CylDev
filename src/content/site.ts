@@ -27,8 +27,8 @@ export const site = {
   // Caminho em /public. Sem foto, o site usa o avatar de iniciais.
   foto: null as string | null,
 
-  // Links do menu de Negócios cujas seções ainda estão vazias. Religue (true) quando a seção existir.
-  menuSecoes: { sobre: true, entregas: false, contato: true },
+  // Links de seção do menu de Negócios. Desligue (false) para tirar o link do menu enquanto a seção não estiver pronta.
+  menuSecoes: { sobre: true, entregas: true, contato: true },
 
   repositorioCylBot: "https://github.com/cellixx7/CylBot" as string | null,
 

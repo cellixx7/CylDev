@@ -72,7 +72,7 @@
  * onde o navegador não suporta, o conteúdo simplesmente aparece parado.
  */
 @media (prefers-reduced-motion: no-preference) {
-  /* Título cinético: cada letra sobe de dentro de uma máscara, em cascata. */
+  /* Título cinético: cada palavra sobe de dentro de uma máscara, em cascata. */
   .palavra {
     display: inline-block;
     white-space: nowrap;
@@ -87,7 +87,7 @@
   }
   .letra {
     display: inline-block;
-    animation: letra-sobe 0.95s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 55ms + 120ms) both;
+    animation: letra-sobe 0.95s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 70ms + 120ms) both;
   }
   @keyframes letra-sobe {
     from {

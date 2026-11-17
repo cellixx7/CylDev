@@ -7,7 +7,7 @@ import { PorQueEsseValor } from "./PorQueEsseValor";
 const e = orcamento.estimativa;
 const piloto = descontoPilotoAtual();
 
-const precoGrande = "[word-spacing:-0.3em] font-mono text-[clamp(1.7rem,6vw,2.2rem)] leading-none font-bold tracking-[-0.02em]";
+const precoGrande = "[word-spacing:-0.3em] font-mono text-preco leading-none font-bold tracking-[-0.02em]";
 
 /** O piloto só vale na criação: nunca no sob consulta. */
 const temPiloto = (c: CalculoServico) => piloto !== null && c.preco !== null;
@@ -29,10 +29,10 @@ function Valor({ c, progresso }: { c: CalculoServico; progresso: Progresso }) {
   const final = comPiloto ? comDesconto(c.preco, comPiloto.percentual) : c.preco;
   return (
     <div>
-      {prefixo && <p className="mb-1 text-[1rem] text-texto-suave">{prefixo}</p>}
+      {prefixo && <p className="mb-1 text-base text-texto-suave">{prefixo}</p>}
       <p className="m-0 flex flex-wrap items-baseline gap-x-3 gap-y-1">
         {comPiloto && (
-          <s className="font-mono text-[1.05rem] text-texto-suave">
+          <s className="font-mono text-medio text-texto-suave">
             <span className="sr-only">{e.tabela}</span>
             {brl(c.preco)}
           </s>
@@ -43,7 +43,7 @@ function Valor({ c, progresso }: { c: CalculoServico; progresso: Progresso }) {
         </span>
       </p>
       {comPiloto && (
-        <p className="mt-2 mb-0 text-[0.875rem]">
+        <p className="mt-2 mb-0 text-menor">
           {e.comPiloto(comPiloto.percentual, comPiloto.restam)} <span className="text-texto-suave">{pilotoNota}</span>
         </p>
       )}
@@ -79,8 +79,8 @@ export function ResumoEstimativa({ nome, calculo: c, respostas, progresso, estad
   return (
     <div className="border-2 border-texto bg-superficie p-4">
       <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-        <p className="m-0 min-w-0 text-[1rem] font-bold [overflow-wrap:anywhere]">{nome}</p>
-        <p className="m-0 border border-destaque px-1.5 font-mono text-[0.875rem] leading-5 whitespace-nowrap text-destaque">
+        <p className="m-0 min-w-0 text-base font-bold [overflow-wrap:anywhere]">{nome}</p>
+        <p className="m-0 border border-destaque px-1.5 font-mono text-menor leading-5 whitespace-nowrap text-destaque">
           {e.estados[estado]}
         </p>
       </div>
@@ -88,10 +88,10 @@ export function ResumoEstimativa({ nome, calculo: c, respostas, progresso, estad
       <div>
         <Valor c={c} progresso={progresso} />
       </div>
-      {nota && <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">{nota}</p>}
+      {nota && <p className="mt-2 mb-0 text-menor text-texto-suave">{nota}</p>}
       <PorQueEsseValor ids={[c.id]} respostas={{ [c.id]: respostas }} />
 
-      <dl className="my-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-0.5 border-t border-linha pt-3 text-[1rem]">
+      <dl className="my-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-0.5 border-t border-linha pt-3 text-base">
         {c.horas !== null && (
           <>
             <dt className="font-semibold">{e.horas}</dt>
@@ -109,7 +109,7 @@ export function ResumoEstimativa({ nome, calculo: c, respostas, progresso, estad
       </dl>
 
       {c.linhas.length > 0 && (
-        <details className="mb-3 text-[1rem]">
+        <details className="mb-3 text-base">
           <summary className="min-h-alvo cursor-pointer py-2 font-semibold text-destaque">{e.comoChegamos}</summary>
           <ul className="m-0 list-none p-0">
             {c.linhas.map((l, i) => (
@@ -126,8 +126,8 @@ export function ResumoEstimativa({ nome, calculo: c, respostas, progresso, estad
       )}
 
 
-      {c.aPartirDe && <p className="mt-3 mb-0 text-[0.875rem] text-texto-suave">{e.notaAPartirDe}</p>}
-      <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">
+      {c.aPartirDe && <p className="mt-3 mb-0 text-menor text-texto-suave">{e.notaAPartirDe}</p>}
+      <p className="mt-2 mb-0 text-menor text-texto-suave">
         {c.preco === null ? e.consulta : c.estimativa ? e.notaBot : e.notaEstimativa}
       </p>
     </div>
@@ -150,7 +150,7 @@ export function PrecoRodape({ c, progresso }: { c: CalculoServico; progresso: Pr
         </s>
       )}
       <span className="font-mono font-bold">{brl(final)}</span>
-      {comPiloto && <span className="ml-2 text-[0.875rem] text-texto-suave">{e.pilotoCurto(comPiloto.percentual)}</span>}
+      {comPiloto && <span className="ml-2 text-menor text-texto-suave">{e.pilotoCurto(comPiloto.percentual)}</span>}
     </>
   );
 }

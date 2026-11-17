@@ -6,6 +6,19 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Etapa 4 da auditoria: ajustes do FrontEnd
+
+- Home: o título principal passa a ser a promessa ("Transformo a sua planilha bagunçada em um painel."), com o nome acima; no celular entra o botão "Chamar no WhatsApp" no topo.
+- Seção nova "Do pedido à entrega" (`#entregas`), com os 5 passos que já estavam escritos, e o link "Entregas" no menu.
+- Nenhum texto abaixo de 14 px: mini exemplos dos cards, cena da planilha, legendas do UniSER e avisos subiram para 14 px (os desenhos foram simplificados para caber).
+- Celular: os mini exemplos dos cards vêm recolhidos atrás de "Ver exemplo".
+- O card "Quer um bot para o seu servidor de Discord?" saiu do orçamento (o atalho da Comunidade continua no cabeçalho e no rodapé).
+- Rodapé curto: "Site sem rastreadores." e os links Privacidade e Contato, no lugar do parágrafo de privacidade.
+- Privacidade: índice no topo e "Voltar ao topo".
+- Textos: "dados de mentira" virou "dados fictícios"; "Estagio em TI" virou "Sou estagiário de TI" (parecia erro de digitação).
+- Entre 992 e 1023 px de largura o painel de exemplo passa a aparecer ao lado do título (antes a coluna ficava vazia).
+- Por dentro: escala de texto e larguras em tokens (`tailwind.css`), componente `<Secao>`, títulos sem pular nível e `docs/DESIGN.md` completo. Teste novo confere, em todas as páginas, o mínimo de 14 px e a ordem dos títulos.
+
 ### Etapa 3 da auditoria: FrontEnd e BackEnd qualitativo
 
 - Verificação automática no GitHub (`.github/workflows/ci.yml`): typecheck, testes, build e jornadas no navegador em todo PR. Falta ligar no GitHub a proteção da `main` que exige o check `verificar`.

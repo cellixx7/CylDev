@@ -7,7 +7,7 @@ function Tabela({ passo, legenda }: { passo: number; legenda: string }) {
   const cab = cabecalhoDoPasso(passo);
   const separado = passo >= 4;
   return (
-    <table className="w-full table-fixed border-collapse text-[0.875rem]" aria-label={legenda}>
+    <table className="w-full table-fixed border-collapse text-menor" aria-label={legenda}>
       <thead>
         <tr>
           {cab.map((c, i) => (
@@ -55,11 +55,11 @@ function Tabela({ passo, legenda }: { passo: number; legenda: string }) {
 const estatico = (
   <div className="grid gap-4 sm:grid-cols-2">
     <div>
-      <p className="mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave">{t.antes}</p>
+      <p className="mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave">{t.antes}</p>
       <Tabela passo={0} legenda={t.tabelaAntes} />
     </div>
     <div>
-      <p className="mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave">{t.depois}</p>
+      <p className="mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave">{t.depois}</p>
       <Tabela passo={ultimoPasso} legenda={t.tabelaDepois} />
     </div>
   </div>

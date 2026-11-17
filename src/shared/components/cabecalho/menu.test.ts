@@ -4,13 +4,13 @@ import { negocios } from "../../../content/textos";
 import { linksDoMenu } from "./CabecalhoNegocios";
 
 describe("menu de Negócios", () => {
-  it("mostra Sobre e Contato e esconde Entregas enquanto a flag dela está desligada", () => {
-    expect(site.menuSecoes).toEqual({ sobre: true, entregas: false, contato: true });
-    expect(linksDoMenu.map((l) => l.rotulo)).toEqual(["Orçamento", "Como funciona", "Sobre", "Contato"]);
+  it("mostra as seções com a flag ligada, na ordem em que aparecem na página", () => {
+    expect(site.menuSecoes).toEqual({ sobre: true, entregas: true, contato: true });
+    expect(linksDoMenu.map((l) => l.rotulo)).toEqual(["Orçamento", "Como funciona", "Entregas", "Sobre", "Contato"]);
   });
 
-  it("as seções continuam definidas em textos, prontas para religar", () => {
-    expect(negocios.nav.map((l) => l.secao).filter(Boolean)).toEqual(["sobre", "entregas", "contato"]);
+  it("toda seção do menu tem flag em site.menuSecoes (desligar a flag tira o link)", () => {
+    expect(negocios.nav.map((l) => l.secao).filter(Boolean)).toEqual(["entregas", "sobre", "contato"]);
   });
 });
 

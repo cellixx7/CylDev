@@ -53,6 +53,8 @@ describe("noscript da home", () => {
   it("tem a frase principal, o preço de partida e os contatos", () => {
     const partida = precoDePartida();
     expect(html).toMatch(/^<noscript>[\s\S]*<\/noscript>$/);
+    expect(html).toContain(`<h1>${escaparHtml(t.apresentacao.titulo)}</h1>`);
+    expect(html).toContain(escaparHtml(site.nome));
     expect(html).toContain(escaparHtml(t.apresentacao.subtitulo));
     expect(html).toContain(brl(partida.valor));
     expect(html).toContain(`https://wa.me/${site.whatsapp}`);

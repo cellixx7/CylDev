@@ -139,7 +139,7 @@ export function Formulario({ origem, resumo, detalhes }: Props) {
         </>
       )}
       {resumo && (
-        <div className="border-l-[3px] border-destaque bg-realce px-3 py-2 text-[1rem]">
+        <div className="border-l-[3px] border-destaque bg-realce px-3 py-2 text-base">
           <p className="m-0 font-semibold">{t.resumo}</p>
           <p className="m-0 text-texto-suave" aria-live="polite">
             {resumo}

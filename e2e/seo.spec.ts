@@ -8,7 +8,8 @@ test.describe("home sem JavaScript e dados estruturados", () => {
 
     test("mostra o nome, a frase, o preço de partida e os contatos", async ({ page }) => {
       await page.goto("/");
-      await expect(page.getByRole("heading", { level: 1, name: site.nome })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1, name: t.apresentacao.titulo })).toBeVisible();
+      await expect(page.locator("main#conteudo")).toContainText(site.nome);
       const corpo = page.locator("main#conteudo");
       await expect(corpo).toContainText(t.apresentacao.subtitulo);
       await expect(corpo).toContainText(/a partir de R\$/);

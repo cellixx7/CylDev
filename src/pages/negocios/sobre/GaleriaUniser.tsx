@@ -199,12 +199,12 @@ export function GaleriaUniser({ telas, layout }: Props) {
               <div role="img" aria-label={tela.alt} className="aspect-[8/5] w-full overflow-hidden border border-linha">
                 {esquemas[tela.id]()}
               </div>
-              <figcaption className="mt-1 text-[0.8125rem] text-texto-suave">{tela.titulo}</figcaption>
+              <figcaption className="mt-1 text-menor text-texto-suave">{tela.titulo}</figcaption>
             </figure>
           </li>
         ))}
       </ul>
-      <p className={`m-0 text-[0.8125rem] text-texto-suave ${layout === "lateral" ? "mb-0" : "mb-5"}`}>{t.legendaTelas}</p>
+      <p className={`m-0 text-menor text-texto-suave ${layout === "lateral" ? "mb-0" : "mb-5"}`}>{t.legendaTelas}</p>
     </>
   );
 }

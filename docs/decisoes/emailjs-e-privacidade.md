@@ -29,3 +29,9 @@ Envio do formulário e do pedido pelo EmailJS e a política de privacidade. Seç
 - **Pedido perdido sem aviso:** se o EmailJS cair ou a cota acabar, o cliente vê o erro com WhatsApp e e-mail, mas o Marcelo não fica sabendo. Mitigação sem código nova: filtro no Gmail que nunca manda para spam e marca os e-mails do EmailJS, e conferência mensal da cota no painel do EmailJS (em `PENDENCIAS.md`).
 - **Futuro, só com ok do Marcelo:** se o volume crescer, uma Netlify Function para receber o pedido, recalcular o preço no servidor e guardar uma cópia (ex.: planilha Google). Peça nova, fora desta etapa.
 
+## Rodapé curto (Etapa 4 da auditoria, 16/11/2026)
+
+- O parágrafo de privacidade repetido no rodapé de todas as páginas saiu. Ficam a frase "Site sem rastreadores." e os links "Privacidade" (`/privacidade/`) e "Contato" (`/#contato`; na Comunidade, `#contato`). Textos em `comum.rodape` e `comum.privacidadeLink`.
+- O que o parágrafo dizia (para que servem os dados e que o formulário passa pelo EmailJS) continua na página de privacidade e na linha ao lado do botão de envio do carrinho.
+- "Termos" entra no mesmo lugar quando a página existir (Etapa 5).
+

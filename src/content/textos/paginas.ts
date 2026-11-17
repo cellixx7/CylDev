@@ -7,6 +7,8 @@ export const privacidade = {
   atualizado: "Atualizado em 12/11/2026.",
   intro: "Este texto explica, em linguagem simples, o que acontece com os seus dados quando você usa este site. Quem cuida deles é Marcelo Vaz.",
   voltar: "Voltar para o site",
+  indice: "Nesta página",
+  topo: "Voltar ao topo",
   /** Em `secoes`, `{email}` é trocado por site.email na página. */
   secoes: [
     {

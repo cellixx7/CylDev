@@ -31,13 +31,6 @@ export const orcamento = {
     comboTexto: "Dois ou mais entre planilha, painel, automação e site de uma página têm desconto e um prazo só.",
     comboBotao: "Pôr planilha, painel e automação no carrinho",
     comboAdicionado: "Planilha, painel e automação no carrinho.",
-    /** Os bots de Discord não são vendidos aqui; a chamada leva para a seção de bots da Comunidade. */
-    chamadaComunidade: {
-      titulo: "Quer um bot para o seu servidor de Discord?",
-      texto: "Os bots ficam na área Comunidade, com o preço e a mensalidade explicados lá.",
-      link: "Ver os bots na Comunidade",
-      href: "/comunidade/#bots",
-    },
     linhas: {
       planilha: "Controles soltos viram uma planilha única, com totais que conferem.",
       painel: "Um arquivo que mostra o que vendeu, o que mais sai e como está o mês.",
@@ -51,10 +44,13 @@ export const orcamento = {
     /** Mini exemplo de cada card: sempre rotulado como exemplo, sem número, prazo ou dado real. */
     miniExemplo: {
       rotulo: "Exemplo",
+      /** Botão que abre e fecha a miniatura no celular (no desktop ela fica sempre aberta). */
+      ver: "Ver exemplo",
+      ocultar: "Ocultar exemplo",
       antes: "Antes",
       planilha: {
         legenda: "Controles soltos viram uma tabela só, com total no fim.",
-        antes: ["controle_final.xlsx", "controle_final2.xlsx", "novo (copia).xlsx"],
+        antes: ["final.xlsx", "final2.xlsx", "novo (cópia).xlsx"],
         colunas: ["Item", "Qtd", "Total"],
         linhas: ["Produto A", "Produto B"],
         total: "Total",

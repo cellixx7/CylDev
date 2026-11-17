@@ -50,20 +50,20 @@ export function CardServico({ servicoId, noCarrinho, aoVerDetalhes, aoFazerOrcam
     >
       <BotaoCarrinho nome={s.nome} dentro={noCarrinho} combinavel={combinavel} aoAlternar={() => aoAlternarCarrinho(s.id)} />
       {/* pr-11: o ícone de carrinho ocupa o canto, o título nunca fica por baixo dele. */}
-      <h3 id={titulo} className="m-0 pr-11 text-[1.2rem] leading-tight">
+      <h3 id={titulo} className="m-0 pr-11 text-grande leading-tight">
         {s.nome}
       </h3>
       <p className="mt-2 mb-4 text-texto-suave">{t.linhas[s.id]}</p>
-      <MiniExemplo servicoId={s.id} />
+      <MiniExemplo servicoId={s.id} nome={s.nome} />
       <div className="flex flex-wrap items-baseline gap-x-2 border-y border-linha py-2.5">
-        <p className="m-0 font-mono text-[1.15rem] font-bold">{precoDoCard(s)}</p>
-        {mensalidade && <p className="m-0 font-mono text-[0.875rem] text-texto-suave">+ {mensalidade}</p>}
+        <p className="m-0 font-mono text-medio font-bold">{precoDoCard(s)}</p>
+        {mensalidade && <p className="m-0 font-mono text-menor text-texto-suave">+ {mensalidade}</p>}
       </div>
       {/* Visível sempre: no toque não há hover, então o combo não pode depender da dica do ícone. */}
-      {combinavel && <p className="mt-2 mb-0 text-[0.875rem] font-semibold text-destaque">{t.comboNoCard}</p>}
+      {combinavel && <p className="mt-2 mb-0 text-menor font-semibold text-destaque">{t.comboNoCard}</p>}
 
-      <p className="mt-4 mb-1 text-[0.875rem] font-semibold">{t.inclui}</p>
-      <ul className="m-0 grid list-none gap-1.5 p-0 text-[1rem] text-texto-suave">
+      <p className="mt-4 mb-1 text-menor font-semibold">{t.inclui}</p>
+      <ul className="m-0 grid list-none gap-1.5 p-0 text-base text-texto-suave">
         {inclusosDoCard(s).map((i) => (
           <li key={i} className="flex gap-2">
             <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-[0.3em] h-4 w-4 shrink-0 text-destaque" fill="none" stroke="currentColor" strokeWidth="2">

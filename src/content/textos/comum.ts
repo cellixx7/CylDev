@@ -2,9 +2,9 @@
 // Faz parte de src/content/textos/ (ver index.ts). Preços nunca são escritos à mão aqui: saem de servicos.ts e orcamento.ts.
 
 export const comum = {
-  privacidade:
-    "Este site não usa ferramentas de rastreamento. O que você mandar pelo formulário ou pelo WhatsApp serve só para eu responder o seu contato. O formulário é enviado pelo serviço EmailJS.",
-  privacidadeLink: "Política de privacidade",
+  /** Links curtos do rodapé de todas as páginas. O texto completo fica em /privacidade/. "Termos" entra na Etapa 5 da auditoria. */
+  rodape: { rotulo: "Rodapé", semRastreio: "Site sem rastreadores.", contato: "Contato" },
+  privacidadeLink: "Privacidade",
   dadosFicticios: "dados fictícios",
   temaClaro: "Tema claro",
   temaEscuro: "Tema escuro",

@@ -16,7 +16,7 @@ type Props = {
 export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternarCarrinho, aoMontarCombo }: Props) {
   return (
     <div>
-      <ul className="m-0 grid list-none grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 p-0" aria-label={t.rotuloLista}>
+      <ul className="m-0 grid list-none grid-cols-1 gap-4 md:grid-cols-2 pc:grid-cols-3 p-0" aria-label={t.rotuloLista}>
         {servicosDoCatalogo.map((s) => (
           <CardServico
             key={s.id}
@@ -28,7 +28,7 @@ export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternar
           />
         ))}
       </ul>
-      <p className="mt-4 mb-0 text-[1rem] text-texto-suave">
+      <p className="mt-4 mb-0 text-base text-texto-suave">
         {t.comboTexto}{" "}
         <button
           type="button"
@@ -38,18 +38,6 @@ export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternar
           {t.comboBotao}
         </button>
       </p>
-      <aside className="mt-6 border-l-[3px] border-destaque bg-realce px-4 py-3" aria-labelledby="chamada-comunidade-titulo">
-        <h3 id="chamada-comunidade-titulo" className="m-0 text-[1.0625rem]">
-          {t.chamadaComunidade.titulo}
-        </h3>
-        <p className="mt-1 mb-2 text-texto-suave">{t.chamadaComunidade.texto}</p>
-        <a
-          className="inline-flex min-h-alvo items-center font-semibold text-destaque underline underline-offset-4 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco"
-          href={t.chamadaComunidade.href}
-        >
-          {t.chamadaComunidade.link}
-        </a>
-      </aside>
     </div>
   );
 }
