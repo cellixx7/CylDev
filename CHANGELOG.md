@@ -6,6 +6,19 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Etapa 5 da auditoria: páginas jurídicas e de apoio
+
+- Página nova **Termos de contratação** (`/termos/`): como o pedido vira contrato, pagamento, prazos, revisões, desistência em 7 dias, cancelamento, garantia de 90 dias, de quem é o que é entregue, portfólio, dados que o cliente passa (LGPD), sigilo, mensalidade dos bots, limites de responsabilidade e foro.
+- **Política de privacidade** completada para a LGPD: responsável e canal, base legal de cada uso, dados fora do Brasil, direitos do titular, prazo de resposta, ANPD e regra de alteração. As âncoras passaram a ter nome (`#direitos`, `#pedir`...).
+- Páginas novas **Perguntas frequentes** (`/perguntas/`, com "como mando a minha planilha com segurança?") e **Acessibilidade** (`/acessibilidade/`).
+- Rodapé de todas as páginas: linha "Serviço prestado por" com a identificação de quem vende e os links Termos, Privacidade, Perguntas, Acessibilidade e Contato. As páginas de leitura ganharam rodapé.
+- Carrinho: frase de aceite dos Termos e da privacidade ao lado do envio; o e-mail do pedido registra o aceite com a versão dos textos (parâmetro `aceite`; falta pôr no template do EmailJS).
+- Formulário de contato: aviso de para que servem os dados, com link para a política.
+- Seção "Do pedido à entrega": links para os Termos e as perguntas frequentes.
+- As quatro páginas de leitura podem ser lidas sem JavaScript (o texto inteiro vai no HTML).
+- Por dentro: `site.prestador` (CPF ou CNPJ, cidade/UF, recibo ou nota; vazio até o Marcelo informar), componente `PaginaTexto`, `docs/decisoes/juridico.md` e `docs/MODELO-PROPOSTA.md`. Os textos jurídicos não vão no JavaScript da home.
+- Falta (Marcelo): informar CPF ou CNPJ e cidade/UF, confirmar os prazos propostos e passar os textos por um advogado. Ver `docs/PENDENCIAS.md`.
+
 ### Etapa 4 da auditoria: ajustes do FrontEnd
 
 - Home: o título principal passa a ser a promessa ("Transformo a sua planilha bagunçada em um painel."), com o nome acima; no celular entra o botão "Chamar no WhatsApp" no topo.

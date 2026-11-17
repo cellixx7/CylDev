@@ -6,6 +6,18 @@ export const site = {
   // DDI + DDD + número, só dígitos.
   whatsapp: "5561996291118",
   email: "marcelovaz.contato@gmail.com",
+
+  // Identificação de quem presta o serviço (Decreto 7.962/2013). Aparece no rodapé de todas as páginas e nos Termos.
+  // `null` = ainda não informado pelo Marcelo: o site não mostra o campo (nada é inventado) e os Termos dizem
+  // que o documento vai na proposta por escrito. Pendência em docs/PENDENCIAS.md.
+  prestador: {
+    /** CPF ou CNPJ, já formatado. Ex.: { tipo: "CNPJ", numero: "00.000.000/0001-00" }. */
+    documento: null as { tipo: "CPF" | "CNPJ"; numero: string } | null,
+    /** Cidade e UF de onde o serviço é prestado. Ex.: "Cidade/UF". */
+    cidadeUf: null as string | null,
+    /** O que é emitido depois de cada pagamento. Troque para "nota" quando houver CNPJ e nota fiscal de serviço. */
+    comprovante: "recibo" as "recibo" | "nota",
+  },
   // Endereço público usado no Open Graph quando a Netlify não injeta `URL` no build.
   urlPadrao: "https://cyldev.netlify.app",
 

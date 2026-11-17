@@ -145,6 +145,8 @@ export const negocios = {
       },
     ],
     pagamento: "Pagamento por Pix. Emito recibo.",
+    /** Linha de links abaixo dos passos: as regras completas e as dúvidas comuns. */
+    regras: { antes: "As regras completas estão nos", termos: "Termos de contratação", meio: "e as dúvidas mais comuns, nas", perguntas: "perguntas frequentes" },
   },
   sobre,
   /** Conteúdo do <noscript> da home (sem JavaScript, robôs que não executam JS). Gerado no build por seo.ts. */

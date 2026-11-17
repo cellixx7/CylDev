@@ -181,6 +181,7 @@ describe("canais de envio usam o mesmo pedido", () => {
     expect(d.pacote).toBe("Painel básico");
     expect(d.estimativa).toContain("R$");
     expect(d.avisoValor, "o e-mail diz que o valor do site é estimativa").toMatch(/estimado.*proposta por escrito/);
+    expect(d.aceite, "o e-mail registra o aceite com a versão dos Termos e da privacidade").toMatch(/Termos de contratação \(versão de \d{2}\/\d{2}\/\d{4}\).*Política de privacidade \(versão de \d{2}\/\d{2}\/\d{4}\)/);
   });
 
   it("pedido vazio: sem link de WhatsApp e sem mensagem", () => {

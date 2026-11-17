@@ -150,11 +150,17 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
           </div>
         )}
       </form>
-      <p className="mt-3 mb-0 text-menor text-texto-suave">
-        {t.privacidade}{" "}
-        <a className="inline-block min-h-[44px] leading-[44px]" href="/privacidade/">
+      <p className="mt-3 mb-0 text-menor text-texto-suave">{t.privacidade}</p>
+      <p className="mt-2 mb-0 text-menor text-texto-suave" data-aceite>
+        {t.aceite.antes}{" "}
+        <a className="py-3" href="/termos/">
+          {t.aceite.termosLink}
+        </a>{" "}
+        {t.aceite.meio}{" "}
+        <a className="py-3" href="/privacidade/">
           {t.privacidadeLink}
         </a>
+        . {t.aceite.depois}
       </p>
     </section>
   );

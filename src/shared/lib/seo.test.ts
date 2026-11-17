@@ -3,7 +3,8 @@ import { servicosDa } from "../../content/servicos";
 import { site } from "../../content/site";
 import { negocios as t } from "../../content/textos";
 import { brl } from "./formato";
-import { escaparHtml, jsonLdNegocios, noscriptNegocios, precoDePartida, scriptJsonLd } from "./seo";
+import { termos } from "../../content/textos/termos";
+import { escaparHtml, jsonLdNegocios, noscriptNegocios, noscriptPaginaTexto, precoDePartida, scriptJsonLd } from "./seo";
 
 describe("precoDePartida", () => {
   it("é o menor preço fixo ou 'a partir de' de Negócios", () => {
@@ -59,6 +60,24 @@ describe("noscript da home", () => {
     expect(html).toContain(brl(partida.valor));
     expect(html).toContain(`https://wa.me/${site.whatsapp}`);
     expect(html).toContain(`mailto:${site.email}`);
+  });
+
+  it("a home sem JavaScript também identifica quem presta o serviço e liga aos Termos e à privacidade", () => {
+    const html = noscriptNegocios();
+    expect(html).toContain(escaparHtml(site.email));
+    expect(html).toContain('href="/termos/"');
+    expect(html).toContain('href="/privacidade/"');
+  });
+
+  it("página de leitura sem JavaScript: título, versão, todas as seções com âncora e links montados", () => {
+    const html = noscriptPaginaTexto(termos);
+    expect(html.startsWith("<noscript>")).toBe(true);
+    expect(html).toContain(`<h1>${escaparHtml(termos.titulo)}</h1>`);
+    expect(html).toContain(termos.versao);
+    termos.secoes.forEach((s, i) => expect(html, s.id).toContain(`<h2 id="${s.id}">${i + 1}. ${escaparHtml(s.titulo)}</h2>`));
+    expect(html).toContain('<a href="/privacidade/">Política de privacidade</a>');
+    expect(html).toContain(`<a href="mailto:${site.email}">${site.email}</a>`);
+    expect(html, "nenhuma marcação de link sobrando").not.toContain("](");
   });
 
   it("escapa o texto", () => {

@@ -53,6 +53,17 @@ function Entregas() {
         ))}
       </ol>
       <p className="mt-6 mb-0 font-semibold">{c.pagamento}</p>
+      <p className="mt-2 mb-0 text-texto-suave">
+        {c.regras.antes}{" "}
+        <a className="py-3" href="/termos/">
+          {c.regras.termos}
+        </a>{" "}
+        {c.regras.meio}{" "}
+        <a className="py-3" href="/perguntas/">
+          {c.regras.perguntas}
+        </a>
+        .
+      </p>
     </Secao>
   );
 }

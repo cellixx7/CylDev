@@ -267,5 +267,10 @@ export const orcamento = {
     privacidade:
       "Envio o seu nome, o WhatsApp, as respostas do orçamento e as observações, só para responder este pedido. Eles passam pelo EmailJS (envio pelo site) e pelo WhatsApp. Eu confirmo por WhatsApp e combinamos o Pix.",
     privacidadeLink: "Política de privacidade",
+    /** Aceite perto do envio, sem caixinha: o pedido ainda não é contrato. Os links entram entre os trechos. */
+    aceite: { antes: "Ao enviar, você concorda com os", termosLink: "Termos de contratação", meio: "e com a", depois: "O pedido ainda não é contrato: o valor final vai na proposta por escrito." },
+    /** Registro do aceite, enviado no e-mail do pedido (parâmetro `aceite` do EmailJS), com a versão de cada texto. */
+    aceiteEmail: (versaoTermos: string, versaoPrivacidade: string) =>
+      `Pedido enviado com o aviso de concordância com os Termos de contratação (versão de ${versaoTermos}) e com a Política de privacidade (versão de ${versaoPrivacidade}).`,
   },
 };

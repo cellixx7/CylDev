@@ -6,7 +6,7 @@ test.describe("tema padrão", () => {
   test.use({ colorScheme: "dark" });
 
   test("Negócios abre em claro mesmo com o sistema em modo escuro", async ({ page }) => {
-    for (const caminho of ["/", "/como-funciona/", "/obrigado/", "/privacidade/"]) {
+    for (const caminho of ["/", "/como-funciona/", "/obrigado/", "/privacidade/", "/termos/", "/perguntas/", "/acessibilidade/"]) {
       await page.goto(caminho);
       expect(await tema(page), caminho).toBe("claro");
       await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute("content", "#f2f4f8");

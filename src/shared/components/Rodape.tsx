@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { comum, negocios } from "../../content/textos";
+import { identificacaoPrestador } from "../lib/prestador";
 import { linkContato } from "../lib/whatsapp";
 
 type Props = {
@@ -21,11 +22,24 @@ export function Rodape({ ponte, contatoHref = "/#contato", children }: Props) {
         </a>
       </p>
       {children}
-      {/* Links curtos; o texto completo de privacidade mora em /privacidade/. */}
+      {/* Identificação de quem vende (Decreto 7.962/2013): nome, CPF ou CNPJ, cidade/UF e e-mail, o que houver em site.prestador. */}
+      <p className="m-0" data-prestador>
+        {comum.rodape.prestador} {identificacaoPrestador().join(" · ")}
+      </p>
+      {/* Links curtos; os textos completos moram nas páginas de leitura. */}
       <p className="m-0">{comum.rodape.semRastreio}</p>
       <nav aria-label={comum.rodape.rotulo} className="flex flex-wrap items-center gap-x-6">
+        <a className={link} href="/termos/">
+          {comum.rodape.termos}
+        </a>
         <a className={link} href="/privacidade/">
           {comum.privacidadeLink}
+        </a>
+        <a className={link} href="/perguntas/">
+          {comum.rodape.perguntas}
+        </a>
+        <a className={link} href="/acessibilidade/">
+          {comum.rodape.acessibilidade}
         </a>
         <a className={link} href={contatoHref}>
           {comum.rodape.contato}

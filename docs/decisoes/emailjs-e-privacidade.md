@@ -35,3 +35,10 @@ Envio do formulário e do pedido pelo EmailJS e a política de privacidade. Seç
 - O que o parágrafo dizia (para que servem os dados e que o formulário passa pelo EmailJS) continua na página de privacidade e na linha ao lado do botão de envio do carrinho.
 - "Termos" entra no mesmo lugar quando a página existir (Etapa 5).
 
+## Etapa 5 da auditoria: aceite no e-mail e privacidade completa (16/11/2026)
+
+- **Parâmetro novo `aceite`:** o pedido do carrinho leva "Pedido enviado com o aviso de concordância com os Termos de contratação (versão de DD/MM/AAAA) e com a Política de privacidade (versão de DD/MM/AAAA)." (`carrinho.aceiteEmail` em `textos/orcamento.ts`; datas em `textos/versoes.ts`). É o registro do aceite que a auditoria pediu, sem caixinha. Contato simples manda "—". O template do painel precisa ganhar `{{aceite}}` (ver `docs/emailjs-template.md` e `PENDENCIAS.md`).
+- **Privacidade:** o texto saiu de `paginas.ts` para `textos/privacidade.ts` e foi completado para a LGPD. O prazo de 12 meses continua, agora em `prazosDaPrivacidade.guardaPedidos`. Detalhes e limites em [`juridico.md`](juridico.md).
+- **Formulário de contato:** ganhou a linha "Uso o seu nome e o seu contato só para responder. A mensagem passa pelo EmailJS." com link para a política.
+- **Rodapé:** além de "Site sem rastreadores.", traz a identificação do prestador e os links Termos, Privacidade, Perguntas, Acessibilidade e Contato.
+- Regras de spam (isca e 3 s) sem mudança.

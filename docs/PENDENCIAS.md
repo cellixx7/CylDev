@@ -29,6 +29,24 @@ Dono: **Marcelo** (decisão comercial ou ação fora do código) ou **dev** (mud
 | [ ] | Foto (opcional): colocar em `public/` e apontar `site.foto` | `src/content/site.ts` | 02/11/2026 |
 | [ ] | Vídeo do CylBot (talvez UniSER e CylSense). Nenhum vídeo para a planilha | `public/` | 02/11/2026 |
 
+## Jurídico (Marcelo)
+
+Abertas na Etapa 5 da auditoria (16/11/2026). Os textos não são parecer jurídico; detalhes em `decisoes/juridico.md`.
+
+| | Pendência | Onde mexer | Desde |
+|---|---|---|---|
+| [ ] | **CPF ou CNPJ** de quem presta o serviço. Enquanto estiver vazio, o rodapé mostra só nome e e-mail e os Termos dizem que o documento vai na proposta. O Decreto 7.962/2013 pede o documento em local visível; converse com um contador sobre CNPJ (MEI ou outro) para não publicar o CPF | `site.prestador.documento` em `src/content/site.ts` | 16/11/2026 |
+| [ ] | **Cidade/UF** de onde o serviço é prestado (entra no rodapé, nos Termos e no foro). Com CNPJ, usar o endereço fiscal | `site.prestador.cidadeUf` | 16/11/2026 |
+| [ ] | **Recibo ou nota fiscal:** hoje o site diz recibo. Com nota de serviço, trocar para `"nota"` (muda os Termos e a FAQ) e ajustar "Emito recibo" em `negocios.comoFunciona.pagamento` | `site.prestador.comprovante` | 16/11/2026 |
+| [ ] | **Confirmar os prazos propostos nos Termos:** revisão pedida em até 7 dias; 30 dias sem resposta encerra o serviço; devolução de valores em até 10 dias; arquivos do cliente apagados em até 30 dias depois da entrega; aviso de incidente em até 2 dias úteis | `prazosDosTermos` em `src/content/textos/termos.ts` | 16/11/2026 |
+| [ ] | **Confirmar as cláusulas novas dos Termos**, que não existiam em lugar nenhum: desistência em 7 dias (`#arrependimento`), cancelamento pagando o que foi feito (`#cancelamento`), cancelamento da mensalidade dos bots no fim do mês pago (`#bots`), propriedade e portfólio, limite de responsabilidade para quem não é consumidor, e a promessa de segurança ("equipamento e contas com acesso só meu, protegidos por senha") | `src/content/textos/termos.ts` | 16/11/2026 |
+| [ ] | **Confirmar as respostas da FAQ que dependem de como você trabalha:** "Você precisa acessar o meu computador?" (hoje: não, só os arquivos enviados e a tela compartilhada no Meet), "Preciso ter algum programa pago?" e o passo a passo de envio de arquivos (link do Drive ou OneDrive só com o seu e-mail) | `src/content/textos/perguntasFrequentes.ts` | 16/11/2026 |
+| [ ] | **Privacidade:** confirmar o prazo de 15 dias para responder pedidos, a guarda dos documentos de contrato "em regra, 5 anos", o e-mail de contato para titulares e a frase sobre não ter encarregado nomeado | `src/content/textos/privacidade.ts` | 16/11/2026 |
+| [ ] | **Revisão de advogado** (cerca de 1 hora) dos Termos e da privacidade antes de tratá-los como definitivos. Primeiro ponto: a regra de desistência quando já houve entrega dentro dos 7 dias. Depois de qualquer mudança, trocar a data em `versoes.ts` | `src/content/textos/` | 16/11/2026 |
+| [ ] | **EmailJS:** acrescentar `{{aceite}}` no template do painel (linha em `docs/emailjs-template.md`); sem isso o registro do aceite é enviado mas não aparece no e-mail | painel do EmailJS | 16/11/2026 |
+| [ ] | **Cumprir o que os textos prometem:** apagar os pedidos com mais de 12 meses, apagar as cópias dos arquivos do cliente depois da entrega, guardar proposta, aceite e comprovantes, e usar `docs/MODELO-PROPOSTA.md` nas propostas | rotina | 16/11/2026 |
+| [ ] | **Declaração de acessibilidade:** testar as páginas com leitor de tela num celular de verdade; se estiver tudo certo, tirar a linha de "O que ainda falta" | `src/content/textos/acessibilidade.ts` | 16/11/2026 |
+
 ## Validação (Marcelo e dev)
 
 | | Pendência | Dono | Desde |
@@ -47,7 +65,8 @@ Detalhes e prioridades no relatório da auditoria (fora do repositório). Resumo
 - [x] **Etapa 4, ajustes do FrontEnd** (16/11/2026): escala de texto, nada abaixo de 14 px, `<Secao>`, hero com a promessa no `h1`, seção Entregas, mini exemplos recolhidos no celular, rodapé curto e `docs/DESIGN.md` completo; ver `CHANGELOG.md` e `decisoes/arquitetura-e-design.md`.
 - [ ] **Etapa 4, para conferir (Marcelo):** os textos novos do hero (`negocios.apresentacao.titulo` e `subtitulo`), a intro da seção Entregas (`negocios.comoFunciona.intro`) e a troca de "Estagio em TI" por "Sou estagiário de TI" no Sobre (`src/content/textos/sobre.ts`).
 - [ ] **Etapa 4, para depois:** passar a Comunidade para o `<Secao>` quando a área for revisada; o botão de tema flutuante do desktop encosta na margem esquerda do conteúdo (já era assim antes da etapa). Dono: dev.
-- [ ] **Etapa 5:** Termos (com "o valor do site é estimativa; o valor final vai na proposta por escrito", que desde a Etapa 3 já vai no e-mail do pedido), privacidade completa (LGPD), identificação do prestador, FAQ. Dono: Marcelo (conteúdo e revisão jurídica) e dev.
+- [x] **Etapa 5, páginas jurídicas e de apoio** (16/11/2026): Termos (`/termos/`), privacidade completa (LGPD), identificação no rodapé, aceite no checkout com registro no e-mail, perguntas frequentes, acessibilidade e modelo de proposta; ver `CHANGELOG.md` e `decisoes/juridico.md`. O que depende do Marcelo está na seção "Jurídico" acima.
+- [ ] **Etapa 5, para depois:** casos reais (`/trabalhos/`, só com trabalho real e autorização do cliente) e uma página por serviço (`/servicos/...`, pede texto próprio por serviço). Comunidade: termos e privacidade do CylBot, termos de bot sob medida, regras de conduta, FAQ dos bots e aviso de não afiliação completo. Dono: Marcelo (conteúdo) e dev.
 
 ## Resolvidas recentemente
 

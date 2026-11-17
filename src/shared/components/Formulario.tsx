@@ -159,6 +159,12 @@ export function Formulario({ origem, resumo, detalhes }: Props) {
       <button className={`${botaoCheio} cursor-pointer justify-self-start disabled:cursor-wait disabled:opacity-60`} type="submit" disabled={estado === "enviando"}>
         {estado === "enviando" ? t.enviando : t.enviar}
       </button>
+      <p className="m-0 text-menor text-texto-suave">
+        {t.privacidade}{" "}
+        <a className="py-3" href="/privacidade/">
+          {t.privacidadeLink}
+        </a>
+      </p>
       {estado === "falhou" && (
         <div className="border-l-[3px] border-destaque bg-realce p-3" role="alert">
           <p>{t.falhou}</p>

@@ -84,18 +84,27 @@ Rodapé da seção: "Pagamento por Pix. Emito recibo."
 
 ## Comum
 
-- Rodapé: "Site sem rastreadores." + links "Privacidade" e "Contato" (o parágrafo longo saiu em 16/11/2026; o conteúdo dele está na página de privacidade).
+- Rodapé: "Serviço prestado por Marcelo Vaz · [CPF ou CNPJ] · [cidade/UF] · e-mail" (o que houver em `site.prestador`), "Site sem rastreadores." e os links "Termos", "Privacidade", "Perguntas", "Acessibilidade" e "Contato" (o parágrafo longo saiu em 16/11/2026; o conteúdo dele está na página de privacidade).
 - Obrigado: "Mensagem recebida." / "Obrigado pelo contato. Respondo pelo WhatsApp que você deixou."
 - 404: "Essa página não existe." / "O link pode estar errado ou a página mudou de lugar. Se precisar de ajuda, escreva para marcelovaz.contato@gmail.com."
 - Mensagem do WhatsApp: "Oi, Marcelo! Vim pelo site (origem: negocios)." Nos pacotes, a origem vira `negocios-painel`, `comunidade-bot-essencial` etc., seguida de "Quero um orçamento de: [nome do pacote] ([preço])." O preço **sai do `servicos.ts`**, nunca escrito à mão no texto.
 
 ## Privacidade (12/11/2026)
 
-Fonte dos textos: `privacidade` em `src/content/textos/paginas.ts` (página `/privacidade/`) e `carrinho.privacidade` / `comum.privacidadeLink`.
+Fonte dos textos: `privacidade` em `src/content/textos/privacidade.ts` (página `/privacidade/`; até a Etapa 5 ficava em `paginas.ts`) e `carrinho.privacidade` / `comum.privacidadeLink`.
 
 - Carrinho (perto do envio): "Envio o seu nome, o WhatsApp, as respostas do orçamento e as observações, só para responder este pedido. Eles passam pelo EmailJS (envio pelo site) e pelo WhatsApp. Eu confirmo por WhatsApp e combinamos o Pix." + link "Política de privacidade".
-- Rodapé de Negócios e Comunidade: "Site sem rastreadores." + links "Privacidade" e "Contato".
-- Página: o que recebo; para que uso; por onde passa (EmailJS, WhatsApp, Netlify; sem fontes ou rastreadores de terceiros); o que fica no navegador (carrinho em sessionStorage, sem nome, telefone nem observações; tema em localStorage; sem cookies de rastreamento); guarda do e-mail por até 12 meses; como pedir exclusão (e-mail de `site.ts`). Não é parecer jurídico.
+- Rodapé de Negócios e Comunidade: ver "Comum" acima.
+- Página (revisada em 16/11/2026, Etapa 5): quem é o responsável e o canal; o que recebo; para que uso e a base legal de cada uso (LGPD art. 7º); por onde passa (EmailJS, WhatsApp, Netlify, Gmail; sem fontes ou rastreadores de terceiros); dados fora do Brasil (art. 33); o que fica no navegador (carrinho em sessionStorage, sem nome, telefone nem observações; tema em localStorage; sem cookies de rastreamento); guarda do e-mail por até 12 meses e dos documentos de contrato; dados dos clientes do cliente (liga aos Termos); direitos do art. 18; como pedir (e-mail de `site.ts`, resposta em até 15 dias, ANPD); mudanças na política. Não é parecer jurídico.
+
+## Termos, perguntas e acessibilidade (16/11/2026, Etapa 5)
+
+Os textos completos ficam só no código, para não haver duas versões: `src/content/textos/termos.ts` (`/termos/`), `perguntasFrequentes.ts` (`/perguntas/`) e `acessibilidade.ts` (`/acessibilidade/`). Datas das versões em `versoes.ts`. Decisões e limites em `docs/decisoes/juridico.md`; modelo da proposta em `docs/MODELO-PROPOSTA.md`.
+
+- Carrinho (perto do envio): "Ao enviar, você concorda com os Termos de contratação e com a Política de privacidade. O pedido ainda não é contrato: o valor final vai na proposta por escrito."
+- Formulário de contato: "Uso o seu nome e o seu contato só para responder. A mensagem passa pelo EmailJS." + link "Política de privacidade".
+- Seção Entregas da home: "As regras completas estão nos Termos de contratação e as dúvidas mais comuns, nas perguntas frequentes."
+- Prazos propostos nos Termos (a confirmar): revisão pedida em até 7 dias; 30 dias sem resposta encerra o serviço; devolução em até 10 dias; arquivos do cliente apagados em até 30 dias; aviso de incidente em até 2 dias úteis.
 
 
 ## Por que esse valor? (12/11/2026)

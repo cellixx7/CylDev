@@ -72,7 +72,7 @@ Escala única, em tokens no `@theme` de `tailwind.css`. Use só as classes abaix
 |---|---|---|
 | `max-w-site` | 96 rem | a página (cabeçalho, rodapé) |
 | `max-w-hero` | 86 rem | o conteúdo das seções |
-| `max-w-leitura` | 40 rem | parágrafos, intros, modais de texto, página de privacidade |
+| `max-w-leitura` | 40 rem | parágrafos, intros, modais de texto, páginas de leitura (Termos, privacidade...) |
 | `max-w-titulo` | 20 ch | `h1` das páginas internas |
 
 - Raio: `rounded-pequeno` / `rounded-padrao` (2 px em Negócios).
@@ -108,11 +108,21 @@ Toda seção da home usa o componente `<Secao>` (`src/shared/components/Secao.ts
 - Seção nova no menu: entrada em `negocios.nav` (`src/content/textos/negocios.ts`), na mesma ordem da página, e flag em `site.menuSecoes`.
 - A Comunidade ainda usa o esqueleto antigo (`main > section` em `tailwind.css`); passa para o `<Secao>` quando a área for revisada.
 
+## Página de leitura
+
+Texto longo (Termos, privacidade, perguntas frequentes, acessibilidade) usa o componente `PaginaTexto` (`src/shared/components/PaginaTexto.tsx`), na largura `max-w-leitura`:
+
+- `h1`, linha da versão, intro, índice "Nesta página" (faixa com borda de destaque), uma `<section>` por assunto com `h2`, e no fim "Voltar para o site", "Voltar ao topo" e o rodapé.
+- O conteúdo vem de `src/content/textos/` no formato `PaginaDeTexto` (`tipos.ts`): cada seção tem `id` (a âncora, que não muda depois de publicada), `titulo` e `texto` (parágrafos), `itens` (lista com marcador), `depois` (parágrafos após a lista) ou `blocos` (`h3` + parágrafos, usado nas perguntas). `numerada: true` numera os títulos, como em contrato.
+- Link dentro do texto: `[rótulo](endereço)`. Só endereços do site (`/...`, `#...`), `https://`, `mailto:` e `tel:` viram link (`shared/lib/texto-rico.ts`).
+- Página nova: arquivo de texto em `src/content/textos/`, `src/pages/<nome>/main.tsx` de quatro linhas (copie o de `termos`), `<nome>/index.html`, entrada em `vite.config.ts` (`input` e `paginasPublicas`) e link no rodapé. O texto é importado direto do arquivo, não do `index.ts`, para não pesar na home.
+
 ## Componentes base
 
 - Botões: `botao` (contorno) e `botaoCheio` (ação principal, uma por bloco), de `src/shared/estilos.ts`.
 - Foco: `focoVisivel` em todo elemento clicável que não seja link ou botão nativo.
 - Rótulo de exemplo: `rotuloFicticio`. Nos cards, o mini exemplo leva o selo "Exemplo" e, no celular, vem recolhido atrás do botão "Ver exemplo" (`MiniExemplo.tsx`).
-- Rodapé: `Rodape.tsx`, com a ponte para a outra área e os links curtos (Privacidade, Contato; "Termos" entra na Etapa 5). Texto longo não vai no rodapé.
+- Rodapé: `Rodape.tsx`, com a ponte para a outra área, a linha de identificação de quem presta o serviço (`site.prestador`) e os links curtos (Termos, Privacidade, Perguntas, Acessibilidade, Contato). Texto longo não vai no rodapé.
+- Página de leitura: `PaginaTexto.tsx` (Termos, privacidade, perguntas, acessibilidade). Ver "Página de leitura" abaixo.
 - Dica "i": `src/shared/components/Dica.tsx`.
 - Modais: `<dialog>` nativo, foco preso e devolvido ao botão que abriu, `Esc` fecha.

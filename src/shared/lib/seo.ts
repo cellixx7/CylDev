@@ -2,8 +2,10 @@
 // Usado pelo plugin `seo` do vite.config.ts no build e pelo hero (preço de partida). Tudo sai de src/content/.
 import { servicosDa, type Servico } from "../../content/servicos";
 import { site } from "../../content/site";
-import { negocios as t } from "../../content/textos";
+import { comum, negocios as t, paginaDeTexto, type PaginaDeTexto } from "../../content/textos";
 import { brl } from "./formato";
+import { identificacaoPrestador } from "./prestador";
+import { partesDoTexto } from "./texto-rico";
 
 /** Menor preço de partida entre os pacotes de Negócios (fixo ou "a partir de"), direto de servicos.ts. */
 export function precoDePartida(lista: Servico[] = servicosDa("negocios")): { nome: string; valor: number } {
@@ -84,6 +86,58 @@ export function noscriptNegocios(): string {
     `<li><a ${link} href="mailto:${e(site.email)}">${e(t.semJs.email)}</a> (${e(site.email)})</li>`,
     `<li><a ${link} href="/como-funciona/">${e(t.semJs.comoFunciona)}</a></li>`,
     `</ul>`,
+    rodapeSemJs(),
+    `</main>`,
+    `</noscript>`,
+  ].join("\n");
+}
+
+/** Identificação de quem presta o serviço e links das páginas de leitura, para o HTML sem JavaScript. */
+function rodapeSemJs(): string {
+  const e = escaparHtml;
+  const link = `class="inline-flex min-h-alvo items-center"`;
+  const links = [
+    ["/termos/", comum.rodape.termos],
+    ["/privacidade/", comum.privacidadeLink],
+    ["/perguntas/", comum.rodape.perguntas],
+    ["/acessibilidade/", comum.rodape.acessibilidade],
+  ];
+  return [
+    `<p class="text-texto-suave">${e(`${comum.rodape.prestador} ${identificacaoPrestador().join(" · ")}`)}</p>`,
+    `<p>${links.map(([href, rotulo]) => `<a ${link} href="${href}">${e(rotulo)}</a>`).join(" ")}</p>`,
+  ].join("\n");
+}
+
+/** Texto com links `[rótulo](endereço)` em HTML escapado. */
+function htmlDoTexto(texto: string): string {
+  return partesDoTexto(texto)
+    .map((p) => (p.href ? `<a href="${escaparHtml(p.href)}">${escaparHtml(p.texto)}</a>` : escaparHtml(p.texto)))
+    .join("");
+}
+
+/**
+ * `<noscript>` de uma página de leitura (Termos, privacidade, perguntas, acessibilidade): o texto inteiro, para
+ * quem está sem JavaScript e para robôs que não o executam. Um texto jurídico não pode depender de script para ser lido.
+ * Mesmo conteúdo e mesma ordem do componente PaginaTexto.
+ */
+export function noscriptPaginaTexto(pagina: PaginaDeTexto): string {
+  const e = escaparHtml;
+  const paragrafos = (textos: string[] = []) => textos.map((p) => `<p>${htmlDoTexto(p)}</p>`);
+  return [
+    `<noscript>`,
+    `<main id="conteudo" class="mx-auto max-w-leitura px-margem py-16">`,
+    `<h1>${e(pagina.titulo)}</h1>`,
+    `<p class="text-texto-suave">${e(pagina.atualizado)}</p>`,
+    ...paragrafos(pagina.intro),
+    ...pagina.secoes.flatMap((s, i) => [
+      `<h2 id="${e(s.id)}">${e(pagina.numerada ? `${i + 1}. ${s.titulo}` : s.titulo)}</h2>`,
+      ...paragrafos(s.texto),
+      ...(s.itens ? [`<ul class="m-0 grid list-disc gap-2 pl-[1.2em]">`, ...s.itens.map((item) => `<li>${htmlDoTexto(item)}</li>`), `</ul>`] : []),
+      ...paragrafos(s.depois),
+      ...(s.blocos ?? []).flatMap((b) => [`<h3>${e(b.titulo)}</h3>`, ...paragrafos(b.texto)]),
+    ]),
+    `<p><a class="inline-flex min-h-alvo items-center" href="/">${e(paginaDeTexto.voltar)}</a></p>`,
+    rodapeSemJs(),
     `</main>`,
     `</noscript>`,
   ].join("\n");
