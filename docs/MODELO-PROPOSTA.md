@@ -10,7 +10,7 @@ Como usar: copie, troque o que está entre colchetes e apague as linhas que não
 
 **Para:** [nome do cliente] ([CPF ou CNPJ do cliente, se ele quiser recibo ou nota no nome])
 
-**De:** Marcelo Vaz · [CPF ou CNPJ] · [cidade/UF] · marcelovaz.contato@gmail.com
+**De:** Marcelo Vaz · [CPF ou CNPJ: obrigatório, porque os Termos dizem que ele vem aqui] · Brasília/DF · marcelovaz.contato@gmail.com
 
 **1. O que eu vou fazer**
 
@@ -38,7 +38,7 @@ Como usar: copie, troque o que está entre colchetes e apague as linhas que não
 - Valor total: R$ [valor].
 - Entrada de 50% (R$ [valor]) por Pix, para começar.
 - Saldo de 50% (R$ [valor]) por Pix, antes da entrega dos arquivos finais [ou da publicação].
-- Chave Pix: [chave]. Depois de cada pagamento eu envio [o recibo / a nota fiscal].
+- Chave Pix: [chave]. Depois de cada pagamento eu envio o recibo.
 
 **6. Prazo**
 

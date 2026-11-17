@@ -8,13 +8,14 @@ export const site = {
   email: "marcelovaz.contato@gmail.com",
 
   // Identificação de quem presta o serviço (Decreto 7.962/2013). Aparece no rodapé de todas as páginas e nos Termos.
-  // `null` = ainda não informado pelo Marcelo: o site não mostra o campo (nada é inventado) e os Termos dizem
-  // que o documento vai na proposta por escrito. Pendência em docs/PENDENCIAS.md.
+  // `null` = o site não mostra o campo (nada é inventado). Decisão do Marcelo em 16/11/2026: por enquanto o CPF
+  // não é publicado e os Termos dizem que o documento vai na proposta por escrito (docs/PENDENCIAS.md).
+  // Cidade/UF, recibo e o e-mail de contato para privacidade também foram confirmados por ele em 16/11/2026.
   prestador: {
     /** CPF ou CNPJ, já formatado. Ex.: { tipo: "CNPJ", numero: "00.000.000/0001-00" }. */
     documento: null as { tipo: "CPF" | "CNPJ"; numero: string } | null,
     /** Cidade e UF de onde o serviço é prestado. Ex.: "Cidade/UF". */
-    cidadeUf: null as string | null,
+    cidadeUf: "Brasília/DF" as string | null,
     /** O que é emitido depois de cada pagamento. Troque para "nota" quando houver CNPJ e nota fiscal de serviço. */
     comprovante: "recibo" as "recibo" | "nota",
   },
