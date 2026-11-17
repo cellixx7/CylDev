@@ -21,3 +21,24 @@ Envio do formulário e do pedido pelo EmailJS e a política de privacidade. Seç
 - **A-11:** linha de privacidade no painel do carrinho (o que é enviado, para quê, por onde passa) e página `/privacidade/` (entrada no `vite.config.ts`, canonical, sitemap, link no rodapé de Negócios e Comunidade; `/obrigado/` e a 404 não têm rodapé). Texto em `textos.ts`/`COPY.md`.
 - **Prazo de guarda:** e-mails de pedidos por até 12 meses (escolha do Marcelo). É uma promessa a cumprir: apagar a cada 12 meses, e o registro do envio no painel do EmailJS, se houver. A conversa no WhatsApp: "enquanto precisar para atendimento e entrega", sem número.
 - **Limites:** não é parecer jurídico; não verifiquei a política interna de retenção do EmailJS nem os logs da Netlify (a página só diz que podem existir). A linha do carrinho aparece só com o EmailJS ativo (é o formulário que a contém).
+
+## Etapa 3 da auditoria geral: e-mail do pedido e riscos do "backend" (16/11/2026)
+
+- **Sem backend próprio, de propósito:** o "backend" continua sendo Netlify (hospedagem e cabeçalhos) + EmailJS (envio) + WhatsApp (conversa). Custo zero e nada para invadir.
+- **Valor estimado no e-mail:** o pedido do carrinho passa a levar `aviso_valor` ("Valor estimado pelo site. O valor final vai na proposta por escrito.", em `textos/orcamento.ts`). Motivo: o preço é calculado só no navegador e pode ser alterado por quem mexer nele; a proposta por escrito é o que vale. O site já dizia isso no orçamento e o WhatsApp já fecha com "(Estimativa, confirmada na conversa.)"; faltava no e-mail. Contato simples (sem carrinho) manda "—". O template do painel precisa ganhar `{{aviso_valor}}` (ver `docs/emailjs-template.md`). O mesmo aviso tem de entrar nos Termos (Etapa 5).
+- **Pedido perdido sem aviso:** se o EmailJS cair ou a cota acabar, o cliente vê o erro com WhatsApp e e-mail, mas o Marcelo não fica sabendo. Mitigação sem código nova: filtro no Gmail que nunca manda para spam e marca os e-mails do EmailJS, e conferência mensal da cota no painel do EmailJS (em `PENDENCIAS.md`).
+- **Futuro, só com ok do Marcelo:** se o volume crescer, uma Netlify Function para receber o pedido, recalcular o preço no servidor e guardar uma cópia (ex.: planilha Google). Peça nova, fora desta etapa.
+
+## Rodapé curto (Etapa 4 da auditoria, 16/11/2026)
+
+- O parágrafo de privacidade repetido no rodapé de todas as páginas saiu. Ficam a frase "Site sem rastreadores." e os links "Privacidade" (`/privacidade/`) e "Contato" (`/#contato`; na Comunidade, `#contato`). Textos em `comum.rodape` e `comum.privacidadeLink`.
+- O que o parágrafo dizia (para que servem os dados e que o formulário passa pelo EmailJS) continua na página de privacidade e na linha ao lado do botão de envio do carrinho.
+- "Termos" entra no mesmo lugar quando a página existir (Etapa 5).
+
+## Etapa 5 da auditoria: aceite no e-mail e privacidade completa (16/11/2026)
+
+- **Parâmetro novo `aceite`:** o pedido do carrinho leva "Pedido enviado com o aviso de concordância com os Termos de contratação (versão de DD/MM/AAAA) e com a Política de privacidade (versão de DD/MM/AAAA)." (`carrinho.aceiteEmail` em `textos/orcamento.ts`; datas em `textos/versoes.ts`). É o registro do aceite que a auditoria pediu, sem caixinha. Contato simples manda "—". O template do painel precisa ganhar `{{aceite}}` (ver `docs/emailjs-template.md` e `PENDENCIAS.md`).
+- **Privacidade:** o texto saiu de `paginas.ts` para `textos/privacidade.ts` e foi completado para a LGPD. O prazo de 12 meses continua, agora em `prazosDaPrivacidade.guardaPedidos`. Detalhes e limites em [`juridico.md`](juridico.md).
+- **Formulário de contato:** ganhou a linha "Uso o seu nome e o seu contato só para responder. A mensagem passa pelo EmailJS." com link para a política.
+- **Rodapé:** além de "Site sem rastreadores.", traz a identificação do prestador e os links Termos, Privacidade, Perguntas, Acessibilidade e Contato.
+- Regras de spam (isca e 3 s) sem mudança.

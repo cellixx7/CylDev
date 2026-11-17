@@ -50,12 +50,12 @@ export function ModalSobre({ aberto, telas, destino, aoFechar, aoFalar }: Props)
       onClick={(e) => {
         if (e.target === e.currentTarget) aoFechar();
       }}
-      className="modal-sobre m-auto hidden h-[calc(100dvh-1rem)] max-h-none w-[calc(100%-1rem)] max-w-none flex-col overflow-hidden border border-linha bg-fundo p-0 text-texto open:flex md:h-auto md:max-h-[90dvh] md:max-w-[40rem] backdrop:bg-[rgb(0_0_0/0.6)]"
+      className="modal-sobre m-auto hidden h-[calc(100dvh-1rem)] max-h-none w-[calc(100%-1rem)] max-w-none flex-col overflow-hidden border border-linha bg-fundo p-0 text-texto open:flex md:h-auto md:max-h-[90dvh] md:max-w-leitura backdrop:bg-[rgb(0_0_0/0.6)]"
     >
       {modal && (
         <>
           <header className="flex shrink-0 items-start justify-between gap-3 border-b border-linha px-4 pt-3 pb-2 md:px-6">
-            <h2 id="modal-sobre-titulo" ref={titulo} tabIndex={-1} className="m-0 py-2 text-[1.35rem] leading-tight outline-none">
+            <h2 id="modal-sobre-titulo" ref={titulo} tabIndex={-1} className="m-0 py-2 text-grande leading-tight outline-none">
               {modal.titulo}
             </h2>
             <button
@@ -72,7 +72,7 @@ export function ModalSobre({ aberto, telas, destino, aoFechar, aoFalar }: Props)
             <p className="m-0 mb-5 text-texto-suave">{modal.texto}</p>
             {modal.secoes.map((s) => (
               <section key={s.subtitulo} className="mb-5">
-                <h3 className="m-0 mb-2 text-[1.0625rem]">{s.subtitulo}</h3>
+                <h3 className="m-0 mb-2 text-medio">{s.subtitulo}</h3>
                 {s.texto && <p className="m-0 text-texto-suave">{s.texto}</p>}
                 {s.mais?.map((p) => (
                   <p key={p} className="m-0 mt-3 text-texto-suave">

@@ -1,7 +1,7 @@
 import { VALOR_HORA_EXTRA } from "../../content/orcamento";
 import { servicoOrcamentoPorId, type ServicoOrcamento } from "../../content/perguntas";
 import { site } from "../../content/site";
-import { orcamento as textos } from "../../content/textos";
+import { orcamento as textos, versoes } from "../../content/textos";
 import { SEM_DADO, type DadosContato, type ItemEmail } from "./emailjs";
 import { brl, horasTexto } from "./formato";
 import {
@@ -268,5 +268,7 @@ export function dadosEmailPedido(
     itens: itensDoEmail(p),
     total: totalCurto(p) || SEM_DADO,
     observacoes: p.observacoes || SEM_DADO,
+    avisoValor: textos.carrinho.avisoValorEmail,
+    aceite: textos.carrinho.aceiteEmail(versoes.termos, versoes.privacidade),
   };
 }

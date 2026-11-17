@@ -13,10 +13,10 @@ const origem = "negocios-carrinho";
 /** O botão "Enviar pelo site" fica no rodapé do painel e envia este formulário pelo atributo `form`. */
 export const ID_FORM_PEDIDO = "form-pedido";
 
-const campo = "grid gap-1 text-[1rem] font-semibold";
+const campo = "grid gap-1 text-base font-semibold";
 // 16 px no campo: abaixo disso o Safari do iPhone dá zoom ao focar.
 const entrada =
-  "min-h-alvo rounded-pequeno border border-texto-suave bg-superficie px-3 py-2 text-[1rem] font-normal text-texto focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
+  "min-h-alvo rounded-pequeno border border-texto-suave bg-superficie px-3 py-2 text-base font-normal text-texto focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
 const focoVisivel = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
 
 export type EstadoEnvio = "pronto" | "enviando" | "falhou";
@@ -96,10 +96,10 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
   if (!envioAtivo) return null;
   return (
     <section aria-labelledby="orc-dados-titulo">
-      <h3 id="orc-dados-titulo" className="mb-1 text-[1.1rem] font-bold">
+      <h3 id="orc-dados-titulo" className="mb-1 text-medio font-bold">
         {t.dadosTitulo}
       </h3>
-      <p className="mb-3 text-[1rem] text-texto-suave">{t.dadosNota}</p>
+      <p className="mb-3 text-base text-texto-suave">{t.dadosNota}</p>
       <form id={ID_FORM_PEDIDO} className="grid gap-3" onSubmit={aoEnviar}>
         <p className="absolute -left-[9999px]" aria-hidden="true">
           <label>
@@ -126,13 +126,13 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
             onChange={aoEditarTelefone}
           />
           {erroTelefone && (
-            <span id="erro-telefone-pedido" className="text-[1rem] font-normal text-destaque" role="alert">
+            <span id="erro-telefone-pedido" className="text-base font-normal text-destaque" role="alert">
               {erroTelefone}
             </span>
           )}
         </label>
         {!liberado && (
-          <p className="m-0 text-[1rem] text-texto-suave" role="status">
+          <p className="m-0 text-base text-texto-suave" role="status">
             {t.aguarde}
           </p>
         )}
@@ -150,11 +150,17 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
           </div>
         )}
       </form>
-      <p className="mt-3 mb-0 text-[0.875rem] text-texto-suave">
-        {t.privacidade}{" "}
-        <a className="inline-block min-h-[44px] leading-[44px]" href="/privacidade/">
+      <p className="mt-3 mb-0 text-menor text-texto-suave">{t.privacidade}</p>
+      <p className="mt-2 mb-0 text-menor text-texto-suave" data-aceite>
+        {t.aceite.antes}{" "}
+        <a className="py-3" href="/termos/">
+          {t.aceite.termosLink}
+        </a>{" "}
+        {t.aceite.meio}{" "}
+        <a className="py-3" href="/privacidade/">
           {t.privacidadeLink}
         </a>
+        . {t.aceite.depois}
       </p>
     </section>
   );

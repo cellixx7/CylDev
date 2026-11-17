@@ -4,6 +4,7 @@ import { orcamento as t } from "../../../content/textos";
 import { adicionar, montarCombo, remover, responder, type EstadoCarrinho } from "../../../shared/lib/carrinho-estado";
 import { lerCarrinho, salvarCarrinho } from "../../../shared/lib/carrinho-persistencia";
 import type { AbaModal } from "../../../shared/lib/hashServico";
+import { Secao } from "../../../shared/components/Secao";
 import { montarPedido } from "../../../shared/lib/pedido";
 import { BarraCarrinho, ID_BOTAO_BARRA } from "./BarraCarrinho";
 import { CardsServicos } from "./CardsServicos";
@@ -102,16 +103,7 @@ export function Orcamento() {
   };
 
   return (
-    <section
-      className="mx-auto max-w-hero scroll-mt-24 px-margem pt-14 pb-14"
-      id="orcamento"
-      aria-labelledby="orcamento-titulo"
-    >
-      <span className="revela-barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
-      <h2 id="orcamento-titulo" tabIndex={-1} className="revela-titulo outline-none">
-        {t.titulo}
-      </h2>
-      <p className="max-w-[40rem] text-texto-suave">{t.intro}</p>
+    <Secao id="orcamento" titulo={t.titulo} intro={t.intro} tituloFocavel>
       <GuiaEscolha aoVerDetalhes={(id) => abrirModal(id, "detalhes")} aoFazerOrcamento={(id) => abrirModal(id, "orcamento")} />
 
       <p className="sr-only" role="status">
@@ -155,6 +147,6 @@ export function Orcamento() {
 
       {/* Fora do bloco `.revela`: o transform dele prenderia o `fixed` ao bloco. */}
       <BarraCarrinho pedido={pedido} aoAbrir={() => setPainelAberto(true)} />
-    </section>
+    </Secao>
   );
 }

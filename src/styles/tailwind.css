@@ -46,6 +46,25 @@
 
   --container-site: 96rem;
   --container-hero: 86rem;
+  /* Largura de leitura (parágrafos, intros, modais de texto) e de título de página. */
+  --container-leitura: 40rem;
+  --container-titulo: 20ch;
+
+  /*
+   * Escala de texto (guia em docs/DESIGN.md). Só estes tamanhos: os padrão do Tailwind (text-xs, text-sm...)
+   * ficam desligados para ninguém cair abaixo de 14 px sem querer. Sem altura de linha embutida.
+   */
+  --text-*: initial;
+  --text-menor: 0.875rem; /* 14 px: legendas, rótulos, notas. É o mínimo do site. */
+  --text-base: 1rem; /* 16 px: texto de leitura */
+  --text-medio: 1.125rem; /* 18 px: destaque de texto, preço do card, título pequeno */
+  --text-grande: 1.35rem; /* título de card, de modal e de bloco */
+  --text-maior: 1.75rem; /* número em destaque, título de bloco grande */
+  --text-preco: clamp(1.7rem, 6vw, 2.2rem); /* total da estimativa */
+  --text-secao: clamp(1.6rem, 4vw, 2.2rem); /* h2 de seção */
+  --text-pagina: clamp(2rem, 7.5vw, 3.6rem); /* h1 das páginas internas */
+  --text-hero: clamp(2.1rem, 8.6vw, 3.4rem); /* h1 da home, no celular */
+  --text-hero-pc: clamp(2.4rem, 4.2vw, 3.9rem); /* h1 da home, no desktop (ao lado do painel) */
 
   /* Pontos de quebra além dos padrão (sm 40rem, md 48rem, xl 80rem). */
   --breakpoint-tab: 56rem;
@@ -194,13 +213,14 @@
     background: var(--color-fundo);
     color: var(--color-texto);
     font-family: var(--font-texto);
-    font-size: 1.0625rem;
+    font-size: var(--text-base);
     line-height: 1.6;
   }
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: var(--font-titulo);
     line-height: 1.2;
     font-weight: 700;
@@ -209,15 +229,19 @@
   }
 
   h1 {
-    font-size: 2em;
+    font-size: var(--text-pagina);
   }
 
   h2 {
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-size: var(--text-secao);
   }
 
   h3 {
-    font-size: 1.17em;
+    font-size: var(--text-grande);
+  }
+
+  h4 {
+    font-size: var(--text-medio);
   }
 
   p {
@@ -249,6 +273,49 @@
     *::after {
       transition: none !important;
       animation: none !important;
+    }
+  }
+}
+
+/*
+ * Troca de página (todas as áreas), CSS puro (View Transitions entre documentos); onde o navegador
+ * não suporta, a troca é a de sempre. Fica fora do @layer porque o @view-transition não é aceito dentro dele.
+ * - A página antiga some rápido e a nova já entra junto (sem atraso), para não aparecer um instante de fundo vazio.
+ * - O cabeçalho e o botão de tema têm nome próprio: ficam parados e não piscam a cada troca.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  header.sticky {
+    view-transition-name: cabecalho;
+  }
+  .botao-tema {
+    view-transition-name: botao-tema;
+  }
+
+  ::view-transition-group(cabecalho),
+  ::view-transition-group(botao-tema) {
+    animation-duration: 0s;
+  }
+
+  ::view-transition-old(root) {
+    animation: pagina-sai 0.14s ease-out both;
+  }
+  ::view-transition-new(root) {
+    animation: pagina-entra 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes pagina-sai {
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes pagina-entra {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
     }
   }
 }

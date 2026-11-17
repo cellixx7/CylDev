@@ -33,6 +33,10 @@ export type DadosContato = {
   total?: string;
   /** Texto livre do cliente. */
   observacoes?: string;
+  /** Aviso de que o valor do site é estimativa (só no pedido do carrinho). */
+  avisoValor?: string;
+  /** Registro de que o pedido foi enviado com o aviso dos Termos e da privacidade, com as versões (só no pedido do carrinho). */
+  aceite?: string;
 };
 
 /** Valor enviado quando o pedido não vem da calculadora. */
@@ -80,6 +84,8 @@ export async function enviarContato(dados: DadosContato, cfg = site.emailjs): Pr
         })),
         total: dados.total || SEM_DADO,
         observacoes: dados.observacoes || SEM_DADO,
+        aviso_valor: dados.avisoValor || SEM_DADO,
+        aceite: dados.aceite || SEM_DADO,
       },
     }),
   });

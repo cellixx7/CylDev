@@ -36,9 +36,9 @@ describe("paragrafosSobre", () => {
   it("o bloco do Uniser tem id próprio (a galeria entra depois dele)", () => {
     expect(paragrafosSobre(ligadas).filter((b) => b.id === "uniser").map(textoDoBloco)).toEqual([juntar(t.uniser)]);
   });
-  it("o texto dos parágrafos não mudou (o 'Estagio' sem acento é o verbo)", () => {
+  it("o texto dos parágrafos (sem o verbo 'Estagio', que parecia erro de digitação de 'Estágio')", () => {
     expect(textos(ligadas)[0]).toBe("Estudo Sistemas de Informação na Unieuro e trabalho como desenvolvedor fullstack.");
-    expect(textos(ligadas)[1]).toMatch(/^Estagio em TI no Ministério da Defesa, onde faço análise de dados/);
+    expect(textos(ligadas)[1]).toMatch(/^Sou estagiário de TI no Ministério da Defesa, onde faço análise de dados/);
     expect(textos(ligadas)[2]).toMatch(/^Participo do Uniser, a plataforma da UniSER, Universidade do Envelhecer da UnB\./);
   });
 });
@@ -48,7 +48,7 @@ describe("destaques da seção", () => {
     const partes = paragrafosSobre(ligadas).flatMap((b) => b.partes).filter((p) => p.destaque);
     expect(partes.map((p) => [p.destaque, p.texto])).toEqual([
       ["faculdade", "Sistemas de Informação na Unieuro"],
-      ["estagio", "Estagio em TI no Ministério da Defesa"],
+      ["estagio", "Sou estagiário de TI no Ministério da Defesa"],
       ["uniser", "Participo do Uniser"],
     ]);
   });

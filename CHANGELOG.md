@@ -6,7 +6,49 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
-### Etapa 2 da auditoria: pastas e documentação
+### Transições de página e de seção
+
+- Troca de página animada (fade curto, cabeçalho e botão de tema parados) também no `npm run dev`: a regra `@view-transition` agora vai no `<head>` de todo HTML pelo plugin `transicao-de-pagina` do `vite.config.ts`.
+- Links do cabeçalho até uma seção (`#orcamento`, `#sobre`...) rolam suave, só com movimento permitido.
+- Carrinho: ao tirar um item, ele some com fade e os de baixo deslizam (`<ViewTransition>` do React). Modal do serviço: fade curto ao trocar de aba.
+- Por dentro: `src/pages/negocios/transicao.ts` (`comTransicao`, tipo `local`) e a skill `vercel-react-view-transitions` usada como guia.
+
+### Etapa 5 da auditoria: páginas jurídicas e de apoio
+
+- Página nova **Termos de contratação** (`/termos/`): como o pedido vira contrato, pagamento, prazos, revisões, desistência em 7 dias, cancelamento, garantia de 90 dias, de quem é o que é entregue, portfólio, dados que o cliente passa (LGPD), sigilo, mensalidade dos bots, limites de responsabilidade e foro.
+- **Política de privacidade** completada para a LGPD: responsável e canal, base legal de cada uso, dados fora do Brasil, direitos do titular, prazo de resposta, ANPD e regra de alteração. As âncoras passaram a ter nome (`#direitos`, `#pedir`...).
+- Páginas novas **Perguntas frequentes** (`/perguntas/`, com "como mando a minha planilha com segurança?") e **Acessibilidade** (`/acessibilidade/`).
+- Rodapé de todas as páginas: linha "Serviço prestado por" com a identificação de quem vende e os links Termos, Privacidade, Perguntas, Acessibilidade e Contato. As páginas de leitura ganharam rodapé.
+- Carrinho: frase de aceite dos Termos e da privacidade ao lado do envio; o e-mail do pedido registra o aceite com a versão dos textos (parâmetro `aceite`; falta pôr no template do EmailJS).
+- Formulário de contato: aviso de para que servem os dados, com link para a política.
+- Seção "Do pedido à entrega": links para os Termos e as perguntas frequentes.
+- As quatro páginas de leitura podem ser lidas sem JavaScript (o texto inteiro vai no HTML).
+- Por dentro: `site.prestador` (CPF ou CNPJ, cidade/UF, recibo ou nota; vazio até o Marcelo informar), componente `PaginaTexto`, `docs/decisoes/juridico.md` e `docs/MODELO-PROPOSTA.md`. Os textos jurídicos não vão no JavaScript da home.
+- Falta (Marcelo): informar CPF ou CNPJ e cidade/UF, confirmar os prazos propostos e passar os textos por um advogado. Ver `docs/PENDENCIAS.md`.
+
+### Etapa 4 da auditoria: ajustes do FrontEnd
+
+- Home: o título principal passa a ser a promessa ("Transformo a sua planilha bagunçada em um painel."), com o nome acima; no celular entra o botão "Chamar no WhatsApp" no topo.
+- Seção nova "Do pedido à entrega" (`#entregas`), com os 5 passos que já estavam escritos, e o link "Entregas" no menu.
+- Nenhum texto abaixo de 14 px: mini exemplos dos cards, cena da planilha, legendas do UniSER e avisos subiram para 14 px (os desenhos foram simplificados para caber).
+- Celular: os mini exemplos dos cards vêm recolhidos atrás de "Ver exemplo".
+- O card "Quer um bot para o seu servidor de Discord?" saiu do orçamento (o atalho da Comunidade continua no cabeçalho e no rodapé).
+- Rodapé curto: "Site sem rastreadores." e os links Privacidade e Contato, no lugar do parágrafo de privacidade.
+- Privacidade: índice no topo e "Voltar ao topo".
+- Textos: "dados de mentira" virou "dados fictícios"; "Estagio em TI" virou "Sou estagiário de TI" (parecia erro de digitação).
+- Entre 992 e 1023 px de largura o painel de exemplo passa a aparecer ao lado do título (antes a coluna ficava vazia).
+- Por dentro: escala de texto e larguras em tokens (`tailwind.css`), componente `<Secao>`, títulos sem pular nível e `docs/DESIGN.md` completo. Teste novo confere, em todas as páginas, o mínimo de 14 px e a ordem dos títulos.
+
+### Etapa 3 da auditoria: FrontEnd e BackEnd qualitativo
+
+- Verificação automática no GitHub (`.github/workflows/ci.yml`): typecheck, testes, build e jornadas no navegador em todo PR. Falta ligar no GitHub a proteção da `main` que exige o check `verificar`.
+- Home sem JavaScript: `<noscript>` com a frase principal, o preço de partida e os contatos.
+- Dados estruturados (JSON-LD `ProfessionalService`) na home e `lastmod` no `sitemap.xml`.
+- Seções vazias `#entregas` e `#como-funciona` removidas da home (nenhuma mudança visível além de menos espaço em branco antes do Contato).
+- E-mail do pedido leva o aviso "Valor estimado pelo site. O valor final vai na proposta por escrito." (parâmetro `aviso_valor`; falta pôr no template do EmailJS).
+- Teste de jornada instável ("ida a Como funciona e volta, depois recarregar") corrigido.
+
+## 2026-11-16: Etapa 2 da auditoria, pastas e documentação (PR #16)
 
 - Textos das páginas divididos por área em `src/content/textos/` (os imports de `content/textos` continuam iguais).
 - `src/pages/negocios/` organizada em `orcamento/`, `sobre/` e `exemplo/`.

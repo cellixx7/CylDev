@@ -21,7 +21,7 @@ export function Avatar({ nome, foto }: Props) {
     .toUpperCase();
   return (
     <span
-      className="inline-grid size-24 shrink-0 place-items-center rounded-full bg-destaque font-titulo text-[2rem] font-bold text-destaque-texto"
+      className="inline-grid size-24 shrink-0 place-items-center rounded-full bg-destaque font-titulo text-maior font-bold text-destaque-texto"
       aria-hidden="true"
     >
       {iniciais}

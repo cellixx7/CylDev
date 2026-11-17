@@ -16,7 +16,7 @@ function Botao({ clicado }: { clicado: boolean }) {
         {t.botao.rotulo}
         {clicado ? ` (${t.botao.clicado})` : ""}
       </p>
-      <p className="mt-1 mb-0 text-[0.875rem] text-texto-suave">{t.botao.legenda}</p>
+      <p className="mt-1 mb-0 text-menor text-texto-suave">{t.botao.legenda}</p>
     </div>
   );
 }
@@ -38,8 +38,8 @@ function Arquivos() {
   return (
     <div className="grid gap-3">
       {t.arquivos.map((a) => (
-        <table key={a.id} className="w-full table-fixed border-collapse text-[0.875rem]" aria-label={t.tabelaArquivo(a.nome)}>
-          <caption className="mb-1 text-left font-mono text-[0.875rem] text-texto-suave">{a.nome}</caption>
+        <table key={a.id} className="w-full table-fixed border-collapse text-menor" aria-label={t.tabelaArquivo(a.nome)}>
+          <caption className="mb-1 text-left font-mono text-menor text-texto-suave">{a.nome}</caption>
           <Cabecalho comArquivo={false} />
           <tbody>
             {a.linhas.map((l) => (
@@ -59,7 +59,7 @@ function Arquivos() {
 function Relatorio({ passo, legenda }: { passo: number; legenda: string }) {
   const v = visaoDoPasso(passo);
   return (
-    <table className="w-full table-fixed border-collapse text-[0.875rem]" aria-label={legenda}>
+    <table className="w-full table-fixed border-collapse text-menor" aria-label={legenda}>
       <Cabecalho comArquivo />
       <tbody>
         {v.linhas.map((l) => (
@@ -99,11 +99,11 @@ function Visual({ passo }: { passo: number }) {
 const estatico = (
   <div className="grid gap-4 sm:grid-cols-2 sm:items-start">
     <div>
-      <p className="mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave">{t.antes}</p>
+      <p className="mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave">{t.antes}</p>
       <Arquivos />
     </div>
     <div>
-      <p className="mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave">{t.depois}</p>
+      <p className="mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave">{t.depois}</p>
       <Botao clicado />
       <Relatorio passo={ultimo} legenda={t.tabelaDepois} />
     </div>
@@ -114,7 +114,7 @@ export function DemoAutomacao() {
   return (
     <>
       <DemoMoldura id="automacao" t={t} visual={(passo) => <Visual passo={passo} />} estatico={estatico} />
-      <p className="mt-4 mb-0 max-w-[60ch] text-texto-suave">{t.aviso}</p>
+      <p className="mt-4 mb-0 max-w-leitura text-texto-suave">{t.aviso}</p>
     </>
   );
 }

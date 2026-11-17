@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type FocusEvent } from "react";
+import { useEffect, useId, useRef, useState, ViewTransition, type FocusEvent } from "react";
 import { orcamento } from "../../../content/textos";
 import { botao, botaoCheio } from "../../../shared/estilos";
 import { emailjsConfigurado } from "../../../shared/lib/emailjs";
@@ -9,29 +9,30 @@ import { totalCurto } from "./BarraCarrinho";
 import { AcoesDoPedido, DadosDoPedido, useEnvioPedido } from "./CheckoutPedido";
 import { IconeFechar } from "../icones";
 import { PorQueEsseValor } from "./PorQueEsseValor";
+import { comTransicao } from "../transicao";
 import { useTravaRolagem } from "../useTravaRolagem";
 
 const t = orcamento.carrinho;
 
 const focoVisivel = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
-const botaoTexto = `min-h-alvo cursor-pointer border-0 bg-transparent px-3 font-[inherit] text-[1rem] font-semibold text-destaque underline underline-offset-4 ${focoVisivel}`;
+const botaoTexto = `min-h-alvo cursor-pointer border-0 bg-transparent px-3 font-[inherit] text-base font-semibold text-destaque underline underline-offset-4 ${focoVisivel}`;
 
 function ItemCarrinho({ item: i, aoAjustar, aoTirar }: { item: ItemPedido; aoAjustar: () => void; aoTirar: () => void }) {
   return (
     <li className="border-b border-linha py-3 last:border-b-0">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <h3 className="m-0 min-w-0 text-[1.02rem] font-bold [overflow-wrap:anywhere]">{i.nome}</h3>
-        <p className="m-0 text-right font-mono text-[1rem] font-bold">{resumoPrecoItem(i)}</p>
+        <h3 className="m-0 min-w-0 text-medio font-bold [overflow-wrap:anywhere]">{i.nome}</h3>
+        <p className="m-0 text-right font-mono text-base font-bold">{resumoPrecoItem(i)}</p>
       </div>
-      <p className="mt-0.5 mb-0 font-mono text-[0.875rem] text-texto-suave">{i.prazo}</p>
+      <p className="mt-0.5 mb-0 font-mono text-menor text-texto-suave">{i.prazo}</p>
       {i.estimativa && (
-        <p className="mt-1.5 mb-0 text-[0.875rem]">
-          <span className="mr-2 border border-destaque px-1.5 font-mono text-[0.875rem] leading-5 text-destaque">estimativa</span>
+        <p className="mt-1.5 mb-0 text-menor">
+          <span className="mr-2 border border-destaque px-1.5 font-mono text-menor leading-5 text-destaque">estimativa</span>
           <span className="text-texto-suave">{t.estimativaItem(i.perguntasSemResposta)}</span>
         </p>
       )}
 
-      <details className="mt-1 text-[1rem]">
+      <details className="mt-1 text-base">
         <summary className="min-h-alvo cursor-pointer py-2 font-semibold text-destaque">
           {t.mostrarRespostas} <span className="font-normal text-texto-suave">({t.respondidas(i.perguntasRespondidas, i.perguntasTotal)})</span>
         </summary>
@@ -43,7 +44,7 @@ function ItemCarrinho({ item: i, aoAjustar, aoTirar }: { item: ItemPedido; aoAju
                 <span className="min-w-0 [overflow-wrap:anywhere]">
                   {r.escolhas.length > 0 ? r.escolhas.join(", ") : <span className="font-normal text-texto-suave">{t.semResposta}</span>}
                 </span>
-                {r.acrescimo > 0 && <span className="shrink-0 font-mono text-[0.875rem] text-destaque">+ {brl(r.acrescimo)}</span>}
+                {r.acrescimo > 0 && <span className="shrink-0 font-mono text-menor text-destaque">+ {brl(r.acrescimo)}</span>}
               </dd>
             </div>
           ))}
@@ -132,7 +133,7 @@ export function PainelCarrinho({ aberto, pedido, respostas, aviso, observacoes, 
       {aberto && (
         <>
           <header className="flex shrink-0 items-start justify-between gap-3 border-b border-linha px-4 py-3 md:px-6">
-            <h2 id="painel-carrinho-titulo" ref={titulo} tabIndex={-1} className="m-0 py-2 text-[1.35rem] leading-tight outline-none">
+            <h2 id="painel-carrinho-titulo" ref={titulo} tabIndex={-1} className="m-0 py-2 text-grande leading-tight outline-none">
               {vazio ? orcamento.barra.rotulo : t.tituloComQtd(qtd)}
             </h2>
             <button
@@ -151,7 +152,7 @@ export function PainelCarrinho({ aberto, pedido, respostas, aviso, observacoes, 
             </p>
             {vazio ? (
               <div className="border border-dashed border-texto-suave p-5">
-                <p className="mb-4 text-[1rem]">{t.vazio}</p>
+                <p className="mb-4 text-base">{t.vazio}</p>
                 <button type="button" className={`${botaoCheio} cursor-pointer font-[inherit] ${focoVisivel}`} onClick={aoFechar}>
                   {t.escolher}
                 </button>
@@ -160,11 +161,14 @@ export function PainelCarrinho({ aberto, pedido, respostas, aviso, observacoes, 
               <>
                 <ul className="m-0 list-none border-t-2 border-texto p-0">
                   {pedido.itens.map((i) => (
-                    <ItemCarrinho key={i.id} item={i} aoAjustar={() => aoAjustar(i.id)} aoTirar={() => aoTirar(i.id)} />
+                    // Identidade da lista: ao tirar um item, ele some com fade e os de baixo deslizam para cima.
+                    <ViewTransition key={i.id} enter="item-entra" exit="item-sai">
+                      <ItemCarrinho item={i} aoAjustar={() => aoAjustar(i.id)} aoTirar={() => comTransicao(() => aoTirar(i.id))} />
+                    </ViewTransition>
                   ))}
                 </ul>
 
-                <dl className="my-3 grid grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-1 text-[1rem]">
+                <dl className="my-3 grid grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-1 text-base">
                   {c.desconto && (
                     <>
                       <dt>{t.soma}</dt>
@@ -186,34 +190,34 @@ export function PainelCarrinho({ aberto, pedido, respostas, aviso, observacoes, 
                     </>
                   )}
                 </dl>
-                {c.desconto && <p className="mb-2 text-[0.875rem] text-texto-suave">{t.descontoNota}</p>}
+                {c.desconto && <p className="mb-2 text-menor text-texto-suave">{t.descontoNota}</p>}
 
                 <div className="flex items-baseline justify-between gap-3 border-t-2 border-texto pt-2" aria-live="polite" aria-atomic="true">
-                  <p className="m-0 text-[1rem] font-semibold">
+                  <p className="m-0 text-base font-semibold">
                     {t.total}
                     {c.totalAPartirDe && <span className="font-normal text-texto-suave"> ({orcamento.estimativa.aPartirDe})</span>}
                   </p>
-                  <p className="m-0 font-mono text-[1.7rem] leading-none font-bold tracking-[-0.02em] [word-spacing:-0.3em]">{brl(c.total)}</p>
+                  <p className="m-0 font-mono text-maior leading-none font-bold tracking-[-0.02em] [word-spacing:-0.3em]">{brl(c.total)}</p>
                 </div>
                 <PorQueEsseValor ids={pedido.itens.map((i) => i.id)} respostas={respostas} carrinho={c} />
-                {temEstimativa && <p className="mt-2 mb-0 text-[0.875rem] font-semibold">{t.avisoEstimativa}</p>}
+                {temEstimativa && <p className="mt-2 mb-0 text-menor font-semibold">{t.avisoEstimativa}</p>}
                 {c.temSobConsulta && (
-                  <p className="mt-2 mb-0 text-[0.875rem] text-texto-suave">
+                  <p className="mt-2 mb-0 text-menor text-texto-suave">
                     {t.totalSobConsulta}
                     {pedido.itens.filter((i) => i.sobConsulta).map((i) => i.nome).join(", ")}.
                   </p>
                 )}
-                <p className="mt-1 mb-0 text-[0.875rem] text-texto-suave">{t.notaEstimativa}</p>
+                <p className="mt-1 mb-0 text-menor text-texto-suave">{t.notaEstimativa}</p>
 
                 <button type="button" className={`${botao} mt-4 cursor-pointer font-[inherit] ${focoVisivel}`} onClick={aoFechar}>
                   {t.voltar}
                 </button>
 
                 <div className="mt-6 grid gap-1">
-                  <label htmlFor={idObs} className="text-[1rem] font-semibold">
+                  <label htmlFor={idObs} className="text-base font-semibold">
                     {t.observacoes}
                   </label>
-                  <p className="m-0 text-[0.875rem] text-texto-suave">{t.observacoesDica}</p>
+                  <p className="m-0 text-menor text-texto-suave">{t.observacoesDica}</p>
                   <textarea
                     id={idObs}
                     rows={3}
@@ -237,7 +241,7 @@ export function PainelCarrinho({ aberto, pedido, respostas, aviso, observacoes, 
           {!vazio && (
             <footer className="shrink-0 border-t-2 border-texto bg-superficie px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:px-6">
               {!editando && (
-                <p className="m-0 mb-2 text-[1rem] font-semibold">
+                <p className="m-0 mb-2 text-base font-semibold">
                   {t.totalRodape}: <span className="font-mono font-bold [word-spacing:-0.3em]">{totalCurto(pedido)}</span>
                 </p>
               )}

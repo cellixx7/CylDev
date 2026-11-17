@@ -21,9 +21,31 @@ Dono: **Marcelo** (decisão comercial ou ação fora do código) ou **dev** (mud
 | | Pendência | Onde | Desde |
 |---|---|---|---|
 | [ ] | EmailJS: conferir no painel que o template tem os campos de `docs/emailjs-template.md` (`itens`, `total`, `observacoes`) e fazer um envio real de teste (a lista `itens` nunca foi testada de verdade) | painel do EmailJS, deploy preview | 11/11/2026 |
+| [ ] | GitHub: proteger a `main` exigindo o check `verificar` (Settings > Branches > Add branch ruleset ou "Add classic branch protection rule": branch `main`, "Require status checks to pass", escolher `verificar`). Até lá o CI roda e avisa, mas não bloqueia o merge | GitHub, Settings > Branches | 16/11/2026 |
+| [ ] | EmailJS: acrescentar `{{aviso_valor}}` no template do painel (linha sugerida em `docs/emailjs-template.md`); sem isso o aviso de valor estimado não aparece no e-mail | painel do EmailJS | 16/11/2026 |
+| [ ] | Gmail: criar um filtro para os e-mails do EmailJS com "Nunca enviar para o spam" e um marcador (ex.: "Pedidos do site"), para nenhum pedido sumir | Gmail, Configurações > Filtros | 16/11/2026 |
+| [ ] | EmailJS: conferir a cota de envios uma vez por mês (se acabar, o cliente vê o erro e você não fica sabendo) | painel do EmailJS | 16/11/2026 |
 | [ ] | Escolher o nome do site na Netlify e atualizar `site.urlPadrao` | `src/content/site.ts` | 02/11/2026 |
 | [ ] | Foto (opcional): colocar em `public/` e apontar `site.foto` | `src/content/site.ts` | 02/11/2026 |
 | [ ] | Vídeo do CylBot (talvez UniSER e CylSense). Nenhum vídeo para a planilha | `public/` | 02/11/2026 |
+
+## Jurídico (Marcelo)
+
+Abertas na Etapa 5 da auditoria (16/11/2026). Os textos não são parecer jurídico; detalhes em `decisoes/juridico.md`.
+
+| | Pendência | Onde mexer | Desde |
+|---|---|---|---|
+| [ ] | **CPF ou CNPJ** de quem presta o serviço. Decisão de 16/11/2026: por enquanto não é publicado; o rodapé mostra nome, cidade e e-mail, e os Termos dizem que o documento vai na proposta por escrito (então ele **precisa** ir em toda proposta). O Decreto 7.962/2013 pede o documento em local visível: converse com um contador sobre CNPJ (MEI ou outro) para publicar sem expor o CPF | `site.prestador.documento` em `src/content/site.ts` | 16/11/2026 |
+| [x] | **Cidade/UF:** Brasília/DF, informada pelo Marcelo em 16/11/2026 (rodapé, Termos e foro). Com CNPJ, conferir se o endereço fiscal é o mesmo | `site.prestador.cidadeUf` | 16/11/2026 |
+| [x] | **Recibo ou nota fiscal:** recibo, confirmado pelo Marcelo em 16/11/2026. Se um dia houver nota de serviço, trocar para `"nota"` (muda os Termos e a FAQ) e ajustar "Emito recibo" em `negocios.comoFunciona.pagamento` | `site.prestador.comprovante` | 16/11/2026 |
+| [ ] | **Confirmar os prazos propostos nos Termos:** revisão pedida em até 7 dias; 30 dias sem resposta encerra o serviço; devolução de valores em até 10 dias; arquivos do cliente apagados em até 30 dias depois da entrega; aviso de incidente em até 2 dias úteis | `prazosDosTermos` em `src/content/textos/termos.ts` | 16/11/2026 |
+| [ ] | **Confirmar as cláusulas novas dos Termos**, que não existiam em lugar nenhum: desistência em 7 dias (`#arrependimento`), cancelamento pagando o que foi feito (`#cancelamento`), cancelamento da mensalidade dos bots no fim do mês pago (`#bots`), propriedade e portfólio, limite de responsabilidade para quem não é consumidor, e a promessa de segurança ("equipamento e contas com acesso só meu, protegidos por senha") | `src/content/textos/termos.ts` | 16/11/2026 |
+| [ ] | **Confirmar as respostas da FAQ que dependem de como você trabalha:** "Você precisa acessar o meu computador?" (hoje: não, só os arquivos enviados e a tela compartilhada no Meet), "Preciso ter algum programa pago?" e o passo a passo de envio de arquivos (link do Drive ou OneDrive só com o seu e-mail) | `src/content/textos/perguntasFrequentes.ts` | 16/11/2026 |
+| [ ] | **Privacidade:** confirmar o prazo de 15 dias para responder pedidos, a guarda dos documentos de contrato "em regra, 5 anos" e a frase sobre não ter encarregado nomeado (o e-mail de contato para titulares foi confirmado em 16/11/2026) | `src/content/textos/privacidade.ts` | 16/11/2026 |
+| [ ] | **Revisão de advogado** (cerca de 1 hora) dos Termos e da privacidade antes de tratá-los como definitivos. Primeiro ponto: a regra de desistência quando já houve entrega dentro dos 7 dias. Depois de qualquer mudança, trocar a data em `versoes.ts` | `src/content/textos/` | 16/11/2026 |
+| [ ] | **EmailJS:** acrescentar `{{aceite}}` no template do painel (linha em `docs/emailjs-template.md`); sem isso o registro do aceite é enviado mas não aparece no e-mail | painel do EmailJS | 16/11/2026 |
+| [ ] | **Cumprir o que os textos prometem:** apagar os pedidos com mais de 12 meses, apagar as cópias dos arquivos do cliente depois da entrega, guardar proposta, aceite e comprovantes, e usar `docs/MODELO-PROPOSTA.md` nas propostas | rotina | 16/11/2026 |
+| [ ] | **Declaração de acessibilidade:** testar as páginas com leitor de tela num celular de verdade; se estiver tudo certo, tirar a linha de "O que ainda falta" | `src/content/textos/acessibilidade.ts` | 16/11/2026 |
 
 ## Validação (Marcelo e dev)
 
@@ -38,9 +60,13 @@ Detalhes e prioridades no relatório da auditoria (fora do repositório). Resumo
 
 - [ ] **Etapa 1, segurança** (adiada de propósito até depois da entrega de 26/11): origens permitidas e limite de envios no EmailJS, decidir repositório privado, `frame-ancestors`/`X-Frame-Options`, tirar `'unsafe-inline'` e ativar a CSP, HSTS e e-mail do domínio quando houver domínio próprio. Dono: Marcelo (painéis) e dev (`netlify.toml`).
 - [x] **Etapa 2, pastas e documentação** (16/11/2026): ver `CHANGELOG.md`. Fica para a Etapa 4: completar `docs/DESIGN.md` com a escala de tipografia e o `<Secao>`.
-- [ ] **Etapa 3:** GitHub Action com typecheck, testes e e2e; `<noscript>` e JSON-LD. Dono: dev.
-- [ ] **Etapa 4:** seções vazias `#entregas` e `#como-funciona`, texto abaixo de 14 px, escala de tipografia, `<Secao>` (e atualizar `docs/DESIGN.md`). Dono: dev.
-- [ ] **Etapa 5:** Termos, privacidade completa (LGPD), identificação do prestador, FAQ. Dono: Marcelo (conteúdo e revisão jurídica) e dev.
+- [x] **Etapa 3, FrontEnd e BackEnd qualitativo** (16/11/2026): CI no GitHub, `<noscript>`, JSON-LD, `lastmod` no sitemap, seções vazias removidas e aviso de valor estimado no e-mail; ver `CHANGELOG.md`. Ficaram com o Marcelo as quatro linhas de 16/11 em "Configuração e publicação".
+- [ ] **Etapa 3, para depois:** quebrar `PainelExemplo.tsx`, `PorQueEsseValor.tsx`, `CenasEstagio.tsx` e `PainelCarrinho.tsx` em partes menores quando cada um for mexido de novo (na Etapa 4 o `PainelExemplo` só ganhou o nível dos títulos; não foi dividido). Se o volume de pedidos crescer: Netlify Function que recebe o pedido, recalcula o preço e guarda uma cópia, só com o ok do Marcelo. Dono: dev.
+- [x] **Etapa 4, ajustes do FrontEnd** (16/11/2026): escala de texto, nada abaixo de 14 px, `<Secao>`, hero com a promessa no `h1`, seção Entregas, mini exemplos recolhidos no celular, rodapé curto e `docs/DESIGN.md` completo; ver `CHANGELOG.md` e `decisoes/arquitetura-e-design.md`.
+- [ ] **Etapa 4, para conferir (Marcelo):** os textos novos do hero (`negocios.apresentacao.titulo` e `subtitulo`), a intro da seção Entregas (`negocios.comoFunciona.intro`) e a troca de "Estagio em TI" por "Sou estagiário de TI" no Sobre (`src/content/textos/sobre.ts`).
+- [ ] **Etapa 4, para depois:** passar a Comunidade para o `<Secao>` quando a área for revisada; o botão de tema flutuante do desktop encosta na margem esquerda do conteúdo (já era assim antes da etapa). Dono: dev.
+- [x] **Etapa 5, páginas jurídicas e de apoio** (16/11/2026): Termos (`/termos/`), privacidade completa (LGPD), identificação no rodapé, aceite no checkout com registro no e-mail, perguntas frequentes, acessibilidade e modelo de proposta; ver `CHANGELOG.md` e `decisoes/juridico.md`. O que depende do Marcelo está na seção "Jurídico" acima.
+- [ ] **Etapa 5, para depois:** casos reais (`/trabalhos/`, só com trabalho real e autorização do cliente) e uma página por serviço (`/servicos/...`, pede texto próprio por serviço). Comunidade: termos e privacidade do CylBot, termos de bot sob medida, regras de conduta, FAQ dos bots e aviso de não afiliação completo. Dono: Marcelo (conteúdo) e dev.
 
 ## Resolvidas recentemente
 

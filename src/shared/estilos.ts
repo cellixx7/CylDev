@@ -7,7 +7,7 @@ export const botaoCheio =
   "inline-flex min-h-alvo items-center rounded-pequeno border border-destaque bg-destaque px-4 py-2 font-semibold text-destaque-texto no-underline [overflow-wrap:anywhere] hover:border-texto hover:bg-texto hover:text-fundo active:border-texto active:bg-texto active:text-fundo";
 
 export const rotuloFicticio =
-  "inline-block border border-dashed border-texto-suave px-2 text-[0.875rem] text-texto-suave";
+  "inline-block border border-dashed border-texto-suave px-2 text-menor text-texto-suave";
 
 /** Contorno de foco do teclado (só aparece com :focus-visible). */
 export const focoVisivel = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";

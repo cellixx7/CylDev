@@ -2,9 +2,21 @@
 // Faz parte de src/content/textos/ (ver index.ts). Preços nunca são escritos à mão aqui: saem de servicos.ts e orcamento.ts.
 
 export const comum = {
-  privacidade:
-    "Este site não usa ferramentas de rastreamento. O que você mandar pelo formulário ou pelo WhatsApp serve só para eu responder o seu contato. O formulário é enviado pelo serviço EmailJS.",
-  privacidadeLink: "Política de privacidade",
+  /**
+   * Rodapé de todas as páginas: identificação de quem presta o serviço (dados em site.prestador) e links curtos.
+   * Os textos completos ficam nas páginas de leitura (/termos/, /privacidade/, /perguntas/, /acessibilidade/).
+   */
+  rodape: {
+    rotulo: "Rodapé",
+    semRastreio: "Site sem rastreadores.",
+    /** Vem antes do nome, do CPF ou CNPJ, da cidade e do e-mail. */
+    prestador: "Serviço prestado por",
+    termos: "Termos",
+    perguntas: "Perguntas",
+    acessibilidade: "Acessibilidade",
+    contato: "Contato",
+  },
+  privacidadeLink: "Privacidade",
   dadosFicticios: "dados fictícios",
   temaClaro: "Tema claro",
   temaEscuro: "Tema escuro",
@@ -44,4 +56,7 @@ export const formulario = {
   enviando: "Enviando…",
   falhou: "Não consegui enviar agora. Me chame por um destes canais:",
   isca: "Não preencha este campo:",
+  /** Aviso abaixo do botão de enviar, com o link para a política. */
+  privacidade: "Uso o seu nome e o seu contato só para responder. A mensagem passa pelo EmailJS.",
+  privacidadeLink: "Política de privacidade",
 };

@@ -8,7 +8,7 @@ const painel = negocios.apresentacao.painel;
 
 describe("painel de exemplo", () => {
   it("cada mês expõe mês, valor e unidade no nome acessível, na ordem, sem duplicar o valor visível", () => {
-    const html = renderToStaticMarkup(createElement(PainelExemplo));
+    const html = renderToStaticMarkup(createElement(PainelExemplo, { nivel: 2 }));
     const falados = [...html.matchAll(/<span class="sr-only">([^<]*R\$ \d+ mil)<\/span>/g)].map((m) => m[1]);
     expect(falados).toEqual(painel.meses.map((m) => `${m.completo}, R$ ${m.valor} mil`));
     expect(falados[0]).toBe("Janeiro, R$ 12 mil");

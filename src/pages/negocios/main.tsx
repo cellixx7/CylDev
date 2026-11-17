@@ -2,48 +2,75 @@ import { StrictMode, useEffect, useState, type CSSProperties } from "react";
 import { createRoot } from "react-dom/client";
 import "../../styles/tailwind.css";
 import "../../styles/tema-negocios.css";
-import { servicosDa } from "../../content/servicos";
+import { site } from "../../content/site";
 import { negocios as t } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
 import { Contatos } from "../../shared/components/Contatos";
 import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
+import { Secao } from "../../shared/components/Secao";
 import { botao, botaoCheio } from "../../shared/estilos";
 import { brl } from "../../shared/lib/formato";
+import { precoDePartida } from "../../shared/lib/seo";
+import { linkContato } from "../../shared/lib/whatsapp";
 import { ativarMagnetico } from "./magnetico";
 import { Orcamento } from "./orcamento/Orcamento";
 import { PainelExemplo } from "./exemplo/PainelExemplo";
 import { Sobre } from "./sobre/Sobre";
 
-// Título cinético: cada letra sobe de uma máscara, em cascata (ver .letra em tema-negocios.css).
+// Título cinético: cada palavra sobe de uma máscara, em cascata (ver .letra em tema-negocios.css).
 function TituloCinetico({ texto }: { texto: string }) {
-  let i = 0;
   return (
     <span aria-label={texto}>
-      {texto.split(" ").map((palavra, p) => (
-        <span key={p} className="palavra" aria-hidden="true">
-          {[...palavra].map((letra) => (
-            <span key={i} className="mascara">
-              <span className="letra" style={{ "--i": i++ } as CSSProperties}>
-                {letra}
-              </span>
+      {texto.split(" ").map((palavra, i) => (
+        <span key={i} className="palavra" aria-hidden="true">
+          <span className="mascara">
+            <span className="letra" style={{ "--i": i } as CSSProperties}>
+              {palavra}
             </span>
-          ))}
-          {" "}
+          </span>{" "}
         </span>
       ))}
     </span>
   );
 }
 
-/** Menor preço de partida entre os pacotes de Negócios (fixo ou "a partir de"), direto de servicos.ts. */
-function precoDePartida() {
-  const pacotes = servicosDa("negocios").flatMap((s) => (s.preco.tipo === "fixo" || s.preco.tipo === "aPartirDe" ? [{ nome: s.nome, valor: s.preco.valor }] : []));
-  return pacotes.reduce((a, b) => (b.valor < a.valor ? b : a));
+/** Seção #entregas: os 5 passos do pedido à entrega, numerados. Uma coluna no celular, cinco no desktop. */
+function Entregas() {
+  const c = t.comoFunciona;
+  return (
+    <Secao id="entregas" titulo={c.titulo} intro={c.intro}>
+      <ol className="revela m-0 mt-6 grid list-none gap-x-6 gap-y-5 p-0 md:grid-cols-2 pc:grid-cols-5">
+        {c.passos.map((p, i) => (
+          <li key={p.titulo} className="grid grid-cols-[auto_minmax(0,1fr)] content-start gap-x-3 gap-y-1 border-t border-linha pt-3 pc:grid-cols-1">
+            <span className="font-mono text-medio font-bold text-destaque" aria-hidden="true">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div>
+              <h3 className="m-0 mb-1 text-medio">{p.titulo}</h3>
+              <p className="m-0 text-texto-suave">{p.texto}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-6 mb-0 font-semibold">{c.pagamento}</p>
+      <p className="mt-2 mb-0 text-texto-suave">
+        {c.regras.antes}{" "}
+        <a className="py-3" href="/termos/">
+          {c.regras.termos}
+        </a>{" "}
+        {c.regras.meio}{" "}
+        <a className="py-3" href="/perguntas/">
+          {c.regras.perguntas}
+        </a>
+        .
+      </p>
+    </Secao>
+  );
 }
 
 /** No celular o exemplo de painel vem depois do orçamento (que é o que o cliente veio fazer); no desktop fica ao lado do título. */
 function useDesktop() {
-  const consulta = "(min-width: 64rem)";
+  const consulta = "(min-width: 62rem)"; // o mesmo corte de `pc:` (tailwind.css)
   const [desktop, setDesktop] = useState(() => typeof window !== "undefined" && window.matchMedia(consulta).matches);
   useEffect(() => {
     const m = window.matchMedia(consulta);
@@ -70,20 +97,25 @@ function Negocios() {
         >
           <div className="hero-sai">
             <span className="barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
-            <h1 className="mb-5 text-[clamp(2.75rem,12vw,5rem)] leading-[0.95] pc:text-[clamp(3rem,6vw,5rem)] font-extrabold tracking-[-0.035em]">
+            {/* O nome é o sobretítulo; o h1 é a promessa (o que a pessoa leva). */}
+            <p className="entra mb-3 font-mono text-menor font-bold tracking-[0.08em] text-destaque uppercase">{site.nome}</p>
+            <h1 className="mb-5 text-hero leading-[1.02] font-extrabold tracking-[-0.03em] pc:text-hero-pc">
               <TituloCinetico texto={t.apresentacao.titulo} />
             </h1>
-            <p style={{ "--atraso": 0.5 } as CSSProperties} className="entra mb-4 max-w-[36rem] text-[1.2rem] leading-[1.4] font-medium text-texto md:text-[1.35rem]">
+            <p style={{ "--atraso": 0.5 } as CSSProperties} className="entra mb-4 max-w-leitura text-medio leading-[1.45] font-medium text-texto md:text-grande md:leading-[1.4]">
               {t.apresentacao.subtitulo}
             </p>
-            <p style={{ "--atraso": 0.65 } as CSSProperties} className="entra m-0 hidden max-w-[36rem] text-[1.05rem] text-texto-suave sm:block">{t.apresentacao.texto}</p>
+            <p style={{ "--atraso": 0.65 } as CSSProperties} className="entra m-0 hidden max-w-leitura text-texto-suave sm:block">{t.apresentacao.texto}</p>
             {/* O que o cliente precisa nos primeiros segundos: o preço de partida e como pedir. */}
-            <p style={{ "--atraso": 0.65 } as CSSProperties} className="entra m-0 max-w-[36rem] text-[1rem] text-texto-suave sm:mt-4">
+            <p style={{ "--atraso": 0.65 } as CSSProperties} className="entra m-0 max-w-leitura text-texto-suave sm:mt-4">
               {t.apresentacao.partida(partida.nome)} <strong className="font-mono text-texto">{t.apresentacao.aPartirDe(brl(partida.valor))}</strong>. {t.apresentacao.comoPedir}
             </p>
             <div style={{ "--atraso": 0.8 } as CSSProperties} className="entra mt-5 flex flex-col gap-3 sm:mt-7 sm:flex-row">
               <a data-magnetico className={`${botaoCheio} justify-center`} href="#orcamento">
                 {t.apresentacao.botaoOrcamento}
+              </a>
+              <a className={`${botao} justify-center sm:hidden`} href={linkContato("negocios-hero")} target="_blank" rel="noopener">
+                {t.apresentacao.botaoWhatsapp}
               </a>
               <a data-magnetico className={`${botao} justify-center`} href="/como-funciona/">
                 {t.apresentacao.botaoComoFunciona}
@@ -92,30 +124,23 @@ function Negocios() {
           </div>
           {desktop && (
             <div className="hero-painel">
-              <PainelExemplo />
+              <PainelExemplo nivel={2} />
             </div>
           )}
         </section>
         <Orcamento />
         {!desktop && (
-          <section className="mx-auto max-w-hero px-margem pb-14" id="exemplo" aria-labelledby="exemplo-titulo">
-            <h2 id="exemplo-titulo" className="mb-4 text-[1.5rem]">
-              {t.exemploTitulo}
-            </h2>
-            <PainelExemplo />
-          </section>
+          <Secao id="exemplo" titulo={t.exemploTitulo}>
+            <div className="mt-6">
+              <PainelExemplo nivel={3} />
+            </div>
+          </Secao>
         )}
+        <Entregas />
         <Sobre />
-        <section id="entregas"></section>
-        <section id="como-funciona"></section>
-        <section className="mx-auto max-w-hero scroll-mt-24 px-margem pt-14 pb-14" id="contato" aria-labelledby="contato-titulo">
-          <span className="revela-barra mb-5 block h-[3px] w-12 bg-destaque" aria-hidden="true" />
-          <h2 id="contato-titulo" className="revela-titulo">
-            {t.contato.titulo}
-          </h2>
-          <p className="max-w-[40rem] text-texto-suave">{t.contato.intro}</p>
+        <Secao id="contato" titulo={t.contato.titulo} intro={t.contato.intro}>
           <Contatos origem="negocios-contato" />
-        </section>
+        </Secao>
       </main>
       <Rodape ponte={{ ...t.ponte, href: "/comunidade/" }}>
         <ContatoRodape origem="negocios-rodape" />

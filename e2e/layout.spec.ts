@@ -1,7 +1,7 @@
 import type { Page } from "@playwright/test";
 import { site } from "../src/content/site";
 import { exemplos } from "../src/content/exemplos";
-import { comum, comunidade, negocios } from "../src/content/textos";
+import { comum, comunidade, negocios, orcamento } from "../src/content/textos";
 import { barraCarrinho, expect, iconeCarrinho, modalServico, modelo, semRolagemHorizontal, test } from "./apoio";
 
 const menu = (page: Page) => page.getByRole("navigation", { name: "Principal" });
@@ -63,7 +63,7 @@ async function cabecalhoInteiro(page: Page) {
   }
 }
 
-const paginas = ["/", "/como-funciona/", "/comunidade/", "/privacidade/", "/obrigado/"];
+const paginas = ["/", "/como-funciona/", "/comunidade/", "/privacidade/", "/termos/", "/perguntas/", "/acessibilidade/", "/obrigado/"];
 
 for (const largura of [360, 390]) {
   test.describe(`7. em ${largura} px`, () => {
@@ -103,7 +103,7 @@ for (const largura of [360, 390]) {
       await expect(barraCarrinho(page)).toBeVisible();
       await semRolagemHorizontal(page);
 
-      await page.locator(`#card-${id}`).getByRole("button").nth(1).click();
+      await page.locator(`#card-${id}`).getByRole("button", { name: `${orcamento.cards.fazerOrcamento}: ${modelo(id).nome}` }).click();
       await expect(modalServico(page).getByRole("heading", { level: 2, name: modelo(id).nome })).toBeVisible();
       await semRolagemHorizontal(page);
       const modal = await modalServico(page).evaluate((d) => ({ largura: d.getBoundingClientRect().width, conteudo: d.scrollWidth }));
@@ -164,6 +164,17 @@ test.describe("10. menu de Negócios segue as flags de site.ts", () => {
     });
   }
 
+  test("Entregas do menu leva à seção com os passos numerados", async ({ page }) => {
+    test.skip(!site.menuSecoes.entregas, "seção Entregas desligada em site.ts");
+    await page.goto("/");
+    await menu(page).getByRole("link", { name: "Entregas", exact: true }).click();
+    const secao = page.locator("section#entregas");
+    await expect(secao).toBeInViewport();
+    await expect(secao.getByRole("heading", { level: 2, name: negocios.comoFunciona.titulo })).toBeVisible();
+    await expect(secao.getByRole("listitem")).toHaveCount(negocios.comoFunciona.passos.length);
+    await expect(secao.getByText(negocios.comoFunciona.pagamento)).toBeVisible();
+  });
+
   test("hoje: Sobre, Entregas e Contato estão desligados", async ({ page }) => {
     // Descreve o site.ts de hoje. Ao religar uma seção, este teste passa a ser pulado.
     test.skip(Object.values(site.menuSecoes).some(Boolean), "alguma seção já foi religada em site.ts");
@@ -203,5 +214,108 @@ test.describe("11. Negócios: seção Contato", () => {
     await expect(secao.locator('a[href*="wa.me"], a[href*="whatsapp"]').first()).toBeVisible();
     await expect(secao.getByRole("heading", { level: 3, name: negocios.contato.formulario })).toBeVisible();
     await semRolagemHorizontal(page);
+  });
+});
+
+/** Tamanhos (px) dos textos visíveis abaixo do mínimo do guia de estilo (14 px). */
+async function textosPequenos(page: Page) {
+  return page.evaluate(() => {
+    const achados: string[] = [];
+    const andar = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    for (let no = andar.nextNode(); no; no = andar.nextNode()) {
+      const el = no.parentElement;
+      if (!el || !no.textContent?.trim() || el.closest(".sr-only, script, style, noscript")) continue;
+      const caixa = el.getBoundingClientRect();
+      if (caixa.width === 0 || caixa.height === 0) continue;
+      const tamanho = parseFloat(getComputedStyle(el).fontSize);
+      if (tamanho < 13.99) achados.push(`${tamanho}px: ${no.textContent.trim().slice(0, 30)}`);
+    }
+    return achados;
+  });
+}
+
+/** Níveis dos títulos visíveis, na ordem do documento. */
+async function niveisDosTitulos(page: Page) {
+  return page.evaluate(() =>
+    [...document.querySelectorAll("h1, h2, h3, h4, h5, h6")]
+      .filter((h) => h.getBoundingClientRect().width > 0 && !h.closest("dialog:not([open])"))
+      .map((h) => Number(h.tagName[1])),
+  );
+}
+
+for (const [nome, largura, altura] of [["celular", 390, 780], ["desktop", 1440, 900]] as const) {
+  test.describe(`12. guia de estilo no ${nome}`, () => {
+    test.use({ viewport: { width: largura, height: altura } });
+
+    for (const caminho of paginas) {
+      test(`${caminho}: nenhum texto abaixo de 14 px e os títulos não pulam nível`, async ({ page }) => {
+        await page.goto(caminho);
+        await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+        // No celular os mini exemplos vêm recolhidos: abre todos para medir o que está dentro.
+        const fechados = page.getByRole("button", { name: new RegExp(`^${orcamento.cards.miniExemplo.ver}`) });
+        while ((await fechados.count()) > 0) await fechados.first().click();
+        expect(await textosPequenos(page)).toEqual([]);
+        const niveis = await niveisDosTitulos(page);
+        expect(niveis[0], "a página começa pelo h1").toBe(1);
+        expect(niveis.filter((n) => n === 1)).toHaveLength(1);
+        niveis.forEach((n, i) => {
+          if (i > 0) expect(n - niveis[i - 1], `título ${i + 1} não pula nível`).toBeLessThanOrEqual(1);
+        });
+      });
+    }
+  });
+}
+
+test.describe("13. mini exemplo dos cards", () => {
+  const id = "planilha";
+  const nome = () => new RegExp(`: ${modelo(id).nome}$`);
+
+  test.describe("no celular", () => {
+    test.use({ viewport: { width: 390, height: 780 }, hasTouch: true, isMobile: true });
+    test("vem recolhido e abre e fecha pelo botão", async ({ page }) => {
+      await page.goto("/");
+      const card = page.locator(`#card-${id}`);
+      const legenda = card.getByText(orcamento.cards.miniExemplo.planilha.legenda);
+      const abrir = card.getByRole("button", { name: nome() }).filter({ hasText: orcamento.cards.miniExemplo.ver });
+      await expect(legenda).toBeHidden();
+      await expect(abrir).toHaveAttribute("aria-expanded", "false");
+      await abrir.click();
+      await expect(legenda).toBeVisible();
+      const fechar = card.getByRole("button", { name: nome() }).filter({ hasText: orcamento.cards.miniExemplo.ocultar });
+      await expect(fechar).toHaveAttribute("aria-expanded", "true");
+      await semRolagemHorizontal(page);
+      await fechar.click();
+      await expect(legenda).toBeHidden();
+    });
+  });
+
+  test("no desktop fica sempre aberto, sem botão", async ({ page }) => {
+    await page.goto("/");
+    const card = page.locator(`#card-${id}`);
+    await expect(card.getByText(orcamento.cards.miniExemplo.planilha.legenda)).toBeVisible();
+    await expect(card.getByRole("button", { name: orcamento.cards.miniExemplo.ver })).toHaveCount(0);
+  });
+});
+
+test.describe("14. hero de Negócios", () => {
+  test("o h1 é a promessa, com o nome acima; no desktop o painel de exemplo fica ao lado a partir de 992 px", async ({ page }) => {
+    await page.setViewportSize({ width: 1000, height: 800 });
+    await page.goto("/");
+    const h1 = page.getByRole("heading", { level: 1, name: negocios.apresentacao.titulo });
+    await expect(h1).toBeVisible();
+    await expect(page.locator("#apresentacao").getByText(site.nome, { exact: true })).toBeVisible();
+    const painel = await page.getByRole("figure", { name: negocios.apresentacao.painel.rotulo }).boundingBox();
+    const titulo = await h1.boundingBox();
+    expect(painel!.x, "o painel fica à direita do título, não abaixo do orçamento").toBeGreaterThan(titulo!.x + titulo!.width - 1);
+  });
+
+  test.describe("no celular", () => {
+    test.use({ viewport: { width: 390, height: 780 }, hasTouch: true, isMobile: true });
+    test("tem o botão do WhatsApp logo abaixo do orçamento", async ({ page }) => {
+      await page.goto("/");
+      const whatsapp = page.locator("#apresentacao").getByRole("link", { name: negocios.apresentacao.botaoWhatsapp });
+      await expect(whatsapp).toBeVisible();
+      expect((await whatsapp.getAttribute("href"))?.startsWith("https://wa.me/"), "link do WhatsApp").toBe(true);
+    });
   });
 });

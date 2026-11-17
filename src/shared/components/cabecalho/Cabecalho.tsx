@@ -1,9 +1,22 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { comum } from "../../../content/textos";
 import { rolarParaAncora } from "../../lib/ancora";
 import { aplicarTema, lerTema, salvarTema, type Tema } from "../../tema";
 
 type Link = { href: string; rotulo: string };
+
+/**
+ * Link `#seção` do cabeçalho: rola suave até a seção (só com movimento permitido), em vez de saltar.
+ * Fica no clique, e não em `scroll-behavior` no CSS, para não suavizar também o scroll causado por foco.
+ */
+function aoClicarNaAncora(e: MouseEvent<HTMLAnchorElement>, href: string) {
+  if (!href.startsWith("#") || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+  const alvo = document.getElementById(decodeURIComponent(href.slice(1)));
+  if (!alvo || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  e.preventDefault();
+  alvo.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.history.pushState(null, "", href);
+}
 
 type Props = {
   area: string;
@@ -47,10 +60,10 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
     "relative grid grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-padrao border border-linha bg-fundo/95 px-3 py-1 shadow-lg backdrop-blur md:px-5";
 
   const classesMarca =
-    "justify-self-start inline-flex min-h-alvo items-center font-titulo text-[1.05rem] font-bold tracking-[-0.01em] no-underline";
+    "justify-self-start inline-flex min-h-alvo items-center font-titulo text-medio font-bold tracking-[-0.01em] no-underline";
 
   const botaoBase =
-    "min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-[1rem] text-texto aria-pressed:bg-texto aria-pressed:text-fundo";
+    "min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-base text-texto aria-pressed:bg-texto aria-pressed:text-fundo";
 
   // Mobile e tablet: some até abrir o menu. Desktop (pc+): sempre em linha, dentro da barra.
   // O corte é em "pc" (e não "md") porque cada lado da barra fica com só metade da largura.
@@ -141,9 +154,12 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
                   {links.map((l) => (
                     <li key={l.href}>
                       <a
-                        className="flex min-h-alvo items-center text-[1.1rem] whitespace-nowrap no-underline hover:underline active:underline pc:text-[1rem]"
+                        className="flex min-h-alvo items-center text-medio whitespace-nowrap no-underline hover:underline active:underline pc:text-base"
                         href={l.href}
-                        onClick={() => setMenuAberto(false)}
+                        onClick={(e) => {
+                          setMenuAberto(false);
+                          aoClicarNaAncora(e, l.href);
+                        }}
                       >
                         {l.rotulo}
                       </a>

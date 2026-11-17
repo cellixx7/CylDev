@@ -4,7 +4,7 @@ Texto, destaques, modais, UniSER e cenas animadas da seção Sobre. Seções em 
 
 ## Seção Sobre (13/11/2026)
 
-- **Onde:** `Sobre.tsx` em `#sobre` (depois do Orçamento e do exemplo de painel no celular, antes de Entregas e Contato). A lógica testável fica em `sobreLogica.ts` (parágrafos por flag, galeria, destino do botão); o nome não é `sobre.ts` porque o Windows não distingue de `Sobre.tsx`.
+- **Onde:** `Sobre.tsx` em `#sobre` (depois do Orçamento e do exemplo de painel no celular, antes do Contato; a seção Entregas entrou em 16/11/2026 e fica antes do Sobre). A lógica testável fica em `sobreLogica.ts` (parágrafos por flag, galeria, destino do botão); o nome não é `sobre.ts` porque o Windows não distingue de `Sobre.tsx`.
 - **Ministério:** liberado em 13/11/2026, só com o texto de `negocios.sobre.ministerio`. Sem siglas nem nomes internos de órgãos, programas ou sistemas; um teste barra palavras só em maiúsculas nesse texto.
 - **Imagens do Uniser:** eram SVGs de exemplo; foram trocadas pelas telas reais (ver a seção "UniSER corrigida, Simbionte e imagens reais").
 - **Botão "Fazer orçamento" (antes "Falar comigo"):** no fim da seção Sobre e de cada modal, leva a `#orcamento` (`destinoBotaoSobre`). Pedido do Marcelo em 14/11/2026: quem lê o Sobre segue direto para o orçamento; o Contato continua no menu.
@@ -41,3 +41,10 @@ Texto, destaques, modais, UniSER e cenas animadas da seção Sobre. Seções em 
 - **Coluna lateral:** em cima, a cena animada da planilha que vira painel (com pausa própria; aparece com `mostrarMinisterio`, pois é o assunto do estágio); embaixo, só 2 telas do Uniser (Editais e Login, marcadas com `naSecao` em `site.telasUniser`). As 6 telas continuam no modal do Uniser; o modal do Estágio mantém as duas cenas.
 - **Pausa por cena:** cada animação tem o seu botão pequeno, só com o ícone de pausa/continuar (rótulo acessível "Pausar animação: <cena>", alvo de toque de 44 px), ao lado da legenda.
 - **Aviso na seção (14/11/2026):** abaixo da cena da planilha na coluna lateral vai "Cena ilustrativa, com dados fictícios." (`cenasEstagio.avisoCena`), o mesmo aviso do modal no singular. Os destaques do texto passaram a usar um ícone de "mais informações" (círculo com "+", `IconeMais`) no lugar do de link externo, que sugeria sair do site.
+
+## Ajustes da Etapa 4 da auditoria (16/11/2026)
+
+- **"Estagio" sem acento:** era o verbo ("eu estagio"), mas quem lê entende como erro de digitação de "Estágio" (a auditoria apontou assim). O trecho virou "Sou estagiário de TI no Ministério da Defesa" e, no modal, "Sou estagiário na área de TI...". Pendente de conferência do Marcelo.
+- **Cena da planilha com texto de 14 px:** coluna "Nome" (era "Responsável"), "Carlos Reis" (era "Carlos Pereira"), proporção 4:3 e colunas remedidas para nada cortar em 360 px. A cena do auditório não tem texto pequeno e ficou igual.
+- **Legendas e avisos** da galeria UniSER e das cenas: de 13 para 14 px.
+

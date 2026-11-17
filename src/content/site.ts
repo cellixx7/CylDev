@@ -6,6 +6,19 @@ export const site = {
   // DDI + DDD + número, só dígitos.
   whatsapp: "5561996291118",
   email: "marcelovaz.contato@gmail.com",
+
+  // Identificação de quem presta o serviço (Decreto 7.962/2013). Aparece no rodapé de todas as páginas e nos Termos.
+  // `null` = o site não mostra o campo (nada é inventado). Decisão do Marcelo em 16/11/2026: por enquanto o CPF
+  // não é publicado e os Termos dizem que o documento vai na proposta por escrito (docs/PENDENCIAS.md).
+  // Cidade/UF, recibo e o e-mail de contato para privacidade também foram confirmados por ele em 16/11/2026.
+  prestador: {
+    /** CPF ou CNPJ, já formatado. Ex.: { tipo: "CNPJ", numero: "00.000.000/0001-00" }. */
+    documento: null as { tipo: "CPF" | "CNPJ"; numero: string } | null,
+    /** Cidade e UF de onde o serviço é prestado. Ex.: "Cidade/UF". */
+    cidadeUf: "Brasília/DF" as string | null,
+    /** O que é emitido depois de cada pagamento. Troque para "nota" quando houver CNPJ e nota fiscal de serviço. */
+    comprovante: "recibo" as "recibo" | "nota",
+  },
   // Endereço público usado no Open Graph quando a Netlify não injeta `URL` no build.
   urlPadrao: "https://cyldev.netlify.app",
 
@@ -27,8 +40,8 @@ export const site = {
   // Caminho em /public. Sem foto, o site usa o avatar de iniciais.
   foto: null as string | null,
 
-  // Links do menu de Negócios cujas seções ainda estão vazias. Religue (true) quando a seção existir.
-  menuSecoes: { sobre: true, entregas: false, contato: true },
+  // Links de seção do menu de Negócios. Desligue (false) para tirar o link do menu enquanto a seção não estiver pronta.
+  menuSecoes: { sobre: true, entregas: true, contato: true },
 
   repositorioCylBot: "https://github.com/cellixx7/CylBot" as string | null,
 

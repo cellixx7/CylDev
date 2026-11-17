@@ -19,7 +19,7 @@ const t = orcamento.painel;
 
 const escondido = "peer sr-only";
 const opcaoBase =
-  "group relative flex min-h-alvo cursor-pointer items-start gap-3 rounded-pequeno border border-linha bg-superficie px-3 py-3 text-[1rem] leading-snug transition-colors hover:border-texto-suave hover:bg-realce active:bg-realce has-checked:border-destaque has-checked:bg-realce has-checked:shadow-[inset_0_0_0_1px_var(--color-destaque)] has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-foco";
+  "group relative flex min-h-alvo cursor-pointer items-start gap-3 rounded-pequeno border border-linha bg-superficie px-3 py-3 text-base leading-snug transition-colors hover:border-texto-suave hover:bg-realce active:bg-realce has-checked:border-destaque has-checked:bg-realce has-checked:shadow-[inset_0_0_0_1px_var(--color-destaque)] has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-foco";
 const marcaBase =
   "mt-px grid size-6 shrink-0 place-items-center border-2 border-texto-suave text-destaque-texto peer-checked:border-destaque peer-checked:bg-destaque [&_svg]:opacity-0 peer-checked:[&_svg]:opacity-100";
 
@@ -59,7 +59,7 @@ function PerguntaCampo({
 
   return (
     <fieldset className="m-0 min-w-0 border-0 p-0">
-      <legend className="mb-1 flex w-full items-start gap-2 p-0 text-[1.02rem] leading-snug font-bold">
+      <legend className="mb-1 flex w-full items-start gap-2 p-0 text-medio leading-snug font-bold">
         <span className="min-w-0 flex-1 self-center">{p.texto}</span>
         {marcadas.length > 0 && (
           <span className="shrink-0 self-center text-destaque">
@@ -69,7 +69,7 @@ function PerguntaCampo({
         )}
       </legend>
       {orientacao && (
-        <p className="mb-2 text-[0.875rem] text-texto-suave">{orientacao}</p>
+        <p className="mb-2 text-menor text-texto-suave">{orientacao}</p>
       )}
       <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(min(100%,15rem),1fr))] gap-2.5">
         {p.opcoes.map((o) => {
@@ -95,7 +95,7 @@ function PerguntaCampo({
                   {o.rotulo}
                 </span>
                 {custo && (
-                  <span className="shrink-0 pl-2 font-mono text-[0.875rem] whitespace-nowrap text-texto-suave">
+                  <span className="shrink-0 pl-2 font-mono text-menor whitespace-nowrap text-texto-suave">
                     {custo}
                   </span>
                 )}
@@ -111,7 +111,7 @@ function PerguntaCampo({
       </div>
       <div className="mt-1 flex flex-wrap items-center justify-between gap-x-4">
         <p
-          className="m-0 font-mono text-[0.875rem] text-texto-suave"
+          className="m-0 font-mono text-menor text-texto-suave"
           aria-live="polite"
         >
           {acrescimo > 0 ? (
@@ -127,10 +127,10 @@ function PerguntaCampo({
 
 function ProgressoConfiguracao({ progresso: p }: { progresso: Progresso }) {
   if (p.total === 0)
-    return <p className="m-0 text-[1rem] text-texto-suave">{t.semPerguntas}</p>;
+    return <p className="m-0 text-base text-texto-suave">{t.semPerguntas}</p>;
   return (
     <div>
-      <p className="m-0 font-mono text-[0.875rem] font-bold" role="status">
+      <p className="m-0 font-mono text-menor font-bold" role="status">
         {t.progresso(p.respondidas, p.total)}
       </p>
       <div className="mt-1.5 flex flex-wrap gap-1" aria-hidden="true">
@@ -189,7 +189,7 @@ export function ConfiguradorServico({
       <div className="mb-5 grid gap-1">
         <ProgressoConfiguracao progresso={progresso} />
         {progresso.total > 0 && (
-          <p className="m-0 text-[0.875rem] text-texto-suave">
+          <p className="m-0 text-menor text-texto-suave">
             {t.legendaValor}
           </p>
         )}

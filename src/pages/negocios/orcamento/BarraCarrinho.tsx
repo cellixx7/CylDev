@@ -56,7 +56,7 @@ export function BarraCarrinho({ pedido, aoAbrir }: Props) {
         aria-haspopup="dialog"
         aria-label={t.rotuloBotao(qtd, total)}
         onClick={aoAbrir}
-        className="mx-auto flex min-h-alvo w-full max-w-hero cursor-pointer items-center justify-between gap-3 border-0 bg-transparent p-0 text-left font-[inherit] text-[1rem] text-texto active:bg-realce focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco"
+        className="mx-auto flex min-h-alvo w-full max-w-hero cursor-pointer items-center justify-between gap-3 border-0 bg-transparent p-0 text-left font-[inherit] text-base text-texto active:bg-realce focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco"
       >
         <span className="min-w-0">
           <span className="font-semibold">{t.titulo(qtd)}</span>

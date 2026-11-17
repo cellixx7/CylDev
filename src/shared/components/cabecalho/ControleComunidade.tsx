@@ -171,7 +171,7 @@ export function ControleComunidade({ href, rotulo, rotuloCurto, dicaTitulo, dica
           <circle cx="15.6" cy="10.6" r="0.9" fill="currentColor" stroke="none" />
           <circle cx="17.9" cy="12.7" r="0.9" fill="currentColor" stroke="none" />
         </svg>
-        {rotuloCurto && <span className="hidden text-[1rem] font-semibold sm:inline">{rotuloCurto}</span>}
+        {rotuloCurto && <span className="hidden text-base font-semibold sm:inline">{rotuloCurto}</span>}
         {explodindo && (
           <span aria-hidden="true" className="pointer-events-none absolute inset-0">
             {FAISCAS.map((f, i) => (
@@ -195,15 +195,15 @@ export function ControleComunidade({ href, rotulo, rotuloCurto, dicaTitulo, dica
           aria-hidden="true"
           className="absolute -top-[6px] left-1/2 size-2.5 -translate-x-1/2 rotate-45 bg-lilas"
         />
-        <span className="block font-mono text-[1rem] font-bold tracking-[-0.01em] text-lilas">
+        <span className="block font-mono text-base font-bold tracking-[-0.01em] text-lilas">
           {dicaTitulo}
         </span>
-        <span className="mt-1 block text-[0.875rem] leading-snug text-[#cfc9dc]">{dicaTexto}</span>
+        <span className="mt-1 block text-menor leading-snug text-[#cfc9dc]">{dicaTexto}</span>
         {dicaAberta && (
           <a
             href={href}
             onClick={clicarAcao}
-            className="mt-3 inline-flex min-h-alvo w-full items-center justify-center gap-2 rounded-pequeno bg-lilas px-3 font-mono text-[1rem] font-bold text-roxo-noite no-underline"
+            className="mt-3 inline-flex min-h-alvo w-full items-center justify-center gap-2 rounded-pequeno bg-lilas px-3 font-mono text-base font-bold text-roxo-noite no-underline"
           >
             {dicaAcao}
             <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

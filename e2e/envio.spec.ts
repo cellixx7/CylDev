@@ -1,6 +1,6 @@
 import type { Page } from "@playwright/test";
 import { site } from "../src/content/site";
-import { orcamento as t } from "../src/content/textos";
+import { orcamento as t, versoes } from "../src/content/textos";
 import { TEMPO_MINIMO_MS } from "../src/shared/lib/emailjs";
 import { dadosEmailPedido, montarPedido, NAO_RESPONDEU } from "../src/shared/lib/pedido";
 import { ERRO_TELEFONE } from "../src/shared/lib/telefone";
@@ -139,6 +139,8 @@ test.describe("5. envio pelo site: corpo enviado, isca e falha", () => {
     expect(p.origem).toBe("negocios-carrinho");
     expect(p.assunto).toBe(`Pedido: ${servico.nome}`);
     expect(p.observacoes).toBe(observacao);
+    expect(p.aviso_valor).toBe(t.carrinho.avisoValorEmail);
+    expect(p.aceite).toBe(t.carrinho.aceiteEmail(versoes.termos, versoes.privacidade));
     expect(p.itens).toHaveLength(1);
     expect(p.itens[0].titulo).toBe(servico.nome);
     expect(p.itens[0].valor).toMatch(/R\$.* \(estimativa\)$/);

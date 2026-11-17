@@ -7,8 +7,8 @@ export const negocios = {
   nav: [
     { href: "/#orcamento", rotulo: "Orçamento" },
     { href: "/como-funciona/", rotulo: "Como funciona" },
-    { href: "/#sobre", rotulo: "Sobre", secao: "sobre" },
     { href: "/#entregas", rotulo: "Entregas", secao: "entregas" },
+    { href: "/#sobre", rotulo: "Sobre", secao: "sobre" },
     { href: "/#contato", rotulo: "Contato", secao: "contato" },
   ] as { href: string; rotulo: string; secao?: "sobre" | "entregas" | "contato" }[],
   /** Atalho discreto de WhatsApp no rodapé de Negócios (a seção #contato tem os outros canais). */
@@ -26,9 +26,10 @@ export const negocios = {
     dicaAcao: "Ir para o CylDev",
   },
   apresentacao: {
-    titulo: "Marcelo Vaz",
+    /** O `h1` é a promessa; o nome (`site.nome`) vai acima dele, como sobretítulo. Título + subtítulo formam a frase do JSON-LD. */
+    titulo: "Transformo a sua planilha bagunçada em um painel.",
     subtitulo:
-      "Transformo a sua planilha bagunçada em um painel que mostra o que vende, o que encalha e o que está acabando. Também crio a página do seu negócio e sistemas completos na internet.",
+      "Ele mostra o que vende, o que encalha e o que está acabando. Também crio a página do seu negócio e sistemas completos na internet.",
     texto:
       "Planilhas organizadas, painéis com os seus números, páginas de apresentação e sistemas sob medida. Tudo explicado em português claro, sem complicação.",
     /** Linha de partida do celular: o menor preço de pacote, direto de servicos.ts. */
@@ -37,13 +38,15 @@ export const negocios = {
     comoPedir: "Monte o orçamento aqui e envie pelo site ou pelo WhatsApp.",
     botaoOrcamento: "Realize seu orçamento",
     botaoComoFunciona: "Como funciona?",
+    /** Só no celular: atalho direto para a conversa, sem passar pelo orçamento. */
+    botaoWhatsapp: "Chamar no WhatsApp",
     seta: "Entenda como Funciona",
     // Painel de exemplo (loja fictícia) mostrado ao lado do título.
     painel: {
       rotulo: "Exemplo de painel · loja fictícia",
       selo: "Exemplo",
       titulo: "Painel de vendas",
-      descricao: "Todos os números da loja em uma única tela: quanto vendeu, o que mais sai e o que está parado. Os dados abaixo são de mentira.",
+      descricao: "Todos os números da loja em uma única tela: quanto vendeu, o que mais sai e o que está parado. Os dados abaixo são fictícios.",
       periodo: "Ano de 2026",
       indicadores: [
         { nome: "Vendas no ano", valor: "R$ 214 mil", variacao: "+14% vs. 2025" },
@@ -122,9 +125,10 @@ export const negocios = {
       ],
     },
   },
-  /** Os 5 passos do pedido à entrega. Ainda sem uso na home: reservado para a seção Entregas (Etapa 4 da auditoria). */
+  /** Seção #entregas da home: os 5 passos do pedido à entrega. */
   comoFunciona: {
-    titulo: "Como funciona",
+    titulo: "Do pedido à entrega",
+    intro: "Da primeira conversa ao arquivo final, em cinco passos.",
     passos: [
       {
         titulo: "Conversa de 10 minutos",
@@ -141,8 +145,17 @@ export const negocios = {
       },
     ],
     pagamento: "Pagamento por Pix. Emito recibo.",
+    /** Linha de links abaixo dos passos: as regras completas e as dúvidas comuns. */
+    regras: { antes: "As regras completas estão nos", termos: "Termos de contratação", meio: "e as dúvidas mais comuns, nas", perguntas: "perguntas frequentes" },
   },
   sobre,
+  /** Conteúdo do <noscript> da home (sem JavaScript, robôs que não executam JS). Gerado no build por seo.ts. */
+  semJs: {
+    aviso: "O orçamento na hora precisa de JavaScript. Sem ele, fale comigo direto:",
+    whatsapp: "Chamar no WhatsApp",
+    email: "Mandar um e-mail",
+    comoFunciona: "Ver como funciona",
+  },
   contato: {
     titulo: "Contato",
     intro: "Escolha o jeito que for mais fácil para você. Respondo pelo mesmo canal.",

@@ -12,7 +12,7 @@ const t = orcamento.valor;
 const p = t.pedido;
 
 const focoVisivel = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
-const botaoTexto = `min-h-alvo cursor-pointer border-0 bg-transparent px-0 py-2 text-left font-[inherit] text-[1rem] font-semibold text-destaque underline underline-offset-4 ${focoVisivel}`;
+const botaoTexto = `min-h-alvo cursor-pointer border-0 bg-transparent px-0 py-2 text-left font-[inherit] text-base font-semibold text-destaque underline underline-offset-4 ${focoVisivel}`;
 const celula = "border-b border-linha py-1.5 align-baseline";
 
 // Parte 1: geral ---------------------------------------------------------------------------
@@ -23,10 +23,10 @@ function ComoOPrecoEMontado() {
   const linhas = [g.precoBase, g.horaExtra(brl(VALOR_HORA_EXTRA)), g.combo, g.piloto(piloto?.percentual ?? null), g.regras, g.estimativa];
   return (
     <section aria-labelledby="valor-geral-titulo">
-      <h3 id="valor-geral-titulo" className="mt-0 mb-2 text-[1.1rem]">
+      <h3 id="valor-geral-titulo" className="mt-0 mb-2 text-medio">
         {g.titulo}
       </h3>
-      <ul className="m-0 grid list-disc gap-2 pl-5 text-[1rem]">
+      <ul className="m-0 grid list-disc gap-2 pl-5 text-base">
         {linhas.map((l) => (
           <li key={l}>{l}</li>
         ))}
@@ -40,14 +40,14 @@ function ComoOPrecoEMontado() {
 function TabelaDoItem({ item: i }: { item: ItemExplicado }) {
   return (
     <section className="mb-5" aria-labelledby={`valor-item-${i.id}`}>
-      <h4 id={`valor-item-${i.id}`} className="mt-0 mb-1 text-[1rem] font-bold [overflow-wrap:anywhere]">
+      <h4 id={`valor-item-${i.id}`} className="mt-0 mb-1 text-base font-bold [overflow-wrap:anywhere]">
         {i.nome}
       </h4>
       {i.sobConsulta ? (
-        <p className="m-0 text-[1rem] text-texto-suave">{p.sobConsulta}</p>
+        <p className="m-0 text-base text-texto-suave">{p.sobConsulta}</p>
       ) : (
         <>
-          <table className="w-full border-collapse text-[1rem]">
+          <table className="w-full border-collapse text-base">
             <caption className="sr-only">{i.nome}</caption>
             <thead className="sr-only">
               <tr>
@@ -69,7 +69,7 @@ function TabelaDoItem({ item: i }: { item: ItemExplicado }) {
                       {x.pergunta}: {x.resposta}
                     </span>
                     {x.horas !== null && (
-                      <span className="block text-[0.875rem] text-texto-suave">{p.horas(horasTexto(x.horas), brl(VALOR_HORA_EXTRA))}</span>
+                      <span className="block text-menor text-texto-suave">{p.horas(horasTexto(x.horas), brl(VALOR_HORA_EXTRA))}</span>
                     )}
                   </th>
                   <td className={`${celula} pl-3 text-right font-mono`}>+ {brl(x.valor)}</td>
@@ -85,9 +85,9 @@ function TabelaDoItem({ item: i }: { item: ItemExplicado }) {
               </tr>
             </tfoot>
           </table>
-          {i.horasACombinar && <p className="mt-1 mb-0 text-[0.875rem] text-texto-suave">{p.horasACombinar}</p>}
-          {i.semResposta.length > 0 && <p className="mt-1 mb-0 text-[0.875rem] text-texto-suave">{p.semResposta(i.semResposta.join(", "))}</p>}
-          {i.mensalidade !== null && <p className="mt-1 mb-0 text-[0.875rem] text-texto-suave">{p.mensalidade(brl(i.mensalidade))}</p>}
+          {i.horasACombinar && <p className="mt-1 mb-0 text-menor text-texto-suave">{p.horasACombinar}</p>}
+          {i.semResposta.length > 0 && <p className="mt-1 mb-0 text-menor text-texto-suave">{p.semResposta(i.semResposta.join(", "))}</p>}
+          {i.mensalidade !== null && <p className="mt-1 mb-0 text-menor text-texto-suave">{p.mensalidade(brl(i.mensalidade))}</p>}
         </>
       )}
     </section>
@@ -96,7 +96,7 @@ function TabelaDoItem({ item: i }: { item: ItemExplicado }) {
 
 function PorqueDoDesconto({ e }: { e: ExplicacaoValor }) {
   const d = e.desconto;
-  if (!d) return <p className="mt-1 mb-0 text-[0.875rem] text-texto-suave">{p.semDesconto}</p>;
+  if (!d) return <p className="mt-1 mb-0 text-menor text-texto-suave">{p.semDesconto}</p>;
   const linhas: string[] = [];
   linhas.push(d.tipo === "combo" ? p.comboPorque(d.qtdCombinaveis, brl(d.base)) : p.pilotoPorque(brl(d.base)));
   if (d.alternativa) {
@@ -106,7 +106,7 @@ function PorqueDoDesconto({ e }: { e: ExplicacaoValor }) {
   return (
     <>
       {linhas.map((l) => (
-        <p key={l} className="mt-1 mb-0 text-[0.875rem] text-texto-suave">
+        <p key={l} className="mt-1 mb-0 text-menor text-texto-suave">
           {l}
         </p>
       ))}
@@ -118,15 +118,15 @@ function NoSeuPedido({ e }: { e: ExplicacaoValor }) {
   const mudam = e.itens.filter((i) => i.mudariam.length > 0);
   return (
     <section aria-labelledby="valor-pedido-titulo">
-      <h3 id="valor-pedido-titulo" className="mt-0 mb-3 text-[1.1rem]">
+      <h3 id="valor-pedido-titulo" className="mt-0 mb-3 text-medio">
         {p.titulo}
       </h3>
       {e.itens.map((i) => (
         <TabelaDoItem key={i.id} item={i} />
       ))}
 
-      <h4 className="mt-0 mb-1 text-[1rem] font-bold">{p.fechamento}</h4>
-      <table className="w-full border-collapse text-[1rem]">
+      <h4 className="mt-0 mb-1 text-base font-bold">{p.fechamento}</h4>
+      <table className="w-full border-collapse text-base">
         <caption className="sr-only">{p.fechamento}</caption>
         <tbody>
           <tr>
@@ -149,15 +149,15 @@ function NoSeuPedido({ e }: { e: ExplicacaoValor }) {
             <th scope="row" className="py-2 text-left font-bold">
               {e.totalAPartirDe ? p.totalAPartirDe : p.total}
             </th>
-            <td className="py-2 pl-3 text-right font-mono text-[1.15rem] font-bold">{brl(e.total)}</td>
+            <td className="py-2 pl-3 text-right font-mono text-medio font-bold">{brl(e.total)}</td>
           </tr>
         </tfoot>
       </table>
       <PorqueDoDesconto e={e} />
-      {e.temSemResposta && <p className="mt-2 mb-0 text-[0.875rem] font-semibold">{p.estimativa}</p>}
+      {e.temSemResposta && <p className="mt-2 mb-0 text-menor font-semibold">{p.estimativa}</p>}
 
       {mudam.length > 0 && (
-        <p className="mt-4 mb-0 text-[1rem]">
+        <p className="mt-4 mb-0 text-base">
           <span className="font-semibold">{p.mudaria}: </span>
           {mudam.map((i) => p.mudariaLinha(i.nome, i.mudariam.join(", "))).join("; ")}. <span className="text-texto-suave">{p.mudariaNota}</span>
         </p>
@@ -212,12 +212,12 @@ export function DialogoValor({ aberto, carrinho, respostas, aoFechar }: DialogoP
       onClick={(e) => {
         if (e.target === e.currentTarget) aoFechar();
       }}
-      className="dialogo-valor m-0 hidden h-dvh max-h-none w-full max-w-none flex-col overflow-hidden border-0 bg-fundo p-0 text-texto open:flex md:m-auto md:h-auto md:max-h-[90dvh] md:max-w-[40rem] md:border md:border-linha backdrop:bg-[rgb(0_0_0/0.6)]"
+      className="dialogo-valor m-0 hidden h-dvh max-h-none w-full max-w-none flex-col overflow-hidden border-0 bg-fundo p-0 text-texto open:flex md:m-auto md:h-auto md:max-h-[90dvh] md:max-w-leitura md:border md:border-linha backdrop:bg-[rgb(0_0_0/0.6)]"
     >
       {aberto && (
         <>
           <header className="flex shrink-0 items-start justify-between gap-3 border-b border-linha px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 md:px-6">
-            <h2 id={idTitulo} ref={titulo} tabIndex={-1} className="m-0 py-2 text-[1.35rem] leading-tight outline-none">
+            <h2 id={idTitulo} ref={titulo} tabIndex={-1} className="m-0 py-2 text-grande leading-tight outline-none">
               {t.titulo}
             </h2>
             <button
@@ -233,7 +233,7 @@ export function DialogoValor({ aberto, carrinho, respostas, aoFechar }: DialogoP
           <div className="min-h-0 flex-1 overflow-y-auto px-4 py-5 md:px-6">
             <ComoOPrecoEMontado />
             <div className="mt-6 border-t-2 border-texto pt-5">
-              {explicacao ? <NoSeuPedido e={explicacao} /> : <p className="m-0 text-[1rem] text-texto-suave">{t.vazio}</p>}
+              {explicacao ? <NoSeuPedido e={explicacao} /> : <p className="m-0 text-base text-texto-suave">{t.vazio}</p>}
             </div>
           </div>
 

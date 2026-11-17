@@ -135,7 +135,7 @@ export function Dica({ texto, rotulo }: Props) {
       >
         <span
           aria-hidden="true"
-          className="grid size-5 place-items-center rounded-full border-2 border-current font-mono text-[0.75rem] leading-none font-bold group-hover/dica:bg-realce"
+          className="grid size-5 place-items-center rounded-full border-2 border-current font-mono text-menor leading-none font-bold group-hover/dica:bg-realce"
         >
           i
         </span>
@@ -146,7 +146,7 @@ export function Dica({ texto, rotulo }: Props) {
         role="tooltip"
         hidden={!aberta}
         style={estiloBalao}
-        className="fixed z-50 rounded-pequeno border border-linha bg-superficie px-3 py-2 text-left text-[0.9375rem] leading-snug font-normal text-texto"
+        className="fixed z-50 rounded-pequeno border border-linha bg-superficie px-3 py-2 text-left text-base leading-snug font-normal text-texto"
       >
         {texto}
       </span>

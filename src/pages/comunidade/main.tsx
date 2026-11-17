@@ -24,9 +24,9 @@ function Comunidade() {
       <Cabecalho area="comunidade" temaPadrao="escuro" marca={site.marcaComunidade} links={t.nav} />
       <main id="conteudo">
         <section className="pt-14 pb-20 tab:grid tab:grid-cols-[7fr_4fr] tab:items-end tab:gap-14 tab:pt-20">
-          <h1 className="max-w-[20ch] font-mono text-[clamp(2rem,7.5vw,3.6rem)] tracking-[-0.02em]">{t.apresentacao.titulo}</h1>
+          <h1 className="max-w-titulo font-mono text-pagina tracking-[-0.02em]">{t.apresentacao.titulo}</h1>
           <div className="tab:pb-2">
-            <p className="text-[1.1rem] text-texto-suave">{t.apresentacao.texto}</p>
+            <p className="text-medio text-texto-suave">{t.apresentacao.texto}</p>
             <p className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a className={botaoCheio} href={linkContato("comunidade")} target="_blank" rel="noopener">
                 {t.apresentacao.acao}
@@ -50,7 +50,7 @@ function Comunidade() {
 
         <section className="border-t border-linha" id="cylsense" aria-labelledby="cylsense-titulo">
           <h2 className="flex flex-wrap items-baseline gap-3" id="cylsense-titulo">
-            {t.cylsense.titulo} <span className="border border-destaque px-2 font-mono text-[0.875rem] font-normal text-destaque">{t.cylsense.status}</span>
+            {t.cylsense.titulo} <span className="border border-destaque px-2 font-mono text-menor font-normal text-destaque">{t.cylsense.status}</span>
           </h2>
           <p>{t.cylsense.texto}</p>
         </section>
@@ -60,7 +60,7 @@ function Comunidade() {
           {desconto && (
             <p className="mt-2 mb-6 inline-block border-l-[3px] border-destaque bg-realce px-3 py-2 font-semibold">
               {piloto(desconto.restam, desconto.percentual, desconto.percentual === 10)}
-              <span className="block text-[1rem] font-normal">{pilotoNota}</span>
+              <span className="block text-base font-normal">{pilotoNota}</span>
             </p>
           )}
           <Catalogo
@@ -84,8 +84,8 @@ function Comunidade() {
           <Contatos origem="comunidade-contato" comFormulario={false} />
         </section>
       </main>
-      <Rodape ponte={{ ...t.ponte, href: "/" }}>
-        <p className="font-mono text-[0.875rem]">{t.avisoRiot}</p>
+      <Rodape ponte={{ ...t.ponte, href: "/" }} contatoHref="#contato">
+        <p className="font-mono text-menor">{t.avisoRiot}</p>
       </Rodape>
     </>
   );

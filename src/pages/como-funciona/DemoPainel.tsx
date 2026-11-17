@@ -18,7 +18,7 @@ function TabelaVendas({ filtro, animar }: { filtro: FiltroDemo; animar?: string 
   const destaque = (mes: string) => (filtro === mes ? " bg-realce" : "");
   const acende = animar ? " demo-flash" : "";
   return (
-    <table className="w-full table-fixed border-collapse text-[0.875rem]" aria-label={t.tabela.legenda}>
+    <table className="w-full table-fixed border-collapse text-menor" aria-label={t.tabela.legenda}>
       <thead>
         <tr>
           <th className={`${celula} bg-superficie`}>{t.tabela.produto}</th>
@@ -62,7 +62,7 @@ function Painel({ passo, mesPadrao, aoFiltrar }: { passo: number; mesPadrao?: Fi
   return (
     <div className="demo-entra rounded-padrao border border-linha p-3 sm:p-4" role="group" aria-label={`${p.titulo}: ${p.resumo(r.periodo, r.total, r.maisVende.nome, r.menosSai.nome)}`}>
       <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-        <p className="m-0 font-titulo text-[1.1rem] font-bold">{p.titulo}</p>
+        <p className="m-0 font-titulo text-medio font-bold">{p.titulo}</p>
         <div role="group" aria-label={p.filtroRotulo} className="flex flex-wrap gap-2">
           {filtros.map((f) => (
             <button
@@ -83,27 +83,27 @@ function Painel({ passo, mesPadrao, aoFiltrar }: { passo: number; mesPadrao?: Fi
 
       <dl className="m-0 mb-4 grid grid-cols-1 gap-3 min-[400px]:grid-cols-3">
         <div className="border-t-2 border-texto pt-2">
-          <dt className="text-[0.875rem] text-texto-suave">{p.indicadores.vendido}</dt>
-          <dd key={r.total + filtro} className="demo-entra m-0 font-mono text-[1.2rem] font-bold">
+          <dt className="text-menor text-texto-suave">{p.indicadores.vendido}</dt>
+          <dd key={r.total + filtro} className="demo-entra m-0 font-mono text-grande font-bold">
             R$ {r.total} mil
           </dd>
         </div>
         <div className="border-t-2 border-destaque pt-2">
-          <dt className="text-[0.875rem] text-texto-suave">{p.indicadores.maisVende}</dt>
-          <dd key={r.maisVende.nome + filtro} className="demo-entra m-0 font-mono text-[1.2rem] font-bold">
+          <dt className="text-menor text-texto-suave">{p.indicadores.maisVende}</dt>
+          <dd key={r.maisVende.nome + filtro} className="demo-entra m-0 font-mono text-grande font-bold">
             {r.maisVende.nome}
           </dd>
         </div>
         <div className="border-t-2 border-serie-1 pt-2">
-          <dt className="text-[0.875rem] text-texto-suave">{p.indicadores.menosSai}</dt>
-          <dd key={r.menosSai.nome + filtro} className="demo-entra m-0 font-mono text-[1.2rem] font-bold">
+          <dt className="text-menor text-texto-suave">{p.indicadores.menosSai}</dt>
+          <dd key={r.menosSai.nome + filtro} className="demo-entra m-0 font-mono text-grande font-bold">
             {r.menosSai.nome}
           </dd>
         </div>
       </dl>
 
-      <p className="mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave">{p.graficoTitulo}</p>
-      <ul className="m-0 grid list-none gap-2 p-0 text-[0.875rem]">
+      <p className="mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave">{p.graficoTitulo}</p>
+      <ul className="m-0 grid list-none gap-2 p-0 text-menor">
         {r.vendas.map((v, i) => {
           const cor = v.nome === r.maisVende.nome ? "bg-destaque" : v.nome === r.menosSai.nome ? "bg-serie-1" : "bg-serie-3";
           return (
@@ -127,11 +127,11 @@ function Painel({ passo, mesPadrao, aoFiltrar }: { passo: number; mesPadrao?: Fi
 const estatico = (
   <div className="grid gap-4 sm:grid-cols-2 sm:items-start">
     <div>
-      <p className="mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave">{t.antes}</p>
+      <p className="mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave">{t.antes}</p>
       <TabelaVendas filtro="todos" />
     </div>
     <div>
-      <p className="mb-2 text-[0.875rem] uppercase tracking-[0.06em] text-texto-suave">{t.depois}</p>
+      <p className="mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave">{t.depois}</p>
       <Painel passo={ultimo} mesPadrao="todos" />
       <p className="mt-2 mb-0 text-texto-suave">{t.usar}</p>
     </div>

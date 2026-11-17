@@ -52,13 +52,13 @@ export function Catalogo({ servicos, origem, textoPedir }: Props) {
             }
           >
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 tab:col-span-full">
-              <h3 className="m-0 text-[1.35rem]">{s.nome}</h3>
-              <p className={`m-0 font-mono text-[1.05rem] font-bold ${precoQuebra ? "whitespace-normal" : "whitespace-nowrap"}`}>
+              <h3 className="m-0 text-grande">{s.nome}</h3>
+              <p className={`m-0 font-mono text-medio font-bold ${precoQuebra ? "whitespace-normal" : "whitespace-nowrap"}`}>
                 {textoPreco(s.preco)}
               </p>
             </div>
             <p className="mt-2 mb-3 tab:col-start-1">{s.resultado}</p>
-            <dl className="mb-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[1rem] text-texto-suave tab:col-start-2 tab:row-[2/span_2] tab:mt-2">
+            <dl className="mb-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-base text-texto-suave tab:col-start-2 tab:row-[2/span_2] tab:mt-2">
               <dt className="font-semibold text-texto">{t.inclui}</dt>
               <dd className="m-0">
                 <ul className="m-0 list-disc pl-[1.1em]">
@@ -80,7 +80,7 @@ export function Catalogo({ servicos, origem, textoPedir }: Props) {
                 </>
               )}
             </dl>
-            {s.nota && <p className="my-3 text-[1rem] text-texto-suave tab:col-start-1">{s.nota}</p>}
+            {s.nota && <p className="my-3 text-base text-texto-suave tab:col-start-1">{s.nota}</p>}
             <a
               className="inline-flex min-h-alvo items-center font-semibold text-destaque tab:col-start-1"
               href={linkContato(`${origem}-${s.id}`, mensagem)}

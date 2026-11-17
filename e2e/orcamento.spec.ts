@@ -93,6 +93,8 @@ test.describe("2. o carrinho sobrevive à troca de página e ao recarregar", () 
     await expect(page.locator("#orcamento-titulo")).toBeInViewport();
     await conferirPedido(page);
 
+    // Com a máquina carregada (CI, testes em paralelo), recarregar antes do fim do load abortava a navegação.
+    await page.waitForLoadState("load");
     await page.reload();
     await conferirPedido(page);
   });

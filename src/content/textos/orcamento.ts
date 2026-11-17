@@ -31,13 +31,6 @@ export const orcamento = {
     comboTexto: "Dois ou mais entre planilha, painel, automação e site de uma página têm desconto e um prazo só.",
     comboBotao: "Pôr planilha, painel e automação no carrinho",
     comboAdicionado: "Planilha, painel e automação no carrinho.",
-    /** Os bots de Discord não são vendidos aqui; a chamada leva para a seção de bots da Comunidade. */
-    chamadaComunidade: {
-      titulo: "Quer um bot para o seu servidor de Discord?",
-      texto: "Os bots ficam na área Comunidade, com o preço e a mensalidade explicados lá.",
-      link: "Ver os bots na Comunidade",
-      href: "/comunidade/#bots",
-    },
     linhas: {
       planilha: "Controles soltos viram uma planilha única, com totais que conferem.",
       painel: "Um arquivo que mostra o que vendeu, o que mais sai e como está o mês.",
@@ -51,10 +44,13 @@ export const orcamento = {
     /** Mini exemplo de cada card: sempre rotulado como exemplo, sem número, prazo ou dado real. */
     miniExemplo: {
       rotulo: "Exemplo",
+      /** Botão que abre e fecha a miniatura no celular (no desktop ela fica sempre aberta). */
+      ver: "Ver exemplo",
+      ocultar: "Ocultar exemplo",
       antes: "Antes",
       planilha: {
         legenda: "Controles soltos viram uma tabela só, com total no fim.",
-        antes: ["controle_final.xlsx", "controle_final2.xlsx", "novo (copia).xlsx"],
+        antes: ["final.xlsx", "final2.xlsx", "novo (cópia).xlsx"],
         colunas: ["Item", "Qtd", "Total"],
         linhas: ["Produto A", "Produto B"],
         total: "Total",
@@ -254,6 +250,8 @@ export const orcamento = {
     totalRodape: "Total",
     totalSobConsulta: "Sob consulta, fora do total: ",
     notaEstimativa: "Estimativa, confirmada na conversa.",
+    /** Vai no e-mail do pedido (parâmetro `aviso_valor` do EmailJS): o valor do site é só estimativa. */
+    avisoValorEmail: "Valor estimado pelo site. O valor final vai na proposta por escrito.",
     observacoes: "Observações (opcional)",
     observacoesDica: "Datas, prazos, o que mais importa para você. Vai junto com o pedido.",
     dadosTitulo: "Seus dados para enviar pelo site",
@@ -269,5 +267,10 @@ export const orcamento = {
     privacidade:
       "Envio o seu nome, o WhatsApp, as respostas do orçamento e as observações, só para responder este pedido. Eles passam pelo EmailJS (envio pelo site) e pelo WhatsApp. Eu confirmo por WhatsApp e combinamos o Pix.",
     privacidadeLink: "Política de privacidade",
+    /** Aceite perto do envio, sem caixinha: o pedido ainda não é contrato. Os links entram entre os trechos. */
+    aceite: { antes: "Ao enviar, você concorda com os", termosLink: "Termos de contratação", meio: "e com a", depois: "O pedido ainda não é contrato: o valor final vai na proposta por escrito." },
+    /** Registro do aceite, enviado no e-mail do pedido (parâmetro `aceite` do EmailJS), com a versão de cada texto. */
+    aceiteEmail: (versaoTermos: string, versaoPrivacidade: string) =>
+      `Pedido enviado com o aviso de concordância com os Termos de contratação (versão de ${versaoTermos}) e com a Política de privacidade (versão de ${versaoPrivacidade}).`,
   },
 };

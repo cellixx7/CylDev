@@ -18,6 +18,8 @@ O site manda só texto simples; a aparência do e-mail fica no template, dentro 
 | `itens` | Lista, um objeto por serviço do carrinho (abaixo) | lista vazia |
 | `total` | Total como o carrinho mostra (ex.: "estimativa a partir de R$ 900") | "—" |
 | `observacoes` | Texto livre do cliente | "—" |
+| `aviso_valor` | No pedido do carrinho: "Valor estimado pelo site. O valor final vai na proposta por escrito." (`avisoValorEmail` em `src/content/textos/orcamento.ts`) | "—" |
+| `aceite` | No pedido do carrinho: "Pedido enviado com o aviso de concordância com os Termos de contratação (versão de DD/MM/AAAA) e com a Política de privacidade (versão de DD/MM/AAAA)." (`aceiteEmail` em `src/content/textos/orcamento.ts`; datas em `src/content/textos/versoes.ts`) | "—" |
 
 Cada objeto de `itens`:
 
@@ -45,10 +47,16 @@ Corpo (HTML):
 <p><strong>Total:</strong> {{total}}</p>
 <p><strong>Observações:</strong></p>
 <p style="white-space: pre-line">{{observacoes}}</p>
+<p><em>{{aviso_valor}}</em></p>
+<p><em>{{aceite}}</em></p>
 
 <hr />
 <p style="white-space: pre-line">{{mensagem}}</p>
 <p>Origem: {{origem}}</p>
 ```
+
+`{{aviso_valor}}` (desde 16/11/2026) precisa ser acrescentado à mão no template do painel; sem ele, o aviso é enviado mas não aparece no e-mail.
+
+`{{aceite}}` (desde a Etapa 5 da auditoria, 16/11/2026) também precisa ser acrescentado à mão no template do painel. É o registro de que o cliente enviou o pedido vendo o aviso dos Termos e da privacidade; guarde o e-mail junto com a proposta.
 
 `white-space: pre-line` mantém as quebras de linha de `respostas`, `observacoes` e `mensagem`. Use chaves duplas (`{{ }}`), que escapam o que o cliente digitou; não use chaves triplas nesses campos.

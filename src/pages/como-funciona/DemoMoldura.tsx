@@ -103,7 +103,7 @@ function Animada({ t, visual }: { t: TextosDemo; visual: (passo: number) => Reac
       <div className="grid gap-6 tab:grid-cols-2 tab:items-start">
         <div>{visual(passo)}</div>
         <div className="grid gap-3">
-          <p className="m-0 text-[1rem]" data-testid="demo-passo-atual">
+          <p className="m-0 text-base" data-testid="demo-passo-atual">
             <span className="font-mono font-bold text-destaque">
               {passo === 0 ? t.comecoRotulo : t.passoAtual(passo, ultimo)}
             </span>
@@ -153,7 +153,7 @@ export function DemoMoldura({
   const reduzido = usarMovimentoReduzido();
   return (
     <section className="mt-9 border-t border-linha pt-6" aria-labelledby={`demo-${id}-titulo`} data-testid={`demo-${id}`}>
-      <h3 id={`demo-${id}-titulo`} className="mt-0 mb-2 text-[1.2rem]">
+      <h3 id={`demo-${id}-titulo`} className="mt-0 mb-2 text-grande">
         {t.titulo}
       </h3>
       <p className="mb-4">

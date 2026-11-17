@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
     <title>Privacidade | Marcelo Vaz</title>
-    <meta name="description" content="Que dados o site recebe, para que servem e como pedir a exclusão." />
+    <meta name="description" content="Que dados o site recebe, com que base na lei, por onde passam, os seus direitos e como pedir a exclusão." />
     <meta name="theme-color" content="#f2f4f8" />
     <link rel="icon" href="/favicon-negocios.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:title" content="Privacidade | Marcelo Vaz" />
-    <meta property="og:description" content="Que dados o site recebe, para que servem e como pedir a exclusão." />
+    <meta property="og:description" content="Que dados o site recebe, com que base na lei, por onde passam, os seus direitos e como pedir a exclusão." />
     <meta property="og:url" content="__URL__/privacidade/" />
     <link rel="canonical" href="__URL__/privacidade/" />
     <meta property="og:image" content="__URL__/og-negocios-v1.png" />
@@ -23,9 +23,10 @@
         if (t === "claro" || t === "escuro") document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
+    <style>.pular-conteudo{position:absolute;top:0;left:-9999px;z-index:100;display:inline-flex;align-items:center;min-height:44px;padding:.5rem .75rem;background:var(--color-texto,#1b1b18);color:var(--color-fundo,#f5f4ef)}.pular-conteudo:focus{left:.5rem;top:.5rem}</style>
   </head>
   <body>
-    <a class="absolute top-[-4rem] left-2 z-100 inline-flex min-h-alvo items-center bg-texto px-3 py-2 text-fundo focus:top-2" href="#conteudo">Pular para o conteúdo</a>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
     <div id="raiz"></div>
     <script type="module" src="/src/pages/privacidade/main.tsx"></script>
   </body>

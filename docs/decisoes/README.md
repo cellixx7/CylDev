@@ -6,9 +6,10 @@ Registro das decisões técnicas e de produto, dividido por tema. O que ainda fa
 
 | Arquivo | Tema | Seções |
 |---|---|---|
-| [`arquitetura-e-design.md`](arquitetura-e-design.md) | Arquitetura, design e acessibilidade | 5 |
+| [`arquitetura-e-design.md`](arquitetura-e-design.md) | Arquitetura, design e acessibilidade | 7 |
 | [`orcamento.md`](orcamento.md) | Orçamento, carrinho e preços | 13 |
-| [`emailjs-e-privacidade.md`](emailjs-e-privacidade.md) | EmailJS, e-mail do pedido e privacidade | 3 |
+| [`emailjs-e-privacidade.md`](emailjs-e-privacidade.md) | EmailJS, e-mail do pedido e privacidade | 6 |
+| [`juridico.md`](juridico.md) | Termos, privacidade (LGPD), identificação do prestador e páginas de apoio | 1 |
 | [`demonstracoes.md`](demonstracoes.md) | Demonstrações e painel de exemplo | 3 |
-| [`sobre.md`](sobre.md) | Seção Sobre | 5 |
-| [`testes-e-auditorias.md`](testes-e-auditorias.md) | Testes e rodadas de auditoria | 4 |
+| [`sobre.md`](sobre.md) | Seção Sobre | 6 |
+| [`testes-e-auditorias.md`](testes-e-auditorias.md) | Testes e rodadas de auditoria | 5 |

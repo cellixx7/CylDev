@@ -93,6 +93,6 @@ describe("enviarContato", () => {
   it("sem carrinho: itens vazio, total e observações com '—'", async () => {
     const params = espiar();
     await enviarContato(base, cfg);
-    expect(params()).toMatchObject({ itens: [], total: SEM_DADO, observacoes: SEM_DADO });
+    expect(params()).toMatchObject({ itens: [], total: SEM_DADO, observacoes: SEM_DADO, aviso_valor: SEM_DADO, aceite: SEM_DADO });
   });
 });
