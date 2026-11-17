@@ -360,3 +360,38 @@ html.modal-aberto {
     }
   }
 }
+
+/*
+ * Transições dentro da página (<ViewTransition> do React; ver transicao.ts). Fora do @layer, como o resto de view transition.
+ * - Tipo "local": a página inteira NÃO repete o fade da troca de página (tailwind.css). Só os elementos com
+ *   <ViewTransition> animam; o resto continua vivo (hover e foco funcionam durante o movimento).
+ * - item-entra / item-sai: item do carrinho (a lista de baixo desliza sozinha, pelo `update` padrão).
+ * - aba-troca: conteúdo do modal ao trocar de aba, um fade curto.
+ * Com movimento reduzido nada disso roda (a troca é direta).
+ */
+@media (prefers-reduced-motion: no-preference) {
+  :root:active-view-transition-type(local)::view-transition-old(root) {
+    display: none;
+  }
+  :root:active-view-transition-type(local)::view-transition-new(root) {
+    animation: none;
+  }
+
+  ::view-transition-old(.item-sai) {
+    animation: 0.15s ease-in both item-fade reverse;
+  }
+  ::view-transition-new(.item-entra) {
+    animation: 0.21s ease-out 0.1s both item-fade;
+  }
+  ::view-transition-old(.aba-troca) {
+    animation: 0.12s ease-in both item-fade reverse;
+  }
+  ::view-transition-new(.aba-troca) {
+    animation: 0.18s ease-out 0.08s both item-fade;
+  }
+  @keyframes item-fade {
+    from {
+      opacity: 0;
+    }
+  }
+}

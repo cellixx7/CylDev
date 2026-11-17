@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type FocusEvent } from "react";
+import { useEffect, useId, useRef, useState, ViewTransition, type FocusEvent } from "react";
 import { orcamento } from "../../../content/textos";
 import { botao, botaoCheio } from "../../../shared/estilos";
 import { emailjsConfigurado } from "../../../shared/lib/emailjs";
@@ -9,6 +9,7 @@ import { totalCurto } from "./BarraCarrinho";
 import { AcoesDoPedido, DadosDoPedido, useEnvioPedido } from "./CheckoutPedido";
 import { IconeFechar } from "../icones";
 import { PorQueEsseValor } from "./PorQueEsseValor";
+import { comTransicao } from "../transicao";
 import { useTravaRolagem } from "../useTravaRolagem";
 
 const t = orcamento.carrinho;
@@ -160,7 +161,10 @@ export function PainelCarrinho({ aberto, pedido, respostas, aviso, observacoes, 
               <>
                 <ul className="m-0 list-none border-t-2 border-texto p-0">
                   {pedido.itens.map((i) => (
-                    <ItemCarrinho key={i.id} item={i} aoAjustar={() => aoAjustar(i.id)} aoTirar={() => aoTirar(i.id)} />
+                    // Identidade da lista: ao tirar um item, ele some com fade e os de baixo deslizam para cima.
+                    <ViewTransition key={i.id} enter="item-entra" exit="item-sai">
+                      <ItemCarrinho item={i} aoAjustar={() => aoAjustar(i.id)} aoTirar={() => comTransicao(() => aoTirar(i.id))} />
+                    </ViewTransition>
                   ))}
                 </ul>
 

@@ -22,6 +22,24 @@ function urlAbsoluta(): Plugin {
   };
 }
 
+/**
+ * Liga a troca de página animada (View Transitions entre documentos) já no <head> de todo HTML.
+ * No `npm run dev` o CSS do Vite chega por JavaScript, depois do primeiro render, e a página nova ainda não teria
+ * o `@view-transition` quando o navegador decide animar. As animações em si ficam em tailwind.css.
+ */
+function transicaoDePagina(): Plugin {
+  return {
+    name: "transicao-de-pagina",
+    transformIndexHtml: () => [
+      {
+        tag: "style",
+        children: "@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}",
+        injectTo: "head",
+      },
+    ],
+  };
+}
+
 // Páginas públicas para o sitemap (obrigado e 404 ficam de fora e levam noindex).
 const paginasPublicas = ["/", "/como-funciona/", "/comunidade/", "/perguntas/", "/termos/", "/privacidade/", "/acessibilidade/"];
 
@@ -80,7 +98,7 @@ function seo(): Plugin {
 const raiz = import.meta.dirname;
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), urlAbsoluta(), seo()],
+  plugins: [react(), tailwindcss(), urlAbsoluta(), transicaoDePagina(), seo()],
   build: {
     rollupOptions: {
       input: {

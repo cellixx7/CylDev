@@ -1,9 +1,22 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { comum } from "../../../content/textos";
 import { rolarParaAncora } from "../../lib/ancora";
 import { aplicarTema, lerTema, salvarTema, type Tema } from "../../tema";
 
 type Link = { href: string; rotulo: string };
+
+/**
+ * Link `#seção` do cabeçalho: rola suave até a seção (só com movimento permitido), em vez de saltar.
+ * Fica no clique, e não em `scroll-behavior` no CSS, para não suavizar também o scroll causado por foco.
+ */
+function aoClicarNaAncora(e: MouseEvent<HTMLAnchorElement>, href: string) {
+  if (!href.startsWith("#") || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+  const alvo = document.getElementById(decodeURIComponent(href.slice(1)));
+  if (!alvo || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  e.preventDefault();
+  alvo.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.history.pushState(null, "", href);
+}
 
 type Props = {
   area: string;
@@ -143,7 +156,10 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
                       <a
                         className="flex min-h-alvo items-center text-medio whitespace-nowrap no-underline hover:underline active:underline pc:text-base"
                         href={l.href}
-                        onClick={() => setMenuAberto(false)}
+                        onClick={(e) => {
+                          setMenuAberto(false);
+                          aoClicarNaAncora(e, l.href);
+                        }}
                       >
                         {l.rotulo}
                       </a>

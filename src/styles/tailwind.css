@@ -276,3 +276,46 @@
     }
   }
 }
+
+/*
+ * Troca de página (todas as áreas), CSS puro (View Transitions entre documentos); onde o navegador
+ * não suporta, a troca é a de sempre. Fica fora do @layer porque o @view-transition não é aceito dentro dele.
+ * - A página antiga some rápido e a nova já entra junto (sem atraso), para não aparecer um instante de fundo vazio.
+ * - O cabeçalho e o botão de tema têm nome próprio: ficam parados e não piscam a cada troca.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  header.sticky {
+    view-transition-name: cabecalho;
+  }
+  .botao-tema {
+    view-transition-name: botao-tema;
+  }
+
+  ::view-transition-group(cabecalho),
+  ::view-transition-group(botao-tema) {
+    animation-duration: 0s;
+  }
+
+  ::view-transition-old(root) {
+    animation: pagina-sai 0.14s ease-out both;
+  }
+  ::view-transition-new(root) {
+    animation: pagina-entra 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes pagina-sai {
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes pagina-entra {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+}

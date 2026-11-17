@@ -6,6 +6,13 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Transições de página e de seção
+
+- Troca de página animada (fade curto, cabeçalho e botão de tema parados) também no `npm run dev`: a regra `@view-transition` agora vai no `<head>` de todo HTML pelo plugin `transicao-de-pagina` do `vite.config.ts`.
+- Links do cabeçalho até uma seção (`#orcamento`, `#sobre`...) rolam suave, só com movimento permitido.
+- Carrinho: ao tirar um item, ele some com fade e os de baixo deslizam (`<ViewTransition>` do React). Modal do serviço: fade curto ao trocar de aba.
+- Por dentro: `src/pages/negocios/transicao.ts` (`comTransicao`, tipo `local`) e a skill `vercel-react-view-transitions` usada como guia.
+
 ### Etapa 5 da auditoria: páginas jurídicas e de apoio
 
 - Página nova **Termos de contratação** (`/termos/`): como o pedido vira contrato, pagamento, prazos, revisões, desistência em 7 dias, cancelamento, garantia de 90 dias, de quem é o que é entregue, portfólio, dados que o cliente passa (LGPD), sigilo, mensalidade dos bots, limites de responsabilidade e foro.
