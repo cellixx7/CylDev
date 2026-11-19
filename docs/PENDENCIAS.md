@@ -35,7 +35,7 @@ Abertas na Etapa 5 da auditoria (16/11/2026). Os textos não são parecer juríd
 
 | | Pendência | Onde mexer | Desde |
 |---|---|---|---|
-| [ ] | **CPF ou CNPJ** de quem presta o serviço. Decisão de 16/11/2026: por enquanto não é publicado; o rodapé mostra nome, cidade e e-mail, e os Termos dizem que o documento vai na proposta por escrito (então ele **precisa** ir em toda proposta). O Decreto 7.962/2013 pede o documento em local visível: converse com um contador sobre CNPJ (MEI ou outro) para publicar sem expor o CPF | `site.prestador.documento` em `src/content/site.ts` | 16/11/2026 |
+| [x] | **CPF:** publicado mascarado (`095*****199`) em 19/11/2026; o número completo vai em toda proposta. MEI/CNPJ fica para quando o faturamento justificar (ver `decisoes/juridico.md`) | `site.prestador.documento` em `src/content/site.ts` | 19/11/2026 |
 | [x] | **Cidade/UF:** Brasília/DF, informada pelo Marcelo em 16/11/2026 (rodapé, Termos e foro). Com CNPJ, conferir se o endereço fiscal é o mesmo | `site.prestador.cidadeUf` | 16/11/2026 |
 | [x] | **Recibo ou nota fiscal:** recibo, confirmado pelo Marcelo em 16/11/2026. Se um dia houver nota de serviço, trocar para `"nota"` (muda os Termos e a FAQ) e ajustar "Emito recibo" em `negocios.comoFunciona.pagamento` | `site.prestador.comprovante` | 16/11/2026 |
 | [ ] | **Confirmar os prazos propostos nos Termos:** revisão pedida em até 7 dias; 30 dias sem resposta encerra o serviço; devolução de valores em até 10 dias; arquivos do cliente apagados em até 30 dias depois da entrega; aviso de incidente em até 2 dias úteis | `prazosDosTermos` em `src/content/textos/termos.ts` | 16/11/2026 |

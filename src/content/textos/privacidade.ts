@@ -25,13 +25,13 @@ export const privacidade: PaginaDeTexto = {
   titulo: "Política de privacidade",
   versao: VERSAO_PRIVACIDADE,
   atualizado: `Versão de ${VERSAO_PRIVACIDADE}.`,
-  intro: [`Este texto explica, em linguagem simples, o que acontece com os seus dados quando você usa este site. Quem cuida deles é ${site.nome}.`],
+  intro: [`Este texto explica, em linguagem simples, o que acontece com os seus dados quando você usa este site. Quem cuida deles é ${site.nomeCompleto}.`],
   secoes: [
     {
       id: "responsavel",
       titulo: "Quem é o responsável",
       itens: [
-        `O responsável pelos dados que você deixa neste site (o controlador, na Lei Geral de Proteção de Dados, a LGPD) é ${site.nome}.`,
+        `O responsável pelos dados que você deixa neste site (o controlador, na Lei Geral de Proteção de Dados, a LGPD) é ${site.nomeCompleto}.`,
         `O canal para qualquer assunto de privacidade é ${email}. Trabalho sozinho e não tenho um encarregado de dados nomeado à parte: quem responde sou eu.`,
       ],
     },

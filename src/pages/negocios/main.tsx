@@ -5,6 +5,7 @@ import "../../styles/tema-negocios.css";
 import { site } from "../../content/site";
 import { negocios as t } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
+import { Carrossel } from "../../shared/components/Carrossel";
 import { Contatos } from "../../shared/components/Contatos";
 import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { Secao } from "../../shared/components/Secao";
@@ -39,9 +40,10 @@ function Entregas() {
   const c = t.comoFunciona;
   return (
     <Secao id="entregas" titulo={c.titulo} intro={c.intro}>
-      <ol className="revela m-0 mt-6 grid list-none gap-x-6 gap-y-5 p-0 md:grid-cols-2 pc:grid-cols-5">
+      <div className="revela mt-6">
+      <Carrossel as="ol" gradeMd="md:grid-cols-2 md:gap-x-6 md:gap-y-5 pc:grid-cols-5">
         {c.passos.map((p, i) => (
-          <li key={p.titulo} className="grid grid-cols-[auto_minmax(0,1fr)] content-start gap-x-3 gap-y-1 border-t border-linha pt-3 pc:grid-cols-1">
+          <li key={p.titulo} className="grid grid-cols-[auto_minmax(0,1fr)] content-start gap-x-3 gap-y-1 rounded-pequeno border border-linha bg-superficie p-4 md:rounded-none md:border-0 md:border-t md:bg-transparent md:p-0 md:pt-3 pc:grid-cols-1">
             <span className="font-mono text-medio font-bold text-destaque" aria-hidden="true">
               {String(i + 1).padStart(2, "0")}
             </span>
@@ -51,7 +53,8 @@ function Entregas() {
             </div>
           </li>
         ))}
-      </ol>
+      </Carrossel>
+      </div>
       <p className="mt-6 mb-0 font-semibold">{c.pagamento}</p>
       <p className="mt-2 mb-0 text-texto-suave">
         {c.regras.antes}{" "}

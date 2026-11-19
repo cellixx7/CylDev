@@ -18,7 +18,7 @@ describe("identificação do prestador", () => {
   });
 
   it("o site sempre identifica pelo menos o nome e o e-mail de site.ts", () => {
-    expect(identificacaoPrestador()).toContain(site.nome);
+    expect(identificacaoPrestador()).toContain(site.nomeCompleto);
     expect(identificacaoPrestador()).toContain(site.email);
   });
 });
