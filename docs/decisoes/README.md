@@ -12,4 +12,5 @@ Registro das decisões técnicas e de produto, dividido por tema. O que ainda fa
 | [`juridico.md`](juridico.md) | Termos, privacidade (LGPD), identificação do prestador e páginas de apoio | 1 |
 | [`demonstracoes.md`](demonstracoes.md) | Demonstrações e painel de exemplo | 3 |
 | [`sobre.md`](sobre.md) | Seção Sobre | 6 |
+| [`assistente.md`](assistente.md) | Assistente do chat (motor de regras e, depois, modelo no navegador) | 1 |
 | [`testes-e-auditorias.md`](testes-e-auditorias.md) | Testes e rodadas de auditoria | 5 |

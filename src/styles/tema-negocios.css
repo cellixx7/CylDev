@@ -247,6 +247,32 @@ body {
   }
 }
 
+/*
+ * Assistente do chat. No celular ocupa a parte visível da tela (o PainelAssistente publica a altura e o topo da área
+ * visível, que muda com o teclado). No tablet e no desktop é um cartão no canto, sem escurecer a página.
+ */
+dialog.assistente {
+  height: var(--altura-assistente, 100dvh);
+  top: var(--topo-assistente, 0);
+}
+@media (min-width: 48rem) {
+  dialog.assistente {
+    height: min(40rem, calc(100dvh - 2.5rem));
+    top: auto;
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 48rem) {
+  dialog.assistente[open] {
+    animation: assistente-entra 0.2s ease-out;
+  }
+  @keyframes assistente-entra {
+    from {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+  }
+}
+
 /* Pergunta de aprofundamento recém-aberta: entra com um fade curto. Sem movimento reduzido, aparece direto. */
 @media (prefers-reduced-motion: no-preference) {
   .pergunta-nova {

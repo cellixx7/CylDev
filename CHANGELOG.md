@@ -6,6 +6,14 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Assistente do chat (Negócios)
+
+- Botão "Tirar dúvidas" no canto da home de Negócios abre um assistente que responde só com o conteúdo do site: serviços, o que inclui, preço de partida, prazo, desconto, pagamento, nota, desistência, contato. "Preço", "valor" e "quanto custa" são a mesma pergunta (rede de sinônimos, com tolerância a erro de digitação).
+- Monta o orçamento na conversa, uma pergunta por vez, com as mesmas perguntas e o mesmo cálculo do orçamento do site, e leva ao carrinho (com as respostas) ou ao WhatsApp. Tem o guia "não sei qual escolher".
+- Recusa assunto fora do site e pedidos para ignorar as regras; pedido maior ou que não sabe vai para o formulário do orçamento ou o WhatsApp, sem inventar preço nem prazo.
+- Roda no navegador, sem rede: a conversa não é enviada nem guardada e some ao recarregar. Carregado só quando abre (cerca de 11 kB gzip). Segue o tema claro/escuro; tela cheia no celular.
+- Por dentro: `src/shared/lib/assistente/` (lógica testada), `src/pages/negocios/assistente/` (interface), `src/content/assistente.ts` (vocabulário), `docs/decisoes/assistente.md`. Modelo de linguagem (WebLLM) fica para uma segunda etapa.
+
 ### Identificação do prestador e carrossel
 
 - Rodapé e Termos mostram o nome completo e o CPF mascarado (`095*****199`); o número inteiro vai só na proposta por escrito.

@@ -13,6 +13,7 @@ import { botao, botaoCheio } from "../../shared/estilos";
 import { brl } from "../../shared/lib/formato";
 import { precoDePartida } from "../../shared/lib/seo";
 import { linkContato } from "../../shared/lib/whatsapp";
+import { BotaoAssistente } from "./assistente/BotaoAssistente";
 import { ativarMagnetico } from "./magnetico";
 import { Orcamento } from "./orcamento/Orcamento";
 import { PainelExemplo } from "./exemplo/PainelExemplo";
@@ -148,6 +149,7 @@ function Negocios() {
       <Rodape ponte={{ ...t.ponte, href: "/comunidade/" }}>
         <ContatoRodape origem="negocios-rodape" />
       </Rodape>
+      <BotaoAssistente />
     </>
   );
 }
