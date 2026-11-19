@@ -1,9 +1,18 @@
 import { describe, expect, it } from "vitest";
 import { servicoOrcamentoPorId } from "../../content/perguntas";
-import { adicionar, COMBO_IDS, estadoInicial, montarCombo, remover, responder } from "./carrinho-estado";
+import { adicionar, COMBO_IDS, comRespostas, estadoInicial, montarCombo, remover, responder } from "./carrinho-estado";
 import { montarPedido } from "./pedido";
 
 describe("carrinho-estado", () => {
+  it("comRespostas (assistente do chat) coloca o serviço com as respostas e descarta o que não existe", () => {
+    const q = servicoOrcamentoPorId("planilha")!.perguntas[0];
+    const e = comRespostas(estadoInicial(), "planilha", { [q.id]: q.opcoes[0].id, inventada: "x" });
+    expect(e.ids).toEqual(["planilha"]);
+    expect(e.respostas.planilha).toEqual({ [q.id]: q.opcoes[0].id });
+    expect(comRespostas(estadoInicial(), "bot-ia", {}).ids).toEqual([]);
+    expect(comRespostas(estadoInicial(), "nao-existe", {}).ids).toEqual([]);
+  });
+
   it("adicionar ignora os bots, que não são vendidos em Negócios", () => {
     const e = estadoInicial();
     expect(adicionar(e, "bot-essencial")).toBe(e);

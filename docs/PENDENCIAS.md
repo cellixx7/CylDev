@@ -16,6 +16,16 @@ Dono: **Marcelo** (decisão comercial ou ação fora do código) ou **dev** (mud
 | [ ] | Sistema sob medida: preço-base de 6 h x R$ 50 (a partir de R$ 300, sem teto) e as horas das respostas | `HORAS_BASE_SISTEMA` em `servicos.ts`, `perguntasSistema.ts` | 12/11/2026 |
 | [ ] | Conferir os textos dos modais do Sobre | `src/content/textos/sobre.ts` | 13/11/2026 |
 
+## Assistente do chat (dev)
+
+Etapa 1 (motor de regras + interface) entregue em 19/11/2026; detalhes em `decisoes/assistente.md`.
+
+| | Pendência | Dono | Desde |
+|---|---|---|---|
+| [ ] | Etapa 2: modelo de linguagem no navegador (WebLLM, Web Worker, aviso do download, detecção de WebGPU, validador de números). Exige antes: seção na `privacidade.ts` (CDN dos pesos vê o IP), data nova em `versoes.ts`, registro em `juridico.md` e CSP (`connect-src`, `worker-src`, `wasm-unsafe-eval`) | dev | 19/11/2026 |
+| [ ] | Testar o chat em celular de verdade (teclado virtual no iOS e no Android, altura pela `visualViewport`); os testes automáticos só cobrem Chromium de desktop | Marcelo | 19/11/2026 |
+| [ ] | Ler as respostas do chat com olho de dono: o vocabulário (`src/content/assistente.ts`) e os textos (`src/content/textos/assistente.ts`) são editáveis | Marcelo | 19/11/2026 |
+
 ## Configuração e publicação (Marcelo)
 
 | | Pendência | Onde | Desde |

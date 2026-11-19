@@ -15,6 +15,7 @@
 //   privacidade.ts          Política de privacidade (/privacidade/)
 //   acessibilidade.ts       declaração de acessibilidade (/acessibilidade/)
 //   perguntasFrequentes.ts  perguntas frequentes (/perguntas/)
+//   assistente.ts           textos do chat de Negócios (só o chat, carregado ao abrir, importa)
 // Página nova de leitura segue esse modelo; as demais ganham um arquivo próprio aqui e uma linha abaixo.
 export { catalogo, comum, formulario, piloto, pilotoNota } from "./comum";
 export { orcamento } from "./orcamento";

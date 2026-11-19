@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { servicoOrcamentoPorId } from "../../../content/perguntas";
 import { orcamento as t } from "../../../content/textos";
-import { adicionar, montarCombo, remover, responder, type EstadoCarrinho } from "../../../shared/lib/carrinho-estado";
+import { adicionar, comRespostas, montarCombo, remover, responder, type EstadoCarrinho } from "../../../shared/lib/carrinho-estado";
+import { EVENTO_CARRINHO, lerDetalhe, type DetalheCarrinho } from "../../../shared/lib/assistente/eventos";
 import { lerCarrinho, salvarCarrinho } from "../../../shared/lib/carrinho-persistencia";
 import type { AbaModal } from "../../../shared/lib/hashServico";
 import { Secao } from "../../../shared/components/Secao";
@@ -101,6 +102,23 @@ export function Orcamento() {
     setPainelAberto(false);
     abrir(id, "orcamento");
   };
+
+  // O assistente do chat pede para colocar um serviço no carrinho, com as respostas dadas na conversa, e abrir o carrinho.
+  const aoAssistente = useRef<(d: DetalheCarrinho) => void>(() => {});
+  aoAssistente.current = (d) => {
+    setCarrinho((e) => comRespostas(e, d.servicoId, d.respostas));
+    setAviso(t.cards.adicionado(nome(d.servicoId)));
+    if (aberto) verCarrinhoDoModal();
+    else setPainelAberto(true);
+  };
+  useEffect(() => {
+    const ouvir = (e: Event) => {
+      const d = lerDetalhe(e);
+      if (d) aoAssistente.current(d);
+    };
+    window.addEventListener(EVENTO_CARRINHO, ouvir);
+    return () => window.removeEventListener(EVENTO_CARRINHO, ouvir);
+  }, []);
 
   return (
     <Secao id="orcamento" titulo={t.titulo} intro={t.intro} tituloFocavel>

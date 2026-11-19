@@ -51,6 +51,17 @@ export function responder(e: EstadoCarrinho, servicoId: string, perguntaId: stri
   return { ...e, respostas: { ...e.respostas, [servicoId]: podarRespostas(modelo.perguntas, novo) } };
 }
 
+/**
+ * Coloca o serviço no carrinho já com as respostas dadas (vindas do assistente do chat). As respostas passam por
+ * `podarRespostas`, então o que não existe ou não está visível no serviço é descartado. Serviço fora do catálogo não entra.
+ */
+export function comRespostas(e: EstadoCarrinho, servicoId: string, respostas: Respostas): EstadoCarrinho {
+  const modelo = servicoOrcamentoPorId(servicoId);
+  if (!modelo || !estaNoCatalogo(servicoId)) return e;
+  const validas = podarRespostas(modelo.perguntas, respostas);
+  return adicionar({ ...e, respostas: { ...e.respostas, [servicoId]: validas } }, servicoId);
+}
+
 /** Acrescenta só os serviços do combo que ainda faltam. */
 export function montarCombo(e: EstadoCarrinho): EstadoCarrinho {
   const faltam = COMBO_IDS.filter((id) => !e.ids.includes(id));
