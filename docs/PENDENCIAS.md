@@ -24,7 +24,9 @@ Etapa 1 (motor de regras + interface) entregue em 19/11/2026; detalhes em `decis
 |---|---|---|---|
 | [ ] | Etapa 2: modelo de linguagem no navegador (WebLLM, Web Worker, aviso do download, detecção de WebGPU, validador de números). Exige antes: seção na `privacidade.ts` (CDN dos pesos vê o IP), data nova em `versoes.ts`, registro em `juridico.md` e CSP (`connect-src`, `worker-src`, `wasm-unsafe-eval`) | dev | 19/11/2026 |
 | [ ] | Testar o chat em celular de verdade (teclado virtual no iOS e no Android, altura pela `visualViewport`); os testes automáticos só cobrem Chromium de desktop | Marcelo | 19/11/2026 |
-| [ ] | Ler as respostas do chat com olho de dono: o vocabulário (`src/content/assistente.ts`) e os textos (`src/content/textos/assistente.ts`) são editáveis | Marcelo | 19/11/2026 |
+| [ ] | Ler as respostas do chat com olho de dono: o vocabulário (`src/content/assistente.ts`) e os textos (`src/content/textos/assistente.ts` e `assistenteGuias.ts`) são editáveis | Marcelo | 19/11/2026 |
+| [ ] | Publicar no site (ou confirmar) o que o Assistente Cyl diz e ainda não está escrito em nenhuma página: "costuma responder em até 2 horas, sem garantia", "portfólio para recrutadores em desenvolvimento" e os diferenciais (qualidade técnica, entrega no prazo, valores justos com descontos generosos, apoio em outros projetos). Quem mudar o que o site promete deve mudar `textos/assistente.ts` e `assistenteGuias.ts` junto | Marcelo | 19/11/2026 |
+| [ ] | Conferir a ordem do processo: o chat segue o que está publicado (proposta, entrada de metade e começo do trabalho, entrega por etapas, saldo antes dos arquivos finais), e não "pagamento parcial depois de começar" | Marcelo | 19/11/2026 |
 
 ## Configuração e publicação (Marcelo)
 

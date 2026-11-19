@@ -86,12 +86,13 @@ describe("escopo", () => {
   it("recusa assunto de fora", () => {
     for (const fora of ["quem ganhou o jogo de futebol ontem?", "me conta uma piada", "qual a previsão do tempo", "o que acha de investir em bitcoin"]) {
       const { texto } = conversar(fora);
-      expect(texto, fora).toContain("só falo sobre os serviços");
+      expect(texto, fora).toContain("Só posso responder coisas relacionadas ao CylDev");
     }
   });
-  it("assunto fora do vocabulário vira encaminhamento, sem inventar", () => {
-    const { texto, resposta } = conversar("vocês fazem tatuagem?");
-    expect(texto).toContain("Não encontrei isso no site");
+  it("pergunta específica que o site não cobre vira encaminhamento, sem inventar", () => {
+    const { texto, resposta } = conversar("vocês conseguem instalar a fiação elétrica do meu condomínio inteiro?");
+    expect(texto).toContain("prefiro não responder no chute");
+    expect(texto).toContain("em até 2 horas");
     expect(resposta.acoes.some((a) => a.tipo === "link" && a.href.startsWith("https://wa.me/"))).toBe(true);
     expect(resposta.acoes.some((a) => a.tipo === "link" && a.href === "#orcamento")).toBe(true);
   });

@@ -227,7 +227,8 @@
  * A barra fixa do carrinho publica a própria altura em --altura-barra (ver BarraCarrinho).
  * O botão de tema sobe junto e o fim da página ganha o mesmo espaço, para nada ficar por baixo dela.
  */
-.botao-tema {
+.botao-tema,
+.botao-assistente {
   bottom: calc(var(--altura-barra, 0px) + 1.25rem);
 }
 body {
@@ -418,6 +419,42 @@ html.modal-aberto {
   @keyframes item-fade {
     from {
       opacity: 0;
+    }
+  }
+}
+
+/*
+ * Três pontinhos do indicador de estado do Assistente Cyl ("Digitando…", "Pensando…", "Pesquisando…"). Pulam em sequência;
+ * com movimento reduzido ficam parados.
+ */
+.ponto-digitando {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: currentColor;
+  opacity: 0.6;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ponto-digitando {
+    animation: ponto-pula 1.2s ease-in-out infinite;
+  }
+  .ponto-digitando:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .ponto-digitando:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  @keyframes ponto-pula {
+    0%,
+    60%,
+    100% {
+      opacity: 0.35;
+      transform: translateY(0);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(-4px);
     }
   }
 }
