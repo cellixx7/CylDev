@@ -6,6 +6,11 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Identificação do prestador e carrossel
+
+- Rodapé e Termos mostram o nome completo e o CPF mascarado (`095*****199`); o número inteiro vai só na proposta por escrito.
+- Cards de serviços em carrossel (`Carrossel.tsx`) e `PaginaTexto` reorganizada.
+
 ### Transições de página e de seção
 
 - Troca de página animada (fade curto, cabeçalho e botão de tema parados) também no `npm run dev`: a regra `@view-transition` agora vai no `<head>` de todo HTML pelo plugin `transicao-de-pagina` do `vite.config.ts`.
