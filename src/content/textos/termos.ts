@@ -32,7 +32,7 @@ export const prazosDosTermos = {
 const p = prazosDosTermos;
 
 const documentoLinha = documento
-  ? `${documento.tipo}: ${documento.numero}.`
+  ? `${documento.tipo}: ${documento.numero}${documento.numero.includes("*") ? " (parcial, para proteger os meus dados). O número completo vai na proposta por escrito, antes de qualquer pagamento" : ""}.`
   : "CPF ou CNPJ: informado na proposta por escrito, antes de qualquer pagamento.";
 
 const comprovanteTexto =
@@ -54,7 +54,7 @@ export const termos: PaginaDeTexto = {
       id: "prestador",
       titulo: "Quem presta o serviço",
       itens: [
-        `Nome: ${site.nome}.`,
+        `Nome: ${site.nomeCompleto}.`,
         documentoLinha,
         ...(cidadeUf ? [`Local: ${cidadeUf}. O atendimento é feito pela internet.`] : ["O atendimento é feito pela internet."]),
         `E-mail: ${email}.`,

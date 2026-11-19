@@ -1,5 +1,6 @@
 import { servicosDoCatalogo } from "../../../content/perguntas";
 import { orcamento } from "../../../content/textos";
+import { Carrossel } from "../../../shared/components/Carrossel";
 import { CardServico } from "./CardServico";
 
 const t = orcamento.cards;
@@ -16,7 +17,7 @@ type Props = {
 export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternarCarrinho, aoMontarCombo }: Props) {
   return (
     <div>
-      <ul className="m-0 grid list-none grid-cols-1 gap-4 md:grid-cols-2 pc:grid-cols-3 p-0" aria-label={t.rotuloLista}>
+      <Carrossel rotulo={t.rotuloLista} gradeMd="md:grid-cols-2 md:gap-4 pc:grid-cols-3">
         {servicosDoCatalogo.map((s) => (
           <CardServico
             key={s.id}
@@ -27,7 +28,7 @@ export function CardsServicos({ ids, aoVerDetalhes, aoFazerOrcamento, aoAlternar
             aoAlternarCarrinho={aoAlternarCarrinho}
           />
         ))}
-      </ul>
+      </Carrossel>
       <p className="mt-4 mb-0 text-base text-texto-suave">
         {t.comboTexto}{" "}
         <button

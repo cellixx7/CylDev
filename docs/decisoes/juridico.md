@@ -39,3 +39,10 @@ Páginas e textos que protegem quem compra e quem vende. Seções em ordem de da
 - **`/obrigado/` e 404** continuam sem rodapé (são páginas de aviso, com `noindex`), então não levam a linha de identificação.
 - **Comunidade:** termos e privacidade do CylBot, termos de bot sob medida, regras de conduta, FAQ dos bots e aviso de não afiliação completo ficam para a fase de comunidade (lista na auditoria). Os Termos de Negócios trazem só o básico da mensalidade (`#bots`), sem inventar o que acontece com a hospedagem.
 - **Etapa 1 (segurança):** adiada por decisão do Marcelo; nada dela foi feito aqui.
+
+## CPF publicado mascarado (19/11/2026)
+
+- **Decisão do Marcelo:** publicar o CPF mascarado (`095*****199`) no rodapé e nos Termos, em vez de não publicar nada. O número completo vai só na proposta por escrito, antes de qualquer pagamento, o que continua obrigatório.
+- **Por quê:** CPF completo no HTML público é dado que bots raspam e golpistas usam. O mascarado atende em parte o Decreto 7.962/2013 (identificação visível) sem expor o número inteiro. Não é cumprimento pleno do decreto; o risco prático para serviço vendido sob proposta é baixo (fiscalização costuma vir de reclamação no Procon).
+- **MEI:** descartado por ora (custo mensal do DAS e dúvida se a atividade de software cabe nas ocupações permitidas). Reavaliar se o faturamento crescer; com CNPJ, trocar `documento` e `comprovante` em `site.ts`.
+- **Texto:** a linha "Quem presta o serviço" dos Termos avisa que o número é parcial e que o completo vai na proposta. Data dos Termos trocada para 19/11/2026 em `versoes.ts`.

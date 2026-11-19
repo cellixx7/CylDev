@@ -2,18 +2,20 @@
 
 export const site = {
   nome: "Marcelo Vaz",
+  // Nome completo, usado onde há identificação de quem presta o serviço (rodapé, Termos, privacidade). `nome` é a marca curta.
+  nomeCompleto: "Marcelo Vaz Oliveira",
   marcaComunidade: "CylDev",
   // DDI + DDD + número, só dígitos.
   whatsapp: "5561996291118",
   email: "marcelovaz.contato@gmail.com",
 
   // Identificação de quem presta o serviço (Decreto 7.962/2013). Aparece no rodapé de todas as páginas e nos Termos.
-  // `null` = o site não mostra o campo (nada é inventado). Decisão do Marcelo em 16/11/2026: por enquanto o CPF
-  // não é publicado e os Termos dizem que o documento vai na proposta por escrito (docs/PENDENCIAS.md).
+  // `null` = o site não mostra o campo (nada é inventado). Decisão do Marcelo em 19/11/2026: o CPF é publicado
+  // mascarado (095*****199) e o número completo vai só na proposta por escrito (docs/decisoes/juridico.md).
   // Cidade/UF, recibo e o e-mail de contato para privacidade também foram confirmados por ele em 16/11/2026.
   prestador: {
     /** CPF ou CNPJ, já formatado. Ex.: { tipo: "CNPJ", numero: "00.000.000/0001-00" }. */
-    documento: null as { tipo: "CPF" | "CNPJ"; numero: string } | null,
+    documento: { tipo: "CPF", numero: "095*****199" } as { tipo: "CPF" | "CNPJ"; numero: string } | null,
     /** Cidade e UF de onde o serviço é prestado. Ex.: "Cidade/UF". */
     cidadeUf: "Brasília/DF" as string | null,
     /** O que é emitido depois de cada pagamento. Troque para "nota" quando houver CNPJ e nota fiscal de serviço. */

@@ -22,6 +22,12 @@ export const comum = {
   temaEscuro: "Tema escuro",
   menuAbrir: "Abrir menu",
   menuFechar: "Fechar menu",
+  /** Carrossel do celular (ver shared/components/Carrossel.tsx). */
+  carrossel: {
+    anterior: "Anterior",
+    proximo: "Próximo",
+    posicao: (atual: number, total: number) => `${atual} de ${total}`,
+  },
 };
 
 export const catalogo = {
