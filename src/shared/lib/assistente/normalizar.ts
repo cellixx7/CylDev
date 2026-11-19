@@ -1,3 +1,5 @@
+import { girias } from "../../../content/assistente";
+
 // Normalização de texto para o assistente: minúsculo, sem acento, sem pontuação e com um radical leve em português.
 // Frases do vocabulário e mensagens do visitante passam pela MESMA função, então "preços" e "preço" se encontram.
 
@@ -10,7 +12,12 @@ export function palavras(texto: string): string[] {
   return semAcento(texto)
     .replace(/[^a-z0-9%]+/g, " ")
     .split(" ")
-    .filter(Boolean);
+    .filter(Boolean)
+    .flatMap((p) => {
+      // Gíria, abreviação e erro de digitação conhecidos (ver `girias`): "nn" vira "nao", "sisteminha" vira "sistema".
+      const troca = Object.hasOwn(girias, p) ? girias[p] : p;
+      return troca === "" ? [] : troca.split(" ");
+    });
 }
 
 /** Radical leve: tira o plural ("preços" → "preco", "valores" → "valor"). Palavras curtas ficam como estão. */

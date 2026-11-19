@@ -6,7 +6,18 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
-### Assistente do chat (Negócios)
+### Assistente Cyl: respostas mais úteis e cara de chat (PR 22)
+
+- O assistente agora se chama **Assistente Cyl** e responde de forma expansiva: resposta direta, explicação em linguagem simples, dica ou próximo passo e uma pergunta para seguir a conversa. Voz amigável, com poucos emojis, tratamento "o senhor" ou "a senhora" só quando a pessoa deixa claro, e formas neutras na dúvida.
+- Guias novos: como funciona, o que preparar antes de pedir, como pagar, como receber o projeto, como saber se é confiável, o que acontece depois da entrega (revisão, garantia, ajustes e mensalidade-base dos bots), para quem é o serviço e sugestões por tipo de negócio. Todos repetem só o que já está publicado (Entregas, Sobre, Perguntas, Termos); preço, prazo e desconto continuam vindo de `servicos.ts` e `orcamento.ts`, e o validador de números continua valendo.
+- Entende gírias, abreviações e erros de digitação ("sisteminha", "nn", "tu", "prra", "botzão"). Mensagem vaga ou confusa não recebe "não encontrei": o chat acolhe, explica em poucas linhas com um exemplo do dia a dia e oferece opções clicáveis.
+- Fala com franqueza quando o serviço não é o indicado (empresa que já tem sistema grande), nunca chama o valor de caro ou barato (só "valor justo"), não dá opinião jurídica (remete a Termos e Privacidade) e encaminha o que não sabe para o formulário ou o WhatsApp, com "costuma responder em até 2 horas, sem garantia".
+- Interface em balões (usuário à direita, Assistente Cyl à esquerda com avatar, hora discreta). Cada resposta vem depois de 2 a 5 segundos com "Digitando…" e três pontinhos animados, e o texto aparece digitado (dá para pular). Respeita `prefers-reduced-motion`. "Limpar a conversa" virou o ícone "Nova conversa".
+- "Bom dia", "Boa tarde" e "Oi" recebem o mesmo cumprimento e "Como posso ajudar?", sem repetir a apresentação; o aviso "Só posso responder coisas relacionadas ao CylDev" só aparece em pergunta fora do assunto.
+- O botão "Tirar dúvidas" virou uma bolinha redonda com ícone de chat, no estilo do botão de tema, com o nome "Assistente Cyl" em um balão ao passar o mouse ou focar pelo teclado. O chat continua sendo carregado só na primeira abertura (o painel ficou com cerca de 19 kB gzip).
+- Por dentro: `textos/assistenteGuias.ts` (guias), `shared/lib/assistente/ritmo.ts` (espera e digitação), `girias` em `content/assistente.ts`; testes novos em `assistenteCyl.test.ts` e `e2e/assistente.spec.ts`; decisões em `docs/decisoes/assistente.md`.
+
+### Assistente do chat (Negócios), primeira versão
 
 - Botão "Tirar dúvidas" no canto da home de Negócios abre um assistente que responde só com o conteúdo do site: serviços, o que inclui, preço de partida, prazo, desconto, pagamento, nota, desistência, contato. "Preço", "valor" e "quanto custa" são a mesma pergunta (rede de sinônimos, com tolerância a erro de digitação).
 - Monta o orçamento na conversa, uma pergunta por vez, com as mesmas perguntas e o mesmo cálculo do orçamento do site, e leva ao carrinho (com as respostas) ou ao WhatsApp. Tem o guia "não sei qual escolher".

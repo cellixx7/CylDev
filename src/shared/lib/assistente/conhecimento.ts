@@ -1,10 +1,12 @@
-import { COMBO_2, COMBO_3, VALOR_HORA_EXTRA } from "../../../content/orcamento";
+import { COMBO_2, COMBO_3, mensalidadeBots, VALOR_HORA_EXTRA } from "../../../content/orcamento";
 import { servicosDoCatalogo } from "../../../content/perguntas";
 import { servicoPorId } from "../../../content/servicos";
 import { site } from "../../../content/site";
+import { assistente as t } from "../../../content/textos/assistente";
 import { perguntasFrequentes } from "../../../content/textos/perguntasFrequentes";
+import { guias } from "../../../content/textos/assistenteGuias";
 import { brl } from "../formato";
-import { calcularServico, descontoPilotoAtual, textoPrecoItem, type CalculoServico } from "../orcamento";
+import { calcularServico, descontoPilotoAtual, mensalidadeDe, textoPrecoItem, type CalculoServico } from "../orcamento";
 import { linkContato } from "../whatsapp";
 import { partesDoTexto, textoSemLinks } from "../texto-rico";
 import { radicaisUteis } from "./normalizar";
@@ -87,8 +89,11 @@ export function faqs(): Faq[] {
   return faqsCache;
 }
 
-/** Procura a pergunta frequente que mais combina com o assunto. Exige dois radicais em comum (ou um da pergunta com 6+ letras). */
-export function buscarFaq(texto: string): Faq | null {
+/**
+ * Procura a pergunta frequente que mais combina com o assunto. Exige dois radicais em comum (ou um da pergunta com 6+ letras).
+ * `minimo` baixa a exigência: o chat usa 2 quando a mensagem é vaga e vale arriscar um palpite.
+ */
+export function buscarFaq(texto: string, minimo = 4): Faq | null {
   const r = new Set(radicaisUteis(texto));
   if (r.size === 0) return null;
   let melhor: Faq | null = null;
@@ -102,7 +107,7 @@ export function buscarFaq(texto: string): Faq | null {
       pontos = p;
     }
   }
-  return pontos >= 4 ? melhor : null;
+  return pontos >= minimo ? melhor : null;
 }
 
 /** Pergunta frequente pelo começo do título (ex.: "Como é o pagamento"). Casa sem acento e sem diferença de caixa. */
@@ -121,6 +126,22 @@ export function regrasGerais() {
     combo3: `${COMBO_3}%`,
     combinaveis: catalogo().filter((s) => s.combinavel).map((s) => s.nome),
     piloto: piloto ? { percentual: `${piloto.percentual}%`, restam: piloto.restam } : null,
+  };
+}
+
+/**
+ * Mensalidade-base de um bot, para mostrar um exemplo de valor: a fração do preço de criação (orcamento.ts) aplicada ao bot
+ * mais simples da Comunidade. Hospedagem fica de fora (é cobrada à parte).
+ */
+export function mensalidadeBase() {
+  const bot = servicoPorId("bot-essencial");
+  const calculo = bot ? calcularServico(bot.id) : null;
+  if (!bot || !calculo || calculo.preco === null) return null;
+  return {
+    percentual: `${Math.round(mensalidadeBots.fracaoDaCriacao * 100)}%`,
+    nome: bot.nome,
+    criacao: brl(calculo.preco),
+    mensal: brl(mensalidadeDe(calculo.preco)),
   };
 }
 
@@ -149,5 +170,10 @@ export function fatos(): string[] {
   lista.push(`Hora extra: ${g.horaExtra}.`, `Combo: ${g.combo2} com 2, ${g.combo3} com 3 ou mais.`);
   if (g.piloto) lista.push(`Piloto: ${g.piloto.percentual}, restam ${g.piloto.restam}.`);
   for (const f of faqs()) lista.push(f.pergunta, ...f.paragrafos);
+  // Textos fixos do assistente que citam número (tempo de resposta) e a mensalidade-base dos bots.
+  lista.push(t.tempoResposta);
+  if (site.prestador.documento) lista.push(`${site.prestador.documento.tipo} ${site.prestador.documento.numero}`);
+  const m = mensalidadeBase();
+  if (m) lista.push(guias.depois.bots(m.percentual, m.nome, m.criacao, m.mensal));
   return lista;
 }

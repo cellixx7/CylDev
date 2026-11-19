@@ -1,5 +1,6 @@
 import { conceitos, intencoes, type Intencao } from "../../../content/assistente";
-import { chave, contemFrase, distanciaAte1, palavras, radical } from "./normalizar";
+import type { Tratamento } from "../../../content/textos/assistente";
+import { chave, contemFrase, distanciaAte1, palavras, radical, textoLimpo } from "./normalizar";
 
 // Detecção de conceitos e de intenção. "quanto custa", "valor" e "preço" viram o mesmo conceito (`preco`), e o conceito
 // vira a intenção `preco`. Toda a vocabulário mora em content/assistente.ts.
@@ -62,4 +63,15 @@ export function servicosCitados(achados: Set<string>): string[] {
   }
   if (achados.has("svc:automacao?") && !ids.includes("automacao") && !ids.includes("python")) ids.push("automacao", "python");
   return ids;
+}
+
+/**
+ * Tratamento que a pessoa deixou claro sobre si ("obrigada", "sou dono", "sou empresária"). `null` = não dá para saber:
+ * o assistente fica nas formas neutras. Nunca se deduz o gênero pelo nome.
+ */
+export function tratamentoDe(texto: string): Tratamento {
+  const l = textoLimpo(texto);
+  if (/\b(a senhora|obrigada|brigada|sou (a )?(dona|empresaria|autonoma|professora)|estou sozinha)\b/.test(l)) return "a senhora";
+  if (/\b(o senhor|obrigado|sou (o )?(dono|empresario|autonomo|professor)|estou sozinho)\b/.test(l)) return "o senhor";
+  return null;
 }
