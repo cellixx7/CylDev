@@ -164,13 +164,14 @@ test.describe("10. menu de Negócios segue as flags de site.ts", () => {
     });
   }
 
-  test("Entregas do menu leva à seção com os passos numerados", async ({ page }) => {
+  test("Entregas do menu leva à página com os passos numerados no topo", async ({ page }) => {
     test.skip(!site.menuSecoes.entregas, "seção Entregas desligada em site.ts");
     await page.goto("/");
     await menu(page).getByRole("link", { name: "Entregas", exact: true }).click();
+    await expect(page).toHaveURL(/\/como-funciona\/$/);
     const secao = page.locator("section#entregas");
     await expect(secao).toBeInViewport();
-    await expect(secao.getByRole("heading", { level: 2, name: negocios.comoFunciona.titulo })).toBeVisible();
+    await expect(secao.getByRole("heading", { level: 1, name: negocios.comoFunciona.pagina })).toBeVisible();
     await expect(secao.getByRole("listitem")).toHaveCount(negocios.comoFunciona.passos.length);
     await expect(secao.getByText(negocios.comoFunciona.pagamento)).toBeVisible();
   });

@@ -9,6 +9,7 @@ import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNe
 import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { botaoCheio, rotuloFicticio } from "../../shared/estilos";
 import { linkContato } from "../../shared/lib/whatsapp";
+import { Carrossel } from "../../shared/components/Carrossel";
 import { DemoAutomacao } from "./DemoAutomacao";
 import { DemoPainel } from "./DemoPainel";
 import { DemoPlanilha } from "./DemoPlanilha";
@@ -241,13 +242,52 @@ function Bloco({ e }: { e: Exemplo }) {
   );
 }
 
+/** Topo da página: os 5 passos do pedido à entrega, numerados (h1 "Entregas"). */
+function Entregas() {
+  const c = negocios.comoFunciona;
+  return (
+    <section id="entregas" aria-labelledby="entregas-titulo" className="pb-9">
+      <h1 id="entregas-titulo" className="max-w-titulo text-pagina tracking-[-0.01em]">
+        {c.pagina}
+      </h1>
+      <p className="text-medio text-texto-suave">{c.intro}</p>
+      <Carrossel as="ol" gradeMd="md:grid-cols-2 md:gap-x-6 md:gap-y-5 pc:grid-cols-5">
+        {c.passos.map((p, i) => (
+          <li key={p.titulo} className="grid grid-cols-[auto_minmax(0,1fr)] content-start gap-x-3 gap-y-1 rounded-pequeno border border-linha bg-superficie p-4 md:rounded-none md:border-0 md:border-t md:bg-transparent md:p-0 md:pt-3 pc:grid-cols-1">
+            <span className="font-mono text-medio font-bold text-destaque" aria-hidden="true">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div>
+              <h2 className="m-0 mb-1 text-medio">{p.titulo}</h2>
+              <p className="m-0 text-texto-suave">{p.texto}</p>
+            </div>
+          </li>
+        ))}
+      </Carrossel>
+      <p className="mt-6 mb-0 font-semibold">{c.pagamento}</p>
+      <p className="mt-2 mb-0 text-texto-suave">
+        {c.regras.antes}{" "}
+        <a className="py-3" href="/termos/">
+          {c.regras.termos}
+        </a>{" "}
+        {c.regras.meio}{" "}
+        <a className="py-3" href="/perguntas/">
+          {c.regras.perguntas}
+        </a>
+        .
+      </p>
+    </section>
+  );
+}
+
 function ComoFunciona() {
   return (
     <>
       <CabecalhoNegocios />
       <main id="conteudo">
+        <Entregas />
         <section className="pb-9">
-          <h1 className="max-w-titulo text-pagina tracking-[-0.01em]">{t.titulo}</h1>
+          <h2 className="max-w-titulo text-pagina tracking-[-0.01em]">{t.titulo}</h2>
           <p className="text-medio text-texto-suave">{t.intro}</p>
           <nav aria-label={t.indice} className="mt-6">
             <p className="mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave">{t.indice}</p>

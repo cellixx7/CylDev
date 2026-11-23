@@ -47,6 +47,8 @@
   --color-serie-3: #8892a8;
   --color-serie-4: #b4bccd;
   --color-serie-5: #d5dae6;
+  --color-fiado: #fbe3df;
+  --color-fiado-texto: #8a1f11;
 }
 
 [data-theme="escuro"] {
@@ -64,6 +66,8 @@
   --color-serie-3: #8792ad;
   --color-serie-4: #566078;
   --color-serie-5: #333b55;
+  --color-fiado: #3a1a1f;
+  --color-fiado-texto: #ffb4a8;
 }
 
 /*

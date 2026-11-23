@@ -1,0 +1,95 @@
+data,cliente,categoria,produto,qtd,valor_unitario,valor_total,forma_pagamento,situacao
+2026-01-02,Loja da Vera,Canecas,Caneca mágica,3,42,126,Pix,pago
+2026-01-02,Carlos Souza,Canecas,Caneca branca,1,28,28,Pix,pago
+2026-01-05,Paulo Mendes,Canecas,Caneca branca,3,28,84,Cartão,pago
+2026-01-06,Loja da Vera,Camisetas,Camiseta preta M,3,45,135,Pix,pago
+2026-01-06,João Pereira,Casacos,Casaco moletom,2,120,240,Pix,pago
+2026-01-06,Fernanda Lima,Canecas,Caneca mágica,1,42,42,Fiado,fiado
+2026-01-10,Igreja Betel,Outros,Adesivo,2,8,16,Pix,pago
+2026-01-10,Maria Silva,Outros,Adesivo,1,8,8,Pix,pago
+2026-01-13,Ricardo Alves,Canecas,Caneca branca,1,28,28,Dinheiro,pago
+2026-01-14,Bruno Dias,Casacos,Casaco moletom,1,120,120,Pix,pago
+2026-01-17,Juliana Rocha,Casacos,Casaco moletom,2,120,240,Dinheiro,pago
+2026-01-19,Juliana Rocha,Casacos,Casaco moletom,1,120,120,Dinheiro,pago
+2026-01-19,Bruno Dias,Canecas,Caneca mágica,2,42,84,Cartão,pago
+2026-01-20,Maria Silva,Casacos,Casaco corta-vento,1,95,95,Pix,pago
+2026-01-21,Maria Silva,Outros,Adesivo,2,8,16,Fiado,fiado
+2026-01-21,João Pereira,Outros,Adesivo,2,8,16,Dinheiro,pago
+2026-01-22,Ricardo Alves,Camisetas,Camiseta branca G,2,50,100,Pix,pago
+2026-01-22,João Pereira,Outros,Chaveiro,3,12,36,Dinheiro,pago
+2026-01-23,Loja da Vera,Canecas,Caneca mágica,3,42,126,Cartão,pago
+2026-01-23,Fernanda Lima,Casacos,Casaco moletom,1,120,120,Fiado,fiado
+2026-01-24,Fernanda Lima,Casacos,Casaco moletom,2,120,240,Cartão,pago
+2026-01-24,Igreja Betel,Canecas,Caneca mágica,2,42,84,Dinheiro,pago
+2026-01-24,Carlos Souza,Bonés,Boné aba reta,1,35,35,Pix,pago
+2026-01-26,Maria Silva,Camisetas,Camiseta branca G,3,50,150,Cartão,pago
+2026-01-29,Ricardo Alves,Casacos,Casaco moletom,1,120,120,Pix,pago
+2026-01-30,Carlos Souza,Bonés,Boné aba reta,3,35,105,Dinheiro,pago
+2026-01-30,Ricardo Alves,Casacos,Casaco moletom,1,120,120,Dinheiro,pago
+2026-01-30,Patrícia Gomes,Outros,Chaveiro,1,12,12,Pix,pago
+2026-01-30,Paulo Mendes,Canecas,Caneca mágica,1,42,42,Dinheiro,pago
+2026-01-31,Igreja Betel,Outros,Adesivo,2,8,16,Pix,pago
+2026-02-02,Ana Costa,Camisetas,Camiseta preta P,1,45,45,Fiado,fiado
+2026-02-02,Bruno Dias,Casacos,Casaco corta-vento,1,95,95,Fiado,fiado
+2026-02-03,Igreja Betel,Camisetas,Camiseta branca G,2,50,100,Pix,pago
+2026-02-04,Ricardo Alves,Casacos,Casaco corta-vento,1,95,95,Cartão,pago
+2026-02-04,Igreja Betel,Casacos,Casaco moletom,1,120,120,Pix,pago
+2026-02-04,Juliana Rocha,Outros,Chaveiro,1,12,12,Pix,pago
+2026-02-05,Bruno Dias,Bonés,Boné aba reta,2,35,70,Dinheiro,pago
+2026-02-05,Juliana Rocha,Camisetas,Camiseta branca G,2,50,100,Pix,pago
+2026-02-06,Juliana Rocha,Camisetas,Camiseta preta P,1,45,45,Dinheiro,pago
+2026-02-07,João Pereira,Camisetas,Camiseta preta P,1,45,45,Fiado,fiado
+2026-02-09,Paulo Mendes,Camisetas,Camiseta preta P,1,45,45,Cartão,pago
+2026-02-09,Ricardo Alves,Bonés,Boné trucker,3,38,114,Pix,pago
+2026-02-10,Ricardo Alves,Bonés,Boné trucker,1,38,38,Dinheiro,pago
+2026-02-11,Ricardo Alves,Casacos,Casaco corta-vento,2,95,190,Pix,pago
+2026-02-11,Ana Costa,Casacos,Casaco corta-vento,2,95,190,Pix,pago
+2026-02-14,Juliana Rocha,Casacos,Casaco corta-vento,1,95,95,Dinheiro,pago
+2026-02-14,Bruno Dias,Camisetas,Camiseta estampada,3,60,180,Fiado,fiado
+2026-02-17,João Pereira,Casacos,Casaco moletom,1,120,120,Pix,pago
+2026-02-17,Carlos Souza,Outros,Chaveiro,1,12,12,Pix,pago
+2026-02-18,Loja da Vera,Casacos,Casaco moletom,1,120,120,Dinheiro,pago
+2026-02-18,Loja da Vera,Camisetas,Camiseta estampada,2,60,120,Fiado,fiado
+2026-02-19,Loja da Vera,Camisetas,Camiseta preta P,1,45,45,Fiado,fiado
+2026-02-19,Patrícia Gomes,Camisetas,Camiseta estampada,2,60,120,Pix,pago
+2026-02-21,Ana Costa,Outros,Chaveiro,1,12,12,Dinheiro,pago
+2026-02-21,Fernanda Lima,Canecas,Caneca branca,2,28,56,Dinheiro,pago
+2026-02-23,João Pereira,Canecas,Caneca branca,1,28,28,Pix,pago
+2026-02-24,Paulo Mendes,Camisetas,Camiseta branca G,1,50,50,Dinheiro,pago
+2026-02-24,Ricardo Alves,Canecas,Caneca branca,1,28,28,Dinheiro,pago
+2026-02-25,Ana Costa,Bonés,Boné trucker,2,38,76,Dinheiro,pago
+2026-02-25,Ricardo Alves,Camisetas,Camiseta preta M,2,45,90,Cartão,pago
+2026-02-26,Fernanda Lima,Camisetas,Camiseta preta M,1,45,45,Pix,pago
+2026-02-28,Maria Silva,Camisetas,Camiseta preta M,2,45,90,Fiado,fiado
+2026-02-28,Paulo Mendes,Canecas,Caneca branca,2,28,56,Fiado,fiado
+2026-03-02,Ana Costa,Camisetas,Camiseta preta M,3,45,135,Pix,pago
+2026-03-05,Paulo Mendes,Outros,Adesivo,1,8,8,Fiado,fiado
+2026-03-05,Loja da Vera,Camisetas,Camiseta preta M,2,45,90,Pix,pago
+2026-03-05,Fernanda Lima,Casacos,Casaco corta-vento,1,95,95,Pix,pago
+2026-03-06,Paulo Mendes,Camisetas,Camiseta branca G,1,50,50,Pix,pago
+2026-03-07,João Pereira,Camisetas,Camiseta preta P,2,45,90,Pix,pago
+2026-03-09,Juliana Rocha,Camisetas,Camiseta preta P,1,45,45,Pix,pago
+2026-03-09,Carlos Souza,Camisetas,Camiseta preta P,1,45,45,Pix,pago
+2026-03-11,João Pereira,Outros,Chaveiro,2,12,24,Cartão,pago
+2026-03-11,Paulo Mendes,Bonés,Boné trucker,2,38,76,Cartão,pago
+2026-03-11,Loja da Vera,Outros,Chaveiro,3,12,36,Cartão,pago
+2026-03-12,Maria Silva,Canecas,Caneca branca,1,28,28,Cartão,pago
+2026-03-14,Carlos Souza,Casacos,Casaco corta-vento,1,95,95,Dinheiro,pago
+2026-03-14,Loja da Vera,Camisetas,Camiseta preta M,3,45,135,Pix,pago
+2026-03-17,Patrícia Gomes,Outros,Chaveiro,1,12,12,Dinheiro,pago
+2026-03-21,Fernanda Lima,Bonés,Boné trucker,1,38,38,Fiado,fiado
+2026-03-21,Igreja Betel,Canecas,Caneca branca,1,28,28,Pix,pago
+2026-03-21,Igreja Betel,Bonés,Boné trucker,1,38,38,Fiado,fiado
+2026-03-21,João Pereira,Bonés,Boné aba reta,2,35,70,Pix,pago
+2026-03-23,Bruno Dias,Camisetas,Camiseta preta P,2,45,90,Pix,pago
+2026-03-23,Carlos Souza,Casacos,Casaco moletom,1,120,120,Fiado,fiado
+2026-03-23,João Pereira,Camisetas,Camiseta branca G,2,50,100,Pix,pago
+2026-03-23,João Pereira,Camisetas,Camiseta preta P,1,45,45,Cartão,pago
+2026-03-24,Paulo Mendes,Casacos,Casaco corta-vento,2,95,190,Fiado,fiado
+2026-03-26,Fernanda Lima,Camisetas,Camiseta preta P,2,45,90,Cartão,pago
+2026-03-26,Ana Costa,Bonés,Boné trucker,2,38,76,Dinheiro,pago
+2026-03-27,Juliana Rocha,Camisetas,Camiseta estampada,2,60,120,Fiado,fiado
+2026-03-28,Carlos Souza,Camisetas,Camiseta branca G,1,50,50,Cartão,pago
+2026-03-30,Maria Silva,Outros,Chaveiro,3,12,36,Cartão,pago
+2026-03-31,Loja da Vera,Casacos,Casaco moletom,1,120,120,Pix,pago
+2026-03-31,Ana Costa,Camisetas,Camiseta estampada,1,60,60,Pix,pago

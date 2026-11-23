@@ -80,7 +80,7 @@ test.describe("2. o carrinho sobrevive à troca de página e ao recarregar", () 
     await page.keyboard.press("Escape");
     await expect(modalServico(page)).toBeHidden();
 
-    const comoFunciona = negocios.nav.find((l) => l.href === "/como-funciona/")!;
+    const comoFunciona = negocios.nav.find((l) => l.href === "/como-funciona/")!; // "Entregas" no menu;
     const orcamentoNoMenu = negocios.nav.find((l) => l.href === "/#orcamento")!;
     const menu = page.getByRole("navigation", { name: "Principal" });
     await menu.getByRole("link", { name: comoFunciona.rotulo, exact: true }).click();

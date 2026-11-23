@@ -108,8 +108,8 @@ test.describe("páginas jurídicas e de apoio (Etapa 5)", () => {
     }
   });
 
-  test("a seção Entregas da home liga aos Termos e às perguntas", async ({ page }) => {
-    await page.goto("/");
+  test("a seção Entregas (em /como-funciona/) liga aos Termos e às perguntas", async ({ page }) => {
+    await page.goto("/como-funciona/");
     const secao = page.locator("section#entregas");
     await expect(secao.getByRole("link", { name: negocios.comoFunciona.regras.termos })).toHaveAttribute("href", "/termos/");
     await expect(secao.getByRole("link", { name: negocios.comoFunciona.regras.perguntas })).toHaveAttribute("href", "/perguntas/");
