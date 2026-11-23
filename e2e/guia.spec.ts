@@ -1,7 +1,7 @@
 import type { Page } from "@playwright/test";
 import { guia, perguntasGuia, resultadosGuia } from "../src/content/guia";
 import { site } from "../src/content/site";
-import { orcamento as t } from "../src/content/textos";
+import { comum, orcamento as t } from "../src/content/textos";
 import { expect, modalServico, modelo, test } from "./apoio";
 
 const raiz = perguntasGuia.find((p) => p.id === guia.raiz)!;
@@ -65,9 +65,9 @@ test.describe('8. guia "Não sei qual escolher"', () => {
     await abrirGuia(page);
     await painel(page).getByRole("button", { name: rotulo("objetivo", "conversar"), exact: true }).click();
     await expect(titulo(page)).toHaveText(guia.resultadoTitulo);
-    const link = painel(page).getByRole("link", { name: saida.rotulo, exact: true });
+    const link = painel(page).getByRole("link", { name: `${saida.rotulo}${comum.novaAba}`, exact: true });
     await expect(link).toBeVisible();
-    await expect(link).toHaveText("Falar comigo no WhatsApp");
+    await expect(link).toHaveText(`Falar comigo no WhatsApp${comum.novaAba}`);
     await expect(link).toHaveAttribute("target", "_blank");
     const href = (await link.getAttribute("href")) ?? "";
     // Comparação em booleano: o número do site não vai para o log.
