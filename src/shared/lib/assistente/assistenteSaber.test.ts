@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { assistente as t } from "../../../content/textos/assistente";
 import { categorias, saber, topicoPorId, topicos } from "../../../content/textos/assistenteSaber";
+import { intencoes as intencoesDoMotor } from "../../../content/assistente";
 import { guias } from "../../../content/textos/assistenteGuias";
 import { catalogo, faqPorTitulo, fatos } from "./conhecimento";
 import { validarSaida } from "./guardrails";
@@ -308,4 +309,31 @@ describe("integração com o orçamento", () => {
     expect(resposta.acoes.some((a) => a.tipo === "link" && a.href === "#orcamento")).toBe(true);
     expect(texto).not.toMatch(/R\$/);
   });
+});
+
+describe("variedade de respostas (pelo menos 15 jeitos por pergunta, em mais de 100 perguntas)", () => {
+  it("tem pelo menos 100 perguntas com resposta própria (tópicos + intenções)", () => {
+    expect(topicos.length + intencoesDoMotor.length).toBeGreaterThanOrEqual(100);
+  });
+
+  const jeitos = (frase: string, passo = 1) => {
+    const vistos = new Set<string>();
+    for (let turno = 0; turno < 60; turno += passo) {
+      const r = processar({ texto: frase }, { ...conversaNova(), turno });
+      vistos.add(textoPlano(r.resposta));
+    }
+    return vistos.size;
+  };
+
+  for (const x of topicos) {
+    it(`tópico ${x.id}: 15+ jeitos de responder`, () => {
+      expect(jeitos(x.frases[0])).toBeGreaterThanOrEqual(15);
+    });
+  }
+
+  for (const frase of ["oi", "obrigado", "tchau", "quanto custa uma planilha", "quanto tempo demora", "quero um orçamento", "tem desconto", "como pago"]) {
+    it(`intenção "${frase}": 15+ jeitos de responder`, () => {
+      expect(jeitos(frase)).toBeGreaterThanOrEqual(15);
+    });
+  }
 });

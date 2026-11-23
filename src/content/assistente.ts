@@ -222,8 +222,9 @@ export const intencoes: { id: Intencao; conceitos: string[] }[] = [
   { id: "preparar", conceitos: ["preparar"] },
   { id: "confianca", conceitos: ["confianca"] },
   { id: "indicar", conceitos: ["indicar"] },
-  { id: "contato", conceitos: ["contato"] },
   { id: "quem", conceitos: ["quem"] },
+  // "Quem é o Marcelo?" tem "marcelo" (contato) e "quem é" (quem): vence quem, que vem antes.
+  { id: "contato", conceitos: ["contato"] },
   { id: "bot", conceitos: ["bot"] },
   { id: "servicos", conceitos: ["servicos"] },
   { id: "exemplos", conceitos: ["exemplos"] },

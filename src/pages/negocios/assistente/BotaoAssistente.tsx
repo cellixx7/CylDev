@@ -6,6 +6,9 @@ import { focoVisivel } from "../../../shared/estilos";
 // pedaço, baixado na primeira vez que a pessoa abre o assistente.
 const PainelAssistente = lazy(() => import("./PainelAssistente").then((m) => ({ default: m.PainelAssistente })));
 
+const DURACAO_CONVITE_MS = 5000;
+const CICLO_CONVITE_MS = 30000;
+
 function IconeChat() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
@@ -38,6 +41,35 @@ export function BotaoAssistente() {
     if (jaAbriu.current) botao.current?.focus();
   }, [aberto]);
 
+  const [convite, setConvite] = useState(false);
+  const [pausado, setPausado] = useState(false);
+  const encerrado = useRef(false);
+
+  // Convite: aparece já no carregamento, fica 5 s e volta a cada 30 s. Fechar no "x" encerra os convites desta visita.
+  useEffect(() => {
+    if (aberto) {
+      setConvite(false);
+      return;
+    }
+    const mostrar = () => {
+      if (!encerrado.current) setConvite(true);
+    };
+    mostrar();
+    const ciclo = window.setInterval(mostrar, CICLO_CONVITE_MS);
+    return () => window.clearInterval(ciclo);
+  }, [aberto]);
+
+  useEffect(() => {
+    if (!convite || pausado) return;
+    const fim = window.setTimeout(() => setConvite(false), DURACAO_CONVITE_MS);
+    return () => window.clearTimeout(fim);
+  }, [convite, pausado]);
+
+  const fecharConvite = () => {
+    encerrado.current = true;
+    setConvite(false);
+  };
+
   const abrir = () => {
     setCarregou(true);
     setAberto(true);
@@ -45,6 +77,30 @@ export function BotaoAssistente() {
 
   return (
     <>
+      {!aberto && convite && (
+        <div
+          data-testid="convite-assistente"
+          onMouseEnter={() => setPausado(true)}
+          onMouseLeave={() => setPausado(false)}
+          onFocus={() => setPausado(true)}
+          onBlur={() => setPausado(false)}
+          className="fixed right-4 bottom-20 z-40 flex max-w-[min(18rem,calc(100vw-2rem))] items-start gap-2 rounded-pequeno border border-linha bg-texto py-2 pr-2 pl-3 text-menor font-semibold text-fundo shadow-lg sm:right-5"
+        >
+          <button type="button" onClick={abrir} className={`cursor-pointer border-0 bg-transparent p-0 py-1 text-left text-menor font-semibold text-fundo ${focoVisivel}`}>
+            {t.convite}
+          </button>
+          <button
+            type="button"
+            aria-label={t.conviteFechar}
+            onClick={fecharConvite}
+            className={`inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent p-0 text-fundo ${focoVisivel}`}
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
+      )}
       {!aberto && (
         <button
           ref={botao}

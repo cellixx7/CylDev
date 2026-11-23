@@ -244,6 +244,21 @@ test.describe("assistente do chat (interface e ritmo)", () => {
     await expect(dica).toHaveCSS("opacity", "1");
   });
 
+  test("(s) convite: aparece no carregamento, some em 5 s, volta a cada 30 s e o x encerra", async ({ page }) => {
+    await page.clock.install();
+    await page.goto("/");
+    const convite = page.getByTestId("convite-assistente");
+    await expect(convite).toContainText(t.convite);
+    await page.clock.runFor(5100);
+    await expect(convite).toHaveCount(0);
+    await page.clock.runFor(25_000);
+    await expect(convite).toBeVisible();
+    await convite.getByRole("button", { name: t.conviteFechar }).click();
+    await expect(convite).toHaveCount(0);
+    await page.clock.runFor(65_000);
+    await expect(convite).toHaveCount(0);
+  });
+
   test("(m) balões: usuário à direita, Assistente Cyl à esquerda com avatar, hora discreta", async ({ page }) => {
     await abrir(page);
     await perguntar(page, "oi, quanto custa?");

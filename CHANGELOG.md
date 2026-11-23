@@ -6,6 +6,11 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Assistente Cyl: mais variedade e convite no ícone
+
+- Cada pergunta (77 assuntos e as intenções de preço, prazo, orçamento etc.) ganhou pelo menos 15 formas de resposta, sem mudar nenhum preço ou prazo.
+- Convite "Está com dúvidas? Fale com a nossa assistente Cyl" no ícone do chat: aparece ao carregar, dura 5 s, volta a cada 30 s e tem botão de fechar.
+
 ### Assistente Cyl: saber geral, memória curta e respostas mais naturais
 
 - Responde cerca de 60 assuntos que clientes costumam perguntar: fórmulas e atalhos do Excel, planilha organizada, tabela dinâmica, gráficos, macro e Python, PDF, site de uma página, domínio, Google, sistemas e bots, e também como o Marcelo trabalha (atendimento à distância, proposta, sigilo, mensalidade, o que não está no catálogo). Cada resposta oferece o serviço relacionado, com o preço de partida vindo de `servicos.ts`.

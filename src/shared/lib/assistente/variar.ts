@@ -7,3 +7,11 @@ export function variar<T>(opcoes: readonly T[], turno: number, deslocamento = 0)
   if (opcoes.length === 0) throw new Error("variar: lista vazia");
   return opcoes[(turno + deslocamento) % opcoes.length];
 }
+
+/** Pelo turno, quantas vezes todas as combinações de aberturas e pontes já se repetiram (alterna também as versões de dentro). */
+export const volta = (turno: number, tamanho: number): number => Math.floor(turno / tamanho);
+
+/** Combinação do turno entre dois conjuntos (índices que não se repetem juntos, para somar todas as combinações). */
+export function combinar(turno: number, a: number, b: number): [number, number] {
+  return [turno % a, Math.floor(turno / a) % b];
+}
