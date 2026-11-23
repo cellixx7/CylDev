@@ -1,7 +1,7 @@
 // Definições do movimento do Cyl (dados, sem React). Só `transform` e `opacity`, em rotação de corpo rígido em torno do pivô de
 // cada articulação (unidades do viewBox do mestre). O estado final de cada animação é igual ao inicial.
 
-export type NomeAnimacao = "idle" | "wave";
+export type NomeAnimacao = "idle" | "wave" | "piscar";
 
 type Pivo = readonly [number, number];
 
@@ -9,6 +9,7 @@ export const PIVOS = {
   "arm-left-upper": [343, 555],
   "arm-left-forearm": [396, 617],
   "hand-left-wave": [432, 596],
+  "hand-left-rest": [432, 596],
   head: [298, 536],
 } as const satisfies Record<string, Pivo>;
 
@@ -27,10 +28,35 @@ const ACENO_ANTEBRACO = 44;
 const ACENO_MAO = 17;
 /** Balanço do pulso em torno de ACENO_MAO. Com mais de ~12° a mão vira ventilador, e abaixo de ~6° o dedo encosta na barbicha. */
 const AMPLITUDE_MAO = 11;
+/** Quanto a pálpebra desce (unidades do viewBox) para cobrir o olho na piscada. */
+const PISCAR_DESCE = 24;
 
+
+/**
+ * Pose parada do joinha: braço esquerdo dobrado, antebraço para cima, mão na frente do peito.
+ * PROVISÓRIO: não existe o asset da mão de joinha (parts/hand-left-thumbsup.svg). Enquanto isso, `MAO_JOINHA` é a mão fechada
+ * de repouso. Quando o asset existir, é só entrar no cylSvg.ts com data-parte="hand-left-thumbsup" e trocar esta constante.
+ */
+export const MAO_JOINHA = "hand-left-rest";
+export const POSES = {
+  joinha: [
+    { parte: "arm-left-upper", graus: 15 },
+    { parte: "arm-left-forearm", graus: -70 },
+    { parte: MAO_JOINHA, graus: 0 },
+  ],
+} as const satisfies Record<string, readonly { parte: keyof typeof PIVOS; graus: number }[]>;
+export type NomePose = keyof typeof POSES;
 
 export const ANIMACOES: Record<NomeAnimacao, DefinicaoAnimacao> = {
   idle: { duracaoMs: 0, faixas: [] },
+  // Piscada: olhos somem e a pálpebra desce sobre eles por ~150 ms (só opacity e transform). Termina como começa.
+  piscar: {
+    duracaoMs: 150,
+    faixas: [
+      { parte: "eyes", tipo: "opacidade", passos: [{ offset: 0, valor: 1 }, { offset: 0.2, valor: 0 }, { offset: 0.8, valor: 0 }, { offset: 1, valor: 1 }] },
+      { parte: "eyelids", tipo: "subir", passos: [{ offset: 0, valor: 0 }, { offset: 0.2, valor: PISCAR_DESCE }, { offset: 0.8, valor: PISCAR_DESCE }, { offset: 1, valor: 0 }] },
+    ],
+  },
   wave: {
     duracaoMs: 2500,
     faixas: [

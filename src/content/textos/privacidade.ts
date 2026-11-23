@@ -84,7 +84,7 @@ export const privacidade: PaginaDeTexto = {
       itens: [
         "O carrinho fica no sessionStorage, só enquanto a aba está aberta, para não se perder ao trocar de página. Ele guarda apenas os serviços escolhidos e as respostas do orçamento; nunca o nome, o telefone nem as observações. É apagado depois de um envio com sucesso.",
         "O tema claro ou escuro que você escolher fica no localStorage.",
-        "A conversa com o Assistente Cyl (um assistente automático, não uma pessoa) fica só na memória da aba: não é enviada pela rede nem guardada, e some quando você recarrega a página.",
+        "A conversa com o Assistente Cyl (um assistente automático, não uma pessoa) fica guardada no localStorage, só neste aparelho, para voltar depois de recarregar a página e para você rever as conversas anteriores. Não é enviada pela rede nem chega ao Marcelo. Some quando você limpa os dados do site no navegador.",
         "O site não usa cookies de rastreamento nem ferramentas de análise. Por isso não há aviso de cookies.",
       ],
     },

@@ -165,7 +165,7 @@ describe("honestidade sobre o que o assistente é", () => {
       const { texto } = conversar(frase);
       expect(texto, frase).toMatch(/assistente de regras|programa de regras/);
       expect(texto, frase).toMatch(/não sou (uma )?(pessoa|inteligência|ia)|e não uma inteligência artificial/i);
-      expect(texto, frase).toContain("fica só na memória desta aba");
+      expect(texto, frase).toContain("fica guardada só neste aparelho");
     }
   });
   it("não escreve código nem resolve exercício, e diz por quê, sem recusa seca", () => {
