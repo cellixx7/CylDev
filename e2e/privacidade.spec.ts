@@ -42,6 +42,7 @@ test.describe("privacidade", () => {
     const aceite = painel.locator("[data-aceite]");
     await expect(aceite).toContainText(t.carrinho.aceite.antes);
     await expect(aceite.getByRole("link", { name: t.carrinho.aceite.termosLink })).toHaveAttribute("href", "/termos/");
+    await expect(aceite.getByRole("link", { name: t.carrinho.aceite.desistenciaLink })).toHaveAttribute("href", "/termos/#arrependimento");
     await painel.getByRole("link", { name: t.carrinho.privacidadeLink }).click();
     await expect(page).toHaveURL(/\/privacidade\/$/);
   });

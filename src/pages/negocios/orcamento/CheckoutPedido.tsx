@@ -160,7 +160,11 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
         <a className="py-3" href="/privacidade/">
           {t.privacidadeLink}
         </a>
-        . {t.aceite.depois}
+        . {t.aceite.depois} {t.aceite.desistenciaAntes}{" "}
+        <a className="py-3" href="/termos/#arrependimento">
+          {t.aceite.desistenciaLink}
+        </a>
+        .
       </p>
     </section>
   );

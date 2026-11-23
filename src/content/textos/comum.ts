@@ -63,6 +63,6 @@ export const formulario = {
   falhou: "Não consegui enviar agora. Me chame por um destes canais:",
   isca: "Não preencha este campo:",
   /** Aviso abaixo do botão de enviar, com o link para a política. */
-  privacidade: "Uso o seu nome e o seu contato só para responder. A mensagem passa pelo EmailJS.",
+  privacidade: "Uso o seu nome e o seu contato só para responder. A mensagem passa pelo EmailJS. Não escreva senhas, dados de saúde nem dados de outras pessoas nela.",
   privacidadeLink: "Política de privacidade",
 };
