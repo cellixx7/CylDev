@@ -28,7 +28,7 @@ Todo PR passa pelo CI do GitHub (`.github/workflows/ci.yml`: typecheck, testes, 
 
 ## Publicação
 
-Trabalhe em branches (`commit_HH-MM_DD-MM_VXN`) e abra pull requests: cada PR ganha um deploy preview. Só faça merge na `main` quando a versão estiver fechada, porque cada deploy de produção gasta créditos do plano gratuito.
+Trabalhe em branches (`commit_HH-MM_DD-MM_VXN`) e abra pull requests para `develop` (o GitHub Actions testa; a Netlify não constrói). Só faça merge de `develop` na `main` quando a versão estiver fechada, porque cada deploy de produção gasta créditos do plano gratuito. Ver `docs/decisoes/fluxo-de-branches.md`.
 
 ## Documentação
 

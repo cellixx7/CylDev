@@ -67,5 +67,5 @@ O graphify é opcional: não é dependência do projeto e o site não precisa de
 ## Fluxo
 
 - Antes de abrir o PR, rode `npm test` e `npm run test:e2e`; o CI repete os dois.
-- Branches: `commit_HH-MM_DD-MM_VXN` (hora, minuto, dia, mês, versão, nº do commit), nunca com "claude" no nome. Merge por PR (cada PR gera um deploy preview na Netlify); só vai para a `main` versão fechada, pois o deploy de produção gasta crédito.
+- Branches: `commit_HH-MM_DD-MM_VXN` (hora, minuto, dia, mês, versão, nº do commit), nunca com "claude" no nome. O PR aponta para `develop`, não para a `main`; a `main` só recebe merge de `develop`, em lote, com versão fechada. A Netlify só constrói a `main` (`netlify.toml`), então deploy de produção é o único que gasta crédito. Detalhes em `docs/decisoes/fluxo-de-branches.md`.
 - Commits em pt-BR com prefixo (`feat:`, `fix:`, `docs:`, `chore:`).

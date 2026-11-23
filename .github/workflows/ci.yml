@@ -1,11 +1,11 @@
-# Verificação de todo PR (e de todo push na main): typecheck, testes unitários, build e jornadas no navegador.
+# Verificação de todo PR (para develop ou main) e de todo push em develop e main: typecheck, testes unitários, build e jornadas no navegador.
 # O nome do job ("verificar") é o check exigido na proteção da main. Ver docs/decisoes/testes-e-auditorias.md.
 name: CI
 
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, develop]
 
 concurrency:
   group: ci-${{ github.ref }}
