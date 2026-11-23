@@ -2,7 +2,7 @@ import type { Page } from "@playwright/test";
 import { assistente as t } from "../src/content/textos/assistente";
 import { saber, topicoPorId } from "../src/content/textos/assistenteSaber";
 import { catalogo } from "../src/shared/lib/assistente/conhecimento";
-import { expect, test } from "./apoio";
+import { expect, NOME_FICTICIO, TELEFONE_FICTICIO, TELEFONE_FICTICIO_DIGITOS, test } from "./apoio";
 
 // Assistente Cyl: abre sob demanda, responde só com o conteúdo do site, recusa o que está fora, acolhe mensagem vaga, monta
 // orçamento na conversa e leva ao carrinho. Sem WebGPU (Chromium do teste): vale o motor de regras, que é o caminho de todo mundo.
@@ -333,5 +333,88 @@ test.describe("assistente do chat (interface e ritmo)", () => {
     await expect(ponto).toBeVisible();
     expect(await ponto.evaluate((el) => getComputedStyle(el).animationName)).toBe("ponto-pula");
     await pular(page).click();
+  });
+});
+
+test.describe("assistente do chat (enviar o pedido)", () => {
+  test.use({ reducedMotion: "reduce" });
+
+  test("(t) monta dois serviços, mostra o combo e envia o pedido pelo chat, sem passar pelo carrinho", async ({ page, emailjs }) => {
+    await emailjs.ligar();
+    await abrir(page);
+    await perguntarEEsperar(page, "Quero arrumar e montar uma planilha e fazer um painel");
+    await expect(registro(page)).toContainText("Planilha organizada e Painel básico");
+    for (let i = 0; i < 40; i++) {
+      if (await registro(page).getByText(/^Estimativa do pedido/).count()) break;
+      const grupo = registro(page).getByRole("group").last();
+      const pronto = grupo.getByRole("button", { name: t.chips.pronto, exact: true });
+      await grupo.getByRole("button").first().click();
+      await pronta(page);
+      if (await pronto.count()) {
+        await registro(page).getByRole("group").last().getByRole("button", { name: t.chips.pronto, exact: true }).click();
+        await pronta(page);
+      }
+    }
+    await expect(registro(page)).toContainText("Desconto (combo 10%)");
+    await registro(page).getByRole("group").last().getByRole("button", { name: t.envioChips.enviar }).click();
+    await pronta(page);
+    await expect(registro(page)).toContainText(t.envioNome);
+    await perguntarEEsperar(page, NOME_FICTICIO);
+    await perguntarEEsperar(page, "123");
+    await expect(registro(page)).toContainText("WhatsApp, com DDD");
+    expect(emailjs.enviados).toHaveLength(0);
+    await perguntarEEsperar(page, TELEFONE_FICTICIO);
+    await expect(registro(page)).toContainText(t.envioAceite);
+    expect(emailjs.enviados).toHaveLength(0);
+    await registro(page).getByRole("group").last().getByRole("button", { name: t.envioChips.confirmar }).click();
+    await expect(registro(page)).toContainText("Pedido enviado");
+    expect(emailjs.enviados).toHaveLength(1);
+    const corpo = emailjs.enviados[0].template_params;
+    expect(corpo.nome).toBe(NOME_FICTICIO);
+    expect(corpo.contato).toBe(TELEFONE_FICTICIO_DIGITOS);
+    expect(corpo.origem).toBe("negocios-assistente");
+    expect(corpo.itens.map((i) => i.titulo)).toEqual(["Planilha organizada", "Painel básico"]);
+    expect(String(corpo.aceite)).toContain("Termos de contratação");
+  });
+
+  test("(u) projeto grande: 'um site grande' oferece enviar a descrição ao Marcelo", async ({ page, emailjs }) => {
+    await emailjs.ligar();
+    await abrir(page);
+    await perguntarEEsperar(page, "to querendo montar um bagulho legal");
+    await perguntarEEsperar(page, "olha, eu acho que um site grande");
+    await expect(registro(page)).toContainText("projeto sob medida");
+    await registro(page).getByRole("group").last().getByRole("button", { name: t.envioChips.enviar }).click();
+    await pronta(page);
+    await perguntarEEsperar(page, NOME_FICTICIO);
+    await perguntarEEsperar(page, TELEFONE_FICTICIO);
+    await registro(page).getByRole("group").last().getByRole("button", { name: t.envioChips.confirmar }).click();
+    await expect(registro(page)).toContainText("Pedido enviado");
+    expect(emailjs.enviados).toHaveLength(1);
+    expect(String(emailjs.enviados[0].template_params.observacoes)).toContain("site grande");
+  });
+
+  test("(v) se o envio falhar, o pedido não se perde: WhatsApp e e-mail com o mesmo pedido", async ({ page, emailjs }) => {
+    await emailjs.ligar();
+    await page.route("https://api.emailjs.com/**", (rota) => rota.fulfill({ status: 500, body: "erro" }));
+    await abrir(page);
+    await perguntarEEsperar(page, "quero um orçamento de planilha");
+    for (let i = 0; i < 20; i++) {
+      if (await registro(page).getByText(/^Estimativa de Planilha organizada:/).count()) break;
+      const grupo = registro(page).getByRole("group").last();
+      const pronto = grupo.getByRole("button", { name: t.chips.pronto, exact: true });
+      await grupo.getByRole("button").first().click();
+      await pronta(page);
+      if (await pronto.count()) {
+        await registro(page).getByRole("group").last().getByRole("button", { name: t.chips.pronto, exact: true }).click();
+        await pronta(page);
+      }
+    }
+    await registro(page).getByRole("group").last().getByRole("button", { name: t.envioChips.enviar }).click();
+    await pronta(page);
+    await perguntarEEsperar(page, NOME_FICTICIO);
+    await perguntarEEsperar(page, TELEFONE_FICTICIO);
+    await registro(page).getByRole("group").last().getByRole("button", { name: t.envioChips.confirmar }).click();
+    await expect(registro(page)).toContainText(t.envioFalhou);
+    await expect(painel(page).getByRole("link", { name: t.acoes.whatsapp }).last()).toBeVisible();
   });
 });

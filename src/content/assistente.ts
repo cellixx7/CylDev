@@ -171,7 +171,7 @@ export const conceitos: Record<string, string[]> = {
   "svc:painel": ["painel", "dashboard", "power bi", "powerbi", "bi", "gráfico", "gráficos", "indicadores", "painel básico"],
   "svc:automacao": ["automação em excel", "automatizar excel", "automatizar planilha", "macro", "macros", "vba", "power query", "botão no excel"],
   "svc:landing": [
-    "site de uma página", "landing", "landing page", "página de vendas", "criar site", "fazer site", "fazer um site", "quero um site",
+    "site", "sites", "um site", "meu site", "site de uma página", "landing", "landing page", "página de vendas", "criar site", "fazer site", "fazer um site", "quero um site",
     "site para meu negócio", "site pro meu", "página web", "site simples", "site de uma pagina", "e o site", "e do site", "e para o site", "e pro site", "e a página", "e da página",
   ],
   "svc:python": ["python", "script", "scripts", "automação com python", "automatizar com python", "robô", "juntar planilhas", "ler pdf", "ler pdfs"],
@@ -180,8 +180,17 @@ export const conceitos: Record<string, string[]> = {
   // Automação sem dizer qual: vira uma pergunta ("Excel ou Python?").
   "svc:automacao?": ["automação", "automatizar", "automatizado", "automático", "automática"],
 
+  // A pessoa lembra que já disse o que quer ("a gente acabou de falar", "eu já falei").
+  jaDisse: [
+    "acabou de falar", "acabamos de falar", "acabei de falar", "acabei de dizer", "acabou de dizer", "eu ja falei", "eu ja disse", "ja falei", "ja disse", "ja te falei",
+    "ja te disse", "falei agora", "disse agora", "acabei de te falar", "como eu falei", "como eu disse", "eu falei", "voce nao entendeu", "nao entendeu",
+  ],
+
   // --- Pedidos que passam do que o chat consegue estimar: vão para o formulário ou o WhatsApp ---
   grande: [
+    "site grande", "site completo", "varias paginas", "site com varias paginas", "multiplas paginas", "site institucional", "blog", "site com curso", "site de curso", "site com varias coisas", "site com um monte", "curso online", "fazer curso", "vender curso", "dar curso",
+    "plataforma de curso", "plataforma de ensino", "area de membros", "area de alunos", "ead", "portal", "plataforma", "bocado de coisa", "bocado de coisas",
+    "monte de coisa", "monte de coisas", "muita coisa", "muitas coisas", "varias funcoes", "site com login", "sistema de cursos",
     "aplicativo", "app", "aplicativo de celular", "loja virtual", "ecommerce", "e-commerce", "marketplace",
     "integração", "integrar", "integração com", "migrar", "migração", "muitos usuários", "vários usuários", "banco de dados",
     "urgente", "urgência", "pra ontem", "para amanhã", "licitação", "contrato grande", "projeto grande",

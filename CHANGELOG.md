@@ -6,6 +6,12 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Assistente Cyl: entende melhor e envia o pedido pelo chat
+
+- Lembra o serviço que a pessoa acabou de dizer, entende "pros dois", "a gente acabou de falar" e "site grande"/"site com curso" (projeto sob medida, sem preço inventado).
+- Orçamento de vários serviços na mesma conversa, com o desconto do combo no resumo.
+- Botão "Enviar pedido ao Marcelo": pede nome e WhatsApp, mostra o aviso de Termos e Privacidade e envia o pedido sem passar pelo carrinho (mesmo envio do carrinho; se falhar, mostra WhatsApp e e-mail).
+
 ### Assistente Cyl: mais variedade e convite no ícone
 
 - Cada pergunta (77 assuntos e as intenções de preço, prazo, orçamento etc.) ganhou pelo menos 15 formas de resposta, sem mudar nenhum preço ou prazo.

@@ -7,7 +7,10 @@ import { negocios } from "../../../content/textos/negocios";
 import { site } from "../../../content/site";
 import { brl } from "../formato";
 import { passoDoGuia } from "../guia";
+import { emailjsConfigurado } from "../emailjs";
 import { calcularCarrinho, linkWhatsappCarrinho, type Respostas } from "../orcamento";
+import { linkEmailPedido, linkWhatsappPedido, montarPedido, resumoPrecoItem, totalCurto } from "../pedido";
+import { validarTelefone } from "../telefone";
 import { buscarFaq, catalogo, contatos, faqPorTitulo, mensalidadeBase, regrasGerais, servicoDoCatalogo, type Faq, type InfoServico } from "./conhecimento";
 import { limitar, tentaBurlarRegras } from "./guardrails";
 import { casamentosDe, conceitosPontuados, intencaoDe, PREFIXO_TOPICO, semTrecho, servicosCitados, tratamentoDe } from "./intencao";
@@ -54,7 +57,12 @@ export type Cmd =
   | { t: "guia"; o: string }
   | { t: "topico"; id: string; modo?: "mais" | "exemplo" }
   | { t: "categoria"; id: string }
-  | { t: "menu" };
+  | { t: "menu" }
+  // Enviar o pedido pela conversa: pedir os dados, conferir, confirmar e, depois que o painel tentou o envio, o resultado.
+  | { t: "enviar"; sob?: boolean }
+  | { t: "confirmar" }
+  | { t: "corrigir" }
+  | { t: "envio"; ok: boolean };
 
 export type Entrada = { texto: string } | { cmd: Cmd };
 
@@ -75,6 +83,20 @@ export type Resposta = {
   fixa?: boolean;
   /** O que o assistente acabou de oferecer: um "sim" do visitante faz exatamente isto (ver `respostaCurta`). */
   proposta?: Entrada;
+  /** Pedido confirmado: quem exibe a conversa faz o envio (EmailJS) e devolve o resultado com `{ t: "envio", ok }`. */
+  paraEnviar?: DadosParaEnviar;
+};
+
+export type DadosParaEnviar = { ids: string[]; respostas: Record<string, Respostas>; observacoes: string; nome: string; whatsapp: string };
+
+/** Pedido sendo enviado pela conversa: nome, WhatsApp, conferência e envio. */
+export type EnvioPedido = {
+  etapa: "nome" | "whatsapp" | "confirmar" | "enviando";
+  ids: string[];
+  respostas: Record<string, Respostas>;
+  observacoes: string;
+  nome: string;
+  whatsapp: string;
 };
 
 export type Conversa = {
@@ -93,6 +115,17 @@ export type Conversa = {
   proposta: Entrada | null;
   /** Última intenção de serviço (preço, prazo...), para "e o painel?" repetir a pergunta com outro serviço. */
   ultimaIntencao: IntencaoId | null;
+  /** O que a última pergunta do assistente esperava ("para qual serviço?"): a mensagem seguinte é a resposta. */
+  aguarda: "servico" | null;
+  /** Serviços citados há pouco ("planilha e depois um painel"): valem para "pros dois" e para "quero orçar". */
+  falados: string[];
+  /** Orçamento de vários serviços: os que faltam e as respostas dos que já terminaram. */
+  fila: string[];
+  feitos: Record<string, Respostas>;
+  /** Envio do pedido pela conversa (null fora dele). */
+  envio: EnvioPedido | null;
+  /** O que a pessoa contou de um projeto sob medida, para ir junto no pedido. */
+  descricao: string;
 };
 
 export const conversaNova = (): Conversa => ({
@@ -104,6 +137,12 @@ export const conversaNova = (): Conversa => ({
   ultimoTopico: null,
   proposta: null,
   ultimaIntencao: null,
+  aguarda: null,
+  falados: [],
+  fila: [],
+  feitos: {},
+  envio: null,
+  descricao: "",
 });
 
 export type Resultado = { conversa: Conversa; resposta: Resposta };
@@ -570,7 +609,7 @@ function respostaDoGuia(escolhas: string[]): { resposta: Resposta; fim: boolean 
 
 // Orçamento na conversa -----------------------------------------------------------------------------------------------------------
 
-function respostaDoPasso(passo: Passo | null, e: EstadoOrcamento): Resposta {
+function respostaDoPasso(passo: Passo | null, e: EstadoOrcamento, feitos: Record<string, Respostas> = {}): Resposta {
   if (!passo) return semBase();
   const nome = servicoDoCatalogo(e.servicoId)?.nome ?? "";
   if (passo.tipo === "pergunta") {
@@ -594,6 +633,9 @@ function respostaDoPasso(passo: Passo | null, e: EstadoOrcamento): Resposta {
     return { ...resp(blocos, chips, [], "montando"), multipla };
   }
 
+  // Vários serviços no mesmo pedido: uma linha por serviço, o desconto do combo (ou do piloto) e o total, tudo do carrinho do site.
+  if (Object.keys(feitos).length > 0) return resumoDeVarios(e, feitos);
+
   // Resumo: o valor, o prazo e as linhas do cálculo, tudo de calcularServico (o mesmo do orçamento do site).
   const c = passo.calculo;
   const precoTexto = c.preco === null ? "sob consulta" : `${c.aPartirDe ? "a partir de " : c.estimativa ? "estimativa de " : ""}${brl(c.preco)}`;
@@ -605,32 +647,181 @@ function respostaDoPasso(passo: Passo | null, e: EstadoOrcamento): Resposta {
     );
   }
   if (c.estimativa) blocos.push(p(t.orcarProvisorio));
-  blocos.push(p(t.orcarEstimativaNota), p(t.orcarProximo));
+  blocos.push(p(t.orcarEstimativaNota), p(envioAtivo() ? t.orcarProximoEnviar : t.orcarProximo));
   const carrinho = calcularCarrinho([e.servicoId], { [e.servicoId]: e.respostas });
   const acoes: Acao[] = [
     { tipo: "carrinho", rotulo: t.acoes.carrinho, servicoId: e.servicoId, respostas: e.respostas },
     { tipo: "link", rotulo: t.acoes.whatsapp, href: linkWhatsappCarrinho(carrinho, t.origemWhatsapp), externo: true },
   ];
-  const chips: Chip[] = [];
-  if (e.pilha.length > 0) chips.push({ rotulo: t.chips.voltar, entrada: { cmd: { t: "voltar" } } });
-  chips.push(dito(t.chips.recomecar));
-  return resp(blocos, chips, acoes, "montando");
+  const chips: Chip[] = chipsDoResumo(e);
+  return { ...resp(blocos, chips, acoes, "montando"), proposta: envioAtivo() ? { cmd: { t: "enviar" } } : undefined };
 }
 
-function comecarOrcamento(id: string, conversa: Conversa): Resultado {
+const envioAtivo = () => emailjsConfigurado();
+
+function chipsDoResumo(e: EstadoOrcamento): Chip[] {
+  const chips: Chip[] = [];
+  if (envioAtivo()) chips.push({ rotulo: t.envioChips.enviar, entrada: { cmd: { t: "enviar" } } });
+  if (e.pilha.length > 0) chips.push({ rotulo: t.chips.voltar, entrada: { cmd: { t: "voltar" } } });
+  chips.push(dito(t.chips.recomecar));
+  return chips;
+}
+
+function resumoDeVarios(e: EstadoOrcamento, feitos: Record<string, Respostas>): Resposta {
+  const respostas = { ...feitos, [e.servicoId]: e.respostas };
+  const pedido = montarPedido([...Object.keys(feitos), e.servicoId], respostas);
+  const c = pedido.carrinho;
+  const blocos: Bloco[] = [p(t.orcarResumoVarios(totalCurto(pedido))), lista(pedido.itens.map((i) => t.orcarLinha(i.nome, resumoPrecoItem(i))))];
+  if (c.desconto) blocos.push(p(t.orcarSomaLinha(brl(c.somaTabela))), p(t.orcarDescontoLinha(c.desconto.rotulo, brl(c.desconto.valor))));
+  if (c.prazoCombinaveis) blocos.push(p(t.orcarPrazo(c.prazoCombinaveis.texto)));
+  for (const o of c.prazosOutros) blocos.push(p(t.orcarPrazo(`${o.nome}, ${o.texto}`)));
+  blocos.push(p(t.orcarEstimativaNota), p(envioAtivo() ? t.orcarProximoEnviar : t.orcarProximo));
+  const acoes: Acao[] = [{ tipo: "link", rotulo: t.acoes.whatsapp, href: linkWhatsappPedido(pedido, t.origemWhatsapp) ?? contatos().whatsappLink, externo: true }];
+  return { ...resp(blocos, chipsDoResumo(e), acoes, "montando"), proposta: envioAtivo() ? { cmd: { t: "enviar" } } : undefined };
+}
+
+function comecarOrcamento(id: string, conversa: Conversa, intro?: string): Resultado {
   const estado = iniciarOrcamento(id);
   const s = servicoDoCatalogo(id);
   if (!estado || !s) return { conversa, resposta: semBase() };
   const r = respostaDoPasso(proximoPasso(estado), estado);
   return {
-    conversa: { ...conversa, orc: estado, guia: null, ultimoServico: id },
-    resposta: { ...r, blocos: [p(t.orcarComeco(s.nome)), ...r.blocos] },
+    conversa: { ...conversa, orc: estado, guia: null, ultimoServico: id, aguarda: null },
+    resposta: { ...r, blocos: [p(intro ?? t.orcarComeco(s.nome)), ...r.blocos] },
   };
+}
+
+const nomeDoServico = (id: string) => servicoDoCatalogo(id)?.nome ?? id;
+
+/** Começa o orçamento de um ou mais serviços; com vários, um de cada vez e um resumo só no fim, com o desconto do combo. */
+function comecarFila(ids: string[], conversa: Conversa): Resultado {
+  const orcaveis = [...new Set(ids)].filter((id) => iniciarOrcamento(id) && servicoDoCatalogo(id));
+  if (orcaveis.length === 0) return { conversa, resposta: semBase() };
+  const [primeiro, ...resto] = orcaveis;
+  const intro = resto.length > 0 ? t.orcarVarios(orcaveis.map(nomeDoServico).join(" e ")) : undefined;
+  return comecarOrcamento(primeiro, { ...conversa, fila: resto, feitos: {}, falados: orcaveis }, intro);
+}
+
+/** Depois de cada resposta: se o serviço acabou e ainda há outro na fila, segue para ele; senão mostra a pergunta ou o resumo. */
+function seguir(conversa: Conversa, orc: EstadoOrcamento): Resultado {
+  const passo = proximoPasso(orc);
+  if (passo?.tipo === "resumo" && conversa.fila.length > 0) {
+    const [proximo, ...resto] = conversa.fila;
+    const novo = iniciarOrcamento(proximo);
+    if (novo) {
+      const r = respostaDoPasso(proximoPasso(novo), novo);
+      return {
+        conversa: { ...conversa, orc: novo, fila: resto, feitos: { ...conversa.feitos, [orc.servicoId]: orc.respostas }, ultimoServico: proximo },
+        resposta: { ...r, blocos: [p(t.orcarProximoServico(nomeDoServico(orc.servicoId), nomeDoServico(proximo))), ...r.blocos] },
+      };
+    }
+  }
+  return { conversa: { ...conversa, orc }, resposta: respostaDoPasso(passo, orc, conversa.feitos) };
 }
 
 const perguntarQualServico = (turno = 0): Resposta => resp([pergunta(variar([t.orcarQual, ...saber.orcarQuais], turno))], [...chipsServicos("orcar"), dito(t.chips.indicar)], [], "montando");
 
-const passoAtual = (orc: EstadoOrcamento): Resposta => respostaDoPasso(proximoPasso(orc), orc);
+/** Pergunta qual serviço e guarda que a próxima mensagem é a resposta ("um site", "pros dois"). */
+const pedirServico = (conversa: Conversa, turno = 0): Resultado => ({
+  conversa: { ...conversa, aguarda: "servico" },
+  resposta: perguntarQualServico(turno),
+});
+
+// Enviar o pedido pela conversa ---------------------------------------------------------------------------------------------------------
+
+const formatarWhatsapp = (digitos: string) => {
+  const d = digitos.replace(/^55/, "");
+  return d.length === 11 ? `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}` : `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+};
+const chipCancelarEnvio = (): Chip => ({ rotulo: t.envioChips.cancelar, entrada: { cmd: { t: "cancelar" } } });
+const pedidoDoEnvio = (e: EnvioPedido) => montarPedido(e.ids, e.respostas, e.observacoes);
+
+/** Projeto grande ou sob medida: não há estimativa, mas o pedido pode ir ao Marcelo daqui mesmo, com o que a pessoa contou. */
+function sobMedida(conversa: Conversa, texto: string): Resultado {
+  if (!envioAtivo()) return { conversa, resposta: maior() };
+  const descricao = [conversa.descricao, texto.trim()].filter(Boolean).join(" ").slice(0, 600);
+  const resposta = fixa(
+    resp([p(t.envioSobMedida), pergunta(t.envioSobMedidaPergunta)], [{ rotulo: t.envioChips.enviar, entrada: { cmd: { t: "enviar", sob: true } } }, dito(t.chips.whatsapp)], saidaSemCerteza(), "pensando"),
+  );
+  return { conversa: { ...conversa, descricao }, resposta: ofertar(resposta, { cmd: { t: "enviar", sob: true } }) };
+}
+
+function iniciarEnvio(conversa: Conversa, sob: boolean): Resultado {
+  if (!envioAtivo()) return { conversa, resposta: semBase() };
+  let envio: EnvioPedido;
+  if (sob && conversa.descricao) {
+    envio = { etapa: "nome", ids: [], respostas: {}, observacoes: t.envioSobMedidaObs(conversa.descricao), nome: "", whatsapp: "" };
+  } else if (conversa.orc) {
+    const ids = [...Object.keys(conversa.feitos), conversa.orc.servicoId];
+    envio = { etapa: "nome", ids, respostas: { ...conversa.feitos, [conversa.orc.servicoId]: conversa.orc.respostas }, observacoes: "", nome: "", whatsapp: "" };
+  } else {
+    return pedirServico(conversa, conversa.turno);
+  }
+  return { conversa: { ...conversa, envio, aguarda: null }, resposta: fixa(resp([pergunta(t.envioNome)], [chipCancelarEnvio()], [], "digitando")) };
+}
+
+function respostaDeConfirmar(e: EnvioPedido): Resposta {
+  const pedido = pedidoDoEnvio(e);
+  const blocos: Bloco[] = [p(t.envioConfirma(e.nome, formatarWhatsapp(e.whatsapp)))];
+  if (pedido.itens.length > 0) blocos.push(lista(pedido.itens.map((i) => t.orcarLinha(i.nome, resumoPrecoItem(i)))));
+  if (e.observacoes) blocos.push(p(e.observacoes));
+  blocos.push(p(t.envioPrivacidade), p(t.envioAceite));
+  const chips: Chip[] = [
+    { rotulo: t.envioChips.confirmar, entrada: { cmd: { t: "confirmar" } } },
+    { rotulo: t.envioChips.corrigir, entrada: { cmd: { t: "corrigir" } } },
+    chipCancelarEnvio(),
+  ];
+  const acoes: Acao[] = [link(t.acoes.termos, "/termos/"), link(t.acoes.privacidade, "/privacidade/")];
+  return { ...fixa(resp(blocos, chips, acoes, "digitando")), proposta: { cmd: { t: "confirmar" } } };
+}
+
+const PALAVRAS_CONFIRMAR = new Set(["confirmar", "confirmo", "confirma", "pode enviar", "enviar", "envia", "manda", "pode mandar", "esta certo", "ta certo", "certo", "isso"]);
+const PALAVRAS_CORRIGIR = new Set(["corrigir", "corrige", "errado", "esta errado", "ta errado", "trocar", "mudar"]);
+
+function textoNoEnvio(texto: string, conversa: Conversa): Resultado | null {
+  const e = conversa.envio;
+  if (!e) return null;
+  const c = chave(texto);
+  if (PALAVRAS_CANCELAR.has(c) || c === "nao" || c === "nao quero") return executar({ t: "cancelar" }, conversa);
+  if (e.etapa === "enviando") return { conversa, resposta: fixa(resp([p(t.envioJaEnviando)], [], [], "digitando")) };
+  if (e.etapa === "nome") {
+    const nome = texto.trim().replace(/\s+/g, " ");
+    if (nome.length < 2 || nome.length > 80 || /\d{4,}/.test(nome) || nome.includes("@")) {
+      return { conversa, resposta: fixa(resp([p(t.envioNomeInvalido)], [chipCancelarEnvio()], [], "digitando")) };
+    }
+    return { conversa: { ...conversa, envio: { ...e, etapa: "whatsapp", nome } }, resposta: fixa(resp([pergunta(t.envioWhats(nome.split(" ")[0]))], [chipCancelarEnvio()], [], "digitando")) };
+  }
+  if (e.etapa === "whatsapp") {
+    const v = validarTelefone(texto);
+    if (!v.valido) return { conversa, resposta: fixa(resp([p(v.erro)], [chipCancelarEnvio()], [], "digitando")) };
+    const novo: EnvioPedido = { ...e, etapa: "confirmar", whatsapp: v.digitos };
+    return { conversa: { ...conversa, envio: novo }, resposta: respostaDeConfirmar(novo) };
+  }
+  // confirmar
+  if (PALAVRAS_CONFIRMAR.has(c) || palavrasDeSim.includes(c)) return executar({ t: "confirmar" }, conversa);
+  if (PALAVRAS_CORRIGIR.has(c) || palavrasDeNao.includes(c)) return executar({ t: "corrigir" }, conversa);
+  return { conversa, resposta: respostaDeConfirmar(e) };
+}
+
+function respostaDoEnvio(ok: boolean, conversa: Conversa): Resultado {
+  const e = conversa.envio;
+  if (!e || e.etapa !== "enviando") return { conversa, resposta: fixa(resp([p(t.envioJaEnviando)], [], [], "digitando")) };
+  if (ok) {
+    const limpa: Conversa = { ...conversa, envio: null, orc: null, fila: [], feitos: {}, falados: [], descricao: "", aguarda: null };
+    return { conversa: limpa, resposta: fixa(resp([p(t.envioOk), pergunta(t.envioOkPergunta)], chipsInicio(), [], "digitando")) };
+  }
+  const pedido = pedidoDoEnvio(e);
+  const acoes: Acao[] = [];
+  const whats = linkWhatsappPedido(pedido, t.origemWhatsapp);
+  if (whats) acoes.push({ tipo: "link", rotulo: t.acoes.whatsapp, href: whats, externo: true });
+  const email = linkEmailPedido(pedido, t.origemWhatsapp);
+  if (email) acoes.push({ tipo: "link", rotulo: t.acoes.email, href: email });
+  const volta: EnvioPedido = { ...e, etapa: "confirmar" };
+  return {
+    conversa: { ...conversa, envio: volta },
+    resposta: fixa(resp([p(t.envioFalhou)], [{ rotulo: t.envioChips.confirmar, entrada: { cmd: { t: "confirmar" } } }, chipCancelarEnvio()], acoes, "digitando")),
+  };
+}
 
 // Texto digitado durante um orçamento ---------------------------------------------------------------------------------------------------
 
@@ -661,13 +852,12 @@ function textoNoOrcamento(texto: string, conversa: Conversa): Resultado | null {
         achou = true;
       }
     }
-    return achou ? { conversa: { ...conversa, orc: novo }, resposta: passoAtual(novo) } : null;
+    return achou ? seguir(conversa, novo) : null;
   }
 
   const op = opcaoPorTexto(pergunta, texto);
   if (!op) return null;
-  const novo = aplicarOpcao(orc, pergunta.id, op.id);
-  return { conversa: { ...conversa, orc: novo }, resposta: passoAtual(novo) };
+  return seguir(conversa, aplicarOpcao(orc, pergunta.id, op.id));
 }
 
 // Comandos (toque em botão) -------------------------------------------------------------------------------------------------------------
@@ -689,22 +879,40 @@ function executar(cmd: Cmd, conversa: Conversa): Resultado {
       return { conversa: c, resposta: ofertar(detalhesServico(s), { cmd: { t: "sobre", id: s.id, para: "orcar" } }) };
     }
     case "opcao": {
-      if (!conversa.orc) return { conversa, resposta: perguntarQualServico() };
-      const novo = aplicarOpcao(conversa.orc, cmd.p, cmd.o);
-      return { conversa: { ...conversa, orc: novo }, resposta: passoAtual(novo) };
+      if (!conversa.orc) return pedirServico(conversa);
+      return seguir(conversa, aplicarOpcao(conversa.orc, cmd.p, cmd.o));
     }
     case "pronto": {
-      if (!conversa.orc) return { conversa, resposta: perguntarQualServico() };
-      const novo = concluirMultipla(conversa.orc, cmd.p);
-      return { conversa: { ...conversa, orc: novo }, resposta: passoAtual(novo) };
+      if (!conversa.orc) return pedirServico(conversa);
+      return seguir(conversa, concluirMultipla(conversa.orc, cmd.p));
     }
     case "voltar": {
       if (!conversa.orc) return { conversa, resposta: boasVindas() };
-      const novo = voltarUma(conversa.orc);
-      return { conversa: { ...conversa, orc: novo }, resposta: passoAtual(novo) };
+      return seguir(conversa, voltarUma(conversa.orc));
     }
+    case "enviar":
+      return iniciarEnvio(conversa, !!cmd.sob);
+    case "corrigir": {
+      if (!conversa.envio || conversa.envio.etapa === "enviando") return { conversa, resposta: fixa(resp([p(t.envioJaEnviando)], [], [], "digitando")) };
+      return { conversa: { ...conversa, envio: { ...conversa.envio, etapa: "nome", nome: "", whatsapp: "" } }, resposta: fixa(resp([pergunta(t.envioNome)], [chipCancelarEnvio()], [], "digitando")) };
+    }
+    case "confirmar": {
+      const e = conversa.envio;
+      if (!e || e.etapa === "enviando") return { conversa, resposta: fixa(resp([p(t.envioJaEnviando)], [], [], "digitando")) };
+      if (e.etapa !== "confirmar") return textoNoEnvio("", conversa) ?? { conversa, resposta: boasVindas() };
+      const dados: DadosParaEnviar = { ids: e.ids, respostas: e.respostas, observacoes: e.observacoes, nome: e.nome, whatsapp: e.whatsapp };
+      return { conversa: { ...conversa, envio: { ...e, etapa: "enviando" } }, resposta: { ...fixa(resp([p(t.envioEnviando)], [], [], "montando")), paraEnviar: dados } };
+    }
+    case "envio":
+      return respostaDoEnvio(cmd.ok, conversa);
     case "cancelar":
-      return { conversa: { ...conversa, orc: null }, resposta: fixa(resp([p(t.orcarCancelado), pergunta(t.boasVindasPergunta)], chipsInicio(), [], "digitando")) };
+      if (conversa.envio && !conversa.orc) {
+        return { conversa: { ...conversa, envio: null, descricao: "" }, resposta: fixa(resp([p(t.envioCancelado), pergunta(t.boasVindasPergunta)], chipsInicio(), [], "digitando")) };
+      }
+      if (conversa.envio) {
+        return { conversa: { ...conversa, envio: null }, resposta: fixa(resp([p(t.envioCancelado)], conversa.orc ? chipsDoResumo(conversa.orc) : [], [], "digitando")) };
+      }
+      return { conversa: { ...conversa, orc: null, fila: [], feitos: {}, envio: null, aguarda: null }, resposta: fixa(resp([p(t.orcarCancelado), pergunta(t.boasVindasPergunta)], chipsInicio(), [], "digitando")) };
     case "oque": {
       const passo = conversa.orc ? proximoPasso(conversa.orc) : null;
       if (!conversa.orc || !passo || passo.tipo !== "pergunta") return { conversa, resposta: ajuda() };
@@ -756,7 +964,8 @@ const orcarDe = (id: string | null): Entrada => (id ? { cmd: { t: "sobre", id, p
  * "agora não", "depois" a dispensam com simpatia. Só vale quando a mensagem inteira é feita dessas palavras.
  */
 function respostaCurta(texto: string, conversa: Conversa): Resultado | null {
-  if (conversa.orc) return null;
+  // Durante as perguntas do orçamento um "sim" é resposta; no resumo (que oferece enviar o pedido) ele aceita a oferta.
+  if (conversa.orc && !conversa.proposta) return null;
   const pal = palavras(texto).map(radical);
   if (pal.length === 0 || pal.length > 4) return null;
   const conjunto = (lista: readonly string[]) => new Set(lista.map(radical));
@@ -794,6 +1003,9 @@ function responderTexto(texto: string, conversaEntrada: Conversa): Resultado {
   let intencao: Intencao | null = intencaoDe(achados);
   const citados = servicosCitados(achados);
   const unico = citados.length === 1 ? citados[0] : null;
+  // Memória dos serviços citados há pouco: "planilha e depois um painel" vale para "pros dois" e para "quero orçar".
+  if (citados.length > 1) conversa.falados = citados.slice(0, 3);
+  else if (unico) conversa.falados = [...conversa.falados.filter((x) => x !== unico), unico].slice(-3);
   // "E o painel?": repete a última pergunta de serviço (preço, prazo...) com o serviço novo.
   if (!intencao && unico && conversaEntrada.ultimaIntencao && palavras(texto).length <= 5 && /^e( |$)/.test(chave(texto))) intencao = conversaEntrada.ultimaIntencao;
   const alvo = unico ?? (citados.length === 0 ? conversa.ultimoServico : null);
@@ -818,6 +1030,16 @@ function responderTexto(texto: string, conversaEntrada: Conversa): Resultado {
   // Pedido de código pronto, exercício ou aula: o chat não é uma IA que gera isso, e diz.
   if (achados.has("pedeCodigo")) return { conversa, resposta: respostaPedeCodigo() };
 
+  // "A gente acabou de falar": a pessoa já disse o serviço, e perguntar de novo é o que irrita. Segue com o que ela citou antes.
+  if (achados.has("jaDisse") && !conversa.orc && citados.length === 0 && conversa.falados.length > 0) {
+    const r = comecarFila(conversa.falados, conversa);
+    return { ...r, resposta: { ...r.resposta, blocos: [p(t.jaDisse), ...r.resposta.blocos] } };
+  }
+  // A última pergunta foi "para qual serviço?": a mensagem seguinte é a resposta ("um site", "pros dois", "planilha e painel").
+  if (conversaEntrada.aguarda === "servico" && !achados.has("grande") && (!intencao || intencao === "orcar" || intencao === "preco" || intencao === "prazo")) {
+    if (citados.length > 0 && intencao !== "preco" && intencao !== "prazo") return comecarFila(citados, conversa);
+  }
+
   // Saber geral: responde o tópico mais específico e oferece os outros que a mensagem tocou. Palavras como "valor", "pagar" ou
   // "demora" também disparam preço, pagamento e prazo; por isso só conta como pergunta de preço o que SOBRA depois de tirar o
   // trecho do tópico ("contas a pagar" é o tópico; "quanto custa tabela dinâmica" ainda é pergunta de preço).
@@ -838,7 +1060,7 @@ function responderTexto(texto: string, conversaEntrada: Conversa): Resultado {
   if (achados.has("empresaGrande")) return { conversa, resposta: guiaEmpresaGrande() };
   // Pedido maior que a estimativa do chat: formulário ou WhatsApp, sem número.
   const pedeNumero = intencao === null || intencao === "preco" || intencao === "prazo" || intencao === "orcar" || intencao === "incluso" || intencao === "negocio" || intencao === "explicar";
-  if (achados.has("grande") && pedeNumero) return { conversa, resposta: maior() };
+  if (achados.has("grande") && pedeNumero) return sobMedida({ ...conversa, aguarda: null }, texto);
 
   // Dúvida técnica geral (Docker, aprendizado de máquina, "o que é React?") sem tópico pronto e sem serviço citado: o chat diz com
   // franqueza que não tem essa resposta, em vez de explicar o serviço do Marcelo como se fosse a resposta.
@@ -848,9 +1070,11 @@ function responderTexto(texto: string, conversaEntrada: Conversa): Resultado {
 
   switch (intencao) {
     case "orcar": {
+      if (citados.length > 1) return comecarFila(citados, proximo);
+      // Já falou de dois ou mais serviços há pouco (ex.: "planilha e depois um painel"): não pergunta de novo.
+      if (citados.length === 0 && !conversa.orc && conversa.falados.length > 1) return comecarFila(conversa.falados, conversa);
       if (alvo) return comecarOrcamento(alvo, proximo);
-      if (citados.length > 1) return { conversa: proximo, resposta: resp([pergunta(t.orcarQual)], chipsServicos("orcar", citados), [], "montando") };
-      return { conversa, resposta: perguntarQualServico(turno) };
+      return pedirServico(conversa, turno);
     }
     case "preco":
     case "prazo": {
@@ -984,6 +1208,10 @@ function processarSemEstado(entrada: Entrada, conversaAntes: Conversa): Resultad
 
   // 1. Proteção: pedido para mudar as regras. Nada mais é executado.
   if (tentaBurlarRegras(texto)) return { conversa, resposta: fixa(comRetomada(resp([p(t.injecao)], chipsInicio(), [], "digitando"), conversa)) };
+
+  // 1b. Envio do pedido em andamento: o texto é o nome, o WhatsApp ou a confirmação.
+  const noEnvio = textoNoEnvio(texto, conversa);
+  if (noEnvio) return noEnvio;
 
   // 2. Orçamento em andamento: o texto pode ser uma resposta, "voltar" ou "cancelar".
   const noOrcamento = textoNoOrcamento(texto, conversa);

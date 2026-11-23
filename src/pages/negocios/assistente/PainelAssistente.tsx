@@ -11,11 +11,15 @@ import {
   type Bloco,
   type Chip,
   type Conversa,
+  type DadosParaEnviar,
   type Entrada,
   type Estado,
   type Resposta,
+  type Resultado,
 } from "../../../shared/lib/assistente/motor";
 import { atrasoMs, horaCurta, passoDigitacao, recortarBlocos, tamanhoDosBlocos } from "../../../shared/lib/assistente/ritmo";
+import { dadosEmailPedido, montarPedido } from "../../../shared/lib/pedido";
+import { enviarContato, pareceSpam, TEMPO_MINIMO_MS } from "../../../shared/lib/emailjs";
 import { montarHash } from "../../../shared/lib/hashServico";
 import { IconeFechar } from "../icones";
 import { useTravaRolagem } from "../useTravaRolagem";
@@ -147,6 +151,9 @@ export function PainelAssistente({ aberto, aoFechar }: Props) {
   const proximoId = useRef(1);
 
   const [conversa, setConversa] = useState<Conversa>(conversaNova);
+  // A última conversa, para o envio do pedido (que termina depois de uma espera) não partir de um estado antigo.
+  const conversaRef = useRef<Conversa>(conversa);
+  const abertoEm = useRef(Date.now());
   const [mensagens, setMensagens] = useState<Mensagem[]>(() => [{ id: 0, autor: "bot", hora: agora(), resposta: boasVindas() }]);
   const [fase, setFase] = useState<Fase | null>(null);
   const [texto, setTexto] = useState("");
@@ -201,20 +208,41 @@ export function PainelAssistente({ aberto, aoFechar }: Props) {
     area.scrollTo({ top: topo, behavior: reduzido() ? "auto" : "smooth" });
   }, [mensagens, aberto, pronta]);
 
-  const enviar = (entrada: Entrada, rotuloDoUsuario: string) => {
-    const r = processar(entrada, conversa);
-    const idBot = proximoId.current + 1;
+  /** Mostra o resultado de uma rodada: a fala da pessoa (quando houve) e a resposta, com o ritmo de digitação. */
+  const registrar = (r: Resultado, rotuloDoUsuario?: string) => {
     const estado = r.resposta.estado ?? "digitando";
     const total = tamanhoDosBlocos(r.resposta.blocos);
+    conversaRef.current = r.conversa;
     setConversa(r.conversa);
-    setMensagens((atual) => [
-      ...atual,
-      { id: proximoId.current++, autor: "eu", hora: agora(), texto: rotuloDoUsuario },
-      { id: proximoId.current++, autor: "bot", hora: agora(), resposta: r.resposta },
-    ]);
+    const novas: Mensagem[] = [];
+    if (rotuloDoUsuario !== undefined) novas.push({ id: proximoId.current++, autor: "eu", hora: agora(), texto: rotuloDoUsuario });
+    const idBot = proximoId.current++;
+    novas.push({ id: idBot, autor: "bot", hora: agora(), resposta: r.resposta });
+    setMensagens((atual) => [...atual, ...novas]);
     setFase({ id: idBot, etapa: "espera", estado, atraso: atrasoMs(estado, total, reduzido()), total, escritos: 0 });
     // O leitor de tela recebe a resposta inteira de uma vez; o efeito de digitação é só visual.
     setAviso(textoPlano(r.resposta));
+    if (r.resposta.paraEnviar) void disparar(r.resposta.paraEnviar);
+  };
+
+  const enviar = (entrada: Entrada, rotuloDoUsuario: string) => registrar(processar(entrada, conversaRef.current), rotuloDoUsuario);
+
+  /** Envia o pedido confirmado pelo mesmo caminho do carrinho (EmailJS) e conta o resultado ao motor. As regras de spam são as de emailjs.ts. */
+  const disparar = async (d: DadosParaEnviar) => {
+    let ok = true;
+    try {
+      // Como no carrinho: o envio só sai depois dos 3 s mínimos de emailjs.ts (quem escreve nome e telefone passa disso de longe;
+      // se não passou, espera em vez de descartar um pedido de verdade).
+      const falta = TEMPO_MINIMO_MS + 150 - (Date.now() - abertoEm.current);
+      if (falta > 0) await new Promise((r) => window.setTimeout(r, falta));
+      if (!pareceSpam("", abertoEm.current)) {
+        await enviarContato(dadosEmailPedido(montarPedido(d.ids, d.respostas, d.observacoes), { nome: d.nome, whatsapp: d.whatsapp }, t.origemWhatsapp));
+      }
+    } catch {
+      ok = false;
+    }
+    // A pessoa pode ter começado uma conversa nova enquanto o envio terminava: nesse caso não há o que contar.
+    if (conversaRef.current.envio?.etapa === "enviando") registrar(processar({ cmd: { t: "envio", ok } }, conversaRef.current));
   };
 
   const aoEnviar = (e: FormEvent) => {
@@ -227,7 +255,8 @@ export function PainelAssistente({ aberto, aoFechar }: Props) {
   };
 
   const limpar = () => {
-    setConversa(conversaNova());
+    conversaRef.current = conversaNova();
+    setConversa(conversaRef.current);
     setFase(null);
     setMensagens([{ id: proximoId.current++, autor: "bot", hora: agora(), resposta: boasVindas() }]);
     setAviso("");
@@ -408,7 +437,8 @@ export function PainelAssistente({ aberto, aoFechar }: Props) {
               onChange={(e) => setTexto(e.target.value)}
               maxLength={t.maximoCaracteres}
               placeholder={t.campoDica}
-              autoComplete="off"
+              autoComplete={conversa.envio?.etapa === "nome" ? "name" : conversa.envio?.etapa === "whatsapp" ? "tel" : "off"}
+              inputMode={conversa.envio?.etapa === "whatsapp" ? "tel" : "text"}
               enterKeyHint="send"
               className={`min-h-alvo min-w-0 flex-1 rounded-full border border-texto-suave bg-superficie px-4 font-[inherit] text-base text-texto placeholder:text-texto-suave ${focoVisivel}`}
             />
