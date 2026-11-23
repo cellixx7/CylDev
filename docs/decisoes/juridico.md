@@ -65,3 +65,10 @@ Relatório completo em [`../auditorias/conformidade-legal.md`](../auditorias/con
 - **Aceite sem caixinha mantido** (base: art. 7º, V). Pergunta registrada para o advogado.
 - **Embeds de terceiros:** vídeo (por exemplo o do CylBot) só hospedado no próprio site ou atrás de "clique para carregar"; nada que carregue terceiro sem a pessoa pedir. Todo `target="_blank"` leva `rel="noopener"`.
 - **Não feito de propósito:** analytics, dependências, CSP, CPF completo, mudança de regra dos Termos.
+
+## Decisões do Marcelo, rodada 2 (23/11/2026)
+
+- **Piloto:** o contador de vagas continua manual (sem backend, planilha nem serviço externo). Para o aviso não vencer sozinho, `pilotoValeAte` (AAAA-MM-DD, inclusive; `null` = sem limite) faz `descontoPilotoAtual` devolver `null` depois da data. Valor inicial `null`: o Marcelo ainda não definiu a data. A rotina de baixar o contador a cada venda fechada está em `PENDENCIAS.md`. Se um dia valer automatizar, é proposta à parte (custo, mudança na privacidade e na CSP).
+- **Tempo de resposta:** "O Marcelo costuma responder em até 2 horas, sem garantia." (`comum.tempoResposta`), a mesma frase no contato do site e no Assistente Cyl. Nenhum horário de atendimento. Termos e privacidade não mudaram, então `versoes.ts` não mudou.
+- **Imagem OG:** `og-negocios-v2.png` ("Valor final na proposta. Pagamento por Pix."), no lugar da v1 ("Preços fechados."), que contradizia estimativa e proposta. `og:image:alt` em todas as páginas de Negócios confere com o texto novo.
+- **LICENSE:** o repositório fica **sem licença** (todos os direitos reservados), por decisão do Marcelo. Nenhum arquivo `LICENSE` é criado.
