@@ -1,5 +1,6 @@
 import type { Page } from "@playwright/test";
 import { assistente as t } from "../src/content/textos/assistente";
+import { saber, topicoPorId } from "../src/content/textos/assistenteSaber";
 import { catalogo } from "../src/shared/lib/assistente/conhecimento";
 import { expect, test } from "./apoio";
 
@@ -113,6 +114,37 @@ test.describe("assistente do chat (funções)", () => {
     await expect(carrinho.getByText("Planilha organizada").first()).toBeVisible();
   });
 
+  test("(q) responde dúvida de Excel, aprofunda no botão, e entende 'e o painel?' e 'sim' pela memória da conversa", async ({ page }) => {
+    await abrir(page);
+    const procv = topicoPorId("procv")!;
+    await perguntarEEsperar(page, "como uso o procv?");
+    await expect(registro(page)).toContainText(procv.direta[0]);
+    // O botão do próprio tópico aprofunda sem digitar nada.
+    await painel(page).getByRole("button", { name: saber.rotuloMais }).click();
+    await pronta(page);
+    await expect(registro(page)).toContainText(procv.aprofundar![0]);
+    // Memória curta: "e o painel?" repete a pergunta de preço, e "sim" executa a oferta.
+    const painelBasico = catalogo().find((s) => s.id === "painel")!;
+    await perguntarEEsperar(page, "quanto custa a planilha?");
+    await perguntarEEsperar(page, "e o painel?");
+    await expect(registro(page).getByText(`${painelBasico.nome}: ${painelBasico.precoTexto}.`).last()).toBeVisible();
+    await perguntarEEsperar(page, "pode ser");
+    await expect(registro(page)).toContainText("Vamos montar a estimativa de Painel básico");
+  });
+
+  test("(r) diz com franqueza que é um assistente de regras, não pede código ao chat e encaminha dúvida técnica sem tópico", async ({ page }) => {
+    await abrir(page);
+    await perguntarEEsperar(page, "você é uma IA de verdade?");
+    await expect(registro(page)).toContainText("assistente de regras");
+    await expect(registro(page)).toContainText("fica só na memória desta aba");
+    await perguntarEEsperar(page, "escreva um código em python que leia um csv");
+    await expect(registro(page)).toContainText("Não escrevo código");
+    await perguntarEEsperar(page, "o que é docker?");
+    await expect(registro(page)).toContainText("prefiro não responder no chute");
+    await expect(registro(page)).toContainText("em até 2 horas");
+    await expect(registro(page)).not.toContainText("Não encontrei");
+  });
+
   test("(f) fecha com Esc, devolve o foco ao botão e funciona no celular sem rolagem lateral", async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 700 });
     await abrir(page);
@@ -210,6 +242,24 @@ test.describe("assistente do chat (interface e ritmo)", () => {
     await expect(dica).toHaveCSS("opacity", "0");
     await b.focus();
     await expect(dica).toHaveCSS("opacity", "1");
+  });
+
+  test("(s) convite: aparece no carregamento, some em 5 s, volta a cada 30 s e o x encerra", async ({ page }) => {
+    await page.clock.install();
+    await page.goto("/");
+    const convite = page.getByTestId("convite-assistente");
+    await expect(convite).toContainText(t.convite);
+    const cx = (await convite.boundingBox())!;
+    const bx = (await botaoAbrir(page).boundingBox())!;
+    expect(cx.y + cx.height).toBeLessThanOrEqual(bx.y); // a caixa fica acima do botão, com a setinha entre os dois
+    await page.clock.runFor(5100);
+    await expect(convite).toHaveCount(0);
+    await page.clock.runFor(25_000);
+    await expect(convite).toBeVisible();
+    await convite.getByRole("button", { name: t.conviteFechar }).click();
+    await expect(convite).toHaveCount(0);
+    await page.clock.runFor(65_000);
+    await expect(convite).toHaveCount(0);
   });
 
   test("(m) balões: usuário à direita, Assistente Cyl à esquerda com avatar, hora discreta", async ({ page }) => {

@@ -27,6 +27,17 @@ export const girias: Record<string, string> = {
   orcamentinho: "orcamento", precinho: "preco", valorzinho: "valor", paineizinho: "painel", painelzinho: "painel",
   botzao: "", botzinho: "", botzona: "", botinho: "", botona: "", botzin: "",
   zapzap: "whatsapp", whats: "whatsapp", wpp: "whatsapp", zapp: "whatsapp",
+  // Abreviações e erros comuns de quem escreve rápido no celular.
+  quria: "queria", queira: "queria", tentr: "tentar", cmo: "como", cm: "com", ql: "qual", qlq: "qualquer", fzr: "fazer", fazr: "fazer", fz: "faz", ta: "esta", nd: "nada", dps: "depois", agr: "agora", hj: "hoje",
+  mts: "muitos", bj: "", pls: "por favor",
+  exel: "excel", excell: "excel", ecxel: "excel", eccel: "excel", exell: "excel", planilia: "planilha", planilla: "planilha", planiha: "planilha",
+  googlesheets: "google sheets", gsheets: "google sheets", pyton: "python", phyton: "python", pithon: "python", paiton: "python",
+  disord: "discord", discrod: "discord", dicord: "discord", powerbi: "power bi", pbi: "power bi",
+  orcamneto: "orcamento", orsamento: "orcamento", orcameto: "orcamento",
+  tbn: "tambem", vlr: "valor", vlrs: "valores", qtd: "quantidade",
+  fncao: "funcao", formla: "formula", fomula: "formula", automatisar: "automatizar", sla: "nao sei",
+  // Vocativos que não dizem nada para o assunto (a pessoa está chamando o chat).
+  mano: "", mana: "", brother: "", mn: "", bro: "", parceiro: "",
 };
 
 /** Conceitos: "quanto custa", "valor" e "preço" caem todos em `preco`. */
@@ -46,7 +57,7 @@ export const conceitos: Record<string, string[]> = {
     "o que eu ganho", "vem com", "o que entrega", "o que você entrega", "entregável", "entregáveis", "o que fica pronto",
   ],
   orcar: [
-    "orçamento", "orçamentos", "orçar", "cotação", "cotar", "simular", "simulação", "calcular", "montar", "fazer um orçamento",
+    "orçamento", "orçamentos", "orçar", "cotação", "cotar", "simular", "simulação", "calcular o orçamento", "calcular o valor", "calcular o preço", "montar", "fazer um orçamento",
     "quero contratar", "contratar", "quero fazer", "quero pedir", "fazer pedido", "fazer um pedido",
   ],
   indicar: [
@@ -92,10 +103,15 @@ export const conceitos: Record<string, string[]> = {
     "confiável", "confiança", "confiar", "posso confiar", "golpe", "fraude", "é seguro", "existe mesmo", "é de verdade",
     "referência", "referências", "portfólio", "portifólio", "portfolio", "é sério", "tem cnpj", "vale a pena", "é real",
     "como sei que", "como saber se",
+    "é bom", "é bom nisso", "é bom pra isso", "é bom para isso", "ele é bom", "o marcelo é bom", "é bom mesmo", "é bom no que faz", "é competente", "é qualificado",
+    "sabe fazer", "ele sabe", "o marcelo sabe", "é capaz", "dá conta", "tem experiência", "tem experiencia", "qual a experiência", "o que ele já fez", "o que o marcelo já fez",
+    "o que você já fez", "o que já fez", "já fez algo parecido", "já fez isso", "trabalhos anteriores", "trabalhos que já fez", "projetos que já fez", "projetos anteriores", "quais projetos", "projetos o marcelo já fez", "projetos ele já fez", "projetos que ele fez", "o que ele fez",
+    "já trabalhou com", "tem clientes", "já atendeu", "currículo", "formação dele", "tem formação",
   ],
   publico: [
     "para quem é", "pra quem é", "para quem você trabalha", "quem pode contratar", "serve para mim", "serve pra mim", "você atende",
-    "vocês atendem", "atende pequeno", "atende empresa", "atende autônomo", "atende mei", "meu perfil",
+    "vocês atendem", "atende pequeno", "atende empresa", "atende autônomo", "atende mei", "meu perfil", "sou mei", "sou microempreendedor",
+    "microempreendedor individual", "posso contratar", "pessoa física", "sem cnpj", "preciso de cnpj", "preciso ter cnpj", "sou autônomo posso", "sou autônoma posso",
   ],
   empresaGrande: [
     "empresa grande", "grande empresa", "multinacional", "saas", "já tenho sistema", "já temos sistema", "erp", "crm",
@@ -119,13 +135,44 @@ export const conceitos: Record<string, string[]> = {
   ],
   "negocio:gestao": ["estoque", "produtos", "gestão de produtos", "gestor", "gestora", "controle de estoque", "inventário", "mercadorias"],
 
+  // --- Conversa: seguimento, menu e pedidos que o chat não faz ---
+  menuAssuntos: [
+    "quais assuntos", "que assuntos", "sobre o que você fala", "sobre o que você sabe", "o que mais você sabe", "o que mais posso perguntar",
+    "o que mais você faz", "me dá uma dica", "me dê uma dica", "uma dica", "dicas de planilha", "dicas de excel", "dicas", "me ensina algo",
+    "tirar dúvida de excel", "tirar dúvidas de excel", "dúvidas de excel", "dúvida de excel", "perguntas sobre excel", "dúvidas sobre planilha",
+    "ajuda com programação", "dúvidas de programação", "dúvida de programação", "desenvolvimento", "todos os assuntos", "ver os assuntos",
+  ],
+  // Dúvida de Excel ou programação que nenhum tópico cobre: o chat diz com franqueza o que sabe e o que não sabe.
+  devGeral: [
+    "excel", "fórmula", "fórmulas", "função", "funções", "vba", "macro", "macros", "programação", "programar", "código", "javascript", "html", "css", "sql",
+    "bug", "script", "algoritmo", "docker", "kubernetes", "machine learning", "aprendizado de máquina", "react", "angular", "node", "typescript", "java", "php", "linux", "aws", "git", "framework", "backend", "frontend", "nuvem", "linguagem de programação", "planilhas google", "google sheets", "libreoffice", "desenvolvedor",
+  ],
+  pedeCodigo: [
+    "escreva um código", "escreve um código", "escrever um código", "faz um código", "faça um código", "fazer um código", "gera um código",
+    "gere um código", "gerar um código", "me dá o código", "me passa o código", "me manda o código", "código pronto", "código em python para",
+    "código em vba para", "código para eu usar", "me faz uma macro", "me faça uma macro", "faz uma macro pra mim", "faz um código pra mim", "faça um código pra mim", "me faz um código", "me faça um código", "faz uma macro para mim", "faça uma macro para mim", "escreva uma macro", "escreve uma macro",
+    "me ensina a programar", "ensina a programar", "me ensina programação", "aprender a programar", "curso de programação", "resolva este exercício",
+    "resolva esse exercício", "resolver este exercício", "faça meu trabalho", "faz meu trabalho", "faz o meu trabalho", "faça o meu trabalho",
+  ],
+  // Mais detalhe ou exemplo sobre o assunto que acabou de ser explicado.
+  maisDetalhe: [
+    "mais detalhes", "mais detalhe", "detalha", "detalhe", "detalhar", "explica melhor", "explique melhor", "explicar melhor", "pode explicar melhor",
+    "me explica melhor", "aprofunda", "aprofundar", "fala mais", "conta mais", "quero saber mais", "saber mais", "continua", "continue", "mais informações",
+    "mais informação", "não entendi", "não entendi direito", "não ficou claro", "ficou confuso", "mais uma vez", "de novo", "de outro jeito", "com outras palavras",
+    "mais simples", "explica mais simples", "explica de forma simples", "em linguagem simples", "pode simplificar", "simplifica",
+  ],
+  pedeExemplo: [
+    "exemplo", "um exemplo", "me dá um exemplo", "me dê um exemplo", "dá um exemplo", "dê um exemplo", "tem exemplo", "mostra um exemplo", "mostre um exemplo",
+    "pode dar um exemplo", "exemplo prático", "na prática", "como seria na prática", "como ficaria", "como fica na prática", "um caso", "um caso real",
+  ],
+
   // --- Serviços do catálogo (o id é o de servicos.ts) ---
   "svc:planilha": ["planilha", "planilhas", "organizar planilha", "planilha organizada", "organizar dados", "organizar minha planilha"],
   "svc:painel": ["painel", "dashboard", "power bi", "powerbi", "bi", "gráfico", "gráficos", "indicadores", "painel básico"],
   "svc:automacao": ["automação em excel", "automatizar excel", "automatizar planilha", "macro", "macros", "vba", "power query", "botão no excel"],
   "svc:landing": [
     "site de uma página", "landing", "landing page", "página de vendas", "criar site", "fazer site", "fazer um site", "quero um site",
-    "site para meu negócio", "site pro meu", "página web", "site simples", "site de uma pagina",
+    "site para meu negócio", "site pro meu", "página web", "site simples", "site de uma pagina", "e o site", "e do site", "e para o site", "e pro site", "e a página", "e da página",
   ],
   "svc:python": ["python", "script", "scripts", "automação com python", "automatizar com python", "robô", "juntar planilhas", "ler pdf", "ler pdfs"],
   "svc:sistema": ["sistema", "sistemas", "sistema sob medida", "software", "sob medida", "sistema de gestão", "sistema próprio"],
@@ -146,8 +193,7 @@ export const conceitos: Record<string, string[]> = {
     "receita de", "futebol", "política", "eleição", "eleições", "presidente", "bitcoin", "criptomoeda", "cripto", "investir", "bolsa de valores",
     "ações da bolsa", "previsão do tempo", "clima", "piada", "conta uma piada", "poema", "poesia", "música", "letra de música", "filme", "série",
     "horóscopo", "signo", "namorada", "namorado", "religião", "médico", "remédio", "diagnóstico", "sintoma", "processo judicial",
-    "dever de casa", "redação", "trabalho escolar", "quem ganhou", "capital da", "capital do", "quem inventou", "me ensina", "ensina a programar",
-    "escreva um código", "escreve um código", "faz um código", "resolva este exercício", "resolva esse exercício", "traduza", "tradução", "resumo do livro",
+    "dever de casa", "redação", "trabalho escolar", "quem ganhou", "capital da", "capital do", "quem inventou", "me ensina", "traduza", "tradução", "resumo do livro",
     "notícias", "notícia", "jogo", "game", "chatgpt", "gpt", "openai", "gemini",
   ],
 };
@@ -157,12 +203,15 @@ export const conceitos: Record<string, string[]> = {
  * (a mais específica primeiro). `saudacao` e `agradecimento` ficam por último: "oi, quanto custa?" é uma pergunta de preço.
  */
 export const intencoes: { id: Intencao; conceitos: string[] }[] = [
+  // "Como funciona o desconto?" é pergunta de desconto: ele vem antes do "como funciona" genérico.
+  { id: "desconto", conceitos: ["desconto"] },
   { id: "comoFunciona", conceitos: ["comoFunciona"] },
+  // "Sou MEI, posso contratar?" é pergunta de público, e não pedido de orçamento (ambas têm "contratar").
+  { id: "publico", conceitos: ["publico"] },
   { id: "orcar", conceitos: ["orcar"] },
   { id: "preco", conceitos: ["preco"] },
   { id: "prazo", conceitos: ["prazo"] },
   { id: "incluso", conceitos: ["incluso"] },
-  { id: "desconto", conceitos: ["desconto"] },
   { id: "pagamento", conceitos: ["pagamento"] },
   { id: "receber", conceitos: ["receber"] },
   { id: "nota", conceitos: ["nota"] },
@@ -173,9 +222,9 @@ export const intencoes: { id: Intencao; conceitos: string[] }[] = [
   { id: "preparar", conceitos: ["preparar"] },
   { id: "confianca", conceitos: ["confianca"] },
   { id: "indicar", conceitos: ["indicar"] },
-  { id: "contato", conceitos: ["contato"] },
-  { id: "publico", conceitos: ["publico"] },
   { id: "quem", conceitos: ["quem"] },
+  // "Quem é o Marcelo?" tem "marcelo" (contato) e "quem é" (quem): vence quem, que vem antes.
+  { id: "contato", conceitos: ["contato"] },
   { id: "bot", conceitos: ["bot"] },
   { id: "servicos", conceitos: ["servicos"] },
   { id: "exemplos", conceitos: ["exemplos"] },
@@ -233,4 +282,19 @@ export const padroesDeInjecao: RegExp[] = [
   /\b(system prompt|prompt do sistema|prompt inicial|ignore (previous|all|the above|tudo))\b/,
   /\bsem (regras|restric\w*|filtro\w*|limite\w*)\b/,
   /\b(traduza|resuma|repita)\b.*\b(suas|seu|sua) (instruc|regra|prompt)/,
+];
+
+/**
+ * Respostas curtas a uma pergunta do assistente ("Quer montar a estimativa?" → "sim", "pode ser", "agora não"). Valem só quando a
+ * mensagem inteira é feita dessas palavras (até 4), para "pode" ou "quero" no meio de uma pergunta não virarem um "sim".
+ * Cada palavra vem sem acento (o motor normaliza); gírias como "ta" e "vlw" já são trocadas antes.
+ */
+export const palavrasDeSim: string[] = [
+  "sim", "pode", "ser", "quero", "claro", "certeza", "com", "bora", "vamos", "la", "manda", "mande", "isso", "mesmo", "aham", "uhum", "ok", "okay",
+  "beleza", "fechado", "combinado", "favor", "por", "topo", "esta", "bom", "certo", "show", "mostra", "mostre", "mostrar", "ver", "continua", "continue",
+  "positivo", "gostaria", "vai", "yes", "gostei", "otimo", "perfeito", "legal", "demorou", "tranquilo", "faz", "faca",
+];
+export const palavrasDeNao: string[] = [
+  "nao", "agora", "obrigado", "obrigada", "depois", "outra", "vez", "ainda", "nada", "so", "isso", "por", "enquanto", "talvez", "quero", "preciso",
+  "mais", "valeu", "ja", "esta", "bom", "ta", "tudo", "dispenso", "deixa", "deixe", "pular", "eu", "vejo", "vou", "pensar", "penso", "que",
 ];

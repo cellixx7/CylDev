@@ -27,6 +27,8 @@ export const assistente = {
   /** Rótulo do botão redondo (tooltip no mouse e no foco do teclado, rótulo acessível no celular). */
   botao: "Assistente Cyl",
   botaoAbrir: "Abrir o Assistente Cyl",
+  convite: "Está com dúvidas? Fale com a nossa assistente Cyl",
+  conviteFechar: "Dispensar o convite",
   fechar: "Fechar o Assistente Cyl",
   /** Botão de ícone (chat com "+") no cabeçalho: nome acessível e dica. */
   novaConversa: "Nova conversa",

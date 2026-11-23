@@ -5,6 +5,7 @@ import { site } from "../../../content/site";
 import { assistente as t } from "../../../content/textos/assistente";
 import { perguntasFrequentes } from "../../../content/textos/perguntasFrequentes";
 import { guias } from "../../../content/textos/assistenteGuias";
+import { topicos } from "../../../content/textos/assistenteSaber";
 import { brl } from "../formato";
 import { calcularServico, descontoPilotoAtual, mensalidadeDe, textoPrecoItem, type CalculoServico } from "../orcamento";
 import { linkContato } from "../whatsapp";
@@ -172,6 +173,8 @@ export function fatos(): string[] {
   for (const f of faqs()) lista.push(f.pergunta, ...f.paragrafos);
   // Textos fixos do assistente que citam número (tempo de resposta) e a mensalidade-base dos bots.
   lista.push(t.tempoResposta);
+  // Saber geral (Excel, automação, sites): texto curado, sem preço nem prazo (um teste confere). Os números que ele traz (F4, #DIV/0!) são nomes de tecla e de erro.
+  for (const tp of topicos) lista.push(...tp.direta, ...tp.explica, ...(tp.passos ?? []), ...(tp.aprofundar ?? []), tp.dica ?? "", tp.exemplo ?? "");
   if (site.prestador.documento) lista.push(`${site.prestador.documento.tipo} ${site.prestador.documento.numero}`);
   const m = mensalidadeBase();
   if (m) lista.push(guias.depois.bots(m.percentual, m.nome, m.criacao, m.mensal));
