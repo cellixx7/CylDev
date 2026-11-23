@@ -272,7 +272,7 @@ test.describe("assistente do chat (interface e ritmo)", () => {
     const caixaBot = (await bot.locator("div > div").first().boundingBox())!;
     const caixaEu = (await eu.locator("div > div").first().boundingBox())!;
     expect(caixaEu.x).toBeGreaterThan(caixaBot.x);
-    await expect(bot.getByText(t.avatar, { exact: true })).toBeVisible();
+    await expect(bot.locator("svg[viewBox]").first()).toBeVisible(); // rosto do Cyl (antes era a letra "C")
     await expect(eu.locator("time")).toHaveText(/^\d{2}:\d{2}$/);
     const raio = await eu.locator("div > div").first().evaluate((el) => parseFloat(getComputedStyle(el).borderTopLeftRadius));
     expect(raio).toBeGreaterThanOrEqual(12);

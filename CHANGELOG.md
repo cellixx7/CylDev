@@ -6,6 +6,12 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Cyl animado no header e rosto dele no chat
+
+- O ícone de controle de videogame do header virou o mascote Cyl, que acena ao carregar a página, a cada 60 s e ao passar o mouse ou focar (sem acenar de novo antes de acabar o ciclo). Sem tooltip: o nome fica no `aria-label` e no `title` do link, e o clique continua levando à Comunidade. O enquadramento vai da cabeça à cintura. O joystick, a nuvem e a dica (com o botão "Ir para o CylDev" do toque) saíram; o header ficou 5 px mais baixo.
+- No chat do assistente, a letra "C" do avatar deu lugar ao rosto do Cyl (parado), no cabeçalho do painel e em cada resposta.
+- Com "reduzir movimento" ligado no sistema, o Cyl fica parado; com a aba oculta, a animação pausa.
+
 ### Assistente Cyl: mais variedade e convite no ícone
 
 - Cada pergunta (77 assuntos e as intenções de preço, prazo, orçamento etc.) ganhou pelo menos 15 formas de resposta, sem mudar nenhum preço ou prazo.

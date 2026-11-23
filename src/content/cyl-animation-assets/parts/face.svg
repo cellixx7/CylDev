@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="-15 40 580 870" width="580" height="870" stroke-linecap="round" stroke-linejoin="round">
+<title>Cabeça, orelha e boca</title>
+<defs>
+<linearGradient id="face-color" x1="0" y1="0" x2=".22" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#AC31D1"/><stop offset=".53" stop-color="#C23DE3"/><stop offset="1" stop-color="#B836D8"/>
+</linearGradient>
+<linearGradient id="skin" x1=".18" y1="1" x2=".92" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#9E2AC1"/><stop offset=".5" stop-color="#B739DD"/><stop offset="1" stop-color="#C03BE1"/>
+</linearGradient>
+<linearGradient id="ringlet" x1=".12" y1="1" x2=".8" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#280839"/><stop offset=".6" stop-color="#361044"/><stop offset="1" stop-color="#491458"/>
+</linearGradient>
+<linearGradient id="iris" x1="0" y1="0" x2=".25" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#26062E"/><stop offset="1" stop-color="#471155"/>
+</linearGradient>
+</defs>
+<g id="face" inkscape:groupmode="layer" inkscape:label="Cabeça, orelha e boca" data-pivot-x="298" data-pivot-y="536">
+<path d="M111 402 C127 380 153 331 166 286 C184 241 228 215 286 210 C357 202 422 224 451 256 C474 285 462 318 479 359 C486 389 492 416 486 443 C478 480 444 507 405 520 C355 537 295 538 246 531 C205 527 175 515 156 501 C131 506 111 498 96 484 C79 469 72 449 75 432 C78 415 92 403 111 402Z" fill="url(#face-color)" stroke="#290838" stroke-width="2.9"/>
+<path d="M79 441 C83 473 110 493 140 489 C159 486 163 471 173 460 C184 484 212 505 255 514 C304 525 374 520 421 506 C452 497 466 484 475 470 C462 494 436 510 405 520 C355 537 295 538 246 531 C205 527 175 515 156 501 C131 506 111 498 96 484 C84 473 77 458 77 444Z" fill="#A62AC7"/>
+<path d="M164 438 C155 425 139 423 125 430 C100 441 103 469 122 479 C132 483 145 480 153 475Z" fill="#9122AC"/>
+<path d="M104 450 C101 463 109 476 121 480" fill="none" stroke="#76188E" stroke-width="1.65"/>
+<path d="M352 465 C366 469 384 462 399 461 C407 460 409 460 414 455 C411 463 403 465 397 465 C382 465 361 475 346 468 C341 466 343 465 352 465Z" fill="#701A88"/>
+<path d="M406 447 C415 451 419 449 423 446 C422 456 411 457 406 452Z" fill="#D35CEB"/>
+</g>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="-15 40 580 870" width="580" height="870" stroke-linecap="round" stroke-linejoin="round">
+<title>Cabelo traseiro</title>
+<defs>
+<linearGradient id="face-color" x1="0" y1="0" x2=".22" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#AC31D1"/><stop offset=".53" stop-color="#C23DE3"/><stop offset="1" stop-color="#B836D8"/>
+</linearGradient>
+<linearGradient id="skin" x1=".18" y1="1" x2=".92" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#9E2AC1"/><stop offset=".5" stop-color="#B739DD"/><stop offset="1" stop-color="#C03BE1"/>
+</linearGradient>
+<linearGradient id="ringlet" x1=".12" y1="1" x2=".8" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#280839"/><stop offset=".6" stop-color="#361044"/><stop offset="1" stop-color="#491458"/>
+</linearGradient>
+<linearGradient id="iris" x1="0" y1="0" x2=".25" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#26062E"/><stop offset="1" stop-color="#471155"/>
+</linearGradient>
+</defs>
+<g id="hair-back" inkscape:groupmode="layer" inkscape:label="Cabelo traseiro" data-pivot-x="298" data-pivot-y="536">
+<path d="M84 437 C68 421 54 403 54 368 C45 316 67 248 101 198 C149 121 238 94 320 98 C403 98 477 148 495 215 C508 250 508 290 493 322 C485 347 461 389 436 428 C416 457 410 478 380 505 C341 529 280 523 241 527 C231 538 219 534 213 525 C199 534 181 530 171 521 C155 519 148 511 137 507 C113 496 94 472 84 437Z" fill="#321040" stroke="#290838" stroke-width="2.1"/>
+<path d="M121 449 C136 482 158 495 199 507 C181 506 175 513 188 523 C176 524 165 518 161 512 C147 512 135 505 130 495Z" fill="#42114F"/>
+<path d="M174 517 C177 527 187 529 195 522 M195 516 C196 523 201 528 208 526 M215 516 C215 526 222 529 231 524" fill="none" stroke="#541564" stroke-width="1.8"/>
+</g>
+</svg>
