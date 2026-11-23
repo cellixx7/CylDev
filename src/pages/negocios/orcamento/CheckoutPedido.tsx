@@ -6,6 +6,7 @@ import { limparCarrinho } from "../../../shared/lib/carrinho-persistencia";
 import { emailjsConfigurado, enviarContato, pareceSpam, TEMPO_MINIMO_MS } from "../../../shared/lib/emailjs";
 import { validarTelefone } from "../../../shared/lib/telefone";
 import { dadosEmailPedido, linkEmailPedido, linkWhatsappPedido, type Pedido } from "../../../shared/lib/pedido";
+import { AvisoNovaAba } from "../../../shared/components/AvisoNovaAba";
 
 const t = orcamento.carrinho;
 const origem = "negocios-carrinho";
@@ -142,6 +143,7 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
             <p className="m-0 flex flex-wrap gap-3">
               <a className={botao} href={linkWhatsappPedido(pedido, origem) ?? "#"} target="_blank" rel="noopener">
                 WhatsApp
+                <AvisoNovaAba />
               </a>
               <a className={botao} href={linkEmailPedido(pedido, origem) ?? `mailto:${site.email}`}>
                 {site.email}
@@ -160,7 +162,11 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
         <a className="py-3" href="/privacidade/">
           {t.privacidadeLink}
         </a>
-        . {t.aceite.depois}
+        . {t.aceite.depois} {t.aceite.desistenciaAntes}{" "}
+        <a className="py-3" href="/termos/#arrependimento">
+          {t.aceite.desistenciaLink}
+        </a>
+        .
       </p>
     </section>
   );
@@ -195,6 +201,7 @@ export function AcoesDoPedido({ pedido, estado, compacto = false, envioAtivo = e
       {link ? (
         <a className={`${base} ${compacto ? "max-md:hidden" : ""}`} href={link} target="_blank" rel="noopener">
           {t.whatsappBotao}
+          <AvisoNovaAba />
         </a>
       ) : (
         <button type="button" className={`${base} ${compacto ? "max-md:hidden" : ""}`} disabled>

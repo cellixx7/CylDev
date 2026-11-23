@@ -42,6 +42,8 @@ export const privacidade: PaginaDeTexto = {
         "Se você enviar um pedido pelo site: o seu nome, o seu WhatsApp, as respostas do orçamento e as observações que escrever.",
         "Se você usar o formulário de contato: o seu nome, o WhatsApp ou o e-mail que escolher para a resposta, e a mensagem.",
         "Se você me chamar pelo WhatsApp: o que você escrever na conversa, junto com o número e o nome do seu perfil.",
+        "Os campos de mensagem e de observações são livres: não escreva senhas, dados de saúde nem dados de outras pessoas neles. Se escrever, eu só uso para responder o pedido.",
+        "No pedido pelo site, o e-mail leva também a data das versões dos Termos e desta política que estavam publicadas quando você enviou (o registro do aviso de concordância) e um código fixo da página de onde o pedido saiu, sem o seu endereço de IP nem dados do seu aparelho.",
         "O site não pede mais nada do que isso, e nada é enviado até você apertar o botão.",
       ],
     },
@@ -66,6 +68,7 @@ export const privacidade: PaginaDeTexto = {
         "Netlify: hospeda o site e pode registrar dados técnicos de acesso, como o endereço IP, conforme a política dela.",
         "Gmail: é onde os pedidos chegam e ficam guardados.",
         "As fontes do site ficam no próprio site: nenhuma fonte, estatística ou rastreador de terceiros é carregado.",
+        "Links para outros sites (WhatsApp, o repositório do CylBot no GitHub e a ANPD em gov.br) abrem fora deste site; a partir dali valem as regras de cada um.",
       ],
     },
     {
@@ -81,6 +84,7 @@ export const privacidade: PaginaDeTexto = {
       itens: [
         "O carrinho fica no sessionStorage, só enquanto a aba está aberta, para não se perder ao trocar de página. Ele guarda apenas os serviços escolhidos e as respostas do orçamento; nunca o nome, o telefone nem as observações. É apagado depois de um envio com sucesso.",
         "O tema claro ou escuro que você escolher fica no localStorage.",
+        "A conversa com o Assistente Cyl (um assistente automático, não uma pessoa) fica só na memória da aba: não é enviada pela rede nem guardada, e some quando você recarrega a página.",
         "O site não usa cookies de rastreamento nem ferramentas de análise. Por isso não há aviso de cookies.",
       ],
     },

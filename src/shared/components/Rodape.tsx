@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { comum, negocios } from "../../content/textos";
 import { identificacaoPrestador } from "../lib/prestador";
 import { linkContato } from "../lib/whatsapp";
+import { AvisoNovaAba } from "./AvisoNovaAba";
 
 type Props = {
   ponte: { texto: string; link: string; href: string };
@@ -56,6 +57,7 @@ export function ContatoRodape({ origem }: { origem: string }) {
       {negocios.rodapeWhatsapp}{" "}
       <a className="inline-block min-h-alvo leading-[44px]" href={linkContato(origem)} target="_blank" rel="noopener">
         {negocios.rodapeWhatsappLink}
+        <AvisoNovaAba />
       </a>
     </p>
   );

@@ -5,6 +5,7 @@ import { enviarContato, pareceSpam, type DadosContato } from "../lib/emailjs";
 import { validarTelefone } from "../lib/telefone";
 import { linkContato } from "../lib/whatsapp";
 import { botao, botaoCheio } from "../estilos";
+import { AvisoNovaAba } from "./AvisoNovaAba";
 
 const campo =
   "grid gap-1 font-semibold";
@@ -171,6 +172,7 @@ export function Formulario({ origem, resumo, detalhes }: Props) {
           <p className="mt-2 flex flex-wrap gap-3">
             <a className={botao} href={linkContato(origem, resumo)} target="_blank" rel="noopener">
               WhatsApp
+              <AvisoNovaAba />
             </a>
             <a className={botao} href={`mailto:${site.email}`}>
               {site.email}

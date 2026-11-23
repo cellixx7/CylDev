@@ -25,7 +25,7 @@ Etapa 1 (motor de regras + interface) entregue em 19/11/2026; detalhes em `decis
 | [ ] | Etapa 2: modelo de linguagem no navegador (WebLLM, Web Worker, aviso do download, detecção de WebGPU, validador de números). Exige antes: seção na `privacidade.ts` (CDN dos pesos vê o IP), data nova em `versoes.ts`, registro em `juridico.md` e CSP (`connect-src`, `worker-src`, `wasm-unsafe-eval`) | dev | 19/11/2026 |
 | [ ] | Testar o chat em celular de verdade (teclado virtual no iOS e no Android, altura pela `visualViewport`); os testes automáticos só cobrem Chromium de desktop | Marcelo | 19/11/2026 |
 | [ ] | Ler as respostas do chat com olho de dono: o vocabulário (`src/content/assistente.ts`) e os textos (`src/content/textos/assistente.ts` e `assistenteGuias.ts`) são editáveis | Marcelo | 19/11/2026 |
-| [ ] | Publicar no site (ou confirmar) o que o Assistente Cyl diz e ainda não está escrito em nenhuma página: "costuma responder em até 2 horas, sem garantia", "portfólio para recrutadores em desenvolvimento" e os diferenciais (qualidade técnica, entrega no prazo, valores justos com descontos generosos, apoio em outros projetos). Quem mudar o que o site promete deve mudar `textos/assistente.ts` e `assistenteGuias.ts` junto | Marcelo | 19/11/2026 |
+| [ ] | Publicar no site (ou confirmar) o que o Assistente Cyl diz e ainda não está escrito em nenhuma página: "portfólio para recrutadores em desenvolvimento" e os diferenciais (qualidade técnica, entrega no prazo, valores justos com descontos generosos, apoio em outros projetos). Quem mudar o que o site promete deve mudar `textos/assistente.ts` e `assistenteGuias.ts` junto | Marcelo | 19/11/2026 |
 | [ ] | Conferir a ordem do processo: o chat segue o que está publicado (proposta, entrada de metade e começo do trabalho, entrega por etapas, saldo antes dos arquivos finais), e não "pagamento parcial depois de começar" | Marcelo | 19/11/2026 |
 
 ## Configuração e publicação (Marcelo)
@@ -58,6 +58,11 @@ Abertas na Etapa 5 da auditoria (16/11/2026). Os textos não são parecer juríd
 | [ ] | **EmailJS:** acrescentar `{{aceite}}` no template do painel (linha em `docs/emailjs-template.md`); sem isso o registro do aceite é enviado mas não aparece no e-mail | painel do EmailJS | 16/11/2026 |
 | [ ] | **Cumprir o que os textos prometem:** apagar os pedidos com mais de 12 meses, apagar as cópias dos arquivos do cliente depois da entrega, guardar proposta, aceite e comprovantes, e usar `docs/MODELO-PROPOSTA.md` nas propostas | rotina | 16/11/2026 |
 | [ ] | **Declaração de acessibilidade:** testar as páginas com leitor de tela num celular de verdade; se estiver tudo certo, tirar a linha de "O que ainda falta" | `src/content/textos/acessibilidade.ts` | 16/11/2026 |
+| [ ] | **Rotina de fechar venda:** baixar `vagasPiloto10` (e depois `vagasPiloto5`) em `src/content/orcamento.ts` a cada venda fechada com desconto de piloto, no dia em que a entrada for paga. Contador esquecido é número falso no site. Definir também `pilotoValeAte` (AAAA-MM-DD; hoje `null`, sem limite) | `src/content/orcamento.ts` | Marcelo | 23/11/2026 |
+| [ ] | **Imagem OG v2** gerada em 23/11/2026 no padrão do site (cobalto sobre off-white, Space Grotesk); a v1 era verde com serifa. Confirmar se fica assim ou se prefere igual à antiga | `public/og-negocios-v2.png` | Marcelo | 23/11/2026 |
+| [ ] | **Licença das fontes** (Space Grotesk, Space Mono; repositório declara SIL OFL, não confirmado na origem): confirmar na fonte oficial e juntar o texto da licença em `public/fonts/` | `public/fonts/` | dev | 23/11/2026 |
+| [ ] | **Perguntas para o advogado** (menores de idade, Marco Civil, norma do DF, encarregado, art. 33): lista em `auditorias/conformidade-legal.md`, seção 7. Revisar também a privacidade de 23/11/2026 | advogado | Marcelo | 23/11/2026 |
+| [ ] | **Aviso de nova aba** nos links dinâmicos do Assistente, do Sobre e do modal do Sobre; e passar o teste manual de teclado e leitor de tela em celular | `PainelAssistente.tsx`, `Sobre.tsx`, `ModalSobre.tsx` | dev | 23/11/2026 |
 
 ## Validação (Marcelo e dev)
 

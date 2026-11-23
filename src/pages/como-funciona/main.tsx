@@ -13,6 +13,7 @@ import { Carrossel } from "../../shared/components/Carrossel";
 import { DemoAutomacao } from "./DemoAutomacao";
 import { DemoPainel } from "./DemoPainel";
 import { DemoPlanilha } from "./DemoPlanilha";
+import { AvisoNovaAba } from "../../shared/components/AvisoNovaAba";
 
 const rotuloLista = "mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave";
 const celula = "border border-linha px-2 py-1 text-left";
@@ -230,6 +231,7 @@ function Bloco({ e }: { e: Exemplo }) {
               rel="noopener"
             >
               {t.pedir}
+              <AvisoNovaAba />
             </a>
           </p>
         </div>

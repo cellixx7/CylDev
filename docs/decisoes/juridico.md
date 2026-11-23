@@ -46,3 +46,29 @@ Páginas e textos que protegem quem compra e quem vende. Seções em ordem de da
 - **Por quê:** CPF completo no HTML público é dado que bots raspam e golpistas usam. O mascarado atende em parte o Decreto 7.962/2013 (identificação visível) sem expor o número inteiro. Não é cumprimento pleno do decreto; o risco prático para serviço vendido sob proposta é baixo (fiscalização costuma vir de reclamação no Procon).
 - **MEI:** descartado por ora (custo mensal do DAS e dúvida se a atividade de software cabe nas ocupações permitidas). Reavaliar se o faturamento crescer; com CNPJ, trocar `documento` e `comprovante` em `site.ts`.
 - **Texto:** a linha "Quem presta o serviço" dos Termos avisa que o número é parcial e que o completo vai na proposta. Data dos Termos trocada para 19/11/2026 em `versoes.ts`.
+
+## Auditoria de conformidade (23/11/2026)
+
+Relatório completo em [`../auditorias/conformidade-legal.md`](../auditorias/conformidade-legal.md). Nada aqui é parecer jurídico; os textos novos são **propostas a revisar por advogado**.
+
+**Mudanças**
+
+- **Privacidade (versão de 23/11/2026, `versoes.ts`):** acrescentados o aviso dos campos livres (sem senha, dado de saúde ou dado de terceiros), o que o e-mail do pedido leva além dos dados do formulário (versões do aceite e o código fixo da página de origem, sem IP nem dados do aparelho), os links de saída e o Assistente Cyl (assistente automático, conversa só na memória da aba). Âncoras mantidas.
+- **Checkout:** a frase de aceite ganhou o link "desistência em 7 dias" para `/termos/#arrependimento`. As regras dos Termos não mudaram (`termos.ts` intacto).
+- **Campos livres:** aviso de não enviar dado sensível ou de terceiros nas observações do carrinho e na mensagem do contato.
+- **Links que abrem outra aba** avisam o leitor de tela (`AvisoNovaAba`). Ficaram sem o aviso os links montados dinamicamente do Assistente, do Sobre e do modal do Sobre.
+- **`og:image:alt`** nas páginas de Negócios e Comunidade, sem repetir "Preços fechados." (ver pendência).
+
+**Decisões e regras**
+
+- **Sem política de cookies e sem banner:** medido em 9 páginas (celular e desktop): zero cookies e zero requisições de terceiros. Só `sessionStorage` do carrinho (sem dado pessoal) e `localStorage` do tema depois da escolha. Banner só se um dia entrar cookie não essencial ou analytics, com aprovação do Marcelo.
+- **Aceite sem caixinha mantido** (base: art. 7º, V). Pergunta registrada para o advogado.
+- **Embeds de terceiros:** vídeo (por exemplo o do CylBot) só hospedado no próprio site ou atrás de "clique para carregar"; nada que carregue terceiro sem a pessoa pedir. Todo `target="_blank"` leva `rel="noopener"`.
+- **Não feito de propósito:** analytics, dependências, CSP, CPF completo, mudança de regra dos Termos.
+
+## Decisões do Marcelo, rodada 2 (23/11/2026)
+
+- **Piloto:** o contador de vagas continua manual (sem backend, planilha nem serviço externo). Para o aviso não vencer sozinho, `pilotoValeAte` (AAAA-MM-DD, inclusive; `null` = sem limite) faz `descontoPilotoAtual` devolver `null` depois da data. Valor inicial `null`: o Marcelo ainda não definiu a data. A rotina de baixar o contador a cada venda fechada está em `PENDENCIAS.md`. Se um dia valer automatizar, é proposta à parte (custo, mudança na privacidade e na CSP).
+- **Tempo de resposta:** "O Marcelo costuma responder em até 2 horas, sem garantia." (`comum.tempoResposta`), a mesma frase no contato do site e no Assistente Cyl. Nenhum horário de atendimento. Termos e privacidade não mudaram, então `versoes.ts` não mudou.
+- **Imagem OG:** `og-negocios-v2.png` ("Valor final na proposta. Pagamento por Pix."), no lugar da v1 ("Preços fechados."), que contradizia estimativa e proposta. `og:image:alt` em todas as páginas de Negócios confere com o texto novo.
+- **LICENSE:** o repositório fica **sem licença** (todos os direitos reservados), por decisão do Marcelo. Nenhum arquivo `LICENSE` é criado.

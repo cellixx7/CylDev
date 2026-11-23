@@ -1,9 +1,10 @@
 import { site } from "../../content/site";
 import { emailjsConfigurado } from "../lib/emailjs";
-import { negocios } from "../../content/textos";
+import { comum, negocios } from "../../content/textos";
 import { linkContato } from "../lib/whatsapp";
 import { botao } from "../estilos";
 import { Formulario } from "./Formulario";
+import { AvisoNovaAba } from "./AvisoNovaAba";
 
 
 type Props = { origem: string; comFormulario?: boolean };
@@ -20,6 +21,7 @@ export function Contatos({ origem, comFormulario = true }: Props) {
         <h3 className={nomeCanal}>{t.whatsapp}</h3>
         <a className={botao} href={linkContato(origem)} target="_blank" rel="noopener">
           {formatarTelefone(site.whatsapp)}
+          <AvisoNovaAba />
         </a>
       </div>
       <div>
@@ -28,6 +30,7 @@ export function Contatos({ origem, comFormulario = true }: Props) {
           {site.email}
         </a>
       </div>
+      <p className="m-0 text-base text-texto-suave md:col-span-full">{comum.tempoResposta}</p>
       {comFormulario && emailjsConfigurado() && (
         <div className="md:col-span-full md:max-w-xl">
           <h3 className={nomeCanal}>{t.formulario}</h3>

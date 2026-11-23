@@ -17,6 +17,10 @@ export const comum = {
     contato: "Contato",
   },
   privacidadeLink: "Privacidade",
+  /** Promessa de resposta, com ressalva. Uma frase só: o contato do site e o Assistente Cyl dizem exatamente isto. */
+  tempoResposta: "O Marcelo costuma responder em até 2 horas, sem garantia.",
+  /** Lido por leitor de tela depois do nome de um link que abre em outra aba. */
+  novaAba: " (abre em outra aba)",
   dadosFicticios: "dados fictícios",
   temaClaro: "Tema claro",
   temaEscuro: "Tema escuro",
@@ -63,6 +67,6 @@ export const formulario = {
   falhou: "Não consegui enviar agora. Me chame por um destes canais:",
   isca: "Não preencha este campo:",
   /** Aviso abaixo do botão de enviar, com o link para a política. */
-  privacidade: "Uso o seu nome e o seu contato só para responder. A mensagem passa pelo EmailJS.",
+  privacidade: "Uso o seu nome e o seu contato só para responder. A mensagem passa pelo EmailJS. Não escreva senhas, dados de saúde nem dados de outras pessoas nela.",
   privacidadeLink: "Política de privacidade",
 };

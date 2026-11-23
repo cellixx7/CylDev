@@ -31,7 +31,7 @@ export function jsonLdNegocios(url: string): Record<string, unknown> {
     name: site.nome,
     description: `${t.apresentacao.titulo} ${t.apresentacao.subtitulo}`,
     url: `${url}/`,
-    image: `${url}/og-negocios-v1.png`,
+    image: `${url}/og-negocios-v2.png`,
     telephone: `+${site.whatsapp}`,
     email: site.email,
     areaServed: { "@type": "Country", name: "Brasil" },

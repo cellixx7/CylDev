@@ -3,5 +3,5 @@
 // Ao mudar o texto dos Termos ou da privacidade, troque a data aqui.
 export const versoes = {
   termos: "19/11/2026",
-  privacidade: "16/11/2026",
+  privacidade: "23/11/2026",
 };
