@@ -108,7 +108,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
           <a className={classesMarca} href="/">
             {marca}
           </a>
-          <div className="justify-self-center">{centro}</div>
+          <div className="flex items-center justify-self-center">{centro}</div>
           <div className="flex items-center gap-2 justify-self-end">
             <button
               type="button"

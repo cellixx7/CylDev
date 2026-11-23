@@ -1,6 +1,10 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  # Economia de créditos: só a produção (branch main) é construída. Código de saída 0 = a Netlify pula o build.
+  # Deploy preview (PR) e branch deploy (develop, commit_*) ficam de fora; o GitHub Actions já testa tudo.
+  # Ver docs/decisoes/fluxo-de-branches.md.
+  ignore = '[ "$CONTEXT" != "production" ]'
 
 [build.environment]
   NODE_VERSION = "22"

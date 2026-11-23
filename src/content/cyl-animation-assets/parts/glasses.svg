@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="-15 40 580 870" width="580" height="870" stroke-linecap="round" stroke-linejoin="round">
+<title>Óculos retangulares</title>
+<defs>
+<linearGradient id="face-color" x1="0" y1="0" x2=".22" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#AC31D1"/><stop offset=".53" stop-color="#C23DE3"/><stop offset="1" stop-color="#B836D8"/>
+</linearGradient>
+<linearGradient id="skin" x1=".18" y1="1" x2=".92" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#9E2AC1"/><stop offset=".5" stop-color="#B739DD"/><stop offset="1" stop-color="#C03BE1"/>
+</linearGradient>
+<linearGradient id="ringlet" x1=".12" y1="1" x2=".8" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#280839"/><stop offset=".6" stop-color="#361044"/><stop offset="1" stop-color="#491458"/>
+</linearGradient>
+<linearGradient id="iris" x1="0" y1="0" x2=".25" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#26062E"/><stop offset="1" stop-color="#471155"/>
+</linearGradient>
+</defs>
+<g id="glasses" inkscape:groupmode="layer" inkscape:label="Óculos retangulares" data-pivot-x="346" data-pivot-y="372">
+<path d="M208 367 C232 354 282 341 323 338 C334 337 338 342 340 356 C345 374 350 407 345 421 C341 435 316 440 282 445 C257 450 231 455 221 444 C212 434 202 399 201 382 C200 375 201 370 208 367Z" fill="#EC8DFF" stroke="none" stroke-width="2.4" opacity=".15"/>
+<path d="M390 336 C412 328 459 321 483 323 C495 323 498 330 498 341 C501 357 507 381 503 395 C500 407 477 413 451 418 C431 421 409 423 402 413 C396 404 388 377 385 353 C384 343 385 339 390 336Z" fill="#EC8DFF" stroke="none" stroke-width="2.4" opacity=".13"/>
+<path d="M219 370 C232 360 269 352 293 350 L296 354 C274 357 244 365 223 376Z" fill="#D884F4" opacity=".4"/>
+<path d="M113 404 C143 392 174 382 201 376 M345 377 C357 367 373 366 386 369 M495 325 L508 320" fill="none" stroke="#27102E" stroke-width="7.6"/>
+<path d="M208 367 C232 354 282 341 323 338 C334 337 338 342 340 356 C345 374 350 407 345 421 C341 435 316 440 282 445 C257 450 231 455 221 444 C212 434 202 399 201 382 C200 375 201 370 208 367Z" fill="none" stroke="#211024" stroke-width="4.7"/>
+<path d="M390 336 C412 328 459 321 483 323 C495 323 498 330 498 341 C501 357 507 381 503 395 C500 407 477 413 451 418 C431 421 409 423 402 413 C396 404 388 377 385 353 C384 343 385 339 390 336Z" fill="none" stroke="#211024" stroke-width="4.1"/>
+<path d="M211 367 C244 353 282 345 312 341 M396 336 C426 327 460 324 477 324" fill="none" stroke="#63316D" stroke-width="1.35"/>
+</g>
+</svg>

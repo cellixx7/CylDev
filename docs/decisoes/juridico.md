@@ -72,3 +72,8 @@ Relatório completo em [`../auditorias/conformidade-legal.md`](../auditorias/con
 - **Tempo de resposta:** "O Marcelo costuma responder em até 2 horas, sem garantia." (`comum.tempoResposta`), a mesma frase no contato do site e no Assistente Cyl. Nenhum horário de atendimento. Termos e privacidade não mudaram, então `versoes.ts` não mudou.
 - **Imagem OG:** `og-negocios-v2.png` ("Valor final na proposta. Pagamento por Pix."), no lugar da v1 ("Preços fechados."), que contradizia estimativa e proposta. `og:image:alt` em todas as páginas de Negócios confere com o texto novo.
 - **LICENSE:** o repositório fica **sem licença** (todos os direitos reservados), por decisão do Marcelo. Nenhum arquivo `LICENSE` é criado.
+
+## Assistente Cyl guarda a conversa no navegador (23/11/2026)
+
+- A seção "O que fica no seu navegador" da `privacidade.ts` deixou de dizer que a conversa com o Assistente Cyl "não é guardada": ela agora fica no `localStorage` (só neste aparelho, sem rede), volta ao recarregar, alimenta a lista de conversas anteriores e some quando a pessoa limpa os dados do site. O aviso do chat e a resposta "você é uma IA?" foram alinhados. A data de `versoes.ts` (`privacidade`) já era 23/11/2026, então não mudou. Conteúdo digitado no chat pode ser dado pessoal da própria pessoa; fica só no aparelho dela, e o Marcelo não o recebe. Para o advogado: confirmar se a redação basta ou se vale um botão "apagar conversas" (hoje não há, por pedido do Marcelo).
+- O `localStorage` deixou de ser só "tema": a afirmação de que o armazenamento local é só o tema e o carrinho, nas auditorias antigas (`auditorias/`), vale para a data delas.

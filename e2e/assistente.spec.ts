@@ -1,5 +1,6 @@
 import type { Page } from "@playwright/test";
 import { assistente as t } from "../src/content/textos/assistente";
+import { saber, topicoPorId } from "../src/content/textos/assistenteSaber";
 import { catalogo } from "../src/shared/lib/assistente/conhecimento";
 import { expect, test } from "./apoio";
 
@@ -46,11 +47,19 @@ test.describe("assistente do chat (funções)", () => {
     await botaoAbrir(page).click();
     await expect(painel(page)).toBeVisible();
     expect(pedidos.some((u) => u.includes("PainelAssistente"))).toBe(true);
-    await expect(painel(page).getByText(t.aviso)).toBeVisible();
+    // O aviso fica numa faixa fixa no topo: o começo à vista, o texto inteiro em "Saiba mais" (e sempre para o leitor de tela).
+    const faixa = painel(page).getByTestId("aviso-assistente");
+    await expect(faixa).toContainText(t.avisoCurto);
+    await expect(faixa).toHaveText(t.aviso);
+    // Recolhido, o resto do aviso segue no DOM (sr-only): o leitor de tela lê tudo, só a tela mostra o começo.
+    await expect(painel(page).getByText(t.avisoResto)).toHaveClass(/sr-only/);
+    await painel(page).getByRole("button", { name: t.avisoMais }).click();
+    await expect(painel(page).getByText(t.avisoResto)).toBeVisible();
+    await expect(painel(page).getByRole("button", { name: t.avisoMenos })).toHaveAttribute("aria-expanded", "true");
     await expect(registro(page).getByText(t.boasVindas)).toBeVisible();
   });
 
-  test("(b) nada sai do aparelho: a conversa não faz nenhum pedido de rede nem grava no navegador", async ({ page }) => {
+  test("(b) nada sai do aparelho: a conversa não faz nenhum pedido de rede nem cookie (só localStorage)", async ({ page }) => {
     await abrir(page);
     const depois: string[] = [];
     page.on("request", (r) => depois.push(r.url()));
@@ -58,7 +67,7 @@ test.describe("assistente do chat (funções)", () => {
     await expect(registro(page)).toContainText("Painel básico");
     expect(depois).toEqual([]);
     const guardado = await page.evaluate(() => ({ local: Object.keys(localStorage), cookies: document.cookie }));
-    expect(guardado.local.filter((k) => k.toLowerCase().includes("assistente") || k.toLowerCase().includes("chat"))).toEqual([]);
+    expect(guardado.local).toContain("assistente-cyl");
     expect(guardado.cookies).toBe("");
   });
 
@@ -113,6 +122,37 @@ test.describe("assistente do chat (funções)", () => {
     await expect(carrinho.getByText("Planilha organizada").first()).toBeVisible();
   });
 
+  test("(q) responde dúvida de Excel, aprofunda no botão, e entende 'e o painel?' e 'sim' pela memória da conversa", async ({ page }) => {
+    await abrir(page);
+    const procv = topicoPorId("procv")!;
+    await perguntarEEsperar(page, "como uso o procv?");
+    await expect(registro(page)).toContainText(procv.direta[0]);
+    // O botão do próprio tópico aprofunda sem digitar nada.
+    await painel(page).getByRole("button", { name: saber.rotuloMais }).click();
+    await pronta(page);
+    await expect(registro(page)).toContainText(procv.aprofundar![0]);
+    // Memória curta: "e o painel?" repete a pergunta de preço, e "sim" executa a oferta.
+    const painelBasico = catalogo().find((s) => s.id === "painel")!;
+    await perguntarEEsperar(page, "quanto custa a planilha?");
+    await perguntarEEsperar(page, "e o painel?");
+    await expect(registro(page).getByText(`${painelBasico.nome}: ${painelBasico.precoTexto}.`).last()).toBeVisible();
+    await perguntarEEsperar(page, "pode ser");
+    await expect(registro(page)).toContainText("Vamos montar a estimativa de Painel básico");
+  });
+
+  test("(r) diz com franqueza que é um assistente de regras, não pede código ao chat e encaminha dúvida técnica sem tópico", async ({ page }) => {
+    await abrir(page);
+    await perguntarEEsperar(page, "você é uma IA de verdade?");
+    await expect(registro(page)).toContainText("assistente de regras");
+    await expect(registro(page)).toContainText("fica guardada só neste aparelho");
+    await perguntarEEsperar(page, "escreva um código em python que leia um csv");
+    await expect(registro(page)).toContainText("Não escrevo código");
+    await perguntarEEsperar(page, "o que é docker?");
+    await expect(registro(page)).toContainText("prefiro não responder no chute");
+    await expect(registro(page)).toContainText("em até 2 horas");
+    await expect(registro(page)).not.toContainText("Não encontrei");
+  });
+
   test("(f) fecha com Esc, devolve o foco ao botão e funciona no celular sem rolagem lateral", async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 700 });
     await abrir(page);
@@ -128,7 +168,8 @@ test.describe("assistente do chat (funções)", () => {
     await page.goto("/");
     await page.evaluate(() => document.documentElement.setAttribute("data-theme", "escuro"));
     await botaoAbrir(page).click();
-    const fundo = await painel(page).evaluate((el) => getComputedStyle(el).backgroundColor);
+    // O fundo e a borda ficam no contêiner interno (o diálogo em si é transparente, para o botão do Cyl poder ficar do lado de fora).
+    const fundo = await painel(page).locator(":scope > div.bg-fundo").evaluate((el) => getComputedStyle(el).backgroundColor);
     expect(fundo).toBe("rgb(9, 12, 24)");
   });
 
@@ -191,6 +232,53 @@ test.describe("assistente do chat (funções)", () => {
   });
 });
 
+test.describe("assistente do chat (memória no navegador)", () => {
+  test.use({ reducedMotion: "reduce" });
+
+  test("(t) a conversa volta depois de fechar o painel e de recarregar a página, com o contexto", async ({ page }) => {
+    await abrir(page);
+    await perguntarEEsperar(page, "quanto custa a planilha?");
+    await page.keyboard.press("Escape");
+    await expect(painel(page)).toBeHidden();
+    await botaoAbrir(page).click();
+    await expect(registro(page)).toContainText("quanto custa a planilha?");
+    await page.reload();
+    await botaoAbrir(page).click();
+    await expect(registro(page)).toContainText("quanto custa a planilha?");
+    // O contexto também voltou: "e o painel?" repete a pergunta de preço.
+    const painelBasico = catalogo().find((s) => s.id === "painel")!;
+    await perguntarEEsperar(page, "e o painel?");
+    await expect(registro(page).getByText(`${painelBasico.nome}: ${painelBasico.precoTexto}.`).last()).toBeVisible();
+  });
+
+  test("(u) conversas anteriores: nova conversa guarda a atual, e a lista sobrevive ao recarregar", async ({ page }) => {
+    await abrir(page);
+    await expect(painel(page).getByRole("button", { name: t.anteriores.botao })).toBeVisible();
+    await perguntarEEsperar(page, "como é o pagamento?");
+    await painel(page).getByRole("button", { name: t.novaConversa }).click();
+    await expect(registro(page).getByRole("listitem")).toHaveCount(1);
+    await page.reload();
+    await botaoAbrir(page).click();
+    await painel(page).getByRole("button", { name: t.anteriores.botao }).click();
+    await painel(page).getByRole("button", { name: /como é o pagamento\?/ }).click();
+    await expect(painel(page)).toContainText("metade na entrada e metade antes da entrega final");
+    await painel(page).getByRole("button", { name: t.anteriores.voltarLista }).click();
+    await painel(page).getByRole("button", { name: t.anteriores.voltarConversa }).click();
+    await expect(registro(page)).toBeVisible();
+  });
+
+  test("(v) TEMPORÁRIO: o botão de copiar põe a conversa na área de transferência", async ({ page, context }) => {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await abrir(page);
+    await perguntarEEsperar(page, "quanto custa o painel?");
+    await painel(page).getByRole("button", { name: t.copiarTemp.botao }).click();
+    await expect(painel(page).getByRole("button", { name: t.copiarTemp.ok })).toBeVisible();
+    const copiado = await page.evaluate(() => navigator.clipboard.readText());
+    expect(copiado).toContain("Você: quanto custa o painel?");
+    expect(copiado).toContain("Assistente Cyl: ");
+  });
+});
+
 test.describe("assistente do chat (interface e ritmo)", () => {
   test("(l) botão redondo no canto, com tooltip 'Assistente Cyl' no mouse e no foco do teclado, e rótulo acessível", async ({ page }) => {
     await page.goto("/");
@@ -212,6 +300,24 @@ test.describe("assistente do chat (interface e ritmo)", () => {
     await expect(dica).toHaveCSS("opacity", "1");
   });
 
+  test("(s) convite: aparece no carregamento, some em 5 s, volta a cada 30 s e o x encerra", async ({ page }) => {
+    await page.clock.install();
+    await page.goto("/");
+    const convite = page.getByTestId("convite-assistente");
+    await expect(convite).toContainText(t.convite);
+    const cx = (await convite.boundingBox())!;
+    const bx = (await botaoAbrir(page).boundingBox())!;
+    expect(cx.y + cx.height).toBeLessThanOrEqual(bx.y); // a caixa fica acima do botão, com a setinha entre os dois
+    await page.clock.runFor(5100);
+    await expect(convite).toHaveCount(0);
+    await page.clock.runFor(25_000);
+    await expect(convite).toBeVisible();
+    await convite.getByRole("button", { name: t.conviteFechar }).click();
+    await expect(convite).toHaveCount(0);
+    await page.clock.runFor(65_000);
+    await expect(convite).toHaveCount(0);
+  });
+
   test("(m) balões: usuário à direita, Assistente Cyl à esquerda com avatar, hora discreta", async ({ page }) => {
     await abrir(page);
     await perguntar(page, "oi, quanto custa?");
@@ -222,7 +328,7 @@ test.describe("assistente do chat (interface e ritmo)", () => {
     const caixaBot = (await bot.locator("div > div").first().boundingBox())!;
     const caixaEu = (await eu.locator("div > div").first().boundingBox())!;
     expect(caixaEu.x).toBeGreaterThan(caixaBot.x);
-    await expect(bot.getByText(t.avatar, { exact: true })).toBeVisible();
+    await expect(bot.locator("svg[viewBox]").first()).toBeVisible(); // rosto do Cyl (antes era a letra "C")
     await expect(eu.locator("time")).toHaveText(/^\d{2}:\d{2}$/);
     const raio = await eu.locator("div > div").first().evaluate((el) => parseFloat(getComputedStyle(el).borderTopLeftRadius));
     expect(raio).toBeGreaterThanOrEqual(12);
@@ -283,5 +389,116 @@ test.describe("assistente do chat (interface e ritmo)", () => {
     await expect(ponto).toBeVisible();
     expect(await ponto.evaluate((el) => getComputedStyle(el).animationName)).toBe("ponto-pula");
     await pular(page).click();
+  });
+});
+
+test.describe("assistente: tamanho, botão do Cyl e faixa de aviso (tela larga)", () => {
+  test.use({ reducedMotion: "reduce", viewport: { width: 1280, height: 800 } });
+
+  const alca = (page: Page) => painel(page).getByRole("separator", { name: t.redimensionar });
+  const tamanho = async (page: Page) => {
+    const b = (await painel(page).boundingBox())!;
+    return { l: Math.round(b.width), a: Math.round(b.height), direita: Math.round(b.x + b.width), base: Math.round(b.y + b.height) };
+  };
+
+  test("(r1) a alça cresce e diminui o painel com o mouse, sem sair da tela", async ({ page }) => {
+    await abrir(page);
+    const antes = await tamanho(page);
+    const c = (await alca(page).boundingBox())!;
+    await page.mouse.move(c.x + 8, c.y + 8);
+    await page.mouse.down();
+    await page.mouse.move(c.x - 100, c.y - 30, { steps: 5 });
+    await page.mouse.up();
+    const maior = await tamanho(page);
+    expect(maior.l).toBe(antes.l + 108);
+    expect(maior.a).toBe(antes.a + 38);
+    expect([maior.direita, maior.base]).toEqual([antes.direita, antes.base]);
+    // Arrastar para muito longe: para no máximo (janela menos margens) e no mínimo (320 × 420).
+    const c2 = (await alca(page).boundingBox())!;
+    await page.mouse.move(c2.x + 8, c2.y + 8);
+    await page.mouse.down();
+    await page.mouse.move(-500, -500, { steps: 4 });
+    await page.mouse.up();
+    const max = await tamanho(page);
+    expect(max.l).toBeLessThanOrEqual(1280 - 20 - 24 - 64);
+    expect(max.a).toBeLessThanOrEqual(800 - 20 - 24);
+    const c3 = (await alca(page).boundingBox())!;
+    await page.mouse.move(c3.x + 8, c3.y + 8);
+    await page.mouse.down();
+    await page.mouse.move(2000, 2000, { steps: 4 });
+    await page.mouse.up();
+    const min = await tamanho(page);
+    expect([min.l, min.a]).toEqual([320, 420]);
+    // No tamanho mínimo, o campo de mensagem e o botão Enviar continuam à vista e dentro do painel.
+    await expect(painel(page).getByLabel(t.campoRotulo)).toBeInViewport();
+    await expect(painel(page).getByRole("button", { name: t.enviar, exact: true })).toBeInViewport();
+  });
+
+  test("(r2) pelo teclado: setas mudam o tamanho e Enter volta ao padrão", async ({ page }) => {
+    await abrir(page);
+    const padrao = await tamanho(page);
+    await alca(page).focus();
+    await page.keyboard.press("ArrowLeft");
+    await page.keyboard.press("ArrowUp");
+    const maior = await tamanho(page);
+    expect([maior.l, maior.a]).toEqual([padrao.l + 24, padrao.a + 24]);
+    await expect(alca(page)).toHaveAttribute("aria-valuenow", String(padrao.l + 24));
+    await page.keyboard.press("ArrowRight");
+    expect((await tamanho(page)).l).toBe(padrao.l);
+    await page.keyboard.press("Enter");
+    expect(await tamanho(page)).toEqual(padrao);
+  });
+
+  test("(r3) depois de diminuir a janela, o painel continua dentro da tela", async ({ page }) => {
+    await abrir(page);
+    await alca(page).focus();
+    for (let i = 0; i < 8; i++) await page.keyboard.press("ArrowUp");
+    await page.setViewportSize({ width: 900, height: 560 });
+    const t2 = await tamanho(page);
+    expect(t2.a).toBeLessThanOrEqual(560 - 20 - 24);
+    expect(t2.direita).toBeLessThanOrEqual(900);
+    expect(t2.base).toBeLessThanOrEqual(560);
+  });
+
+  test("(r4) o tamanho não é guardado no navegador", async ({ page }) => {
+    await abrir(page);
+    await alca(page).focus();
+    await page.keyboard.press("ArrowLeft");
+    const guardado = await page.evaluate(() => JSON.stringify({ ...localStorage }) + JSON.stringify({ ...sessionStorage }));
+    expect(guardado).not.toMatch(/larg|altura|tamanho|redimension/i);
+  });
+
+  test("(r5) botão do Cyl ao lado do painel: link para a comunidade, com nome e sem dica visível", async ({ page }) => {
+    await abrir(page);
+    const botao = painel(page).getByRole("link", { name: t.conhecerCyldev });
+    await expect(botao).toHaveAttribute("href", "/comunidade/");
+    await expect(botao).not.toHaveAttribute("title", /.+/);
+    const b = (await botao.boundingBox())!;
+    const p = (await painel(page).boundingBox())!;
+    expect(b.x + b.width).toBeLessThanOrEqual(p.x);
+    expect(b.width).toBeGreaterThanOrEqual(44);
+    await botao.hover();
+    await expect(page.getByRole("tooltip")).toHaveCount(0);
+  });
+
+  test("(r6) o avatar do Cyl é decorativo (aria-hidden) e o botão tem o desenho dentro", async ({ page }) => {
+    await abrir(page);
+    await expect(painel(page).locator('[aria-hidden="true"] svg[viewBox="90 170 400 400"]').first()).toBeVisible();
+  });
+});
+
+test.describe("assistente: faixa de aviso no celular", () => {
+  test.use({ reducedMotion: "reduce", viewport: { width: 320, height: 640 } });
+
+  test("(r7) em 320 px o aviso cabe, sem alça e sem botão lateral, e o campo de envio fica à vista", async ({ page }) => {
+    await abrir(page);
+    await expect(painel(page).getByRole("separator", { name: t.redimensionar })).toBeHidden();
+    await expect(painel(page).getByRole("link", { name: t.conhecerCyldev })).toBeHidden();
+    await expect(painel(page).getByTestId("aviso-assistente")).toContainText(t.avisoCurto);
+    await painel(page).getByRole("button", { name: t.avisoMais }).click();
+    await expect(painel(page).getByText(t.avisoResto)).toBeVisible();
+    const largura = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(largura).toBeLessThanOrEqual(320);
+    await expect(painel(page).getByLabel(t.campoRotulo)).toBeInViewport();
   });
 });

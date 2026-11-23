@@ -10,6 +10,8 @@ export function semAcento(texto: string): string {
 /** Palavras do texto, sem acento e sem pontuação. Mantém letras, números e o "%". */
 export function palavras(texto: string): string[] {
   return semAcento(texto)
+    // Letra esticada ("oiii", "preeeço", "valeuuu"): três ou mais iguais viram uma. Dígitos ficam (1000).
+    .replace(/([a-z])\1{2,}/g, "$1")
     .replace(/[^a-z0-9%]+/g, " ")
     .split(" ")
     .filter(Boolean)

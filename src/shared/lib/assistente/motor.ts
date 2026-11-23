@@ -1,5 +1,7 @@
 import type { Intencao } from "../../../content/assistente";
+import { palavrasDeNao, palavrasDeSim, type Intencao as IntencaoId } from "../../../content/assistente";
 import { assistente as t, tr, type Tratamento } from "../../../content/textos/assistente";
+import { categorias, saber, topicoPorId, topicos, variacoes, type Topico } from "../../../content/textos/assistenteSaber";
 import { guias } from "../../../content/textos/assistenteGuias";
 import { negocios } from "../../../content/textos/negocios";
 import { site } from "../../../content/site";
@@ -8,8 +10,8 @@ import { passoDoGuia } from "../guia";
 import { calcularCarrinho, linkWhatsappCarrinho, type Respostas } from "../orcamento";
 import { buscarFaq, catalogo, contatos, faqPorTitulo, mensalidadeBase, regrasGerais, servicoDoCatalogo, type Faq, type InfoServico } from "./conhecimento";
 import { limitar, tentaBurlarRegras } from "./guardrails";
-import { conceitosDe, intencaoDe, servicosCitados, tratamentoDe } from "./intencao";
-import { chave, palavras, radicaisUteis } from "./normalizar";
+import { casamentosDe, conceitosPontuados, intencaoDe, PREFIXO_TOPICO, semTrecho, servicosCitados, tratamentoDe } from "./intencao";
+import { chave, palavras, radical, radicaisUteis } from "./normalizar";
 import {
   aplicarOpcao,
   concluirMultipla,
@@ -20,6 +22,7 @@ import {
   type EstadoOrcamento,
   type Passo,
 } from "./orcamentoConversa";
+import { combinar, variar, volta } from "./variar";
 
 // Motor do Assistente Cyl: decide o que responder SEM modelo de linguagem. Tudo que tem número (preço, prazo, desconto) sai
 // de conhecimento.ts, que lê servicos.ts e orcamento.ts. Um modelo, se houver, só reescreve o texto daqui (ver validarSaida).
@@ -48,7 +51,10 @@ export type Cmd =
   | { t: "voltar" }
   | { t: "cancelar" }
   | { t: "oque"; p: string }
-  | { t: "guia"; o: string };
+  | { t: "guia"; o: string }
+  | { t: "topico"; id: string; modo?: "mais" | "exemplo" }
+  | { t: "categoria"; id: string }
+  | { t: "menu" };
 
 export type Entrada = { texto: string } | { cmd: Cmd };
 
@@ -59,7 +65,17 @@ export type Acao =
   | { tipo: "carrinho"; rotulo: string; servicoId: string; respostas: Respostas }
   | { tipo: "servico"; rotulo: string; servicoId: string; aba: "detalhes" | "orcamento" };
 
-export type Resposta = { blocos: Bloco[]; chips: Chip[]; acoes: Acao[]; multipla?: boolean; estado?: Estado };
+export type Resposta = {
+  blocos: Bloco[];
+  chips: Chip[];
+  acoes: Acao[];
+  multipla?: boolean;
+  estado?: Estado;
+  /** Não receber a abertura e a ponte de variação (respostas que já têm o próprio tom, como recusas e confirmações). */
+  fixa?: boolean;
+  /** O que o assistente acabou de oferecer: um "sim" do visitante faz exatamente isto (ver `respostaCurta`). */
+  proposta?: Entrada;
+};
 
 export type Conversa = {
   orc: EstadoOrcamento | null;
@@ -68,9 +84,27 @@ export type Conversa = {
   ultimoServico: string | null;
   /** "o senhor" ou "a senhora", só quando a pessoa deixou claro; senão null (formas neutras). */
   tratamento: Tratamento;
+  // Memória curta: o que dá para retomar em "sim", "explica melhor", "me dá um exemplo" e "e o painel?". Some com a conversa.
+  /** Quantas respostas já foram dadas (alterna a versão dos textos, ver `variar`). */
+  turno: number;
+  /** Tópico do saber geral que acabou de ser explicado. */
+  ultimoTopico: string | null;
+  /** Ao que a última pergunta do assistente se referia: um "sim" executa isto. */
+  proposta: Entrada | null;
+  /** Última intenção de serviço (preço, prazo...), para "e o painel?" repetir a pergunta com outro serviço. */
+  ultimaIntencao: IntencaoId | null;
 };
 
-export const conversaNova = (): Conversa => ({ orc: null, guia: null, ultimoServico: null, tratamento: null });
+export const conversaNova = (): Conversa => ({
+  orc: null,
+  guia: null,
+  ultimoServico: null,
+  tratamento: null,
+  turno: 0,
+  ultimoTopico: null,
+  proposta: null,
+  ultimaIntencao: null,
+});
 
 export type Resultado = { conversa: Conversa; resposta: Resposta };
 
@@ -89,6 +123,10 @@ const pergunta = (texto: string): Bloco => ({ tipo: "pergunta", texto });
 const resp = (blocos: Bloco[], chips: Chip[] = [], acoes: Acao[] = [], estado?: Estado): Resposta => ({ blocos, chips, acoes, estado });
 const dito = (texto: string): Chip => ({ rotulo: texto, entrada: { texto } });
 const sobre = (rotulo: string, id: string, para: ParaServico): Chip => ({ rotulo, entrada: { cmd: { t: "sobre", id, para } } });
+
+/** Marca o que um "sim" faz depois desta resposta. */
+const fixa = (r: Resposta): Resposta => ({ ...r, fixa: true });
+const ofertar = (r: Resposta, proposta: Entrada | undefined): Resposta => ({ ...r, proposta });
 
 const link = (rotulo: string, href: string): Acao => ({ tipo: "link", rotulo, href });
 const linkWhats = (): Acao => ({ tipo: "link", rotulo: t.acoes.whatsapp, href: contatos().whatsappLink, externo: true });
@@ -115,14 +153,14 @@ const chipsServicos = (para: ParaServico, ids: string[] = catalogo().map((s) => 
 // Respostas por assunto ------------------------------------------------------------------------------------------------------
 
 export function boasVindas(): Resposta {
-  return resp([p(t.boasVindas), pergunta(t.boasVindasPergunta)], chipsInicio(), [], "digitando");
+  return fixa(resp([p(t.boasVindas), pergunta(t.boasVindasPergunta)], chipsInicio(), [], "digitando"));
 }
 
 /** Responde ao cumprimento com o mesmo cumprimento ("Bom dia!"), sem repetir a apresentação nem avisos de limite. */
-function saudar(texto: string): Resposta {
+function saudar(texto: string, turno: number): Resposta {
   const c = chave(texto);
   const cumprimento = c.includes("bom dia") ? "Bom dia" : c.includes("boa tarde") ? "Boa tarde" : c.includes("boa noite") ? "Boa noite" : "Oi";
-  return resp([p(t.saudacaoResposta(cumprimento)), pergunta(t.saudacaoPergunta)], chipsInicio(), [], "digitando");
+  return fixa(resp([p(`${cumprimento}! ${variar(saber.saudacoes, turno)}`), pergunta(t.saudacaoPergunta)], chipsInicio(), [], "digitando"));
 }
 
 function listaServicos(): Resposta {
@@ -225,7 +263,7 @@ function quem(): Resposta {
 
 const maior = (): Resposta => resp([p(t.maior), p(t.tempoResposta)], [], saidaSemCerteza(), "pensando");
 const semBase = (): Resposta => resp([p(t.semBase), p(t.tempoResposta)], [dito(t.chips.servicos)], saidaSemCerteza(), "pensando");
-const ajuda = (): Resposta => resp([p(t.ajuda), lista([...t.ajudaLista]), p(t.ajudaFim)], chipsInicio(), [], "digitando");
+const ajuda = (): Resposta => resp([p(t.ajuda), lista([...t.ajudaLista]), p(t.ajudaFim), pergunta(t.boasVindasPergunta)], chipsInicio(), [], "digitando");
 
 // Guias (a mesma forma: direta, explicação, dica, pergunta) ---------------------------------------------------------------------
 
@@ -393,13 +431,122 @@ function acolher(texto: string, g: Tratamento): Resposta {
   return resp(blocos, chips, acoes, "pensando");
 }
 
+
+// Saber geral (Excel, planilhas, automação, sites, jeito de trabalhar) -------------------------------------------------------------
+// Conteúdo curado em textos/assistenteSaber.ts. Todo tópico segue a mesma forma dos guias: resposta direta, explicação, dica,
+// ponte para o serviço (com o preço de partida vindo de servicos.ts) e uma pergunta para seguir.
+
+const chipTopico = (id: string, modo?: "mais" | "exemplo"): Chip | null => {
+  const tp = topicoPorId(id);
+  if (!tp) return null;
+  return { rotulo: modo === "exemplo" ? saber.rotuloExemplo : modo === "mais" ? saber.rotuloMais : tp.rotulo, entrada: { cmd: { t: "topico", id, modo } } };
+};
+const semNulos = <T,>(lista: (T | null)[]): T[] => lista.filter((x): x is T => x !== null);
+const chipMenu = (): Chip => ({ rotulo: saber.rotuloMenu, entrada: { cmd: { t: "menu" } } });
+
+/** Chips de seguimento de um tópico: serviço, exemplo, aprofundar, assuntos parecidos e o menu. No máximo 6. */
+function chipsDoTopico(top: Topico, outros: string[] = []): Chip[] {
+  const chips: Chip[] = [];
+  const s = top.servico ? servicoDoCatalogo(top.servico) : undefined;
+  if (s) chips.push(sobre(saber.rotuloVerServico(s.nome), s.id, "detalhes"), sobre(t.chips.orcarServico(s.nome), s.id, "orcar"));
+  for (const id of top.servicosChips ?? []) {
+    const x = servicoDoCatalogo(id);
+    if (x) chips.push(sobre(t.chips.orcarServico(x.nome), x.id, "orcar"));
+  }
+  if (top.exemplo) chips.push(...semNulos([chipTopico(top.id, "exemplo")]));
+  if (top.aprofundar) chips.push(...semNulos([chipTopico(top.id, "mais")]));
+  chips.push(...semNulos([...outros, ...(top.relacionados ?? [])].filter((id) => id !== top.id).slice(0, 2).map((id) => chipTopico(id))));
+  chips.push(chipMenu());
+  return chips.slice(0, 6);
+}
+
+/** O que um "sim" faz depois de um tópico: ver o serviço relacionado, ou seguir para o primeiro assunto parecido. */
+function propostaDoTopico(top: Topico): Entrada | undefined {
+  if (top.servico) return { cmd: { t: "sobre", id: top.servico, para: "detalhes" } };
+  const rel = top.relacionados?.[0];
+  return rel ? { cmd: { t: "topico", id: rel } } : undefined;
+}
+
+function respostaDeTopico(top: Topico, turno: number, outros: string[] = []): Resposta {
+  const blocos: Bloco[] = [p(variar(top.direta, volta(turno, 32)))];
+  const acoes: Acao[] = [];
+  if (top.tempoResposta) blocos.push(p(t.tempoResposta));
+  for (const x of top.explica) blocos.push(p(x));
+  if (top.passos) blocos.push(lista([...top.passos]));
+  for (const titulo_ of top.faqTitulo ?? []) {
+    const f = faqPorTitulo(titulo_);
+    if (!f) continue;
+    blocos.push(titulo(f.pergunta), ...f.paragrafos.map(p));
+    for (const l of f.links) if (!acoes.some((a) => a.tipo === "link" && a.href === l.href)) acoes.push({ tipo: "link", rotulo: l.rotulo, href: l.href });
+  }
+  if (top.dica) blocos.push(dica(top.dica));
+  const s = top.servico ? servicoDoCatalogo(top.servico) : undefined;
+  if (s) blocos.push(p(saber.ponte(s.nome, s.precoTexto)));
+  blocos.push(pergunta(variar(s ? saber.perguntaComServico : saber.perguntas, volta(turno, 32), top.id.length)));
+  return { ...resp(blocos, chipsDoTopico(top, outros), acoes.slice(0, 3), "pesquisando"), proposta: propostaDoTopico(top) };
+}
+
+/** "Explica melhor", "mais detalhes": aprofunda o último tópico; sem aprofundamento, usa o exemplo ou os passos. */
+function respostaTopicoMais(top: Topico, turno: number): Resposta {
+  const blocos: Bloco[] = [];
+  if (top.aprofundar) blocos.push(...top.aprofundar.map(p));
+  else if (top.exemplo) blocos.push(p(top.exemplo));
+  else if (top.passos) blocos.push(p(saber.maisEmPassos), lista([...top.passos]));
+  else blocos.push(p(saber.semMais));
+  blocos.push(pergunta(variar(saber.perguntas, turno, 1)));
+  return { ...resp(blocos, chipsDoTopico(top), [], "pensando"), proposta: propostaDoTopico(top) };
+}
+
+function respostaTopicoExemplo(top: Topico, turno: number): Resposta {
+  const exServico = top.servico ? guias.servicos[top.servico]?.exemplo : undefined;
+  const blocos: Bloco[] = [];
+  if (top.exemplo) blocos.push(p(top.exemplo));
+  else if (exServico) blocos.push(p(`${guias.explicarServico.exemploRotulo} ${exServico}`));
+  else blocos.push(p(saber.semExemplo));
+  blocos.push(pergunta(variar(saber.perguntas, turno, 2)));
+  return { ...resp(blocos, chipsDoTopico(top), [], "pensando"), proposta: propostaDoTopico(top) };
+}
+
+function respostaMenu(): Resposta {
+  return resp(
+    [p(saber.menuIntro), lista(categorias.map((c) => `${c.rotulo}: ${c.intro}`)), pergunta(saber.menuPergunta)],
+    categorias.map((c) => ({ rotulo: c.rotulo, entrada: { cmd: { t: "categoria", id: c.id } } as Entrada })),
+    [],
+    "pensando",
+  );
+}
+
+function respostaCategoria(id: string): Resposta {
+  const cat = categorias.find((c) => c.id === id);
+  if (!cat) return respostaMenu();
+  const chips = semNulos(topicos.filter((x) => x.categoria === id).map((x) => chipTopico(x.id)));
+  return resp([p(saber.categoriaIntro(cat.rotulo)), pergunta(saber.categoriaPergunta)], [...chips, chipMenu()], [], "pesquisando");
+}
+
+/** Dúvida técnica (Excel, programação) que nenhum tópico cobre: franca sobre o limite e com caminhos para seguir. */
+const semTopico = (): Resposta =>
+  fixa(resp(
+    [p(saber.semTopico), p(t.tempoResposta), pergunta(saber.semTopicoPergunta)],
+    [...categorias.slice(0, 4).map((c) => ({ rotulo: c.rotulo, entrada: { cmd: { t: "categoria", id: c.id } } as Entrada })), chipMenu()],
+    saidaSemCerteza(),
+    "pensando",
+  ));
+
+const respostaPedeCodigo = (): Resposta =>
+  fixa(resp(
+    [p(saber.pedeCodigo), pergunta(saber.pedeCodigoPergunta)],
+    [chipMenu(), dito(t.chips.servicos), dito(t.chips.indicar)],
+    [],
+    "pensando",
+  ));
+
 // Guia -------------------------------------------------------------------------------------------------------------------------
 
 function respostaDoGuia(escolhas: string[]): { resposta: Resposta; fim: boolean } {
   const passo = passoDoGuia(escolhas);
   if (passo.pergunta) {
     const pergunta = passo.pergunta;
-    const blocos = escolhas.length === 0 ? [p(t.guiaIntro), p(pergunta.texto)] : [p(pergunta.texto)];
+    const blocos: Bloco[] = escolhas.length === 0 ? [p(t.guiaIntro), { tipo: "pergunta", texto: pergunta.texto }] : [{ tipo: "pergunta", texto: pergunta.texto }];
     const chips: Chip[] = pergunta.opcoes.map((o) => ({ rotulo: o.rotulo, entrada: { cmd: { t: "guia", o: o.id } } }));
     return { fim: false, resposta: resp(blocos, chips, [], "pensando") };
   }
@@ -481,7 +628,7 @@ function comecarOrcamento(id: string, conversa: Conversa): Resultado {
   };
 }
 
-const perguntarQualServico = (): Resposta => resp([pergunta(t.orcarQual)], [...chipsServicos("orcar"), dito(t.chips.indicar)], [], "montando");
+const perguntarQualServico = (turno = 0): Resposta => resp([pergunta(variar([t.orcarQual, ...saber.orcarQuais], turno))], [...chipsServicos("orcar"), dito(t.chips.indicar)], [], "montando");
 
 const passoAtual = (orc: EstadoOrcamento): Resposta => respostaDoPasso(proximoPasso(orc), orc);
 
@@ -530,11 +677,16 @@ function executar(cmd: Cmd, conversa: Conversa): Resultado {
     case "sobre": {
       const s = servicoDoCatalogo(cmd.id);
       if (!s) return { conversa, resposta: semBase() };
-      const c = { ...conversa, ultimoServico: s.id };
+      const c: Conversa = {
+        ...conversa,
+        ultimoServico: s.id,
+        ultimoTopico: null,
+        ultimaIntencao: cmd.para === "detalhes" ? "incluso" : cmd.para === "orcar" ? "orcar" : cmd.para,
+      };
       if (cmd.para === "orcar") return comecarOrcamento(s.id, c);
       if (cmd.para === "preco") return { conversa: c, resposta: precoDe([s.id]) };
       if (cmd.para === "prazo") return { conversa: c, resposta: prazoDe([s.id]) };
-      return { conversa: c, resposta: detalhesServico(s) };
+      return { conversa: c, resposta: ofertar(detalhesServico(s), { cmd: { t: "sobre", id: s.id, para: "orcar" } }) };
     }
     case "opcao": {
       if (!conversa.orc) return { conversa, resposta: perguntarQualServico() };
@@ -552,13 +704,24 @@ function executar(cmd: Cmd, conversa: Conversa): Resultado {
       return { conversa: { ...conversa, orc: novo }, resposta: passoAtual(novo) };
     }
     case "cancelar":
-      return { conversa: { ...conversa, orc: null }, resposta: resp([p(t.orcarCancelado), pergunta(t.boasVindasPergunta)], chipsInicio(), [], "digitando") };
+      return { conversa: { ...conversa, orc: null }, resposta: fixa(resp([p(t.orcarCancelado), pergunta(t.boasVindasPergunta)], chipsInicio(), [], "digitando")) };
     case "oque": {
       const passo = conversa.orc ? proximoPasso(conversa.orc) : null;
       if (!conversa.orc || !passo || passo.tipo !== "pergunta") return { conversa, resposta: ajuda() };
       const r = respostaDoPasso(passo, conversa.orc);
       return { conversa, resposta: { ...r, blocos: [p(passo.pergunta.ajuda ?? ""), ...r.blocos] } };
     }
+    case "topico": {
+      const top = topicoPorId(cmd.id);
+      if (!top) return { conversa, resposta: respostaMenu() };
+      const c: Conversa = { ...conversa, ultimoTopico: top.id, ultimoServico: top.servico ?? conversa.ultimoServico };
+      const resposta = cmd.modo === "mais" ? respostaTopicoMais(top, conversa.turno) : cmd.modo === "exemplo" ? respostaTopicoExemplo(top, conversa.turno) : respostaDeTopico(top, conversa.turno);
+      return { conversa: c, resposta };
+    }
+    case "categoria":
+      return { conversa: { ...conversa, ultimoTopico: null }, resposta: respostaCategoria(cmd.id) };
+    case "menu":
+      return { conversa: { ...conversa, ultimoTopico: null }, resposta: respostaMenu() };
     case "guia": {
       const escolhas = [...(conversa.guia ?? []), cmd.o];
       const { resposta, fim } = respostaDoGuia(escolhas);
@@ -581,18 +744,95 @@ function comRetomada(r: Resposta, conversa: Conversa): Resposta {
 /** Mensagem vaga: curta, só cumprimento ou sem nenhum assunto do site. Vale acolher e adivinhar, em vez de recusar. */
 const ehVaga = (texto: string, achados: Set<string>) => radicaisUteis(texto).length <= 3 || achados.has("saudacao");
 
-function responderTexto(texto: string, conversa: Conversa): Resultado {
-  const achados = conceitosDe(texto);
-  const intencao: Intencao | null = intencaoDe(achados);
+/** Intenções de pergunta direta: um tópico do saber geral só as vence se declarar `vence` ("tem mensalidade?" tem "custo", mas é um tópico). */
+const INTENCOES_FORTES: ReadonlySet<Intencao> = new Set<Intencao>(["preco", "prazo", "orcar", "desconto", "pagamento", "nota"]);
+/** Intenções de serviço que "e o painel?" pode repetir com outro serviço. */
+const INTENCOES_DE_SERVICO: ReadonlySet<Intencao> = new Set<Intencao>(["preco", "prazo", "incluso", "orcar", "exemplos"]);
+
+const orcarDe = (id: string | null): Entrada => (id ? { cmd: { t: "sobre", id, para: "orcar" } } : { texto: t.chips.orcar });
+
+/**
+ * Resposta de poucas palavras ao que o assistente acabou de perguntar: "sim", "pode ser", "bora" executam a proposta pendente;
+ * "agora não", "depois" a dispensam com simpatia. Só vale quando a mensagem inteira é feita dessas palavras.
+ */
+function respostaCurta(texto: string, conversa: Conversa): Resultado | null {
+  if (conversa.orc) return null;
+  const pal = palavras(texto).map(radical);
+  if (pal.length === 0 || pal.length > 4) return null;
+  const conjunto = (lista: readonly string[]) => new Set(lista.map(radical));
+  const sim = conjunto(palavrasDeSim);
+  const nao = conjunto(palavrasDeNao);
+  const marcaNao = conjunto(["nao", "depois", "dispenso", "deixa", "pular"]);
+  const temNao = pal.some((x) => marcaNao.has(x));
+  if (temNao && pal.every((x) => nao.has(x) || sim.has(x))) {
+    return { conversa: { ...conversa, proposta: null }, resposta: resp([p(variar(saber.recusaSimpatica, conversa.turno))], chipsInicio(), [], "digitando") };
+  }
+  if (temNao || !pal.every((x) => sim.has(x))) return null;
+  if (conversa.proposta) {
+    const r = processarSemEstado(conversa.proposta, { ...conversa, proposta: null });
+    return { conversa: r.conversa, resposta: { ...r.resposta, fixa: true, blocos: [p(variar(saber.confirmaSim, conversa.turno)), ...r.resposta.blocos] } };
+  }
+  // Sem nada pendente: "sim" puro pede o rumo; "ok", "beleza" e "show" só fecham o assunto.
+  const explicito = pal.some((x) => ["sim", "quero", "pode"].includes(x));
+  const resposta = explicito
+    ? fixa(resp([p(saber.simSemProposta)], chipsInicio(), [], "digitando"))
+    : fixa(resp([p(variar(saber.confirmaNeutra, conversa.turno))], chipsInicio(), [], "digitando"));
+  return { conversa, resposta };
+}
+
+function responderTexto(texto: string, conversaEntrada: Conversa): Resultado {
+  // O tópico explicado e a proposta pendente valem só para a mensagem seguinte: quem responde os renova se for o caso.
+  const conversa: Conversa = { ...conversaEntrada, ultimoTopico: null, proposta: null };
+  const turno = conversaEntrada.turno;
+
+  const curta = respostaCurta(texto, conversaEntrada);
+  if (curta) return curta;
+
+  const casamentos = casamentosDe(texto);
+  const pontos = new Map([...casamentos].map(([k, v]) => [k, v.forca] as const));
+  const achados = new Set(pontos.keys());
+  let intencao: Intencao | null = intencaoDe(achados);
   const citados = servicosCitados(achados);
   const unico = citados.length === 1 ? citados[0] : null;
+  // "E o painel?": repete a última pergunta de serviço (preço, prazo...) com o serviço novo.
+  if (!intencao && unico && conversaEntrada.ultimaIntencao && palavras(texto).length <= 5 && /^e( |$)/.test(chave(texto))) intencao = conversaEntrada.ultimaIntencao;
   const alvo = unico ?? (citados.length === 0 ? conversa.ultimoServico : null);
   const proximo: Conversa = { ...conversa, ultimoServico: unico ?? conversa.ultimoServico };
   const g = conversa.tratamento;
 
+  // Tópicos do saber geral que a mensagem toca, do mais específico (frase mais longa) para o menos.
+  const encontrados = [...pontos]
+    .filter(([k]) => k.startsWith(PREFIXO_TOPICO))
+    .map(([k, forca]) => ({ top: topicoPorId(k.slice(PREFIXO_TOPICO.length)), forca, trecho: casamentos.get(k)!.trecho }))
+    .filter((x): x is { top: Topico; forca: number; trecho: string } => !!x.top)
+    .sort((a, b) => b.forca - a.forca || topicos.indexOf(a.top) - topicos.indexOf(b.top));
+
+  // Seguimento do tópico que acabou de ser explicado: "explica melhor", "me dá um exemplo".
+  const anterior = conversaEntrada.ultimoTopico ? topicoPorId(conversaEntrada.ultimoTopico) : undefined;
+  if (anterior && encontrados.length === 0 && citados.length === 0 && palavras(texto).length <= 7 && (!intencao || intencao === "explicar" || intencao === "exemplos")) {
+    const c: Conversa = { ...conversa, ultimoTopico: anterior.id };
+    if (achados.has("pedeExemplo")) return { conversa: c, resposta: respostaTopicoExemplo(anterior, turno) };
+    if (achados.has("maisDetalhe")) return { conversa: c, resposta: respostaTopicoMais(anterior, turno) };
+  }
+
+  // Pedido de código pronto, exercício ou aula: o chat não é uma IA que gera isso, e diz.
+  if (achados.has("pedeCodigo")) return { conversa, resposta: respostaPedeCodigo() };
+
+  // Saber geral: responde o tópico mais específico e oferece os outros que a mensagem tocou. Palavras como "valor", "pagar" ou
+  // "demora" também disparam preço, pagamento e prazo; por isso só conta como pergunta de preço o que SOBRA depois de tirar o
+  // trecho do tópico ("contas a pagar" é o tópico; "quanto custa tabela dinâmica" ainda é pergunta de preço).
+  const escolhido = encontrados[0];
+  const sobra = escolhido ? intencaoDe(new Set(conceitosPontuados(semTrecho(texto, escolhido.trecho)).keys())) : null;
+  if (escolhido && (!sobra || !INTENCOES_FORTES.has(sobra) || escolhido.top.vence)) {
+    const top = escolhido.top;
+    const c: Conversa = { ...conversa, ultimoTopico: top.id, ultimoServico: top.servico ?? conversa.ultimoServico };
+    return { conversa: c, resposta: respostaDeTopico(top, turno, encontrados.slice(1, 3).map((x) => x.top.id)) };
+  }
+  if (achados.has("menuAssuntos") && (!intencao || intencao === "ajuda" || intencao === "explicar")) return { conversa, resposta: respostaMenu() };
+
   // Fora do escopo: recusa (se a mensagem não toca em nenhum assunto do site).
   if (achados.has("fora") && !intencao && citados.length === 0) {
-    return { conversa, resposta: resp([p(t.fora), pergunta(t.foraOpcoes)], chipsInicio(), [], "digitando") };
+    return { conversa, resposta: fixa(resp([p(t.fora), pergunta(t.foraOpcoes)], chipsInicio(), [], "digitando")) };
   }
   // Empresa que já tem sistema grande: o chat diz com franqueza que o serviço serve melhor a outro público e encaminha.
   if (achados.has("empresaGrande")) return { conversa, resposta: guiaEmpresaGrande() };
@@ -600,34 +840,42 @@ function responderTexto(texto: string, conversa: Conversa): Resultado {
   const pedeNumero = intencao === null || intencao === "preco" || intencao === "prazo" || intencao === "orcar" || intencao === "incluso" || intencao === "negocio" || intencao === "explicar";
   if (achados.has("grande") && pedeNumero) return { conversa, resposta: maior() };
 
+  // Dúvida técnica geral (Docker, aprendizado de máquina, "o que é React?") sem tópico pronto e sem serviço citado: o chat diz com
+  // franqueza que não tem essa resposta, em vez de explicar o serviço do Marcelo como se fosse a resposta.
+  if (achados.has("devGeral") && citados.length === 0 && (!intencao || intencao === "explicar" || intencao === "exemplos" || intencao === "ajuda")) {
+    return { conversa, resposta: semTopico() };
+  }
+
   switch (intencao) {
     case "orcar": {
       if (alvo) return comecarOrcamento(alvo, proximo);
       if (citados.length > 1) return { conversa: proximo, resposta: resp([pergunta(t.orcarQual)], chipsServicos("orcar", citados), [], "montando") };
-      return { conversa, resposta: perguntarQualServico() };
+      return { conversa, resposta: perguntarQualServico(turno) };
     }
     case "preco":
-      return { conversa: proximo, resposta: precoDe(citados.length > 0 ? citados : alvo ? [alvo] : []) };
-    case "prazo":
-      return { conversa: proximo, resposta: prazoDe(citados.length > 0 ? citados : alvo ? [alvo] : []) };
+    case "prazo": {
+      const ids = citados.length > 0 ? citados : alvo ? [alvo] : [];
+      const resposta = intencao === "preco" ? precoDe(ids) : prazoDe(ids);
+      return { conversa: { ...proximo, ultimaIntencao: intencao }, resposta: ofertar(resposta, orcarDe(ids.length === 1 ? ids[0] : null)) };
+    }
     case "incluso": {
-      if (alvo && citados.length <= 1) return { conversa: proximo, resposta: detalhesServico(servicoDoCatalogo(alvo)!) };
+      if (alvo && citados.length <= 1) return { conversa: proximo, resposta: ofertar(detalhesServico(servicoDoCatalogo(alvo)!), orcarDe(alvo)) };
       return { conversa: proximo, resposta: resp([pergunta(t.inclusoSem)], chipsServicos("detalhes", citados.length > 0 ? citados : undefined), [], "pesquisando") };
     }
     case "desconto":
-      return { conversa, resposta: descontos() };
+      return { conversa, resposta: ofertar(descontos(), orcarDe(null)) };
     case "comoFunciona":
-      return { conversa, resposta: guiaComoFunciona(g) };
+      return { conversa, resposta: ofertar(guiaComoFunciona(g), { texto: t.chips.preparar }) };
     case "preparar":
-      return { conversa, resposta: guiaPreparar(g) };
+      return { conversa, resposta: ofertar(guiaPreparar(g), { texto: t.chips.pagamento }) };
     case "pagamento":
-      return { conversa, resposta: guiaPagamento(g) };
+      return { conversa, resposta: ofertar(guiaPagamento(g), { texto: t.chips.receber }) };
     case "receber":
-      return { conversa, resposta: guiaReceber(g) };
+      return { conversa, resposta: ofertar(guiaReceber(g), { texto: t.chips.depois }) };
     case "confianca":
-      return { conversa, resposta: guiaConfianca() };
+      return { conversa, resposta: ofertar(guiaConfianca(), { texto: t.chips.exemplos }) };
     case "revisao":
-      return { conversa, resposta: guiaDepois() };
+      return { conversa, resposta: ofertar(guiaDepois(), orcarDe(null)) };
     case "nota":
       return { conversa, resposta: deFaq(faqsPorTitulo("você emite nota")) };
     case "desistencia":
@@ -643,7 +891,7 @@ function responderTexto(texto: string, conversa: Conversa): Resultado {
     case "contato":
       return { conversa, resposta: contato() };
     case "quem":
-      return { conversa, resposta: quem() };
+      return { conversa, resposta: ofertar(quem(), { texto: t.chips.confianca }) };
     case "publico":
       return { conversa, resposta: guiaPublico(g) };
     case "bot":
@@ -652,10 +900,10 @@ function responderTexto(texto: string, conversa: Conversa): Resultado {
         resposta: resp([p(t.bot), pergunta(t.botPergunta)], [dito(t.chips.depois), dito(t.chips.servicos)], [{ tipo: "link", rotulo: t.acoes.comunidade, href: "/comunidade/#bots" }], "pesquisando"),
       };
     case "servicos":
-      return { conversa, resposta: listaServicos() };
+      return { conversa, resposta: ofertar(listaServicos(), { texto: t.chips.indicar }) };
     case "exemplos": {
       if (unico) return { conversa: proximo, resposta: explicarServico(unico, g, false) };
-      return { conversa, resposta: guiaExemplos() };
+      return { conversa, resposta: ofertar(guiaExemplos(), orcarDe(null)) };
     }
     case "explicar": {
       const cumprimentou = achados.has("saudacao");
@@ -671,30 +919,59 @@ function responderTexto(texto: string, conversa: Conversa): Resultado {
       return { conversa, resposta: guiaNegocio(tipo) };
     }
     case "saudacao":
-      return { conversa, resposta: saudar(texto) };
+      return { conversa, resposta: saudar(texto, turno) };
     case "agradecimento":
-      return { conversa, resposta: resp([p(t.obrigado), pergunta(t.obrigadoPergunta)], chipsInicio(), [], "digitando") };
+      return { conversa, resposta: fixa(resp([p(variar([t.obrigado, ...saber.obrigados], turno)), pergunta(t.obrigadoPergunta)], chipsInicio(), [], "digitando")) };
     case "despedida":
-      return { conversa, resposta: resp([p(t.tchau)], [], [], "digitando") };
+      return { conversa, resposta: resp([p(variar([t.tchau, ...saber.tchaus], turno))], [], [], "digitando") };
     case null:
       break;
   }
 
   // Sem intenção clara: um serviço citado mostra os detalhes; senão, procura nas perguntas frequentes; senão, acolhe (mensagem
   // vaga) ou encaminha (pergunta específica que o site não cobre).
-  if (unico) return { conversa: proximo, resposta: detalhesServico(servicoDoCatalogo(unico)!) };
+  if (unico) return { conversa: proximo, resposta: ofertar(detalhesServico(servicoDoCatalogo(unico)!), orcarDe(unico)) };
   if (citados.length > 1) return { conversa: proximo, resposta: resp([pergunta(t.inclusoSem)], chipsServicos("detalhes", citados), [], "pesquisando") };
   const vaga = ehVaga(texto, achados);
   const faq = buscarFaq(texto, vaga ? 2 : 4);
   if (faq && !vaga) return { conversa, resposta: deFaq([faq]) };
   if (palavras(texto).length === 0) return { conversa, resposta: resp([p(t.vazia)], chipsInicio(), [], "digitando") };
+  // Dúvida técnica (Excel, programação) sem tópico pronto: franqueza sobre o limite e os assuntos que o chat cobre.
+  if (achados.has("devGeral")) return { conversa, resposta: semTopico() };
   return { conversa, resposta: vaga ? acolher(texto, g) : semBase() };
 }
 
 /** Uma rodada: recebe o que o visitante escreveu (ou tocou) e devolve a nova conversa e a resposta. */
 export function processar(entrada: Entrada, conversa: Conversa): Resultado {
   const r = processarSemEstado(entrada, conversa);
-  return { ...r, resposta: { ...r.resposta, estado: r.resposta.estado ?? "digitando" } };
+  // Memória curta: o turno avança, e o que o assistente acabou de oferecer fica guardado para um "sim".
+  const proxima: Conversa = { ...r.conversa, turno: conversa.turno + 1, proposta: r.resposta.proposta ?? null };
+  if ("texto" in entrada) {
+    const nova = intencaoDe(new Set(conceitosPontuados(entrada.texto).keys()));
+    if (nova) proxima.ultimaIntencao = INTENCOES_DE_SERVICO.has(nova) ? nova : null;
+  }
+  return { conversa: proxima, resposta: { ...variarResposta(r.resposta, conversa.turno), estado: r.resposta.estado ?? "digitando" } };
+}
+
+/**
+ * Dá ritmo de conversa às respostas de assunto: uma abertura curta e uma ponte antes da pergunta final, combinadas pelo turno
+ * (a primeira vez é sempre o texto original). Só vale para respostas que explicam algo e terminam em pergunta; orçamento,
+ * cumprimentos, recusas e confirmações têm o próprio tom e ficam como estão.
+ */
+function variarResposta(r: Resposta, turno: number): Resposta {
+  if (r.fixa || r.estado === "montando") return r;
+  const ultimo = r.blocos.at(-1);
+  if (!ultimo || ultimo.tipo !== "pergunta" || r.blocos[0]?.tipo !== "p") return r;
+  const [i, j] = combinar(turno, variacoes.aberturas.length, variacoes.pontes.length);
+  const abertura = variacoes.aberturas[i];
+  const ponte = variacoes.pontes[j];
+  const blocos = [...r.blocos];
+  if (ponte) blocos.splice(blocos.length - 1, 0, p(ponte));
+  if (abertura) {
+    const primeiro = blocos[0];
+    if (primeiro.tipo === "p") blocos[0] = p(`${abertura} ${primeiro.texto}`);
+  }
+  return { ...r, blocos };
 }
 
 function processarSemEstado(entrada: Entrada, conversaAntes: Conversa): Resultado {
@@ -706,7 +983,7 @@ function processarSemEstado(entrada: Entrada, conversaAntes: Conversa): Resultad
   if (!texto) return { conversa, resposta: resp([p(t.vazia)], conversa.orc ? [] : chipsInicio(), [], "digitando") };
 
   // 1. Proteção: pedido para mudar as regras. Nada mais é executado.
-  if (tentaBurlarRegras(texto)) return { conversa, resposta: comRetomada(resp([p(t.injecao)], chipsInicio(), [], "digitando"), conversa) };
+  if (tentaBurlarRegras(texto)) return { conversa, resposta: fixa(comRetomada(resp([p(t.injecao)], chipsInicio(), [], "digitando"), conversa)) };
 
   // 2. Orçamento em andamento: o texto pode ser uma resposta, "voltar" ou "cancelar".
   const noOrcamento = textoNoOrcamento(texto, conversa);
