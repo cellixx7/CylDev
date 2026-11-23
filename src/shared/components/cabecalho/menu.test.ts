@@ -6,7 +6,7 @@ import { linksDoMenu } from "./CabecalhoNegocios";
 describe("menu de Negócios", () => {
   it("mostra as seções com a flag ligada, na ordem em que aparecem na página", () => {
     expect(site.menuSecoes).toEqual({ sobre: true, entregas: true, contato: true });
-    expect(linksDoMenu.map((l) => l.rotulo)).toEqual(["Orçamento", "Como funciona", "Entregas", "Sobre", "Contato"]);
+    expect(linksDoMenu.map((l) => l.rotulo)).toEqual(["Orçamento", "Entregas", "Sobre", "Contato"]);
   });
 
   it("toda seção do menu tem flag em site.menuSecoes (desligar a flag tira o link)", () => {

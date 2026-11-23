@@ -6,8 +6,7 @@ export const negocios = {
   exemploTitulo: "Um exemplo do que eu entrego",
   nav: [
     { href: "/#orcamento", rotulo: "Orçamento" },
-    { href: "/como-funciona/", rotulo: "Como funciona" },
-    { href: "/#entregas", rotulo: "Entregas", secao: "entregas" },
+    { href: "/como-funciona/", rotulo: "Entregas", secao: "entregas" },
     { href: "/#sobre", rotulo: "Sobre", secao: "sobre" },
     { href: "/#contato", rotulo: "Contato", secao: "contato" },
   ] as { href: string; rotulo: string; secao?: "sobre" | "entregas" | "contato" }[],
@@ -125,9 +124,10 @@ export const negocios = {
       ],
     },
   },
-  /** Seção #entregas da home: os 5 passos do pedido à entrega. */
+  /** Seção de Entregas, no topo de /como-funciona/: os 5 passos do pedido à entrega. */
   comoFunciona: {
     titulo: "Do pedido à entrega",
+    pagina: "Entregas",
     intro: "Da primeira conversa ao arquivo final, em cinco passos.",
     passos: [
       {
