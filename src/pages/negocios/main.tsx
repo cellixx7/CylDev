@@ -5,7 +5,6 @@ import "../../styles/tema-negocios.css";
 import { site } from "../../content/site";
 import { negocios as t } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
-import { Carrossel } from "../../shared/components/Carrossel";
 import { Contatos } from "../../shared/components/Contatos";
 import { ContatoRodape, Rodape } from "../../shared/components/Rodape";
 import { Secao } from "../../shared/components/Secao";
@@ -18,6 +17,7 @@ import { ativarMagnetico } from "./magnetico";
 import { Orcamento } from "./orcamento/Orcamento";
 import { PainelExemplo } from "./exemplo/PainelExemplo";
 import { Sobre } from "./sobre/Sobre";
+import { VejaMais } from "./veja-mais/VejaMais";
 
 // Título cinético: cada palavra sobe de uma máscara, em cascata (ver .letra em tema-negocios.css).
 function TituloCinetico({ texto }: { texto: string }) {
@@ -33,42 +33,6 @@ function TituloCinetico({ texto }: { texto: string }) {
         </span>
       ))}
     </span>
-  );
-}
-
-/** Seção #entregas: os 5 passos do pedido à entrega, numerados. Uma coluna no celular, cinco no desktop. */
-function Entregas() {
-  const c = t.comoFunciona;
-  return (
-    <Secao id="entregas" titulo={c.titulo} intro={c.intro}>
-      <div className="revela mt-6">
-      <Carrossel as="ol" gradeMd="md:grid-cols-2 md:gap-x-6 md:gap-y-5 pc:grid-cols-5">
-        {c.passos.map((p, i) => (
-          <li key={p.titulo} className="grid grid-cols-[auto_minmax(0,1fr)] content-start gap-x-3 gap-y-1 rounded-pequeno border border-linha bg-superficie p-4 md:rounded-none md:border-0 md:border-t md:bg-transparent md:p-0 md:pt-3 pc:grid-cols-1">
-            <span className="font-mono text-medio font-bold text-destaque" aria-hidden="true">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <div>
-              <h3 className="m-0 mb-1 text-medio">{p.titulo}</h3>
-              <p className="m-0 text-texto-suave">{p.texto}</p>
-            </div>
-          </li>
-        ))}
-      </Carrossel>
-      </div>
-      <p className="mt-6 mb-0 font-semibold">{c.pagamento}</p>
-      <p className="mt-2 mb-0 text-texto-suave">
-        {c.regras.antes}{" "}
-        <a className="py-3" href="/termos/">
-          {c.regras.termos}
-        </a>{" "}
-        {c.regras.meio}{" "}
-        <a className="py-3" href="/perguntas/">
-          {c.regras.perguntas}
-        </a>
-        .
-      </p>
-    </Secao>
   );
 }
 
@@ -121,7 +85,7 @@ function Negocios() {
               <a className={`${botao} justify-center sm:hidden`} href={linkContato("negocios-hero")} target="_blank" rel="noopener">
                 {t.apresentacao.botaoWhatsapp}
               </a>
-              <a data-magnetico className={`${botao} justify-center`} href="/como-funciona/">
+              <a data-magnetico className={`${botao} justify-center`} href="#veja-mais">
                 {t.apresentacao.botaoComoFunciona}
               </a>
             </div>
@@ -140,7 +104,7 @@ function Negocios() {
             </div>
           </Secao>
         )}
-        <Entregas />
+        <VejaMais />
         <Sobre />
         <Secao id="contato" titulo={t.contato.titulo} intro={t.contato.intro}>
           <Contatos origem="negocios-contato" />

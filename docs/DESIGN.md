@@ -126,3 +126,12 @@ Texto longo (Termos, privacidade, perguntas frequentes, acessibilidade) usa o co
 - Página de leitura: `PaginaTexto.tsx` (Termos, privacidade, perguntas, acessibilidade). Ver "Página de leitura" abaixo.
 - Dica "i": `src/shared/components/Dica.tsx`.
 - Modais: `<dialog>` nativo, foco preso e devolvido ao botão que abriu, `Esc` fecha.
+
+## Planilha de exemplo e painel (seção "Veja mais")
+
+Componentes em `src/pages/negocios/veja-mais/`; textos em `src/content/textos/vejaMais.ts`; dados em `src/content/exemplo-planilha/`.
+
+- **`GradePlanilha`**: planilha somente leitura. Letras de coluna (A, B...), números de linha, cabeçalho e coluna de números fixos, rolagem só dentro do quadro (`overflow-auto`), texto em `font-mono text-menor`. Venda fiada: fundo `bg-fiado` e texto `text-fiado-texto` (tokens novos em `tailwind.css` e `tema-negocios.css`, claro e escuro). A cor nunca é a única pista: a célula "fiado" continua na linha. A prévia do card usa `maxLinhas`, sem rolagem.
+- **`ModalVejaMais`**: `<dialog>` nativo no mesmo padrão do `ModalSobre` (`showModal`, Esc, clique no fundo, `useTravaRolagem`). Quem abre devolve o foco ao botão depois que fecha.
+- **`PainelPlanilha`** (carregado sob demanda): estilo BI, sem biblioteca de gráfico. Barras são `<button aria-pressed>` (a linha do dia é SVG com `role="button"`), o clique liga o filtro daquele valor nos outros gráficos (filtro cruzado) e o selecionado fica em destaque com contorno, enquanto os demais ficam a 50% de opacidade. Cada gráfico ignora o filtro da própria dimensão, para as outras barras continuarem visíveis. Setas movem o foco entre as barras. Cada gráfico tem tabela `sr-only` equivalente e a mudança de filtros é anunciada num `role="status"`. Texto do SVG em 14 px já na escala do `viewBox` (o SVG não encolhe: abaixo de 40 rem ele rola dentro do próprio cartão).
+- Cores de série: só `serie-1` nas barras; a identificação é pelo rótulo e pelo valor ao lado, nunca só pela cor.

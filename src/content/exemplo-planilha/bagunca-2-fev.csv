@@ -1,0 +1,36 @@
+Cliente,Produto,Valor un.,Qtd,Total,Dia,Pagou?
+ANA C.,camiseta preta P,45,1,45,2,não
+Bruno,casaco corta vento,95,1,95,2,não
+IGREJA,camisa branca g,50,2,100,3,sim
+RICARDO,cortavento,95,1,95,4,SIM
+Igreja Betel,casaco,120,1,120,4,s
+ju rocha,chaveiros,12,1,12,4,SIM
+bruno d.,bone aba reta,35,2,70,5,SIM
+ju rocha,cam. branca G,50,2,100,5,sim
+ju rocha,cam. preta P,45,1,45,6,sim
+João,cam. preta P,45,1,45,7,não
+Paulo,camiseta preta P,45,1,45,9,s
+ric alves,boné trucker,38,3,114,9,s
+Ricardo A.,trucker,38,1,38,10,pix
+RICARDO,casaco corta vento,95,2,190,11,s
+Ana,casaco corta vento,95,2,190,11,pix
+JULIANA R,cortavento,95,1,95,14,pix
+Bruno Dias,CAMISETA ESTAMPADA,60,3,180,14,não
+joao p,casaco,120,1,120,17,s
+Carlão,chaveiros,12,1,12,17,sim
+Vera,casaco moletom,120,1,120,18,pix
+Loja da Vera,camisa estampada,60,2,120,18,não
+VERA (loja),camiseta preta P,45,1,45,19,não
+Patricia,camiseta estampada,60,2,#REF!,19,s
+ana costa,CHAVEIRO,12,1,#REF!,21,SIM
+Fernanda,caneca bco,28,2,56,21,ok
+joao p,caneca branca,28,1,#REF!,23,sim
+Paulo,cam. branca G,50,1,50,24,ok
+Ricardo,CANECA BRANCA,28,1,28,24,pix
+ana costa,boné trucker,38,2,76,25,SIM
+Ricardo,camisa preta m,45,2,90,25,pix
+fernanda l.,CAMISETA PRETA M,45,1,45,26,sim
+Mª Silva,camisa preta m,45,2,90,28,não
+PAULO,CANECA BRANCA,28,2,56,28,não
+,,,,,,
+,,,TOTAL,#REF!,,

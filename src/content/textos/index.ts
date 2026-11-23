@@ -20,6 +20,7 @@
 export { catalogo, comum, formulario, piloto, pilotoNota } from "./comum";
 export { orcamento } from "./orcamento";
 export { negocios } from "./negocios";
+export { vejaMais } from "./vejaMais";
 export { sobre, type DestaqueSobre, type ModalSobre, type ParteSobre } from "./sobre";
 export { comunidade } from "./comunidade";
 export { naoEncontrado, obrigado, paginaDeTexto } from "./paginas";

@@ -40,7 +40,7 @@ describe("hashServico", () => {
   });
 
   it("nenhum id de serviço colide com id de seção da página", () => {
-    const secoes = ["apresentacao", "orcamento", "entregas", "como-funciona", "sobre", "contato", "conteudo"];
+    const secoes = ["apresentacao", "orcamento", "entregas", "veja-mais", "como-funciona", "sobre", "contato", "conteudo"];
     for (const { id } of servicosDoCatalogo) expect(secoes).not.toContain(id);
   });
 });

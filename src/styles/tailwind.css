@@ -37,6 +37,9 @@
   --color-serie-3: #6b6f76;
   --color-serie-4: #a3a6ac;
   --color-serie-5: #cbcdd1;
+  /* Linha de venda fiada na planilha de exemplo (fundo e texto). O escuro sobrescreve em tema-negocios.css. */
+  --color-fiado: #fbe3df;
+  --color-fiado-texto: #8a1f11;
 
   --spacing-margem: clamp(1rem, 4vw, 4rem);
   --spacing-alvo: 44px;
