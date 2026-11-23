@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ANIMACOES, quadros, rotacaoEm } from "./cylAnimacoes";
+import { ANIMACOES, MAO_JOINHA, POSES, quadros, rotacaoEm } from "./cylAnimacoes";
 import { cylSvg } from "./cylSvg";
 
 describe("animação wave do Cyl", () => {
@@ -67,5 +67,26 @@ describe("desenho do Cyl", () => {
     const s = cylSvg("x-");
     expect(s.match(/<defs>/g)).toHaveLength(1);
     for (const p of ["arm-left-upper", "arm-left-forearm", "hand-left-rest", "hand-left-wave", "head", "brows"]) expect(s).toContain(`data-parte="${p}"`);
+  });
+});
+
+describe("piscada e pose do joinha", () => {
+  it("a piscada dura entre 120 e 180 ms e termina como começa", () => {
+    const { duracaoMs, faixas } = ANIMACOES.piscar;
+    expect(duracaoMs).toBeGreaterThanOrEqual(120);
+    expect(duracaoMs).toBeLessThanOrEqual(180);
+    for (const f of faixas) expect(f.passos.at(-1)!.valor).toBe(f.passos[0].valor);
+  });
+
+  it("só mexe em opacity e transform (olhos somem, pálpebra desce)", () => {
+    const partes = ANIMACOES.piscar.faixas.map((f) => f.parte).sort();
+    expect(partes).toEqual(["eyelids", "eyes"]);
+    for (const f of ANIMACOES.piscar.faixas) for (const q of quadros(f)) expect(Object.keys(q).sort()).toEqual(expect.arrayContaining(["offset"]));
+  });
+
+  it("a pose do joinha gira braço, antebraço e a mão que existe no desenho", () => {
+    const svg = cylSvg("t-");
+    for (const p of POSES.joinha) expect(svg).toContain(`data-parte="${p.parte}"`);
+    expect(POSES.joinha.map((p) => p.parte)).toContain(MAO_JOINHA);
   });
 });

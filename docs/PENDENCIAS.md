@@ -22,6 +22,7 @@ Etapa 1 (motor de regras + interface) entregue em 19/11/2026; detalhes em `decis
 
 | | Pendência | Dono | Desde |
 |---|---|---|---|
+| [ ] | **Remover o botão temporário "Copiar conversa (temporário)"** do chat antes da entrega final (instruções em `decisoes/assistente.md`, Rodada 4; buscar por "TEMPORÁRIO") | dev | 23/11/2026 |
 | [ ] | Etapa 2: modelo de linguagem no navegador (WebLLM, Web Worker, aviso do download, detecção de WebGPU, validador de números). Exige antes: seção na `privacidade.ts` (CDN dos pesos vê o IP), data nova em `versoes.ts`, registro em `juridico.md` e CSP (`connect-src`, `worker-src`, `wasm-unsafe-eval`) | dev | 19/11/2026 |
 | [ ] | Ler com olho de dono os cerca de 60 tópicos novos do chat (`src/content/textos/assistenteSaber.ts`), principalmente os de "Como trabalhamos" (atendimento à distância, descontos, sigilo, "usa IA no trabalho?"): confirmar que nada promete o que você não cumpre. Dica de Excel e de sites são orientação geral, não parecer | Marcelo | 23/11/2026 |
 | [ ] | Testar o chat em celular de verdade (teclado virtual no iOS e no Android, altura pela `visualViewport`); os testes automáticos só cobrem Chromium de desktop | Marcelo | 19/11/2026 |

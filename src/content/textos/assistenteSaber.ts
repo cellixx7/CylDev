@@ -1398,7 +1398,7 @@ export const topicos: Topico[] = [
     ],
     explica: [
       "Isso tem um lado bom e um limite. O bom: respondo sempre com o que está escrito, os valores vêm do próprio site e não invento preço nem prazo. O limite: se a pergunta fugir do que foi preparado, eu não \"raciocino\" por conta própria; aí encaminho para o Marcelo, que é uma pessoa de verdade.",
-      "Sobre a sua conversa: ela fica só na memória desta aba, neste aparelho. Não é enviada nem guardada, e some quando você recarrega a página ou usa o botão de nova conversa. Por isso o Marcelo não vê o que você escreve aqui; para ele receber algo, é preciso enviar o pedido ou chamar no WhatsApp.",
+      "Sobre a sua conversa: ela fica guardada só neste aparelho, no armazenamento do seu navegador, para voltar se você recarregar a página. Não é enviada a ninguém e só some quando você limpa os dados do site. Por isso o Marcelo não vê o que você escreve aqui; para ele receber algo, é preciso enviar o pedido ou chamar no WhatsApp.",
     ],
     dica: "Dica: quanto mais direta a pergunta (\"quanto custa um painel?\", \"como funciona o pagamento?\"), melhor eu respondo.",
     relacionados: ["horario-resposta", "bot-com-ia", "proposta-escrita"],
