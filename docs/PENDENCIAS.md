@@ -58,6 +58,12 @@ Abertas na Etapa 5 da auditoria (16/11/2026). Os textos não são parecer juríd
 | [ ] | **EmailJS:** acrescentar `{{aceite}}` no template do painel (linha em `docs/emailjs-template.md`); sem isso o registro do aceite é enviado mas não aparece no e-mail | painel do EmailJS | 16/11/2026 |
 | [ ] | **Cumprir o que os textos prometem:** apagar os pedidos com mais de 12 meses, apagar as cópias dos arquivos do cliente depois da entrega, guardar proposta, aceite e comprovantes, e usar `docs/MODELO-PROPOSTA.md` nas propostas | rotina | 16/11/2026 |
 | [ ] | **Declaração de acessibilidade:** testar as páginas com leitor de tela num celular de verdade; se estiver tudo certo, tirar a linha de "O que ainda falta" | `src/content/textos/acessibilidade.ts` | 16/11/2026 |
+| [ ] | **Auditoria de 23/11/2026 (decisões):** contador "Restam N vagas" do piloto (`vagasPiloto10/5`) só é verdadeiro se for baixado a cada venda; trocar por "vagas limitadas" ou manter com rotina | `src/content/orcamento.ts` | Marcelo | 23/11/2026 |
+| [ ] | **Imagem OG de Negócios** diz "Preços fechados.", o que contradiz estimativa e proposta: gerar `og-negocios-v2.png` e trocar o sufixo nas metas (informar a fonte usada nas imagens OG) | `public/`, `index.html` | Marcelo | 23/11/2026 |
+| [ ] | **Licença das fontes** (Space Grotesk, Space Mono; repositório declara SIL OFL, não confirmado na origem): confirmar na fonte oficial e juntar o texto da licença em `public/fonts/` | `public/fonts/` | dev | 23/11/2026 |
+| [ ] | **`LICENSE` do repositório público:** escolher (todos os direitos reservados ou licença aberta) | raiz | Marcelo | 23/11/2026 |
+| [ ] | **Perguntas para o advogado** (menores de idade, Marco Civil, norma do DF, encarregado, art. 33): lista em `auditorias/conformidade-legal.md`, seção 7. Revisar também a privacidade de 23/11/2026 | advogado | Marcelo | 23/11/2026 |
+| [ ] | **Aviso de nova aba** nos links dinâmicos do Assistente, do Sobre e do modal do Sobre; e passar o teste manual de teclado e leitor de tela em celular | `PainelAssistente.tsx`, `Sobre.tsx`, `ModalSobre.tsx` | dev | 23/11/2026 |
 
 ## Validação (Marcelo e dev)
 
