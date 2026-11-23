@@ -6,6 +6,14 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Assistente Cyl: saber geral, memória curta e respostas mais naturais
+
+- Responde cerca de 60 assuntos que clientes costumam perguntar: fórmulas e atalhos do Excel, planilha organizada, tabela dinâmica, gráficos, macro e Python, PDF, site de uma página, domínio, Google, sistemas e bots, e também como o Marcelo trabalha (atendimento à distância, proposta, sigilo, mensalidade, o que não está no catálogo). Cada resposta oferece o serviço relacionado, com o preço de partida vindo de `servicos.ts`.
+- Lembra o que acabou de dizer: "sim" e "pode ser" executam a oferta, "agora não" dispensa, "explica melhor" e "me dá um exemplo" aprofundam, "e o painel?" repete a pergunta com outro serviço. Nada disso sai da aba.
+- Entende mais gírias, letra esticada e erro de digitação, inclusive dentro de frases ("tabela dinamca no exel"), e alterna a versão das respostas ao longo da conversa.
+- Diz com franqueza que é um assistente de regras (não uma IA), que não escreve código nem resolve exercícios e quando não tem a resposta, em vez de explicar o serviço fora de hora. "O Marcelo é bom nisso?" e "o que ele já fez?" abrem o guia de confiança.
+- Por dentro: `content/textos/assistenteSaber.ts`, `shared/lib/assistente/variar.ts`, mais testes em `assistenteSaber.test.ts` e `e2e/assistente.spec.ts`; decisões em `docs/decisoes/assistente.md`.
+
 ### Assistente Cyl: respostas mais úteis e cara de chat (PR 22)
 
 - O assistente agora se chama **Assistente Cyl** e responde de forma expansiva: resposta direta, explicação em linguagem simples, dica ou próximo passo e uma pergunta para seguir a conversa. Voz amigável, com poucos emojis, tratamento "o senhor" ou "a senhora" só quando a pessoa deixa claro, e formas neutras na dúvida.
