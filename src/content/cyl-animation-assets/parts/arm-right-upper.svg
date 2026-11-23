@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="-15 40 580 870" width="580" height="870" stroke-linecap="round" stroke-linejoin="round">
+<title>Braço direito</title>
+<defs>
+<linearGradient id="face-color" x1="0" y1="0" x2=".22" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#AC31D1"/><stop offset=".53" stop-color="#C23DE3"/><stop offset="1" stop-color="#B836D8"/>
+</linearGradient>
+<linearGradient id="skin" x1=".18" y1="1" x2=".92" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#9E2AC1"/><stop offset=".5" stop-color="#B739DD"/><stop offset="1" stop-color="#C03BE1"/>
+</linearGradient>
+<linearGradient id="ringlet" x1=".12" y1="1" x2=".8" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#280839"/><stop offset=".6" stop-color="#361044"/><stop offset="1" stop-color="#491458"/>
+</linearGradient>
+<linearGradient id="iris" x1="0" y1="0" x2=".25" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#26062E"/><stop offset="1" stop-color="#471155"/>
+</linearGradient>
+</defs>
+<g id="arm-right-upper" inkscape:groupmode="layer" inkscape:label="Braço direito" data-pivot-x="245" data-pivot-y="560">
+<path d="M255 538 C242 539 221 552 202 566 C184 579 167 593 160 605 C151 622 163 638 177 639 C190 642 204 627 214 615 C224 606 239 598 255 586 C275 572 274 547 255 538Z" fill="url(#skin)"/>
+<path d="M164 606 C158 616 172 630 184 629 C195 628 201 623 212 616 C201 632 189 642 177 639 C163 638 152 626 158 612Z" fill="#9C29BE"/>
+<path d="M251 540 C231 547 215 557 202 566 C184 579 167 593 160 605 C154 615 157 625 164 633" fill="none" stroke="#511163" stroke-width="2.4"/>
+<path d="M207 619 C219 609 237 599 255 585" fill="none" stroke="#702084" stroke-width="1.8"/>
+</g>
+</svg>

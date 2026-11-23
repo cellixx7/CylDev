@@ -40,7 +40,6 @@ export const assistente = {
   enviar: "Enviar",
   voce: "Você",
   assistente: "Assistente Cyl",
-  avatar: "C",
   maximoCaracteres: 400,
   conversaLog: "Conversa com o Assistente Cyl",
   digitando: "Assistente Cyl respondendo",
