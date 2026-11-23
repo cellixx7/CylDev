@@ -1,3 +1,4 @@
+import { AvisoNovaAba } from "../../../shared/components/AvisoNovaAba";
 import { useEffect, useId, useRef, useState } from "react";
 import { guia, type ResultadoGuia } from "../../../content/guia";
 import { servicoPorId } from "../../../content/servicos";
@@ -40,6 +41,7 @@ export function Resultado({ r, aoVerDetalhes, aoFazerOrcamento }: { r: Resultado
           {...(r.saida.tipo === "whatsapp" ? { target: "_blank", rel: "noopener" } : {})}
         >
           {r.saida.rotulo}
+          {r.saida.tipo === "whatsapp" && <AvisoNovaAba />}
         </a>
       )}
       {r.servicos.length > 0 && <p className="mt-3 mb-0 text-base text-texto-suave">{guia.semCompromisso}</p>}

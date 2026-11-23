@@ -17,6 +17,8 @@ export const comum = {
     contato: "Contato",
   },
   privacidadeLink: "Privacidade",
+  /** Lido por leitor de tela depois do nome de um link que abre em outra aba. */
+  novaAba: " (abre em outra aba)",
   dadosFicticios: "dados fictícios",
   temaClaro: "Tema claro",
   temaEscuro: "Tema escuro",

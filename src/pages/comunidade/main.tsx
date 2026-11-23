@@ -14,6 +14,7 @@ import { botao, botaoCheio } from "../../shared/estilos";
 import { brl } from "../../shared/lib/formato";
 import { descontoPilotoAtual } from "../../shared/lib/orcamento";
 import { linkContato } from "../../shared/lib/whatsapp";
+import { AvisoNovaAba } from "../../shared/components/AvisoNovaAba";
 
 const desconto = descontoPilotoAtual();
 const pct = (f: number) => Math.round(f * 100);
@@ -30,6 +31,7 @@ function Comunidade() {
             <p className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a className={botaoCheio} href={linkContato("comunidade")} target="_blank" rel="noopener">
                 {t.apresentacao.acao}
+                <AvisoNovaAba />
               </a>
             </p>
           </div>
@@ -43,6 +45,7 @@ function Comunidade() {
             <p>
               <a className={botao} href={site.repositorioCylBot} target="_blank" rel="noopener">
                 {t.cylbot.repositorio}
+                <AvisoNovaAba />
               </a>
             </p>
           )}

@@ -18,6 +18,7 @@ import { Orcamento } from "./orcamento/Orcamento";
 import { PainelExemplo } from "./exemplo/PainelExemplo";
 import { Sobre } from "./sobre/Sobre";
 import { VejaMais } from "./veja-mais/VejaMais";
+import { AvisoNovaAba } from "../../shared/components/AvisoNovaAba";
 
 // Título cinético: cada palavra sobe de uma máscara, em cascata (ver .letra em tema-negocios.css).
 function TituloCinetico({ texto }: { texto: string }) {
@@ -84,6 +85,7 @@ function Negocios() {
               </a>
               <a className={`${botao} justify-center sm:hidden`} href={linkContato("negocios-hero")} target="_blank" rel="noopener">
                 {t.apresentacao.botaoWhatsapp}
+                <AvisoNovaAba />
               </a>
               <a data-magnetico className={`${botao} justify-center`} href="#veja-mais">
                 {t.apresentacao.botaoComoFunciona}

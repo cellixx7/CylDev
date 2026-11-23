@@ -4,6 +4,7 @@ import { negocios } from "../../content/textos";
 import { linkContato } from "../lib/whatsapp";
 import { botao } from "../estilos";
 import { Formulario } from "./Formulario";
+import { AvisoNovaAba } from "./AvisoNovaAba";
 
 
 type Props = { origem: string; comFormulario?: boolean };
@@ -20,6 +21,7 @@ export function Contatos({ origem, comFormulario = true }: Props) {
         <h3 className={nomeCanal}>{t.whatsapp}</h3>
         <a className={botao} href={linkContato(origem)} target="_blank" rel="noopener">
           {formatarTelefone(site.whatsapp)}
+          <AvisoNovaAba />
         </a>
       </div>
       <div>

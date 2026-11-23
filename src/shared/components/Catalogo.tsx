@@ -4,6 +4,7 @@ import { brl } from "../lib/formato";
 import { mensalidadeDe } from "../lib/orcamento";
 import { formatarPrazo, prazoEmDias } from "../lib/prazo";
 import { linkContato } from "../lib/whatsapp";
+import { AvisoNovaAba } from "./AvisoNovaAba";
 
 type Props = {
   servicos: Servico[];
@@ -88,6 +89,7 @@ export function Catalogo({ servicos, origem, textoPedir }: Props) {
               rel="noopener"
             >
               {textoPedir}
+              <AvisoNovaAba />
             </a>
           </li>
         );
