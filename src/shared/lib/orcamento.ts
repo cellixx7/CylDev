@@ -5,6 +5,7 @@ import {
   VALOR_HORA_EXTRA,
   vagasPiloto10,
   vagasPiloto5,
+  pilotoValeAte,
 } from "../../content/orcamento";
 import { servicoOrcamentoPorId, type Pergunta } from "../../content/perguntas";
 import { prazoACombinar, servicoPorId } from "../../content/servicos";
@@ -15,8 +16,23 @@ import { mensagemComOrigem, whatsappLink } from "./whatsapp";
 
 export type DescontoPiloto = { percentual: 10 | 5; restam: number };
 
-/** Faixa de desconto em vigor: primeiro as vagas de 10%, depois as de 5%. Sem vaga, `null`. */
-export function descontoPilotoAtual(v10 = vagasPiloto10, v5 = vagasPiloto5): DescontoPiloto | null {
+/** Data local no formato AAAA-MM-DD (comparável como texto). */
+function diaLocal(d: Date): string {
+  const dois = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${dois(d.getMonth() + 1)}-${dois(d.getDate())}`;
+}
+
+/**
+ * Faixa de desconto em vigor: primeiro as vagas de 10%, depois as de 5%. Sem vaga, `null`.
+ * Depois de `valeAte` (AAAA-MM-DD, inclusive) também devolve `null`: o aviso nunca fica vencido sozinho.
+ */
+export function descontoPilotoAtual(
+  v10 = vagasPiloto10,
+  v5 = vagasPiloto5,
+  valeAte: string | null = pilotoValeAte,
+  agora: Date = new Date(),
+): DescontoPiloto | null {
+  if (valeAte && diaLocal(agora) > valeAte) return null;
   if (v10 > 0) return { percentual: 10, restam: v10 };
   if (v5 > 0) return { percentual: 5, restam: v5 };
   return null;

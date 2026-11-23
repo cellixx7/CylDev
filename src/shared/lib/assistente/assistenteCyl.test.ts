@@ -178,7 +178,7 @@ describe("público: honestidade sobre empresas grandes", () => {
       const { texto, resposta } = conversar(frase);
       expect(texto, frase).toContain("pequenos negócios, profissionais liberais, comércio");
       expect(texto).toContain("o orçamento tende a ser maior");
-      expect(texto).toContain("em até 2 horas, sem garantia de prazo");
+      expect(texto).toContain("em até 2 horas, sem garantia.");
       expect(resposta.acoes.some((a) => a.tipo === "link" && a.href.startsWith("https://wa.me/"))).toBe(true);
     }
   });

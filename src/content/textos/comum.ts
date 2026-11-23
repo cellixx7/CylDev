@@ -17,6 +17,8 @@ export const comum = {
     contato: "Contato",
   },
   privacidadeLink: "Privacidade",
+  /** Promessa de resposta, com ressalva. Uma frase só: o contato do site e o Assistente Cyl dizem exatamente isto. */
+  tempoResposta: "O Marcelo costuma responder em até 2 horas, sem garantia.",
   /** Lido por leitor de tela depois do nome de um link que abre em outra aba. */
   novaAba: " (abre em outra aba)",
   dadosFicticios: "dados fictícios",

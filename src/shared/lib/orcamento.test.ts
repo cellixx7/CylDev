@@ -32,6 +32,16 @@ describe("descontoPilotoAtual", () => {
   it("some quando as vagas acabam", () => {
     expect(descontoPilotoAtual(0, 0)).toBeNull();
   });
+
+  it("sem data-limite (null) o desconto não vence", () => {
+    expect(descontoPilotoAtual(5, 5, null, new Date(2099, 0, 1))).toEqual({ percentual: 10, restam: 5 });
+  });
+
+  it("vale até o último dia (inclusive) e some no dia seguinte, mesmo com vagas", () => {
+    expect(descontoPilotoAtual(5, 5, "2026-12-31", new Date(2026, 11, 31, 23, 59))).toEqual({ percentual: 10, restam: 5 });
+    expect(descontoPilotoAtual(5, 5, "2026-12-31", new Date(2027, 0, 1, 0, 0))).toBeNull();
+    expect(descontoPilotoAtual(0, 3, "2026-12-31", new Date(2027, 0, 1))).toBeNull();
+  });
 });
 
 describe("mensalidadeDe e comDesconto", () => {

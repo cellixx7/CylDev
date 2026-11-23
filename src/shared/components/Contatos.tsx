@@ -1,6 +1,6 @@
 import { site } from "../../content/site";
 import { emailjsConfigurado } from "../lib/emailjs";
-import { negocios } from "../../content/textos";
+import { comum, negocios } from "../../content/textos";
 import { linkContato } from "../lib/whatsapp";
 import { botao } from "../estilos";
 import { Formulario } from "./Formulario";
@@ -30,6 +30,7 @@ export function Contatos({ origem, comFormulario = true }: Props) {
           {site.email}
         </a>
       </div>
+      <p className="m-0 text-base text-texto-suave md:col-span-full">{comum.tempoResposta}</p>
       {comFormulario && emailjsConfigurado() && (
         <div className="md:col-span-full md:max-w-xl">
           <h3 className={nomeCanal}>{t.formulario}</h3>

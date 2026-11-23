@@ -19,11 +19,18 @@ export const COMBO_2 = 10;
 /** 15% com 3 ou mais combináveis no carrinho. */
 export const COMBO_3 = 15;
 
-// Contadores reais das vagas de piloto. Diminua 1 a cada venda fechada com desconto:
-// primeiro o de 10%; quando ele zerar, o de 5%. Com os dois em 0, o aviso some.
+// Contadores reais das vagas de piloto. É manual, de propósito (sem backend nem planilha):
+// DIMINUA 1 A CADA VENDA FECHADA COM DESCONTO, no mesmo momento em que a proposta for aceita e a entrada paga
+// (passo "fechar venda" da rotina; ver docs/PENDENCIAS.md). Primeiro o de 10%; quando ele zerar, o de 5%.
+// Com os dois em 0, o aviso some. Número esquecido é número falso: se não for baixar, troque o aviso.
 // O desconto vale só sobre a criação, nunca sobre a mensalidade.
 export const vagasPiloto10 = 5;
 export const vagasPiloto5 = 5;
+/**
+ * Último dia do piloto (AAAA-MM-DD, inclusive). Depois dele o desconto e o aviso somem sozinhos, mesmo que o contador
+ * não tenha sido baixado. `null` = sem data-limite (o valor inicial; o Marcelo ainda não definiu a data).
+ */
+export const pilotoValeAte: string | null = null;
 
 /** Mensalidade dos bots: fração do preço de criação por mês, mais o custo da hospedagem. */
 export const mensalidadeBots = {

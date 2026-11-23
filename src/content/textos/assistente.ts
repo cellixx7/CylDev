@@ -20,6 +20,8 @@ export function tr(g: Tratamento, com: string, neutro: string): string {
   return com.replaceAll("{Sc}", primeiraMaiuscula(g)).replaceAll("{S}", g);
 }
 
+import { comum } from "./comum";
+
 export const assistente = {
   nome: "Assistente Cyl",
   /** Rótulo do botão redondo (tooltip no mouse e no foco do teclado, rótulo acessível no celular). */
@@ -54,7 +56,7 @@ export const assistente = {
    * Quanto o Marcelo costuma demorar. Sem garantia de prazo (decisão do Marcelo em 19/11/2026). Entra nos fatos do
    * assistente, por isso o "2" é aceito pelo validador de números.
    */
-  tempoResposta: "O Marcelo costuma responder em até 2 horas, sem garantia de prazo.",
+  tempoResposta: comum.tempoResposta,
 
   boasVindas: "Oi! Assistente Cyl por aqui 😊 Posso tirar dúvidas sobre serviços, preços, prazos, pagamento e entrega, e montar uma estimativa pergunta por pergunta.",
   boasVindasPergunta: "Por onde quer começar?",
