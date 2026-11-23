@@ -18,6 +18,13 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 - No chat do assistente, a letra "C" do avatar deu lugar ao rosto do Cyl (parado), no cabeçalho do painel e em cada resposta.
 - Com "reduzir movimento" ligado no sistema, o Cyl fica parado; com a aba oculta, a animação pausa.
 
+### Assistente Cyl: conversa guardada no navegador
+
+- A conversa não se perde mais ao recarregar a página nem ao fechar só o painel: volta igual, com o contexto ("e o painel?", "sim"). Fica no `localStorage`, só neste aparelho, sem rede.
+- Botão "Conversas anteriores": "Nova conversa" guarda a atual na lista (até 30), que dá para reler. Só some quando a pessoa limpa os dados do site.
+- Aviso do chat, resposta "você é uma IA?" e seção do navegador na privacidade atualizados (antes diziam que a conversa não era guardada).
+- Temporário: botão "Copiar conversa (temporário)", a remover antes da entrega final.
+
 ### Assistente Cyl: mais variedade e convite no ícone
 
 - Cada pergunta (77 assuntos e as intenções de preço, prazo, orçamento etc.) ganhou pelo menos 15 formas de resposta, sem mudar nenhum preço ou prazo.

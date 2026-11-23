@@ -33,8 +33,38 @@ export const assistente = {
   /** Botão de ícone (chat com "+") no cabeçalho: nome acessível e dica. */
   novaConversa: "Nova conversa",
   titulo: "Assistente Cyl",
-  /** Aviso fixo no topo: é um programa, não a pessoa, e nada sai do aparelho. */
-  aviso: "Assistente automático, não o Marcelo. A conversa fica só neste aparelho: não é enviada nem guardada.",
+  /**
+   * Aviso fixo na faixa do topo: é um programa, não a pessoa, e nada sai do aparelho. A faixa mostra só o começo (`avisoCurto`);
+   * o resto (`avisoResto`) abre em "Saiba mais" e fica sempre disponível ao leitor de tela. `aviso` é o texto inteiro.
+   */
+  avisoCurto: "Assistente automático, não o Marcelo.",
+  avisoResto: "A conversa fica guardada só neste aparelho e não é enviada a ninguém.",
+  aviso: "Assistente automático, não o Marcelo. A conversa fica guardada só neste aparelho e não é enviada a ninguém.",
+  avisoMais: "Saiba mais",
+  avisoMenos: "Mostrar menos",
+
+  /** Alça para aumentar e diminuir o painel (só em tela larga). */
+  redimensionar: "Redimensionar o chat. Use as setas para aumentar ou diminuir e Enter para voltar ao tamanho padrão.",
+  /** Botão circular ao lado do painel (só em tela larga): leva à área CylDev/Comunidade. */
+  conhecerCyldev: "Conhecer o CylDev",
+
+  /** Conversas anteriores (guardadas no navegador até a pessoa limpar os dados do site). */
+  anteriores: {
+    botao: "Conversas anteriores",
+    titulo: "Conversas anteriores",
+    voltarConversa: "Voltar à conversa",
+    voltarLista: "Voltar à lista",
+    vazio: "Ainda não há conversas anteriores. Quando você começar uma conversa nova, a atual fica guardada aqui.",
+    aviso: "Ficam guardadas só neste aparelho, até você limpar os dados do site no navegador.",
+    mensagens: (n: number) => (n === 1 ? "1 mensagem" : `${n} mensagens`),
+  },
+
+  // TEMPORÁRIO (remover na entrega final; ver docs/decisoes/assistente.md): botão que copia a conversa para a área de transferência.
+  copiarTemp: {
+    botao: "Copiar (temporário)",
+    ok: "Conversa copiada.",
+    erro: "Não consegui copiar. Selecione o texto e copie à mão.",
+  },
   campoRotulo: "Sua mensagem",
   campoDica: "Pergunte sobre preço, prazo ou monte um orçamento",
   enviar: "Enviar",
@@ -214,7 +244,7 @@ export const assistente = {
   envioNomeInvalido: "Preciso de um nome para o Marcelo saber com quem falar. Pode escrever o seu primeiro nome?",
   envioWhats: (nome: string) => `Prazer, ${nome}! Qual o seu WhatsApp, com DDD? É por ele que o Marcelo responde.`,
   envioConfirma: (nome: string, whatsapp: string) => `Confere? Vou enviar o pedido em nome de ${nome}, com resposta pelo WhatsApp ${whatsapp}.`,
-  envioPrivacidade: "Só uso o nome e o WhatsApp para responder ao seu pedido. A conversa com o assistente fica apenas nesta aba.",
+  envioPrivacidade: "Só uso o nome e o WhatsApp para responder ao seu pedido. Eles não ficam guardados neste aparelho junto com a conversa.",
   envioAceite: "Ao enviar, você concorda com os Termos de contratação e com a Política de privacidade. O pedido ainda não é contrato: o valor final vai na proposta por escrito.",
   envioEnviando: "Enviando o seu pedido...",
   envioJaEnviando: "O pedido já está sendo enviado, só um instante.",
