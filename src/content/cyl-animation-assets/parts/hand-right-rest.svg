@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="-15 40 580 870" width="580" height="870" stroke-linecap="round" stroke-linejoin="round">
+<title>Mão direita</title>
+<defs>
+<linearGradient id="face-color" x1="0" y1="0" x2=".22" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#AC31D1"/><stop offset=".53" stop-color="#C23DE3"/><stop offset="1" stop-color="#B836D8"/>
+</linearGradient>
+<linearGradient id="skin" x1=".18" y1="1" x2=".92" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#9E2AC1"/><stop offset=".5" stop-color="#B739DD"/><stop offset="1" stop-color="#C03BE1"/>
+</linearGradient>
+<linearGradient id="ringlet" x1=".12" y1="1" x2=".8" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#280839"/><stop offset=".6" stop-color="#361044"/><stop offset="1" stop-color="#491458"/>
+</linearGradient>
+<linearGradient id="iris" x1="0" y1="0" x2=".25" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#26062E"/><stop offset="1" stop-color="#471155"/>
+</linearGradient>
+</defs>
+<g id="hand-right-rest" inkscape:groupmode="layer" inkscape:label="Mão direita" data-pivot-x="230" data-pivot-y="672">
+<path d="M213 661 C222 656 237 659 245 667 C251 675 245 688 237 699 C226 712 208 717 194 707 C184 700 184 690 188 680 C191 671 200 663 211 665Z" fill="url(#skin)"/>
+<path d="M190 680 C188 699 204 705 219 700 C228 697 238 688 242 681 C241 696 223 713 207 711 C192 711 181 699 188 684Z" fill="#9828BD"/>
+<path d="M211 665 C199 663 191 672 188 680 C183 694 188 706 203 711 C217 715 232 707 241 695 C245 688 249 681 250 674" fill="none" stroke="#511163" stroke-width="2.4"/>
+<path d="M191 686 C197 678 204 677 207 683 M208 683 C203 675 204 670 211 665" fill="none" stroke="#711988" stroke-width="1.6"/>
+</g>
+</svg>

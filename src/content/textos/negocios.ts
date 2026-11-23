@@ -13,16 +13,12 @@ export const negocios = {
   /** Atalho discreto de WhatsApp no rodapé de Negócios (a seção #contato tem os outros canais). */
   rodapeWhatsapp: "Prefere falar direto?",
   rodapeWhatsappLink: "Chame no WhatsApp",
-  /** Controle no centro do header: leva para a área de comunidade. */
+  /** Cyl acenando no centro do header: leva para a área de comunidade. */
   atalhoComunidade: {
     href: "/comunidade/",
     rotulo: "Ir para a área de comunidade (Discord e jogos)",
     /** Texto visível ao lado do ícone (a partir de 640 px). O aria-label continua o rótulo longo. */
     rotuloCurto: "Comunidade",
-    dicaTitulo: "Conheça o CylDev",
-    dicaTexto: "Tenha o seu próprio BOT do Discord com interface única sua e muito mais",
-    /** Só aparece no toque (celular/tablet): no mouse o próprio controle já é o link. */
-    dicaAcao: "Ir para o CylDev",
   },
   apresentacao: {
     /** O `h1` é a promessa; o nome (`site.nome`) vai acima dele, como sobretítulo. Título + subtítulo formam a frase do JSON-LD. */

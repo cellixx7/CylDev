@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="-15 40 580 870" width="580" height="870" stroke-linecap="round" stroke-linejoin="round">
+<title>Tronco e pernas</title>
+<defs>
+<linearGradient id="face-color" x1="0" y1="0" x2=".22" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#AC31D1"/><stop offset=".53" stop-color="#C23DE3"/><stop offset="1" stop-color="#B836D8"/>
+</linearGradient>
+<linearGradient id="skin" x1=".18" y1="1" x2=".92" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#9E2AC1"/><stop offset=".5" stop-color="#B739DD"/><stop offset="1" stop-color="#C03BE1"/>
+</linearGradient>
+<linearGradient id="ringlet" x1=".12" y1="1" x2=".8" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#280839"/><stop offset=".6" stop-color="#361044"/><stop offset="1" stop-color="#491458"/>
+</linearGradient>
+<linearGradient id="iris" x1="0" y1="0" x2=".25" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#26062E"/><stop offset="1" stop-color="#471155"/>
+</linearGradient>
+</defs>
+<g id="torso" inkscape:groupmode="layer" inkscape:label="Tronco e pernas">
+<path d="M259 534 C272 526 309 520 329 527 C350 535 365 559 376 592 C393 645 401 716 406 811 C428 816 448 829 449 851 C449 860 435 862 421 863 C386 866 339 863 322 859 C311 857 310 852 311 843 L315 705 C301 746 288 807 275 855 C272 870 257 875 231 878 C203 881 164 881 153 876 C139 870 149 850 159 839 C165 832 172 827 178 823 C192 783 220 723 236 671 C244 643 242 618 247 594 C236 606 224 613 218 625 C205 624 189 614 188 601 C198 579 232 551 259 534Z" fill="#BB39DF" stroke="#290838" stroke-width="2.4"/>
+<path d="M261 542 C284 550 318 548 344 539 C349 543 353 548 355 554 C330 571 285 574 250 562Z" fill="#9B29BE"/>
+<path d="M247 594 C255 622 248 650 241 677 C224 735 203 774 192 822 L178 824 C192 783 220 721 236 671 C244 643 242 618 247 594Z" fill="#9226B2"/>
+<path d="M315 705 C329 698 340 691 349 685 C342 696 338 703 337 717 L338 832 C338 845 352 858 378 862 C353 862 331 861 322 859 C311 857 310 852 311 843Z" fill="#9E2CC3"/>
+<path d="M181 820 C204 813 234 818 253 829 C225 821 204 821 179 829Z" fill="#CF57E9"/>
+<path d="M177 824 C205 813 231 818 252 829 M391 811 C417 807 444 826 448 846 M167 850 C161 858 159 869 164 877 M185 854 C181 862 180 871 184 879 M422 842 C427 849 429 857 425 862 M438 842 C443 847 444 854 440 861" fill="none" stroke="#681782" stroke-width="1.45"/>
+<path d="M315 705 C327 701 338 695 349 685" fill="none" stroke="#641778" stroke-width="1.75"/>
+</g>
+</svg>

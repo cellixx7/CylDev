@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="-15 40 580 870" width="580" height="870" stroke-linecap="round" stroke-linejoin="round">
+<title>Bigode e barbicha</title>
+<defs>
+<linearGradient id="face-color" x1="0" y1="0" x2=".22" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#AC31D1"/><stop offset=".53" stop-color="#C23DE3"/><stop offset="1" stop-color="#B836D8"/>
+</linearGradient>
+<linearGradient id="skin" x1=".18" y1="1" x2=".92" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#9E2AC1"/><stop offset=".5" stop-color="#B739DD"/><stop offset="1" stop-color="#C03BE1"/>
+</linearGradient>
+<linearGradient id="ringlet" x1=".12" y1="1" x2=".8" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#280839"/><stop offset=".6" stop-color="#361044"/><stop offset="1" stop-color="#491458"/>
+</linearGradient>
+<linearGradient id="iris" x1="0" y1="0" x2=".25" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#26062E"/><stop offset="1" stop-color="#471155"/>
+</linearGradient>
+</defs>
+<g id="facial-hair" inkscape:groupmode="layer" inkscape:label="Bigode e barbicha">
+<g id="mustache" inkscape:groupmode="layer" inkscape:label="Bigode">
+<path d="M315 467 C320 462 325 457 331 455 L328 459 C335 454 340 453 347 449 L344 454 L355 446 L352 451 L365 441 L362 446 L374 438 L370 445 C375 441 379 438 381 435 C385 438 380 444 377 447 C358 454 337 464 315 467Z" fill="#35103F"/>
+<path d="M391 434 L396 437 L395 432 L403 435 L402 432 L411 437 L410 434 L420 438 L419 435 L428 439 L428 437 C433 439 436 441 437 445 C430 444 426 446 419 445 C408 446 393 445 391 434Z" fill="#35103F"/>
+<path d="M332 461 C344 456 354 452 366 447 M399 440 C411 443 420 442 424 441" fill="none" stroke="#591665" stroke-width="1.0"/>
+</g><g id="goatee" inkscape:groupmode="layer" inkscape:label="Barbicha">
+<path d="M357 515 L363 520 L361 512 L368 518 L369 509 L374 515 L376 505 L380 508 L385 502 L390 500 L395 503 L394 499 L402 503 L400 498 L409 505 L408 501 L415 506 C416 511 411 518 408 522 L402 524 L401 523 L398 529 L394 531 L389 528 L388 532 L383 529 L379 532 L371 528 L367 530 C361 526 358 522 357 515Z" fill="#32103E"/>
+<path d="M368 520 L374 526 M379 515 C379 521 383 526 386 527 M389 507 C394 511 394 519 396 521 M402 506 C407 510 407 515 405 518" fill="none" stroke="#54145F" stroke-width="1.25"/>
+</g>
+</g>
+</svg>

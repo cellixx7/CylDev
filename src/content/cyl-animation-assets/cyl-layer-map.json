@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "viewBox": [
+    -15,
+    40,
+    580,
+    870
+  ],
+  "origin": [
+    0,
+    0
+  ],
+  "axes": {
+    "x": "direita",
+    "y": "baixo",
+    "positiveRotation": "horária"
+  },
+  "pose": "3/4 · apontando",
+  "coordinates": "Unidades absolutas do viewBox. Todos os SVGs individuais compartilham a origem e a escala do mestre.",
+  "drawOrder": [
+    "background",
+    "arm-left-upper",
+    "arm-left-forearm",
+    "hand-left-rest",
+    "hand-left-wave",
+    "torso",
+    "neck",
+    "head",
+    "hair-back",
+    "face",
+    "earbud",
+    "eye-features",
+    "eyes",
+    "eyelids",
+    "brows",
+    "facial-hair",
+    "mustache",
+    "goatee",
+    "glasses",
+    "hair-front",
+    "arm-right-upper",
+    "arm-right-forearm",
+    "hand-right-rest"
+  ],
+  "handSwap": {
+    "joint": [
+      432,
+      596
+    ],
+    "default": "hand-left-rest",
+    "alternate": "hand-left-wave"
+  },
+  "layers": [
+    {
+      "id": "background",
+      "label": "Fundo circular opcional",
+      "parent": null,
+      "renderOrder": 0,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": null,
+      "visible": false,
+      "optional": true,
+      "file": "parts/background.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "arm-left-upper",
+      "label": "Braço esquerdo",
+      "parent": null,
+      "renderOrder": 1,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        343,
+        555
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/arm-left-upper.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "arm-left-forearm",
+      "label": "Antebraço esquerdo",
+      "parent": "arm-left-upper",
+      "renderOrder": 2,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        396,
+        617
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/arm-left-forearm.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "hand-left-rest",
+      "label": "Mão esquerda da pose canônica",
+      "parent": "arm-left-forearm",
+      "renderOrder": 3,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        432,
+        596
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/hand-left-rest.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "hand-left-wave",
+      "label": "Mão esquerda aberta para aceno",
+      "parent": "arm-left-forearm",
+      "renderOrder": 4,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        432,
+        596
+      ],
+      "visible": false,
+      "optional": true,
+      "file": "parts/hand-left-wave.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "torso",
+      "label": "Tronco e pernas",
+      "parent": null,
+      "renderOrder": 5,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": null,
+      "visible": true,
+      "optional": false,
+      "file": "parts/torso.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "neck",
+      "label": "Pescoço",
+      "parent": "torso",
+      "renderOrder": 6,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        298,
+        536
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/neck.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "head",
+      "label": "Cabeça articulada",
+      "parent": "neck",
+      "renderOrder": 7,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        298,
+        536
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/head.svg",
+      "fileIncludesChildren": true,
+      "drawsOwnGeometry": false
+    },
+    {
+      "id": "hair-back",
+      "label": "Cabelo traseiro",
+      "parent": "head",
+      "renderOrder": 8,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        298,
+        536
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/hair-back.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "face",
+      "label": "Cabeça, orelha e boca",
+      "parent": "head",
+      "renderOrder": 9,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        298,
+        536
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/face.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "earbud",
+      "label": "Fone intra-auricular",
+      "parent": "head",
+      "renderOrder": 10,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        137,
+        450
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/earbud.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "eye-features",
+      "label": "Olhos, pálpebras e sobrancelhas",
+      "parent": "head",
+      "renderOrder": 11,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": null,
+      "visible": true,
+      "optional": false,
+      "file": "parts/eye-features.svg",
+      "fileIncludesChildren": true,
+      "drawsOwnGeometry": false
+    },
+    {
+      "id": "eyes",
+      "label": "Olhos",
+      "parent": "eye-features",
+      "renderOrder": 12,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": null,
+      "visible": true,
+      "optional": false,
+      "file": "parts/eyes.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "eyelids",
+      "label": "Pálpebras",
+      "parent": "eye-features",
+      "renderOrder": 13,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": null,
+      "visible": true,
+      "optional": false,
+      "file": "parts/eyelids.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "brows",
+      "label": "Sobrancelhas",
+      "parent": "eye-features",
+      "renderOrder": 14,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": null,
+      "visible": true,
+      "optional": false,
+      "file": "parts/brows.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "facial-hair",
+      "label": "Bigode e barbicha",
+      "parent": "head",
+      "renderOrder": 15,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": null,
+      "visible": true,
+      "optional": false,
+      "file": "parts/facial-hair.svg",
+      "fileIncludesChildren": true,
+      "drawsOwnGeometry": false
+    },
+    {
+      "id": "mustache",
+      "label": "Bigode",
+      "parent": "facial-hair",
+      "renderOrder": 16,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": null,
+      "visible": true,
+      "optional": false,
+      "file": "parts/mustache.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "goatee",
+      "label": "Barbicha",
+      "parent": "facial-hair",
+      "renderOrder": 17,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": null,
+      "visible": true,
+      "optional": false,
+      "file": "parts/goatee.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "glasses",
+      "label": "Óculos retangulares",
+      "parent": "head",
+      "renderOrder": 18,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        346,
+        372
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/glasses.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "hair-front",
+      "label": "Cabelo frontal e cachos",
+      "parent": "head",
+      "renderOrder": 19,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        298,
+        536
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/hair-front.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "arm-right-upper",
+      "label": "Braço direito",
+      "parent": null,
+      "renderOrder": 20,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        245,
+        560
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/arm-right-upper.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "arm-right-forearm",
+      "label": "Antebraço direito",
+      "parent": "arm-right-upper",
+      "renderOrder": 21,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        179,
+        619
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/arm-right-forearm.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    },
+    {
+      "id": "hand-right-rest",
+      "label": "Mão direita",
+      "parent": "arm-right-forearm",
+      "renderOrder": 22,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        230,
+        672
+      ],
+      "visible": true,
+      "optional": false,
+      "file": "parts/hand-right-rest.svg",
+      "fileIncludesChildren": false,
+      "drawsOwnGeometry": true
+    }
+  ]
+}

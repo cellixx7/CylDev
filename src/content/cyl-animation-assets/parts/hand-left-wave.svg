@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="-15 40 580 870" width="580" height="870" stroke-linecap="round" stroke-linejoin="round">
+<title>Mão esquerda aberta para aceno</title>
+<defs>
+<linearGradient id="face-color" x1="0" y1="0" x2=".22" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#AC31D1"/><stop offset=".53" stop-color="#C23DE3"/><stop offset="1" stop-color="#B836D8"/>
+</linearGradient>
+<linearGradient id="skin" x1=".18" y1="1" x2=".92" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#9E2AC1"/><stop offset=".5" stop-color="#B739DD"/><stop offset="1" stop-color="#C03BE1"/>
+</linearGradient>
+<linearGradient id="ringlet" x1=".12" y1="1" x2=".8" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#280839"/><stop offset=".6" stop-color="#361044"/><stop offset="1" stop-color="#491458"/>
+</linearGradient>
+<linearGradient id="iris" x1="0" y1="0" x2=".25" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#26062E"/><stop offset="1" stop-color="#471155"/>
+</linearGradient>
+</defs>
+<g id="hand-left-wave" inkscape:groupmode="layer" inkscape:label="Mão esquerda aberta para aceno" data-pivot-x="432" data-pivot-y="596">
+<path d="M421 602 C414 595 408 587 402 577 C396 567 400 559 407 558 C413 557 419 565 424 572 L429 579 C427 568 421 549 419 537 C417 526 420 519 427 518 C435 517 438 524 440 533 L445 559 L447 521 C447 511 451 507 458 508 C465 509 467 516 466 525 L463 558 L473 529 C476 520 481 518 487 521 C493 524 492 531 490 538 L481 568 L492 549 C497 541 502 540 507 544 C513 548 510 554 507 561 L493 589 C486 604 476 613 463 616 C447 620 434 616 421 602Z" fill="url(#skin)" stroke="#290838" stroke-width="2.4"/>
+<path d="M421 602 C415 596 411 589 407 582 C421 596 433 601 445 605 C466 611 482 599 493 583 C487 599 478 612 463 616 C447 620 434 616 421 602Z" fill="#9827B7"/>
+<path d="M428 579 C436 574 446 578 450 585 M457 565 C466 563 473 565 479 571" fill="none" stroke="#782292" stroke-width="1.8"/>
+<path d="M428 525 C431 526 432 530 432 534 M453 522 L453 530 M481 528 L478 536" fill="none" stroke="#D884F4" stroke-width="2.7"/>
+</g>
+</svg>

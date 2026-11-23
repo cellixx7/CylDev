@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="-15 40 580 870" width="580" height="870" stroke-linecap="round" stroke-linejoin="round">
+<title>Fone intra-auricular</title>
+<defs>
+<linearGradient id="face-color" x1="0" y1="0" x2=".22" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#AC31D1"/><stop offset=".53" stop-color="#C23DE3"/><stop offset="1" stop-color="#B836D8"/>
+</linearGradient>
+<linearGradient id="skin" x1=".18" y1="1" x2=".92" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#9E2AC1"/><stop offset=".5" stop-color="#B739DD"/><stop offset="1" stop-color="#C03BE1"/>
+</linearGradient>
+<linearGradient id="ringlet" x1=".12" y1="1" x2=".8" y2="0" gradientUnits="objectBoundingBox">
+  <stop stop-color="#280839"/><stop offset=".6" stop-color="#361044"/><stop offset="1" stop-color="#491458"/>
+</linearGradient>
+<linearGradient id="iris" x1="0" y1="0" x2=".25" y2="1" gradientUnits="objectBoundingBox">
+  <stop stop-color="#26062E"/><stop offset="1" stop-color="#471155"/>
+</linearGradient>
+</defs>
+<g id="earbud" inkscape:groupmode="layer" inkscape:label="Fone intra-auricular" data-pivot-x="137" data-pivot-y="450">
+<path d="M137 430 C146 430 153 435 156 444 L170 474 C174 483 170 490 163 492 C155 494 151 489 145 481 C134 482 123 475 118 465 C111 451 116 437 126 432 C129 430 133 430 137 430Z" fill="#251A2C" stroke="#290838" stroke-width="1.8"/>
+<path d="M124 439 C133 431 142 435 148 442 C138 438 130 446 132 455 C133 461 136 465 138 468 C127 465 122 456 123 448Z" fill="#635064"/>
+<path d="M129 443 C131 442 135 442 137 443 C131 452 136 466 143 472 C134 468 126 455 129 443Z" fill="#9D7D9A"/>
+<path d="M143 464 C146 459 149 456 153 456 L167 477 C169 482 165 486 161 485 C154 483 146 472 143 464Z" fill="#3C2D43"/>
+</g>
+</svg>

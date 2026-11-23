@@ -1,6 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState, type FormEvent, type MouseEvent, type RefObject } from "react";
 import { assistente as t } from "../../../content/textos/assistente";
 import { botao, botaoCheio, focoVisivel } from "../../../shared/estilos";
+import { Cyl } from "../../../shared/components/cyl/Cyl";
 import { pedirCarrinho } from "../../../shared/lib/assistente/eventos";
 import {
   boasVindas,
@@ -45,11 +46,8 @@ const agora = () => horaCurta(new Date());
 
 function Avatar({ pequeno = false }: { pequeno?: boolean }) {
   return (
-    <span
-      aria-hidden="true"
-      className={`grid shrink-0 place-items-center rounded-full bg-destaque font-titulo font-bold text-destaque-texto ${pequeno ? "size-8 text-base" : "size-10 text-medio"}`}
-    >
-      {t.avatar}
+    <span aria-hidden="true" className={`block shrink-0 overflow-hidden rounded-full bg-realce ${pequeno ? "size-8" : "size-10"}`}>
+      <Cyl size={pequeno ? 32 : 40} recorte="rosto" animation="idle" autoplay={false} />
     </span>
   );
 }
