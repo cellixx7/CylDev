@@ -249,6 +249,9 @@ test.describe("assistente do chat (interface e ritmo)", () => {
     await page.goto("/");
     const convite = page.getByTestId("convite-assistente");
     await expect(convite).toContainText(t.convite);
+    const cx = (await convite.boundingBox())!;
+    const bx = (await botaoAbrir(page).boundingBox())!;
+    expect(cx.y + cx.height).toBeLessThanOrEqual(bx.y); // a caixa fica acima do botão, com a setinha entre os dois
     await page.clock.runFor(5100);
     await expect(convite).toHaveCount(0);
     await page.clock.runFor(25_000);

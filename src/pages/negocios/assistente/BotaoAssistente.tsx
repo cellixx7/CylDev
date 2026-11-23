@@ -84,7 +84,7 @@ export function BotaoAssistente() {
           onMouseLeave={() => setPausado(false)}
           onFocus={() => setPausado(true)}
           onBlur={() => setPausado(false)}
-          className="fixed right-4 bottom-20 z-40 flex max-w-[min(18rem,calc(100vw-2rem))] items-start gap-2 rounded-pequeno border border-linha bg-texto py-2 pr-2 pl-3 text-menor font-semibold text-fundo shadow-lg sm:right-5"
+          className="fixed right-4 bottom-19 z-40 flex max-w-[min(18rem,calc(100vw-2rem))] items-start gap-2 rounded-pequeno border border-linha bg-texto py-2 pr-2 pl-3 text-menor font-semibold text-fundo shadow-lg sm:right-5"
         >
           <button type="button" onClick={abrir} className={`cursor-pointer border-0 bg-transparent p-0 py-1 text-left text-menor font-semibold text-fundo ${focoVisivel}`}>
             {t.convite}
@@ -99,6 +99,8 @@ export function BotaoAssistente() {
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
           </button>
+          {/* Setinha apontando para o botão (que fica logo abaixo, à direita). */}
+          <span aria-hidden="true" style={{ right: "1rem" }} className="absolute -bottom-2 size-4 rotate-45 border-r border-b border-linha bg-texto" />
         </div>
       )}
       {!aberto && (
