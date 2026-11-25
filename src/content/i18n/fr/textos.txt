@@ -118,3 +118,164 @@ xao8Rs Étape {1} sur {2}
 1ksRJy Ce qui change à chaque étape
 EXfk7X Avant
 Yfbue8 Après
+cDRFRV Comprenez comment fonctionne chaque livraison
+zwM0Io Chaque partie ci-dessous montre, avec un exemple, ce que je livre et comment cela aide au quotidien de l'activité. Chaque bloc a son propre lien : copiez-le et envoyez-le à qui vous voulez pour montrer exactement ce sujet.
+-Fxcv6 Choisissez le sujet
+AHYzSq Copier le lien
+4s2BFG Lien copié !
+RF2HhO Copiez l'adresse dans la barre du navigateur.
+b7wKpc Exemple
+afyTLw En quoi cela aide
+Fn12K- Quand c'est utile
+jWrU2j Je veux quelque chose comme ça
+j7sQyi Retour à la page d'accueil
+5A9sXB Comprendre comment ça marche
+_HcKQp Tableur organisé
+NIi7Sn Le tableur que vous avez déjà, mis en ordre
+_splAe Les données sont éparpillées, chacun remplit à sa façon et le total ne correspond jamais à ce que vous attendiez.
+PjziNH Un onglet par sujet : ventes, stock, caisse.
+OlWSU3 Colonnes uniformisées, pour que tout le monde remplisse de la même façon.
+g56U9O Des totaux qui concordent, pour que vous puissiez vous fier aux chiffres.
+Etg0vR Une page d'instructions pour que l'équipe ne se perde pas.
+doGNYF Avant et après un tableur de ventes
+9eGsLO Tableau de bord de base
+cSltFo Les chiffres du mois sur un seul écran
+gQey22 Vous voulez savoir combien vous avez vendu et ce qui se vend le plus, mais vous devez refaire le calcul à chaque fois.
+VYseqp Vous ouvrez le fichier et vous voyez déjà les ventes, les produits et l'avancement du mois.
+noociG Filtre par période pour comparer une semaine avec l'autre.
+StGItq Stock et ventes suivis avec des chiffres, et non au jugé.
+Nz2EIH Sous Excel ou Power BI Desktop, selon ce qui est le plus pratique pour vous.
+6i-4ap Tableau de bord d'un magasin fictif
+NR_Brg Automatisation Excel
+BOTv0v La tâche répétée se lance en un clic
+GOJ43b Chaque semaine, quelqu'un copie, colle, filtre et met en forme la même chose. Cela prend du temps et les erreurs sont faciles.
+KUTpMD Le pas à pas manuel devient un bouton ou une mise à jour automatique.
+s62wo0 Moins d'erreurs de saisie et moins de temps perdu sur des tâches répétitives.
+-yFMMb Réalisé avec VBA ou Power Query, dans l'Excel que vous utilisez déjà.
+KKPyRI Routine hebdomadaire, avant et après
+i0iIjt Site d'une page
+BmiZgd Une page qui amène le client sur votre WhatsApp
+bArrFc Les clients posent toujours les mêmes questions et vous n'avez aucun endroit pour présenter le service et les prix.
+sAe98A Une page avec votre service, vos prix et un bouton WhatsApp.
+MR5tP2 Fonctionne bien sur mobile, d'où vient la majorité des visiteurs.
+Nyk_cj Mise en ligne sur un hébergement gratuit, sur votre propre compte.
+jWZRcL Maquette d'une page fictive
+7UNHPK Automatisation avec Python
+Ze8DlN Ce qu'Excel ne peut pas faire, un script le résout
+G1kXVV Vous rassemblez des dizaines de fichiers, vous copiez à la main des données de PDF ou de sites, et cela vous prend des heures chaque semaine.
+fo2c1K Un script fait pour votre tâche, pas un programme générique.
+SW3jIM Lit les PDF, les tableurs et les sites, et livre le résultat prêt.
+9qOZLj Vous recevez des instructions pour le lancer et l'ajuster vous-même.
+RUDMKA À quoi peut ressembler le parcours d'un script
+ESmInY Système sur mesure
+GFugqB Quand le tableur ne suffit plus
+Hj0C6C L'activité a grandi, le tableur est devenu lourd et plusieurs personnes doivent l'utiliser en même temps.
+K4gftK Cela commence par un échange pour comprendre votre cas.
+BJpSVn Vous recevez une proposition écrite avant tout paiement.
+MyH219 Le système est conçu autour de votre routine, et non l'inverse.
+rhCa35 Du premier contact à la proposition
+mzbHl8 Je ne sais pas lequel choisir
+3KcrZQ Quel service vous convient ?
+LergUg Répondez à deux questions au plus et je vous montre par où commencer. Vous restez libre de choisir n'importe quel service.
+jmzY0F Question {1}
+baHbWm Retour
+etx0Sp Fermer le guide
+NePr0K Par où commencer
+1i16FZ Voir les détails
+kS6p8G Faire un devis
+z9ILhK Je ne sais pas quel service choisir et je voudrais en discuter.
+cR7lLE Ce n'est qu'une suggestion. Le prix et le délai se trouvent dans les détails et dans l'estimation de chaque service.
+eT9Fa1 Que voulez-vous résoudre ?
+L1YnL5 Gérer les chiffres de mon activité
+9Vscco Avoir une page pour présenter mon activité
+5Sj_Ij Automatiser des tâches avec un script, au-delà d'Excel
+xyvoy1 Le tableur ne suffit plus et j'ai besoin d'un système
+gHFhrj Je veux un bot pour mon serveur Discord
+Rsu0tg Je ne sais pas, je préfère en discuter
+zsXcG0 Qu'est-ce qui vous gêne le plus aujourd'hui ?
+SZHD_G Le tableur est en désordre, ou j'utilise encore un cahier et des messages
+BEVAZS J'ai les données, mais je veux voir comment va l'activité sans faire les calculs
+mb2S3L Je répète la même tâche dans le tableur chaque semaine
+0HRZBG D'abord, les données sont mises en ordre, avec des totaux qui concordent. C'est la base de tout tableau de bord ou automatisation ensuite. En combinant des services, il y a une remise.
+taGd0Z Un tableau de bord montre l'essentiel de votre activité sur un écran. Si les données sont encore en vrac, le tableur organisé peut passer en premier.
+hDFKMS La tâche répétée se lance en un clic. Je confirme ce qui peut être automatisé après avoir vu votre cas.
+H2VeIO Une page avec votre service et un bouton qui amène le client directement sur votre WhatsApp.
+UOxAzA Un script Python fait la tâche répétée à votre place, même avec des PDF, de nombreux fichiers ou des sites. Si la tâche tient dans Excel, l'automatisation Excel peut mieux convenir.
+UlxYEi Vous montez un devis de base en répondant aux questions. Le montant est un point de départ : après l'échange, la proposition écrite fixe le périmètre.
+k_0o-N Les bots Discord se trouvent dans l'espace Communauté, avec le prix et l'abonnement mensuel expliqués là-bas.
+6fh3av Voir les bots dans la Communauté
+aznwc5 Pas de problème, racontez-moi votre cas et je vous aide à choisir.
+64mCWS Me parler sur WhatsApp
+pComl1 Change le prix.
+9isbsE Ne change pas le prix.
+ZM3krG Cochez autant que vous voulez.
+PpO64G Qu'est-ce que c'est ?
+B7YyIe Quel type d'activité est-ce ?
+1xiJPK Type d'activité
+NJlb93 Magasin ou commerce de détail
+VWML8A Services et relation client
+nw06-k Restauration
+A6KNUf Atelier ou technicien
+fBCxgC Autre
+LGeB3B Cela m'aide à choisir ce qu'il faut mettre au départ : stock et ventes pour un magasin, agenda et relances pour un prestataire de services, recettes et coûts pour la restauration. Cela ne change pas le prix.
+dxkQn6 Y a-t-il des données sensibles ?
+HN3TDE Données sensibles
+hPub_I Oui
+clNLuw Non
+3c8Z-f Je ne sais pas
+Ef1szZ Les données sensibles sont des informations qui peuvent exposer des personnes ou votre activité : numéros de pièce d'identité, adresse et téléphone des clients, données de santé, salaires, marge bénéficiaire. Vous n'avez pas besoin de m'envoyer tout cela pour demander un devis. Si vous en avez, je travaille avec une copie dans laquelle ces champs sont remplacés par des exemples, et vous collez les vraies données ensuite, par vous-même. Cela ne change pas le prix, seulement la façon de travailler.
+IQnoOW Pour quel type de serveur ?
+jDTial Type de serveur
+HZsjDz Communauté de jeu
+bRVvEt Boutique ou marque
+esLIGS Études ou groupe
+2zQtz2 Communauté de jeu, boutique, groupe d'étude : chacun demande une façon différente d'organiser les salons et les règles. Cela ne change pas le prix.
+E9wEmr Je réunis des suivis éparpillés (cahier, messages, plusieurs onglets) dans un seul tableur, avec des formules qui additionnent et vérifient pour vous. Vous l'ouvrez, vous le remplissez et vous voyez le total, sans avoir besoin de connaître Excel.
+nw2VyZ Tableur prêt sous Excel, avec les colonnes de votre activité
+J5SakT Formules et totaux automatiques, expliqués dans un onglet de lecture rapide
+PNwyZH Listes de choix pour éviter les fautes de frappe
+SFtH9L Une journée de relecture incluse dans le délai
+HQK8n9 Forfait à partir de R$ 100. Chaque heure de travail en plus ajoute R$ 50, et vos réponses montrent où cela arrive.
+eOPSDy Ajustements après la livraison : R$ 50 par heure.
+DzgJS9 Avez-vous déjà un tableur ?
+Tl-7dX Point de départ
+Z8pdfQ Oui, et il est bien en ordre
+eOgQnK Oui, et il faut un gros rangement
+EzR3o8 Je n'ai que des notes ou du papier
+5WNqLh Non, je pars de zéro
+KBu0aB Le nettoyage simple est déjà dans le forfait : retirer les lignes vides et en double et uniformiser les colonnes. Des données éparpillées sur plusieurs onglets, avec des dates et des valeurs saisies de façons différentes, demandent plus de travail de rangement. Si c'est un cahier ou du papier, nous construisons le modèle ensemble.
+XYsafw De quels suivis le tableur a-t-il besoin ?
+oA7dhf Suivis en plus
+6Etk9L Clients
+dBu3Yr Stock
+PP5dNU Ventes
+VdrRwY Comptes à payer et à recevoir
+ee07Qk Agenda et relances
+00QmoN Un suivi est un onglet pour suivre une chose, comme les clients ou le stock. Le premier est inclus dans le forfait. Chaque suivi en plus est du travail supplémentaire, et l'écran montre combien.
+Ei0azT Le tableur contiendra-t-il des montants d'argent ?
+Y-EkCk Montants d'argent
+ZFjkxD Oui : prix, ventes ou coûts
+JHZLls Non : seulement des fiches et des listes
+YjPV97 Avec des prix, des ventes ou des coûts, chaque total et chaque formule sont visibles et expliqués, pour que vous puissiez vérifier seul. Cela demande un soin supplémentaire, et l'écran montre combien.
+pEc0h_ Je transforme vos chiffres en un tableau de bord avec peu de graphiques et d'indicateurs, fait pour répondre aux questions de votre quotidien : combien j'ai vendu, qui achète le plus, ce qui stagne.
+4Fqrrr Tableau de bord prêt, dans le format de votre choix
+oQ-P7e Indicateurs et graphiques reliés à votre tableur
+c7I_Ey Filtres simples, comme la période et la catégorie
+nH-jUs Excel est la norme et s'ouvre sur n'importe quel ordinateur.
+8_AKaK Power BI : je livre le fichier. Pour le partager en ligne avec l'équipe, il faut une licence payante (Pro) de Microsoft.
+DPufnC D'où viennent vos chiffres ?
+a_lwbV Origine des chiffres
+NPrO9g Un tableur à moi
+UhOd38 Export d'un système
+NkziTW Un fichier que vous téléchargez depuis un autre programme (par exemple le système du magasin), généralement en Excel ou CSV.
+dw223Z Plusieurs fichiers épars
+nqQ3A7 Je n'en ai pas encore
+77sZiC Un tableur à vous est le chemin le plus court. Les exports de systèmes et plusieurs fichiers épars demandent du temps pour être réunis et nettoyés, et cela change le prix. Si vous n'avez encore rien d'organisé, le tableur organisé peut passer en premier.
+589KZB À quoi le tableau de bord doit-il répondre ?
+KcMz9u Questions en plus
+dipLdt Combien j'ai vendu
+8MABMV Qui achète le plus
+oLiOvi Ce qui stagne
+Vtk72z Combien il reste de bénéfice
+xLFk95 Autre
+pktfeQ Chaque question devient un indicateur ou un graphique. Les deux premières sont incluses. Chaque question en plus est du travail supplémentaire, et l'écran montre combien.

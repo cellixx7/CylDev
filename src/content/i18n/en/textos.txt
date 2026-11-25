@@ -118,3 +118,952 @@ xao8Rs Step {1} of {2}
 1ksRJy What changes in each step
 EXfk7X Before
 Yfbue8 After
+cDRFRV Understand how each deliverable works
+zwM0Io Each part below shows, with an example, what I deliver and how it helps in the day-to-day of the business. Every block has its own link: copy it and send it to whoever you want to show exactly that topic.
+-Fxcv6 Choose a topic
+AHYzSq Copy link
+4s2BFG Link copied!
+RF2HhO Copy the address from the browser bar.
+b7wKpc Example
+afyTLw How this helps
+Fn12K- When it makes sense
+jWrU2j I want something like this
+j7sQyi Back to the home page
+5A9sXB Understand how it works
+_HcKQp Organized spreadsheet
+NIi7Sn The spreadsheet you already have, in order
+_splAe The data is scattered, each person fills it in differently and the total never matches what you expected.
+PjziNH One sheet per topic: sales, stock, cash.
+OlWSU3 Standardized columns, so anyone fills them in the same way.
+g56U9O Totals that match, so you can trust the numbers.
+Etg0vR An instructions page so the team doesn't get lost.
+doGNYF Before and after of a sales spreadsheet
+9eGsLO Basic dashboard
+cSltFo The month's numbers on a single screen
+gQey22 You want to know how much you sold and what sells most, but you have to work it out every time you ask.
+VYseqp You open the file and see sales, products and how the month is going.
+noociG Period filter to compare one week with another.
+StGItq Stock and sales tracked with numbers, not by guesswork.
+Nz2EIH In Excel or Power BI Desktop, whichever is more practical for you.
+6i-4ap Dashboard of a fictional store
+NR_Brg Excel automation
+BOTv0v The repeated task runs with one click
+GOJ43b Every week someone copies, pastes, filters and formats the same thing. It takes work and it's easy to make mistakes.
+KUTpMD The manual step by step becomes a button or an automatic update.
+s62wo0 Fewer typing errors and less time spent on repeated tasks.
+-yFMMb Made with VBA or Power Query, inside the Excel you already use.
+KKPyRI Weekly routine, before and after
+i0iIjt One-page website
+BmiZgd A page that takes the customer to your WhatsApp
+bArrFc Customers always ask the same things and you have no place to show your service and prices.
+sAe98A A page with your service, your prices and a WhatsApp button.
+MR5tP2 Works well on the phone, which is where most people arrive from.
+Nyk_cj Goes live on free hosting, under your own account.
+jWZRcL Sketch of a fictional page
+7UNHPK Python automation
+Ze8DlN What Excel can't reach, a script solves
+G1kXVV You combine dozens of files, copy data from PDFs or websites by hand, and it takes hours every week.
+fo2c1K A script made for your task, not a generic program.
+SW3jIM Reads PDFs, spreadsheets and websites, and delivers the finished result.
+9qOZLj You get instructions to run and adjust it yourself.
+RUDMKA What the path of a script can look like
+ESmInY Custom system
+GFugqB When the spreadsheet is no longer enough
+Hj0C6C The business grew, the spreadsheet got heavy and several people need to use it at the same time.
+K4gftK It starts with a conversation to understand your case.
+BJpSVn You receive a written proposal before any charge.
+MyH219 The system is designed around your routine, not the other way around.
+rhCa35 From first contact to proposal
+mzbHl8 I don't know which to choose
+3KcrZQ Which service suits you?
+LergUg Answer up to two questions and I'll show you where to start. You're still free to choose any service.
+jmzY0F Question {1}
+baHbWm Back
+etx0Sp Close the guide
+NePr0K Where to start
+1i16FZ See details
+kS6p8G Get a quote
+z9ILhK I don't know which service to choose and I'd like to talk.
+cR7lLE It's only a suggestion. You can see the price and deadline in the details and in each service's estimate.
+eT9Fa1 What do you want to solve?
+L1YnL5 Take care of my business numbers
+9Vscco Have a page to present my business
+5Sj_Ij Automate tasks with a script, beyond Excel
+xyvoy1 The spreadsheet is no longer enough and I need a system
+gHFhrj I want a bot for my Discord server
+Rsu0tg I don't know, I'd rather talk
+zsXcG0 What gets in the way most today?
+SZHD_G The spreadsheet is a mess, or I still use a notebook and messages
+BEVAZS I have the data, but I want to see how the business is doing without working it out myself
+mb2S3L I repeat the same task in the spreadsheet every week
+0HRZBG First the data is put in order, with totals that match. It's the base for any dashboard or automation later. If you combine services, there is a discount.
+taGd0Z A dashboard shows what matters in your business on one screen. If the data is still scattered, the organized spreadsheet may come first.
+hDFKMS The repeated task runs with one click. I confirm what can be automated after seeing your case.
+H2VeIO A page with your service and a button that takes the customer straight to your WhatsApp.
+UOxAzA A Python script does the repeated task for you, even with PDFs, many files or websites. If the task fits inside Excel, Excel automation may suit you better.
+UlxYEi You build a base quote by answering the questions. The price is a starting point: after our conversation, the written proposal settles the scope.
+k_0o-N Discord bots are in the Community area, with the price and the monthly fee explained there.
+6fh3av See the bots in the Community
+aznwc5 No problem, tell me about your case and I'll help you choose.
+64mCWS Talk to me on WhatsApp
+pComl1 Changes the price.
+9isbsE Does not change the price.
+ZM3krG Select as many as you like.
+PpO64G What is this?
+B7YyIe What kind of business is it?
+1xiJPK Type of business
+NJlb93 Store or retail
+VWML8A Services and customer support
+nw06-k Food
+A6KNUf Workshop or technician
+fBCxgC Other
+LGeB3B This helps me choose what to put in first: stock and sales for a store, schedule and follow-ups for a service provider, recipes and costs for food. It does not change the price.
+dxkQn6 Does it have sensitive data?
+HN3TDE Sensitive data
+hPub_I Yes
+clNLuw No
+3c8Z-f I don't know
+Ef1szZ Sensitive data is information that can expose people or your business: ID numbers, customers' addresses and phone numbers, health data, salaries, profit margins. You don't need to send me any of that to ask for a quote. If you have it, I work with a copy in which those fields were replaced by examples, and you paste the real data later, on your own. This doesn't change the price, only the way of working.
+IQnoOW For what kind of server?
+jDTial Type of server
+HZsjDz Gaming community
+bRVvEt Store or brand
+esLIGS Study or group
+2zQtz2 Gaming community, store, study group: each one calls for a different way of organizing channels and rules. It does not change the price.
+E9wEmr I gather loose controls (notebook, messages, several tabs) into a single spreadsheet, with formulas that add up and check for you. You open it, fill it in and see the total, without needing to understand Excel.
+nw2VyZ Ready-made Excel spreadsheet, with your business's columns
+J5SakT Automatic formulas and totals, explained in a quick-read tab
+PNwyZH Pick lists to avoid typing mistakes
+SFtH9L One day of review included in the deadline
+HQK8n9 Package from R$ 100. Each extra hour of work adds R$ 50, and your answers show where that happens.
+eOPSDy Adjustments after delivery: R$ 50 per hour.
+DzgJS9 Do you already have a spreadsheet?
+Tl-7dX Starting material
+Z8pdfQ Yes, and it's in good order
+eOgQnK Yes, and it needs a big cleanup
+EzR3o8 I only have notes or paper
+5WNqLh No, I'm starting from scratch
+KBu0aB Simple cleanup is already in the package: removing empty and repeated rows and standardizing the columns. Data scattered across several tabs, with dates and values typed in different ways, takes more work to tidy up. If it's a notebook or paper, we build the template together.
+XYsafw Which controls does the spreadsheet need?
+oA7dhf Extra controls
+6Etk9L Customers
+dBu3Yr Stock
+PP5dNU Sales
+VdrRwY Accounts payable and receivable
+ee07Qk Schedule and follow-ups
+00QmoN A control is a tab to track one thing, like customers or stock. The first one is included in the package. Each extra control is extra work, and the screen shows how much.
+Ei0azT Will the spreadsheet have money values?
+Y-EkCk Money values
+ZFjkxD Yes: prices, sales or costs
+JHZLls No: only records and lists
+YjPV97 With prices, sales or costs, every total and every formula is visible and explained, so you can check it yourself. This takes extra care, and the screen shows how much.
+pEc0h_ I turn your numbers into a dashboard with a few charts and indicators, made to answer your day-to-day questions: how much I sold, who buys most, what is stalled.
+4Fqrrr Ready dashboard, in the format you choose
+oQ-P7e Indicators and charts linked to your spreadsheet
+c7I_Ey Simple filters, such as period and category
+nH-jUs Excel is the standard and opens on any computer.
+8_AKaK Power BI: I deliver the file. To share it online with the team, a paid Microsoft license (Pro) is needed.
+DPufnC Where do your numbers come from?
+a_lwbV Source of the numbers
+NPrO9g A spreadsheet of mine
+UhOd38 Export from a system
+NkziTW A file you download from another program (for example, the store's system), usually in Excel or CSV.
+dw223Z Several loose files
+nqQ3A7 I don't have any yet
+77sZiC A spreadsheet of yours is the shortest path. Exports from systems and several loose files take time to combine and clean, and that changes the price. If you have nothing organized yet, the organized spreadsheet may come first.
+589KZB What does the dashboard need to answer?
+KcMz9u Extra questions
+dipLdt How much I sold
+8MABMV Who buys most
+oLiOvi What is stalled
+Vtk72z How much profit is left
+xLFk95 Other
+pktfeQ Each question becomes an indicator or chart. The first two are included. Each extra one is extra work, and the screen shows how much.
+t_VVF5 Where do you want to see the dashboard?
+yR9g5J Dashboard format
+oI4REZ Excel
+GXyy9N Power BI (file)
+3JX4w7 Power BI is a Microsoft program for charts. Here I deliver a file to open in it; to share it over the internet Microsoft requires a paid license.
+sM7FaJ Excel is the simplest and opens on any computer. Power BI is more visual and changes the price, but to share it with other people over the internet it requires a paid Microsoft license.
+EqvFZ5 Automation
+3UWjmr I take a task you repeat every day or every week (copying data, combining files, sending notices) and make the computer do it for you.
+jMaVxA Automatic routine running on your computer or in the cloud
+2gjvmL Simple instructions to use it and to stop it
+RZWun2 Test with sample data before delivery
+4QsAmO The price starts at R$ 300 and changes according to your answers.
+SxpMGk What do you want to automate?
+BnlW8f Extra tasks
+zxtjik Spreadsheet that fills itself in
+8Ptokx The spreadsheet receives the data without you typing it, for example coming from another file.
+gX-w_o Notices and messages
+wOgXIM Combine data from several places
+EfFOTh I don't know yet
+uOUgvj Think about what you always redo the same way. The first task is included. Each extra task is extra work, and the screen shows how much. If you can't describe it, tell me on WhatsApp and I'll help.
+csdr0K Where does this happen today?
+-CLWrp Where it happens
+L15Ppn In Excel
+Hz4AqD In a system
+23Qo_1 The management program or online store you already use.
+qazxFg On WhatsApp or e-mail
+FS2Y6I In several places
+caVDI0 Inside Excel is the simplest. When the task involves a system, WhatsApp or several places, the pieces have to be connected, and that changes the price.
+mN4oG_ A simple, fast page that presents your business and leads the person to contact you, preferably on WhatsApp.
+m7N3_Z Responsive page, designed for the phone first
+Y4uPra Button straight to your WhatsApp
+GYcIw2 Texts organized with you in conversation
+YaRR91 The domain (the page's address) and hosting may have their own cost. I explain the options before you decide.
+PfSVoV What does the page need to do?
+MItHsy Extra goals
+_C99cF Receive contacts on WhatsApp
+l_TKSu Show services and prices
+RaQ1dK Show photos and work
+erNYNZ Receive bookings
+MHkAo3 The customer picks the day and time straight from the page.
+HnmBQd The page works best with few goals. The first two are included. Each extra one is extra work, and the screen shows how much.
+j2a7IF Do you already have a logo and photos?
+yY9gbI Logo and photos
+aKkTBI Only the logo
+78Clcm Real photos of your work convince more than stock images. With no material at all, I need to build a simple look with you, and that changes the price.
+5cXDRg How many pages?
+Kq2IFy Number of pages
+RdX0BJ One page only
+O5Ox55 Everything on a single page that scrolls from top to bottom.
+dAEFft Up to 3 pages
+CRF-gf Separate pages, for example services and contact, instead of everything in a single scroll.
+h7KKUK A single page scrolls from top to bottom with everything. Several pages separate, for example, services and contact, and that changes the price.
+vVNCnp I write a Python script for the task you repeat: combining spreadsheets and files, reading PDFs and receipts, sending messages or fetching data from websites. The result comes out ready, like a spreadsheet or a report.
+2hebYZ Python script made for your task
+II0vKX Instructions to run and adjust it
+AsPF6P The price starts at R$ 300 and changes according to your answers: a simple task stays at the base price, a more complex task adds hours (R$ 50 per hour).
+gZLcU1 If the task fits inside Excel, Excel automation solves it at the same starting price. Python is for what Excel can't reach.
+2-aW9P What does the script need to do?
+hDYnwr Combine spreadsheets or files
+BR0yim Read PDFs or receipts and move them into a spreadsheet
+0Qif23 Send e-mails or messages
+RHwDuL Fetch data from websites
+acLIFS The program opens web pages and copies the information you need.
+8zU3dB Generate a finished report
+VCngZZ Where does the data come from?
+5eo2vt Source of the data
+QoObeO From spreadsheets or CSV files
+TK4Y2M CSV is a simple table file that any spreadsheet opens. It's the easiest case to handle.
+UwrlT0 From PDFs or images
+MDl3St Reading the text of PDFs and photos of receipts needs checking, because automatic reading can make mistakes.
+JtYpxe From a website or system
+cQkwaT From several places
+Re6Pqe Spreadsheet and CSV are the simplest case and stay at the base price. PDFs and images need reading and checking. Websites or systems need the pieces to be connected, and several places at once are even more work.
+dYa74P How will the script run?
+U1I_Jl How it runs
+oj8iFT I run it whenever I want
+ZjO5yi By itself, at a set time
+K6xxLg The program runs on its own, for example every day at 8 am, without you opening anything.
+X64oi7 With a screen of buttons
+uT_pbf A small window with buttons, so anyone can use it without touching code.
+OxojNz Running it whenever you want is the simplest. At a set time requires setting up the schedule, and a screen of buttons is a small program of its own.
+cf5g9L Essential Discord bot
+G5_cOK A Discord bot with the essentials for your server: welcome messages, rules, announcements and ticket support.
+Q15nfr Bot configured on your server
+57GXUo Welcome messages, announcements and ticket support
+Cp-7Tk Instructions for your team to use it
+EpU2Pz Support for small adjustments in the first month
+npjf-D Monthly fee of 10% of the creation price plus hosting, charged separately.
+X9iw-p The pilot discount applies only to creation.
+c_WHrI What does the bot need to do?
+cjes8y Extra features
+-J4IPm Welcome and rules
+67_nyi Support tickets
+l7j3fb A private channel the bot opens to help one person.
+pFCtYp Announcements
+FokgQQ Roles by reaction
+LM-m6P The person gets a role on the server by clicking an emoji.
+yCSZpR A ticket is a private channel the bot opens to help one person. Role by reaction is when the person gets a role by clicking an emoji. The first two features are included. Each extra one is extra work, and the screen shows how much.
+MoUZbU Who hosts the bot?
+fQbfDy Hosting
+LNxC9N Marcelo hosts it
+2xwEm4 I keep the bot running all the time on a server. That's why the monthly fee exists.
+wqElND I host it myself
+o-bss9 You keep the bot running on your own, on your own computer or server.
+ik4e-Z Hosting is keeping the bot running all the time on a server. I can take care of it (that's why the monthly fee exists) or you host it yourself. It doesn't change the creation price.
+Za24eL Discord bot with AI
+VUKJqC Everything in the essential bot, plus automatic replies made by artificial intelligence, with rules you define.
+Kh9hDb Everything in the essential bot
+6fkkDI AI replies, in the channels you choose
+Z6fZ_w Limits and rules for what the AI may or may not answer
+tPd6EW Instructions to track usage
+RT7P_4 AI usage is billed directly to your account with the provider, not by me.
+JUOw-C Monthly fee of 10% of the creation price plus hosting.
+LIw3US What should the AI answer?
+xAfsad Extra roles
+pjsFNZ Frequently asked questions
+_iQxYB The AI answers the questions that repeat, based on texts you give me.
+fiam4q Free conversation
+ELSVLd The AI answers about many subjects, not only the ones you defined. It needs more care with the limits.
+MPVNPo Help with rules
+HnyoI1 The AI explains the server rules and guides anyone who has questions about them.
+KDNjUo The AI answers better when the subject is limited. The first role is included. Each extra one is extra work, and the screen shows how much.
+95xw14 Do you already have an account with an AI provider?
+LzVwg1 AI provider account
+fP5SDs No, I need help
+LxD0h8 I explain how to open the account with the AI provider.
+hvWU9X I don't know what that is
+Xaj5yq An AI provider is the company that supplies the model (for example, OpenAI or Anthropic). You open an account, and the usage appears on your bill. If you've never done this, I explain the way, and that changes the price.
+E9jqTH For when the need is bigger: a system designed for your process. The price starts at a starting point and your answers show where it grows. The written proposal settles the scope, the deadline and the price.
+HxZgzK Initial conversation to understand the process
+P8LtOF Written proposal before starting
+mT6yCC Delivery in stages, so you can follow along
+P_KZIS Price settled in the proposal, according to the size
+tskHQ3 The price is a starting point: the proposal settles the scope. Each extra hour of work adds R$ 50.
+pSvrzj Big projects go into a queue and depend on my schedule.
+IvOk9M How will the system be charged to customers?
+CslgwR Billing
+i-cLwx Monthly fee (subscription)
+dUX1kY By usage
+OxGIWs The customer pays according to how much they use, for example per order or per query.
+vRLX8D One time only
+o1-t_m That's fine: we decide the type in our conversation.
+-GQChN This is how you will receive payments from your customers through the system. A subscription requires tracking who paid and who is late, and that changes the price.
+Ux1VdD How many types of user will the system have?
+UevcdF Types of user
+3jyt-2 Just one type
+oNOQWv Two types (for example, customer and administrator)
+XEm6Sg Three or more
+IFN5hF Each type of user sees and does different things: the owner sees everything, the customer sees only their own. The more types, the more access rules, and that changes the price.
+xRgcWy Where will the application run?
+YP9LXC Where it runs
+thEQkS In the browser
+k01oWF Opens from an internet address, with nothing to install.
+OjmPHQ On the phone
+OY_Ad_ An app installed on the device.
+SXtIOS On the phone and in the browser
+ymK9NG In the browser, it opens from an address, with nothing to install. On the phone, it's an installed app, and doing both is more work.
+L0eb5r Does it need to work without internet?
+5vqfjG Without internet
+2a5tzD No, always with internet
+Alj0Kk Yes, it needs to work without internet
+Qwz9Bi Working without internet requires storing the data on the device and syncing later. It's more work, and that changes the price.
+KdYN0k Does it need login (username and password)?
+Tlook7 Login
+G32bOm With login, each person signs in with their own account and sees only what is theirs.
+S6h_xO Does it need sign-up with e-mail?
+9o4Wjl Sign-up with e-mail
+1hVesH The person creates the account themselves and confirms the e-mail.
+_cRaPJ Which payment method do you already use?
+nvXf6d Payment method
+J_vMVR Mercado Pago
+xIzgWw A company that receives the customer's payment and notifies the system.
+TQjsWH Stripe
+tYpx9S An international company that receives the customer's payment, widely used for cards and subscriptions.
+kcqWgx Bank or card machine
+x76jVc None yet
+alrkXz It is the company that receives the customer's money and notifies the system. If you don't have one yet, I help you choose and open the account, and that changes the price.
+fddWNC Does it need to issue invoices?
+74Kib4 Invoice
+jw_DsA Issuing invoices through the system depends on your accountant and your municipality. I confirm the way in our conversation.
+xC4tai Which systems does it need to talk to?
+AQJNwr Which systems
+CGifMH Spreadsheet (Excel or Google)
+RvGyEr Management system (ERP)
+YJcURC Online store
+ar9DuS An existing database
+r6Pv6P Select all that apply. The first one is included; each extra one is extra work, and the screen shows how much.
+UU4hni Do you have access to their API?
+RXkQNW API access
+6H1mMo An API is the door the other system opens to talk to yours. Without access, I have to look for another way, and that changes the price.
+pfGSh1 Which reports?
+p6Hr6B Reports
+arSxjB System usage
+L5gH4e The first report is included; each extra one is extra work, and the screen shows how much.
+UiH866 Does it need to export to Excel or PDF?
+moUj_n Export
+O6hP6i To Excel
+wjdzTW To PDF
+UbyzVf To both
+oxSIdj It's a button that downloads the finished report, in Excel or PDF. Each format is a little extra work.
+PEWfHL What kind of sensitive data?
+FdNxbX Type of data
+xfgM2a Health
+Qjjow9 Personal documents (ID numbers)
+wFo04_ Financial data
+V2pZY0 Select the ones the system will store. The first one is included; each extra one requires more care, and the screen shows how much.
+zTPNik Does it need a privacy policy and terms of use?
+Gm64B3 Policy and terms
+h53agE Yes, a base text
+EHGd7K I put together a base text with you. It's not legal advice: for it to hold as a contract, it's worth having someone who knows the law review it.
+3BwEq8 What kind of system do you have in mind?
+vnk4l9 Type of system
+lbHeiq SaaS (customers pay a subscription)
+9Iv_Os SaaS is an internet system that several companies or people use, each with their own account, paying a subscription. It requires account and billing control. A website with a database that only you manage is not SaaS.
+Mqhiod Website with a logged-in area
+PaBZKU An ordinary website that has a restricted part: the person signs in with a username and password and sees only what is theirs.
+QIajV4 App
+2Pyc7U A program made to use on the phone, in the browser or both, with its own screens and stored data.
+4csXmN Computer program
+IpLjHT A program installed on Windows, with no need for an internet address to open.
+6AcEsu SaaS is a system you sell by subscription. A website with a logged-in area has a part only for people who sign in with an account. An app runs on the phone or in the browser. A computer program is installed on the PC. “I don't know yet” doesn't change the price: we decide in our conversation.
+OwZYzk Who will use it?
+f1oG9O Who uses it
+gA0koD Only me and my team
+Rh3n6V A few known people, with no sign-up open to the public.
+xPnbrw My customers
+XZC5rV People you choose and approve; each one signs in with their own account.
+eW62iL Anyone (open to the public)
+uB6zql Anyone can access or create an account. It requires more care with security.
+6_jTZs A system only for the team is simpler. For customers or the public, access and security rules come in, and that changes the price.
+HQ5azh Does it need to receive payment through the system?
+bpuWDq Payment
+pGS70r Yes, Pix and card
+vaMfGI One-off payment: the customer pays and the system confirms receipt.
+Nvooqp Yes, recurring subscription
+zljUYh The customer is charged automatically every month. Declined cards and cancellations have to be handled.
+mRE00- Receiving through the system requires connecting to a payment company and handling failed payments. Recurring subscription is more work than Pix and card.
+VUL1ou Does it need to talk to other systems?
+Eg78hD Other systems
+-SAiGm Yes, with WhatsApp
+HuXYFf The system sends or receives messages through WhatsApp.
+tUHL8c Yes, with an ERP, spreadsheet or other
+ygkVI- An ERP is the company's management system (stock, finance, invoices). The new system exchanges data with it or with your spreadsheet.
+V8XsJw It's when the system exchanges information with another one you already use, so that nobody types twice. Each type of connection changes the price.
+i1SqPK How much data will the system store?
+w739Af Volume of data
+SDe-Jn A little (up to a few thousand records)
+T0jBnl Medium
+nom2iX Grows slowly, but still fits in a simple database.
+jgXd1b A lot (grows every day)
+r7jQGg New records every day, such as orders or readings. Calls for a more careful database.
+cibNip A lot of data calls for a more careful database so the system stays fast. The more data, the more work.
+ZZZSm7 Does it need reports and charts?
+Q02bJz Reports and charts
+eTnowB Reports summarize the system's numbers in tables and charts. You choose which ones next.
+iASVRI Where will the system be hosted?
+9-n3jv I'll take care of it
+dGkALr You hire and maintain the server on your own.
+ANwjw7 I already have a place
+3vig1n You already have a server or hosting plan to use.
+fKFYVc Hosting is the server that keeps the system online. It is charged separately, directly by the provider, and does not change the creation price.
+zkGf7K Will the system store sensitive data?
+8nkkbl Sensitive data is whatever causes harm if it leaks: health, documents, finances. It calls for more care, and you choose the details next.
+S8VKP- deadline to be agreed
+awI2VQ Your spreadsheet gets one tab per topic, standardized columns and totals that match. It becomes easier to fill in and to trust the numbers.
+ox5eNy Cleanup of the data you already have
+9v3sF1 Total and summary formulas
+x4hrwI Instructions for use on one page
+izd4XN You open a file and see how much you sold, what sells most and how the month is going, without working it out. You can control stock and sales with numbers, not by guesswork.
+06h1A2 Excel (standard) or Power BI Desktop (.pbix file and PDF)
+I1fY4E One data source
+jRDCFl Up to 5 indicators
+EUrB-M Period filter
+lK_Xsw Sharing a Power BI dashboard online with your team requires a paid Power BI license on your side. In Excel this isn't needed. I explain the options in our conversation.
+YkALH6 The task you repeat every week in the spreadsheet runs with one click.
+cl3yQw VBA or Power Query
+BFkAsv Instructions for use
+D8X_Ck A page with your service, your prices and a button that takes the customer straight to your WhatsApp.
+i17RR6 One page
+9DcA18 Phone version
+y5oodh Published online, on free hosting under your account
+yP3mXq WhatsApp button
+d9MRe6 A script made for your task: it combines spreadsheets and files, reads PDFs, sends messages or fetches data from websites, and delivers the finished result.
+JPo5kF If the task fits inside Excel, Excel automation solves it at the same starting price; Python is for what Excel can't reach. I tell you in our conversation which of the two fits better.
+c2LWZT When the spreadsheet is no longer enough and you need a system of your own. You build the base quote and the proposal settles the scope.
+JK_Rau Conversation to understand the case
+MmMbfk Written proposal
+HlZJoL Delivery in stages
+k53-Pg The price is a starting point: the written proposal settles the scope.
+oiDNyY Your server gets tickets, a welcome message and basic moderation.
+XGIqUX Tickets
+EyibJ3 Welcome messages
+-vrPS3 Basic moderation
+Kk_fiQ Help to put it online
+nZmseG Bot with AI and web panel
+toSeJP A bot that answers with AI and a browser panel for you to adjust what it does.
+gSXBsJ Custom commands
+CT0zTt AI integration
+kfc6XK Simple web panel
+1TsGG1 AI usage is billed by the provider, to your own account.
+Kdb8kv Notices
+wTQR7j Sketch of UniSER's public page: a green strip with logo and menu, and three notice cards below.
+UwDXdZ Sketch of the restricted-area login screen: a central card with login and password fields and a green button.
+TFra2W Course curriculum
+ZEg5Qo Sketch of the course curriculum: a table with code, subject and status of each course of the term.
+ZSwYCt My data
+R-2ldt Sketch of the My data screen: cards for personal data, contact and address, each with an edit button.
+kVxEdB Attendance
+_3z-54 Sketch of the attendance screen: status summary and a table with date, subject and justification for absences.
+PCp8YW My term
+5bgVWQ Sketch of the My term screen: cards from Monday to Friday, each with the subject and class hours.
+N4y6t7 Footer
+qPejJE Site without trackers.
+lY_7B6 Service provided by
+V9vNY5 Terms
+gglTzo Questions
+VmYcB8 Contact
+ign2Cw Privacy
+2WNCqP Marcelo usually replies within 2 hours, with no guarantee.
+rXtp4W  (opens in a new tab)
+OHvJ3D fictional data
+lDe6Kj Light theme
+kteUDE Dark theme
+t4Qw_B Open menu
+naMUQ3 Close menu
+87hrE9 Main
+AJQziG Language
+2X8Ql7 Previous
+ZLLQ1j Next
+5_BZIU {1} of {2}
+8lBkRb Includes
+jV2HcK Deadline
+uQ3d9j Monthly fee
+jKpmye {1}{2} per month, plus hosting
+h8afwI from 
+mrOvVs The first 5 spots get a 10% discount. The next 5, 5%. {1} left with {2}%. Message me on WhatsApp and secure yours.
+LU0JVa {1} spots left with a {2}% discount. Message me on WhatsApp and secure yours.
+JupVO1 The discount applies to the creation price.
+pu-UHr Your name
+xf2XAl How do you prefer me to reply?
+szb8VY WhatsApp
+DQHi6G E-mail
+ofzvtl Your WhatsApp (with area code)
+5FVWOT Your e-mail
+XoIEIk Subject
+OLwMVZ What you need
+sS8jr0 Want to tell me anything else? (optional)
+t9aBvV Goes along with your message:
+qRqVUX Send
+XpHc3F Sending…
+PkQxeO I couldn't send it right now. Contact me through one of these channels:
+epbTOG Do not fill in this field:
+caUhG8 I use your name and contact only to reply. The message goes through EmailJS. Do not write passwords, health data or other people's data in it.
+Tp7DoC Privacy policy
+0I7qIj Custom bots
+jrePTc I make bots and tools for people who play.
+-6AIr0 This is where my projects for Discord and games live. If you run a server and want a bot your way, we can talk.
+QOQw_y Talk about a bot
+25Mes9 Discord bot with a ticket center, announcements per server, optional AI and a web panel.
+_KtvqG See the code on GitHub
+7W8vWQ In development
+UL0KBq A performance analysis tool for VALORANT players. It is not open to the public yet. When it launches, every metric will show the sample size, and anything that is a hypothesis will appear as a hypothesis.
+hMH_BJ Custom bot for your server
+4WIChZ Talk about this bot
+PuZHPa The bot needs to stay on all the time. The monthly fee covers monitoring and bug fixes: {1}% of the creation price per month. Hosting, where the bot stays on, is a separate cost, and AI usage, when there is any, is billed by the provider to your account. 
+Zi393h On the {1}-month plan paid in advance, the discount is {2}%.
+qvLv99 On the {1}-month plan paid in advance, there is a discount.
+8WPHeZ New feature after delivery: {1} per hour.
+3ja1DE WhatsApp or e-mail, whichever is best for you.
+LPNAjZ CYL Sense is not affiliated with Riot Games.
+kUno7i Want something like this for your business?
+5xRnac See the Business area
+XlYRcz An example of what I deliver
+SsdA9- Quote
+h4bAT8 Deliverables
+I5MCgq About
+DcOJG7 Prefer to talk directly?
+L08WyJ Message me on WhatsApp
+260cjF Go to the community area (Discord and games)
+PMUvkW Community
+aXf7WX I turn your messy spreadsheet into a dashboard.
+uTubq_ It shows what sells, what sits unsold and what is running out. I also build your business page and complete systems on the internet.
+tDn0hU Organized spreadsheets, dashboards with your numbers, presentation pages and custom systems. Everything explained in plain language, without complication.
+f0Lv27 from {1}
+c7_k9l Build your quote here and send it through the site or WhatsApp.
+sOCi-I Get your quote
+v-toFJ How does it work?
+jYXosg Message on WhatsApp
+WavEH2 Dashboard example · fictional store
+D8UvX1 All of the store's numbers on a single screen: how much it sold, what sells most and what is stalled. The data below is fictional.
+iErcON Year 2026
+xncxZH Sales in the year
+YXDSwM Orders
+2e45JW Average ticket
+G4ovoj Stalled stock
+Jm8cgn Sales per month (R$ thousand)
+xGQPIg {1}, R$ {2} thousand
+7-02kO Jan
+UhEB_P January
+6dBt7U February
+xLoIIk Mar
+p5nSOA Feb
+pVj4D3 March
+tUyLKY Apr
+vl_gDB April
+r-Umps May
+fWyHv6 May
+bZDfO- Jun
+GZBMqV June
+tzdVhG Jul
+pYVdtz July
+i6xdqz Aug
+b-FCfB August
+RIq3O6 Sep
+eSoS1Q September
+5PpU8H October
+Z_eZdH November
+lbNg1J December
+E96CfB Sales by category
+q9U4a0 Others
+EsBe9e Sales · {1}
+rwPvVL {1}% of the year
+NunQJw only {1}
+OLIY8U Sales by region (R$ thousand)
+RD-3vr Southeast
+82uz8Q South
+ydm5cE Northeast
+Jp7w-3 Central-West
+Xu7T3b North
+eQJeVC From order to delivery
+T0KFrj From the first conversation to the final file, in five steps.
+nVIHE7 10-minute conversation
+3_ulvl On Google Meet, when I need to see a screen, adjust things and present more calmly, or on WhatsApp for a quick question. You show me the spreadsheet or tell me what you need, and I tell you what I need to receive from you.
+ZU4ela Proposal
+tgvbBf I send in writing what is included, the price and the delivery date.
+7KXM9i 50% down payment by Pix
+lXsR5p I start after the down payment.
+YEMNzC Delivery in stages
+fF1JyA You see the progress before the end and can correct the course.
+3UEMMt Balance before the final delivery
+tALlyH The other 50% before I release the final files or publish them at your address. One round of revisions is already included.
+KWS38K Payment by Pix. I issue a receipt.
+bSLUAP The full rules are in the
+D7bzal Terms of service
+pULu01 and the most common questions in the
+lSofEi frequently asked questions
+5_7cK3 The instant quote needs JavaScript. Without it, talk to me directly:
+YY6v_u Send an e-mail
+3baZdd See how it works
+zGR-Qv Choose whichever way is easiest for you. I reply through the same channel.
+IywOUH Form
+eGrtaP Do you have a Discord server or a gaming community?
+Laim8_ See the CylDev area
+2BJ0MD Build your quote
+bO__mw Choose the service, answer the questions and review the order. The estimate changes instantly. The final price goes in the written proposal.
+boKYy8 Services
+sSOa_4 Included
+JWKCOs Cart: {1}
+zsaD2f Add to cart. Spreadsheet, dashboard, automation and a one-page website together get a discount.
+bq_5Vs Add to cart.
+LI0yzr In the cart. Click to remove.
+_3vNnk Discount from 2 services: {1}% with 2, {2}% with 3 or more.
+4oENLn on request
+kMu_IC {1} in the cart.
+TRfa9Z {1} out of the cart.
+DbD6f6 Two or more among spreadsheet, dashboard, automation and one-page website get a discount and a single deadline.
+RMa5pN Put spreadsheet, dashboard and automation in the cart
+1kkXa4 Spreadsheet, dashboard and automation in the cart.
+LFE8cD Loose controls become a single spreadsheet, with totals that match.
+q9ueMF A file that shows what sold, what sells most and how the month is going.
+iSNrR8 The task you repeat every week in the spreadsheet runs with one click.
+M3_0AF A page with your service, your prices and a button to your WhatsApp.
+BHo2Ye A Python script that does the repeated task for you: combining files, reading PDFs, sending messages.
+h6j7V2 SaaS, website, app or program built from scratch. The price is a starting point; the proposal settles the scope.
+HKAufO Tickets, welcome messages and basic moderation for your Discord server.
+DVP-0l A bot that answers with AI and a web panel to adjust what it does.
+nEKM4Y See example
+nd_pKt Hide example
+H1KiP- Loose controls become a single table, with a total at the end.
+CNQ5ru Qty
+oK7EBe Product A
+LhrQ26 Product B
+8a3CfB Sales, best sellers and the month on a single screen.
+JoE6kZ Sales per month
+ELrERS What you do by hand every week becomes one click.
+SIET5Z Imports the data
+lHkf4w Checks and adds up
+1jTlEC Generates the report
+ftgfpE Update
+xfoLNZ A page with the service, the price and the WhatsApp button.
+cs-GTE Your service
+9j66q2 Prices
+W6_7ds A folder of files goes in, the script works and the spreadsheet comes out ready.
+jIXBGd PDFs
+IL04hY Spreadsheets
+fm1Chp E-mails
+aLIdAN Finished spreadsheet
+cV1UhX From screen design to the live system: all done by one person.
+XCeMLk SaaS
+W2gl08 Website
+vmLdyQ Program
+3Rn5iH Front
+zT98iL screens and navigation
+tSs2ty Back
+q7QMCK rules and API
+Z6TeNQ Database
+4IEYVN where everything is saved
+-0GSoN Deploy
+thzkT1 online, ready to use
+eyAG_X Close
+vUznck Service sections
+bdlOI6 Details
+ukSYIo What it is
+enRc30 What you get
+cwNeR_ Notes
+_LsqFh Add to cart
+LIE73m In the cart
+Onc21D Remove from cart
+lh7D8l View cart
+XH891r What is included
+HsDcsl Answers with + R$ change the price. The others help me understand your case and do not change the price.
+27Kfsu {1} of {2} {3}
+YPEsdm question answered
+73TP8n questions answered
+s042lA This service has no questions. The table price applies.
+MCobu5 {1} {2}{3}, right below.
+IpyfmY new question
+r2s4Xd new questions
+jzq44C  about {1}
+rVTsop may change the price
+Rp2M6j + {1} on the price
+d5_8Sq What it means: {1}
+edHwON Already {1}: {2}.
+CvnCW7 Each extra: + {1}.
+isr_w2 Estimate
+HSsGKk How we arrived at this price
+-stZFv from
+AXBqK9 estimate from
+E37BSf On request
+UKuc16 per hour
+x4SP3i List price: 
+-LOBgx {1}% discount (pilot)
+kQEzd8 With {1}% pilot discount. {2} {3} left in this tier.
+A3DX8M Work
+Z-YROh {1} per month, plus hosting charged separately
+RpxuYe The price depends on what will be done. This is the minimum for your answers.
+0dV0qd This is an estimate based on your answers. The deadline is agreed in our conversation.
+s6J9hS This is an estimate. The price and delivery date are settled in the proposal.
+BjglcR It starts with a conversation. Tell me your case and I will send a written proposal with price and deadline.
+89bxbD Add to order
+HfUMvz Remove from order
+Bqby0t Choose another service
+mpXelb Review order
+YU0QJe Included in the order. Whatever you change here already counts.
+hrdZz3 Starting price
+Jcrech Being configured
+_PFPgx Configured
+a0PKWR No answers yet. The price changes as you answer.
+Pa5IM0 {1} {2} left. The price may still change.
+b-y86Y All questions answered.
+hkV5NR Why this price?
+cpQYj9 Got it
+ERzHr6 How the price is built
+M_OVzH Each service has a base price. It is the “from” price shown on the card.
+Mz6vs_ Your answers may add extra hours of work. Each extra hour costs {1}.
+-NisB8 Combo: with 2 combinable services (spreadsheet, dashboard, automation and one-page website), {1}% discount. With 3 or more, {2}%.
+vH22vm Pilot: right now there is no pilot discount spot available.
+oY0zQ0 Pilot: while spots are available, there is a {1}% discount on the creation price.
+_J3JDi Discounts never add up: whichever takes off more reais applies. The combo only applies to combinable services. The pilot applies to creation, but not to the monthly fee. Discord bots are sold only in the Community area.
+dD5CXT An unanswered question leaves the price approximate. The final price is confirmed in the proposal. Hosting and the bots' AI usage are charged separately.
+yqPS40 In your order
+xwNh5R Base price
+KZ3GXW {1} x {2} per hour
+E9IjF8 Hours and deadline: to be agreed in our conversation.
+rgmt4G Unanswered (not counted yet): {1}.
+FEtcXy Service total
+yGlhtH On request: not included in the total. I send a written proposal.
+7bcYQM Monthly fee: {1} per month, separate from the total, plus hosting.
+wkhvVk Summary
+odKa_f List price total
+ne5hsB No discount applies to this order right now.
+1EZgTv Discount ({1})
+qz_qWp Estimated total
+V-FFie Estimated total (from)
+N7dVFD The combo applies because there are {1} combinable services. It applies only to them ({2}).
+VQZROe The pilot applies to the creation price ({1}).
+f42Jy5 The pilot took off more than the combo: {1}, against {2} from the combo.
+8oF6Ew The combo took off {1}; the pilot would take off {2}, and they don't add up.
+P_MQI1 Combo and pilot would take off the same amount ({1}); the combo applies.
+JxDIR3 What else would change this price
+0fwUK0 Answers that add extra hours increase the price.
+JAKgnu There are unanswered questions: the price is approximate and may change.
+63BTQ5 Your order is empty. When you add a service, the price breakdown appears here.
+Bk6WEa Cart
+5a39bv Cart ({1})
+GKNlgl Open the cart: {1} {2}, {3}
+leQDPo service
+N3zhU2 services
+i2XEAT Review the order
+osbsFi Close the cart
+OoaCTs Adjust answers
+kKgVVN Estimate: {1} {2}. The price may change.
+OH-3cs unanswered question
+nz60Mb unanswered questions
+nvEIkp There are unanswered questions, so the total is an estimate and may change.
+MdPe0J Your order is empty. Choose a service and add it to be able to send.
+3d4TXP Choose a service
+K18jQ3 Edit
+S9Tqg0 Remove
+XYjzpM Keep choosing
+PL65P3 {1} of {2} questions answered
+gqZBgH unanswered
+HdrhLa See answers
+Re8WRJ Package base
+juPw5M Combo and pilot don't add up: the larger one applies.
+oWTHjV Deadline for combinable services, together
+IHcARE Bots' monthly fee
+V2m_3Z On request, outside the total: 
+0TZ6oS Estimate, confirmed in our conversation.
+pWV6rY Price estimated by the site. The final price goes in the written proposal.
+fZpTQ3 Notes (optional)
+e3oXqC Dates, deadlines, whatever matters most to you. It goes along with the order. Do not write passwords, health data or other people's data.
+NTkh6i Your details to send through the site
+qAsVLe Enter your name and WhatsApp and I reply there. To talk directly, use the WhatsApp button, without filling in anything.
+D1XcfV WhatsApp (with area code)
+ulnPro Send through the site
+qL5RH7 One moment…
+BwKJl2 I couldn't send it right now. Message me on WhatsApp or send an e-mail with the same order.
+tELdhX Send by e-mail
+yJ3LDd I send your name, WhatsApp, the quote answers and the notes, only to reply to this order. They go through EmailJS (sending from the site) and WhatsApp. I confirm by WhatsApp and we arrange the Pix.
+zBKSqP By sending, you agree to the
+x68CHY and to the
+6hAmqm The order is not yet a contract: the final price goes in the written proposal.
+jxeQd3 About withdrawing, see the
+s5HpGJ 7-day withdrawal
+yH8kSA Order sent with the notice of agreement to the Terms of service (version of {1}) and the Privacy policy (version of {2}).
+PzbnZH Back to the site
+GF86jb On this page
+p0D1uD Back to top
+KHOx0J Message received.
+pGtp8_ Thank you for getting in touch. I'll reply through the channel you chose.
+v-lA3q This page doesn't exist.
+yvXY7U The link may be wrong or the page may have moved. If you need help, write to {1}.
+zIXol- Go to the start
+13E9ye About me
+g3_mSZ I study 
+lwTF3d Information Systems at Unieuro
+p1e1eM  and work as a full-stack developer.
+lDgr68 I am an IT intern at the Ministry of Defense
+Dh2J1p , where I do data analysis, spreadsheets, dashboards and presentations used in meetings with senior officers and generals. It's the same routine I bring to your business: take loose data and deliver something that can be read in a minute. The jobs I take on here are outside internship hours.
+CCpqcq I take part in Uniser
+0AMqxI , the platform of UniSER, the University of Ageing at UnB. It is developed by a team of Unieuro students, guided by faculty professors, and I am part of the team that writes the code.
+sp6q7E Learn more about the course
+8y66uy I am in the 5th semester of the Information Systems bachelor's degree at Unieuro, in Brasília, with graduation expected in the 2nd semester of 2028.
+wzBkXG What I use most from the course in your project
+d92YhF Databases and Advanced Databases
+fvjzMp Data Structures
+_50Iu8 Object-Oriented Programming
+Xyv8ZK Web Programming
+qJ97Oy Software Engineering and Requirements Engineering
+SaUJEV Process Management
+frnvLm Artificial Intelligence
+CUTE62 Scientific research
+PqEfp_ I do scientific research supervised by Professor Dr. Aldo Henrique, in the OpenVIRTEX-BR research group (Open Source Virtualization and Cloud Computing for Intelligent Systems in Brazil). The group studies cloud computing, virtual machines, artificial intelligence and data analysis, with open-source solutions to better manage virtual machines and cloud resources.
+9WYZqU In the group, I take part in Simbionte, a simulation in which several artificial intelligence agents interact with each other. My team builds the base of the system: login, database, processing queues and the engine that runs the simulation cycles, with automated tests and protection against malicious instructions sent to the AI. It's what helps me in AI projects: knowing how to integrate, limit and test what it answers.
+gQhBRd IT internship at the Ministry of Defense
+l-Eb1L Learn more about the internship
+sg-l4d I have been an intern in the IT area of the Ministry of Defense since February 2026.
+rMUbgy What I do
+6-7Bsv Consolidating data from several sources
+DBWNYR Turning spreadsheets into a database
+vWxdoP Dashboards and presentations, including reusable presentation templates
+iWNiB_ Support for process management
+_Np8h9 Support in writing an article about unmanned systems
+Qo57N3 Everyday tools
+-p5yGh Excel, Power BI, Python, PowerPoint, VS Code and AI programming tools (Claude Code and Codex).
+kUy7jk It's the same routine I bring to your business: take loose data and deliver something that can be read in a minute. The jobs I take on here are outside internship hours.
+h1E6p3 UniSER, University of Ageing
+SEe8Pg Learn more about Uniser
+iK0iKh Since November 2025 I have been part of the Unieuro team that develops the UniSER platform, the University of Ageing at UnB, as a full-stack developer, guided by Unieuro professors.
+4qtEzF What the system does
+lpHTxT Public page with notices and news
+odcwpe Restricted area with login
+kSFv1E Attendance and grades
+Hq6Cpj Separate access for students, teachers and administration
+0JtKgu What this has to do with your project
+moPafw It's the same care I bring to a custom system: secure login, each person sees only what is theirs, a log of what happens in the system and automated tests before every change.
+gFXCwz Technologies
+d6xLf6 Examples of my work
+r-o3zI Screens of the UniSER platform
+QkJm58 Illustrative sketches of the screens, with no real data.
+Tu1bYx I work online, for all of Brazil.
+VmRjs3 See more
+dhwz0h A fictional store, the way the spreadsheet goes all the way to the finished dashboard. All the data is for example.
+MBTijh Sample
+pU_6fK Loading the example…
+Ptbgzw The example could not be opened right now. Reload the page to try again.
+GGSWln Your spreadsheet when it arrives here
+jf-7Te This is what usually arrives: each tab in its own way, dates and names written in several ways.
+iTOKAD Open spreadsheet
+abnzp2 The spreadsheet as it arrives
+RjLZ-_ The five tabs of a fictional store, with nothing corrected. The rows in red are the sales on credit.
+k_MSch Spreadsheet tabs
+REDYp1 Sale-on-credit row
+XLz6qZ Your spreadsheet after it passes through my hands
+NW_Rgg The same store in a single table: one row per sale, everything in the same pattern.
+i3MT69 The tidied spreadsheet
+WvDuhx One tab, one row per sale. The rows in red are the sales on credit.
+Kjtg9P What was tidied up
+DLqq0l All dates in the same format (year-month-day).
+5e2L42 Each customer with a single name, written properly.
+SpHYwj Values as numbers, with no text in between.
+M-dvYn One row per sale; the copied tab and the repeated rows are gone.
+zQSamV Credit sales in their own column (status), not only by color.
+oeSL3x Category for each product, to add up by type.
+ZO3nMG The total of each sale is the quantity times the unit price.
+TNvspg Your spreadsheet in visual form
+UWIkGg The numbers of the tidied spreadsheet, in a dashboard you can play with: filter, click and see everything change.
+Dv--t3 Open dashboard
+84oKfD Sales dashboard · fictional store
+ygS7Q8 Revenue per month
+k_j8QE {1}: example spreadsheet, scroll to see more
+qiQ30x Showing {1} of {2} rows.
+w-oMe7 Revenue
+fh3Mr6 No. of sales
+Ubbpuk Credit to receive
+289Pc3 Filters
+WWawzo Category
+HlwcyX Payment method
+p4o6-0 All customers
+0i9oMG Clear filters
+t4F2kN Active filters
+2x7FTA Remove filter {1}
+zQaVtq {1} of {2} sales
+27FCoL Paid
+OJpSpz On credit
+Om8jXb Revenue per day
+ZDysh3 Revenue per category
+_UWf3t Revenue per payment method
+D_0NwM Top 5 customers
+lxuafn Click to filter the other charts.
+pv38WH No sales
+j01G3i {1}, as a table
+ir6KaZ Sort by {1}
+RlWLAM Page {1} of {2}
+BwcoF7 Previous page
+cCBXNk Next page
+Z2MbmN No sales with these filters
+HL30Pb Showing {1} of {2} sales, {3}.
+Bt-1Ah Sales this month
+zUUhg3 Low stock
+Ig9DVU Best-selling items
+v8nSLj Before, every week
+kGcps0 Open the 3 sales files
+vPueq4 Copy and paste into a single sheet
+VgTQpp Filter and delete what is left over
+E0lvj2 Format and check the totals
+0wuRjs One click does all four steps.
+g-Lshp Studio Lia · Manicure in Brasília
+808onm Appointments by booking, Monday to Saturday.
+pXVeDw Hands
+1RJ7G- Feet
+ZMF0Pq Hands and feet
+Dz1TEU Book on WhatsApp
+SpyOe9 In.
+wA5vUT A folder with PDFs, spreadsheets or e-mails.
+yUNfFv Works.
+c8xFmn The script reads, checks and adds up.
+Fl3hul Out.
+AZzput A spreadsheet or finished report.
+-GKFTE Base quote on the site
+qa0v7B Conversation and written proposal
+py7F8E 50% down payment
+ic-s4f I want something like the example "{1}"{2}.
+j8dVLw Service
+hUZsm0 Row
+j7K7Gs Day
+uVw7oQ estimated: {1}
+vhGgCK Agreed in the proposal
+PZyTa3 {1} extra
+acgKen 1 business day
+rQWVgC {1} business days
+apabB8 Brazil
+r9cMai Spreadsheet fixing and organization
+X9TVUZ Data dashboards
+3-pj7W Excel and Python automation
+ix1ixI Website and landing page creation
+Gw4A5y Custom systems

@@ -27,14 +27,24 @@ export function idDoTexto(chave: string): string {
   return createHash("sha1").update(chave).digest("base64url").slice(0, 6);
 }
 
-/** Só o que parece texto para gente: tem letra, não é endereço, nem identificador, nem lista de classes do Tailwind. */
+/** Palavras soltas que são código (teclas, nomes do schema.org, siglas) e nunca se traduzem. */
+const palavrasDeCodigo = new Set(["Escape", "Enter", "Home", "End", "BRL", "pt-BR", "Country", "Offer", "Service", "R$", "L", "M"]);
+
+/** Só o que parece texto para gente: tem letra, não é endereço, nem identificador, nem classe do Tailwind, nem HTML, nem desenho SVG. */
 export function pareceTexto(chave: string): boolean {
   const c = chave.trim();
-  if (!/\p{L}/u.test(c)) return false;
+  const sem = c.replace(/\{\d+\}/g, "").trim();
+  if (!/\p{L}/u.test(sem) || palavrasDeCodigo.has(c)) return false;
   if (/^(\/|#|\.|https?:|mailto:|tel:|data:|\w+:\/\/)/.test(c)) return false;
+  if (/<\/?[a-z][^>]*>/i.test(c) || /^&\w+;$/.test(c) || /^\\u/.test(c)) return false; // HTML, entidade
+  if (/^[MmLlHhVvCcSsQqTtAaZz][\d\s.,\-MmLlHhVvCcSsQqTtAaZz{}]*$/.test(c) && /\d/.test(c)) return false; // caminho de SVG
   const pedacos = c.split(/\s+/);
-  if (pedacos.length === 1 && /^[\p{Ll}0-9_.:\-[\]/%]+$/u.test(c) && !/[À-ɏ]/.test(c)) return false; // id, classe ou palavra de código
-  if (pedacos.every((p) => /^[!a-z0-9:\-[\]/%.()#_&*>+~=,'"@]+$/.test(p)) && /[-:[\]/0-9]/.test(c)) return false; // classes do Tailwind
+  const acentuado = /[\u00C0-\u024F]/.test(c);
+  if (pedacos.length === 1 && /^[a-z]+[A-Z]|^[A-Z][a-z]+[A-Z]/.test(sem) && !acentuado) return false; // camelCase, PascalCase
+  if (pedacos.length === 1 && /^[\p{Ll}0-9_.:\-[\]/%{}]+$/u.test(c) && !acentuado) return false; // id, classe ou palavra de código
+  const reais = pedacos.filter((p) => !/^\{\d+\}$/.test(p));
+  const classe = (p: string) => /^[!a-z0-9:\-[\]/%.()#_&*>+~=,'"@{}]+$/.test(p);
+  if (reais.length > 0 && reais.every(classe) && reais.some((p) => /[-[\]/]|\w:\w|^\d|[()]/.test(p))) return false; // classes do Tailwind
   return true;
 }
 
@@ -89,7 +99,6 @@ const escapar = (s: string) => s.replace(/\\/g, "\\\\").replace(/`/g, "\\`").rep
 /** Troca no código os textos que têm tradução. `traducoes` vai de identificador para texto traduzido. */
 export function aplicar(codigo: string, itens: ItemDeTexto[], traducoes: ReadonlyMap<string, string>): string {
   const trocas = itens.flatMap((it) => {
-    if (!pareceTexto(it.chave)) return [];
     const t = traducoes.get(idDoTexto(it.chave));
     if (t === undefined) return [];
     let novo: string;

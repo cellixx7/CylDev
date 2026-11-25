@@ -1,5 +1,4 @@
 # src/content/textos/acessibilidade.ts
-0cuOmL [{1}](mailto:{2})
 h7defi Acessibilidade
 MV-AB6 Versão de {1}.
 zn7y2M Quero que qualquer pessoa consiga ler este site e pedir um orçamento, com mouse, teclado, toque ou leitor de tela. Esta página diz o que o site já faz, o que ainda falta e como avisar de um problema.

@@ -118,3 +118,164 @@ xao8Rs Paso {1} de {2}
 1ksRJy Lo que cambia en cada paso
 EXfk7X Antes
 Yfbue8 Después
+cDRFRV Entiende cómo funciona cada entrega
+zwM0Io Cada parte de abajo muestra, con un ejemplo, qué entrego y cómo ayuda en el día a día del negocio. Cada bloque tiene su propio enlace: cópialo y envíalo a quien quieras para mostrarle exactamente ese tema.
+-Fxcv6 Elige el tema
+AHYzSq Copiar enlace
+4s2BFG ¡Enlace copiado!
+RF2HhO Copia la dirección de la barra del navegador.
+b7wKpc Ejemplo
+afyTLw Cómo ayuda
+Fn12K- Cuándo tiene sentido
+jWrU2j Quiero algo así
+j7sQyi Volver a la página de inicio
+5A9sXB Entiende cómo funciona
+_HcKQp Hoja de cálculo ordenada
+NIi7Sn La hoja de cálculo que ya tienes, en orden
+_splAe Los datos están dispersos, cada persona rellena a su manera y el total nunca coincide con lo que esperabas.
+PjziNH Una pestaña por tema: ventas, inventario, caja.
+OlWSU3 Columnas estandarizadas, así cualquiera rellena de la misma manera.
+g56U9O Totales que cuadran, para que confíes en el número.
+Etg0vR Una página de instrucciones para que el equipo no se pierda.
+doGNYF Antes y después de una hoja de ventas
+9eGsLO Panel básico
+cSltFo Los números del mes en una sola pantalla
+gQey22 Quieres saber cuánto vendiste y qué se vende más, pero tienes que hacer la cuenta cada vez que preguntas.
+VYseqp Abres el archivo y ya ves las ventas, los productos y cómo va el mes.
+noociG Filtro por período para comparar una semana con otra.
+StGItq Inventario y ventas seguidos con números, y no a ojo.
+Nz2EIH En Excel o Power BI Desktop, lo que te resulte más práctico.
+6i-4ap Panel de una tienda ficticia
+NR_Brg Automatización en Excel
+BOTv0v La tarea repetida pasa a ejecutarse con un clic
+GOJ43b Cada semana alguien copia, pega, filtra y da formato a lo mismo. Da trabajo y es fácil equivocarse.
+KUTpMD El paso a paso manual se convierte en un botón o en una actualización automática.
+s62wo0 Menos errores de digitación y menos tiempo en tareas repetidas.
+-yFMMb Hecho con VBA o Power Query, dentro del Excel que ya usas.
+KKPyRI Rutina semanal, antes y después
+i0iIjt Sitio web de una página
+BmiZgd Una página que lleva al cliente a tu WhatsApp
+bArrFc Los clientes siempre preguntan lo mismo y no tienes dónde mostrar el servicio y los precios.
+sAe98A Una página con tu servicio, tus precios y un botón de WhatsApp.
+MR5tP2 Funciona bien en el celular, que es desde donde llega la mayoría.
+Nyk_cj Queda en línea en un alojamiento gratuito, en tu propia cuenta.
+jWZRcL Boceto de una página ficticia
+7UNHPK Automatización con Python
+Ze8DlN Lo que Excel no alcanza, un script lo resuelve
+G1kXVV Juntas decenas de archivos, copias datos de PDF o de sitios web a mano, y eso te quita horas cada semana.
+fo2c1K Un script hecho para tu tarea, no un programa genérico.
+SW3jIM Lee PDF, hojas de cálculo y sitios web, y entrega el resultado listo.
+9qOZLj Recibes instrucciones para ejecutarlo y ajustarlo tú mismo.
+RUDMKA Cómo puede ser el camino de un script
+ESmInY Sistema a medida
+GFugqB Cuando la hoja de cálculo ya no alcanza
+Hj0C6C El negocio creció, la hoja de cálculo se volvió pesada y varias personas necesitan usarla al mismo tiempo.
+K4gftK Empieza con una conversación para entender tu caso.
+BJpSVn Recibes una propuesta por escrito antes de cualquier cobro.
+MyH219 El sistema se diseña en torno a tu rutina, y no al revés.
+rhCa35 Del primer contacto a la propuesta
+mzbHl8 No sé cuál elegir
+3KcrZQ ¿Qué servicio va contigo?
+LergUg Responde hasta dos preguntas y te muestro por dónde empezar. Sigues libre para elegir cualquier servicio.
+jmzY0F Pregunta {1}
+baHbWm Volver
+etx0Sp Cerrar la guía
+NePr0K Por dónde empezar
+1i16FZ Ver detalles
+kS6p8G Hacer presupuesto
+z9ILhK No sé qué servicio elegir y me gustaría conversar.
+cR7lLE Es solo una sugerencia. El valor y el plazo los ves en los detalles y en la estimación de cada servicio.
+eT9Fa1 ¿Qué quieres resolver?
+L1YnL5 Cuidar los números de mi negocio
+9Vscco Tener una página para presentar mi negocio
+5Sj_Ij Automatizar tareas con un script, más allá de Excel
+xyvoy1 La hoja de cálculo ya no alcanza y necesito un sistema
+gHFhrj Quiero un bot para mi servidor de Discord
+Rsu0tg No sé, prefiero conversar
+zsXcG0 ¿Qué es lo que más estorba hoy?
+SZHD_G La hoja de cálculo es un desorden, o todavía uso cuaderno y mensajes
+BEVAZS Tengo los datos, pero quiero ver cómo va el negocio sin hacer cuentas
+mb2S3L Repito la misma tarea en la hoja de cálculo cada semana
+0HRZBG Primero los datos se ordenan, con totales que cuadran. Es la base para cualquier panel o automatización después. Si juntas servicios, hay descuento.
+taGd0Z Un panel muestra lo que importa de tu negocio en una pantalla. Si los datos todavía están sueltos, la hoja de cálculo ordenada puede ir antes.
+hDFKMS La tarea repetida pasa a ejecutarse con un clic. Confirmo qué se puede automatizar después de ver tu caso.
+H2VeIO Una página con tu servicio y un botón que lleva al cliente directo a tu WhatsApp.
+UOxAzA Un script en Python hace por ti la tarea repetida, incluso con PDF, varios archivos o sitios web. Si la tarea cabe dentro de Excel, la automatización en Excel puede servir mejor.
+UlxYEi Armas un presupuesto base respondiendo a las preguntas. El valor es un punto de partida: después de la conversación, la propuesta por escrito cierra el alcance.
+k_0o-N Los bots de Discord están en el área Comunidad, con el precio y la mensualidad explicados allí.
+6fh3av Ver los bots en la Comunidad
+aznwc5 Sin problema, cuéntame tu caso y te ayudo a elegir.
+64mCWS Hablar conmigo por WhatsApp
+pComl1 Cambia el valor.
+9isbsE No cambia el valor.
+ZM3krG Marca todas las que quieras.
+PpO64G ¿Qué es esto?
+B7YyIe ¿Qué tipo de negocio es?
+1xiJPK Tipo de negocio
+NJlb93 Tienda o comercio minorista
+VWML8A Servicios y atención al cliente
+nw06-k Alimentación
+A6KNUf Taller o técnico
+fBCxgC Otro
+LGeB3B Esto me ayuda a elegir qué poner al principio: inventario y ventas para una tienda, agenda y seguimientos para quien presta servicios, recetas y costos para alimentación. No cambia el valor.
+dxkQn6 ¿Tiene datos sensibles?
+HN3TDE Datos sensibles
+hPub_I Sí
+clNLuw No
+3c8Z-f No sé
+Ef1szZ Los datos sensibles son información que puede exponer a personas o a tu negocio: documento de identidad, dirección y teléfono de clientes, datos de salud, salarios, margen de ganancia. No necesitas enviarme nada de eso para pedir el presupuesto. Si los tienes, trabajo con una copia en la que esos campos fueron reemplazados por ejemplos, y tú pegas los datos reales después, por tu cuenta. Esto no cambia el valor, solo la forma de trabajar.
+IQnoOW ¿Para qué tipo de servidor?
+jDTial Tipo de servidor
+HZsjDz Comunidad de juegos
+bRVvEt Tienda o marca
+esLIGS Estudios o grupo
+2zQtz2 Comunidad de juegos, tienda, grupo de estudio: cada uno pide una forma distinta de organizar canales y reglas. No cambia el valor.
+E9wEmr Reúno controles sueltos (cuaderno, mensajes, varias pestañas) en una sola hoja de cálculo, con fórmulas que suman y comprueban por ti. La abres, la rellenas y ves el total, sin necesidad de entender de Excel.
+nw2VyZ Hoja de cálculo lista en Excel, con las columnas de tu negocio
+J5SakT Fórmulas y totales automáticos, explicados en una pestaña de lectura rápida
+PNwyZH Listas de selección para evitar errores de digitación
+SFtH9L Un día de revisión incluido en el plazo
+HQK8n9 Paquete desde R$ 100. Cada hora de trabajo adicional suma R$ 50, y tus respuestas muestran dónde ocurre eso.
+eOPSDy Ajustes después de la entrega: R$ 50 por hora.
+DzgJS9 ¿Ya tienes una hoja de cálculo?
+Tl-7dX Material de partida
+Z8pdfQ Sí, y está en buen orden
+eOgQnK Sí, y necesita una gran puesta en orden
+EzR3o8 Solo tengo notas o papel
+5WNqLh No, empiezo desde cero
+KBu0aB La limpieza sencilla ya está en el paquete: quitar filas vacías y repetidas y estandarizar las columnas. Los datos dispersos en varias pestañas, con fechas y valores escritos de distintas maneras, dan más trabajo para ordenar. Si es cuaderno o papel, armamos el modelo juntos.
+XYsafw ¿Qué controles necesita la hoja de cálculo?
+oA7dhf Controles adicionales
+6Etk9L Clientes
+dBu3Yr Inventario
+PP5dNU Ventas
+VdrRwY Cuentas por pagar y por cobrar
+ee07Qk Agenda y seguimientos
+00QmoN Un control es una pestaña para seguir una cosa, como clientes o inventario. El primero está incluido en el paquete. Cada control adicional es trabajo extra, y la pantalla muestra cuánto.
+Ei0azT ¿La hoja de cálculo tendrá valores en dinero?
+Y-EkCk Valores en dinero
+ZFjkxD Sí: precios, ventas o costos
+JHZLls No: solo registros y listas
+YjPV97 Con precios, ventas o costos, cada total y cada fórmula quedan visibles y explicados, para que puedas comprobarlos por tu cuenta. Esto pide un cuidado adicional, y la pantalla muestra cuánto.
+pEc0h_ Convierto tus números en un panel con pocos gráficos e indicadores, hecho para responder las preguntas de tu día a día: cuánto vendí, quién compra más, qué está parado.
+4Fqrrr Panel listo, en el formato que elijas
+oQ-P7e Indicadores y gráficos conectados a tu hoja de cálculo
+c7I_Ey Filtros sencillos, como período y categoría
+nH-jUs Excel es el estándar y abre en cualquier computadora.
+8_AKaK Power BI: entrego el archivo. Para compartirlo en línea con el equipo hace falta una licencia de pago (Pro) de Microsoft.
+DPufnC ¿De dónde vienen tus números?
+a_lwbV Origen de los números
+NPrO9g Una hoja de cálculo mía
+UhOd38 Exportación de un sistema
+NkziTW Un archivo que descargas de otro programa (por ejemplo, el sistema de la tienda), generalmente en Excel o CSV.
+dw223Z Varios archivos sueltos
+nqQ3A7 Todavía no tengo
+77sZiC Una hoja de cálculo tuya es el camino más corto. Las exportaciones de sistemas y varios archivos sueltos piden tiempo para juntar y limpiar, y eso cambia el valor. Si todavía no tienes nada organizado, la hoja de cálculo ordenada puede ir antes.
+589KZB ¿Qué necesita responder el panel?
+KcMz9u Preguntas adicionales
+dipLdt Cuánto vendí
+8MABMV Quién compra más
+oLiOvi Qué está parado
+Vtk72z Cuánto queda de ganancia
+xLFk95 Otra
+pktfeQ Cada pregunta se convierte en un indicador o gráfico. Las dos primeras están incluidas. Cada una adicional es trabajo extra, y la pantalla muestra cuánto.
