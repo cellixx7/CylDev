@@ -21,6 +21,9 @@ export const site = {
     /** O que é emitido depois de cada pagamento. Troque para "nota" quando houver CNPJ e nota fiscal de serviço. */
     comprovante: "recibo" as "recibo" | "nota",
   },
+  // Perfis públicos que ligam o site ao nome (JSON-LD `sameAs`). Só perfis que existem de verdade; acrescente aqui ao criar (LinkedIn, Google Business Profile...).
+  perfis: ["https://github.com/cellixx7"] as string[],
+
   // Endereço público usado no Open Graph quando a Netlify não injeta `URL` no build.
   urlPadrao: "https://cyldev.netlify.app",
 

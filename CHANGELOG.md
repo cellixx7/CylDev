@@ -6,6 +6,14 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### SEO: o site passa a se apresentar como CylDev
+
+- Título e descrição da home agora dizem "CylDev" e o que é feito (ajuste de planilha, painel, site ou landing page). Antes só o nome "Marcelo Vaz" aparecia, e quem busca "cyldev" não encontrava a marca no título.
+- Páginas internas trocam o sufixo "| Marcelo Vaz" por "| CylDev"; Entregas ganhou título e descrição com as palavras que as pessoas procuram.
+- Dados estruturados: novo `WebSite` (nome do site "CylDev") e o `ProfessionalService` ganha `alternateName`, `sameAs` (perfis de `site.perfis`) e `knowsAbout`.
+- `<noscript>` da home cita a marca e o texto de apresentação.
+- Passos manuais (Search Console, perfis): `docs/decisoes/seo.md`.
+
 ### Cyl animado no header e rosto dele no chat
 
 - O ícone de controle de videogame do header virou o mascote Cyl, que acena ao carregar a página, a cada 60 s e ao passar o mouse ou focar (sem acenar de novo antes de acabar o ciclo). Sem tooltip: o nome fica no `aria-label` e no `title` do link, e o clique continua levando à Comunidade. O enquadramento vai da cabeça à cintura. O joystick, a nuvem e a dica (com o botão "Ir para o CylDev" do toque) saíram; o header ficou 5 px mais baixo.

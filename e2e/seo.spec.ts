@@ -27,11 +27,13 @@ test.describe("home sem JavaScript e dados estruturados", () => {
     await expect(page.getByRole("link", { name: t.semJs.whatsapp })).toHaveCount(0);
   });
 
-  test("o JSON-LD da home é válido e é um ProfessionalService", async ({ page }) => {
+  test("os JSON-LD da home são válidos (WebSite e ProfessionalService)", async ({ page }) => {
     await page.goto("/");
     const scripts = page.locator('script[type="application/ld+json"]');
-    await expect(scripts).toHaveCount(1);
-    const dados = JSON.parse((await scripts.textContent()) ?? "");
+    await expect(scripts).toHaveCount(2);
+    const todos = (await scripts.allTextContents()).map((t) => JSON.parse(t));
+    expect(todos.map((d) => d["@type"])).toContain("WebSite");
+    const dados = todos.find((d) => d["@type"] === "ProfessionalService");
     expect(dados["@type"]).toBe("ProfessionalService");
     expect(dados.name).toBe(site.nome);
     expect(dados.hasOfferCatalog.itemListElement.length).toBeGreaterThan(0);
