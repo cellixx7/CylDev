@@ -29,6 +29,7 @@ export function jsonLdNegocios(url: string): Record<string, unknown> {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: site.nome,
+    alternateName: site.marcaComunidade,
     description: `${t.apresentacao.titulo} ${t.apresentacao.subtitulo}`,
     url: `${url}/`,
     image: `${url}/og-negocios-v2.png`,
@@ -36,6 +37,8 @@ export function jsonLdNegocios(url: string): Record<string, unknown> {
     email: site.email,
     areaServed: { "@type": "Country", name: "Brasil" },
     availableLanguage: "pt-BR",
+    ...(site.perfis.length > 0 ? { sameAs: site.perfis } : {}),
+    knowsAbout: ["Ajuste e organização de planilhas", "Painéis de dados", "Automação em Excel e Python", "Criação de sites e landing pages", "Sistemas sob medida"],
     priceRange: t.apresentacao.aPartirDe(brl(partida.valor)),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -59,6 +62,18 @@ export function jsonLdNegocios(url: string): Record<string, unknown> {
   };
 }
 
+/** JSON-LD `WebSite`: diz ao Google que o nome do site é "CylDev" (nome do site nos resultados de busca). */
+export function jsonLdSite(url: string): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.marcaComunidade,
+    alternateName: [site.nome],
+    url: `${url}/`,
+    inLanguage: "pt-BR",
+  };
+}
+
 /** `<script type="application/ld+json">` pronto para o <head>. `<` vira `\u003c` para o JSON não fechar a tag. */
 export function scriptJsonLd(dados: Record<string, unknown>): string {
   return `<script type="application/ld+json">${JSON.stringify(dados).replace(/</g, "\\u003c")}</script>`;
@@ -76,9 +91,10 @@ export function noscriptNegocios(): string {
   return [
     `<noscript>`,
     `<main id="conteudo" class="mx-auto max-w-hero px-margem pt-6 pb-14">`,
-    `<p><strong>${e(site.nome)}</strong></p>`,
+    `<p><strong>${e(site.marcaComunidade)}</strong> · ${e(site.nome)}</p>`,
     `<h1>${e(t.apresentacao.titulo)}</h1>`,
     `<p>${e(t.apresentacao.subtitulo)}</p>`,
+    `<p>${e(t.apresentacao.texto)}</p>`,
     `<p><strong>${e(linhaPartida)}</strong></p>`,
     `<p>${e(t.semJs.aviso)}</p>`,
     `<ul>`,

@@ -10,7 +10,7 @@ import { perguntasFrequentes } from "./src/content/textos/perguntasFrequentes.ts
 import { privacidade } from "./src/content/textos/privacidade.ts";
 import { termos } from "./src/content/textos/termos.ts";
 import type { PaginaDeTexto } from "./src/content/textos/tipos.ts";
-import { jsonLdNegocios, noscriptNegocios, noscriptPaginaTexto, scriptJsonLd } from "./src/shared/lib/seo.ts";
+import { jsonLdNegocios, jsonLdSite, noscriptNegocios, noscriptPaginaTexto, scriptJsonLd } from "./src/shared/lib/seo.ts";
 
 // A Netlify injeta `URL` no build. Sem ela, vale o endereço padrão de site.ts.
 const urlDoSite = (process.env.URL ?? site.urlPadrao).replace(/\/$/, "");
@@ -75,7 +75,7 @@ function seo(): Plugin {
       if (leitura) return html.replace('<div id="raiz"></div>', `${noscriptPaginaTexto(leitura)}\n    <div id="raiz"></div>`);
       if (ctx.path !== "/index.html") return html;
       return html
-        .replace("</head>", `    ${scriptJsonLd(jsonLdNegocios(urlDoSite))}\n  </head>`)
+        .replace("</head>", `    ${scriptJsonLd(jsonLdSite(urlDoSite))}\n    ${scriptJsonLd(jsonLdNegocios(urlDoSite))}\n  </head>`)
         .replace('<div id="raiz"></div>', `${noscriptNegocios()}\n    <div id="raiz"></div>`);
     },
     generateBundle() {

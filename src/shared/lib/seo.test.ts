@@ -4,7 +4,7 @@ import { site } from "../../content/site";
 import { negocios as t } from "../../content/textos";
 import { brl } from "./formato";
 import { termos } from "../../content/textos/termos";
-import { escaparHtml, jsonLdNegocios, noscriptNegocios, noscriptPaginaTexto, precoDePartida, scriptJsonLd } from "./seo";
+import { escaparHtml, jsonLdNegocios, jsonLdSite, noscriptNegocios, noscriptPaginaTexto, precoDePartida, scriptJsonLd } from "./seo";
 
 describe("precoDePartida", () => {
   it("é o menor preço fixo ou 'a partir de' de Negócios", () => {
@@ -39,6 +39,13 @@ describe("JSON-LD da home", () => {
       else if (s.preco.tipo === "aPartirDe") expect(preco).toMatchObject({ minPrice: s.preco.valor, priceCurrency: "BRL" });
       else expect(preco).toBeUndefined();
     });
+  });
+
+  it("liga o nome da marca CylDev ao do Marcelo e ao WebSite", () => {
+    expect(dados.alternateName).toBe(site.marcaComunidade);
+    const web = jsonLdSite("https://exemplo.netlify.app");
+    expect(web["@type"]).toBe("WebSite");
+    expect(web.name).toBe(site.marcaComunidade);
   });
 
   it("o script não fecha a tag antes da hora", () => {
