@@ -5,6 +5,7 @@ import { servicoPorId } from "../../../content/servicos";
 import { botao, botaoCheio } from "../../../shared/estilos";
 import { linkContato } from "../../../shared/lib/whatsapp";
 import { escolher, passoDoGuia, voltar } from "../../../shared/lib/guia";
+import { rota } from "../../../shared/i18n/rota";
 
 const foco = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco";
 const opcaoClasse = `flex min-h-alvo w-full cursor-pointer items-center rounded-pequeno border border-texto bg-transparent px-4 py-3 text-left font-[inherit] text-base text-texto hover:bg-realce active:bg-realce ${foco}`;
@@ -37,7 +38,7 @@ export function Resultado({ r, aoVerDetalhes, aoFazerOrcamento }: { r: Resultado
       {r.saida && (
         <a
           className={`${botaoCheio} ${foco}`}
-          href={r.saida.tipo === "link" ? r.saida.href : linkContato(guia.origemWhatsapp, guia.mensagemWhatsapp)}
+          href={rota(r.saida.tipo === "link" ? r.saida.href : linkContato(guia.origemWhatsapp, guia.mensagemWhatsapp))}
           {...(r.saida.tipo === "whatsapp" ? { target: "_blank", rel: "noopener" } : {})}
         >
           {r.saida.rotulo}

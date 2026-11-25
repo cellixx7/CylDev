@@ -9,6 +9,7 @@ import { botao } from "../estilos";
 import { CabecalhoNegocios } from "./cabecalho/CabecalhoNegocios";
 import { ContatoRodape, Rodape } from "./Rodape";
 import { TextoRico } from "./TextoRico";
+import { rota } from "../i18n/rota";
 
 /**
  * Página de leitura (Termos, privacidade, acessibilidade, perguntas): título, versão, índice e seções com âncora.
@@ -116,7 +117,7 @@ export function PaginaTexto({
               </section>
             ))}
             <p className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2">
-              <a className={botao} href="/">
+              <a className={botao} href={rota("/")}>
                 {r.voltar}
               </a>
               <a className="inline-flex min-h-alvo items-center" href="#topo">

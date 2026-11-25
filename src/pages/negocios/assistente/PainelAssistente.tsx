@@ -33,6 +33,7 @@ import { Corpo } from "./Corpo";
 import { useTravaRolagem } from "../useTravaRolagem";
 import { BotaoCyldev } from "./BotaoCyldev";
 import { AlcaRedimensionar, useTamanhoDoPainel } from "./Redimensionar";
+import { rota } from "../../../shared/i18n/rota";
 
 // Painel do chat (carregado sob demanda por BotaoAssistente). Tudo roda neste aparelho: nenhuma mensagem sai daqui
 // (sem rede e sem cookie). A conversa em andamento e as anteriores ficam no localStorage (shared/lib/assistente/historico.ts):
@@ -465,7 +466,7 @@ export function PainelAssistente({ aberto, aoFechar }: Props) {
                                       <a
                                         key={i}
                                         className={i === 0 && a.externo ? `${botaoCheio} text-base md:text-menor` : `${botao} text-base md:text-menor`}
-                                        href={a.href}
+                                        href={rota(a.href)}
                                         {...(a.externo ? { target: "_blank", rel: "noopener" } : {})}
                                         onClick={(e) => aoAcionar(a, e)}
                                       >

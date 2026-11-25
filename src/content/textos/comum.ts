@@ -26,6 +26,10 @@ export const comum = {
   temaEscuro: "Tema escuro",
   menuAbrir: "Abrir menu",
   menuFechar: "Fechar menu",
+  /** Nome da navegação do cabeçalho, lido por leitor de tela. */
+  menuPrincipal: "Principal",
+  /** Botão de idioma do cabeçalho. O nome de cada idioma aparece sempre no próprio idioma (ver shared/i18n/idiomas.ts). */
+  idioma: { rotulo: "Idioma" },
   /** Carrossel do celular (ver shared/components/Carrossel.tsx). */
   carrossel: {
     anterior: "Anterior",

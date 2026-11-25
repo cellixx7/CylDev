@@ -2,6 +2,8 @@
 // Usado pelo plugin `seo` do vite.config.ts no build e pelo hero (preço de partida). Tudo sai de src/content/.
 import { servicosDa, type Servico } from "../../content/servicos";
 import { site } from "../../content/site";
+import { dadosDoIdioma, prefixoDoIdioma, type CodigoIdioma } from "../i18n/idiomas";
+import { rota } from "../i18n/rota";
 import { comum, negocios as t, paginaDeTexto, type PaginaDeTexto } from "../../content/textos";
 import { brl } from "./formato";
 import { identificacaoPrestador } from "./prestador";
@@ -23,7 +25,7 @@ export function escaparHtml(texto: string): string {
  * JSON-LD `ProfessionalService` da home. Só dados que já estão no site: nome, descrição, contatos e os pacotes
  * de Negócios com o preço de tabela (fixo vira `price`, "a partir de" vira `minPrice`, sob consulta vai sem preço).
  */
-export function jsonLdNegocios(url: string): Record<string, unknown> {
+export function jsonLdNegocios(url: string, idioma: CodigoIdioma = "pt"): Record<string, unknown> {
   const partida = precoDePartida();
   return {
     "@context": "https://schema.org",
@@ -31,12 +33,12 @@ export function jsonLdNegocios(url: string): Record<string, unknown> {
     name: site.nome,
     alternateName: site.marcaComunidade,
     description: `${t.apresentacao.titulo} ${t.apresentacao.subtitulo}`,
-    url: `${url}/`,
+    url: `${url}${prefixoDoIdioma(idioma)}/`,
     image: `${url}/og-negocios-v2.png`,
     telephone: `+${site.whatsapp}`,
     email: site.email,
     areaServed: { "@type": "Country", name: "Brasil" },
-    availableLanguage: "pt-BR",
+    availableLanguage: dadosDoIdioma(idioma).bcp47,
     ...(site.perfis.length > 0 ? { sameAs: site.perfis } : {}),
     knowsAbout: ["Ajuste e organização de planilhas", "Painéis de dados", "Automação em Excel e Python", "Criação de sites e landing pages", "Sistemas sob medida"],
     priceRange: t.apresentacao.aPartirDe(brl(partida.valor)),
@@ -63,14 +65,14 @@ export function jsonLdNegocios(url: string): Record<string, unknown> {
 }
 
 /** JSON-LD `WebSite`: diz ao Google que o nome do site é "CylDev" (nome do site nos resultados de busca). */
-export function jsonLdSite(url: string): Record<string, unknown> {
+export function jsonLdSite(url: string, idioma: CodigoIdioma = "pt"): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: site.marcaComunidade,
     alternateName: [site.nome],
-    url: `${url}/`,
-    inLanguage: "pt-BR",
+    url: `${url}${prefixoDoIdioma(idioma)}/`,
+    inLanguage: dadosDoIdioma(idioma).bcp47,
   };
 }
 
@@ -100,7 +102,7 @@ export function noscriptNegocios(): string {
     `<ul>`,
     `<li><a ${link} href="https://wa.me/${e(site.whatsapp.replace(/\D/g, ""))}">${e(t.semJs.whatsapp)}</a></li>`,
     `<li><a ${link} href="mailto:${e(site.email)}">${e(t.semJs.email)}</a> (${e(site.email)})</li>`,
-    `<li><a ${link} href="/como-funciona/">${e(t.semJs.comoFunciona)}</a></li>`,
+    `<li><a ${link} href="${rota("/como-funciona/")}">${e(t.semJs.comoFunciona)}</a></li>`,
     `</ul>`,
     rodapeSemJs(),
     `</main>`,
@@ -113,10 +115,10 @@ function rodapeSemJs(): string {
   const e = escaparHtml;
   const link = `class="inline-flex min-h-alvo items-center"`;
   const links = [
-    ["/termos/", comum.rodape.termos],
-    ["/privacidade/", comum.privacidadeLink],
-    ["/perguntas/", comum.rodape.perguntas],
-    ["/acessibilidade/", comum.rodape.acessibilidade],
+    [rota("/termos/"), comum.rodape.termos],
+    [rota("/privacidade/"), comum.privacidadeLink],
+    [rota("/perguntas/"), comum.rodape.perguntas],
+    [rota("/acessibilidade/"), comum.rodape.acessibilidade],
   ];
   return [
     `<p class="text-texto-suave">${e(`${comum.rodape.prestador} ${identificacaoPrestador().join(" · ")}`)}</p>`,
@@ -152,7 +154,7 @@ export function noscriptPaginaTexto(pagina: PaginaDeTexto): string {
       ...paragrafos(s.depois),
       ...(s.blocos ?? []).flatMap((b) => [`<h3>${e(b.titulo)}</h3>`, ...paragrafos(b.texto)]),
     ]),
-    `<p><a class="inline-flex min-h-alvo items-center" href="/">${e(paginaDeTexto.voltar)}</a></p>`,
+    `<p><a class="inline-flex min-h-alvo items-center" href="${rota("/")}">${e(paginaDeTexto.voltar)}</a></p>`,
     rodapeSemJs(),
     `</main>`,
     `</noscript>`,

@@ -7,6 +7,7 @@ import { emailjsConfigurado, enviarContato, pareceSpam, TEMPO_MINIMO_MS } from "
 import { validarTelefone } from "../../../shared/lib/telefone";
 import { dadosEmailPedido, linkEmailPedido, linkWhatsappPedido, type Pedido } from "../../../shared/lib/pedido";
 import { AvisoNovaAba } from "../../../shared/components/AvisoNovaAba";
+import { rota } from "../../../shared/i18n/rota";
 
 const t = orcamento.carrinho;
 const origem = "negocios-carrinho";
@@ -53,7 +54,7 @@ export function useEnvioPedido(pedido: Pedido) {
 
     // Spam: finge sucesso para não ensinar o robô a contornar a proteção.
     if (pareceSpam(valor("site_empresa"), abertoEm.current)) {
-      window.location.assign("/obrigado/");
+      window.location.assign(rota("/obrigado/"));
       return;
     }
 
@@ -70,7 +71,7 @@ export function useEnvioPedido(pedido: Pedido) {
       await enviarContato(dadosEmailPedido(pedido, { nome: valor("nome"), whatsapp: tel.digitos }, origem));
       // Envio confirmado: o pedido guardado sai, para a próxima visita começar vazia.
       limparCarrinho();
-      window.location.assign("/obrigado/");
+      window.location.assign(rota("/obrigado/"));
     } catch {
       setEstado("falhou");
     }
@@ -155,15 +156,15 @@ export function DadosDoPedido({ pedido, estado, aoEnviar, envioAtivo = emailjsCo
       <p className="mt-3 mb-0 text-menor text-texto-suave">{t.privacidade}</p>
       <p className="mt-2 mb-0 text-menor text-texto-suave" data-aceite>
         {t.aceite.antes}{" "}
-        <a className="py-3" href="/termos/">
+        <a className="py-3" href={rota("/termos/")}>
           {t.aceite.termosLink}
         </a>{" "}
         {t.aceite.meio}{" "}
-        <a className="py-3" href="/privacidade/">
+        <a className="py-3" href={rota("/privacidade/")}>
           {t.privacidadeLink}
         </a>
         . {t.aceite.depois} {t.aceite.desistenciaAntes}{" "}
-        <a className="py-3" href="/termos/#arrependimento">
+        <a className="py-3" href={rota("/termos/#arrependimento")}>
           {t.aceite.desistenciaLink}
         </a>
         .

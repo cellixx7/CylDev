@@ -3,6 +3,7 @@ import { comum, negocios } from "../../content/textos";
 import { identificacaoPrestador } from "../lib/prestador";
 import { linkContato } from "../lib/whatsapp";
 import { AvisoNovaAba } from "./AvisoNovaAba";
+import { rota } from "../i18n/rota";
 
 type Props = {
   ponte: { texto: string; link: string; href: string };
@@ -18,7 +19,7 @@ export function Rodape({ ponte, contatoHref = "/#contato", children }: Props) {
     <footer className="mx-auto max-w-site border-t border-linha px-margem pt-9 pb-14 text-base text-texto-suave">
       <p className="font-semibold text-texto">
         {ponte.texto}{" "}
-        <a className="inline-block min-h-alvo leading-[44px]" href={ponte.href}>
+        <a className="inline-block min-h-alvo leading-[44px]" href={rota(ponte.href)}>
           {ponte.link}
         </a>
       </p>
@@ -30,16 +31,16 @@ export function Rodape({ ponte, contatoHref = "/#contato", children }: Props) {
       {/* Links curtos; os textos completos moram nas páginas de leitura. */}
       <p className="m-0">{comum.rodape.semRastreio}</p>
       <nav aria-label={comum.rodape.rotulo} className="flex flex-wrap items-center gap-x-6">
-        <a className={link} href="/termos/">
+        <a className={link} href={rota("/termos/")}>
           {comum.rodape.termos}
         </a>
-        <a className={link} href="/privacidade/">
+        <a className={link} href={rota("/privacidade/")}>
           {comum.privacidadeLink}
         </a>
-        <a className={link} href="/perguntas/">
+        <a className={link} href={rota("/perguntas/")}>
           {comum.rodape.perguntas}
         </a>
-        <a className={link} href="/acessibilidade/">
+        <a className={link} href={rota("/acessibilidade/")}>
           {comum.rodape.acessibilidade}
         </a>
         <a className={link} href={contatoHref}>

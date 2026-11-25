@@ -1,6 +1,8 @@
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { comum } from "../../../content/textos";
 import { rolarParaAncora } from "../../lib/ancora";
+import { rota } from "../../i18n/rota";
+import { SeletorIdioma } from "./SeletorIdioma";
 import { aplicarTema, lerTema, salvarTema, type Tema } from "../../tema";
 
 type Link = { href: string; rotulo: string };
@@ -105,11 +107,12 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
     <>
       <header className={classesHeader}>
         <div className={classesBarra}>
-          <a className={classesMarca} href="/">
+          <a className={classesMarca} href={rota("/")}>
             {marca}
           </a>
           <div className="flex items-center justify-self-center">{centro}</div>
           <div className="flex items-center gap-2 justify-self-end">
+            <SeletorIdioma />
             <button
               type="button"
               className={`${botaoBase} inline-flex items-center justify-center px-2 pc:hidden`}
@@ -147,7 +150,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
             <nav
               id="menu-principal"
               className={classesNav}
-              aria-label="Principal"
+              aria-label={comum.menuPrincipal}
             >
               {temLinks && (
                 <ul className="mb-3 list-none p-0 pc:m-0 pc:flex pc:gap-4 xl:gap-6">
@@ -155,7 +158,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
                     <li key={l.href}>
                       <a
                         className="flex min-h-alvo items-center text-medio whitespace-nowrap no-underline hover:underline active:underline pc:text-base"
-                        href={l.href}
+                        href={rota(l.href)}
                         onClick={(e) => {
                           setMenuAberto(false);
                           aoClicarNaAncora(e, l.href);
