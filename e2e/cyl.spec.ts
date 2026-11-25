@@ -31,7 +31,9 @@ test.describe("Cyl no header", () => {
     await page.goto("/");
     await page.getByRole("button", { name: "Abrir o Assistente Cyl" }).click();
     const dialogo = page.getByRole("dialog");
-    await expect(dialogo.locator("svg").first()).toBeVisible();
-    expect(await dialogo.locator("svg").first().evaluate((el) => el.getAnimations({ subtree: true }).length)).toBe(0);
+    // O avatar do chat (span redondo). O botão "Conhecer o CylDev" do painel também tem um Cyl, mas esse acena de propósito.
+    const avatar = dialogo.locator("span.rounded-full svg").first();
+    await expect(avatar).toBeVisible();
+    expect(await avatar.evaluate((el) => el.getAnimations({ subtree: true }).length)).toBe(0);
   });
 });
