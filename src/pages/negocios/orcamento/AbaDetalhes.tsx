@@ -3,6 +3,7 @@ import type { ServicoOrcamento } from "../../../content/perguntas";
 import { servicoPorId } from "../../../content/servicos";
 import { orcamento } from "../../../content/textos";
 import { textoMensalidade, textoPrazo } from "../../../shared/components/Catalogo";
+import { rota } from "../../../shared/i18n/rota";
 
 const t = orcamento.modal;
 
@@ -31,7 +32,7 @@ export function AbaDetalhes({ modelo }: { modelo: ServicoOrcamento }) {
         <p className="mt-4 mb-0">
           <a
             className="inline-flex min-h-alvo items-center font-semibold"
-            href={`/como-funciona/#${demoId}`}
+            href={rota(`/como-funciona/#${demoId}`)}
           >
             {t.verComoFunciona}
           </a>

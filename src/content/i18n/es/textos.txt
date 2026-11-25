@@ -1,0 +1,1066 @@
+zLIp0Z Lo que entrego, en dos escenas
+dD-wH2 Escenas ilustrativas, con datos ficticios.
+A57VWW Escena ilustrativa, con datos ficticios.
+7wymdB Pausar animación
+FQA4D6 Continuar animación
+0kEHiZ De la hoja de cálculo desordenada al panel
+qJbh_- Animación: una hoja de cálculo con columnas y filas fuera de lugar y textos sin un patrón. Primero se alinean las columnas y las filas, después se estandarizan las palabras, los valores y las fechas, y por último se genera a partir de ella un panel con el total, el número de registros y el valor por sector.
+CfOvts Datos sueltos, sin patrón
+hwrD8S Columnas y filas en su lugar
+H3MLeP Palabras y valores estandarizados
+HLTuSG Panel generado a partir de la hoja de cálculo
+RRx71P Sector
+EwMN2W Nombre
+QnHriu Valor
+5eQpvM Fecha
+AnuzJ- Panel de registros
+slkoxp Total
+qB6PMd Registros
+3vXG8N Valor por sector
+RCDAQW Una presentación para quien decide
+OzgBDj Escena: un auditorio visto desde atrás, con personas sentadas con uniformes de la Marina, el Ejército y la Fuerza Aérea, mirando una pantalla grande. La diapositiva alterna entre un panel de gráficos y un flujo de proceso, y a su lado aparece el nombre {1}.
+xVoLkb Panel del mes
+WLSHf3 Flujo del proceso
+fAHUe9 Pedido
+Yaa6aD Análisis
+0ZXQiZ Entrega
+nnnOqc Prácticas en TI
+G6vP1i Mira cómo una tarea repetida se convierte en un clic
+xQaXlb Puedo dejar de repetir este trabajo.
+q8RgK5 Los tres archivos de la semana
+GkjYx4 Cada tienda envía su archivo. Cada semana alguien abre los tres para armar el informe.
+VlgbV1 Copiar y pegar en una sola hoja
+k_GLjh Las filas de los tres archivos se juntan, una por una, en una sola tabla.
+uYiDYm Filtrar y borrar lo que sobra
+MD7W_7 Las filas canceladas salen de la tabla.
+Gycryj Dar formato y comprobar los totales
+K_VB79 Se rehace la suma y se comprueba con lo que quedó.
+e2GzCz Con la automatización, un clic
+VpdFs3 El botón hace estos tres pasos de una vez. El resultado es el mismo, sin copiar y pegar.
+lwpSgJ Camiseta
+COdwh6 Gorra
+JZSrVP Taza
+jRHYTW Abrigo
+qvOJD4 Archivo
+7N2lmu Artículo
+LTq_Pe Estado
+0-unNJ Actualizar informe
+poGH8I Botón de ejemplo, aquí no se puede pulsar
+v2hbme R$ {1}, comprobado con {2} filas
+m_lBVX Archivo {1}
+1bn5sD Informe de la semana
+mxh4xB Antes: los archivos separados
+6u9JA4 Después: el informe listo
+Mm8OSU No todas las tareas se pueden automatizar. Confirmo lo que es posible en la conversación, antes de acordar el trabajo.
+-P_EiT Mira un panel en uso
+s4bGm5 Puedo descubrir qué se vende más y seguir de cerca el negocio.
+vD8TON La tabla de ventas
+jxU7cu Ventas por producto en los últimos tres meses, en miles de R$. De aquí saca todo el panel.
+453uxj miles de R$
+YgTviQ Tabla de ventas (miles de R$)
+lczc9- Producto
+Ig4Gui Oct
+u5v-_V Nov
+ma6ALq Dic
+TYPPlw Camisetas
+o4zgG3 Gorras
+5skOll Tazas
+XuRz-t Abrigos
+wsqCK- Panel de ventas
+T4Vxe1 Mes
+pBFKg_ Todos
+uM-sOw Oct a Dic
+4BvJtX Vendido en el período
+LWeZkB Lo que más se vende
+S15vl4 Lo que menos sale
+Dx_qGM Ventas por producto (miles de R$)
+SIYl2_ {1}: R$ {2} mil vendidos. Más vendido: {3}. Menos vendido: {4}.
+CTYf-r Los números salen de la tabla
+b075TE El total, el producto que más se vende y el que menos sale se calculan solos.
+PZ3mWn El gráfico compara los productos
+OwFGqm De un vistazo se ve qué se vende más y qué se vende menos.
+NTb8cn Tú eliges un mes
+VXvajU En noviembre, el que más se vende es otro producto: las Gorras. El panel lo rehace todo.
+EUw0Dk Notas el producto parado
+lHQNnC En diciembre el total sube, pero los Abrigos siguen siendo lo que menos sale.
+BSbId6 Ahora te toca a ti: elige un mes.
+RKXJc7 Tabla de ventas
+DoBGFf Mira una hoja de cálculo siendo ordenada
+wD9-O2 Ahora puedo rellenarla y comprobarla sin perderme.
+1OY4E2 Cómo llega la hoja de cálculo
+-zIYJX Fechas y nombres escritos de distintas maneras, filas repetidas y una fila vacía.
+57vrQB Tabla antes de ordenar
+_0PsFb Tabla después de ordenar
+2BkKa_ Tabla de ejemplo
+fqRJ_O Nota
+xcfV7j Cliente
+PMjYux Estandariza las fechas
+b9IwEK Todas pasan a día/mes, de la misma manera.
+_GPBw- Estandariza los nombres
+78Sq4D Mayúsculas y minúsculas en su lugar.
+OPSBN1 Quita las repetidas y las vacías
+YnRkd8 Una fila repetida y una fila vacía salen de la tabla.
+80VQO6 Separa en columnas
+8DblIh Cliente, artículo y valor, cada uno en su lugar.
+Xbnnor Comprueba los totales
+ZP2dxa La suma coincide con los pedidos que quedaron.
+76U4qU Total: R$ 185 (tiene una fila repetida, no cuadra)
+k8SZfd Total: R$ 145 (falta comprobar)
+DWizEW Total: R$ 145, comprobado con los 3 pedidos
+Bax_GD Ejemplo con datos ficticios
+YVMYEM Pulsa Reproducir para ver cada paso, o Ver resultado para ir directo al final.
+FYubZB Reproducir
+jg9e2Z Pausar
+A3hAF8 Ver resultado
+i1PbRR Reiniciar
+8Qh_rk Controles de la demostración
+xao8Rs Paso {1} de {2}
+1ksRJy Lo que cambia en cada paso
+EXfk7X Antes
+Yfbue8 Después
+cDRFRV Entiende cómo funciona cada entrega
+zwM0Io Cada parte de abajo muestra, con un ejemplo, qué entrego y cómo ayuda en el día a día del negocio. Cada bloque tiene su propio enlace: cópialo y envíalo a quien quieras para mostrarle exactamente ese tema.
+-Fxcv6 Elige el tema
+AHYzSq Copiar enlace
+4s2BFG ¡Enlace copiado!
+RF2HhO Copia la dirección de la barra del navegador.
+b7wKpc Ejemplo
+afyTLw Cómo ayuda
+Fn12K- Cuándo tiene sentido
+jWrU2j Quiero algo así
+j7sQyi Volver a la página de inicio
+5A9sXB Entiende cómo funciona
+_HcKQp Hoja de cálculo ordenada
+NIi7Sn La hoja de cálculo que ya tienes, en orden
+_splAe Los datos están dispersos, cada persona rellena a su manera y el total nunca coincide con lo que esperabas.
+PjziNH Una pestaña por tema: ventas, inventario, caja.
+OlWSU3 Columnas estandarizadas, así cualquiera rellena de la misma manera.
+g56U9O Totales que cuadran, para que confíes en el número.
+Etg0vR Una página de instrucciones para que el equipo no se pierda.
+doGNYF Antes y después de una hoja de ventas
+9eGsLO Panel básico
+cSltFo Los números del mes en una sola pantalla
+gQey22 Quieres saber cuánto vendiste y qué se vende más, pero tienes que hacer la cuenta cada vez que preguntas.
+VYseqp Abres el archivo y ya ves las ventas, los productos y cómo va el mes.
+noociG Filtro por período para comparar una semana con otra.
+StGItq Inventario y ventas seguidos con números, y no a ojo.
+Nz2EIH En Excel o Power BI Desktop, lo que te resulte más práctico.
+6i-4ap Panel de una tienda ficticia
+NR_Brg Automatización en Excel
+BOTv0v La tarea repetida pasa a ejecutarse con un clic
+GOJ43b Cada semana alguien copia, pega, filtra y da formato a lo mismo. Da trabajo y es fácil equivocarse.
+KUTpMD El paso a paso manual se convierte en un botón o en una actualización automática.
+s62wo0 Menos errores de digitación y menos tiempo en tareas repetidas.
+-yFMMb Hecho con VBA o Power Query, dentro del Excel que ya usas.
+KKPyRI Rutina semanal, antes y después
+i0iIjt Sitio web de una página
+BmiZgd Una página que lleva al cliente a tu WhatsApp
+bArrFc Los clientes siempre preguntan lo mismo y no tienes dónde mostrar el servicio y los precios.
+sAe98A Una página con tu servicio, tus precios y un botón de WhatsApp.
+MR5tP2 Funciona bien en el celular, que es desde donde llega la mayoría.
+Nyk_cj Queda en línea en un alojamiento gratuito, en tu propia cuenta.
+jWZRcL Boceto de una página ficticia
+7UNHPK Automatización con Python
+Ze8DlN Lo que Excel no alcanza, un script lo resuelve
+G1kXVV Juntas decenas de archivos, copias datos de PDF o de sitios web a mano, y eso te quita horas cada semana.
+fo2c1K Un script hecho para tu tarea, no un programa genérico.
+SW3jIM Lee PDF, hojas de cálculo y sitios web, y entrega el resultado listo.
+9qOZLj Recibes instrucciones para ejecutarlo y ajustarlo tú mismo.
+RUDMKA Cómo puede ser el camino de un script
+ESmInY Sistema a medida
+GFugqB Cuando la hoja de cálculo ya no alcanza
+Hj0C6C El negocio creció, la hoja de cálculo se volvió pesada y varias personas necesitan usarla al mismo tiempo.
+K4gftK Empieza con una conversación para entender tu caso.
+BJpSVn Recibes una propuesta por escrito antes de cualquier cobro.
+MyH219 El sistema se diseña en torno a tu rutina, y no al revés.
+rhCa35 Del primer contacto a la propuesta
+mzbHl8 No sé cuál elegir
+3KcrZQ ¿Qué servicio va contigo?
+LergUg Responde hasta dos preguntas y te muestro por dónde empezar. Sigues libre para elegir cualquier servicio.
+jmzY0F Pregunta {1}
+baHbWm Volver
+etx0Sp Cerrar la guía
+NePr0K Por dónde empezar
+1i16FZ Ver detalles
+kS6p8G Hacer presupuesto
+z9ILhK No sé qué servicio elegir y me gustaría conversar.
+cR7lLE Es solo una sugerencia. El valor y el plazo los ves en los detalles y en la estimación de cada servicio.
+eT9Fa1 ¿Qué quieres resolver?
+L1YnL5 Cuidar los números de mi negocio
+9Vscco Tener una página para presentar mi negocio
+5Sj_Ij Automatizar tareas con un script, más allá de Excel
+xyvoy1 La hoja de cálculo ya no alcanza y necesito un sistema
+gHFhrj Quiero un bot para mi servidor de Discord
+Rsu0tg No sé, prefiero conversar
+zsXcG0 ¿Qué es lo que más estorba hoy?
+SZHD_G La hoja de cálculo es un desorden, o todavía uso cuaderno y mensajes
+BEVAZS Tengo los datos, pero quiero ver cómo va el negocio sin hacer cuentas
+mb2S3L Repito la misma tarea en la hoja de cálculo cada semana
+0HRZBG Primero los datos se ordenan, con totales que cuadran. Es la base para cualquier panel o automatización después. Si juntas servicios, hay descuento.
+taGd0Z Un panel muestra lo que importa de tu negocio en una pantalla. Si los datos todavía están sueltos, la hoja de cálculo ordenada puede ir antes.
+hDFKMS La tarea repetida pasa a ejecutarse con un clic. Confirmo qué se puede automatizar después de ver tu caso.
+H2VeIO Una página con tu servicio y un botón que lleva al cliente directo a tu WhatsApp.
+UOxAzA Un script en Python hace por ti la tarea repetida, incluso con PDF, varios archivos o sitios web. Si la tarea cabe dentro de Excel, la automatización en Excel puede servir mejor.
+UlxYEi Armas un presupuesto base respondiendo a las preguntas. El valor es un punto de partida: después de la conversación, la propuesta por escrito cierra el alcance.
+k_0o-N Los bots de Discord están en el área Comunidad, con el precio y la mensualidad explicados allí.
+6fh3av Ver los bots en la Comunidad
+aznwc5 Sin problema, cuéntame tu caso y te ayudo a elegir.
+64mCWS Hablar conmigo por WhatsApp
+pComl1 Cambia el valor.
+9isbsE No cambia el valor.
+ZM3krG Marca todas las que quieras.
+PpO64G ¿Qué es esto?
+B7YyIe ¿Qué tipo de negocio es?
+1xiJPK Tipo de negocio
+NJlb93 Tienda o comercio minorista
+VWML8A Servicios y atención al cliente
+nw06-k Alimentación
+A6KNUf Taller o técnico
+fBCxgC Otro
+LGeB3B Esto me ayuda a elegir qué poner al principio: inventario y ventas para una tienda, agenda y seguimientos para quien presta servicios, recetas y costos para alimentación. No cambia el valor.
+dxkQn6 ¿Tiene datos sensibles?
+HN3TDE Datos sensibles
+hPub_I Sí
+clNLuw No
+3c8Z-f No sé
+Ef1szZ Los datos sensibles son información que puede exponer a personas o a tu negocio: documento de identidad, dirección y teléfono de clientes, datos de salud, salarios, margen de ganancia. No necesitas enviarme nada de eso para pedir el presupuesto. Si los tienes, trabajo con una copia en la que esos campos fueron reemplazados por ejemplos, y tú pegas los datos reales después, por tu cuenta. Esto no cambia el valor, solo la forma de trabajar.
+IQnoOW ¿Para qué tipo de servidor?
+jDTial Tipo de servidor
+HZsjDz Comunidad de juegos
+bRVvEt Tienda o marca
+esLIGS Estudios o grupo
+2zQtz2 Comunidad de juegos, tienda, grupo de estudio: cada uno pide una forma distinta de organizar canales y reglas. No cambia el valor.
+E9wEmr Reúno controles sueltos (cuaderno, mensajes, varias pestañas) en una sola hoja de cálculo, con fórmulas que suman y comprueban por ti. La abres, la rellenas y ves el total, sin necesidad de entender de Excel.
+nw2VyZ Hoja de cálculo lista en Excel, con las columnas de tu negocio
+J5SakT Fórmulas y totales automáticos, explicados en una pestaña de lectura rápida
+PNwyZH Listas de selección para evitar errores de digitación
+SFtH9L Un día de revisión incluido en el plazo
+HQK8n9 Paquete desde R$ 100. Cada hora de trabajo adicional suma R$ 50, y tus respuestas muestran dónde ocurre eso.
+eOPSDy Ajustes después de la entrega: R$ 50 por hora.
+DzgJS9 ¿Ya tienes una hoja de cálculo?
+Tl-7dX Material de partida
+Z8pdfQ Sí, y está en buen orden
+eOgQnK Sí, y necesita una gran puesta en orden
+EzR3o8 Solo tengo notas o papel
+5WNqLh No, empiezo desde cero
+KBu0aB La limpieza sencilla ya está en el paquete: quitar filas vacías y repetidas y estandarizar las columnas. Los datos dispersos en varias pestañas, con fechas y valores escritos de distintas maneras, dan más trabajo para ordenar. Si es cuaderno o papel, armamos el modelo juntos.
+XYsafw ¿Qué controles necesita la hoja de cálculo?
+oA7dhf Controles adicionales
+6Etk9L Clientes
+dBu3Yr Inventario
+PP5dNU Ventas
+VdrRwY Cuentas por pagar y por cobrar
+ee07Qk Agenda y seguimientos
+00QmoN Un control es una pestaña para seguir una cosa, como clientes o inventario. El primero está incluido en el paquete. Cada control adicional es trabajo extra, y la pantalla muestra cuánto.
+Ei0azT ¿La hoja de cálculo tendrá valores en dinero?
+Y-EkCk Valores en dinero
+ZFjkxD Sí: precios, ventas o costos
+JHZLls No: solo registros y listas
+YjPV97 Con precios, ventas o costos, cada total y cada fórmula quedan visibles y explicados, para que puedas comprobarlos por tu cuenta. Esto pide un cuidado adicional, y la pantalla muestra cuánto.
+pEc0h_ Convierto tus números en un panel con pocos gráficos e indicadores, hecho para responder las preguntas de tu día a día: cuánto vendí, quién compra más, qué está parado.
+4Fqrrr Panel listo, en el formato que elijas
+oQ-P7e Indicadores y gráficos conectados a tu hoja de cálculo
+c7I_Ey Filtros sencillos, como período y categoría
+nH-jUs Excel es el estándar y abre en cualquier computadora.
+8_AKaK Power BI: entrego el archivo. Para compartirlo en línea con el equipo hace falta una licencia de pago (Pro) de Microsoft.
+DPufnC ¿De dónde vienen tus números?
+a_lwbV Origen de los números
+NPrO9g Una hoja de cálculo mía
+UhOd38 Exportación de un sistema
+NkziTW Un archivo que descargas de otro programa (por ejemplo, el sistema de la tienda), generalmente en Excel o CSV.
+dw223Z Varios archivos sueltos
+nqQ3A7 Todavía no tengo
+77sZiC Una hoja de cálculo tuya es el camino más corto. Las exportaciones de sistemas y varios archivos sueltos piden tiempo para juntar y limpiar, y eso cambia el valor. Si todavía no tienes nada organizado, la hoja de cálculo ordenada puede ir antes.
+589KZB ¿Qué necesita responder el panel?
+KcMz9u Preguntas adicionales
+dipLdt Cuánto vendí
+8MABMV Quién compra más
+oLiOvi Qué está parado
+Vtk72z Cuánto queda de ganancia
+xLFk95 Otra
+pktfeQ Cada pregunta se convierte en un indicador o gráfico. Las dos primeras están incluidas. Cada una adicional es trabajo extra, y la pantalla muestra cuánto.
+p5nSOA Feb
+t_VVF5 ¿Dónde quieres ver el panel?
+yR9g5J Formato del panel
+oI4REZ Excel
+GXyy9N Power BI (archivo)
+3JX4w7 Power BI es un programa de Microsoft para gráficos. Aquí entrego un archivo para abrirlo en él; para compartirlo por internet, Microsoft exige una licencia de pago.
+sM7FaJ Excel es lo más sencillo y abre en cualquier computadora. Power BI es más visual y cambia el valor, pero para compartirlo con otras personas por internet exige una licencia de pago de Microsoft.
+EqvFZ5 Automatización
+3UWjmr Tomo una tarea que repites todos los días o todas las semanas (copiar datos, juntar archivos, enviar avisos) y hago que la computadora la haga por ti.
+jMaVxA Rutina automática funcionando en tu computadora o en la nube
+2gjvmL Instrucciones sencillas para usarla y para detenerla
+RZWun2 Prueba con datos de ejemplo antes de entregar
+4QsAmO El valor parte de R$ 300 y cambia según tus respuestas.
+SxpMGk ¿Qué quieres automatizar?
+BnlW8f Tareas adicionales
+zxtjik Hoja de cálculo que se rellena sola
+8Ptokx La hoja de cálculo recibe los datos sin que los escribas, por ejemplo desde otro archivo.
+gX-w_o Avisos y mensajes
+wOgXIM Juntar datos de varios lugares
+EfFOTh Todavía no lo sé
+uOUgvj Piensa en lo que siempre rehaces de la misma manera. La primera tarea está incluida. Cada tarea adicional es trabajo extra, y la pantalla muestra cuánto. Si no sabes describirla, cuéntamelo por WhatsApp y te ayudo.
+csdr0K ¿Dónde ocurre esto hoy?
+-CLWrp Dónde ocurre
+L15Ppn En Excel
+Hz4AqD En un sistema
+23Qo_1 El programa de gestión o la tienda en línea que ya usas.
+qazxFg En WhatsApp o por correo electrónico
+FS2Y6I En varios lugares
+caVDI0 Dentro de Excel es lo más sencillo. Cuando la tarea involucra un sistema, WhatsApp o varios lugares, hay que conectar las piezas, y eso cambia el valor.
+mN4oG_ Una página sencilla y rápida que presenta tu negocio y lleva a la persona a contactarte, de preferencia por WhatsApp.
+m7N3_Z Página adaptable, pensada primero para el celular
+Y4uPra Botón directo a tu WhatsApp
+GYcIw2 Textos organizados contigo en la conversación
+YaRR91 El dominio (la dirección de la página) y el alojamiento pueden tener un costo propio. Te explico las opciones antes de que decidas.
+PfSVoV ¿Qué necesita hacer la página?
+MItHsy Objetivos adicionales
+_C99cF Recibir contactos por WhatsApp
+l_TKSu Mostrar servicios y precios
+RaQ1dK Mostrar fotos y trabajos
+erNYNZ Recibir reservas
+MHkAo3 El cliente elige día y hora directamente en la página.
+HnmBQd La página funciona mejor con pocos objetivos. Los dos primeros están incluidos. Cada uno adicional es trabajo extra, y la pantalla muestra cuánto.
+j2a7IF ¿Ya tienes logo y fotos?
+yY9gbI Logo y fotos
+aKkTBI Solo el logo
+78Clcm Las fotos reales de tu trabajo convencen más que una imagen de banco de imágenes. Sin ningún material, necesito armar contigo un aspecto visual sencillo, y eso cambia el valor.
+5cXDRg ¿Cuántas páginas?
+Kq2IFy Número de páginas
+RdX0BJ Una sola página
+O5Ox55 Todo en una sola página, que se desplaza de arriba abajo.
+dAEFft Hasta 3 páginas
+CRF-gf Páginas separadas, por ejemplo servicios y contacto, en vez de todo en un solo desplazamiento.
+h7KKUK Una sola página se desplaza de arriba abajo, con todo. Varias páginas separan, por ejemplo, servicios y contacto, y eso cambia el valor.
+vVNCnp Escribo un script en Python para la tarea que repites: juntar hojas de cálculo y archivos, leer PDF y facturas, enviar mensajes o buscar datos en sitios web. El resultado sale listo, como una hoja de cálculo o un informe.
+2hebYZ Script en Python hecho para tu tarea
+II0vKX Instrucciones para ejecutarlo y ajustarlo
+AsPF6P El valor parte de R$ 300 y cambia según tus respuestas: una tarea sencilla se queda en el valor base, una tarea más compleja suma horas (R$ 50 por hora).
+gZLcU1 Si la tarea cabe dentro de Excel, la automatización en Excel la resuelve con el mismo valor de partida. Python es para lo que Excel no alcanza.
+2-aW9P ¿Qué necesita hacer el script?
+hDYnwr Juntar hojas de cálculo o archivos
+BR0yim Leer PDF o facturas y pasarlos a una hoja de cálculo
+0Qif23 Enviar correos o mensajes
+RHwDuL Buscar datos en sitios web
+acLIFS El programa abre páginas de internet y copia la información que necesitas.
+8zU3dB Generar un informe listo
+VCngZZ ¿De dónde vienen los datos?
+5eo2vt Origen de los datos
+QoObeO De hojas de cálculo o archivos CSV
+TK4Y2M CSV es un archivo de tabla sencillo, que cualquier hoja de cálculo abre. Es el caso más fácil de tratar.
+UwrlT0 De PDF o imágenes
+MDl3St Leer el texto de PDF y de fotos de facturas pide comprobación, porque la lectura automática puede equivocarse.
+JtYpxe De un sitio web o sistema
+cQkwaT De varios lugares
+Re6Pqe La hoja de cálculo y el CSV son el caso más sencillo y se quedan en el valor base. Los PDF y las imágenes piden lectura y comprobación. Los sitios web o sistemas piden conectar las piezas, y varios lugares a la vez dan aún más trabajo.
+dYa74P ¿Cómo se va a ejecutar el script?
+U1I_Jl Cómo se ejecuta
+oj8iFT Lo ejecuto yo cuando quiera
+ZjO5yi Solo, a una hora programada
+K6xxLg El programa se ejecuta por su cuenta, por ejemplo todos los días a las 8 h, sin que abras nada.
+X64oi7 Con una pantalla de botones
+uT_pbf Una ventanita con botones, para que cualquier persona la use sin tocar código.
+OxojNz Ejecutarlo cuando quieras es lo más sencillo. A una hora programada exige configurar la programación, y una pantalla de botones es un pequeño programa aparte.
+cf5g9L Bot de Discord esencial
+G5_cOK Un bot de Discord con lo esencial para tu servidor: bienvenida, reglas, anuncios y atención por tickets.
+Q15nfr Bot configurado en tu servidor
+57GXUo Bienvenida, anuncios y atención por tickets
+Cp-7Tk Instrucciones para que las use tu equipo
+EpU2Pz Soporte para ajustes pequeños durante el primer mes
+npjf-D Mensualidad del 10 % del valor de creación más el alojamiento, cobrada aparte.
+X9iw-p El descuento de piloto vale solo sobre la creación.
+c_WHrI ¿Qué necesita hacer el bot?
+cjes8y Funciones adicionales
+-J4IPm Bienvenida y reglas
+67_nyi Tickets de soporte
+l7j3fb Un canal privado que el bot abre para atender a una persona.
+pFCtYp Anuncios
+FokgQQ Roles por reacción
+LM-m6P La persona recibe un rol en el servidor al hacer clic en un emoji.
+yCSZpR Un ticket es un canal privado que el bot abre para atender a una persona. Rol por reacción es cuando la persona recibe un rol al hacer clic en un emoji. Las dos primeras funciones están incluidas. Cada una adicional es trabajo extra, y la pantalla muestra cuánto.
+MoUZbU ¿Quién aloja el bot?
+fQbfDy Alojamiento
+LNxC9N Marcelo lo aloja
+2xwEm4 Mantengo el bot encendido todo el tiempo en un servidor. Por eso existe la mensualidad.
+wqElND Lo alojo yo mismo
+o-bss9 Tú mantienes el bot encendido por tu cuenta, en una computadora o servidor tuyo.
+ik4e-Z Alojar es mantener el bot encendido todo el tiempo en un servidor. Puedo encargarme de eso (por eso la mensualidad) o tú lo alojas por tu cuenta. No cambia el valor de creación.
+Za24eL Bot de Discord con IA
+VUKJqC Todo lo del bot esencial, más respuestas automáticas hechas por inteligencia artificial, con reglas que tú defines.
+Kh9hDb Todo lo del bot esencial
+6fkkDI Respuestas con IA, en los canales que elijas
+Z6fZ_w Límites y reglas sobre lo que la IA puede o no responder
+tPd6EW Instrucciones para seguir el uso
+RT7P_4 El uso de la IA se cobra directamente en tu cuenta del proveedor, no por mí.
+JUOw-C Mensualidad del 10 % del valor de creación más el alojamiento.
+LIw3US ¿Qué debe responder la IA?
+xAfsad Funciones adicionales de la IA
+pjsFNZ Preguntas frecuentes
+_iQxYB La IA responde las preguntas que se repiten, a partir de textos que tú me pasas.
+fiam4q Conversación libre
+ELSVLd La IA responde sobre varios temas, no solo los que definiste. Pide más cuidado con los límites.
+MPVNPo Ayuda con las reglas
+HnyoI1 La IA explica las reglas del servidor y orienta a quien tiene dudas sobre ellas.
+KDNjUo La IA responde mejor cuando el tema está delimitado. La primera función está incluida. Cada una adicional es trabajo extra, y la pantalla muestra cuánto.
+95xw14 ¿Ya tienes cuenta en algún proveedor de IA?
+LzVwg1 Cuenta en el proveedor de IA
+fP5SDs No, necesito ayuda
+LxD0h8 Te explico el camino para abrir la cuenta en el proveedor de IA.
+hvWU9X No sé qué es
+Xaj5yq El proveedor de IA es la empresa que ofrece el modelo (por ejemplo, OpenAI o Anthropic). Abres una cuenta y el uso aparece en tu factura. Si nunca lo has hecho, te explico el camino, y eso cambia el valor.
+E9jqTH Para cuando la necesidad es mayor: un sistema pensado para tu proceso. El valor parte de un punto de partida y tus respuestas muestran dónde crece. La propuesta por escrito cierra el alcance, el plazo y el valor.
+HxZgzK Conversación inicial para entender el proceso
+P8LtOF Propuesta por escrito antes de empezar
+mT6yCC Entrega por etapas, para que puedas seguirla
+P_KZIS Valor cerrado en la propuesta, según el tamaño
+tskHQ3 El valor es un punto de partida: la propuesta cierra el alcance. Cada hora de trabajo adicional suma R$ 50.
+pSvrzj Los proyectos grandes entran en cola y dependen de mi agenda.
+IvOk9M ¿Cómo se les cobrará el sistema a los clientes?
+CslgwR Cobro
+i-cLwx Mensualidad (suscripción)
+dUX1kY Por uso
+OxGIWs El cliente paga según cuánto usa, por ejemplo por pedido o por consulta.
+vRLX8D Una sola vez
+o1-t_m No hay problema: el tipo lo decidimos en la conversación.
+-GQChN Es cómo vas a recibir el pago de tus clientes a través del sistema. Una suscripción exige controlar quién pagó y quién se atrasó, y eso cambia el valor.
+Ux1VdD ¿Cuántos tipos de usuario tendrá el sistema?
+UevcdF Tipos de usuario
+3jyt-2 Un solo tipo
+oNOQWv Dos tipos (por ejemplo, cliente y administrador)
+XEm6Sg Tres o más
+IFN5hF Cada tipo de usuario ve y hace cosas distintas: el dueño lo ve todo, el cliente solo lo suyo. Cuantos más tipos, más reglas de acceso, y eso cambia el valor.
+xRgcWy ¿Dónde se va a ejecutar la aplicación?
+YP9LXC Dónde se ejecuta
+thEQkS En el navegador
+k01oWF Se abre desde una dirección de internet, sin instalar nada.
+OjmPHQ En el celular
+OY_Ad_ Aplicación instalada en el dispositivo.
+SXtIOS En el celular y en el navegador
+ymK9NG En el navegador, se abre desde una dirección, sin instalar nada. En el celular, es una aplicación instalada, y hacer las dos cosas da más trabajo.
+L0eb5r ¿Necesita funcionar sin internet?
+5vqfjG Sin internet
+2a5tzD No, siempre con internet
+Alj0Kk Sí, necesita funcionar sin internet
+Qwz9Bi Funcionar sin internet exige guardar los datos en el dispositivo y sincronizarlos después. Es más trabajo, y eso cambia el valor.
+KdYN0k ¿Necesita inicio de sesión (usuario y contraseña)?
+Tlook7 Inicio de sesión
+G32bOm Con inicio de sesión, cada persona entra con su cuenta y solo ve lo que es suyo.
+S6h_xO ¿Necesita registro con correo electrónico?
+9o4Wjl Registro con correo electrónico
+1hVesH La propia persona crea la cuenta y confirma el correo electrónico.
+_cRaPJ ¿Qué medio de pago ya usas?
+nvXf6d Medio de pago
+J_vMVR Mercado Pago
+xIzgWw Empresa que recibe el pago del cliente y avisa al sistema.
+TQjsWH Stripe
+tYpx9S Empresa internacional que recibe el pago del cliente, muy usada para tarjeta y suscripción.
+kcqWgx Banco o terminal de pago
+x76jVc Todavía ninguno
+alrkXz Es la empresa que recibe el dinero del cliente y avisa al sistema. Si todavía no tienes una, te ayudo a elegir y a abrir la cuenta, y eso cambia el valor.
+fddWNC ¿Necesita emitir factura?
+74Kib4 Factura
+jw_DsA Emitir facturas desde el sistema depende de tu contador y del municipio. Confirmo el camino en la conversación.
+xC4tai ¿Con qué sistemas necesita comunicarse?
+AQJNwr Qué sistemas
+CGifMH Hoja de cálculo (Excel o Google)
+RvGyEr Sistema de gestión (ERP)
+YJcURC Tienda en línea
+ar9DuS Base de datos que ya existe
+r6Pv6P Marca todos los que correspondan. El primero está incluido; cada uno adicional es trabajo extra, y la pantalla muestra cuánto.
+UU4hni ¿Tienes acceso a su API?
+RXkQNW Acceso a la API
+6H1mMo La API es la puerta que el otro sistema abre para comunicarse con el tuyo. Sin acceso, necesito buscar otro camino, y eso cambia el valor.
+pfGSh1 ¿Qué informes?
+p6Hr6B Informes
+arSxjB Uso del sistema
+L5gH4e El primer informe está incluido; cada uno adicional es trabajo extra, y la pantalla muestra cuánto.
+UiH866 ¿Necesita exportar a Excel o PDF?
+moUj_n Exportar
+O6hP6i A Excel
+wjdzTW A PDF
+UbyzVf A los dos
+oxSIdj Es un botón que descarga el informe listo, en Excel o PDF. Cada formato es un poco de trabajo adicional.
+PEWfHL ¿Qué tipo de dato sensible?
+FdNxbX Tipo de dato
+xfgM2a Salud
+Qjjow9 Documentos personales (documento de identidad)
+wFo04_ Datos financieros
+V2pZY0 Marca los que el sistema va a guardar. El primero está incluido; cada uno adicional pide más cuidado, y la pantalla muestra cuánto.
+zTPNik ¿Necesita política de privacidad y términos de uso?
+Gm64B3 Política y términos
+h53agE Sí, un texto base
+EHGd7K Armo un texto base contigo. No es asesoría jurídica: para que valga como contrato, conviene que lo revise alguien que entienda de leyes.
+3BwEq8 ¿Qué tipo de sistema imaginas?
+vnk4l9 Tipo de sistema
+lbHeiq SaaS (los clientes pagan una suscripción)
+9Iv_Os SaaS es un sistema en internet que varias empresas o personas usan, cada una con su cuenta, pagando una suscripción. Exige control de cuentas y de cobros. Un sitio web con base de datos que solo tú administras no es SaaS.
+Mqhiod Sitio web con área de acceso
+PaBZKU Un sitio web común que tiene una parte restringida: la persona entra con usuario y contraseña y ve solo lo que es suyo.
+QIajV4 Aplicación
+2Pyc7U Programa hecho para usar en el celular, en el navegador o en ambos, con pantallas propias y datos guardados.
+4csXmN Programa de computadora
+IpLjHT Un programa que se instala en Windows, sin depender de una dirección de internet para abrirse.
+6AcEsu SaaS es un sistema que vendes por suscripción. Un sitio web con área de acceso tiene una parte solo para quien entra con cuenta. La aplicación funciona en el celular o en el navegador. El programa de computadora se instala en la PC. “Todavía no lo sé” no cambia el valor: lo decidimos en la conversación.
+OwZYzk ¿Quién lo va a usar?
+f1oG9O Quién lo usa
+gA0koD Solo yo y mi equipo
+Rh3n6V Pocas personas conocidas, sin registro abierto al público.
+xPnbrw Mis clientes
+XZC5rV Personas que tú eliges y autorizas; cada una entra con su cuenta.
+eW62iL Cualquier persona (público abierto)
+uB6zql Cualquiera puede acceder o crear una cuenta. Exige más cuidado con la seguridad.
+6_jTZs Un sistema solo para el equipo es más sencillo. Para clientes o para el público, entran reglas de acceso y seguridad, y eso cambia el valor.
+HQ5azh ¿Necesita recibir pagos a través del sistema?
+bpuWDq Pago
+pGS70r Sí, Pix y tarjeta
+vaMfGI Pago único: el cliente paga y el sistema confirma la recepción.
+Nvooqp Sí, suscripción recurrente
+zljUYh Al cliente se le cobra automáticamente cada mes. Hay que tratar las tarjetas rechazadas y las cancelaciones.
+mRE00- Recibir pagos a través del sistema exige conectarse con una empresa de pagos y tratar los pagos que fallan. La suscripción recurrente da más trabajo que Pix y tarjeta.
+VUL1ou ¿Necesita comunicarse con otros sistemas?
+Eg78hD Otros sistemas
+-SAiGm Sí, con WhatsApp
+HuXYFf El sistema envía o recibe mensajes por WhatsApp.
+tUHL8c Sí, con ERP, hoja de cálculo u otro
+ygkVI- ERP es el sistema de gestión de la empresa (inventario, finanzas, facturas). El sistema nuevo intercambia datos con él o con tu hoja de cálculo.
+V8XsJw Es cuando el sistema intercambia información con otro que ya usas, para que nadie escriba dos veces. Cada tipo de conexión cambia el valor.
+i1SqPK ¿Cuántos datos va a guardar el sistema?
+w739Af Volumen de datos
+SDe-Jn Poco (hasta unos pocos miles de registros)
+T0jBnl Medio
+nom2iX Crece poco a poco, pero todavía cabe en una base de datos sencilla.
+jgXd1b Mucho (crece todos los días)
+r7jQGg Nuevos registros todos los días, como pedidos o lecturas. Pide una base de datos más cuidadosa.
+cibNip Muchos datos piden una base de datos más cuidadosa para que el sistema siga siendo rápido. Cuantos más datos, más trabajo.
+ZZZSm7 ¿Necesita informes y gráficos?
+Q02bJz Informes y gráficos
+eTnowB Los informes resumen los números del sistema en tablas y gráficos. Tú eliges cuáles a continuación.
+iASVRI ¿Dónde se va a alojar el sistema?
+9-n3jv Yo mismo me encargo
+dGkALr Tú contratas y mantienes el servidor por tu cuenta.
+ANwjw7 Ya tengo un lugar
+3vig1n Ya tienes un servidor o plan de alojamiento para usar.
+fKFYVc El alojamiento es el servidor que mantiene el sistema en línea. Se cobra aparte, directamente por el proveedor, y no cambia el valor de creación.
+zkGf7K ¿El sistema va a guardar datos sensibles?
+8nkkbl Dato sensible es lo que causa daño si se filtra: salud, documentos, finanzas. Pide más cuidado, y tú eliges los detalles a continuación.
+S8VKP- plazo a convenir
+awI2VQ Tu hoja de cálculo pasa a tener una pestaña por tema, columnas estandarizadas y totales que cuadran. Es más fácil de rellenar y de confiar en los números.
+ox5eNy Limpieza de los datos que ya tienes
+9v3sF1 Fórmulas de total y resumen
+x4hrwI Instrucciones de uso en una página
+izd4XN Abres un archivo y ves cuánto vendiste, qué se vende más y cómo va el mes, sin hacer cuentas. Se puede controlar el inventario y las ventas con números, y no a ojo.
+06h1A2 Excel (estándar) o Power BI Desktop (archivo .pbix y PDF)
+I1fY4E Una fuente de datos
+jRDCFl Hasta 5 indicadores
+EUrB-M Filtro por período
+lK_Xsw Compartir un panel de Power BI en línea con tu equipo exige una licencia de pago de Power BI de su lado. En Excel eso no hace falta. Te explico las opciones en la conversación.
+YkALH6 La tarea que repites cada semana en la hoja de cálculo pasa a ejecutarse con un clic.
+cl3yQw VBA o Power Query
+BFkAsv Instrucciones de uso
+D8X_Ck Una página con tu servicio, tus precios y un botón que lleva al cliente directo a tu WhatsApp.
+i17RR6 Una página
+9DcA18 Versión para celular
+y5oodh Publicación en línea, en alojamiento gratuito en tu cuenta
+yP3mXq Botón de WhatsApp
+d9MRe6 Un script hecho para tu tarea: junta hojas de cálculo y archivos, lee PDF, envía mensajes o busca datos en sitios web, y entrega el resultado listo.
+JPo5kF Si la tarea cabe dentro de Excel, la automatización en Excel la resuelve con el mismo valor de partida; Python es para lo que Excel no alcanza. Te aviso en la conversación cuál de las dos sirve mejor.
+c2LWZT Cuando la hoja de cálculo ya no alcanza y necesitas un sistema propio. Armas el presupuesto base y la propuesta cierra el alcance.
+JK_Rau Conversación para entender el caso
+MmMbfk Propuesta por escrito
+HlZJoL Entrega por etapas
+k53-Pg El valor es un punto de partida: la propuesta por escrito cierra el alcance.
+oiDNyY Tu servidor recibe tickets, mensaje de bienvenida y moderación básica.
+XGIqUX Tickets
+EyibJ3 Bienvenida
+-vrPS3 Moderación básica
+Kk_fiQ Ayuda para ponerlo en línea
+nZmseG Bot con IA y panel web
+toSeJP Un bot que responde con IA y un panel en el navegador para que ajustes lo que hace.
+gSXBsJ Comandos a medida
+CT0zTt Integración con IA
+kfc6XK Panel web sencillo
+1TsGG1 El uso de la IA lo cobra el proveedor, en tu propia cuenta.
+Kdb8kv Convocatorias
+wTQR7j Esquema de la página pública de UniSER: franja verde con logo y menú, y tres tarjetas de convocatorias debajo.
+UwDXdZ Esquema de la pantalla de acceso del área restringida: tarjeta central con campos de usuario y contraseña y un botón verde.
+TFra2W Plan de estudios
+ZEg5Qo Esquema del plan de estudios: tabla con código, asignatura y situación de cada materia del período.
+ZSwYCt Mis datos
+R-2ldt Esquema de la pantalla Mis datos: tarjetas de datos personales, contacto y dirección, cada una con botón de editar.
+kVxEdB Asistencia
+_3z-54 Esquema de la pantalla de asistencia: resumen de la situación y tabla con fecha, asignatura y justificación de las faltas.
+PCp8YW Mi semestre
+5bgVWQ Esquema de la pantalla Mi semestre: tarjetas de lunes a viernes, cada una con la asignatura y la carga horaria.
+N4y6t7 Pie de página
+qPejJE Sitio sin rastreadores.
+lY_7B6 Servicio prestado por
+V9vNY5 Términos
+gglTzo Preguntas
+VmYcB8 Contacto
+ign2Cw Privacidad
+2WNCqP Marcelo suele responder en un plazo de hasta 2 horas, sin garantía.
+OHvJ3D datos ficticios
+lDe6Kj Tema claro
+kteUDE Tema oscuro
+t4Qw_B Abrir menú
+naMUQ3 Cerrar menú
+87hrE9 Principal
+AJQziG Idioma
+2X8Ql7 Anterior
+ZLLQ1j Siguiente
+5_BZIU {1} de {2}
+8lBkRb Incluye
+jV2HcK Plazo
+uQ3d9j Mensualidad
+jKpmye {1}{2} al mes, más el alojamiento
+h8afwI desde 
+mrOvVs Las 5 primeras plazas tienen un 10 % de descuento. Las 5 siguientes, un 5 %. Quedan {1} con {2} %. Escríbeme por WhatsApp y asegura la tuya.
+LU0JVa Quedan {1} plazas con {2} % de descuento. Escríbeme por WhatsApp y asegura la tuya.
+JupVO1 El descuento vale sobre el precio de creación.
+pu-UHr Tu nombre
+xf2XAl ¿Cómo prefieres que te responda?
+DQHi6G Correo electrónico
+ofzvtl Tu WhatsApp (con prefijo)
+5FVWOT Tu correo electrónico
+XoIEIk Asunto
+OLwMVZ Lo que necesitas
+sS8jr0 ¿Quieres contarme algo más? (opcional)
+t9aBvV Va junto con tu mensaje:
+qRqVUX Enviar
+XpHc3F Enviando…
+PkQxeO No pude enviarlo ahora. Escríbeme por uno de estos canales:
+epbTOG No rellenes este campo:
+caUhG8 Uso tu nombre y tu contacto solo para responder. El mensaje pasa por EmailJS. No escribas en él contraseñas, datos de salud ni datos de otras personas.
+Tp7DoC Política de privacidad
+0I7qIj Bots a medida
+jrePTc Hago bots y herramientas para quienes juegan.
+-6AIr0 Aquí están los proyectos que hago para Discord y para juegos. Si administras un servidor y quieres un bot a tu manera, podemos conversar.
+QOQw_y Hablar sobre un bot
+25Mes9 Bot de Discord con centro de tickets, anuncios por servidor, IA opcional y panel web.
+_KtvqG Ver el código en GitHub
+7W8vWQ En desarrollo
+UL0KBq Una herramienta de análisis de rendimiento para quienes juegan VALORANT. Todavía no está abierta al público. Cuando salga, cada métrica mostrará el tamaño de la muestra, y lo que sea hipótesis aparecerá como hipótesis.
+hMH_BJ Bot a medida para tu servidor
+4WIChZ Conversar sobre este bot
+PuZHPa El bot necesita estar encendido todo el tiempo. La mensualidad cubre el monitoreo y la corrección de errores: {1} % del precio de creación por mes. El alojamiento, donde el bot permanece encendido, es un costo aparte, y el uso de la IA, cuando lo hay, lo cobra el proveedor en tu cuenta. 
+Zi393h En el plan de {1} meses pagado por adelantado, el descuento es del {2} %.
+qvLv99 En el plan de {1} meses pagado por adelantado, hay descuento.
+8WPHeZ Funcionalidad nueva después de la entrega: {1} por hora.
+3ja1DE WhatsApp o correo electrónico, lo que te venga mejor.
+LPNAjZ CYL Sense no está afiliado a Riot Games.
+kUno7i ¿Quieres algo así para tu negocio?
+5xRnac Mira el área de Negocios
+XlYRcz Un ejemplo de lo que entrego
+SsdA9- Presupuesto
+h4bAT8 Entregas
+I5MCgq Acerca de
+DcOJG7 ¿Prefieres hablar directamente?
+L08WyJ Escríbeme por WhatsApp
+260cjF Ir al área de comunidad (Discord y juegos)
+PMUvkW Comunidad
+aXf7WX Convierto tu hoja de cálculo desordenada en un panel.
+uTubq_ Muestra lo que se vende, lo que se queda sin salida y lo que se está acabando. También creo la página de tu negocio y sistemas completos en internet.
+tDn0hU Hojas de cálculo ordenadas, paneles con tus números, páginas de presentación y sistemas a medida. Todo explicado en un lenguaje claro, sin complicaciones.
+f0Lv27 desde {1}
+c7_k9l Arma tu presupuesto aquí y envíalo por el sitio o por WhatsApp.
+sOCi-I Haz tu presupuesto
+v-toFJ ¿Cómo funciona?
+jYXosg Escribir por WhatsApp
+WavEH2 Ejemplo de panel · tienda ficticia
+D8UvX1 Todos los números de la tienda en una sola pantalla: cuánto vendió, qué se vende más y qué está parado. Los datos de abajo son ficticios.
+iErcON Año 2026
+xncxZH Ventas en el año
+YXDSwM Pedidos
+2e45JW Ticket promedio
+G4ovoj Inventario parado
+Jm8cgn Ventas por mes (miles de R$)
+xGQPIg {1}, R$ {2} mil
+7-02kO Ene
+UhEB_P Enero
+6dBt7U Febrero
+xLoIIk Mar
+pVj4D3 Marzo
+tUyLKY Abr
+vl_gDB Abril
+r-Umps May
+fWyHv6 Mayo
+bZDfO- Jun
+GZBMqV Junio
+tzdVhG Jul
+pYVdtz Julio
+i6xdqz Ago
+b-FCfB Agosto
+RIq3O6 Sep
+eSoS1Q Septiembre
+5PpU8H Octubre
+Z_eZdH Noviembre
+lbNg1J Diciembre
+E96CfB Ventas por categoría
+q9U4a0 Otros
+EsBe9e Ventas · {1}
+rwPvVL {1} % del año
+NunQJw solo {1}
+OLIY8U Ventas por región (miles de R$)
+RD-3vr Sudeste
+82uz8Q Sur
+ydm5cE Noreste
+Jp7w-3 Centro-Oeste
+Xu7T3b Norte
+eQJeVC Del pedido a la entrega
+T0KFrj De la primera conversación al archivo final, en cinco pasos.
+nVIHE7 Conversación de 10 minutos
+3_ulvl Por Google Meet, cuando haga falta ver la pantalla, ajustar y presentar con más calma, o por WhatsApp para una duda rápida. Me muestras la hoja de cálculo o me cuentas lo que necesitas, y te digo qué necesito recibir de ti.
+ZU4ela Propuesta
+tgvbBf Envío por escrito lo que incluye, el valor y la fecha de entrega.
+7KXM9i Entrada del 50 % por Pix
+lXsR5p Empiezo después de la entrada.
+YEMNzC Entrega por etapas
+fF1JyA Ves el avance antes del final y puedes corregir el rumbo.
+3UEMMt Saldo antes de la entrega final
+tALlyH El otro 50 % antes de que libere los archivos finales o los publique en tu dirección. Una ronda de revisión ya está incluida.
+KWS38K Pago por Pix. Emito recibo.
+bSLUAP Las reglas completas están en los
+D7bzal Términos de contratación
+pULu01 y las dudas más comunes, en las
+lSofEi preguntas frecuentes
+5_7cK3 El presupuesto al instante necesita JavaScript. Sin él, habla conmigo directamente:
+YY6v_u Enviar un correo electrónico
+3baZdd Ver cómo funciona
+zGR-Qv Elige la forma que te resulte más fácil. Respondo por el mismo canal.
+IywOUH Formulario
+eGrtaP ¿Tienes un servidor de Discord o una comunidad de juegos?
+Laim8_ Mira el área CylDev
+2BJ0MD Arma tu presupuesto
+bO__mw Elige el servicio, responde a las preguntas y revisa el pedido. La estimación cambia al instante. El valor final va en la propuesta por escrito.
+boKYy8 Servicios
+sSOa_4 Incluido
+JWKCOs Carrito: {1}
+zsaD2f Añadir al carrito. Hoja de cálculo, panel, automatización y sitio web de una página juntos tienen descuento.
+bq_5Vs Añadir al carrito.
+LI0yzr En el carrito. Haz clic para quitarlo.
+_3vNnk Descuento a partir de 2 servicios: {1} % con 2, {2} % con 3 o más.
+4oENLn a consultar
+kMu_IC {1} en el carrito.
+TRfa9Z {1} fuera del carrito.
+DbD6f6 Dos o más entre hoja de cálculo, panel, automatización y sitio web de una página tienen descuento y un solo plazo.
+RMa5pN Poner hoja de cálculo, panel y automatización en el carrito
+1kkXa4 Hoja de cálculo, panel y automatización en el carrito.
+LFE8cD Controles sueltos se vuelven una sola hoja de cálculo, con totales que cuadran.
+q9ueMF Un archivo que muestra lo que se vendió, lo que más sale y cómo va el mes.
+iSNrR8 La tarea que repites cada semana en la hoja de cálculo se ejecuta con un clic.
+M3_0AF Una página con tu servicio, tus precios y un botón a tu WhatsApp.
+BHo2Ye Un script en Python que hace por ti la tarea repetida: juntar archivos, leer PDF, enviar mensajes.
+h6j7V2 SaaS, sitio web, aplicación o programa hecho desde cero. El valor es un punto de partida; la propuesta cierra el alcance.
+HKAufO Tickets, bienvenida y moderación básica para tu servidor de Discord.
+DVP-0l Un bot que responde con IA y un panel web para ajustar lo que hace.
+nEKM4Y Ver ejemplo
+nd_pKt Ocultar ejemplo
+H1KiP- Controles sueltos se vuelven una sola tabla, con el total al final.
+CNQ5ru Cant.
+oK7EBe Producto A
+LhrQ26 Producto B
+8a3CfB Ventas, lo más vendido y el mes en una sola pantalla.
+JoE6kZ Ventas por mes
+ELrERS Lo que haces a mano cada semana se vuelve un clic.
+SIET5Z Importa los datos
+lHkf4w Comprueba y suma
+1jTlEC Genera el informe
+ftgfpE Actualizar
+xfoLNZ Una página con el servicio, el precio y el botón de WhatsApp.
+cs-GTE Tu servicio
+9j66q2 Precios
+W6_7ds Entra una carpeta de archivos, el script trabaja y la hoja de cálculo sale lista.
+jIXBGd PDF
+IL04hY Hojas de cálculo
+fm1Chp Correos electrónicos
+aLIdAN Hoja de cálculo lista
+cV1UhX Del diseño de las pantallas al sistema en línea: todo hecho por una sola persona.
+W2gl08 Sitio web
+vmLdyQ Programa
+3Rn5iH Front
+zT98iL pantallas y navegación
+tSs2ty Back
+q7QMCK reglas y API
+Z6TeNQ Base de datos
+4IEYVN donde se guarda todo
+-0GSoN Despliegue
+thzkT1 en línea, para usar
+eyAG_X Cerrar
+vUznck Secciones del servicio
+bdlOI6 Detalles
+ukSYIo Qué es
+enRc30 Qué recibes
+cwNeR_ Notas
+_LsqFh Añadir al carrito
+LIE73m En el carrito
+Onc21D Quitar del carrito
+lh7D8l Ver carrito
+XH891r Qué está incluido
+HsDcsl Las respuestas con + R$ cambian el valor. Las otras ayudan a entender tu caso y no cambian el precio.
+27Kfsu {1} de {2} {3}
+YPEsdm pregunta respondida
+73TP8n preguntas respondidas
+s042lA Este servicio no tiene preguntas. Vale el valor de la tabla.
+MCobu5 {1} {2}{3}, justo debajo.
+IpyfmY pregunta nueva
+r2s4Xd preguntas nuevas
+jzq44C  sobre {1}
+rVTsop puede cambiar el valor
+Rp2M6j + {1} en el valor
+d5_8Sq Qué significa: {1}
+edHwON Ya {1}: {2}.
+CvnCW7 Cada una adicional: + {1}.
+isr_w2 Estimación
+HSsGKk Cómo llegamos a este valor
+-stZFv desde
+AXBqK9 estimación desde
+E37BSf A consultar
+UKuc16 por hora
+x4SP3i Precio de lista: 
+kQEzd8 Con {1} % de descuento de piloto. Quedan {2} {3} en este tramo.
+A3DX8M Trabajo
+Z-YROh {1} al mes, más el alojamiento aparte
+RpxuYe El valor depende de lo que se vaya a hacer. Este es el mínimo para tus respuestas.
+0dV0qd Es una estimación según tus respuestas. El plazo se acuerda en la conversación.
+s6J9hS Es una estimación. El valor y la fecha de entrega se cierran en la propuesta.
+BjglcR Empieza con una conversación. Cuéntame el caso y te envío una propuesta por escrito con valor y plazo.
+89bxbD Añadir al pedido
+HfUMvz Quitar del pedido
+Bqby0t Elegir otro servicio
+mpXelb Revisar pedido
+YU0QJe Incluido en el pedido. Lo que cambies aquí ya vale.
+hrdZz3 Precio inicial
+Jcrech En configuración
+_PFPgx Configurado
+a0PKWR Todavía sin respuestas. El valor cambia a medida que respondes.
+Pa5IM0 Faltan {1} {2}. El valor todavía puede cambiar.
+b-y86Y Todas las preguntas respondidas.
+hkV5NR ¿Por qué este valor?
+cpQYj9 Entendido
+ERzHr6 Cómo se arma el precio
+M_OVzH Cada servicio tiene un precio base. Es el “desde” que aparece en la tarjeta.
+Mz6vs_ Tus respuestas pueden sumar horas extra de trabajo. Cada hora extra cuesta {1}.
+-NisB8 Combo: con 2 servicios combinables (hoja de cálculo, panel, automatización y sitio web de una página), {1} % de descuento. Con 3 o más, {2} %.
+vH22vm Piloto: en este momento no hay plazas con descuento de piloto.
+oY0zQ0 Piloto: mientras haya plazas, hay {1} % de descuento sobre el precio de creación.
+_J3JDi Los descuentos nunca se suman: vale el que rebaja más reales. El combo solo vale para los servicios combinables. El piloto vale para la creación, pero no para la mensualidad. Los bots de Discord se venden solo en la Comunidad.
+dD5CXT Una pregunta sin respuesta deja el valor aproximado. El valor final se confirma en la propuesta. El alojamiento y el uso de IA de los bots se cobran aparte.
+yqPS40 En tu pedido
+xwNh5R Precio base
+KZ3GXW {1} x {2} por hora
+E9IjF8 Horas y plazo: a convenir en la conversación.
+rgmt4G Sin respuesta (todavía no suman): {1}.
+FEtcXy Suma del servicio
+yGlhtH A consultar: no entra en el total. Te envío una propuesta por escrito.
+7bcYQM Mensualidad: {1} al mes, aparte del total, más el alojamiento.
+wkhvVk Cierre
+odKa_f Suma de lista
+ne5hsB Ningún descuento vale para este pedido ahora.
+1EZgTv Descuento ({1})
+qz_qWp Total estimado
+V-FFie Total estimado (desde)
+N7dVFD El combo vale porque hay {1} servicios combinables. Se aplica solo a ellos ({2}).
+VQZROe El piloto se aplica sobre el precio de creación ({1}).
+f42Jy5 El piloto rebajó más que el combo: {1}, contra {2} del combo.
+8oF6Ew El combo rebajó {1}; el piloto habría rebajado {2}, y no se suman.
+P_MQI1 Combo y piloto rebajarían el mismo valor ({1}); vale el combo.
+JxDIR3 Qué más cambiaría este valor
+0fwUK0 Las respuestas que suman horas extra aumentan el valor.
+JAKgnu Hay preguntas sin respuesta: el valor es aproximado y puede cambiar.
+63BTQ5 Tu pedido está vacío. Cuando añadas un servicio, el desglose del valor aparece aquí.
+Bk6WEa Carrito
+5a39bv Carrito ({1})
+GKNlgl Abrir el carrito: {1} {2}, {3}
+leQDPo servicio
+N3zhU2 servicios
+i2XEAT Revisa el pedido
+osbsFi Cerrar el carrito
+OoaCTs Ajustar respuestas
+kKgVVN Estimación: {1} {2}. El valor puede cambiar.
+OH-3cs pregunta sin respuesta
+nz60Mb preguntas sin respuesta
+nvEIkp Hay preguntas sin respuesta, así que el total es una estimación y puede cambiar.
+MdPe0J Tu pedido está vacío. Elige un servicio y añádelo para poder enviar.
+3d4TXP Elegir un servicio
+K18jQ3 Editar
+S9Tqg0 Quitar
+XYjzpM Seguir eligiendo
+PL65P3 {1} de {2} preguntas respondidas
+gqZBgH sin respuesta
+HdrhLa Ver respuestas
+Re8WRJ Base del paquete
+juPw5M Combo y piloto no se suman: vale el mayor.
+oWTHjV Plazo de los combinables, juntos
+IHcARE Mensualidad de los bots
+V2m_3Z A consultar, fuera del total: 
+0TZ6oS Estimación, confirmada en la conversación.
+pWV6rY Valor estimado por el sitio. El valor final va en la propuesta por escrito.
+fZpTQ3 Observaciones (opcional)
+e3oXqC Fechas, plazos, lo que más te importe. Va junto con el pedido. No escribas contraseñas, datos de salud ni datos de otras personas.
+NTkh6i Tus datos para enviar por el sitio
+qAsVLe Indica tu nombre y WhatsApp y te respondo por allí. Para hablar directamente, usa el botón de WhatsApp, sin rellenar nada.
+D1XcfV WhatsApp (con prefijo)
+ulnPro Enviar por el sitio
+qL5RH7 Un momento…
+BwKJl2 No pude enviarlo ahora. Escríbeme por WhatsApp o manda un correo electrónico con el mismo pedido.
+tELdhX Enviar por correo electrónico
+yJ3LDd Envío tu nombre, el WhatsApp, las respuestas del presupuesto y las observaciones, solo para responder a este pedido. Pasan por EmailJS (envío desde el sitio) y por WhatsApp. Lo confirmo por WhatsApp y acordamos el Pix.
+zBKSqP Al enviar, aceptas los
+x68CHY y la
+6hAmqm El pedido todavía no es un contrato: el valor final va en la propuesta por escrito.
+jxeQd3 Sobre el desistimiento, consulta el
+s5HpGJ desistimiento en 7 días
+yH8kSA Pedido enviado con el aviso de conformidad con los Términos de contratación (versión del {1}) y con la Política de privacidad (versión del {2}).
+PzbnZH Volver al sitio
+GF86jb En esta página
+p0D1uD Volver arriba
+KHOx0J Mensaje recibido.
+pGtp8_ Gracias por contactarme. Respondo por el canal que elegiste.
+v-lA3q Esta página no existe.
+yvXY7U El enlace puede estar equivocado o la página cambió de lugar. Si necesitas ayuda, escribe a {1}.
+zIXol- Ir al inicio
+13E9ye Sobre mí
+g3_mSZ Estudio 
+lwTF3d Sistemas de Información en Unieuro
+p1e1eM  y trabajo como desarrollador full stack.
+lDgr68 Soy pasante de TI en el Ministerio de Defensa
+Dh2J1p , donde hago análisis de datos, hojas de cálculo, paneles y presentaciones usadas en reuniones con oficiales superiores y generales. Es la misma rutina que llevo a tu negocio: tomar datos sueltos y entregar algo que se pueda leer en un minuto. Los trabajos que tomo aquí quedan fuera del horario de la pasantía.
+CCpqcq Participo en Uniser
+0AMqxI , la plataforma de UniSER, la Universidad del Envejecer de la UnB. La desarrolla un equipo de estudiantes de Unieuro, con la orientación de profesores de la facultad, y yo formo parte del equipo que escribe el código.
+sp6q7E Más información sobre la carrera
+8y66uy Estoy en el 5.º semestre de la licenciatura en Sistemas de Información en Unieuro, en Brasilia, con graduación prevista para el 2.º semestre de 2028.
+wzBkXG Lo que más uso de la carrera en tu proyecto
+d92YhF Bases de Datos y Bases de Datos Avanzadas
+fvjzMp Estructuras de Datos
+_50Iu8 Programación Orientada a Objetos
+Xyv8ZK Programación para la Web
+qJ97Oy Ingeniería de Software e Ingeniería de Requisitos
+SaUJEV Gestión de Procesos
+frnvLm Inteligencia Artificial
+CUTE62 Iniciación científica
+PqEfp_ Hago iniciación científica bajo la orientación del profesor doctor Aldo Henrique, en el grupo de investigación OpenVIRTEX-BR (Open Source Virtualization and Cloud Computing for Intelligent Systems in Brazil). El grupo estudia computación en la nube, máquinas virtuales, inteligencia artificial y análisis de datos, con soluciones de código abierto para gestionar mejor las máquinas virtuales y los recursos en la nube.
+9WYZqU En el grupo participo en Simbionte, una simulación en la que varios agentes de inteligencia artificial interactúan entre sí. Mi equipo construye la base del sistema: inicio de sesión, base de datos, colas de procesamiento y el motor que ejecuta los ciclos de la simulación, con pruebas automáticas y protección contra instrucciones maliciosas enviadas a la IA. Es lo que me ayuda en proyectos con IA: saber integrar, limitar y probar lo que responde.
+gQhBRd Pasantía de TI en el Ministerio de Defensa
+l-Eb1L Más información sobre la pasantía
+sg-l4d Soy pasante en el área de TI del Ministerio de Defensa desde febrero de 2026.
+rMUbgy Lo que hago
+6-7Bsv Consolidación de datos de varias fuentes
+DBWNYR Transformación de hojas de cálculo en base de datos
+vWxdoP Paneles y presentaciones, incluidas plantillas de presentación reutilizables
+iWNiB_ Apoyo a la gestión de procesos
+_Np8h9 Apoyo en la redacción de un artículo sobre sistemas no tripulados
+Qo57N3 Herramientas del día a día
+-p5yGh Excel, Power BI, Python, PowerPoint, VS Code y herramientas de IA para programar (Claude Code y Codex).
+kUy7jk Es la misma rutina que llevo a tu negocio: tomar datos sueltos y entregar algo que se pueda leer en un minuto. Los trabajos que tomo aquí quedan fuera del horario de la pasantía.
+h1E6p3 UniSER, Universidad del Envejecer
+SEe8Pg Más información sobre Uniser
+iK0iKh Desde noviembre de 2025 formo parte del equipo de Unieuro que desarrolla la plataforma de UniSER, la Universidad del Envejecer de la UnB, como desarrollador full stack, con la orientación de profesores de Unieuro.
+4qtEzF Lo que hace el sistema
+lpHTxT Página pública con convocatorias y noticias
+odcwpe Área restringida con inicio de sesión
+kSFv1E Asistencia y notas
+Hq6Cpj Acceso separado para estudiantes, profesores y administración
+0JtKgu Qué tiene que ver esto con tu proyecto
+moPafw Es el mismo cuidado que llevo a un sistema a medida: inicio de sesión seguro, cada persona ve solo lo que es suyo, registro de lo que ocurre en el sistema y pruebas automáticas antes de cada cambio.
+gFXCwz Tecnologías
+d6xLf6 Ejemplos de mi trabajo
+r-o3zI Pantallas de la plataforma de UniSER
+QkJm58 Esquemas ilustrativos de las pantallas, sin datos reales.
+Tu1bYx Atiendo en línea, para todo Brasil.
+VmRjs3 Ver más
+dhwz0h Una tienda ficticia, tal como la hoja de cálculo llega hasta el panel listo. Todos los datos son de ejemplo.
+MBTijh Muestra
+pU_6fK Cargando el ejemplo…
+Ptbgzw No se pudo abrir el ejemplo ahora. Recarga la página para intentarlo de nuevo.
+GGSWln Tu hoja de cálculo cuando llegue aquí
+jf-7Te Esto es lo que suele llegar: cada pestaña de una manera, fechas y nombres escritos de varias formas.
+iTOKAD Abrir hoja de cálculo
+abnzp2 La hoja de cálculo tal como llega
+RjLZ-_ Las cinco pestañas de una tienda ficticia, sin nada corregido. Las filas en rojo son las ventas fiadas.
+k_MSch Pestañas de la hoja de cálculo
+REDYp1 Fila de venta fiada
+XLz6qZ Tu hoja de cálculo después de pasar por mis manos
+NW_Rgg La misma tienda en una sola tabla: una fila por venta, todo con el mismo patrón.
+i3MT69 La hoja de cálculo ordenada
+WvDuhx Una pestaña, una fila por venta. Las filas en rojo son las ventas fiadas.
+Kjtg9P Lo que se ordenó
+DLqq0l Todas las fechas en el mismo formato (año-mes-día).
+5e2L42 Cada cliente con un solo nombre, escrito correctamente.
+SpHYwj Valores como número, sin texto en medio.
+M-dvYn Una fila por venta; la pestaña copiada y las filas repetidas salieron.
+zQSamV Lo fiado en una columna propia (situación), no solo por el color.
+oeSL3x Categoría de cada producto, para sumar por tipo.
+ZO3nMG El total de cada venta es la cantidad por el valor unitario.
+TNvspg Tu hoja de cálculo en forma visual
+UWIkGg Los números de la hoja de cálculo ordenada, en un panel con el que puedes interactuar: filtra, haz clic y mira cómo cambia todo.
+Dv--t3 Abrir panel
+84oKfD Panel de ventas · tienda ficticia
+ygS7Q8 Facturación por mes
+k_j8QE {1}: hoja de cálculo de ejemplo, desplázate para ver más
+qiQ30x Mostrando {1} de {2} filas.
+w-oMe7 Facturación
+fh3Mr6 N.º de ventas
+Ubbpuk Fiado por cobrar
+289Pc3 Filtros
+WWawzo Categoría
+HlwcyX Forma de pago
+p4o6-0 Todos los clientes
+0i9oMG Borrar filtros
+t4F2kN Filtros activos
+2x7FTA Quitar el filtro {1}
+zQaVtq {1} de {2} ventas
+27FCoL Pagado
+OJpSpz Fiado
+Om8jXb Facturación por día
+ZDysh3 Facturación por categoría
+_UWf3t Facturación por forma de pago
+D_0NwM Top 5 de clientes
+lxuafn Haz clic para filtrar los otros gráficos.
+pv38WH Sin ventas
+j01G3i {1}, en tabla
+ir6KaZ Ordenar por {1}
+RlWLAM Página {1} de {2}
+BwcoF7 Página anterior
+cCBXNk Página siguiente
+Z2MbmN Ninguna venta con estos filtros
+HL30Pb Mostrando {1} de {2} ventas, {3}.
+Bt-1Ah Ventas del mes
+zUUhg3 Poco inventario
+Ig9DVU Artículos más vendidos
+v8nSLj Antes, cada semana
+kGcps0 Abrir los 3 archivos de ventas
+vPueq4 Copiar y pegar en una sola pestaña
+VgTQpp Filtrar y borrar lo que sobra
+E0lvj2 Dar formato y comprobar los totales
+0wuRjs Un clic hace los cuatro pasos.
+g-Lshp Studio Lia · Manicura en Brasilia
+808onm Atención con cita previa, de lunes a sábado.
+pXVeDw Manos
+1RJ7G- Pies
+ZMF0Pq Manos y pies
+Dz1TEU Reservar por WhatsApp
+SpyOe9 Entra.
+wA5vUT Una carpeta con PDF, hojas de cálculo o correos electrónicos.
+yUNfFv Trabaja.
+c8xFmn El script lee, comprueba y suma.
+Fl3hul Sale.
+AZzput Una hoja de cálculo o un informe listo.
+-GKFTE Presupuesto base en el sitio
+qa0v7B Conversación y propuesta escrita
+py7F8E Entrada del 50 %
+ic-s4f Quiero algo como el ejemplo "{1}"{2}.
+j8dVLw Servicio
+hUZsm0 Fila
+j7K7Gs Día
+uVw7oQ estimado: {1}
+vhGgCK A convenir en la propuesta
+PZyTa3 {1} adicionales
+acgKen 1 día hábil
+rQWVgC {1} días hábiles
+apabB8 Brasil
+r9cMai Arreglo y organización de hojas de cálculo
+X9TVUZ Paneles de datos
+3-pj7W Automatización en Excel y Python
+ix1ixI Creación de sitios web y landing pages
+Gw4A5y Sistemas a medida
+Ag5v0L Este texto solo está disponible en portugués, y la versión en portugués es la que tiene validez. Si tienes dudas, escríbeme.

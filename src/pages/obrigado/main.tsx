@@ -5,6 +5,7 @@ import "../../styles/tema-negocios.css";
 import { naoEncontrado, obrigado } from "../../content/textos";
 import { CabecalhoNegocios } from "../../shared/components/cabecalho/CabecalhoNegocios";
 import { botao } from "../../shared/estilos";
+import { rota } from "../../shared/i18n/rota";
 
 const raiz = document.getElementById("raiz")!;
 const t = raiz.dataset.pagina === "404" ? naoEncontrado : obrigado;
@@ -17,7 +18,7 @@ function Aviso() {
         <h1>{t.titulo}</h1>
         <p>{t.texto}</p>
         <p>
-          <a className={botao} href="/">
+          <a className={botao} href={rota("/")}>
             {t.voltar}
           </a>
         </p>

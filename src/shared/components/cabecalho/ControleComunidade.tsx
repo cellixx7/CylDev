@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
 import { Cyl, type ControleCyl } from "../cyl/Cyl";
+import { rota } from "../../i18n/rota";
 
 type Props = {
   href: string;
@@ -74,7 +75,7 @@ export function ControleComunidade({ href, rotulo, rotuloCurto }: Props) {
 
   useEffect(() => {
     if (!explosao) return;
-    const id = window.setTimeout(() => window.location.assign(href), ESPERA_MS);
+    const id = window.setTimeout(() => window.location.assign(rota(href)), ESPERA_MS);
     return () => window.clearTimeout(id);
   }, [explosao, href]);
 
@@ -98,7 +99,7 @@ export function ControleComunidade({ href, rotulo, rotuloCurto }: Props) {
     <span className="relative inline-flex">
       <a
         ref={ref}
-        href={href}
+        href={rota(href)}
         aria-label={rotulo}
         title={rotulo}
         onClick={clicar}

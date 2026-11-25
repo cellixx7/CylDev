@@ -1,0 +1,85 @@
+-VORvO joao s.
+pa-yuD Financeiro
+sIScov João Silva
+yhflq2 R$ 1.200,00
+s1fCiL MARIA lima
+Pr8cX_ R$850,5
+kroJI5 RH
+p-dzFy Maria Lima
+pgD4P2 R$ 850,50
+xWmlz2 Financeiro 
+VGKjnR J. Silva
+0fbt3x R$ 430,00
+4LwhwH carlos r
+cHTKtg TI
+4PylQ3 Carlos Reis
+5laaIr R$ 2.100,00
+QArqUW Rh
+wMu1e0 m. lima
+tRbse9 R$ 700
+zj8DPS R$ 700,00
+GGboNm T.I.
+ZRhJY7 Carlos
+K_KqGf R$ 950,00
+t1cWLQ MARIA - camisa - 80
+vf7_3E Maria - camisa - 80
+PhgrHq Maria
+hdEiu1 R$ 80
+x8hhTh joão camisa 40
+HZHbfB João camisa 40
+opFvWh João
+m1m7YZ R$ 40
+xNus5n JOÃO camisa 40
+iWWIzT Ana caneca 25
+yWY0rh Ana
+yDxBGm R$ 25
+K4c3hB Planilha1
+zTj1Oh Fev (2)
+rycTjA MARÇO NOVO
+iCNYYY Contas
+Vc5EhV aPartirDe
+MK2oc1 Marcelo Vaz
+IM66SE Marcelo Vaz Oliveira
+IuSdKP CylDev
+WL2v60 marcelovaz.contato@gmail.com
+mpvydr CPF
+sAWdQD Brasília/DF
+Co_k79 k7v0xn9QPlTQv7xnn
+eMt3iI CylBot
+Rc0fbi CylSense
+O0c4ae R$ 214 mil
+2brQdL R$ 75
+mOPpVE R$ 8,4 mil
+aDHpSm novo (cópia).xlsx
+OJn0li React 19, TypeScript, Vite, styled-components, Node.js com Express, PostgreSQL e Prisma.
+ch7NwT maria camisa
+nOwS8J Camisa - João
+B1OwCV R$ 40,00
+LNl7YX cliente?
+usSDK9 TOTAL ??? (não bate)
+kJoNMF R$ 120
+I6an9m Adesivo
+PkKsM0 R$ 4.820
+8Vjo-h R$ 35
+cQhUNN R$ 70
+yWpip_ translateX({1}px) rotate({2}deg)
+0z_n_b Quero um orçamento de: {1} ({2}).
+vk6yT5 Contato pelo site (origem: {1})
+OD6oXu {1} resize
+nw0vgi block {1}
+com-mu $1 opacity="0"
+oiHyfz {1} h
+Ok2zRb combo {1}%
+DI2XpB piloto {1}%
+jZhL9- com {1}
+xhfU4L mais mensalidade de {1} (hospedagem à parte)
+Txp5c- sistema sob consulta, fora do total
+dbzF5R Quero fazer um orçamento.
+cCB0Oq Quero fazer um orçamento com:
+-QKkiI Prazo dos combináveis, juntos: {1}
+dKEi5J Total estimado: {1} (estimativa, confirmada na conversa).
+r7QYyP CSV fora do formato esperado
+5wh6Se Número inválido na linha {1}: {2}
+qTDvGx Situação inválida na linha {1}: {2}
+gNlS4Y Horas e horas por dia precisam ser positivas.
+jf6LWs Nenhum pacote de Negócios com preço.

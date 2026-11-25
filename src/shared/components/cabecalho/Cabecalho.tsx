@@ -1,6 +1,8 @@
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { comum } from "../../../content/textos";
 import { rolarParaAncora } from "../../lib/ancora";
+import { rota } from "../../i18n/rota";
+import { SeletorIdioma } from "./SeletorIdioma";
 import { aplicarTema, lerTema, salvarTema, type Tema } from "../../tema";
 
 type Link = { href: string; rotulo: string };
@@ -57,10 +59,10 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
     "sticky top-2 z-50 mx-2 md:top-3 md:mx-auto md:w-[calc(100%-2rem)] md:max-w-site";
   // Três colunas: marca | centro | menu. As laterais têm a mesma largura, então o centro fica no meio de verdade.
   const classesBarra =
-    "relative grid grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-padrao border border-linha bg-fundo/95 px-3 py-1 shadow-lg backdrop-blur md:px-5";
+    "relative grid grid-cols-[1fr_auto_1fr] items-center gap-1 rounded-padrao border border-linha bg-fundo/95 px-2 py-1 sm:gap-2 sm:px-3 shadow-lg backdrop-blur md:px-5";
 
   const classesMarca =
-    "justify-self-start inline-flex min-h-alvo items-center font-titulo text-medio font-bold tracking-[-0.01em] no-underline";
+    "justify-self-start inline-flex min-h-alvo items-center whitespace-nowrap font-titulo text-base font-bold sm:text-medio tracking-[-0.01em] no-underline";
 
   const botaoBase =
     "min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-base text-texto aria-pressed:bg-texto aria-pressed:text-fundo";
@@ -105,11 +107,12 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
     <>
       <header className={classesHeader}>
         <div className={classesBarra}>
-          <a className={classesMarca} href="/">
+          <a className={classesMarca} href={rota("/")}>
             {marca}
           </a>
           <div className="flex items-center justify-self-center">{centro}</div>
-          <div className="flex items-center gap-2 justify-self-end">
+          <div className="flex items-center gap-1 justify-self-end sm:gap-2">
+            <SeletorIdioma />
             <button
               type="button"
               className={`${botaoBase} inline-flex items-center justify-center px-2 pc:hidden`}
@@ -147,7 +150,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
             <nav
               id="menu-principal"
               className={classesNav}
-              aria-label="Principal"
+              aria-label={comum.menuPrincipal}
             >
               {temLinks && (
                 <ul className="mb-3 list-none p-0 pc:m-0 pc:flex pc:gap-4 xl:gap-6">
@@ -155,7 +158,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
                     <li key={l.href}>
                       <a
                         className="flex min-h-alvo items-center text-medio whitespace-nowrap no-underline hover:underline active:underline pc:text-base"
-                        href={l.href}
+                        href={rota(l.href)}
                         onClick={(e) => {
                           setMenuAberto(false);
                           aoClicarNaAncora(e, l.href);

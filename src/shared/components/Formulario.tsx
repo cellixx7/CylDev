@@ -6,6 +6,7 @@ import { validarTelefone } from "../lib/telefone";
 import { linkContato } from "../lib/whatsapp";
 import { botao, botaoCheio } from "../estilos";
 import { AvisoNovaAba } from "./AvisoNovaAba";
+import { rota } from "../i18n/rota";
 
 const campo =
   "grid gap-1 font-semibold";
@@ -37,7 +38,7 @@ export function Formulario({ origem, resumo, detalhes }: Props) {
 
     // Spam: finge sucesso para não ensinar o robô a contornar a proteção.
     if (pareceSpam(valor("site_empresa"), abertoEm.current)) {
-      window.location.assign("/obrigado/");
+      window.location.assign(rota("/obrigado/"));
       return;
     }
 
@@ -64,7 +65,7 @@ export function Formulario({ origem, resumo, detalhes }: Props) {
         origem,
         ...detalhes,
       });
-      window.location.assign("/obrigado/");
+      window.location.assign(rota("/obrigado/"));
     } catch {
       setEstado("falhou");
     }
@@ -162,7 +163,7 @@ export function Formulario({ origem, resumo, detalhes }: Props) {
       </button>
       <p className="m-0 text-menor text-texto-suave">
         {t.privacidade}{" "}
-        <a className="py-3" href="/privacidade/">
+        <a className="py-3" href={rota("/privacidade/")}>
           {t.privacidadeLink}
         </a>
       </p>

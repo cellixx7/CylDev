@@ -3,6 +3,7 @@ import { assistente as t } from "../../../content/textos/assistente";
 import { negocios } from "../../../content/textos";
 import { Cyl, type ControleCyl } from "../../../shared/components/cyl/Cyl";
 import { focoVisivel } from "../../../shared/estilos";
+import { rota } from "../../../shared/i18n/rota";
 
 /**
  * Botão circular ao lado do painel (só em tela larga, onde há espaço): o Cyl dando joinha. Ao passar o mouse ou focar com o
@@ -13,7 +14,7 @@ export function BotaoCyldev() {
   const cyl = useRef<ControleCyl>(null);
   return (
     <a
-      href={negocios.atalhoComunidade.href}
+      href={rota(negocios.atalhoComunidade.href)}
       aria-label={t.conhecerCyldev}
       data-testid="botao-cyldev"
       onPointerEnter={(e) => e.pointerType === "mouse" && cyl.current?.tocar()}

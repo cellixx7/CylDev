@@ -1,0 +1,16 @@
+{
+  "/": { "titulo": "CylDev | 表格修复、数据看板与网站制作", "descricao": "我为您的企业修复表格，用您的数据搭建看板，并制作您的网站或落地页。即时报价，R$ 100 起。" },
+  "/como-funciona/": { "titulo": "交付成果：表格、看板、网站与系统 | CylDev", "descricao": "通过示例了解每项交付对您的业务有何帮助：表格修复、数据看板、自动化、网站或落地页、Python 自动化和定制系统。" },
+  "/comunidade/": { "titulo": "CylDev | Discord 机器人与玩家工具", "descricao": "CylBot、CylSense，以及为您的服务器定制的 Discord 机器人。", "ogAlt": "CylDev 介绍卡片：Discord 机器人与玩家工具。CylBot、CylSense 和定制机器人。" },
+  "/termos/": { "titulo": "服务条款 | CylDev", "descricao": "订单如何成为合同、付款、交付期、撤销、保修，以及对您数据的保护。" },
+  "/privacidade/": { "titulo": "隐私 | CylDev", "descricao": "网站收集哪些数据、法律依据、数据经过哪些环节、您的权利，以及如何申请删除。" },
+  "/perguntas/": { "titulo": "常见问题 | CylDev", "descricao": "报价前的常见问题：价格、付款、交付期、文件和数据。" },
+  "/acessibilidade/": { "titulo": "无障碍 | CylDev", "descricao": "网站为无障碍所做的工作、尚欠缺之处，以及如何反馈问题。" },
+  "/obrigado/": { "titulo": "已收到消息 | Marcelo Vaz", "descricao": "感谢您的联系。" },
+  "/404.html": { "titulo": "页面未找到 | Marcelo Vaz", "descricao": "该页面不存在。" },
+  "_": {
+    "pular": "跳到正文",
+    "ogAlt": "Marcelo Vaz 介绍卡片：整理好您的表格，并用您的数据搭建看板。最终价格以报价单为准。通过 Pix 付款。",
+    "ogAltComunidade": "CylDev 介绍卡片：Discord 机器人与玩家工具。CylBot、CylSense 和定制机器人。"
+  }
+}

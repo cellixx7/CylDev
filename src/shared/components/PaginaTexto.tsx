@@ -9,6 +9,7 @@ import { botao } from "../estilos";
 import { CabecalhoNegocios } from "./cabecalho/CabecalhoNegocios";
 import { ContatoRodape, Rodape } from "./Rodape";
 import { TextoRico } from "./TextoRico";
+import { idiomaAtual, rota } from "../i18n/rota";
 
 /**
  * Página de leitura (Termos, privacidade, acessibilidade, perguntas): título, versão, índice e seções com âncora.
@@ -33,6 +34,14 @@ export function PaginaTexto({
               {t.titulo}
             </h1>
             <p className="text-texto-suave">{t.atualizado}</p>
+            {idiomaAtual !== "pt" && (
+              <p
+                role="note"
+                className="border-l-[3px] border-destaque bg-realce px-4 py-3"
+              >
+                {r.avisoIdioma}
+              </p>
+            )}
             {t.intro.map((p) => (
               <p key={p}>
                 <TextoRico texto={p} />
@@ -116,7 +125,7 @@ export function PaginaTexto({
               </section>
             ))}
             <p className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2">
-              <a className={botao} href="/">
+              <a className={botao} href={rota("/")}>
                 {r.voltar}
               </a>
               <a className="inline-flex min-h-alvo items-center" href="#topo">

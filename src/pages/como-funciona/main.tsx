@@ -14,6 +14,7 @@ import { DemoAutomacao } from "./DemoAutomacao";
 import { DemoPainel } from "./DemoPainel";
 import { DemoPlanilha } from "./DemoPlanilha";
 import { AvisoNovaAba } from "../../shared/components/AvisoNovaAba";
+import { rota } from "../../shared/i18n/rota";
 
 const rotuloLista = "mb-2 text-menor uppercase tracking-[0.06em] text-texto-suave";
 const celula = "border border-linha px-2 py-1 text-left";
@@ -29,7 +30,7 @@ function Ficticio() {
 
 function CopiarLink({ id }: { id: string }) {
   const [estado, setEstado] = useState<"ocioso" | "ok" | "falhou">("ocioso");
-  const endereco = `${window.location.origin}${caminho}#${id}`;
+  const endereco = `${window.location.origin}${rota(caminho)}#${id}`;
 
   const copiar = async () => {
     try {
@@ -269,11 +270,11 @@ function Entregas() {
       <p className="mt-6 mb-0 font-semibold">{c.pagamento}</p>
       <p className="mt-2 mb-0 text-texto-suave">
         {c.regras.antes}{" "}
-        <a className="py-3" href="/termos/">
+        <a className="py-3" href={rota("/termos/")}>
           {c.regras.termos}
         </a>{" "}
         {c.regras.meio}{" "}
-        <a className="py-3" href="/perguntas/">
+        <a className="py-3" href={rota("/perguntas/")}>
           {c.regras.perguntas}
         </a>
         .
