@@ -5,7 +5,15 @@ import { conversaNova, textoPlano, type Conversa, type Resposta } from "./motor"
 // limpa os dados do site. Tudo aqui é lógica pura e testada; a leitura e a escrita no storage ficam nas duas últimas
 // funções, sempre em try/catch (o storage pode estar bloqueado ou cheio).
 
-export type Mensagem = { id: number; autor: "eu" | "bot"; hora: string; texto?: string; resposta?: Resposta };
+export type Mensagem = {
+  id: number;
+  autor: "eu" | "bot";
+  hora: string;
+  texto?: string;
+  resposta?: Resposta;
+  /** Traz nome ou WhatsApp digitados no envio do pedido: na tela aparece, mas não vai para o storage. */
+  sensivel?: boolean;
+};
 
 export type Sessao = {
   id: string;
@@ -51,6 +59,19 @@ export function normalizarHistorico(bruto: unknown): Historico {
   return { v: 1, atual: sessaoValida(bruto.atual), anteriores: anteriores.slice(0, MAX_ANTERIORES) };
 }
 
+export const TEXTO_DADO_PESSOAL = "(dado pessoal, não guardado neste aparelho)";
+
+/** A conversa como pode ir para o storage: sem o nome e o WhatsApp do envio do pedido (nem o envio em andamento). */
+export function semDadosPessoais(sessao: Sessao): Sessao {
+  return {
+    ...sessao,
+    conversa: { ...sessao.conversa, envio: null },
+    mensagens: sessao.mensagens.map((m) =>
+      m.sensivel ? { id: m.id, autor: m.autor, hora: m.hora, sensivel: true, ...(m.autor === "eu" ? { texto: TEXTO_DADO_PESSOAL } : { resposta: { blocos: [{ tipo: "p" as const, texto: TEXTO_DADO_PESSOAL }], chips: [], acoes: [] } }) } : m,
+    ),
+  };
+}
+
 /** A pessoa já escreveu algo? Conversa só com as boas-vindas não vale guardar. */
 export const temMensagemDaPessoa = (mensagens: Mensagem[]): boolean => mensagens.some((m) => m.autor === "eu");
 
@@ -58,13 +79,13 @@ export const temMensagemDaPessoa = (mensagens: Mensagem[]): boolean => mensagens
 export function arquivarAtual(h: Historico): Historico {
   const { atual } = h;
   if (!atual || !temMensagemDaPessoa(atual.mensagens)) return { ...h, atual: null };
-  return { v: 1, atual: null, anteriores: [atual, ...h.anteriores].slice(0, MAX_ANTERIORES) };
+  return { v: 1, atual: null, anteriores: [semDadosPessoais(atual), ...h.anteriores].slice(0, MAX_ANTERIORES) };
 }
 
 /** Atualiza a conversa em andamento. Sem mensagem da pessoa, não há o que guardar. */
 export function registrarAtual(h: Historico, sessao: Sessao): Historico {
   if (!temMensagemDaPessoa(sessao.mensagens)) return { ...h, atual: null };
-  return { ...h, atual: { ...sessao, mensagens: sessao.mensagens.slice(-MAX_MENSAGENS) } };
+  return { ...h, atual: semDadosPessoais({ ...sessao, mensagens: sessao.mensagens.slice(-MAX_MENSAGENS) }) };
 }
 
 /** Texto corrido da conversa, para copiar e colar. */

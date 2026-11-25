@@ -100,7 +100,8 @@ describe("escopo", () => {
   it("pedido grande vai para o formulário ou o WhatsApp, sem preço", () => {
     for (const grande of ["quanto custa um aplicativo de celular?", "preciso de uma loja virtual", "é urgente, preciso para amanhã"]) {
       const { texto, resposta } = conversar(grande);
-      expect(texto, grande).toContain("maior ou mais específico");
+      // Com o envio pelo chat ativo, o pedido grande vira proposta de enviar a descrição ao Marcelo (ver assistenteEnvio.test.ts).
+      expect(texto, grande).toContain("projeto sob medida");
       expect(texto).not.toMatch(/R\$/);
       expect(resposta.acoes.length).toBeGreaterThanOrEqual(2);
     }

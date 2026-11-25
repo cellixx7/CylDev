@@ -231,7 +231,34 @@ export const assistente = {
     "É uma estimativa feita só com as suas respostas. O valor final vai na proposta por escrito, depois da conversa, e só vale o que estiver nela.",
   orcarProvisorio: "Para este serviço o preço varia pelas respostas e o prazo é definido na proposta.",
   orcarProximo: "Quer levar essa estimativa para o carrinho e enviar o pedido?",
+  orcarVarios: (nomes: string) => `Combinado: vamos montar a estimativa de ${nomes}, um serviço de cada vez. Respondo uma pergunta por vez; dá para clicar nas opções ou digitar.`,
+  orcarProximoServico: (feito: string, proximo: string) => `Estimativa de ${feito} pronta. Agora vamos a ${proximo}.`,
+  orcarResumoVarios: (total: string) => `Estimativa do pedido, com todos os serviços: ${total}.`,
+  orcarDescontoLinha: (rotulo: string, valor: string) => `Desconto (${rotulo}): − ${valor}`,
+  orcarSomaLinha: (valor: string) => `Soma dos serviços: ${valor}`,
+  orcarProximoEnviar: "Quer que eu envie esse pedido direto ao Marcelo, por aqui mesmo, sem passar pelo carrinho? Só preciso do seu nome e do seu WhatsApp.",
   orcarCarrinhoOk: "Coloquei no carrinho do site, com as suas respostas. Lá dá para revisar, ajustar e enviar.",
+
+  // Enviar o pedido pela conversa (mesmo envio do carrinho: EmailJS, com o registro de aceite) ------------------------------------
+  envioNome: "Para enviar o pedido ao Marcelo, como você se chama?",
+  envioNomeInvalido: "Preciso de um nome para o Marcelo saber com quem falar. Pode escrever o seu primeiro nome?",
+  envioWhats: (nome: string) => `Prazer, ${nome}! Qual o seu WhatsApp, com DDD? É por ele que o Marcelo responde.`,
+  envioConfirma: (nome: string, whatsapp: string) => `Confere? Vou enviar o pedido em nome de ${nome}, com resposta pelo WhatsApp ${whatsapp}.`,
+  envioPrivacidade: "Só uso o nome e o WhatsApp para responder ao seu pedido. Eles não ficam guardados neste aparelho junto com a conversa.",
+  envioAceite: "Ao enviar, você concorda com os Termos de contratação e com a Política de privacidade. O pedido ainda não é contrato: o valor final vai na proposta por escrito.",
+  envioEnviando: "Enviando o seu pedido...",
+  envioJaEnviando: "O pedido já está sendo enviado, só um instante.",
+  envioOk: "Pedido enviado! Nada foi cobrado e nada está fechado: o Marcelo costuma responder em até 2 horas, sem garantia, e confirma os detalhes por WhatsApp antes da proposta por escrito.",
+  envioOkPergunta: "Posso ajudar em mais alguma coisa?",
+  envioFalhou: "Não consegui enviar por aqui agora, e o seu pedido não foi perdido. Os botões abaixo levam o mesmo pedido pelo WhatsApp ou pelo e-mail.",
+  envioCancelado: "Tudo bem, não enviei nada. O que você escreveu não foi guardado.",
+  envioDescricaoTitulo: "Sua descrição vai junto:",
+  envioSobMedida:
+    "Isso é um projeto sob medida: o valor e o prazo não saem por estimativa, o Marcelo avalia caso a caso e responde com uma proposta. Posso mandar o seu pedido, com o que você contou, direto para ele por aqui mesmo. Só preciso do seu nome e do seu WhatsApp.",
+  envioSobMedidaPergunta: "Quer que eu envie?",
+  envioSobMedidaObs: (texto: string) => `Descrição do cliente (pelo assistente): ${texto}`,
+  envioChips: { enviar: "Enviar pedido ao Marcelo", confirmar: "Confirmar e enviar", corrigir: "Corrigir meus dados", cancelar: "Cancelar o envio" },
+  jaDisse: "Verdade, desculpe a pergunta repetida. Já anotei o que você falou.",
 
   // Encaminhar, acolher e recusar ----------------------------------------------------------------------------------------------
   maior:

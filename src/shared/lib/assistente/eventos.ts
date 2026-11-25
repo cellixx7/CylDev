@@ -17,3 +17,6 @@ export function lerDetalhe(e: Event): DetalheCarrinho | null {
   if (!d || typeof d.servicoId !== "string" || typeof d.respostas !== "object" || d.respostas === null) return null;
   return d;
 }
+
+/** sessionStorage: a pessoa fechou o convite do ícone do chat; ele não volta nesta aba (nem ao mudar de página do site). */
+export const CHAVE_CONVITE_FECHADO = "assistente-convite-fechado";

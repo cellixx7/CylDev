@@ -3,6 +3,7 @@ import { servicoOrcamentoPorId } from "../src/content/perguntas";
 import { site } from "../src/content/site";
 import { orcamento as t } from "../src/content/textos";
 import { emailjsConfigurado } from "../src/shared/lib/emailjs";
+import { CHAVE_CONVITE_FECHADO } from "../src/shared/lib/assistente/eventos";
 import { CHAVE_CARRINHO } from "../src/shared/lib/carrinho-persistencia";
 
 // Apoio dos testes de jornada. Regras:
@@ -51,6 +52,18 @@ type Emailjs = {
 };
 
 export const test = base.extend<{ emailjs: Emailjs }>({
+  // O convite do ícone do chat aparece no carregamento e cobre um pedaço do canto por 5 s: um clique feito nesse instante cairia nele.
+  // Os testes começam com ele já fechado (como se a pessoa tivesse clicado no x); o teste do próprio convite desfaz isso.
+  page: async ({ page }, use) => {
+    await page.addInitScript((chave) => {
+      try {
+        sessionStorage.setItem(chave, "1");
+      } catch {
+        // sem storage, nada a fazer
+      }
+    }, CHAVE_CONVITE_FECHADO);
+    await use(page);
+  },
   emailjs: [
     async ({ page }, use) => {
       const enviados: CorpoEmailjs[] = [];

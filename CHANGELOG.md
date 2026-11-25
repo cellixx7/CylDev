@@ -6,6 +6,12 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Assistente Cyl: entende melhor e envia o pedido pelo chat
+
+- Lembra o serviço que a pessoa acabou de dizer, entende "pros dois", "a gente acabou de falar" e "site grande"/"site com curso" (projeto sob medida, sem preço inventado).
+- Orçamento de vários serviços na mesma conversa, com o desconto do combo no resumo.
+- Botão "Enviar pedido ao Marcelo": pede nome e WhatsApp, mostra o aviso de Termos e Privacidade e envia o pedido sem passar pelo carrinho (mesmo envio do carrinho; se falhar, mostra WhatsApp e e-mail).
+
 ### SEO: o site passa a se apresentar como CylDev
 
 - Título e descrição da home agora dizem "CylDev" e o que é feito (ajuste de planilha, painel, site ou landing page). Antes só o nome "Marcelo Vaz" aparecia, e quem busca "cyldev" não encontrava a marca no título.

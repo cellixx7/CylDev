@@ -6,6 +6,8 @@ import {
   historicoVazio,
   normalizarHistorico,
   registrarAtual,
+  semDadosPessoais,
+  TEXTO_DADO_PESSOAL,
   transcricao,
   type Mensagem,
   type Sessao,
@@ -55,5 +57,22 @@ describe("histórico do chat", () => {
 
   it("a transcrição traz hora, quem falou e o texto das respostas", () => {
     expect(transcricao([bot, eu], "Assistente Cyl", "Você")).toBe("[10:00] Assistente Cyl: Oi!\n\n[10:01] Você: quanto custa?");
+  });
+
+  it("nome e WhatsApp do envio do pedido não vão para o storage (nem o envio em andamento)", () => {
+    const nome: Mensagem = { id: 2, autor: "eu", hora: "10:02", texto: "Maria da Silva", sensivel: true };
+    const confirma: Mensagem = { id: 3, autor: "bot", hora: "10:02", sensivel: true, resposta: { blocos: [{ tipo: "p", texto: "Confere? (61) 99999-9999" }], chips: [], acoes: [] } };
+    const s = { ...sessao("a", [bot, eu, nome, confirma]), conversa: { ...conversaNova(), envio: { etapa: "confirmar" as const, ids: ["planilha"], respostas: {}, observacoes: "", nome: "Maria", whatsapp: "5561999999999" } } };
+    const guardado = registrarAtual(historicoVazio(), s).atual!;
+    const json = JSON.stringify(guardado);
+    expect(json).not.toContain("Maria");
+    expect(json).not.toContain("99999");
+    expect(guardado.conversa.envio).toBeNull();
+    expect(guardado.mensagens[2].texto).toBe(TEXTO_DADO_PESSOAL);
+    expect(guardado.mensagens[1].texto).toBe("quanto custa?");
+    // Também ao arquivar e sem mexer na sessão original (que continua inteira na tela).
+    expect(JSON.stringify(arquivarAtual({ v: 1, atual: s, anteriores: [] }).anteriores)).not.toContain("Maria");
+    expect(s.mensagens[2].texto).toBe("Maria da Silva");
+    expect(semDadosPessoais(sessao("b")).mensagens).toEqual([bot, eu]);
   });
 });

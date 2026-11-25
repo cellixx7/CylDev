@@ -101,6 +101,14 @@ Dois pontos em que o pedido e o site diferem, e o chat segue o site: (1) o proce
 
 Copia a conversa atual como texto (`[hora] Você: ...` / `[hora] Assistente Cyl: ...`) para a área de transferência, para análise das respostas. **Remover na entrega final.** Para remover: apagar `copiarConversa`, `copiarTexto` e o estado `copia` em `PainelAssistente.tsx` e o botão marcado "TEMPORÁRIO"; apagar o bloco `copiarTemp` de `textos/assistente.ts`; apagar a função `transcricao` (e seu teste) em `historico.ts` e o teste e2e `(v)`. Procure por "TEMPORÁRIO" para achar tudo. Item acompanhado em `PENDENCIAS.md`.
 
+## Rodada 5: conversa que lembra, vários serviços e pedido enviado pelo chat
+
+- Causa dos erros vistos em teste do Marcelo: o chat esquecia o serviço dito (a pergunta "qual serviço?" não guardava que a próxima mensagem era a resposta), não entendia "site grande" nem "site com curso" (a palavra "site" sozinha não era serviço) e só orçava um serviço por vez. Agora a conversa guarda os serviços citados (`falados`), lembra que perguntou o serviço (`aguarda`) e entende "a gente acabou de falar".
+- Vários serviços: o orçamento do chat percorre um de cada vez (`fila`) e termina em um resumo só, com o combo ou o piloto calculados por `calcularCarrinho` (nada de conta feita à mão). O botão de carrinho continua só no orçamento de um serviço, porque o carrinho recebe um serviço por vez.
+- Enviar o pedido por aqui (pedido do Marcelo): no resumo, "Enviar pedido ao Marcelo" pede nome e WhatsApp (mesma validação do carrinho), mostra o aviso de Termos e Privacidade e só envia depois de "Confirmar e enviar". O envio é o mesmo do carrinho (`enviarContato` e `dadosEmailPedido`, com o registro de aceite e as versões dos textos); as regras de spam (3 s mínimos) continuam, e o painel espera em vez de descartar um pedido de verdade. O motor continua puro: ele só devolve `paraEnviar` e o painel faz o envio e conta o resultado. Se falhar, o chat mostra WhatsApp e e-mail com o mesmo pedido. A origem no e-mail é `negocios-assistente`.
+- Projeto grande ou sob medida ("site grande", "plataforma de curso", "loja virtual"): sem estimativa e sem preço inventado, o chat oferece mandar a descrição da pessoa direto ao Marcelo, sem item no pedido. Sem EmailJS configurado, volta ao texto antigo (formulário ou WhatsApp).
+- Privacidade: nome e WhatsApp só saem do aparelho quando a pessoa confirma o envio. Como a conversa agora fica guardada no navegador (Rodada 4), as mensagens com nome e WhatsApp são marcadas (`sensivel`) e o histórico guarda só "(dado pessoal, não guardado neste aparelho)" no lugar delas, sem o envio em andamento (`semDadosPessoais` em `historico.ts`). Na tela da conversa atual elas aparecem normalmente.
+
 ## Cyl animado (header) e rosto no chat
 
 **Pedido (Marcelo):** o mascote Cyl (SVG em camadas, `src/content/cyl-animation-assets/`) aparece como foto do assistente no chat e, acenando, no lugar do controle de videogame do header. Numa primeira versão havia uma nuvem "Conheça o CylDev" e a dica do controle; o Marcelo pediu para tirar: o Cyl só anima.
@@ -119,3 +127,8 @@ Copia a conversa atual como texto (`[hora] Você: ...` / `[hora] Assistente Cyl:
 - **Estrutura:** o `<dialog>` ficou transparente e sem corte; fundo, borda e cantos foram para um contêiner interno, para o botão do Cyl poder ficar fora do painel (o teste e2e (g) passou a checar o fundo no contêiner).
 - **Aviso:** faixa no topo do painel com o começo do texto à vista; o resto abre em "Saiba mais" (ícone) e fica sempre no DOM (`sr-only` quando recolhido). Texto inteiro inalterado (`t.aviso = avisoCurto + avisoResto`).
 - **Botão do joinha:** link para `/comunidade/` (decisão do Marcelo), nome "Conhecer o CylDev", sem tooltip, pisca (olhos fecham por 150 ms) em hover do mouse e foco. Escondido no celular (tela cheia, sem espaço). **Provisório:** não existe a mão de joinha; usa `hand-left-rest` (constante `MAO_JOINHA` em `cylAnimacoes.ts`) e a pose `POSES.joinha`. Para o asset: SVG `viewBox="-15 40 580 870"`, grupo `hand-left-thumbsup`, pivô 432,596, mão esquerda de punho fechado e polegar para cima.
+
+### Convite do ícone: fechar vale para a aba
+
+Fechar o convite agora fica guardado no `sessionStorage` (`assistente-convite-fechado`): ele não volta ao recarregar nem ao mudar de página do site, só em uma aba nova. Motivo: o convite aparece no carregamento e cobre um pedaço do canto por 5 s; um clique feito justo nesse instante (inclusive o dos testes de navegador) caía nele e abria o chat em vez do botão pretendido, o que deixava alguns testes de carrinho instáveis. Os testes de navegador começam com o convite já fechado (`e2e/apoio.ts`); só o teste do próprio convite o libera.
+
