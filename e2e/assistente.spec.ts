@@ -1,6 +1,7 @@
 import type { Page } from "@playwright/test";
 import { assistente as t } from "../src/content/textos/assistente";
 import { saber, topicoPorId } from "../src/content/textos/assistenteSaber";
+import { CHAVE_CONVITE_FECHADO } from "../src/shared/lib/assistente/eventos";
 import { catalogo } from "../src/shared/lib/assistente/conhecimento";
 import { expect, NOME_FICTICIO, TELEFONE_FICTICIO, TELEFONE_FICTICIO_DIGITOS, test } from "./apoio";
 
@@ -301,6 +302,12 @@ test.describe("assistente do chat (interface e ritmo)", () => {
   });
 
   test("(s) convite: aparece no carregamento, some em 5 s, volta a cada 30 s e o x encerra", async ({ page }) => {
+    // Os testes começam com o convite fechado (apoio.ts); aqui ele precisa aparecer.
+    await page.addInitScript((chave) => {
+      if (sessionStorage.getItem("e2e-convite-liberado")) return; // só na primeira página; depois vale o que a pessoa fez
+      sessionStorage.removeItem(chave);
+      sessionStorage.setItem("e2e-convite-liberado", "1");
+    }, CHAVE_CONVITE_FECHADO);
     await page.clock.install();
     await page.goto("/");
     const convite = page.getByTestId("convite-assistente");
@@ -315,6 +322,10 @@ test.describe("assistente do chat (interface e ritmo)", () => {
     await convite.getByRole("button", { name: t.conviteFechar }).click();
     await expect(convite).toHaveCount(0);
     await page.clock.runFor(65_000);
+    await expect(convite).toHaveCount(0);
+    // Fechado vale para a aba: ao recarregar, ele não volta.
+    await page.reload();
+    await page.clock.runFor(1000);
     await expect(convite).toHaveCount(0);
   });
 

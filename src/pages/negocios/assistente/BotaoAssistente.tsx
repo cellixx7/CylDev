@@ -1,10 +1,19 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { assistente as t } from "../../../content/textos/assistente";
 import { focoVisivel } from "../../../shared/estilos";
+import { CHAVE_CONVITE_FECHADO } from "../../../shared/lib/assistente/eventos";
 
 // Só este arquivo (o botão) vai no JavaScript da home. O painel do chat, o motor e a base de conhecimento ficam em outro
 // pedaço, baixado na primeira vez que a pessoa abre o assistente.
 const PainelAssistente = lazy(() => import("./PainelAssistente").then((m) => ({ default: m.PainelAssistente })));
+
+function conviteJaFechado(): boolean {
+  try {
+    return sessionStorage.getItem(CHAVE_CONVITE_FECHADO) === "1";
+  } catch {
+    return false;
+  }
+}
 
 const DURACAO_CONVITE_MS = 5000;
 const CICLO_CONVITE_MS = 30000;
@@ -43,7 +52,7 @@ export function BotaoAssistente() {
 
   const [convite, setConvite] = useState(false);
   const [pausado, setPausado] = useState(false);
-  const encerrado = useRef(false);
+  const encerrado = useRef(conviteJaFechado());
 
   // Convite: aparece já no carregamento, fica 5 s e volta a cada 30 s. Fechar no "x" encerra os convites desta visita.
   useEffect(() => {
@@ -67,6 +76,11 @@ export function BotaoAssistente() {
 
   const fecharConvite = () => {
     encerrado.current = true;
+    try {
+      sessionStorage.setItem(CHAVE_CONVITE_FECHADO, "1");
+    } catch {
+      // Storage bloqueado: o convite só fica fechado até recarregar a página.
+    }
     setConvite(false);
   };
 

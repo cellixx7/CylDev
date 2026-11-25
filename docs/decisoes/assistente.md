@@ -127,3 +127,8 @@ Copia a conversa atual como texto (`[hora] Você: ...` / `[hora] Assistente Cyl:
 - **Estrutura:** o `<dialog>` ficou transparente e sem corte; fundo, borda e cantos foram para um contêiner interno, para o botão do Cyl poder ficar fora do painel (o teste e2e (g) passou a checar o fundo no contêiner).
 - **Aviso:** faixa no topo do painel com o começo do texto à vista; o resto abre em "Saiba mais" (ícone) e fica sempre no DOM (`sr-only` quando recolhido). Texto inteiro inalterado (`t.aviso = avisoCurto + avisoResto`).
 - **Botão do joinha:** link para `/comunidade/` (decisão do Marcelo), nome "Conhecer o CylDev", sem tooltip, pisca (olhos fecham por 150 ms) em hover do mouse e foco. Escondido no celular (tela cheia, sem espaço). **Provisório:** não existe a mão de joinha; usa `hand-left-rest` (constante `MAO_JOINHA` em `cylAnimacoes.ts`) e a pose `POSES.joinha`. Para o asset: SVG `viewBox="-15 40 580 870"`, grupo `hand-left-thumbsup`, pivô 432,596, mão esquerda de punho fechado e polegar para cima.
+
+### Convite do ícone: fechar vale para a aba
+
+Fechar o convite agora fica guardado no `sessionStorage` (`assistente-convite-fechado`): ele não volta ao recarregar nem ao mudar de página do site, só em uma aba nova. Motivo: o convite aparece no carregamento e cobre um pedaço do canto por 5 s; um clique feito justo nesse instante (inclusive o dos testes de navegador) caía nele e abria o chat em vez do botão pretendido, o que deixava alguns testes de carrinho instáveis. Os testes de navegador começam com o convite já fechado (`e2e/apoio.ts`); só o teste do próprio convite o libera.
+
