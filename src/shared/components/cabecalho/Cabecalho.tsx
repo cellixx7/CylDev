@@ -62,7 +62,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
     "relative grid grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-padrao border border-linha bg-fundo/95 px-3 py-1 shadow-lg backdrop-blur md:px-5";
 
   const classesMarca =
-    "justify-self-start inline-flex min-h-alvo items-center font-titulo text-medio font-bold tracking-[-0.01em] no-underline";
+    "justify-self-start inline-flex min-h-alvo items-center whitespace-nowrap font-titulo text-medio font-bold tracking-[-0.01em] no-underline";
 
   const botaoBase =
     "min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-base text-texto aria-pressed:bg-texto aria-pressed:text-fundo";
