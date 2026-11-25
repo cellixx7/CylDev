@@ -1,0 +1,120 @@
+zLIp0Z What I deliver, in two scenes
+dD-wH2 Illustrative scenes, with fictional data.
+A57VWW Illustrative scene, with fictional data.
+7wymdB Pause animation
+FQA4D6 Resume animation
+0kEHiZ From messy spreadsheet to dashboard
+qJbh_- Animation: a spreadsheet with misplaced columns and rows and text without a pattern. First the columns and rows are aligned, then the words, values and dates are standardized, and finally a dashboard with a total, number of entries and value per department is generated from it.
+CfOvts Loose data, no pattern
+hwrD8S Columns and rows in place
+H3MLeP Words and values standardized
+HLTuSG Dashboard generated from the spreadsheet
+RRx71P Department
+EwMN2W Name
+QnHriu Amount
+5eQpvM Date
+AnuzJ- Entries dashboard
+slkoxp Total
+qB6PMd Entries
+3vXG8N Amount per department
+RCDAQW A presentation for decision-makers
+OzgBDj Scene: an auditorium seen from behind, with people seated in Navy, Army and Air Force uniforms, looking at a big screen. The slide alternates between a chart dashboard and a process flow, and next to it appears the name {1}.
+xVoLkb Dashboard of the month
+WLSHf3 Process flow
+fAHUe9 Request
+Yaa6aD Analysis
+0ZXQiZ Delivery
+nnnOqc IT internship
+G6vP1i See a repeated task become one click
+xQaXlb I can stop repeating this work.
+q8RgK5 The three files of the week
+GkjYx4 Each store sends its own file. Every week someone opens all three to build the report.
+VlgbV1 Copy and paste into a single sheet
+k_GLjh The rows of the three files are put together, one by one, in a single table.
+uYiDYm Filter and delete what is left over
+MD7W_7 Cancelled rows leave the table.
+Gycryj Format and check the totals
+K_VB79 The sum is redone and checked against what remains.
+e2GzCz With automation, one click
+VpdFs3 The button does these three steps at once. The result is the same, without copying and pasting.
+lwpSgJ Shirt
+COdwh6 Cap
+JZSrVP Mug
+jRHYTW Coat
+qvOJD4 File
+7N2lmu Item
+LTq_Pe Status
+0-unNJ Update report
+poGH8I Example button, not clickable here
+v2hbme R$ {1}, checked against {2} rows
+m_lBVX File {1}
+1bn5sD Weekly report
+mxh4xB Before: the separate files
+6u9JA4 After: the finished report
+Mm8OSU Not every task can be automated. I confirm what is possible in our conversation, before we agree on the work.
+-P_EiT See a dashboard in use
+s4bGm5 I can find out what sells most and keep track of the business.
+vD8TON The sales table
+jxU7cu Sales per product over the last three months, in R$ thousand. This is where the dashboard gets everything.
+453uxj R$ thousand
+YgTviQ Sales table (R$ thousand)
+lczc9- Product
+Ig4Gui Oct
+u5v-_V Nov
+ma6ALq Dec
+TYPPlw T-shirts
+o4zgG3 Caps
+5skOll Mugs
+XuRz-t Coats
+wsqCK- Sales dashboard
+T4Vxe1 Month
+pBFKg_ All
+uM-sOw Oct to Dec
+4BvJtX Sold in the period
+LWeZkB Best seller
+S15vl4 Slowest seller
+Dx_qGM Sales per product (R$ thousand)
+SIYl2_ {1}: R$ {2} thousand sold. Best seller: {3}. Slowest seller: {4}.
+CTYf-r The numbers come from the table
+b075TE The total, the best-selling product and the slowest one are calculated on their own.
+PZ3mWn The chart compares the products
+OwFGqm You can see at a glance what sells most and what sells least.
+NTb8cn You choose a month
+VXvajU In November, a different product sells most: the Caps. The dashboard redoes everything.
+EUw0Dk You spot the stalled product
+lHQNnC In December the total goes up, but the Coats are still the slowest seller.
+BSbId6 Now it's your turn: choose a month.
+RKXJc7 Sales table
+DoBGFf See a spreadsheet being tidied up
+wD9-O2 Now I can fill it in and check it without getting lost.
+1OY4E2 How the spreadsheet arrives
+-zIYJX Dates and names written in different ways, repeated rows and an empty row.
+57vrQB Table before tidying
+_0PsFb Table after tidying
+2BkKa_ Example table
+fqRJ_O Note
+xcfV7j Customer
+PMjYux Standardizes the dates
+b9IwEK All become day/month, the same way.
+_GPBw- Standardizes the names
+78Sq4D Capital and lowercase letters in the right places.
+OPSBN1 Removes repeated and empty rows
+YnRkd8 One repeated row and one empty row leave the table.
+80VQO6 Splits into columns
+8DblIh Customer, item and amount, each in its own place.
+Xbnnor Checks the totals
+ZP2dxa The sum matches the orders that remain.
+76U4qU Total: R$ 185 (has a repeated row, doesn't match)
+k8SZfd Total: R$ 145 (still to be checked)
+DWizEW Total: R$ 145, checked against the 3 orders
+Bax_GD Example with fictional data
+YVMYEM Press Play to see each step, or See result to go straight to the end.
+FYubZB Play
+jg9e2Z Pause
+A3hAF8 See result
+i1PbRR Restart
+8Qh_rk Demo controls
+xao8Rs Step {1} of {2}
+1ksRJy What changes in each step
+EXfk7X Before
+Yfbue8 After

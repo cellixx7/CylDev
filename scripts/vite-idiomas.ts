@@ -10,6 +10,8 @@
 import { existsSync, readFileSync } from "node:fs";
 import { resolve, relative, sep } from "node:path";
 import type { Plugin } from "vite";
+import { arquivosTraduzidos, lerLista } from "./textos-arquivos.ts";
+import { aplicar, coletar } from "./textos-ast.ts";
 import { codigos, dadosDoIdioma, idiomaOriginal, idiomaReserva, idiomas, prefixoDoIdioma, type CodigoIdioma } from "../src/shared/i18n/idiomas.ts";
 
 /** Páginas que entram no sitemap e levam hreflang. obrigado e 404 ficam de fora (noindex). */
@@ -40,8 +42,15 @@ export function idiomasPlugin(codigo: CodigoIdioma, raiz: string): Plugin {
   const pastaContent = resolve(raiz, "src/content") + sep;
   const pastaTraducao = resolve(raiz, "src/content/i18n") + sep;
 
+  // Traduções do idioma: identificador do texto -> texto traduzido (ver scripts/textos-ast.ts).
+  const traducoes = new Map<string, string>();
+  if (codigo !== idiomaOriginal) {
+    for (const arquivo of ["textos.txt", "juridico.txt"]) for (const l of lerLista(resolve(raiz, "src/content/i18n", codigo, arquivo))) traducoes.set(l.id, l.texto);
+  }
+
   return {
     name: "idiomas",
+    enforce: "pre",
     config: () => ({
       define: { __IDIOMA__: JSON.stringify(codigo) },
       // Nos outros idiomas, fontes e imagens continuam sendo servidas da raiz (/fonts/...): não copia /public de novo.
@@ -53,6 +62,15 @@ export function idiomasPlugin(codigo: CodigoIdioma, raiz: string): Plugin {
       if (!r || r.external || !r.id.startsWith(pastaContent) || r.id.startsWith(pastaTraducao)) return null;
       const outro = resolve(pastaTraducao, codigo, relative(pastaContent, r.id));
       return existsSync(outro) ? outro : null;
+    },
+    async transform(codigoFonte, id) {
+      if (codigo === idiomaOriginal || traducoes.size === 0) return null;
+      const arquivo = id.split("?")[0];
+      const rel = relative(raiz, arquivo).replaceAll("\\", "/");
+      if (!arquivo.startsWith(raiz) || !arquivosTraduzidos(rel)) return null;
+      const itens = await coletar(codigoFonte, rel.endsWith(".tsx") ? "tsx" : "ts");
+      const novo = aplicar(codigoFonte, itens, traducoes);
+      return novo === codigoFonte ? null : { code: novo, map: null };
     },
     transformIndexHtml: {
       order: "pre",

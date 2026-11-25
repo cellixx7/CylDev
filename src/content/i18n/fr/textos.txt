@@ -1,0 +1,120 @@
+zLIp0Z Ce que je livre, en deux scènes
+dD-wH2 Scènes illustratives, avec des données fictives.
+A57VWW Scène illustrative, avec des données fictives.
+7wymdB Mettre l'animation en pause
+FQA4D6 Reprendre l'animation
+0kEHiZ Du tableur en désordre au tableau de bord
+qJbh_- Animation : un tableur dont les colonnes et les lignes sont mal placées et dont les textes n'ont aucune règle. D'abord les colonnes et les lignes sont alignées, puis les mots, les valeurs et les dates sont uniformisés, et enfin un tableau de bord avec le total, le nombre d'entrées et la valeur par service en est généré.
+CfOvts Données en vrac, sans règle
+hwrD8S Colonnes et lignes en place
+H3MLeP Mots et valeurs uniformisés
+HLTuSG Tableau de bord généré à partir du tableur
+RRx71P Service
+EwMN2W Nom
+QnHriu Valeur
+5eQpvM Date
+AnuzJ- Tableau de bord des saisies
+slkoxp Total
+qB6PMd Saisies
+3vXG8N Valeur par service
+RCDAQW Une présentation pour ceux qui décident
+OzgBDj Scène : un auditorium vu de dos, avec des personnes assises en uniforme de la Marine, de l'Armée de terre et de l'Armée de l'air, qui regardent un grand écran. La diapositive alterne entre un tableau de bord avec graphique et un flux de processus, et à côté apparaît le nom {1}.
+xVoLkb Tableau de bord du mois
+WLSHf3 Flux du processus
+fAHUe9 Demande
+Yaa6aD Analyse
+0ZXQiZ Livraison
+nnnOqc Stage en informatique
+G6vP1i Voyez une tâche répétée devenir un clic
+xQaXlb Je peux arrêter de répéter ce travail.
+q8RgK5 Les trois fichiers de la semaine
+GkjYx4 Chaque magasin envoie son fichier. Chaque semaine, quelqu'un ouvre les trois pour monter le rapport.
+VlgbV1 Copier-coller dans un seul onglet
+k_GLjh Les lignes des trois fichiers sont réunies, une par une, dans un seul tableau.
+uYiDYm Filtrer et supprimer ce qui reste
+MD7W_7 Les lignes annulées sortent du tableau.
+Gycryj Mettre en forme et vérifier les totaux
+K_VB79 La somme est refaite et vérifiée avec ce qui reste.
+e2GzCz Avec l'automatisation, un clic
+VpdFs3 Le bouton fait ces trois étapes d'un coup. Le résultat est le même, sans copier-coller.
+lwpSgJ Chemise
+COdwh6 Casquette
+JZSrVP Tasse
+jRHYTW Manteau
+qvOJD4 Fichier
+7N2lmu Article
+LTq_Pe Statut
+0-unNJ Mettre à jour le rapport
+poGH8I Bouton d'exemple, non cliquable ici
+v2hbme R$ {1}, vérifié avec {2} lignes
+m_lBVX Fichier {1}
+1bn5sD Rapport de la semaine
+mxh4xB Avant : les fichiers séparés
+6u9JA4 Après : le rapport prêt
+Mm8OSU Toutes les tâches ne peuvent pas être automatisées. Je confirme ce qui est possible pendant notre échange, avant de convenir du travail.
+-P_EiT Voyez un tableau de bord en action
+s4bGm5 Je peux découvrir ce qui se vend le mieux et suivre l'activité.
+vD8TON Le tableau des ventes
+jxU7cu Ventes par produit sur les trois derniers mois, en milliers de R$. C'est de là que le tableau de bord tire tout.
+453uxj milliers de R$
+YgTviQ Tableau des ventes (milliers de R$)
+lczc9- Produit
+Ig4Gui Oct
+u5v-_V Nov
+ma6ALq Déc
+TYPPlw T-shirts
+o4zgG3 Casquettes
+5skOll Tasses
+XuRz-t Manteaux
+wsqCK- Tableau de bord des ventes
+T4Vxe1 Mois
+pBFKg_ Tous
+uM-sOw Oct. à déc.
+4BvJtX Vendu sur la période
+LWeZkB Ce qui se vend le plus
+S15vl4 Ce qui se vend le moins
+Dx_qGM Ventes par produit (milliers de R$)
+SIYl2_ {1} : {2} mille R$ vendus. Meilleure vente : {3}. Moins vendu : {4}.
+CTYf-r Les chiffres viennent du tableau
+b075TE Le total, le produit le plus vendu et le moins vendu sont calculés tout seuls.
+PZ3mWn Le graphique compare les produits
+OwFGqm On voit d'un coup d'œil ce qui se vend le plus et le moins.
+NTb8cn Vous choisissez un mois
+VXvajU En novembre, c'est un autre produit qui se vend le plus : les Casquettes. Le tableau de bord refait tout.
+EUw0Dk Vous repérez le produit qui stagne
+lHQNnC En décembre le total monte, mais les Manteaux restent ce qui se vend le moins.
+BSbId6 À vous de jouer : choisissez un mois.
+RKXJc7 Tableau des ventes
+DoBGFf Voyez un tableur en cours de rangement
+wD9-O2 Maintenant je peux le remplir et le vérifier sans me perdre.
+1OY4E2 Comment le tableur arrive
+-zIYJX Dates et noms écrits de façons différentes, lignes en double et une ligne vide.
+57vrQB Tableau avant le rangement
+_0PsFb Tableau après le rangement
+2BkKa_ Tableau d'exemple
+fqRJ_O Note
+xcfV7j Client
+PMjYux Uniformise les dates
+b9IwEK Toutes passent au format jour/mois, de la même façon.
+_GPBw- Uniformise les noms
+78Sq4D Majuscules et minuscules au bon endroit.
+OPSBN1 Supprime les doublons et les lignes vides
+YnRkd8 Une ligne en double et une ligne vide sortent du tableau.
+80VQO6 Sépare en colonnes
+8DblIh Client, article et valeur, chacun à sa place.
+Xbnnor Vérifie les totaux
+ZP2dxa La somme correspond aux commandes restantes.
+76U4qU Total : R$ 185 (il y a une ligne en double, ça ne correspond pas)
+k8SZfd Total : R$ 145 (reste à vérifier)
+DWizEW Total : R$ 145, vérifié avec les 3 commandes
+Bax_GD Exemple avec des données fictives
+YVMYEM Appuyez sur Lire pour voir chaque étape, ou sur Voir le résultat pour aller directement à la fin.
+FYubZB Lire
+jg9e2Z Pause
+A3hAF8 Voir le résultat
+i1PbRR Recommencer
+8Qh_rk Commandes de la démonstration
+xao8Rs Étape {1} sur {2}
+1ksRJy Ce qui change à chaque étape
+EXfk7X Avant
+Yfbue8 Après

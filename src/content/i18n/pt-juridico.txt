@@ -1,0 +1,217 @@
+# src/content/textos/acessibilidade.ts
+0cuOmL [{1}](mailto:{2})
+h7defi Acessibilidade
+MV-AB6 Versão de {1}.
+zn7y2M Quero que qualquer pessoa consiga ler este site e pedir um orçamento, com mouse, teclado, toque ou leitor de tela. Esta página diz o que o site já faz, o que ainda falta e como avisar de um problema.
+6lSnPD O que o site faz
+1AIKpy O site foi feito tendo como referência as Diretrizes de Acessibilidade para Conteúdo Web (WCAG) 2.1, nível AA. Na prática:
+nilWoO dá para usar tudo pelo teclado, com o foco sempre visível e um atalho para pular direto ao conteúdo;
+Zisv86 os botões e links têm pelo menos 44 px de altura, para o toque no celular;
+P1mhm4 nenhum texto é menor do que 14 px, e o texto de leitura tem 16 px;
+fnr48g há tema claro e tema escuro, com cores escolhidas para manter o contraste;
+JoXPgY as animações só aparecem para quem não pediu ao sistema para reduzir movimento;
+-MLftl os títulos seguem uma ordem, sem pular nível, e as janelas (orçamento, carrinho) prendem o foco e fecham com Esc;
+aB3WhV não há rolagem para os lados no celular;
+vgUU6k gráficos e esquemas têm descrição em texto.
+nC9ana O que ainda falta
+Dsndjw O site não passou por auditoria externa de acessibilidade. Os pontos acima são conferidos por testes automáticos e por revisão minha.
+k80afv Ainda não testei todas as páginas com leitor de tela em um celular de verdade. Pode haver trecho que não leia bem.
+vPBj4Q As demonstrações animadas de Como funciona dependem de JavaScript.
+FgNzdT Como avisar de um problema
+LiI_Z3 Se alguma parte do site atrapalhar você, escreva para {1} ou chame no [WhatsApp da página de contato](/#contato), dizendo a página e o que aconteceu. Eu respondo e corrijo.
+_bJ9Y2 Se preferir, peça o orçamento direto por esses canais, sem usar o site.
+# src/content/textos/perguntasFrequentes.ts
+IMjHO4 R$ {1}
+jbu16j Sim. Depois de cada pagamento eu emito a nota fiscal de serviço.
+XuXe2H Depois de cada pagamento por Pix eu emito um recibo. Se você precisa de nota fiscal, me avise na conversa, antes da proposta.
+cjGju0 Perguntas frequentes
+0gSSoF Atualizado em {1}.
+4S_Hvx As dúvidas mais comuns antes de pedir um orçamento. Se a sua não estiver aqui, escreva para {1} ou chame no [WhatsApp](/#contato).
+uXL_ZA Antes de contratar
+67jPyX O valor que o site mostra é o valor final?
+AiYjDB Não. O site calcula uma estimativa a partir das suas respostas. O valor final vai na proposta por escrito, depois da conversa, e só vale o que estiver nela.
+XigWe2 Enviar o pedido já me compromete?
+qr56Jt Não. O pedido só abre a conversa. O contrato começa quando você aceita a proposta por escrito e paga a entrada. Está nos [Termos de contratação](/termos/#contratacao).
+p7NtEN Como é o pagamento?
+UxET0w Por Pix, em duas partes: 50% de entrada, e eu começo depois dela; e 50% antes de eu liberar os arquivos finais ou publicar no seu endereço. Os detalhes estão em [Pagamento](/termos/#pagamento).
+T1BNTW Você emite nota fiscal?
+sgPi5_ Quanto tempo leva?
+LXsd1k O orçamento do site já mostra uma estimativa de prazo para a maioria dos serviços. A data de entrega vai na proposta e conta a partir da entrada e do recebimento do seu material.
+a41uGr E se eu não gostar ou mudar de ideia?
+9F0MEY A entrega é por etapas, então você vê o andamento antes do fim e pode corrigir o rumo. Uma rodada de revisão já está incluída no preço.
+992rj8 Quem contrata como consumidor pode desistir em até 7 dias depois do aceite, com devolução do valor. Depois disso, dá para cancelar pagando só o que já foi feito. Veja [Desistência](/termos/#arrependimento) e [Cancelamento](/termos/#cancelamento).
+DUGKqD Sobre o serviço
+OrpHTb Preciso ter algum programa pago?
+5od6DL Depende do serviço. O painel é entregue em Excel (o padrão) ou em Power BI Desktop. Compartilhar um painel do Power BI online com a equipe exige licença paga do Power BI do seu lado; no Excel isso não é preciso.
+0aTZpl Me diga na conversa qual programa você usa hoje, e eu explico as opções antes da proposta.
+RBFr3T Você precisa acessar o meu computador?
+ouWbqR Não. Eu trabalho nos arquivos que você me envia. Na conversa pelo Google Meet você pode compartilhar a tela para me mostrar a planilha, e quem controla o seu computador é sempre você.
+8LiaNm Não sei qual serviço escolher. E agora?
+4OSgEF Na parte de [orçamento](/#orcamento) há um guia com poucas perguntas que indica o serviço. Se preferir, conte o problema pelo WhatsApp e eu digo o que serve.
+q71I13 Seus arquivos e dados
+FdODaS Como mando a minha planilha com segurança?
+mlFv_X Mande só o que o serviço precisa. Se a planilha tiver nomes, CPF ou telefones de clientes e funcionários e isso não for necessário para o trabalho, troque por códigos ou apague essas colunas antes de enviar. Uma amostra com poucas linhas costuma bastar para eu montar a estrutura.
+23frZo Prefira um link do Google Drive ou do OneDrive compartilhado só com o meu e-mail, e não um link aberto a qualquer pessoa. Depois da entrega, tire o meu acesso.
+lZr3tO Não mande senhas de banco nem de sistemas por mensagem.
+sg1zDG O que você faz com os dados dos meus clientes?
+UCriyH Uso só para fazer o serviço, guardo em sigilo, não repasso a ninguém e apago as cópias depois da entrega. Se acontecer algum incidente, eu aviso você. Está escrito em [Dados que você me passa](/termos/#dados).
+w7K26w O site guarda os meus dados ou usa cookies?
+QenViK O site não usa cookies de rastreamento nem ferramentas de análise. Ele só envia o seu nome, o WhatsApp e as respostas do orçamento quando você aperta o botão de enviar. Tudo está na [Política de privacidade](/privacidade/).
+RaLpl4 Depois da entrega
+WqY5g- E se aparecer um defeito?
+peNndf Você tem 90 dias depois da entrega final para apontar o que não funciona como a proposta descreveu, e eu corrijo sem custo. Veja [Garantia](/termos/#garantia).
+sryCpv E se eu quiser uma mudança ou algo novo?
+bvveIa Ajuste fora do que estava na proposta custa {1} por hora, sempre com o valor avisado antes de eu começar.
+Rc3uMc O arquivo é meu?
+HP5BR- Sim. Depois do pagamento integral, a planilha, o painel, o script ou a página são seus, para usar e alterar à vontade. Veja [De quem é o que eu entrego](/termos/#propriedade).
+dWTR0O Você mostra o meu trabalho para outros clientes?
+AlMbkc Só com a sua autorização por escrito, e nunca com dados reais.
+# src/content/textos/privacidade.ts
+q_lamy Este texto explica, em linguagem simples, o que acontece com os seus dados quando você usa este site. Quem cuida deles é {1}.
+2DIfuY Quem é o responsável
+Fiq9ii O responsável pelos dados que você deixa neste site (o controlador, na Lei Geral de Proteção de Dados, a LGPD) é {1}.
+nyU-SM O canal para qualquer assunto de privacidade é {1}. Trabalho sozinho e não tenho um encarregado de dados nomeado à parte: quem responde sou eu.
+HYC3Wl O que eu recebo
+DKGDQ8 Se você enviar um pedido pelo site: o seu nome, o seu WhatsApp, as respostas do orçamento e as observações que escrever.
+N8Nyyw Se você usar o formulário de contato: o seu nome, o WhatsApp ou o e-mail que escolher para a resposta, e a mensagem.
+KfLKsW Se você me chamar pelo WhatsApp: o que você escrever na conversa, junto com o número e o nome do seu perfil.
+QbOWnn Os campos de mensagem e de observações são livres: não escreva senhas, dados de saúde nem dados de outras pessoas neles. Se escrever, eu só uso para responder o pedido.
+bEZB5p No pedido pelo site, o e-mail leva também a data das versões dos Termos e desta política que estavam publicadas quando você enviou (o registro do aviso de concordância) e um código fixo da página de onde o pedido saiu, sem o seu endereço de IP nem dados do seu aparelho.
+Xyd0dP O site não pede mais nada do que isso, e nada é enviado até você apertar o botão.
+SmBS8j Para que eu uso e com que base na lei
+-Sub8- A LGPD pede que cada uso de dados tenha uma base legal (art. 7º). Aqui são estas:
+ORupqs Responder o seu pedido e conversar sobre o orçamento: procedimentos preliminares a um contrato, feitos a seu pedido (art. 7º, V).
+QejijP Fazer e entregar o serviço, se fecharmos: execução do contrato (art. 7º, V).
+WTuuSD Guardar a proposta, o aceite e os comprovantes de pagamento: cumprimento de obrigação legal e exercício regular de direitos (art. 7º, II e VI).
+L5juy2 Dados técnicos de acesso registrados pela hospedagem, como o endereço IP: legítimo interesse em manter o site seguro e no ar (art. 7º, IX).
+q9eHRl Não uso os seus dados para anúncio, não monto perfil e não vendo nem repasso a ninguém para isso.
+QUzBG_ Por onde os dados passam
+Q5pxBe EmailJS: serviço que entrega o formulário do site no meu e-mail. O envio passa pelos servidores dele, que ficam fora do Brasil.
+n74N8O WhatsApp: se você usar o botão do WhatsApp, a mensagem sai do seu aparelho pelo próprio WhatsApp, que tem a política dele.
+heK41W Netlify: hospeda o site e pode registrar dados técnicos de acesso, como o endereço IP, conforme a política dela.
+9cgDRy Gmail: é onde os pedidos chegam e ficam guardados.
+lNUf_5 As fontes do site ficam no próprio site: nenhuma fonte, estatística ou rastreador de terceiros é carregado.
+TOyWkl Links para outros sites (WhatsApp, o repositório do CylBot no GitHub e a ANPD em gov.br) abrem fora deste site; a partir dali valem as regras de cada um.
+0AcQLL Dados fora do Brasil
+u3M5Ti EmailJS, Netlify, WhatsApp e Gmail guardam ou processam dados em servidores fora do Brasil. Isso é uma transferência internacional de dados, que a LGPD permite nas hipóteses do art. 33. Aqui ela acontece porque é necessária para responder o seu pedido e executar o contrato (art. 33, IX).
+yq4UOE O que fica no seu navegador
+d-OFtA O carrinho fica no sessionStorage, só enquanto a aba está aberta, para não se perder ao trocar de página. Ele guarda apenas os serviços escolhidos e as respostas do orçamento; nunca o nome, o telefone nem as observações. É apagado depois de um envio com sucesso.
+Kmmf_m O tema claro ou escuro que você escolher fica no localStorage.
+m5XcBJ A conversa com o Assistente Cyl (um assistente automático, não uma pessoa) fica guardada no localStorage, só neste aparelho, para voltar depois de recarregar a página e para você rever as conversas anteriores. Não é enviada pela rede nem chega ao Marcelo. Some quando você limpa os dados do site no navegador.
+6Qeg_b O site não usa cookies de rastreamento nem ferramentas de análise. Por isso não há aviso de cookies.
+5ZsQ00 Por quanto tempo eu guardo
+-Qw4OI Os pedidos que chegam no meu e-mail e não viram contrato ficam guardados por até {1} meses; depois eu apago.
+QuHgG4 A conversa no WhatsApp fica no meu aparelho e na minha conta enquanto eu precisar dela para o atendimento e a entrega.
+Nx7Qj8 Se fecharmos um serviço, a proposta, o aceite e os comprovantes de pagamento ficam guardados pelo prazo em que a lei exige ou permite comprovar o serviço (em regra, 5 anos).
+N8xRB5 Dados dos seus clientes e funcionários
+q1A2dX Se você contratar um serviço e me mandar planilhas com dados de outras pessoas, quem decide sobre esses dados é você, e eu só os uso para fazer o serviço. As regras estão nos [Termos de contratação](/termos/#dados): sigilo, uso só para o serviço, exclusão ao final e aviso em caso de incidente.
+9jNBSV Os seus direitos
+8I2nay A LGPD (art. 18) garante que você pode, a qualquer momento e sem custo:
+k7LGX0 confirmar se eu tenho dados seus;
+76hHwZ acessar os dados que eu tenho;
+8ozbIh corrigir dado incompleto, errado ou desatualizado;
+20wP4k pedir a anonimização, o bloqueio ou a eliminação de dado desnecessário, excessivo ou tratado fora da lei;
+OZr8_e pedir a portabilidade dos dados;
+qgm-RZ pedir a eliminação dos dados tratados com o seu consentimento;
+Djtsuk saber com quem os dados foram compartilhados;
+Wu37L0 saber que pode negar um consentimento e o que acontece se negar;
+xGMDMq revogar um consentimento que tenha dado.
+VqTRVm Como pedir para apagar ou saber o que tenho
+CmxrVz Escreva para {1} dizendo o que você quer: ver, corrigir ou apagar os seus dados. Eu respondo em até {2} dias e apago o que estiver comigo, inclusive o registro do envio no painel do EmailJS, se houver.
+qUe1Xk Só fica guardado o que a lei me obriga a manter, como os comprovantes de um serviço já prestado, e eu aviso quando for o caso.
+VfxJYm Se você achar que eu não resolvi, pode reclamar na Autoridade Nacional de Proteção de Dados (ANPD), em [gov.br/anpd](https://www.gov.br/anpd).
+CXo3wr Mudanças nesta política
+UxHwCb Se eu mudar o que faço com os dados (por exemplo, se o site passar a usar alguma ferramenta de estatística), este texto muda antes, e a data da versão no topo da página muda junto. A versão publicada aqui é a que vale.
+# src/content/textos/termos.ts
+Bvga0w  (parcial, para proteger os meus dados). O número completo vai na proposta por escrito, antes de qualquer pagamento
+996aT6 CPF ou CNPJ: informado na proposta por escrito, antes de qualquer pagamento.
+riZFMU Depois de cada pagamento eu emito a nota fiscal de serviço.
+xQ0B1p Depois de cada pagamento eu emito um recibo.
+YE7DdG o foro de {1}
+S1qTdL o foro do domicílio do prestador
+sCheJ6 Estas são as regras que valem quando você contrata um serviço meu: como o pedido vira contrato, como é o pagamento, o que está incluído, o que acontece se alguém desistir e como eu cuido dos dados que você me passa.
+nkRG9F O texto é em linguagem simples, de propósito. Se alguma parte não ficar clara, pergunte antes de contratar.
+J7bC9O Quem presta o serviço
+dNzeZP Nome: {1}.
+YkXrg6 Local: {1}. O atendimento é feito pela internet.
+waT0Yl O atendimento é feito pela internet.
+q_5oV0 E-mail: {1}.
+BYA7jK WhatsApp: [abrir a conversa](https://wa.me/{1}).
+R2LvGC O que este site faz
+1j4oXr O site mostra os serviços e calcula uma estimativa de valor e de prazo a partir das suas respostas. Essa estimativa não é o preço final.
+YAc1p_ Enviar um pedido pelo site ou pelo WhatsApp ainda não é contrato e não obriga você a nada. O valor final, o que entra no serviço e a data de entrega vão na proposta por escrito.
+5umEM4 Como a contratação acontece
+OftPlg Conversa: você me conta o que precisa, pelo WhatsApp ou pelo Google Meet.
+cNqESw Proposta: eu mando por escrito o que entra no serviço, o que eu preciso receber de você, o valor e a data de entrega.
+CVCKoF Aceite: o contrato começa quando você responde por escrito que aceita a proposta (por WhatsApp ou e-mail) e paga a entrada.
+owJo6e Se a proposta disser algo diferente destes Termos, vale a proposta, porque ela foi combinada para o seu caso.
+le8Cpg O pagamento é por Pix, em duas partes: 50% de entrada, e eu começo o trabalho depois dela; e 50% antes de eu liberar os arquivos finais ou publicar no seu endereço.
+FGKLjO Trabalho fora do que está na proposta custa {1} por hora. Eu só faço esse trabalho extra depois de avisar o valor e de você concordar por escrito.
+0kfxpL Hospedagem, licenças de programas e uso de inteligência artificial, quando o serviço precisar, são contratados na sua conta e pagos por você direto ao fornecedor. A proposta diz quando isso se aplica.
+4_vte_ Prazos
+WkXw2t A data de entrega vai na proposta. O prazo começa a contar quando a entrada é paga e eu recebo o material combinado (planilhas, textos, acessos).
+2nBwu1 Se o material atrasar, ou se eu ficar esperando uma resposta sua para continuar, o prazo fica suspenso e a data de entrega anda pelo mesmo número de dias.
+rPh6qr Se o atraso for meu, eu aviso antes da data e combino a nova data com você.
+ijhdMz Se eu ficar {1} dias sem resposta sua, posso encerrar o serviço. Nesse caso vale a regra de [cancelamento](#cancelamento): você paga só o que já foi feito.
+lAu2Ob Revisões e ajustes
+fcl6Lv A entrega é feita por etapas: você vê o andamento antes do fim e pode corrigir o rumo.
+6SM2_L Uma rodada de revisão está incluída no preço. Ela serve para ajustar o que foi entregue dentro do que estava na proposta. Mande os ajustes de uma vez, em até {1} dias depois da entrega.
+FmNrKq Não entra na revisão: pedir algo que não estava na proposta, mudar de ideia sobre o que foi combinado ou pedir novas rodadas. Isso é trabalho extra, a {1} por hora, sempre com o valor avisado antes.
+x_Yw1D Corrigir defeito não é revisão e não tem custo: veja a [garantia](#garantia).
+B_IPne Desistência em 7 dias
+4qcz_6 Se você contrata como consumidor (pessoa física ou negócio que usa o serviço para si), pode desistir em até 7 dias corridos a contar do aceite da proposta, sem precisar explicar o motivo. É o direito de arrependimento do Código de Defesa do Consumidor (art. 49), que vale para contratação feita pela internet ou pelo WhatsApp.
+5VUKzV Para desistir, basta avisar por escrito, pelo WhatsApp ou por {1}.
+7X4Dps Eu devolvo o valor pago, por Pix, em até {1} dias.
+4QG9CA Eu começo o trabalho logo depois da entrada. Se, dentro dos 7 dias, eu já tiver entregado alguma etapa a seu pedido e você quiser ficar com ela, combinamos por escrito o valor dessa parte. Se não quiser, a devolução é integral e a etapa entregue deixa de poder ser usada.
+Ah47hi Cancelamento depois dos 7 dias
+8glM7J Você pode cancelar a qualquer momento, avisando por escrito.
+V3HPfK No cancelamento, você paga só o que já foi feito até o aviso, na proporção do serviço contratado. Eu mostro o que foi feito e entrego essa parte.
+adf2Wa Se a entrada for maior do que o trabalho já feito, eu devolvo a diferença por Pix em até {1} dias. Se for menor, a diferença é paga antes de eu entregar a parte pronta.
+qpTYnP Eu posso cancelar se o material ou o pagamento combinado não chegar, ou se o pedido envolver algo ilegal. Nesses casos vale a mesma conta: fica pago só o que foi feito.
+9DvFvo Se eu não conseguir entregar por um motivo meu, devolvo tudo o que você pagou pela parte não entregue.
+JQJy-E Garantia
+2PmVWz Você tem 90 dias, a contar da entrega final, para apontar defeitos: algo que não funciona como a proposta descreveu. Eu corrijo sem custo. É a garantia legal do Código de Defesa do Consumidor (art. 26).
+O_fq4T A diferença para a revisão: revisão é ajuste de preferência (uma rodada incluída); garantia é conserto do que saiu com defeito (sem limite de rodadas dentro do prazo).
+bjVup6 A garantia cobre o que eu entreguei, do jeito que entreguei. Se o arquivo ou o código for alterado depois por você ou por outra pessoa, eu avalio o caso e aviso se o conserto entra na garantia ou se é trabalho extra.
+KkNumw De quem é o que eu entrego
+sv26Wr Depois do pagamento integral, o que foi feito para você (planilha, painel, script, página, código do sistema) é seu: você pode usar, alterar e copiar à vontade, sem pagar mais nada por isso.
+rxhc5J Antes do pagamento integral, o material entregue por etapas serve só para você avaliar o andamento.
+jpnIj1 Eu continuo podendo usar em outros trabalhos o conhecimento, as técnicas e os trechos genéricos que não contêm dados nem informações do seu negócio.
+JCvJot Programas e bibliotecas de terceiros usados no serviço (Excel, Power BI, bibliotecas de código aberto) continuam com a licença de quem os fez.
+uw7Zp_ Uso no portfólio
+VJWLdQ Eu só mostro o seu trabalho ou cito o seu nome como cliente com a sua autorização por escrito.
+CfU-WI Mesmo com autorização, nunca mostro dados reais seus, dos seus clientes ou dos seus funcionários: os exemplos usam dados fictícios.
+PQTu98 Dados que você me passa
+0Pk2BI Para arrumar uma planilha ou montar um painel, eu posso receber dados pessoais dos seus clientes e funcionários. Pela Lei Geral de Proteção de Dados (LGPD), nesses dados você é o controlador e eu sou o operador (art. 39): eu trato os dados em seu nome, seguindo o que combinamos.
+iwCMU3 Finalidade: uso os dados só para fazer o serviço contratado. Não uso para mais nada.
+JsDQgP Só o necessário: mande apenas o que o serviço precisa. Quando der, troque nomes, CPF e telefones por códigos, ou mande uma amostra. Veja [como enviar os arquivos com segurança](/perguntas/#arquivos).
+6BoyyA Sigilo: não mostro, não vendo e não repasso os dados a ninguém. Se o serviço precisar de alguma ferramenta de terceiros que receba os dados, eu aviso antes e só uso com o seu ok.
+Kt04zQ Segurança: guardo os arquivos em equipamento e em contas com acesso só meu, protegidos por senha.
+nb51kS Exclusão: em até {1} dias depois da entrega final eu apago as cópias dos seus arquivos de dados, a não ser que você peça por escrito para eu guardar durante a garantia ou para um serviço seguinte. O que foi entregue a você continua com você.
+oYXqMl Incidente: se eu souber de perda, vazamento ou acesso indevido aos dados que você me passou, aviso você o quanto antes, em até {1} dias úteis, com o que aconteceu e o que foi feito.
+yEqP3u Pedidos de titulares: se um cliente ou funcionário seu me procurar sobre os dados dele, eu encaminho o pedido a você.
+fBSUPm A sua parte: ao me enviar os dados, você confirma que tem o direito de compartilhá-los comigo para esse serviço.
+q6oo4t Os dados que você mesmo deixa no site (nome, WhatsApp, respostas do orçamento) seguem a [Política de privacidade](/privacidade/).
+hU3l6d Sigilo
+b1GvDx Tudo o que eu ficar sabendo sobre o seu negócio durante o serviço (números, preços, clientes, fornecedores, modo de trabalhar) fica em sigilo, durante e depois do serviço. A exceção é o que já for público ou o que a lei ou uma ordem judicial me obrigar a informar.
+mZ8md0 Bots de Discord e mensalidade
+ggMEt2 Os bots têm, além do preço de criação, uma mensalidade de {1}% do preço de criação por mês. Ela cobre o monitoramento e a correção de erros.
+YroBc1 A hospedagem, onde o bot fica ligado, é um custo à parte. O uso de inteligência artificial, quando houver, é cobrado pelo provedor na sua conta.
+S_cBiX Funcionalidade nova depois da entrega custa {1} por hora.
+rkwE-B Você pode cancelar a mensalidade a qualquer momento, avisando por escrito, sem multa. O cancelamento vale a partir do fim do mês já pago. Depois disso eu deixo de monitorar e de corrigir o bot.
+NmvPxK As condições do plano de {1} meses pago adiantado, quando houver, vão na proposta.
+rEYuzm Limites de responsabilidade
+8ZmL7l Eu respondo pelo que eu faço. Não tenho como responder por:
+jPslJq dado errado, incompleto ou desatualizado que você me mandou: o painel e a planilha mostram o que está nos seus dados;
+CZrOY4 decisões de negócio tomadas a partir dos números: confira antes de decidir algo importante;
+uZlXBF serviços de terceiros que saírem do ar ou mudarem as regras (hospedagem, Discord, Microsoft, provedores de IA);
+O1rhHU uso do que foi entregue de um jeito diferente do combinado, ou alterações feitas por outra pessoa.
+u4LVIf Quando o contratante não é consumidor (contratação entre empresas, para revenda ou como insumo), a minha responsabilidade fica limitada ao valor pago pelo serviço.
+_cA6ot Nada nestes Termos tira ou diminui direito que o Código de Defesa do Consumidor garante a você.
+16hFHS Mudanças nestes Termos
+xrGdDS Eu posso atualizar estes Termos. A data da versão fica no topo da página. Para cada serviço vale a versão que estava publicada no dia em que você aceitou a proposta; mudança posterior não altera o que já foi combinado.
+9jb7OP Lei e foro
+tNUUFT Estes Termos seguem a lei brasileira.
+VR0Trs Antes de qualquer coisa, fale comigo: a maioria dos problemas se resolve na conversa.
+CZ9TZY Se for preciso ir à Justiça, o consumidor pode usar o foro da cidade onde mora. Nos demais casos, fica escolhido {1}.
+aVg_TE Dúvidas sobre estes Termos: {1} ou o [WhatsApp da página de contato](/#contato). Veja também as [perguntas frequentes](/perguntas/).

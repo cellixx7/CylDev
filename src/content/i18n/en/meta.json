@@ -1,0 +1,16 @@
+{
+  "/": { "titulo": "CylDev | Spreadsheet fixes, dashboards and website creation", "descricao": "I fix your business spreadsheet, build a dashboard with your numbers and create your website or landing page. Instant quote, from R$ 100." },
+  "/como-funciona/": { "titulo": "Deliverables: spreadsheet, dashboard, website and system | CylDev", "descricao": "See with examples what each deliverable does for your business: spreadsheet fix, dashboard, automation, website or landing page, Python automation and custom systems." },
+  "/comunidade/": { "titulo": "CylDev | Discord bots and tools for gamers", "descricao": "CylBot, CylSense and custom Discord bots for your server.", "ogAlt": "CylDev announcement card: Discord bots and tools for gamers. CylBot, CylSense and custom bots." },
+  "/termos/": { "titulo": "Terms of service | CylDev", "descricao": "How the order becomes a contract, payment, deadlines, withdrawal, warranty and care for your data." },
+  "/privacidade/": { "titulo": "Privacy | CylDev", "descricao": "What data the site receives, on what legal basis, where it goes, your rights and how to ask for deletion." },
+  "/perguntas/": { "titulo": "Frequently asked questions | CylDev", "descricao": "Common questions before asking for a quote: price, payment, deadlines, files and data." },
+  "/acessibilidade/": { "titulo": "Accessibility | CylDev", "descricao": "What the site does to be accessible, what is still missing and how to report a problem." },
+  "/obrigado/": { "titulo": "Message received | Marcelo Vaz", "descricao": "Thank you for getting in touch." },
+  "/404.html": { "titulo": "Page not found | Marcelo Vaz", "descricao": "This page does not exist." },
+  "_": {
+    "pular": "Skip to content",
+    "ogAlt": "Marcelo Vaz announcement card: your spreadsheet in order and a dashboard with your numbers. Final price in the proposal. Payment by Pix.",
+    "ogAltComunidade": "CylDev announcement card: Discord bots and tools for gamers. CylBot, CylSense and custom bots."
+  }
+}

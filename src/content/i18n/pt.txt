@@ -1,0 +1,1429 @@
+# src/content/cenasEstagio.ts
+zLIp0Z O que eu entrego, em duas cenas
+dD-wH2 Cenas ilustrativas, com dados fictícios.
+A57VWW Cena ilustrativa, com dados fictícios.
+7wymdB Pausar animação
+FQA4D6 Continuar animação
+0kEHiZ Da planilha bagunçada ao painel
+qJbh_- Animação: uma planilha com colunas e linhas fora do lugar e textos sem padrão. Primeiro as colunas e as linhas são alinhadas, depois as palavras, os valores e as datas são padronizados, e por fim um painel com total, número de lançamentos e valor por setor é gerado a partir dela.
+CfOvts Dados soltos, sem padrão
+hwrD8S Colunas e linhas no lugar
+H3MLeP Palavras e valores padronizados
+HLTuSG Painel gerado a partir da planilha
+RRx71P Setor
+EwMN2W Nome
+QnHriu Valor
+5eQpvM Data
+-VORvO joao s.
+pa-yuD Financeiro
+sIScov João Silva
+yhflq2 R$ 1.200,00
+s1fCiL MARIA lima
+Pr8cX_ R$850,5
+kroJI5 RH
+p-dzFy Maria Lima
+pgD4P2 R$ 850,50
+xWmlz2 Financeiro 
+VGKjnR J. Silva
+0fbt3x R$ 430,00
+4LwhwH carlos r
+cHTKtg TI
+4PylQ3 Carlos Reis
+5laaIr R$ 2.100,00
+QArqUW Rh
+wMu1e0 m. lima
+tRbse9 R$ 700
+zj8DPS R$ 700,00
+GGboNm T.I.
+ZRhJY7 Carlos
+K_KqGf R$ 950,00
+AnuzJ- Painel de lançamentos
+slkoxp Total
+qB6PMd Lançamentos
+3vXG8N Valor por setor
+RCDAQW Apresentação para quem decide
+OzgBDj Cena: um auditório visto de trás, com pessoas sentadas de farda da Marinha, do Exército e da Aeronáutica, olhando para um telão. O slide alterna entre um painel de gráfico e um fluxo de processo, e ao lado dele aparece o nome {1}.
+xVoLkb Painel do mês
+WLSHf3 Fluxo do processo
+fAHUe9 Pedido
+Yaa6aD Análise
+0ZXQiZ Entrega
+nnnOqc Estágio em TI
+# src/content/demoAutomacao.ts
+G6vP1i Veja uma tarefa repetida virar um clique
+xQaXlb Consigo deixar de repetir esse trabalho.
+q8RgK5 Os três arquivos da semana
+GkjYx4 Cada loja manda o seu arquivo. Toda semana alguém abre os três para montar o relatório.
+VlgbV1 Copia e cola numa aba só
+k_GLjh As linhas dos três arquivos são juntadas, uma por uma, numa tabela.
+uYiDYm Filtra e apaga o que sobra
+MD7W_7 As linhas canceladas saem da tabela.
+Gycryj Formata e confere os totais
+K_VB79 A soma é refeita e conferida com o que sobrou.
+e2GzCz Com a automação, um clique
+VpdFs3 O botão faz esses três passos de uma vez. O resultado é o mesmo, sem copiar e colar.
+lwpSgJ Camisa
+COdwh6 Boné
+JZSrVP Caneca
+jRHYTW Casaco
+qvOJD4 Arquivo
+7N2lmu Item
+LTq_Pe Situação
+0-unNJ Atualizar relatório
+poGH8I Botão de exemplo, não é clicável aqui
+v2hbme R$ {1}, conferido com {2} linhas
+m_lBVX Arquivo {1}
+1bn5sD Relatório da semana
+mxh4xB Antes: os arquivos separados
+6u9JA4 Depois: o relatório pronto
+Mm8OSU Nem toda tarefa dá para automatizar. Eu confirmo o que é possível na conversa, antes de combinar o trabalho.
+# src/content/demoPainel.ts
+-P_EiT Veja um painel sendo usado
+s4bGm5 Consigo descobrir o que vende mais e acompanhar o negócio.
+vD8TON A tabela de vendas
+jxU7cu Vendas por produto nos últimos três meses, em R$ mil. É daqui que o painel tira tudo.
+453uxj R$ mil
+YgTviQ Tabela de vendas (R$ mil)
+lczc9- Produto
+Ig4Gui Out
+u5v-_V Nov
+ma6ALq Dez
+TYPPlw Camisetas
+o4zgG3 Bonés
+5skOll Canecas
+XuRz-t Casacos
+wsqCK- Painel de vendas
+T4Vxe1 Mês
+pBFKg_ Todos
+uM-sOw Out a Dez
+4BvJtX Vendido no período
+LWeZkB O que mais vende
+S15vl4 O que menos sai
+Dx_qGM Vendas por produto (R$ mil)
+SIYl2_ {1}: R$ {2} mil vendidos. Mais vende: {3}. Menos sai: {4}.
+CTYf-r Os números saem da tabela
+b075TE O total, o produto que mais vende e o que menos sai são calculados sozinhos.
+PZ3mWn O gráfico compara os produtos
+OwFGqm Dá para ver de relance o que vende mais e o que vende menos.
+NTb8cn Você escolhe um mês
+VXvajU Em novembro, quem mais vende é outro produto: os Bonés. O painel refaz tudo.
+EUw0Dk Você nota o produto parado
+lHQNnC Em dezembro o total sobe, mas os Casacos continuam sendo o que menos sai.
+BSbId6 Agora é com você: escolha um mês.
+RKXJc7 Tabela de vendas
+# src/content/demoPlanilha.ts
+DoBGFf Veja uma planilha sendo arrumada
+wD9-O2 Agora eu consigo preencher e conferir sem me perder.
+1OY4E2 Como a planilha chega
+-zIYJX Datas e nomes escritos de jeitos diferentes, linhas repetidas e uma linha vazia.
+57vrQB Tabela antes da arrumação
+_0PsFb Tabela depois da arrumação
+2BkKa_ Tabela de exemplo
+fqRJ_O Anotação
+xcfV7j Cliente
+PMjYux Padroniza as datas
+b9IwEK Todas passam a ser dia/mês, do mesmo jeito.
+_GPBw- Padroniza os nomes
+78Sq4D Maiúsculas e minúsculas no lugar certo.
+OPSBN1 Remove repetidas e vazias
+YnRkd8 Uma linha repetida e uma linha vazia saem da tabela.
+80VQO6 Separa em colunas
+8DblIh Cliente, item e valor, cada um no seu lugar.
+Xbnnor Confere os totais
+ZP2dxa A soma bate com os pedidos que sobraram.
+76U4qU Total: R$ 185 (tem linha repetida, não bate)
+k8SZfd Total: R$ 145 (falta conferir)
+DWizEW Total: R$ 145, conferido com os 3 pedidos
+t1cWLQ MARIA - camisa - 80
+vf7_3E Maria - camisa - 80
+PhgrHq Maria
+hdEiu1 R$ 80
+x8hhTh joão camisa 40
+HZHbfB João camisa 40
+opFvWh João
+m1m7YZ R$ 40
+xNus5n JOÃO camisa 40
+iWWIzT Ana caneca 25
+yWY0rh Ana
+yDxBGm R$ 25
+# src/content/demos.ts
+Bax_GD Exemplo com dados fictícios
+YVMYEM Aperte Reproduzir para ver cada passo, ou Ver resultado para ir direto ao final.
+FYubZB Reproduzir
+jg9e2Z Pausar
+A3hAF8 Ver resultado
+i1PbRR Recomeçar
+8Qh_rk Controles da demonstração
+xao8Rs Passo {1} de {2}
+1ksRJy O que muda em cada passo
+EXfk7X Antes
+Yfbue8 Depois
+# src/content/exemploPlanilha.ts
+K4c3hB Planilha1
+p5nSOA Fev
+zTj1Oh Fev (2)
+rycTjA MARÇO NOVO
+iCNYYY Contas
+# src/content/exemplos.ts
+cDRFRV Entenda como funciona cada entrega
+zwM0Io Cada parte abaixo mostra, com um exemplo, o que eu entrego e como isso ajuda no dia a dia do negócio. Todo bloco tem um link próprio: copie e mande para quem quiser ver exatamente aquele assunto.
+-Fxcv6 Escolha o assunto
+AHYzSq Copiar link
+4s2BFG Link copiado!
+RF2HhO Copie o endereço na barra do navegador.
+b7wKpc Exemplo
+afyTLw Como isso ajuda
+Fn12K- Quando faz sentido
+jWrU2j Quero algo assim
+j7sQyi Voltar para a página inicial
+5A9sXB Entenda como Funciona
+_HcKQp Planilha organizada
+NIi7Sn A planilha que você já tem, em ordem
+_splAe Os dados estão espalhados, cada pessoa preenche de um jeito e o total nunca bate com o que você esperava.
+PjziNH Uma aba por assunto: vendas, estoque, caixa.
+OlWSU3 Colunas padronizadas, então qualquer pessoa preenche do mesmo jeito.
+g56U9O Totais que conferem, para você confiar no número.
+Etg0vR Uma página de instruções para a equipe não se perder.
+doGNYF Antes e depois de uma planilha de vendas
+9eGsLO Painel básico
+cSltFo Os números do mês numa tela só
+gQey22 Você quer saber quanto vendeu e o que mais sai, mas precisa montar conta toda vez que pergunta.
+VYseqp Você abre o arquivo e já vê vendas, produtos e o andamento do mês.
+noociG Filtro por período para comparar uma semana com a outra.
+StGItq Estoque e vendas acompanhados com número, e não no chute.
+Nz2EIH Em Excel ou Power BI Desktop, o que for mais prático para você.
+6i-4ap Painel de uma loja fictícia
+NR_Brg Automação em Excel
+BOTv0v A tarefa repetida passa a rodar com um clique
+GOJ43b Toda semana alguém copia, cola, filtra e formata a mesma coisa. Dá trabalho e é fácil errar.
+KUTpMD O passo a passo manual vira um botão ou uma atualização automática.
+s62wo0 Menos erro de digitação e menos tempo gasto em tarefa repetida.
+-yFMMb Feito com VBA ou Power Query, dentro do Excel que você já usa.
+KKPyRI Rotina semanal, antes e depois
+i0iIjt Site de uma página
+BmiZgd Uma página que leva o cliente ao seu WhatsApp
+bArrFc Os clientes perguntam sempre as mesmas coisas e você não tem um lugar para mostrar o serviço e os preços.
+sAe98A Uma página com o seu serviço, seus preços e um botão de WhatsApp.
+MR5tP2 Funciona bem no celular, que é de onde a maioria chega.
+Nyk_cj Fica no ar em hospedagem gratuita, na sua conta.
+jWZRcL Esboço de uma página fictícia
+7UNHPK Automação com Python
+Ze8DlN O que o Excel não alcança, um script resolve
+G1kXVV Você junta dezenas de arquivos, copia dados de PDFs ou de sites à mão, e isso toma horas toda semana.
+fo2c1K Um script feito para a sua tarefa, não um programa genérico.
+SW3jIM Lê PDFs, planilhas e sites, e entrega o resultado pronto.
+9qOZLj Você recebe instruções para rodar e ajustar sozinho.
+RUDMKA Como pode ser o caminho de um script
+ESmInY Sistema sob medida
+GFugqB Quando a planilha já não dá conta
+Hj0C6C O negócio cresceu, a planilha ficou pesada e várias pessoas precisam usar ao mesmo tempo.
+K4gftK Começa com uma conversa para entender o seu caso.
+BJpSVn Você recebe uma proposta por escrito antes de qualquer cobrança.
+MyH219 O sistema é desenhado em volta da sua rotina, e não o contrário.
+rhCa35 Do primeiro contato à proposta
+# src/content/guia.ts
+mzbHl8 Não sei qual escolher
+3KcrZQ Qual serviço combina com você?
+LergUg Responda até duas perguntas e eu mostro por onde começar. Você continua livre para escolher qualquer serviço.
+jmzY0F Pergunta {1}
+baHbWm Voltar
+etx0Sp Fechar o guia
+NePr0K Por onde começar
+1i16FZ Ver detalhes
+kS6p8G Fazer orçamento
+z9ILhK Não sei qual serviço escolher e queria conversar.
+cR7lLE É só uma sugestão. O valor e o prazo você vê nos detalhes e na estimativa de cada serviço.
+eT9Fa1 O que você quer resolver?
+L1YnL5 Cuidar dos números do meu negócio
+9Vscco Ter uma página para apresentar o meu negócio
+5Sj_Ij Automatizar tarefas com um script, além do Excel
+xyvoy1 A planilha já não dá conta e preciso de um sistema
+gHFhrj Quero um bot para o meu servidor de Discord
+Rsu0tg Não sei, prefiro conversar
+zsXcG0 O que mais atrapalha hoje?
+SZHD_G A planilha está bagunçada, ou eu ainda uso caderno e mensagens
+BEVAZS Tenho os dados, mas quero ver como o negócio está indo sem montar conta
+mb2S3L Repito a mesma tarefa na planilha toda semana
+0HRZBG Primeiro os dados ficam em ordem, com totais que conferem. É a base para qualquer painel ou automação depois. Juntando serviços, há desconto.
+taGd0Z Um painel mostra o que importa do seu negócio em uma tela. Se os dados ainda estão soltos, a planilha organizada pode vir antes.
+hDFKMS A tarefa repetida passa a rodar com um clique. Eu confirmo o que dá para automatizar depois de ver o seu caso.
+H2VeIO Uma página com o seu serviço e um botão que leva o cliente direto para o seu WhatsApp.
+UOxAzA Um script em Python faz a tarefa repetida por você, mesmo com PDFs, vários arquivos ou sites. Se a tarefa couber dentro do Excel, a automação em Excel pode servir melhor.
+UlxYEi Você monta um orçamento base respondendo às perguntas. O valor é um ponto de partida: depois da conversa, a proposta por escrito fecha o escopo.
+k_0o-N Bots de Discord ficam na área Comunidade, com o preço e a mensalidade explicados lá.
+6fh3av Ver os bots na Comunidade
+aznwc5 Sem problema, me conta o seu caso e eu te ajudo a escolher.
+64mCWS Falar comigo no WhatsApp
+# src/content/perguntas.ts
+pComl1 Muda o valor.
+9isbsE Não muda o valor.
+ZM3krG Marque quantas quiser.
+PpO64G O que é isso?
+B7YyIe Que tipo de negócio é?
+1xiJPK Tipo de negócio
+NJlb93 Loja ou varejo
+VWML8A Serviços e atendimento
+nw06-k Alimentação
+A6KNUf Oficina ou técnico
+fBCxgC Outro
+LGeB3B Isso me ajuda a escolher o que colocar de começo: estoque e vendas para uma loja, agenda e retornos para quem presta serviço, receitas e custos para alimentação. Não muda o valor.
+dxkQn6 Tem dados sensíveis?
+HN3TDE Dados sensíveis
+hPub_I Sim
+clNLuw Não
+3c8Z-f Não sei
+Ef1szZ Dados sensíveis são informações que podem expor pessoas ou o seu negócio: CPF, endereço e telefone de clientes, dados de saúde, salários, margem de lucro. Você não precisa me mandar nada disso para pedir o orçamento. Se tiver, eu trabalho com uma cópia em que esses campos foram trocados por exemplos, e você cola os dados reais depois, por conta própria. Isso não muda o valor, só o jeito de trabalhar.
+IQnoOW Para que tipo de servidor?
+jDTial Tipo de servidor
+HZsjDz Comunidade de jogo
+bRVvEt Loja ou marca
+esLIGS Estudos ou grupo
+2zQtz2 Comunidade de jogo, loja, grupo de estudos: cada um pede um jeito de organizar canais e regras. Não muda o valor.
+E9wEmr Reúno controles soltos (caderno, mensagens, várias abas) em uma planilha única, com fórmulas que somam e conferem por você. Você abre, preenche e vê o total, sem precisar entender de Excel.
+nw2VyZ Planilha pronta no Excel, com as colunas do seu negócio
+J5SakT Fórmulas e totais automáticos, explicados em uma aba de leitura rápida
+PNwyZH Listas de escolha para evitar erro de digitação
+SFtH9L Um dia de revisão incluído no prazo
+HQK8n9 Pacote a partir de R$ 100. Cada hora de trabalho a mais soma R$ 50, e as suas respostas mostram onde isso acontece.
+eOPSDy Ajustes depois da entrega: R$ 50 por hora.
+DzgJS9 Você já tem uma planilha?
+Tl-7dX Material de partida
+Z8pdfQ Sim, e está em boa ordem
+eOgQnK Sim, e precisa de arrumação grande
+EzR3o8 Só tenho anotações ou papel
+5WNqLh Não, começo do zero
+KBu0aB A limpeza simples já está no pacote: tirar linhas vazias e repetidas e padronizar as colunas. Dados espalhados em várias abas, com datas e valores digitados de jeitos diferentes, dão mais trabalho de arrumar. Se for caderno ou papel, a gente monta o modelo juntos.
+XYsafw Quais controles a planilha precisa ter?
+oA7dhf Controles a mais
+6Etk9L Clientes
+dBu3Yr Estoque
+PP5dNU Vendas
+VdrRwY Contas a pagar e receber
+ee07Qk Agenda e retornos
+00QmoN Controle é uma aba para acompanhar uma coisa, como clientes ou estoque. O primeiro está incluso no pacote. Cada controle a mais é trabalho extra, e a tela mostra quanto.
+Ei0azT A planilha vai ter valores em dinheiro?
+Y-EkCk Valores em dinheiro
+ZFjkxD Sim: preços, vendas ou custos
+JHZLls Não: só cadastros e listas
+YjPV97 Com preços, vendas ou custos, cada total e cada fórmula fica visível e explicada, para você conseguir conferir sozinho. Isso pede um cuidado a mais, e a tela mostra quanto.
+pEc0h_ Transformo os seus números em um painel com poucos gráficos e indicadores, feito para responder as perguntas do seu dia a dia: quanto vendi, quem compra mais, o que está parado.
+4Fqrrr Painel pronto, no formato que você escolher
+oQ-P7e Indicadores e gráficos ligados à sua planilha
+c7I_Ey Filtros simples, como período e categoria
+nH-jUs Excel é o padrão e abre em qualquer computador.
+8_AKaK Power BI: entrego o arquivo. Para compartilhar online com a equipe é preciso licença paga (Pro) da Microsoft.
+DPufnC De onde vêm os seus números?
+a_lwbV Origem dos números
+NPrO9g Uma planilha minha
+UhOd38 Exportação de um sistema
+NkziTW Um arquivo que você baixa de outro programa (por exemplo, o sistema da loja), geralmente em Excel ou CSV.
+dw223Z Vários arquivos soltos
+nqQ3A7 Ainda não tenho
+77sZiC Uma planilha sua é o caminho mais curto. Exportações de sistemas e vários arquivos soltos pedem tempo para juntar e limpar, e isso muda o valor. Se ainda não tiver nada organizado, a planilha organizada pode vir antes.
+589KZB O que o painel precisa responder?
+KcMz9u Perguntas a mais
+dipLdt Quanto eu vendi
+8MABMV Quem compra mais
+oLiOvi O que está parado
+Vtk72z Quanto sobra de lucro
+xLFk95 Outra
+pktfeQ Cada pergunta vira um indicador ou gráfico. As duas primeiras estão incluídas. Cada uma a mais é trabalho extra, e a tela mostra quanto.
+t_VVF5 Onde você quer ver o painel?
+yR9g5J Formato do painel
+oI4REZ Excel
+GXyy9N Power BI (arquivo)
+3JX4w7 Power BI é um programa da Microsoft para gráficos. Aqui eu entrego um arquivo para abrir nele; para compartilhar pela internet a Microsoft exige licença paga.
+sM7FaJ Excel é o mais simples e abre em qualquer computador. Power BI é mais visual e muda o valor, mas para dividir com outras pessoas pela internet exige licença paga da Microsoft.
+EqvFZ5 Automação
+3UWjmr Pego uma tarefa que você repete todo dia ou toda semana (copiar dados, juntar arquivos, mandar avisos) e faço o computador fazer por você.
+jMaVxA Rotina automática funcionando no seu computador ou na nuvem
+2gjvmL Instruções simples para usar e para parar
+RZWun2 Teste com dados de exemplo antes de entregar
+4QsAmO O valor parte de R$ 300 e muda conforme as suas respostas.
+SxpMGk O que você quer automatizar?
+BnlW8f Tarefas a mais
+zxtjik Planilha que se preenche sozinha
+8Ptokx A planilha recebe os dados sem você digitar, por exemplo vindos de outro arquivo.
+gX-w_o Avisos e mensagens
+wOgXIM Juntar dados de vários lugares
+EfFOTh Ainda não sei
+uOUgvj Pense no que você refaz sempre do mesmo jeito. A primeira tarefa está inclusa. Cada tarefa a mais é trabalho extra, e a tela mostra quanto. Se não souber descrever, conte pelo WhatsApp e eu ajudo.
+csdr0K Onde isso acontece hoje?
+-CLWrp Onde acontece
+L15Ppn No Excel
+Hz4AqD Em um sistema
+23Qo_1 O programa de gestão ou a loja virtual que você já usa.
+qazxFg No WhatsApp ou e-mail
+FS2Y6I Em vários lugares
+caVDI0 Dentro do Excel é o mais simples. Quando a tarefa envolve um sistema, o WhatsApp ou vários lugares, é preciso ligar as peças, e isso muda o valor.
+mN4oG_ Uma página simples e rápida que apresenta o seu negócio e leva a pessoa a chamar você, de preferência pelo WhatsApp.
+m7N3_Z Página responsiva, pensada primeiro para o celular
+Y4uPra Botão direto para o seu WhatsApp
+GYcIw2 Textos organizados com você na conversa
+YaRR91 Domínio (o endereço da página) e hospedagem podem ter custo próprio. Eu explico as opções antes de você decidir.
+PfSVoV O que a página precisa fazer?
+MItHsy Objetivos a mais
+_C99cF Receber contatos no WhatsApp
+l_TKSu Mostrar serviços e preços
+RaQ1dK Mostrar fotos e trabalhos
+erNYNZ Receber agendamentos
+MHkAo3 O cliente escolhe dia e hora direto pela página.
+HnmBQd A página funciona melhor com poucos objetivos. Os dois primeiros estão incluídos. Cada um a mais é trabalho extra, e a tela mostra quanto.
+j2a7IF Você já tem logo e fotos?
+yY9gbI Logo e fotos
+aKkTBI Só o logo
+78Clcm Fotos reais do seu trabalho convencem mais do que imagem de banco. Sem material nenhum, eu preciso montar um visual simples com você, e isso muda o valor.
+5cXDRg Quantas páginas?
+Kq2IFy Número de páginas
+RdX0BJ Uma página só
+O5Ox55 Tudo em uma só página, que rola de cima para baixo.
+dAEFft Até 3 páginas
+CRF-gf Páginas separadas, por exemplo serviços e contato, em vez de tudo em uma rolagem só.
+h7KKUK Uma página só rola de cima para baixo, com tudo. Várias páginas separam, por exemplo, serviços e contato, e isso muda o valor.
+vVNCnp Escrevo um script em Python para a tarefa que você repete: juntar planilhas e arquivos, ler PDFs e notas, enviar mensagens ou buscar dados de sites. O resultado sai pronto, como uma planilha ou um relatório.
+2hebYZ Script em Python feito para a sua tarefa
+II0vKX Instruções para rodar e ajustar
+AsPF6P O valor parte de R$ 300 e muda conforme as suas respostas: tarefa simples fica no valor base, tarefa mais complexa soma horas (R$ 50 por hora).
+gZLcU1 Se a tarefa couber dentro do Excel, a Automação em Excel resolve com o mesmo valor de partida. O Python é para o que o Excel não alcança.
+2-aW9P O que o script precisa fazer?
+hDYnwr Juntar planilhas ou arquivos
+BR0yim Ler PDFs ou notas e passar para planilha
+0Qif23 Enviar e-mails ou mensagens
+RHwDuL Buscar dados de sites
+acLIFS O programa abre páginas da internet e copia as informações que você precisa.
+8zU3dB Gerar um relatório pronto
+VCngZZ De onde vêm os dados?
+5eo2vt Origem dos dados
+QoObeO De planilhas ou arquivos CSV
+TK4Y2M CSV é um arquivo simples de tabela, que qualquer planilha abre. É o caso mais fácil de tratar.
+UwrlT0 De PDFs ou imagens
+MDl3St Ler o texto de PDFs e de fotos de notas pede conferência, porque a leitura automática pode errar.
+JtYpxe De um site ou sistema
+cQkwaT De vários lugares
+Re6Pqe Planilha e CSV são o caso mais simples e ficam no valor base. PDFs e imagens pedem leitura e conferência. Sites ou sistemas pedem ligar as peças, e vários lugares ao mesmo tempo dão ainda mais trabalho.
+dYa74P Como o script vai rodar?
+U1I_Jl Como roda
+oj8iFT Eu rodo quando quiser
+ZjO5yi Sozinho, em horário marcado
+K6xxLg O programa roda por conta própria, por exemplo todo dia às 8h, sem você abrir nada.
+X64oi7 Com uma tela de botões
+uT_pbf Uma janelinha com botões, para qualquer pessoa usar sem mexer em código.
+OxojNz Rodar quando você quiser é o mais simples. Em horário marcado exige configurar o agendamento, e uma tela de botões é um pequeno programa à parte.
+cf5g9L Bot de Discord essencial
+G5_cOK Um bot de Discord com o essencial para o seu servidor: boas-vindas, regras, anúncios e atendimento por tickets.
+Q15nfr Bot configurado no seu servidor
+57GXUo Boas-vindas, anúncios e atendimento por tickets
+Cp-7Tk Instruções para a sua equipe usar
+EpU2Pz Suporte para ajustes pequenos no primeiro mês
+npjf-D Mensalidade de 10% do valor de criação mais a hospedagem, cobrada à parte.
+X9iw-p O desconto de piloto vale só sobre a criação.
+c_WHrI O que o bot precisa fazer?
+cjes8y Funções a mais
+-J4IPm Boas-vindas e regras
+67_nyi Tickets de suporte
+l7j3fb Um canal privado que o bot abre para atender uma pessoa.
+pFCtYp Anúncios
+FokgQQ Cargos por reação
+LM-m6P A pessoa ganha um cargo no servidor ao clicar em um emoji.
+yCSZpR Ticket é um canal privado que o bot abre para atender uma pessoa. Cargo por reação é quando a pessoa ganha um cargo ao clicar em um emoji. As duas primeiras funções estão incluídas. Cada uma a mais é trabalho extra, e a tela mostra quanto.
+MoUZbU Quem hospeda o bot?
+fQbfDy Hospedagem
+LNxC9N O Marcelo hospeda
+2xwEm4 Eu mantenho o bot ligado o tempo todo em um servidor. Por isso existe a mensalidade.
+wqElND Eu mesmo hospedo
+o-bss9 Você mantém o bot ligado por conta própria, em um computador ou servidor seu.
+ik4e-Z Hospedar é manter o bot ligado o tempo todo em um servidor. Eu posso cuidar disso (por isso a mensalidade) ou você hospeda por conta própria. Não muda o valor de criação.
+Za24eL Bot de Discord com IA
+VUKJqC Tudo do bot essencial, mais respostas automáticas feitas por inteligência artificial, com regras que você define.
+Kh9hDb Tudo do bot essencial
+6fkkDI Respostas com IA, nos canais que você escolher
+Z6fZ_w Limites e regras para o que a IA pode ou não responder
+tPd6EW Instruções para acompanhar o uso
+RT7P_4 O uso da IA é cobrado direto na sua conta do provedor, não por mim.
+JUOw-C Mensalidade de 10% do valor de criação mais a hospedagem.
+LIw3US O que a IA deve responder?
+xAfsad Papéis a mais
+pjsFNZ Dúvidas frequentes
+_iQxYB A IA responde as perguntas que se repetem, com base em textos que você me passa.
+fiam4q Conversa livre
+ELSVLd A IA responde sobre vários assuntos, não só os que você definiu. Pede mais cuidado com os limites.
+MPVNPo Ajuda com regras
+HnyoI1 A IA explica as regras do servidor e orienta quem tem dúvida sobre elas.
+KDNjUo A IA responde melhor quando o assunto é delimitado. O primeiro papel está incluso. Cada um a mais é trabalho extra, e a tela mostra quanto.
+95xw14 Você já tem conta em algum provedor de IA?
+LzVwg1 Conta no provedor de IA
+fP5SDs Não, preciso de ajuda
+LxD0h8 Eu explico o caminho para abrir a conta no provedor de IA.
+hvWU9X Não sei o que é
+Xaj5yq Provedor de IA é a empresa que fornece o modelo (por exemplo, OpenAI ou Anthropic). Você abre uma conta, e o uso aparece na sua fatura. Se nunca fez isso, eu explico o caminho, e isso muda o valor.
+E9jqTH Quando a necessidade é maior: um sistema pensado para o seu processo. O valor parte de um ponto de partida e as suas respostas mostram onde ele cresce. A proposta por escrito fecha o escopo, o prazo e o valor.
+HxZgzK Conversa inicial para entender o processo
+P8LtOF Proposta por escrito antes de começar
+mT6yCC Entrega em etapas, para você acompanhar
+P_KZIS Valor fechado na proposta, de acordo com o tamanho
+tskHQ3 O valor é um ponto de partida: a proposta fecha o escopo. Cada hora de trabalho a mais soma R$ 50.
+pSvrzj Projetos grandes entram em fila e dependem da minha agenda.
+# src/content/perguntasSistema.ts
+IvOk9M Como o sistema será cobrado dos clientes?
+CslgwR Cobrança
+i-cLwx Mensalidade (assinatura)
+dUX1kY Pelo uso
+OxGIWs O cliente paga conforme quanto usa, por exemplo por pedido ou por consulta.
+vRLX8D Uma vez só
+o1-t_m Tudo bem: o tipo a gente decide na conversa.
+-GQChN É como você vai receber dos seus clientes pelo sistema. Assinatura exige controlar quem pagou e quem atrasou, e isso muda o valor.
+Ux1VdD Quantos tipos de usuário o sistema terá?
+UevcdF Tipos de usuário
+3jyt-2 Um só tipo
+oNOQWv Dois tipos (por exemplo, cliente e administrador)
+XEm6Sg Três ou mais
+IFN5hF Cada tipo de usuário vê e faz coisas diferentes: o dono vê tudo, o cliente vê só o dele. Quanto mais tipos, mais regras de acesso, e isso muda o valor.
+xRgcWy Onde o aplicativo vai rodar?
+YP9LXC Onde roda
+thEQkS No navegador
+k01oWF Abre por um endereço na internet, sem instalar nada.
+OjmPHQ No celular
+OY_Ad_ Aplicativo instalado no aparelho.
+SXtIOS No celular e no navegador
+ymK9NG No navegador, abre por um endereço, sem instalar nada. No celular, é um aplicativo instalado, e fazer os dois dá mais trabalho.
+L0eb5r Precisa funcionar sem internet?
+5vqfjG Sem internet
+2a5tzD Não, sempre com internet
+Alj0Kk Sim, precisa funcionar sem internet
+Qwz9Bi Funcionar sem internet exige guardar os dados no aparelho e sincronizar depois. É mais trabalho, e isso muda o valor.
+KdYN0k Precisa de login (usuário e senha)?
+Tlook7 Login
+G32bOm Com login, cada pessoa entra com a sua conta e só vê o que é dela.
+S6h_xO Precisa de cadastro com e-mail?
+9o4Wjl Cadastro com e-mail
+1hVesH A própria pessoa cria a conta e confirma o e-mail.
+_cRaPJ Qual meio de pagamento você já usa?
+nvXf6d Meio de pagamento
+J_vMVR Mercado Pago
+xIzgWw Empresa que recebe o pagamento do cliente e avisa o sistema.
+TQjsWH Stripe
+tYpx9S Empresa internacional que recebe o pagamento do cliente, muito usada para cartão e assinatura.
+kcqWgx Banco ou maquininha
+x76jVc Ainda nenhum
+alrkXz É a empresa que recebe o dinheiro do cliente e avisa o sistema. Se você ainda não tem, eu ajudo a escolher e a abrir a conta, e isso muda o valor.
+fddWNC Precisa emitir nota fiscal?
+74Kib4 Nota fiscal
+jw_DsA Emitir nota pelo sistema depende do seu contador e do município. Eu confirmo o caminho na conversa.
+xC4tai Com quais sistemas ele precisa conversar?
+AQJNwr Quais sistemas
+CGifMH Planilha (Excel ou Google)
+RvGyEr Sistema de gestão (ERP)
+YJcURC Loja virtual
+ar9DuS Banco de dados que já existe
+r6Pv6P Marque todos os que se aplicam. O primeiro está incluso; cada um a mais é trabalho extra, e a tela mostra quanto.
+UU4hni Você tem acesso à API deles?
+RXkQNW Acesso à API
+6H1mMo API é a porta que o outro sistema abre para conversar com o seu. Sem acesso, eu preciso procurar outro caminho, e isso muda o valor.
+pfGSh1 Quais relatórios?
+p6Hr6B Relatórios
+arSxjB Uso do sistema
+L5gH4e O primeiro relatório está incluso; cada um a mais é trabalho extra, e a tela mostra quanto.
+UiH866 Precisa exportar para Excel ou PDF?
+moUj_n Exportar
+O6hP6i Para Excel
+wjdzTW Para PDF
+UbyzVf Para os dois
+oxSIdj É um botão que baixa o relatório pronto, em Excel ou PDF. Cada formato é um pouco de trabalho a mais.
+PEWfHL Que tipo de dado sensível?
+FdNxbX Tipo de dado
+xfgM2a Saúde
+Qjjow9 Documentos pessoais (CPF, RG)
+wFo04_ Dados financeiros
+V2pZY0 Marque os que o sistema vai guardar. O primeiro está incluso; cada um a mais pede mais cuidado, e a tela mostra quanto.
+zTPNik Precisa de política de privacidade e termos de uso?
+Gm64B3 Política e termos
+h53agE Sim, um texto-base
+EHGd7K Eu monto um texto-base com você. Não é parecer jurídico: para valer como contrato, vale uma revisão de quem entende de lei.
+3BwEq8 Que tipo de sistema você imagina?
+vnk4l9 Tipo de sistema
+lbHeiq SaaS (clientes pagam uma assinatura)
+9Iv_Os SaaS é um sistema na internet que várias empresas ou pessoas usam, cada uma com a sua conta, pagando uma assinatura. Exige controle de contas e de cobrança. Um site com banco de dados que só você administra não é SaaS.
+Mqhiod Site com área logada
+PaBZKU Um site comum que tem uma parte restrita: a pessoa entra com usuário e senha e vê só o que é dela.
+QIajV4 Aplicativo
+2Pyc7U Programa feito para usar no celular, no navegador ou nos dois, com telas próprias e dados guardados.
+4csXmN Programa de computador
+IpLjHT Um programa que se instala no Windows, sem depender de endereço na internet para abrir.
+6AcEsu SaaS é um sistema que você vende por assinatura. Site com área logada tem uma parte só para quem entra com conta. Aplicativo roda no celular ou no navegador. Programa de computador se instala no PC. “Ainda não sei” não muda o valor: a gente decide na conversa.
+OwZYzk Quem vai usar?
+f1oG9O Quem usa
+gA0koD Só eu e a minha equipe
+Rh3n6V Poucas pessoas conhecidas, sem cadastro aberto ao público.
+xPnbrw Os meus clientes
+XZC5rV Pessoas que você escolhe e libera; cada uma entra com a sua conta.
+eW62iL Qualquer pessoa (público aberto)
+uB6zql Qualquer um pode acessar ou criar conta. Exige mais cuidado com segurança.
+6_jTZs Sistema só para a equipe é mais simples. Para clientes ou para o público, entram regras de acesso e segurança, e isso muda o valor.
+HQ5azh Precisa receber pagamento pelo sistema?
+bpuWDq Pagamento
+pGS70r Sim, Pix e cartão
+vaMfGI Pagamento avulso: o cliente paga e o sistema confirma o recebimento.
+Nvooqp Sim, assinatura recorrente
+zljUYh O cliente é cobrado todo mês automaticamente. É preciso tratar cartão recusado e cancelamento.
+mRE00- Receber pelo sistema exige ligar com uma empresa de pagamento e tratar pagamentos que falham. Assinatura recorrente dá mais trabalho que Pix e cartão.
+VUL1ou Precisa conversar com outros sistemas?
+Eg78hD Outros sistemas
+-SAiGm Sim, com o WhatsApp
+HuXYFf O sistema envia ou recebe mensagens pelo WhatsApp.
+tUHL8c Sim, com ERP, planilha ou outro
+ygkVI- ERP é o sistema de gestão da empresa (estoque, financeiro, notas). O sistema novo troca dados com ele ou com a sua planilha.
+V8XsJw É quando o sistema troca informação com outro que você já usa, para ninguém digitar duas vezes. Cada tipo de ligação muda o valor.
+i1SqPK Quanto dado o sistema vai guardar?
+w739Af Volume de dados
+SDe-Jn Pouco (até alguns milhares de registros)
+T0jBnl Médio
+nom2iX Cresce aos poucos, mas ainda cabe em um banco de dados simples.
+jgXd1b Muito (cresce todo dia)
+r7jQGg Novos registros todos os dias, como pedidos ou leituras. Pede um banco de dados mais cuidadoso.
+cibNip Muito dado pede um banco de dados mais cuidadoso para o sistema continuar rápido. Quanto mais dado, mais trabalho.
+ZZZSm7 Precisa de relatórios e gráficos?
+Q02bJz Relatórios e gráficos
+eTnowB Relatórios resumem os números do sistema em tabelas e gráficos. Você escolhe quais a seguir.
+iASVRI Onde o sistema vai ficar hospedado?
+9-n3jv Eu mesmo cuido
+dGkALr Você contrata e mantém o servidor por conta própria.
+ANwjw7 Já tenho um lugar
+3vig1n Você já tem um servidor ou plano de hospedagem para usar.
+fKFYVc Hospedagem é o servidor que mantém o sistema no ar. É cobrada à parte, direto pelo provedor, e não muda o valor de criação.
+zkGf7K O sistema vai guardar dados sensíveis?
+8nkkbl Dado sensível é o que causa dano se vazar: saúde, documentos, finanças. Pede mais cuidado, e você escolhe os detalhes a seguir.
+# src/content/servicos.ts
+S8VKP- prazo a combinar
+awI2VQ Sua planilha passa a ter uma aba por assunto, colunas padronizadas e totais que conferem. Fica mais fácil de preencher e de confiar nos números.
+ox5eNy Limpeza dos dados que você já tem
+9v3sF1 Fórmulas de total e resumo
+x4hrwI Instruções de uso em uma página
+izd4XN Você abre um arquivo e vê quanto vendeu, o que mais sai e como está o mês, sem montar conta. Dá para controlar estoque e vendas com número, e não no chute.
+06h1A2 Excel (padrão) ou Power BI Desktop (arquivo .pbix e PDF)
+I1fY4E Uma fonte de dados
+jRDCFl Até 5 indicadores
+EUrB-M Filtro por período
+lK_Xsw Compartilhar um painel do Power BI online com a sua equipe exige licença paga do Power BI do lado de vocês. No Excel isso não é preciso. Eu explico as opções na conversa.
+YkALH6 A tarefa que você repete toda semana na planilha passa a rodar com um clique.
+cl3yQw VBA ou Power Query
+BFkAsv Instruções de uso
+Vc5EhV aPartirDe
+D8X_Ck Uma página com o seu serviço, seus preços e um botão que leva o cliente direto para o seu WhatsApp.
+i17RR6 Uma página
+9DcA18 Versão para celular
+y5oodh Publicação no ar, em hospedagem gratuita na sua conta
+yP3mXq Botão de WhatsApp
+d9MRe6 Um script feito para a sua tarefa: junta planilhas e arquivos, lê PDFs, envia mensagens ou busca dados de sites, e entrega o resultado pronto.
+JPo5kF Se a tarefa couber dentro do Excel, a Automação em Excel resolve com o mesmo valor de partida; o Python é para o que o Excel não alcança. Eu aviso na conversa qual das duas serve melhor.
+c2LWZT Quando a planilha já não dá conta e você precisa de um sistema próprio. Você monta o orçamento base e a proposta fecha o escopo.
+JK_Rau Conversa para entender o caso
+MmMbfk Proposta por escrito
+HlZJoL Entrega em etapas
+k53-Pg O valor é um ponto de partida: a proposta por escrito fecha o escopo.
+oiDNyY Seu servidor ganha tickets, mensagem de boas-vindas e moderação básica.
+XGIqUX Tickets
+EyibJ3 Boas-vindas
+-vrPS3 Moderação básica
+Kk_fiQ Ajuda para colocar no ar
+nZmseG Bot com IA e painel web
+toSeJP Um bot que responde com IA e um painel no navegador para você ajustar o que ele faz.
+gSXBsJ Comandos sob medida
+CT0zTt Integração com IA
+kfc6XK Painel web simples
+1TsGG1 O uso da IA é cobrado pelo provedor, na sua própria conta.
+# src/content/site.ts
+MK2oc1 Marcelo Vaz
+IM66SE Marcelo Vaz Oliveira
+IuSdKP CylDev
+WL2v60 marcelovaz.contato@gmail.com
+mpvydr CPF
+sAWdQD Brasília/DF
+Kdb8kv Editais
+wTQR7j Esquema da página pública da UniSER: faixa verde com logo e menu, e três cartões de editais abaixo.
+UwDXdZ Esquema da tela de login da área restrita: cartão central com campos de login e senha e um botão verde.
+TFra2W Grade curricular
+ZEg5Qo Esquema da grade curricular: tabela com código, disciplina e situação de cada matéria do período.
+ZSwYCt Meus dados
+R-2ldt Esquema da tela Meus dados: cartões de dados pessoais, contato e endereço, cada um com botão de editar.
+kVxEdB Frequência
+_3z-54 Esquema da tela de frequência: resumo da situação e tabela com data, disciplina e justificativa das faltas.
+PCp8YW Meu semestre
+5bgVWQ Esquema da tela Meu semestre: cartões de segunda a sexta, cada um com a disciplina e a carga horária.
+Co_k79 k7v0xn9QPlTQv7xnn
+# src/content/textos/comum.ts
+N4y6t7 Rodapé
+qPejJE Site sem rastreadores.
+lY_7B6 Serviço prestado por
+V9vNY5 Termos
+gglTzo Perguntas
+VmYcB8 Contato
+ign2Cw Privacidade
+2WNCqP O Marcelo costuma responder em até 2 horas, sem garantia.
+rXtp4W  (abre em outra aba)
+OHvJ3D dados fictícios
+lDe6Kj Tema claro
+kteUDE Tema escuro
+t4Qw_B Abrir menu
+naMUQ3 Fechar menu
+87hrE9 Principal
+AJQziG Idioma
+2X8Ql7 Anterior
+ZLLQ1j Próximo
+5_BZIU {1} de {2}
+8lBkRb Inclui
+jV2HcK Prazo
+uQ3d9j Mensalidade
+jKpmye {1}{2} por mês, mais a hospedagem
+h8afwI a partir de 
+mrOvVs As 5 primeiras vagas têm 10% de desconto. As 5 seguintes, 5%. Restam {1} com {2}%. Chame no WhatsApp e garanta a sua.
+LU0JVa Restam {1} vagas com {2}% de desconto. Chame no WhatsApp e garanta a sua.
+JupVO1 O desconto vale sobre o preço de criação.
+pu-UHr Seu nome
+xf2XAl Como prefere que eu responda?
+szb8VY WhatsApp
+DQHi6G E-mail
+ofzvtl Seu WhatsApp (com DDD)
+5FVWOT Seu e-mail
+XoIEIk Assunto
+OLwMVZ O que você precisa
+sS8jr0 Quer contar mais alguma coisa? (opcional)
+t9aBvV Vai junto com a sua mensagem:
+qRqVUX Enviar
+XpHc3F Enviando…
+PkQxeO Não consegui enviar agora. Me chame por um destes canais:
+epbTOG Não preencha este campo:
+caUhG8 Uso o seu nome e o seu contato só para responder. A mensagem passa pelo EmailJS. Não escreva senhas, dados de saúde nem dados de outras pessoas nela.
+Tp7DoC Política de privacidade
+# src/content/textos/comunidade.ts
+eMt3iI CylBot
+Rc0fbi CylSense
+0I7qIj Bots sob medida
+jrePTc Eu faço bots e ferramentas para quem joga.
+-6AIr0 Aqui ficam os projetos que eu faço para Discord e para jogos. Se você cuida de um servidor e quer um bot do seu jeito, dá para conversar.
+QOQw_y Falar sobre um bot
+25Mes9 Bot de Discord com central de tickets, anúncios por servidor, IA opcional e painel web.
+_KtvqG Ver o código no GitHub
+7W8vWQ Em desenvolvimento
+UL0KBq Uma ferramenta de análise de desempenho para quem joga VALORANT. Ainda não está aberta ao público. Quando sair, toda métrica vai mostrar o tamanho da amostra, e o que for hipótese vai aparecer como hipótese.
+hMH_BJ Bot sob medida para o seu servidor
+4WIChZ Conversar sobre esse bot
+PuZHPa O bot precisa ficar ligado o tempo todo. A mensalidade cobre o monitoramento e a correção de erros: {1}% do preço de criação por mês. A hospedagem, onde o bot fica ligado, é um custo à parte, e o uso da IA, quando há, é cobrado pelo provedor na sua conta. 
+Zi393h No plano de {1} meses pago adiantado, o desconto é de {2}%.
+qvLv99 No plano de {1} meses pago adiantado, há desconto.
+8WPHeZ Funcionalidade nova depois da entrega: {1} por hora.
+3ja1DE WhatsApp ou e-mail, o que for melhor para você.
+LPNAjZ CYL Sense não é afiliado à Riot Games.
+kUno7i Quer algo assim para o seu negócio?
+5xRnac Veja a área Negócios
+# src/content/textos/negocios.ts
+XlYRcz Um exemplo do que eu entrego
+SsdA9- Orçamento
+h4bAT8 Entregas
+I5MCgq Sobre
+DcOJG7 Prefere falar direto?
+L08WyJ Chame no WhatsApp
+260cjF Ir para a área de comunidade (Discord e jogos)
+PMUvkW Comunidade
+aXf7WX Transformo a sua planilha bagunçada em um painel.
+uTubq_ Ele mostra o que vende, o que encalha e o que está acabando. Também crio a página do seu negócio e sistemas completos na internet.
+tDn0hU Planilhas organizadas, painéis com os seus números, páginas de apresentação e sistemas sob medida. Tudo explicado em português claro, sem complicação.
+f0Lv27 a partir de {1}
+c7_k9l Monte o orçamento aqui e envie pelo site ou pelo WhatsApp.
+sOCi-I Realize seu orçamento
+v-toFJ Como funciona?
+jYXosg Chamar no WhatsApp
+WavEH2 Exemplo de painel · loja fictícia
+D8UvX1 Todos os números da loja em uma única tela: quanto vendeu, o que mais sai e o que está parado. Os dados abaixo são fictícios.
+iErcON Ano de 2026
+xncxZH Vendas no ano
+O0c4ae R$ 214 mil
+YXDSwM Pedidos
+2e45JW Ticket médio
+2brQdL R$ 75
+G4ovoj Estoque parado
+mOPpVE R$ 8,4 mil
+Jm8cgn Vendas por mês (R$ mil)
+xGQPIg {1}, R$ {2} mil
+7-02kO Jan
+UhEB_P Janeiro
+6dBt7U Fevereiro
+xLoIIk Mar
+pVj4D3 Março
+tUyLKY Abr
+vl_gDB Abril
+r-Umps Mai
+fWyHv6 Maio
+bZDfO- Jun
+GZBMqV Junho
+tzdVhG Jul
+pYVdtz Julho
+i6xdqz Ago
+b-FCfB Agosto
+RIq3O6 Set
+eSoS1Q Setembro
+5PpU8H Outubro
+Z_eZdH Novembro
+lbNg1J Dezembro
+E96CfB Vendas por categoria
+q9U4a0 Outros
+EsBe9e Vendas · {1}
+rwPvVL {1}% do ano
+NunQJw só {1}
+OLIY8U Vendas por região (R$ mil)
+RD-3vr Sudeste
+82uz8Q Sul
+ydm5cE Nordeste
+Jp7w-3 Centro-Oeste
+Xu7T3b Norte
+eQJeVC Do pedido à entrega
+T0KFrj Da primeira conversa ao arquivo final, em cinco passos.
+nVIHE7 Conversa de 10 minutos
+3_ulvl Pelo Google Meet, quando precisar ver tela, ajustar e apresentar com mais calma, ou pelo WhatsApp para uma dúvida rápida. Você me mostra a planilha ou conta o que precisa, e eu te digo o que preciso receber de você.
+ZU4ela Proposta
+tgvbBf Mando por escrito o que entra, o valor e a data de entrega.
+7KXM9i Entrada de 50% por Pix
+lXsR5p Começo depois da entrada.
+YEMNzC Entrega por etapas
+fF1JyA Você vê o andamento antes do fim e pode corrigir o rumo.
+3UEMMt Saldo antes da entrega final
+tALlyH Os outros 50% antes de eu liberar os arquivos finais ou publicar no seu endereço. Uma rodada de revisão já está incluída.
+KWS38K Pagamento por Pix. Emito recibo.
+bSLUAP As regras completas estão nos
+D7bzal Termos de contratação
+pULu01 e as dúvidas mais comuns, nas
+lSofEi perguntas frequentes
+5_7cK3 O orçamento na hora precisa de JavaScript. Sem ele, fale comigo direto:
+YY6v_u Mandar um e-mail
+3baZdd Ver como funciona
+zGR-Qv Escolha o jeito que for mais fácil para você. Respondo pelo mesmo canal.
+IywOUH Formulário
+eGrtaP Tem um servidor de Discord ou uma comunidade de jogo?
+Laim8_ Veja a área CylDev
+# src/content/textos/orcamento.ts
+2BJ0MD Monte o seu orçamento
+bO__mw Escolha o serviço, responda às perguntas e revise o pedido. A estimativa muda na hora. O valor final vai na proposta por escrito.
+boKYy8 Serviços
+sSOa_4 Incluso
+JWKCOs Carrinho: {1}
+zsaD2f Adicionar ao carrinho. Planilha, painel, automação e site de uma página juntos têm desconto.
+bq_5Vs Adicionar ao carrinho.
+LI0yzr No carrinho. Clique para tirar.
+_3vNnk Desconto a partir de 2 serviços: {1}% com 2, {2}% com 3 ou mais.
+4oENLn sob consulta
+kMu_IC {1} no carrinho.
+TRfa9Z {1} fora do carrinho.
+DbD6f6 Dois ou mais entre planilha, painel, automação e site de uma página têm desconto e um prazo só.
+RMa5pN Pôr planilha, painel e automação no carrinho
+1kkXa4 Planilha, painel e automação no carrinho.
+LFE8cD Controles soltos viram uma planilha única, com totais que conferem.
+q9ueMF Um arquivo que mostra o que vendeu, o que mais sai e como está o mês.
+iSNrR8 A tarefa que você repete toda semana na planilha roda com um clique.
+M3_0AF Uma página com o seu serviço, os seus preços e um botão para o seu WhatsApp.
+BHo2Ye Um script em Python que faz por você a tarefa repetida: juntar arquivos, ler PDFs, enviar mensagens.
+h6j7V2 SaaS, site, aplicativo ou programa feito do zero. O valor é um ponto de partida; a proposta fecha o escopo.
+HKAufO Tickets, boas-vindas e moderação básica para o seu servidor de Discord.
+DVP-0l Um bot que responde com IA e um painel web para ajustar o que ele faz.
+nEKM4Y Ver exemplo
+nd_pKt Ocultar exemplo
+H1KiP- Controles soltos viram uma tabela só, com total no fim.
+aDHpSm novo (cópia).xlsx
+CNQ5ru Qtd
+oK7EBe Produto A
+LhrQ26 Produto B
+8a3CfB Vendas, mais vendidos e o mês numa tela só.
+JoE6kZ Vendas por mês
+ELrERS O que você faz à mão toda semana vira um clique.
+SIET5Z Importa os dados
+lHkf4w Confere e soma
+1jTlEC Gera o relatório
+ftgfpE Atualizar
+xfoLNZ Uma página com o serviço, o preço e o botão do WhatsApp.
+cs-GTE Seu serviço
+9j66q2 Preços
+W6_7ds Uma pasta de arquivos entra, o script trabalha e a planilha sai pronta.
+jIXBGd PDFs
+IL04hY Planilhas
+fm1Chp E-mails
+aLIdAN Planilha pronta
+cV1UhX Do desenho das telas ao sistema no ar: tudo feito por uma pessoa só.
+XCeMLk SaaS
+W2gl08 Site
+vmLdyQ Programa
+3Rn5iH Front
+zT98iL telas e navegação
+tSs2ty Back
+q7QMCK regras e API
+Z6TeNQ Banco de dados
+4IEYVN onde tudo fica salvo
+-0GSoN Deploy
+thzkT1 no ar, para usar
+eyAG_X Fechar
+vUznck Seções do serviço
+bdlOI6 Detalhes
+ukSYIo O que é
+enRc30 O que você recebe
+cwNeR_ Notas
+_LsqFh Adicionar ao carrinho
+LIE73m No carrinho
+Onc21D Tirar do carrinho
+lh7D8l Ver carrinho
+XH891r O que está incluso
+HsDcsl Respostas com + R$ mudam o valor. As outras ajudam a entender o seu caso e não mudam o preço.
+27Kfsu {1} de {2} {3}
+YPEsdm pergunta respondida
+73TP8n perguntas respondidas
+s042lA Este serviço não tem perguntas. Vale o valor da tabela.
+MCobu5 {1} {2}{3}, logo abaixo.
+IpyfmY pergunta nova
+r2s4Xd perguntas novas
+jzq44C  sobre {1}
+rVTsop pode mudar o valor
+Rp2M6j + {1} no valor
+d5_8Sq O que significa: {1}
+edHwON Já {1}: {2}.
+CvnCW7 Cada a mais: + {1}.
+isr_w2 Estimativa
+HSsGKk Como chegamos a esse valor
+-stZFv a partir de
+AXBqK9 estimativa a partir de
+E37BSf Sob consulta
+UKuc16 por hora
+x4SP3i Preço de tabela: 
+-LOBgx {1}% de desconto (piloto)
+kQEzd8 Com {1}% de desconto de piloto. Restam {2} {3} nessa faixa.
+A3DX8M Trabalho
+Z-YROh {1} por mês, mais a hospedagem à parte
+RpxuYe O valor depende do que vai ser feito. Este é o mínimo para as suas respostas.
+0dV0qd É uma estimativa pelas suas respostas. O prazo é combinado na conversa.
+s6J9hS É uma estimativa. O valor e a data de entrega ficam fechados na proposta.
+BjglcR Começa com uma conversa. Me conte o caso e eu mando uma proposta por escrito com valor e prazo.
+89bxbD Adicionar ao pedido
+HfUMvz Remover do pedido
+Bqby0t Escolher outro serviço
+mpXelb Revisar pedido
+YU0QJe Incluído no pedido. O que você mudar aqui já vale.
+hrdZz3 Preço inicial
+Jcrech Em configuração
+_PFPgx Configurada
+a0PKWR Ainda sem respostas. O valor muda conforme você responde.
+Pa5IM0 Faltam {1} {2}. O valor ainda pode mudar.
+b-y86Y Todas as perguntas respondidas.
+hkV5NR Por que esse valor?
+cpQYj9 Entendi
+ERzHr6 Como o preço é montado
+M_OVzH Cada serviço tem um preço-base. É o “a partir de” que aparece no card.
+Mz6vs_ Suas respostas podem somar horas extras de trabalho. Cada hora extra custa {1}.
+-NisB8 Combo: com 2 serviços combináveis (planilha, painel, automação e site de uma página), {1}% de desconto. Com 3 ou mais, {2}%.
+vH22vm Piloto: neste momento não há vaga de desconto de piloto.
+oY0zQ0 Piloto: enquanto houver vaga, há {1}% de desconto sobre o preço de criação.
+_J3JDi Os descontos nunca se somam: vale o que abate mais reais. O combo só vale para os serviços combináveis. O piloto vale para a criação, mas não para a mensalidade. Os bots de Discord são vendidos só na Comunidade.
+dD5CXT Pergunta sem resposta deixa o valor aproximado. O valor final é confirmado na proposta. Hospedagem e o uso de IA dos bots são cobrados à parte.
+yqPS40 No seu pedido
+xwNh5R Preço-base
+KZ3GXW {1} x {2} por hora
+E9IjF8 Horas e prazo: a combinar na conversa.
+rgmt4G Sem resposta (ainda não somam): {1}.
+FEtcXy Soma do serviço
+yGlhtH Sob consulta: não entra no total. Eu mando uma proposta por escrito.
+7bcYQM Mensalidade: {1} por mês, à parte do total, mais a hospedagem.
+wkhvVk Fechamento
+odKa_f Soma de tabela
+ne5hsB Nenhum desconto vale para este pedido agora.
+1EZgTv Desconto ({1})
+qz_qWp Total estimado
+V-FFie Total estimado (a partir de)
+N7dVFD O combo vale porque há {1} serviços combináveis. Ele incide só sobre eles ({2}).
+VQZROe O piloto incide sobre o preço de criação ({1}).
+f42Jy5 O piloto abateu mais que o combo: {1}, contra {2} do combo.
+8oF6Ew O combo abateu {1}; o piloto abateria {2}, e eles não se somam.
+P_MQI1 Combo e piloto abateriam o mesmo valor ({1}); vale o combo.
+JxDIR3 O que mais mudaria este valor
+0fwUK0 Respostas que somam horas extras aumentam o valor.
+JAKgnu Há perguntas sem resposta: o valor é aproximado e pode mudar.
+63BTQ5 Seu pedido está vazio. Quando você adicionar um serviço, o detalhamento do valor aparece aqui.
+Bk6WEa Carrinho
+5a39bv Carrinho ({1})
+GKNlgl Abrir o carrinho: {1} {2}, {3}
+leQDPo serviço
+N3zhU2 serviços
+i2XEAT Revise o pedido
+osbsFi Fechar o carrinho
+OoaCTs Ajustar respostas
+kKgVVN Estimativa: {1} {2}. O valor pode mudar.
+OH-3cs pergunta sem resposta
+nz60Mb perguntas sem resposta
+nvEIkp Há perguntas sem resposta, então o total é uma estimativa e pode mudar.
+MdPe0J Seu pedido está vazio. Escolha um serviço e adicione para poder enviar.
+3d4TXP Escolher um serviço
+K18jQ3 Editar
+S9Tqg0 Remover
+XYjzpM Continuar escolhendo
+PL65P3 {1} de {2} perguntas respondidas
+gqZBgH sem resposta
+HdrhLa Ver respostas
+Re8WRJ Base do pacote
+juPw5M Combo e piloto não se somam: vale o maior.
+oWTHjV Prazo dos combináveis, juntos
+IHcARE Mensalidade dos bots
+V2m_3Z Sob consulta, fora do total: 
+0TZ6oS Estimativa, confirmada na conversa.
+pWV6rY Valor estimado pelo site. O valor final vai na proposta por escrito.
+fZpTQ3 Observações (opcional)
+e3oXqC Datas, prazos, o que mais importa para você. Vai junto com o pedido. Não escreva senhas, dados de saúde nem dados de outras pessoas.
+NTkh6i Seus dados para enviar pelo site
+qAsVLe Informe nome e WhatsApp e eu respondo por lá. Para falar direto, use o botão do WhatsApp, sem preencher nada.
+D1XcfV WhatsApp (com DDD)
+ulnPro Enviar pelo site
+qL5RH7 Um instante…
+BwKJl2 Não consegui enviar agora. Chame no WhatsApp ou mande um e-mail com o mesmo pedido.
+tELdhX Enviar por e-mail
+yJ3LDd Envio o seu nome, o WhatsApp, as respostas do orçamento e as observações, só para responder este pedido. Eles passam pelo EmailJS (envio pelo site) e pelo WhatsApp. Eu confirmo por WhatsApp e combinamos o Pix.
+zBKSqP Ao enviar, você concorda com os
+x68CHY e com a
+6hAmqm O pedido ainda não é contrato: o valor final vai na proposta por escrito.
+jxeQd3 Sobre desistir, veja a
+s5HpGJ desistência em 7 dias
+yH8kSA Pedido enviado com o aviso de concordância com os Termos de contratação (versão de {1}) e com a Política de privacidade (versão de {2}).
+# src/content/textos/paginas.ts
+PzbnZH Voltar para o site
+GF86jb Nesta página
+p0D1uD Voltar ao topo
+KHOx0J Mensagem recebida.
+pGtp8_ Obrigado pelo contato. Respondo pelo canal que você escolheu.
+v-lA3q Essa página não existe.
+yvXY7U O link pode estar errado ou a página mudou de lugar. Se precisar de ajuda, escreva para {1}.
+zIXol- Ir para o início
+# src/content/textos/sobre.ts
+13E9ye Sobre mim
+g3_mSZ Estudo 
+lwTF3d Sistemas de Informação na Unieuro
+p1e1eM  e trabalho como desenvolvedor fullstack.
+lDgr68 Sou estagiário de TI no Ministério da Defesa
+Dh2J1p , onde faço análise de dados, planilhas, painéis e apresentações usadas em reuniões com oficiais superiores e generais. É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio.
+CCpqcq Participo do Uniser
+0AMqxI , a plataforma da UniSER, Universidade do Envelhecer da UnB. Ela é desenvolvida por uma equipe de estudantes da Unieuro, com orientação de professores da faculdade, e eu faço parte do time que escreve o código.
+sp6q7E Saiba mais sobre o curso
+8y66uy Estou no 5º semestre do bacharelado em Sistemas de Informação na Unieuro, em Brasília, com formatura prevista para o 2º semestre de 2028.
+wzBkXG O que mais uso do curso no seu projeto
+d92YhF Banco de Dados e Banco de Dados Avançados
+fvjzMp Estruturas de Dados
+_50Iu8 Programação Orientada a Objetos
+Xyv8ZK Programação para Web
+qJ97Oy Engenharia de Software e Engenharia de Requisitos
+SaUJEV Gestão de Processos
+frnvLm Inteligência Artificial
+CUTE62 Iniciação científica
+PqEfp_ Faço iniciação científica orientado pelo professor doutor Aldo Henrique, no grupo de pesquisa OpenVIRTEX-BR (Open Source Virtualization and Cloud Computing for Intelligent Systems in Brazil). O grupo estuda computação em nuvem, máquinas virtuais, inteligência artificial e análise de dados, com soluções de código aberto para gerenciar melhor máquinas virtuais e recursos em nuvem.
+9WYZqU No grupo, participo do Simbionte, uma simulação em que vários agentes de inteligência artificial interagem entre si. Minha equipe constrói a base do sistema: login, banco de dados, filas de processamento e o motor que roda os ciclos da simulação, com testes automáticos e proteção contra instruções maliciosas enviadas à IA. É o que me ajuda em projetos com IA: saber integrar, limitar e testar o que ela responde.
+gQhBRd Estágio em TI no Ministério da Defesa
+l-Eb1L Saiba mais sobre o estágio
+sg-l4d Sou estagiário na área de TI do Ministério da Defesa desde fevereiro de 2026.
+rMUbgy O que eu faço
+6-7Bsv Consolidação de dados de várias fontes
+DBWNYR Transformação de planilhas em banco de dados
+vWxdoP Painéis e apresentações, inclusive modelos de apresentação reutilizáveis
+iWNiB_ Apoio à gestão de processos
+_Np8h9 Apoio na escrita de um artigo sobre sistemas não tripulados
+Qo57N3 Ferramentas do dia a dia
+-p5yGh Excel, Power BI, Python, PowerPoint, VS Code e ferramentas de IA para programação (Claude Code e Codex).
+kUy7jk É a mesma rotina que levo para o seu negócio: pegar dado solto e entregar algo que dá para ler em um minuto. Os trabalhos que pego por aqui ficam fora do horário do estágio.
+h1E6p3 UniSER, Universidade do Envelhecer
+SEe8Pg Saiba mais sobre o Uniser
+iK0iKh Desde novembro de 2025 faço parte da equipe da Unieuro que desenvolve a plataforma da UniSER, a Universidade do Envelhecer da UnB, como desenvolvedor fullstack, com orientação de professores da Unieuro.
+4qtEzF O que o sistema faz
+lpHTxT Página pública com editais e notícias
+odcwpe Área restrita com login
+kSFv1E Presença e notas
+Hq6Cpj Acesso separado para alunos, professores e administração
+0JtKgu O que isso tem a ver com o seu projeto
+moPafw É o mesmo cuidado que levo para um sistema sob medida: login seguro, cada pessoa vê só o que é dela, registro do que acontece no sistema e testes automáticos antes de cada mudança.
+gFXCwz Tecnologias
+OJn0li React 19, TypeScript, Vite, styled-components, Node.js com Express, PostgreSQL e Prisma.
+d6xLf6 Exemplos do meu trabalho
+r-o3zI Telas da plataforma da UniSER
+QkJm58 Esquemas ilustrativos das telas, sem dados reais.
+Tu1bYx Atendo online, para todo o Brasil.
+# src/content/textos/vejaMais.ts
+VmRjs3 Veja mais
+dhwz0h Uma loja fictícia, do jeito que a planilha chega até o painel pronto. Todos os dados são de exemplo.
+MBTijh Exemplar
+pU_6fK Carregando o exemplo…
+Ptbgzw Não foi possível abrir o exemplo agora. Recarregue a página para tentar de novo.
+GGSWln A sua planilha quando chegar aqui
+jf-7Te Isto é o que costuma chegar: cada aba de um jeito, datas e nomes escritos de várias formas.
+iTOKAD Abrir planilha
+abnzp2 A planilha como chega
+RjLZ-_ As cinco abas de uma loja fictícia, sem nada corrigido. As linhas em vermelho são as vendas fiadas.
+k_MSch Abas da planilha
+REDYp1 Linha de venda fiada
+XLz6qZ A sua planilha após passar pela nossa mão
+NW_Rgg A mesma loja numa tabela só: uma linha por venda, tudo no mesmo padrão.
+i3MT69 A planilha arrumada
+WvDuhx Uma aba, uma linha por venda. As linhas em vermelho são as vendas fiadas.
+Kjtg9P O que foi arrumado
+DLqq0l Todas as datas no mesmo formato (ano-mês-dia).
+5e2L42 Cada cliente com um nome só, do jeito certo.
+SpHYwj Valores como número, sem texto no meio.
+M-dvYn Uma linha por venda; a aba copiada e as linhas repetidas saíram.
+zQSamV Fiado numa coluna própria (situação), não só pela cor.
+oeSL3x Categoria de cada produto, para somar por tipo.
+ZO3nMG O total de cada venda é a quantidade vezes o valor unitário.
+TNvspg A sua planilha em forma visual
+UWIkGg Os números da planilha arrumada, num painel em que você mexe: filtra, clica e vê tudo mudar.
+Dv--t3 Abrir painel
+84oKfD Painel de vendas · loja fictícia
+ygS7Q8 Faturamento por mês
+k_j8QE {1}: planilha de exemplo, role para ver mais
+qiQ30x Mostrando {1} de {2} linhas.
+w-oMe7 Faturamento
+fh3Mr6 Nº de vendas
+Ubbpuk Fiado a receber
+289Pc3 Filtros
+WWawzo Categoria
+HlwcyX Forma de pagamento
+p4o6-0 Todos os clientes
+0i9oMG Limpar filtros
+t4F2kN Filtros ativos
+2x7FTA Remover o filtro {1}
+zQaVtq {1} de {2} vendas
+27FCoL Pago
+OJpSpz Fiado
+Om8jXb Faturamento por dia
+ZDysh3 Faturamento por categoria
+_UWf3t Faturamento por forma de pagamento
+D_0NwM Top 5 clientes
+2rYVY3 {1}: {2} ({3} do total), {4} {5}
+lxuafn Clique para filtrar os outros gráficos.
+pv38WH Sem vendas
+j01G3i {1}, em tabela
+ir6KaZ Ordenar por {1}
+RlWLAM Página {1} de {2}
+BwcoF7 Página anterior
+cCBXNk Próxima página
+Z2MbmN Nenhuma venda com esses filtros
+HL30Pb Mostrando {1} de {2} vendas, {3}.
+# src/pages/como-funciona/DemoAutomacao.tsx
+I3OQRT m-0 inline-block rounded-pequeno border px-4 py-2 font-semibold {1}
+LEPnLh {1} bg-realce
+Ms5mPu {1} bg-realce text-right
+XMnbn6 {1} text-right font-mono
+oXyuFu {1} font-mono
+# src/pages/como-funciona/DemoMoldura.tsx
+VyGxfr rounded-pequeno border px-3 py-2 {1} {2}
+u3ePym verResultado
+GgXdZS demo-{1}-titulo
+824G7t demo-{1}
+# src/pages/como-funciona/DemoPainel.tsx
+R_pX1u {1}s
+rK9e9g {1} bg-superficie
+odufsz {1} text-right{2}
+GX0P_8 {1} text-right font-mono{2}{3}
+FOb_Ff total-{1}
+b73_Ey R$
+4aklzy demo-barra block h-full origin-left rounded-pequeno {1}
+J5-IED scaleX({1})
+# src/pages/como-funciona/DemoPlanilha.tsx
+voISBf {1} demo-entra bg-realce
+# src/pages/como-funciona/main.tsx
+UkHriw como-funciona#{1}
+ch7NwT maria camisa
+nOwS8J Camisa - João
+B1OwCV R$ 40,00
+LNl7YX cliente?
+usSDK9 TOTAL ??? (não bate)
+kJoNMF R$ 120
+I6an9m Adesivo
+Bt-1Ah Vendas no mês
+PkKsM0 R$ 4.820
+zUUhg3 Estoque baixo
+Ig9DVU Itens mais vendidos
+v8nSLj Antes, toda semana
+kGcps0 Abrir os 3 arquivos de vendas
+vPueq4 Copiar e colar numa aba só
+VgTQpp Filtrar e apagar o que sobra
+E0lvj2 Formatar e conferir os totais
+0wuRjs Um clique faz os quatro passos.
+g-Lshp Studio Lia · Manicure em Brasília
+808onm Atendimento com hora marcada, de segunda a sábado.
+pXVeDw Mão
+8Vjo-h R$ 35
+1RJ7G- Pé
+ZMF0Pq Mão e pé
+cQhUNN R$ 70
+Dz1TEU Agendar no WhatsApp
+SpyOe9 Entra.
+wA5vUT Uma pasta com PDFs, planilhas ou e-mails.
+yUNfFv Trabalha.
+c8xFmn O script lê, confere e soma.
+Fl3hul Sai.
+AZzput Uma planilha ou relatório pronto.
+-GKFTE Orçamento base no site
+qa0v7B Conversa e proposta escrita
+py7F8E Entrada de 50%
+ic-s4f Quero algo como o exemplo "{1}"{2}.
+2VwsIn {1}-titulo
+r6J43I como-funciona-{1}
+# src/pages/negocios/exemplo/PainelExemplo.tsx
+p4aiwV pt-BR
+j5C897 animate-painel-fatia fill-none motion-safe:transition-opacity motion-safe:duration-500 {1} {2}
+jv08rK rotate({1} {2} {3})
+ReERFh div-{1}
+cmlWL9 rot-{1}
+IhDcnG fill-none stroke-linha {1}
+W11org fill-texto-suave font-texto {1}
+Iz8Bmn fill-texto font-mono {1}
+6zEJCo m-0 w-full {1} rounded-padrao border border-linha bg-superficie p-4 sm:p-5
+y28RmT mb-4 {1}
+ie7kjO {1} border-t-2 pt-2 {2}
+d5qwE4 text-menor {1}
+5EV6nA m-0 font-mono text-grande leading-[1.2] font-bold whitespace-nowrap tabular-nums xl:text-medio {1}
+BbuT7v mt-6 {1} pc:mt-5
+BocErf animate-painel-aparecer font-mono text-menor {1}
+juQ19M w-full painel-sobe rounded-t-pequeno {1} {2}
+PVViFN text-center font-mono text-menor {1}
+NraYR- grid grid-cols-[6.25rem_1fr_2rem] items-center gap-2 {1} {2}
+UFITnP block h-full origin-left animate-painel-preencher {1}
+# src/pages/negocios/icones.tsx
+LnG2XQ currentColor
+VafZoz M3 8.5l3.2 3.2L13 5
+PiG8Cn M6 3l5 5-5 5
+781QQo M3.5 3.5l9 9M12.5 3.5l-9 9
+jSteH7 M8 5v6M5 8h6
+# src/pages/negocios/magnetico.ts
+XNDt_l {1}px
+# src/pages/negocios/main.tsx
+TQS4BR {1} justify-center
+eYMmDh {1} justify-center sm:hidden
+# src/pages/negocios/orcamento/BotaoCarrinho.tsx
+tM_h9D Escape
+UaH_iV grid size-alvo cursor-pointer place-items-center rounded-pequeno border-0 bg-transparent p-0 transition-colors motion-reduce:transition-none hover:bg-realce active:bg-realce focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-foco {1}
+L6gxET M2 3.5h2.8l2.6 12h10.8
+e5Poa1 M5.4 8.5h15.6l-2.4 7H7.4z
+# src/pages/negocios/orcamento/CardServico.tsx
+pzzCgW {1} border-destaque bg-destaque text-destaque-texto hover:border-texto hover:bg-texto hover:text-fundo active:border-texto active:bg-texto active:text-fundo
+QFhe9h {1} border-texto bg-transparent text-texto hover:bg-realce active:bg-realce
+id2ivc card-{1}-titulo
+WhyyBM card-{1}
+t76psS M3 8.5l3.2 3L13 4.5
+# src/pages/negocios/orcamento/CheckoutPedido.tsx
+G4-_aC {1} w-full cursor-pointer justify-center text-center font-[inherit] {2} disabled:cursor-not-allowed disabled:opacity-50
+# src/pages/negocios/orcamento/ConfiguradorServico.tsx
+hmuY57 h-1 w-6 {1}
+# src/pages/negocios/orcamento/GuiaEscolha.tsx
+GXIQzB flex min-h-alvo w-full cursor-pointer items-center rounded-pequeno border border-texto bg-transparent px-4 py-3 text-left font-[inherit] text-base text-texto hover:bg-realce active:bg-realce {1}
+P4Ewz5 min-h-alvo cursor-pointer border-0 bg-transparent px-1 font-[inherit] text-base font-semibold text-destaque underline underline-offset-4 {1}
+t8S6HL {1} cursor-pointer justify-center font-[inherit] {2}
+XU36hk {1} cursor-pointer justify-center bg-transparent font-[inherit] {2}
+Cp6Ne_ {1} cursor-pointer bg-transparent font-[inherit] {2}
+# src/pages/negocios/orcamento/MiniExemplo.tsx
+liqdNh M3 8h10M9 4l4 4-4 4
+og6IvM {1} grid gap-1 font-mono text-menor
+16qjOB {1} h-1.5 w-4 opacity-40
+OtBXmt {1} h-1.5 w-6 opacity-40
+kWRQgw {1} h-1.5 w-8
+GsX56P {1} !p-1.5
+iOj8Q- {1} mt-1.5 h-2 {2}
+wEStUh {1} w-full {2} {3}
+BTeyuq {1} flex items-center gap-2 !py-1.5 text-menor
+mSln2z {1} h-1.5 w-4/5 opacity-30
+L3DkaP {1} text-center font-mono text-menor font-bold
+jOqvXC {1} flex items-center gap-2 !py-1.5 text-menor font-semibold
+vJsXg_ {1} flex items-baseline justify-between gap-2 !py-1.5 text-menor
+OKSO6d {1} md:mt-2 md:block md:pb-0
+# src/pages/negocios/orcamento/ModalServico.tsx
+z2yDgv inline-flex min-h-alvo w-full cursor-pointer items-center justify-center rounded-pequeno border px-4 py-2 text-center font-[inherit] font-semibold transition-colors {1}
+xdJ7B8 ArrowRight
+Vc_RTE ArrowLeft
+cPi7mo Home
+orudNL End
+16uGe6 aba-{1}
+VrS5hl grid size-alvo shrink-0 cursor-pointer place-items-center rounded-pequeno border border-linha bg-transparent p-0 text-texto hover:bg-realce active:bg-realce {1}
+Jsm4C9 painel-{1}
+SvKHgu min-h-alvo cursor-pointer border-0 border-b-[3px] bg-transparent px-4 font-[inherit] text-base font-semibold {1} {2}
+63EWc1 {1} cursor-default border-linha bg-realce text-texto
+# src/pages/negocios/orcamento/Orcamento.tsx
+j8dVLw Serviço
+# src/pages/negocios/orcamento/PainelCarrinho.tsx
+ob2Nva min-h-alvo cursor-pointer border-0 bg-transparent px-3 font-[inherit] text-base font-semibold text-destaque underline underline-offset-4 {1}
+otMsA2 {1} cursor-pointer font-[inherit] {2}
+6mFKTw {1} mt-4 cursor-pointer font-[inherit] {2}
+FJOVCU min-h-24 rounded-pequeno border border-texto-suave bg-superficie px-3 py-2 font-[inherit] text-texto {1}
+# src/pages/negocios/orcamento/PorQueEsseValor.tsx
+HaGfsQ min-h-alvo cursor-pointer border-0 bg-transparent px-0 py-2 text-left font-[inherit] text-base font-semibold text-destaque underline underline-offset-4 {1}
+vAIkDH valor-item-{1}
+r5YA01 {1} text-left font-normal
+ha9z2G {1} pl-3 text-right font-mono
+C3ZM84 {1} w-full cursor-pointer font-[inherit] {2}
+# src/pages/negocios/orcamento/ResumoEstimativa.tsx
+Vw_Ju7 m-0 {1}
+_yZs17 valor-atualiza {1} {2}
+# src/pages/negocios/sobre/CenasEstagio.tsx
+yWpip_ translateX({1}px) rotate({2}deg)
+7IITiX {1} flex-1 bg-[#e3e5ee] font-semibold
+9hM4VC {1} flex-1 border-b border-[#eceef4]
+4Ssjge {1} flex-1 justify-center
+Czox9Z translate({1} {2}) scale({3})
+KGuPyv M-8 -17 h16 v-3 q-8 -4 -16 0 z
+ys8jgd M-7 -17 l7 -7 l7 7 z
+BROhRg M{1} 57 h6 l-2 -2 m2 2 l-2 2
+QMdQs7 -my-2 grid size-alvo shrink-0 cursor-pointer place-items-center rounded-pequeno border-0 bg-transparent p-0 text-texto-suave hover:text-texto {1}
+MvWQ44 M4 2.5v11l9-5.5z
+4k5ghX M3.5 2h3v12h-3zM9.5 2h3v12h-3z
+# src/pages/negocios/sobre/DestaqueSobre.tsx
+K57Ot6 Enter
+eF1L-j cursor-pointer py-3 font-semibold text-texto underline decoration-destaque decoration-2 underline-offset-4 [text-decoration-style:dotted] hover:[text-decoration-style:solid] active:[text-decoration-style:solid] {1}
+# src/pages/negocios/sobre/GaleriaUniser.tsx
+nIPhsd block shrink-0 rounded-[2px] {1} {2}
+G8xMkP flex flex-col gap-[5px] rounded-[3px] border border-[#e3e5ee] bg-white p-[6px] {1}
+Yw8_sR flex w-[13%] shrink-0 flex-col items-center gap-[7px] {1} py-[7px]
+XxX4XT block size-[11px] rounded-full {1}
+buiO3b flex h-[38%] flex-col items-center justify-center gap-[6px] {1}
+P6u605 block h-[22px] w-[34px] rounded-[2px] {1} ring-1 ring-[#f5b800]
+Fei5Uw flex flex-col gap-[4px] rounded-[3px] p-[5px] {1}
+1avc7D block size-[9px] rounded-full {1}
+uwxWof block size-[10px] rounded-full {1}
+OOKK-B m-0 text-menor text-texto-suave {1}
+# src/pages/negocios/sobre/ModalSobre.tsx
+iwtYDn {1} w-full justify-center text-center {2}
+# src/pages/negocios/sobre/Sobre.tsx
+pyQTaZ {1} mt-2
+# src/pages/negocios/veja-mais/GradePlanilha.tsx
+gzONLX overflow-auto rounded-pequeno border border-linha bg-superficie {1}
+hUZsm0 Linha
+vVPlLI border border-linha px-2 py-1 whitespace-nowrap {1}
+# src/pages/negocios/veja-mais/ModalVejaMais.tsx
+t8PFIw modal-sobre m-auto hidden h-[calc(100dvh-1rem)] max-h-none w-[calc(100%-1rem)] max-w-none flex-col overflow-hidden border border-linha bg-fundo p-0 text-texto open:flex md:h-auto md:max-h-[92dvh] {1} backdrop:bg-[rgb(0_0_0/0.6)]
+# src/pages/negocios/veja-mais/PainelPlanilha.tsx
+WkTrOt inline-flex min-h-alvo cursor-pointer items-center rounded-full border px-4 text-base font-semibold {1}
+FKZwk- ArrowDown
+5xDBeU ArrowUp
+bA1RqY grid min-h-alvo w-full cursor-pointer grid-cols-[minmax(4.5rem,7rem)_minmax(0,1fr)_auto] items-center gap-3 rounded-pequeno border-0 bg-transparent p-0 text-left text-base text-texto hover:bg-realce {1} {2}
+6PuUvL block h-[1.1rem] rounded-pequeno bg-realce {1}
+hiq_Vx flex h-48 w-full cursor-pointer flex-col justify-end gap-1 rounded-pequeno border-0 bg-transparent p-1 text-center text-base text-texto hover:bg-realce {1} {2}
+fEb2R8 block w-full rounded-pequeno bg-serie-1 motion-safe:transition-[height] motion-safe:duration-300 {1}
+hQoAXO {1}rem
+0WDgmG L
+xjrm3U M
+MG_xiw {1} md:col-span-2
+Cm-RDr valorTotal
+UOSQAF border-b border-linha p-0 {1}
+bixK8m inline-flex min-h-alvo w-full cursor-pointer items-center gap-1 border-0 bg-transparent px-2 text-menor font-bold text-texto hover:bg-realce {1} {2}
+u_ycLR {1} border-texto bg-transparent text-texto hover:bg-realce disabled:cursor-default disabled:opacity-40
+j7K7Gs Dia
+QbjXG5 flex min-h-alvo cursor-pointer items-center px-4 text-base font-bold {1}
+6BVfD_ min-h-alvo w-full rounded-pequeno border border-texto bg-superficie px-3 text-base text-texto md:max-w-xs {1}
+XoZoT_ {1} border-destaque bg-realce text-texto hover:bg-superficie
+u_CYeI {1} border-texto bg-transparent text-texto hover:bg-realce
+xQXiBM ind-{1}
+FHchMK {1} grid place-items-center gap-3 py-10 text-center
+qXQjqY {1} border-destaque bg-destaque text-destaque-texto
+# src/pages/negocios/veja-mais/VejaMais.tsx
+1SgSyU {1} justify-center {2}
+LLLZy5 {1} mt-auto
+rVP0MD inline-flex min-h-alvo cursor-pointer items-center rounded-pequeno border px-4 font-semibold {1} {2}
+# src/shared/components/Carrossel.tsx
+J7xr5Y inline-flex h-alvo w-alvo cursor-pointer items-center justify-center rounded-full border border-texto bg-transparent p-0 text-texto transition-colors hover:bg-realce active:bg-realce disabled:cursor-default disabled:opacity-40 disabled:hover:bg-transparent {1}
+aveSNn -mx-margem my-0 flex list-none snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain scroll-px-margem px-margem pb-1 pt-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>li]:w-[85%] [&>li]:shrink-0 [&>li]:snap-center md:mx-0 md:grid md:overflow-visible md:px-0 md:pb-0 md:[&>li]:w-auto {1}
+jygckO M10 3L5 8l5 5
+# src/shared/components/Catalogo.tsx
+0z_n_b Quero um orçamento de: {1} ({2}).
+aroo7l sobConsulta
+9soKp3 m-0 font-mono text-medio font-bold {1}
+# src/shared/components/Contatos.tsx
+vk6yT5 Contato pelo site (origem: {1})
+# src/shared/components/Formulario.tsx
+OD6oXu {1} resize
+eeBxEB {1} cursor-pointer justify-self-start disabled:cursor-wait disabled:opacity-60
+# src/shared/components/cabecalho/Cabecalho.tsx
+o9k5ro {1} pc:static pc:flex pc:items-center pc:mt-0 pc:border-0 pc:p-0 pc:shadow-none
+LmjEa5 M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8
+6q8O1l M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z
+Ivstg1 {1} inline-flex items-center justify-center px-2 pc:hidden
+-PjwvG M6 6l12 12M18 6L6 18
+R4B7UC M4 7h16M4 12h16M4 17h16
+# src/shared/components/cabecalho/ControleComunidade.tsx
+nw0vgi block {1}
+6HAJVR animate-controle-faisca absolute top-1/2 left-1/2 -mt-[3px] h-[6px] w-[10px] origin-left rounded-full {1}
+Gi24tk {1}deg
+# src/shared/components/cabecalho/SeletorIdioma.tsx
+rNR6nk M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z
+# src/shared/components/cyl/Cyl.tsx
+kT-YMj cyl{1}-
+com-mu $1 opacity="0"
+sFwfhn [data-parte="{1}"]
+bxo-pN calc({1} * {2})
+# src/shared/components/cyl/cylAnimacoes.ts
+NAHa9i translate({1}px, {2}px) rotate({3}deg) translate({4}px, {5}px)
+Ohxsco translate(0px, {1}px)
+# src/shared/lib/explicacaoValor.ts
+_4cKKi {1} ({2} a mais)
+# src/shared/lib/formato.ts
+lgu9yG BRL
+oiHyfz {1} h
+# src/shared/lib/orcamento.ts
+uVw7oQ estimado: {1}
+vhGgCK Combinado na proposta
+PZyTa3 {1} a mais
+Ok2zRb combo {1}%
+DI2XpB piloto {1}%
+jZhL9- com {1}
+xhfU4L mais mensalidade de {1} (hospedagem à parte)
+Txp5c- sistema sob consulta, fora do total
+dbzF5R Quero fazer um orçamento.
+cCB0Oq Quero fazer um orçamento com:
+-QKkiI Prazo dos combináveis, juntos: {1}
+dKEi5J Total estimado: {1} (estimativa, confirmada na conversa).
+# src/shared/lib/painelPlanilha.ts
+r7QYyP CSV fora do formato esperado
+5wh6Se Número inválido na linha {1}: {2}
+qTDvGx Situação inválida na linha {1}: {2}
+# src/shared/lib/prazo.ts
+gNlS4Y Horas e horas por dia precisam ser positivas.
+acgKen 1 dia útil
+rQWVgC {1} dias úteis
+# src/shared/lib/seo.ts
+jf6LWs Nenhum pacote de Negócios com preço.
+VPaXof &amp;
+XSwagN &lt;
+A8ez07 &gt;
+4rvyCa &quot;
+5_IoDq ProfessionalService
+Jc_zHc {1}/og-negocios-v2.png
+1SPrvR Country
+apabB8 Brasil
+r9cMai Ajuste e organização de planilhas
+X9TVUZ Painéis de dados
+3-pj7W Automação em Excel e Python
+ix1ixI Criação de sites e landing pages
+Gw4A5y Sistemas sob medida
+b1wVsk OfferCatalog
+OJi5qg Offer
+Mpy4tr Service
+yO92Rf PriceSpecification
+iE1ep- WebSite
+rYBgR4 <script type="application/ld+json">{1}</script>
+sdvafa \\u003c
+BApa2t <noscript>
+k-GLW_ <main id="conteudo" class="mx-auto max-w-hero px-margem pt-6 pb-14">
+qdLfS8 <p><strong>{1}</strong> · {2}</p>
+_8XTuG <h1>{1}</h1>
+KHYzBN <p>{1}</p>
+Jwxi0z <p><strong>{1}</strong></p>
+gvT7cs <ul>
+rPSkcv <li><a {1} href="https://wa.me/{2}">{3}</a></li>
+eGN7Nv <li><a {1} href="mailto:{2}">{3}</a> ({4})</li>
+7nl6Zd <li><a {1} href="{2}">{3}</a></li>
+2Oribf </ul>
+wxNd9f </main>
+BWFHi9 </noscript>
+Bc1zjU <p class="text-texto-suave">{1}</p>
+bE0-sx <a {1} href="{2}">{3}</a>
+eOlRvu <a href="{1}">{2}</a>
+r3YPPD <main id="conteudo" class="mx-auto max-w-leitura px-margem py-16">
+ZOvNJg <h2 id="{1}">{2}</h2>
+1Ap3di <ul class="m-0 grid list-disc gap-2 pl-[1.2em]">
+lly11D <li>{1}</li>
+tpaCrN <h3>{1}</h3>
+HkmOul <p><a class="inline-flex min-h-alvo items-center" href="{1}">{2}</a></p>
+# src/shared/tema.ts
+X82tmT tema-{1}

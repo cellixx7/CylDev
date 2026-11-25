@@ -1,0 +1,120 @@
+zLIp0Z Lo que entrego, en dos escenas
+dD-wH2 Escenas ilustrativas, con datos ficticios.
+A57VWW Escena ilustrativa, con datos ficticios.
+7wymdB Pausar animación
+FQA4D6 Continuar animación
+0kEHiZ De la hoja de cálculo desordenada al panel
+qJbh_- Animación: una hoja de cálculo con columnas y filas fuera de lugar y textos sin un patrón. Primero se alinean las columnas y las filas, después se estandarizan las palabras, los valores y las fechas, y por último se genera a partir de ella un panel con el total, el número de registros y el valor por sector.
+CfOvts Datos sueltos, sin patrón
+hwrD8S Columnas y filas en su lugar
+H3MLeP Palabras y valores estandarizados
+HLTuSG Panel generado a partir de la hoja de cálculo
+RRx71P Sector
+EwMN2W Nombre
+QnHriu Valor
+5eQpvM Fecha
+AnuzJ- Panel de registros
+slkoxp Total
+qB6PMd Registros
+3vXG8N Valor por sector
+RCDAQW Una presentación para quien decide
+OzgBDj Escena: un auditorio visto desde atrás, con personas sentadas con uniformes de la Marina, el Ejército y la Fuerza Aérea, mirando una pantalla grande. La diapositiva alterna entre un panel de gráficos y un flujo de proceso, y a su lado aparece el nombre {1}.
+xVoLkb Panel del mes
+WLSHf3 Flujo del proceso
+fAHUe9 Pedido
+Yaa6aD Análisis
+0ZXQiZ Entrega
+nnnOqc Prácticas en TI
+G6vP1i Mira cómo una tarea repetida se convierte en un clic
+xQaXlb Puedo dejar de repetir este trabajo.
+q8RgK5 Los tres archivos de la semana
+GkjYx4 Cada tienda envía su archivo. Cada semana alguien abre los tres para armar el informe.
+VlgbV1 Copiar y pegar en una sola hoja
+k_GLjh Las filas de los tres archivos se juntan, una por una, en una sola tabla.
+uYiDYm Filtrar y borrar lo que sobra
+MD7W_7 Las filas canceladas salen de la tabla.
+Gycryj Dar formato y comprobar los totales
+K_VB79 Se rehace la suma y se comprueba con lo que quedó.
+e2GzCz Con la automatización, un clic
+VpdFs3 El botón hace estos tres pasos de una vez. El resultado es el mismo, sin copiar y pegar.
+lwpSgJ Camiseta
+COdwh6 Gorra
+JZSrVP Taza
+jRHYTW Abrigo
+qvOJD4 Archivo
+7N2lmu Artículo
+LTq_Pe Estado
+0-unNJ Actualizar informe
+poGH8I Botón de ejemplo, aquí no se puede pulsar
+v2hbme R$ {1}, comprobado con {2} filas
+m_lBVX Archivo {1}
+1bn5sD Informe de la semana
+mxh4xB Antes: los archivos separados
+6u9JA4 Después: el informe listo
+Mm8OSU No todas las tareas se pueden automatizar. Confirmo lo que es posible en la conversación, antes de acordar el trabajo.
+-P_EiT Mira un panel en uso
+s4bGm5 Puedo descubrir qué se vende más y seguir de cerca el negocio.
+vD8TON La tabla de ventas
+jxU7cu Ventas por producto en los últimos tres meses, en miles de R$. De aquí saca todo el panel.
+453uxj miles de R$
+YgTviQ Tabla de ventas (miles de R$)
+lczc9- Producto
+Ig4Gui Oct
+u5v-_V Nov
+ma6ALq Dic
+TYPPlw Camisetas
+o4zgG3 Gorras
+5skOll Tazas
+XuRz-t Abrigos
+wsqCK- Panel de ventas
+T4Vxe1 Mes
+pBFKg_ Todos
+uM-sOw Oct a Dic
+4BvJtX Vendido en el período
+LWeZkB Lo que más se vende
+S15vl4 Lo que menos sale
+Dx_qGM Ventas por producto (miles de R$)
+SIYl2_ {1}: R$ {2} mil vendidos. Más vendido: {3}. Menos vendido: {4}.
+CTYf-r Los números salen de la tabla
+b075TE El total, el producto que más se vende y el que menos sale se calculan solos.
+PZ3mWn El gráfico compara los productos
+OwFGqm De un vistazo se ve qué se vende más y qué se vende menos.
+NTb8cn Tú eliges un mes
+VXvajU En noviembre, el que más se vende es otro producto: las Gorras. El panel lo rehace todo.
+EUw0Dk Notas el producto parado
+lHQNnC En diciembre el total sube, pero los Abrigos siguen siendo lo que menos sale.
+BSbId6 Ahora te toca a ti: elige un mes.
+RKXJc7 Tabla de ventas
+DoBGFf Mira una hoja de cálculo siendo ordenada
+wD9-O2 Ahora puedo rellenarla y comprobarla sin perderme.
+1OY4E2 Cómo llega la hoja de cálculo
+-zIYJX Fechas y nombres escritos de distintas maneras, filas repetidas y una fila vacía.
+57vrQB Tabla antes de ordenar
+_0PsFb Tabla después de ordenar
+2BkKa_ Tabla de ejemplo
+fqRJ_O Nota
+xcfV7j Cliente
+PMjYux Estandariza las fechas
+b9IwEK Todas pasan a día/mes, de la misma manera.
+_GPBw- Estandariza los nombres
+78Sq4D Mayúsculas y minúsculas en su lugar.
+OPSBN1 Quita las repetidas y las vacías
+YnRkd8 Una fila repetida y una fila vacía salen de la tabla.
+80VQO6 Separa en columnas
+8DblIh Cliente, artículo y valor, cada uno en su lugar.
+Xbnnor Comprueba los totales
+ZP2dxa La suma coincide con los pedidos que quedaron.
+76U4qU Total: R$ 185 (tiene una fila repetida, no cuadra)
+k8SZfd Total: R$ 145 (falta comprobar)
+DWizEW Total: R$ 145, comprobado con los 3 pedidos
+Bax_GD Ejemplo con datos ficticios
+YVMYEM Pulsa Reproducir para ver cada paso, o Ver resultado para ir directo al final.
+FYubZB Reproducir
+jg9e2Z Pausar
+A3hAF8 Ver resultado
+i1PbRR Reiniciar
+8Qh_rk Controles de la demostración
+xao8Rs Paso {1} de {2}
+1ksRJy Lo que cambia en cada paso
+EXfk7X Antes
+Yfbue8 Después
