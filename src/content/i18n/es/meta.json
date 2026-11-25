@@ -1,0 +1,16 @@
+{
+  "/": { "titulo": "CylDev | Arreglo de hojas de cálculo, paneles y creación de sitios web", "descricao": "Arreglo la hoja de cálculo de tu negocio, armo el panel con tus números y creo tu sitio web o landing page. Presupuesto al instante, desde R$ 100." },
+  "/como-funciona/": { "titulo": "Entregas: hoja de cálculo, panel, sitio web y sistema | CylDev", "descricao": "Mira con ejemplos qué hace cada entrega por tu negocio: arreglo de hoja de cálculo, panel, automatización, sitio web o landing page, automatización con Python y sistema a medida." },
+  "/comunidade/": { "titulo": "CylDev | Bots de Discord y herramientas para quienes juegan", "descricao": "CylBot, CylSense y bots de Discord a medida para tu servidor.", "ogAlt": "Tarjeta de presentación de CylDev: bots de Discord y herramientas para quienes juegan. CylBot, CylSense y bots a medida." },
+  "/termos/": { "titulo": "Términos de contratación | CylDev", "descricao": "Cómo el pedido se vuelve contrato, pago, plazos, desistimiento, garantía y cuidado con tus datos." },
+  "/privacidade/": { "titulo": "Privacidad | CylDev", "descricao": "Qué datos recibe el sitio, con qué base legal, por dónde pasan, tus derechos y cómo pedir la eliminación." },
+  "/perguntas/": { "titulo": "Preguntas frecuentes | CylDev", "descricao": "Dudas comunes antes de pedir un presupuesto: valor, pago, plazo, archivos y datos." },
+  "/acessibilidade/": { "titulo": "Accesibilidad | CylDev", "descricao": "Qué hace el sitio para ser accesible, qué falta todavía y cómo avisar de un problema." },
+  "/obrigado/": { "titulo": "Mensaje recibido | Marcelo Vaz", "descricao": "Gracias por contactarme." },
+  "/404.html": { "titulo": "Página no encontrada | Marcelo Vaz", "descricao": "Esta página no existe." },
+  "_": {
+    "pular": "Saltar al contenido",
+    "ogAlt": "Tarjeta de presentación de Marcelo Vaz: tu hoja de cálculo en orden y un panel con tus números. Valor final en la propuesta. Pago por Pix.",
+    "ogAltComunidade": "Tarjeta de presentación de CylDev: bots de Discord y herramientas para quienes juegan. CylBot, CylSense y bots a medida."
+  }
+}

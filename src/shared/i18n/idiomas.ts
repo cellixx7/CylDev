@@ -1,5 +1,6 @@
 // Idiomas do site. Lógica pura (sem navegador), usada no build (vite.config.ts), no seletor e na detecção.
 // Decisão e motivos: docs/decisoes/idiomas.md.
+import ativos from "./ativos.json";
 
 /** Código usado no endereço (/en/, /zh/...). O português é o idioma original e vive na raiz, sem prefixo. */
 export type CodigoIdioma = "pt" | "en" | "zh" | "hi" | "es" | "fr" | "ar" | "bn" | "ru" | "ur";
@@ -21,7 +22,7 @@ export type Idioma = {
 };
 
 /** Os 10 idiomas mais falados do mundo. A ordem é a da lista do botão. */
-export const idiomas: readonly Idioma[] = [
+const todosIdiomas: readonly Idioma[] = [
   { codigo: "pt", bcp47: "pt-BR", og: "pt_BR", nome: "Português", sigla: "PT", rtl: false, formato: "pt-BR" },
   { codigo: "en", bcp47: "en", og: "en_US", nome: "English", sigla: "EN", rtl: false, formato: "en-US" },
   { codigo: "es", bcp47: "es", og: "es_ES", nome: "Español", sigla: "ES", rtl: false, formato: "es-ES" },
@@ -33,6 +34,12 @@ export const idiomas: readonly Idioma[] = [
   { codigo: "ru", bcp47: "ru", og: "ru_RU", nome: "Русский", sigla: "RU", rtl: false, formato: "ru-RU" },
   { codigo: "ur", bcp47: "ur", og: "ur_PK", nome: "اردو", sigla: "UR", rtl: true, formato: "ur-PK" },
 ];
+
+/**
+ * Idiomas no ar: só entram os que têm a tradução completa (ativos.json; ver scripts/cobertura.ts).
+ * O botão, o hreflang, o sitemap, a detecção e o build usam esta lista.
+ */
+export const idiomas: readonly Idioma[] = todosIdiomas.filter((i) => ativos.includes(i.codigo));
 
 export const idiomaOriginal: CodigoIdioma = "pt";
 /** Quem pede um idioma que o site não tem recebe este. */

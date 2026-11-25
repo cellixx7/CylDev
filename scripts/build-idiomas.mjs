@@ -3,11 +3,11 @@
 // Uso: node scripts/build-idiomas.mjs            (todos)
 //      node scripts/build-idiomas.mjs pt en      (só estes; útil para testar)
 import { spawnSync } from "node:child_process";
-import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, statSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 
 const raiz = resolve(import.meta.dirname, "..");
-const todos = ["pt", "en", "es", "fr", "zh", "hi", "ar", "bn", "ru", "ur"];
+const todos = JSON.parse(readFileSync(join(raiz, "src/shared/i18n/ativos.json"), "utf8"));
 const pedidos = process.argv.slice(2);
 const lista = pedidos.length > 0 ? pedidos : todos;
 const dist = join(raiz, "dist");

@@ -1,0 +1,16 @@
+{
+  "/": { "titulo": "CylDev | Réparation de tableurs, tableaux de bord et création de sites", "descricao": "Je répare le tableur de votre entreprise, je monte le tableau de bord avec vos chiffres et je crée votre site ou landing page. Devis instantané, à partir de R$ 100." },
+  "/como-funciona/": { "titulo": "Livrables : tableur, tableau de bord, site et système | CylDev", "descricao": "Voyez avec des exemples ce que chaque livrable fait pour votre activité : réparation de tableur, tableau de bord, automatisation, site ou landing page, automatisation Python et système sur mesure." },
+  "/comunidade/": { "titulo": "CylDev | Bots Discord et outils pour les joueurs", "descricao": "CylBot, CylSense et bots Discord sur mesure pour votre serveur.", "ogAlt": "Carte de présentation de CylDev : bots Discord et outils pour les joueurs. CylBot, CylSense et bots sur mesure." },
+  "/termos/": { "titulo": "Conditions de contrat | CylDev", "descricao": "Comment la commande devient un contrat, paiement, délais, rétractation, garantie et soin apporté à vos données." },
+  "/privacidade/": { "titulo": "Confidentialité | CylDev", "descricao": "Quelles données le site reçoit, sur quelle base légale, par où elles passent, vos droits et comment demander la suppression." },
+  "/perguntas/": { "titulo": "Questions fréquentes | CylDev", "descricao": "Questions courantes avant de demander un devis : prix, paiement, délai, fichiers et données." },
+  "/acessibilidade/": { "titulo": "Accessibilité | CylDev", "descricao": "Ce que le site fait pour être accessible, ce qui manque encore et comment signaler un problème." },
+  "/obrigado/": { "titulo": "Message reçu | Marcelo Vaz", "descricao": "Merci de m'avoir contacté." },
+  "/404.html": { "titulo": "Page introuvable | Marcelo Vaz", "descricao": "Cette page n'existe pas." },
+  "_": {
+    "pular": "Aller au contenu",
+    "ogAlt": "Carte de présentation de Marcelo Vaz : votre tableur en ordre et un tableau de bord avec vos chiffres. Prix final dans la proposition. Paiement par Pix.",
+    "ogAltComunidade": "Carte de présentation de CylDev : bots Discord et outils pour les joueurs. CylBot, CylSense et bots sur mesure."
+  }
+}

@@ -279,3 +279,787 @@ oLiOvi Ce qui stagne
 Vtk72z Combien il reste de bénéfice
 xLFk95 Autre
 pktfeQ Chaque question devient un indicateur ou un graphique. Les deux premières sont incluses. Chaque question en plus est du travail supplémentaire, et l'écran montre combien.
+p5nSOA Fév
+t_VVF5 Où voulez-vous voir le tableau de bord ?
+yR9g5J Format du tableau de bord
+oI4REZ Excel
+GXyy9N Power BI (fichier)
+3JX4w7 Power BI est un programme de Microsoft pour les graphiques. Ici, je livre un fichier à ouvrir dedans ; pour le partager sur internet, Microsoft exige une licence payante.
+sM7FaJ Excel est le plus simple et s'ouvre sur n'importe quel ordinateur. Power BI est plus visuel et change le prix, mais pour le partager avec d'autres personnes sur internet, il exige une licence payante de Microsoft.
+EqvFZ5 Automatisation
+3UWjmr Je prends une tâche que vous répétez chaque jour ou chaque semaine (copier des données, réunir des fichiers, envoyer des avis) et je fais en sorte que l'ordinateur la fasse pour vous.
+jMaVxA Routine automatique qui tourne sur votre ordinateur ou dans le cloud
+2gjvmL Instructions simples pour l'utiliser et l'arrêter
+RZWun2 Test avec des données d'exemple avant la livraison
+4QsAmO Le prix part de R$ 300 et change selon vos réponses.
+SxpMGk Que voulez-vous automatiser ?
+BnlW8f Tâches en plus
+zxtjik Tableur qui se remplit tout seul
+8Ptokx Le tableur reçoit les données sans que vous les saisissiez, par exemple depuis un autre fichier.
+gX-w_o Avis et messages
+wOgXIM Réunir des données de plusieurs endroits
+EfFOTh Je ne sais pas encore
+uOUgvj Pensez à ce que vous refaites toujours de la même façon. La première tâche est incluse. Chaque tâche en plus est du travail supplémentaire, et l'écran montre combien. Si vous ne savez pas la décrire, racontez-la sur WhatsApp et je vous aide.
+csdr0K Où cela se passe-t-il aujourd'hui ?
+-CLWrp Où cela se passe
+L15Ppn Dans Excel
+Hz4AqD Dans un système
+23Qo_1 Le logiciel de gestion ou la boutique en ligne que vous utilisez déjà.
+qazxFg Sur WhatsApp ou par e-mail
+FS2Y6I À plusieurs endroits
+caVDI0 Dans Excel, c'est le plus simple. Quand la tâche implique un système, WhatsApp ou plusieurs endroits, il faut relier les pièces, et cela change le prix.
+mN4oG_ Une page simple et rapide qui présente votre activité et amène la personne à vous contacter, de préférence sur WhatsApp.
+m7N3_Z Page adaptative, pensée d'abord pour le mobile
+Y4uPra Bouton direct vers votre WhatsApp
+GYcIw2 Textes organisés avec vous lors de l'échange
+YaRR91 Le domaine (l'adresse de la page) et l'hébergement peuvent avoir un coût propre. Je vous explique les options avant que vous ne décidiez.
+PfSVoV Que doit faire la page ?
+MItHsy Objectifs en plus
+_C99cF Recevoir des contacts sur WhatsApp
+l_TKSu Montrer les services et les prix
+RaQ1dK Montrer des photos et des réalisations
+erNYNZ Recevoir des rendez-vous
+MHkAo3 Le client choisit le jour et l'heure directement sur la page.
+HnmBQd La page fonctionne mieux avec peu d'objectifs. Les deux premiers sont inclus. Chaque objectif en plus est du travail supplémentaire, et l'écran montre combien.
+j2a7IF Avez-vous déjà un logo et des photos ?
+yY9gbI Logo et photos
+aKkTBI Seulement le logo
+78Clcm De vraies photos de votre travail convainquent plus qu'une image de banque d'images. Sans aucun matériel, je dois monter avec vous un visuel simple, et cela change le prix.
+5cXDRg Combien de pages ?
+Kq2IFy Nombre de pages
+RdX0BJ Une seule page
+O5Ox55 Tout sur une seule page, qui défile de haut en bas.
+dAEFft Jusqu'à 3 pages
+CRF-gf Des pages séparées, par exemple services et contact, au lieu de tout sur un seul défilement.
+h7KKUK Une seule page défile de haut en bas, avec tout dessus. Plusieurs pages séparent, par exemple, services et contact, et cela change le prix.
+vVNCnp J'écris un script Python pour la tâche que vous répétez : réunir des tableurs et des fichiers, lire des PDF et des reçus, envoyer des messages ou récupérer des données sur des sites. Le résultat sort prêt, comme un tableur ou un rapport.
+2hebYZ Script Python fait pour votre tâche
+II0vKX Instructions pour le lancer et l'ajuster
+AsPF6P Le prix part de R$ 300 et change selon vos réponses : une tâche simple reste au prix de base, une tâche plus complexe ajoute des heures (R$ 50 par heure).
+gZLcU1 Si la tâche tient dans Excel, l'automatisation Excel la résout au même prix de départ. Python est pour ce qu'Excel ne peut pas faire.
+2-aW9P Que doit faire le script ?
+hDYnwr Réunir des tableurs ou des fichiers
+BR0yim Lire des PDF ou des reçus et les passer dans un tableur
+0Qif23 Envoyer des e-mails ou des messages
+RHwDuL Récupérer des données sur des sites
+acLIFS Le programme ouvre des pages internet et copie les informations dont vous avez besoin.
+8zU3dB Générer un rapport prêt
+VCngZZ D'où viennent les données ?
+5eo2vt Origine des données
+QoObeO De tableurs ou de fichiers CSV
+TK4Y2M Le CSV est un simple fichier de tableau, que n'importe quel tableur ouvre. C'est le cas le plus facile à traiter.
+UwrlT0 De PDF ou d'images
+MDl3St Lire le texte de PDF et de photos de reçus demande une vérification, car la lecture automatique peut se tromper.
+JtYpxe D'un site ou d'un système
+cQkwaT De plusieurs endroits
+Re6Pqe Tableur et CSV sont le cas le plus simple et restent au prix de base. Les PDF et les images demandent lecture et vérification. Les sites ou les systèmes demandent de relier les pièces, et plusieurs endroits à la fois donnent encore plus de travail.
+dYa74P Comment le script va-t-il tourner ?
+U1I_Jl Comment il tourne
+oj8iFT Je le lance quand je veux
+ZjO5yi Tout seul, à une heure programmée
+K6xxLg Le programme tourne tout seul, par exemple tous les jours à 8 h, sans que vous ouvriez quoi que ce soit.
+X64oi7 Avec un écran de boutons
+uT_pbf Une petite fenêtre avec des boutons, pour que n'importe qui l'utilise sans toucher au code.
+OxojNz Le lancer quand vous voulez est le plus simple. À une heure programmée, il faut configurer la planification, et un écran de boutons est un petit programme à part.
+cf5g9L Bot Discord essentiel
+G5_cOK Un bot Discord avec l'essentiel pour votre serveur : bienvenue, règles, annonces et assistance par tickets.
+Q15nfr Bot configuré sur votre serveur
+57GXUo Bienvenue, annonces et assistance par tickets
+Cp-7Tk Instructions pour que votre équipe l'utilise
+EpU2Pz Assistance pour les petits ajustements pendant le premier mois
+npjf-D Abonnement mensuel de 10 % du prix de création plus l'hébergement, facturé à part.
+X9iw-p La remise pilote ne s'applique qu'à la création.
+c_WHrI Que doit faire le bot ?
+cjes8y Fonctions en plus
+-J4IPm Bienvenue et règles
+67_nyi Tickets d'assistance
+l7j3fb Un salon privé que le bot ouvre pour aider une personne.
+pFCtYp Annonces
+FokgQQ Rôles par réaction
+LM-m6P La personne reçoit un rôle sur le serveur en cliquant sur un émoji.
+yCSZpR Un ticket est un salon privé que le bot ouvre pour aider une personne. Le rôle par réaction, c'est quand la personne reçoit un rôle en cliquant sur un émoji. Les deux premières fonctions sont incluses. Chaque fonction en plus est du travail supplémentaire, et l'écran montre combien.
+MoUZbU Qui héberge le bot ?
+fQbfDy Hébergement
+LNxC9N Marcelo l'héberge
+2xwEm4 Je garde le bot allumé en permanence sur un serveur. C'est pour cela que l'abonnement mensuel existe.
+wqElND Je l'héberge moi-même
+o-bss9 Vous gardez le bot allumé par vous-même, sur votre ordinateur ou votre serveur.
+ik4e-Z Héberger, c'est garder le bot allumé en permanence sur un serveur. Je peux m'en charger (d'où l'abonnement mensuel) ou vous l'hébergez vous-même. Cela ne change pas le prix de création.
+Za24eL Bot Discord avec IA
+VUKJqC Tout le bot essentiel, plus des réponses automatiques faites par intelligence artificielle, avec des règles que vous définissez.
+Kh9hDb Tout le bot essentiel
+6fkkDI Réponses par IA, dans les salons que vous choisissez
+Z6fZ_w Limites et règles sur ce que l'IA peut ou non répondre
+tPd6EW Instructions pour suivre l'utilisation
+RT7P_4 L'utilisation de l'IA est facturée directement sur votre compte chez le fournisseur, pas par moi.
+JUOw-C Abonnement mensuel de 10 % du prix de création plus l'hébergement.
+LIw3US Que doit répondre l'IA ?
+xAfsad Rôles en plus
+pjsFNZ Questions fréquentes
+_iQxYB L'IA répond aux questions qui se répètent, à partir de textes que vous me donnez.
+fiam4q Conversation libre
+ELSVLd L'IA répond sur plusieurs sujets, pas seulement ceux que vous avez définis. Cela demande plus de soin avec les limites.
+MPVNPo Aide sur les règles
+HnyoI1 L'IA explique les règles du serveur et oriente ceux qui ont des questions à leur sujet.
+KDNjUo L'IA répond mieux quand le sujet est délimité. Le premier rôle est inclus. Chaque rôle en plus est du travail supplémentaire, et l'écran montre combien.
+95xw14 Avez-vous déjà un compte chez un fournisseur d'IA ?
+LzVwg1 Compte chez le fournisseur d'IA
+fP5SDs Non, j'ai besoin d'aide
+LxD0h8 Je vous explique comment ouvrir le compte chez le fournisseur d'IA.
+hvWU9X Je ne sais pas ce que c'est
+Xaj5yq Le fournisseur d'IA est l'entreprise qui fournit le modèle (par exemple OpenAI ou Anthropic). Vous ouvrez un compte, et l'utilisation apparaît sur votre facture. Si vous ne l'avez jamais fait, je vous explique la marche à suivre, et cela change le prix.
+E9jqTH Quand le besoin est plus grand : un système pensé pour votre processus. Le prix part d'un point de départ et vos réponses montrent où il augmente. La proposition écrite fixe le périmètre, le délai et le prix.
+HxZgzK Échange initial pour comprendre le processus
+P8LtOF Proposition écrite avant de commencer
+mT6yCC Livraison par étapes, pour que vous puissiez suivre
+P_KZIS Prix fixé dans la proposition, selon la taille
+tskHQ3 Le prix est un point de départ : la proposition fixe le périmètre. Chaque heure de travail en plus ajoute R$ 50.
+pSvrzj Les gros projets passent en file d'attente et dépendent de mon agenda.
+IvOk9M Comment le système sera-t-il facturé aux clients ?
+CslgwR Facturation
+i-cLwx Abonnement mensuel
+dUX1kY À l'usage
+OxGIWs Le client paie selon son utilisation, par exemple par commande ou par requête.
+vRLX8D Une seule fois
+o1-t_m Pas de problème : nous décidons du type lors de l'échange.
+-GQChN C'est la façon dont vous allez être payé par vos clients via le système. Un abonnement demande de suivre qui a payé et qui est en retard, et cela change le prix.
+Ux1VdD Combien de types d'utilisateur le système aura-t-il ?
+UevcdF Types d'utilisateur
+3jyt-2 Un seul type
+oNOQWv Deux types (par exemple client et administrateur)
+XEm6Sg Trois ou plus
+IFN5hF Chaque type d'utilisateur voit et fait des choses différentes : le propriétaire voit tout, le client ne voit que ce qui le concerne. Plus il y a de types, plus il y a de règles d'accès, et cela change le prix.
+xRgcWy Où l'application va-t-elle tourner ?
+YP9LXC Où elle tourne
+thEQkS Dans le navigateur
+k01oWF S'ouvre par une adresse internet, sans rien installer.
+OjmPHQ Sur le mobile
+OY_Ad_ Application installée sur l'appareil.
+SXtIOS Sur le mobile et dans le navigateur
+ymK9NG Dans le navigateur, elle s'ouvre par une adresse, sans rien installer. Sur le mobile, c'est une application installée, et faire les deux demande plus de travail.
+L0eb5r Doit-elle fonctionner sans internet ?
+5vqfjG Sans internet
+2a5tzD Non, toujours avec internet
+Alj0Kk Oui, elle doit fonctionner sans internet
+Qwz9Bi Fonctionner sans internet exige de stocker les données sur l'appareil et de les synchroniser ensuite. C'est plus de travail, et cela change le prix.
+KdYN0k Faut-il une connexion (identifiant et mot de passe) ?
+Tlook7 Connexion
+G32bOm Avec connexion, chaque personne entre avec son compte et ne voit que ce qui lui appartient.
+S6h_xO Faut-il une inscription par e-mail ?
+9o4Wjl Inscription par e-mail
+1hVesH La personne crée elle-même le compte et confirme l'e-mail.
+_cRaPJ Quel moyen de paiement utilisez-vous déjà ?
+nvXf6d Moyen de paiement
+J_vMVR Mercado Pago
+xIzgWw Entreprise qui reçoit le paiement du client et prévient le système.
+TQjsWH Stripe
+tYpx9S Entreprise internationale qui reçoit le paiement du client, très utilisée pour la carte et l'abonnement.
+kcqWgx Banque ou terminal de paiement
+x76jVc Aucun pour l'instant
+alrkXz C'est l'entreprise qui reçoit l'argent du client et prévient le système. Si vous n'en avez pas encore, je vous aide à choisir et à ouvrir le compte, et cela change le prix.
+fddWNC Faut-il émettre des factures ?
+74Kib4 Facture
+jw_DsA Émettre des factures par le système dépend de votre comptable et de votre municipalité. Je confirme la marche à suivre lors de l'échange.
+xC4tai Avec quels systèmes doit-il communiquer ?
+AQJNwr Quels systèmes
+CGifMH Tableur (Excel ou Google)
+RvGyEr Système de gestion (ERP)
+YJcURC Boutique en ligne
+ar9DuS Base de données existante
+r6Pv6P Cochez tous ceux qui s'appliquent. Le premier est inclus ; chacun en plus est du travail supplémentaire, et l'écran montre combien.
+UU4hni Avez-vous accès à leur API ?
+RXkQNW Accès à l'API
+6H1mMo L'API est la porte que l'autre système ouvre pour communiquer avec le vôtre. Sans accès, je dois chercher un autre chemin, et cela change le prix.
+pfGSh1 Quels rapports ?
+p6Hr6B Rapports
+arSxjB Utilisation du système
+L5gH4e Le premier rapport est inclus ; chacun en plus est du travail supplémentaire, et l'écran montre combien.
+UiH866 Faut-il exporter vers Excel ou PDF ?
+moUj_n Exporter
+O6hP6i Vers Excel
+wjdzTW Vers PDF
+UbyzVf Vers les deux
+oxSIdj C'est un bouton qui télécharge le rapport prêt, en Excel ou PDF. Chaque format représente un peu de travail en plus.
+PEWfHL Quel type de donnée sensible ?
+FdNxbX Type de donnée
+xfgM2a Santé
+Qjjow9 Documents personnels (pièce d'identité)
+wFo04_ Données financières
+V2pZY0 Cochez celles que le système va stocker. La première est incluse ; chacune en plus demande plus de soin, et l'écran montre combien.
+zTPNik Faut-il une politique de confidentialité et des conditions d'utilisation ?
+Gm64B3 Politique et conditions
+h53agE Oui, un texte de base
+EHGd7K Je monte un texte de base avec vous. Ce n'est pas un avis juridique : pour valoir comme contrat, mieux vaut une relecture par quelqu'un qui connaît la loi.
+3BwEq8 Quel type de système imaginez-vous ?
+vnk4l9 Type de système
+lbHeiq SaaS (les clients paient un abonnement)
+9Iv_Os Un SaaS est un système sur internet que plusieurs entreprises ou personnes utilisent, chacune avec son compte, en payant un abonnement. Il exige une gestion des comptes et de la facturation. Un site avec une base de données que vous seul administrez n'est pas un SaaS.
+Mqhiod Site avec espace connecté
+PaBZKU Un site ordinaire qui a une partie restreinte : la personne entre avec un identifiant et un mot de passe et ne voit que ce qui lui appartient.
+QIajV4 Application
+2Pyc7U Programme fait pour être utilisé sur mobile, dans le navigateur ou les deux, avec ses propres écrans et des données enregistrées.
+4csXmN Programme pour ordinateur
+IpLjHT Un programme qui s'installe sur Windows, sans dépendre d'une adresse internet pour s'ouvrir.
+6AcEsu Un SaaS est un système que vous vendez par abonnement. Un site avec espace connecté a une partie réservée à ceux qui entrent avec un compte. Une application tourne sur mobile ou dans le navigateur. Un programme pour ordinateur s'installe sur le PC. « Je ne sais pas encore » ne change pas le prix : nous décidons lors de l'échange.
+OwZYzk Qui va l'utiliser ?
+f1oG9O Qui l'utilise
+gA0koD Seulement moi et mon équipe
+Rh3n6V Quelques personnes connues, sans inscription ouverte au public.
+xPnbrw Mes clients
+XZC5rV Des personnes que vous choisissez et autorisez ; chacune entre avec son compte.
+eW62iL N'importe qui (public ouvert)
+uB6zql N'importe qui peut accéder ou créer un compte. Cela demande plus de soin pour la sécurité.
+6_jTZs Un système réservé à l'équipe est plus simple. Pour des clients ou pour le public, il faut des règles d'accès et de sécurité, et cela change le prix.
+HQ5azh Faut-il recevoir des paiements par le système ?
+bpuWDq Paiement
+pGS70r Oui, Pix et carte
+vaMfGI Paiement ponctuel : le client paie et le système confirme la réception.
+Nvooqp Oui, abonnement récurrent
+zljUYh Le client est facturé automatiquement chaque mois. Il faut gérer les cartes refusées et les résiliations.
+mRE00- Recevoir par le système exige de se connecter à une société de paiement et de gérer les paiements qui échouent. L'abonnement récurrent demande plus de travail que Pix et carte.
+VUL1ou Faut-il communiquer avec d'autres systèmes ?
+Eg78hD Autres systèmes
+-SAiGm Oui, avec WhatsApp
+HuXYFf Le système envoie ou reçoit des messages par WhatsApp.
+tUHL8c Oui, avec un ERP, un tableur ou autre
+ygkVI- Un ERP est le système de gestion de l'entreprise (stock, finances, factures). Le nouveau système échange des données avec lui ou avec votre tableur.
+V8XsJw C'est quand le système échange des informations avec un autre que vous utilisez déjà, pour que personne ne saisisse deux fois. Chaque type de liaison change le prix.
+i1SqPK Combien de données le système va-t-il stocker ?
+w739Af Volume de données
+SDe-Jn Peu (jusqu'à quelques milliers d'enregistrements)
+T0jBnl Moyen
+nom2iX Cela croît peu à peu, mais tient encore dans une base de données simple.
+jgXd1b Beaucoup (cela croît chaque jour)
+r7jQGg De nouveaux enregistrements chaque jour, comme des commandes ou des relevés. Demande une base de données plus soignée.
+cibNip Beaucoup de données demandent une base de données plus soignée pour que le système reste rapide. Plus il y a de données, plus il y a de travail.
+ZZZSm7 Faut-il des rapports et des graphiques ?
+Q02bJz Rapports et graphiques
+eTnowB Les rapports résument les chiffres du système en tableaux et en graphiques. Vous choisissez lesquels ensuite.
+iASVRI Où le système sera-t-il hébergé ?
+9-n3jv Je m'en occupe moi-même
+dGkALr Vous louez et entretenez le serveur par vous-même.
+ANwjw7 J'ai déjà un endroit
+3vig1n Vous avez déjà un serveur ou une offre d'hébergement à utiliser.
+fKFYVc L'hébergement est le serveur qui garde le système en ligne. Il est facturé à part, directement par le fournisseur, et ne change pas le prix de création.
+zkGf7K Le système va-t-il stocker des données sensibles ?
+8nkkbl Une donnée sensible est celle qui cause du tort si elle fuite : santé, documents, finances. Cela demande plus de soin, et vous choisissez les détails ensuite.
+S8VKP- délai à convenir
+awI2VQ Votre tableur aura un onglet par sujet, des colonnes uniformisées et des totaux qui concordent. Il devient plus facile à remplir et les chiffres inspirent confiance.
+ox5eNy Nettoyage des données que vous avez déjà
+9v3sF1 Formules de total et de synthèse
+x4hrwI Mode d'emploi sur une page
+izd4XN Vous ouvrez un fichier et vous voyez combien vous avez vendu, ce qui se vend le plus et comment va le mois, sans faire de calculs. On peut suivre le stock et les ventes avec des chiffres, et non au jugé.
+06h1A2 Excel (standard) ou Power BI Desktop (fichier .pbix et PDF)
+I1fY4E Une source de données
+jRDCFl Jusqu'à 5 indicateurs
+EUrB-M Filtre par période
+lK_Xsw Partager un tableau de bord Power BI en ligne avec votre équipe exige une licence Power BI payante de votre côté. Dans Excel, ce n'est pas nécessaire. Je vous explique les options lors de l'échange.
+YkALH6 La tâche que vous répétez chaque semaine dans le tableur se lance en un clic.
+cl3yQw VBA ou Power Query
+BFkAsv Mode d'emploi
+D8X_Ck Une page avec votre service, vos prix et un bouton qui amène le client directement sur votre WhatsApp.
+i17RR6 Une page
+9DcA18 Version mobile
+y5oodh Mise en ligne sur un hébergement gratuit, sur votre compte
+yP3mXq Bouton WhatsApp
+d9MRe6 Un script fait pour votre tâche : il réunit des tableurs et des fichiers, lit des PDF, envoie des messages ou récupère des données sur des sites, et livre le résultat prêt.
+JPo5kF Si la tâche tient dans Excel, l'automatisation Excel la résout au même prix de départ ; Python est pour ce qu'Excel ne peut pas faire. Je vous dis pendant l'échange laquelle des deux convient le mieux.
+c2LWZT Quand le tableur ne suffit plus et que vous avez besoin de votre propre système. Vous montez le devis de base et la proposition fixe le périmètre.
+JK_Rau Échange pour comprendre le cas
+MmMbfk Proposition écrite
+HlZJoL Livraison par étapes
+k53-Pg Le prix est un point de départ : la proposition écrite fixe le périmètre.
+oiDNyY Votre serveur reçoit des tickets, un message de bienvenue et une modération de base.
+XGIqUX Tickets
+EyibJ3 Bienvenue
+-vrPS3 Modération de base
+Kk_fiQ Aide à la mise en ligne
+nZmseG Bot avec IA et panneau web
+toSeJP Un bot qui répond avec de l'IA et un panneau dans le navigateur pour ajuster ce qu'il fait.
+gSXBsJ Commandes sur mesure
+CT0zTt Intégration d'IA
+kfc6XK Panneau web simple
+1TsGG1 L'utilisation de l'IA est facturée par le fournisseur, sur votre propre compte.
+Kdb8kv Avis
+wTQR7j Schéma de la page publique de l'UniSER : bandeau vert avec logo et menu, et trois cartes d'avis en dessous.
+UwDXdZ Schéma de l'écran de connexion de l'espace réservé : carte centrale avec champs d'identifiant et de mot de passe et un bouton vert.
+TFra2W Programme des cours
+ZEg5Qo Schéma du programme des cours : tableau avec le code, la matière et la situation de chaque matière du semestre.
+ZSwYCt Mes données
+R-2ldt Schéma de l'écran Mes données : cartes de données personnelles, contact et adresse, chacune avec un bouton de modification.
+kVxEdB Assiduité
+_3z-54 Schéma de l'écran d'assiduité : résumé de la situation et tableau avec la date, la matière et le justificatif des absences.
+PCp8YW Mon semestre
+5bgVWQ Schéma de l'écran Mon semestre : cartes du lundi au vendredi, chacune avec la matière et le volume horaire.
+N4y6t7 Pied de page
+qPejJE Site sans traceurs.
+lY_7B6 Service fourni par
+V9vNY5 Conditions
+gglTzo Questions
+VmYcB8 Contact
+ign2Cw Confidentialité
+2WNCqP Marcelo répond généralement en moins de 2 heures, sans garantie.
+OHvJ3D données fictives
+lDe6Kj Thème clair
+kteUDE Thème sombre
+t4Qw_B Ouvrir le menu
+naMUQ3 Fermer le menu
+87hrE9 Principal
+AJQziG Langue
+2X8Ql7 Précédent
+ZLLQ1j Suivant
+5_BZIU {1} sur {2}
+8lBkRb Inclut
+jV2HcK Délai
+uQ3d9j Abonnement mensuel
+jKpmye {1}{2} par mois, plus l'hébergement
+h8afwI à partir de 
+mrOvVs Les 5 premières places bénéficient de 10 % de remise. Les 5 suivantes, 5 %. Il en reste {1} à {2} %. Écrivez-moi sur WhatsApp et réservez la vôtre.
+LU0JVa Il reste {1} places avec {2} % de remise. Écrivez-moi sur WhatsApp et réservez la vôtre.
+JupVO1 La remise s'applique sur le prix de création.
+pu-UHr Votre nom
+xf2XAl Comment préférez-vous que je réponde ?
+DQHi6G E-mail
+ofzvtl Votre WhatsApp (avec indicatif)
+5FVWOT Votre e-mail
+XoIEIk Objet
+OLwMVZ Ce dont vous avez besoin
+sS8jr0 Voulez-vous ajouter autre chose ? (facultatif)
+t9aBvV Est joint à votre message :
+qRqVUX Envoyer
+XpHc3F Envoi en cours…
+PkQxeO Je n'ai pas pu envoyer maintenant. Contactez-moi par l'un de ces canaux :
+epbTOG Ne remplissez pas ce champ :
+caUhG8 J'utilise votre nom et votre contact uniquement pour répondre. Le message passe par EmailJS. N'y écrivez ni mots de passe, ni données de santé, ni données d'autres personnes.
+Tp7DoC Politique de confidentialité
+0I7qIj Bots sur mesure
+jrePTc Je fais des bots et des outils pour ceux qui jouent.
+-6AIr0 Ici se trouvent les projets que je fais pour Discord et pour les jeux. Si vous gérez un serveur et voulez un bot à votre façon, on peut en discuter.
+QOQw_y Parler d'un bot
+25Mes9 Bot Discord avec centre de tickets, annonces par serveur, IA en option et panneau web.
+_KtvqG Voir le code sur GitHub
+7W8vWQ En développement
+UL0KBq Un outil d'analyse de performance pour ceux qui jouent à VALORANT. Il n'est pas encore ouvert au public. À sa sortie, chaque métrique montrera la taille de l'échantillon, et ce qui est une hypothèse apparaîtra comme une hypothèse.
+hMH_BJ Bot sur mesure pour votre serveur
+4WIChZ Parler de ce bot
+PuZHPa Le bot doit rester allumé en permanence. L'abonnement mensuel couvre la surveillance et la correction des erreurs : {1} % du prix de création par mois. L'hébergement, là où le bot reste allumé, est un coût à part, et l'utilisation de l'IA, quand il y en a, est facturée par le fournisseur sur votre compte. 
+Zi393h Avec la formule de {1} mois payée d'avance, la remise est de {2} %.
+qvLv99 Avec la formule de {1} mois payée d'avance, il y a une remise.
+8WPHeZ Nouvelle fonctionnalité après la livraison : {1} par heure.
+3ja1DE WhatsApp ou e-mail, ce qui vous convient le mieux.
+LPNAjZ CYL Sense n'est pas affilié à Riot Games.
+kUno7i Envie de quelque chose comme ça pour votre activité ?
+5xRnac Voir l'espace Entreprises
+XlYRcz Un exemple de ce que je livre
+SsdA9- Devis
+h4bAT8 Livrables
+I5MCgq À propos
+DcOJG7 Vous préférez parler directement ?
+L08WyJ Écrivez-moi sur WhatsApp
+260cjF Aller à l'espace communauté (Discord et jeux)
+PMUvkW Communauté
+aXf7WX Je transforme votre tableur en désordre en tableau de bord.
+uTubq_ Il montre ce qui se vend, ce qui stagne et ce qui est bientôt épuisé. Je crée aussi la page de votre activité et des systèmes complets sur internet.
+tDn0hU Des tableurs organisés, des tableaux de bord avec vos chiffres, des pages de présentation et des systèmes sur mesure. Tout expliqué en langage clair, sans complication.
+f0Lv27 à partir de {1}
+c7_k9l Montez votre devis ici et envoyez-le par le site ou par WhatsApp.
+sOCi-I Faire mon devis
+v-toFJ Comment ça marche ?
+jYXosg Écrire sur WhatsApp
+WavEH2 Exemple de tableau de bord · magasin fictif
+D8UvX1 Tous les chiffres du magasin sur un seul écran : combien il a vendu, ce qui se vend le plus et ce qui stagne. Les données ci-dessous sont fictives.
+iErcON Année 2026
+xncxZH Ventes de l'année
+YXDSwM Commandes
+2e45JW Panier moyen
+G4ovoj Stock immobilisé
+Jm8cgn Ventes par mois (milliers de R$)
+xGQPIg {1}, {2} mille R$
+7-02kO Jan
+UhEB_P Janvier
+6dBt7U Février
+xLoIIk Mar
+pVj4D3 Mars
+tUyLKY Avr
+vl_gDB Avril
+r-Umps Mai
+fWyHv6 Mai
+bZDfO- Juin
+GZBMqV Juin
+tzdVhG Juil
+pYVdtz Juillet
+i6xdqz Août
+b-FCfB Août
+RIq3O6 Sep
+eSoS1Q Septembre
+5PpU8H Octobre
+Z_eZdH Novembre
+lbNg1J Décembre
+E96CfB Ventes par catégorie
+q9U4a0 Autres
+EsBe9e Ventes · {1}
+rwPvVL {1} % de l'année
+NunQJw seulement {1}
+OLIY8U Ventes par région (milliers de R$)
+RD-3vr Sud-Est
+82uz8Q Sud
+ydm5cE Nord-Est
+Jp7w-3 Centre-Ouest
+Xu7T3b Nord
+eQJeVC De la commande à la livraison
+T0KFrj De la première conversation au fichier final, en cinq étapes.
+nVIHE7 Échange de 10 minutes
+3_ulvl Par Google Meet, quand il faut voir l'écran, ajuster et présenter plus calmement, ou par WhatsApp pour une question rapide. Vous me montrez le tableur ou vous racontez ce dont vous avez besoin, et je vous dis ce que je dois recevoir de vous.
+ZU4ela Proposition
+tgvbBf J'envoie par écrit ce qui est inclus, le prix et la date de livraison.
+7KXM9i Acompte de 50 % par Pix
+lXsR5p Je commence après l'acompte.
+YEMNzC Livraison par étapes
+fF1JyA Vous voyez l'avancement avant la fin et pouvez corriger le cap.
+3UEMMt Solde avant la livraison finale
+tALlyH Les 50 % restants avant que je remette les fichiers finaux ou les publie à votre adresse. Un tour de révision est déjà inclus.
+KWS38K Paiement par Pix. J'émets un reçu.
+bSLUAP Les règles complètes figurent dans les
+D7bzal Conditions de contrat
+pULu01 et les questions les plus courantes dans les
+lSofEi questions fréquentes
+5_7cK3 Le devis instantané nécessite JavaScript. Sans lui, parlez-moi directement :
+YY6v_u Envoyer un e-mail
+3baZdd Voir comment ça marche
+zGR-Qv Choisissez la façon qui vous est la plus facile. Je réponds par le même canal.
+IywOUH Formulaire
+eGrtaP Avez-vous un serveur Discord ou une communauté de joueurs ?
+Laim8_ Voir l'espace CylDev
+2BJ0MD Montez votre devis
+bO__mw Choisissez le service, répondez aux questions et vérifiez la commande. L'estimation change instantanément. Le prix final figure dans la proposition écrite.
+boKYy8 Services
+sSOa_4 Inclus
+JWKCOs Panier : {1}
+zsaD2f Ajouter au panier. Tableur, tableau de bord, automatisation et site d'une page ensemble bénéficient d'une remise.
+bq_5Vs Ajouter au panier.
+LI0yzr Dans le panier. Cliquez pour retirer.
+_3vNnk Remise à partir de 2 services : {1} % avec 2, {2} % avec 3 ou plus.
+4oENLn sur devis
+kMu_IC {1} dans le panier.
+TRfa9Z {1} hors du panier.
+DbD6f6 Deux ou plus parmi tableur, tableau de bord, automatisation et site d'une page bénéficient d'une remise et d'un seul délai.
+RMa5pN Mettre tableur, tableau de bord et automatisation dans le panier
+1kkXa4 Tableur, tableau de bord et automatisation dans le panier.
+LFE8cD Des suivis éparpillés deviennent un seul tableur, avec des totaux qui concordent.
+q9ueMF Un fichier qui montre ce qui a été vendu, ce qui se vend le plus et comment va le mois.
+iSNrR8 La tâche que vous répétez chaque semaine dans le tableur se lance en un clic.
+M3_0AF Une page avec votre service, vos prix et un bouton vers votre WhatsApp.
+BHo2Ye Un script Python qui fait pour vous la tâche répétée : réunir des fichiers, lire des PDF, envoyer des messages.
+h6j7V2 SaaS, site, application ou programme fait de zéro. Le prix est un point de départ ; la proposition fixe le périmètre.
+HKAufO Tickets, bienvenue et modération de base pour votre serveur Discord.
+DVP-0l Un bot qui répond avec de l'IA et un panneau web pour ajuster ce qu'il fait.
+nEKM4Y Voir l'exemple
+nd_pKt Masquer l'exemple
+H1KiP- Des suivis éparpillés deviennent un seul tableau, avec un total à la fin.
+CNQ5ru Qté
+oK7EBe Produit A
+LhrQ26 Produit B
+8a3CfB Ventes, meilleures ventes et le mois sur un seul écran.
+JoE6kZ Ventes par mois
+ELrERS Ce que vous faites à la main chaque semaine devient un clic.
+SIET5Z Importe les données
+lHkf4w Vérifie et additionne
+1jTlEC Génère le rapport
+ftgfpE Actualiser
+xfoLNZ Une page avec le service, le prix et le bouton WhatsApp.
+cs-GTE Votre service
+9j66q2 Tarifs
+W6_7ds Un dossier de fichiers entre, le script travaille et le tableur sort prêt.
+jIXBGd PDF
+IL04hY Tableurs
+fm1Chp E-mails
+aLIdAN Tableur prêt
+cV1UhX Du dessin des écrans au système en ligne : tout fait par une seule personne.
+W2gl08 Site
+vmLdyQ Programme
+3Rn5iH Front
+zT98iL écrans et navigation
+tSs2ty Back
+q7QMCK règles et API
+Z6TeNQ Base de données
+4IEYVN où tout est enregistré
+-0GSoN Déploiement
+thzkT1 en ligne, prêt à l'emploi
+eyAG_X Fermer
+vUznck Sections du service
+bdlOI6 Détails
+ukSYIo Ce que c'est
+enRc30 Ce que vous recevez
+cwNeR_ Notes
+_LsqFh Ajouter au panier
+LIE73m Dans le panier
+Onc21D Retirer du panier
+lh7D8l Voir le panier
+XH891r Ce qui est inclus
+HsDcsl Les réponses avec + R$ changent le prix. Les autres m'aident à comprendre votre cas et ne changent pas le prix.
+27Kfsu {1} sur {2} {3}
+YPEsdm question répondue
+73TP8n questions répondues
+s042lA Ce service n'a pas de questions. Le prix du tableau s'applique.
+MCobu5 {1} {2}{3}, juste en dessous.
+IpyfmY nouvelle question
+r2s4Xd nouvelles questions
+jzq44C  sur {1}
+rVTsop peut changer le prix
+Rp2M6j + {1} sur le prix
+d5_8Sq Ce que cela signifie : {1}
+edHwON Déjà {1} : {2}.
+CvnCW7 Chacun en plus : + {1}.
+isr_w2 Estimation
+HSsGKk Comment nous arrivons à ce prix
+-stZFv à partir de
+AXBqK9 estimation à partir de
+E37BSf Sur devis
+UKuc16 par heure
+x4SP3i Prix catalogue : 
+kQEzd8 Avec {1} % de remise pilote. Il reste {2} {3} dans cette tranche.
+A3DX8M Travail
+Z-YROh {1} par mois, plus l'hébergement facturé à part
+RpxuYe Le prix dépend de ce qui sera fait. Voici le minimum selon vos réponses.
+0dV0qd C'est une estimation d'après vos réponses. Le délai est convenu lors de l'échange.
+s6J9hS C'est une estimation. Le prix et la date de livraison sont fixés dans la proposition.
+BjglcR Cela commence par un échange. Racontez-moi votre cas et je vous envoie une proposition écrite avec prix et délai.
+89bxbD Ajouter à la commande
+HfUMvz Retirer de la commande
+Bqby0t Choisir un autre service
+mpXelb Vérifier la commande
+YU0QJe Inclus dans la commande. Ce que vous changez ici compte déjà.
+hrdZz3 Prix de départ
+Jcrech En cours de configuration
+_PFPgx Configuré
+a0PKWR Pas encore de réponses. Le prix change au fil de vos réponses.
+Pa5IM0 Il manque {1} {2}. Le prix peut encore changer.
+b-y86Y Toutes les questions ont une réponse.
+hkV5NR Pourquoi ce prix ?
+cpQYj9 Compris
+ERzHr6 Comment le prix est construit
+M_OVzH Chaque service a un prix de base. C'est le « à partir de » affiché sur la carte.
+Mz6vs_ Vos réponses peuvent ajouter des heures de travail en plus. Chaque heure en plus coûte {1}.
+-NisB8 Combo : avec 2 services combinables (tableur, tableau de bord, automatisation et site d'une page), {1} % de remise. Avec 3 ou plus, {2} %.
+vH22vm Pilote : en ce moment, il n'y a plus de place avec remise pilote.
+oY0zQ0 Pilote : tant qu'il y a des places, il y a {1} % de remise sur le prix de création.
+_J3JDi Les remises ne se cumulent jamais : c'est celle qui retire le plus de reais qui s'applique. Le combo ne vaut que pour les services combinables. Le pilote vaut pour la création, mais pas pour l'abonnement mensuel. Les bots Discord ne sont vendus que dans la Communauté.
+dD5CXT Une question sans réponse rend le prix approximatif. Le prix final est confirmé dans la proposition. L'hébergement et l'utilisation de l'IA des bots sont facturés à part.
+yqPS40 Dans votre commande
+xwNh5R Prix de base
+KZ3GXW {1} x {2} par heure
+E9IjF8 Heures et délai : à convenir lors de l'échange.
+rgmt4G Sans réponse (ne comptent pas encore) : {1}.
+FEtcXy Total du service
+yGlhtH Sur devis : n'entre pas dans le total. J'envoie une proposition écrite.
+7bcYQM Abonnement mensuel : {1} par mois, en plus du total, plus l'hébergement.
+wkhvVk Récapitulatif
+odKa_f Total au tarif catalogue
+ne5hsB Aucune remise ne s'applique à cette commande pour le moment.
+1EZgTv Remise ({1})
+qz_qWp Total estimé
+V-FFie Total estimé (à partir de)
+N7dVFD Le combo s'applique parce qu'il y a {1} services combinables. Il porte uniquement sur eux ({2}).
+VQZROe Le pilote porte sur le prix de création ({1}).
+f42Jy5 Le pilote a retiré plus que le combo : {1}, contre {2} pour le combo.
+8oF6Ew Le combo a retiré {1} ; le pilote aurait retiré {2}, et ils ne se cumulent pas.
+P_MQI1 Combo et pilote retireraient le même montant ({1}) ; le combo s'applique.
+JxDIR3 Ce qui changerait encore ce prix
+0fwUK0 Les réponses qui ajoutent des heures en plus augmentent le prix.
+JAKgnu Des questions sont sans réponse : le prix est approximatif et peut changer.
+63BTQ5 Votre commande est vide. Quand vous ajouterez un service, le détail du prix apparaîtra ici.
+Bk6WEa Panier
+5a39bv Panier ({1})
+GKNlgl Ouvrir le panier : {1} {2}, {3}
+leQDPo service
+N3zhU2 services
+i2XEAT Vérifiez la commande
+osbsFi Fermer le panier
+OoaCTs Ajuster les réponses
+kKgVVN Estimation : {1} {2}. Le prix peut changer.
+OH-3cs question sans réponse
+nz60Mb questions sans réponse
+nvEIkp Des questions sont sans réponse, donc le total est une estimation et peut changer.
+MdPe0J Votre commande est vide. Choisissez un service et ajoutez-le pour pouvoir envoyer.
+3d4TXP Choisir un service
+K18jQ3 Modifier
+S9Tqg0 Retirer
+XYjzpM Continuer à choisir
+PL65P3 {1} sur {2} questions répondues
+gqZBgH sans réponse
+HdrhLa Voir les réponses
+Re8WRJ Base du forfait
+juPw5M Combo et pilote ne se cumulent pas : le plus grand s'applique.
+oWTHjV Délai des services combinables, ensemble
+IHcARE Abonnement mensuel des bots
+V2m_3Z Sur devis, hors du total : 
+0TZ6oS Estimation, confirmée lors de l'échange.
+pWV6rY Prix estimé par le site. Le prix final figure dans la proposition écrite.
+fZpTQ3 Remarques (facultatif)
+e3oXqC Dates, délais, ce qui compte le plus pour vous. Est joint à la commande. N'écrivez ni mots de passe, ni données de santé, ni données d'autres personnes.
+NTkh6i Vos données pour envoyer par le site
+qAsVLe Indiquez votre nom et votre WhatsApp et je réponds là-bas. Pour parler directement, utilisez le bouton WhatsApp, sans rien remplir.
+D1XcfV WhatsApp (avec indicatif)
+ulnPro Envoyer par le site
+qL5RH7 Un instant…
+BwKJl2 Je n'ai pas pu envoyer maintenant. Écrivez-moi sur WhatsApp ou envoyez un e-mail avec la même commande.
+tELdhX Envoyer par e-mail
+yJ3LDd J'envoie votre nom, votre WhatsApp, les réponses du devis et les remarques, uniquement pour répondre à cette commande. Ils passent par EmailJS (envoi par le site) et par WhatsApp. Je confirme par WhatsApp et nous convenons du Pix.
+zBKSqP En envoyant, vous acceptez les
+x68CHY et la
+6hAmqm La commande n'est pas encore un contrat : le prix final figure dans la proposition écrite.
+jxeQd3 Pour vous rétracter, voir la
+s5HpGJ rétractation sous 7 jours
+yH8kSA Commande envoyée avec l'avis d'acceptation des Conditions de contrat (version du {1}) et de la Politique de confidentialité (version du {2}).
+PzbnZH Retour au site
+GF86jb Sur cette page
+p0D1uD Retour en haut
+KHOx0J Message reçu.
+pGtp8_ Merci de m'avoir contacté. Je réponds par le canal que vous avez choisi.
+v-lA3q Cette page n'existe pas.
+yvXY7U Le lien est peut-être erroné ou la page a changé de place. Si vous avez besoin d'aide, écrivez à {1}.
+zIXol- Aller à l'accueil
+13E9ye À propos de moi
+g3_mSZ J'étudie les 
+lwTF3d Systèmes d'information à l'Unieuro
+p1e1eM  et je travaille comme développeur full stack.
+lDgr68 Je suis stagiaire en informatique au ministère de la Défense
+Dh2J1p , où je fais de l'analyse de données, des tableurs, des tableaux de bord et des présentations utilisées lors de réunions avec des officiers supérieurs et des généraux. C'est la même routine que j'apporte à votre activité : prendre des données en vrac et livrer quelque chose qui se lit en une minute. Les travaux que je prends ici sont en dehors des heures de stage.
+CCpqcq Je participe à Uniser
+0AMqxI , la plateforme de l'UniSER, l'Université du Vieillissement de l'UnB. Elle est développée par une équipe d'étudiants de l'Unieuro, sous la direction de professeurs de la faculté, et je fais partie de l'équipe qui écrit le code.
+sp6q7E En savoir plus sur le cursus
+8y66uy Je suis au 5e semestre de la licence en systèmes d'information à l'Unieuro, à Brasília, avec un diplôme prévu au 2e semestre 2028.
+wzBkXG Ce que j'utilise le plus de ma formation dans votre projet
+d92YhF Bases de données et bases de données avancées
+fvjzMp Structures de données
+_50Iu8 Programmation orientée objet
+Xyv8ZK Programmation Web
+qJ97Oy Génie logiciel et ingénierie des exigences
+SaUJEV Gestion des processus
+frnvLm Intelligence artificielle
+CUTE62 Initiation à la recherche
+PqEfp_ Je fais de la recherche scientifique sous la direction du professeur docteur Aldo Henrique, dans le groupe de recherche OpenVIRTEX-BR (Open Source Virtualization and Cloud Computing for Intelligent Systems in Brazil). Le groupe étudie le cloud, les machines virtuelles, l'intelligence artificielle et l'analyse de données, avec des solutions open source pour mieux gérer les machines virtuelles et les ressources cloud.
+9WYZqU Dans le groupe, je participe à Simbionte, une simulation où plusieurs agents d'intelligence artificielle interagissent entre eux. Mon équipe construit la base du système : connexion, base de données, files de traitement et le moteur qui exécute les cycles de la simulation, avec des tests automatiques et une protection contre les instructions malveillantes envoyées à l'IA. C'est ce qui m'aide dans les projets avec IA : savoir intégrer, limiter et tester ce qu'elle répond.
+gQhBRd Stage en informatique au ministère de la Défense
+l-Eb1L En savoir plus sur le stage
+sg-l4d Je suis stagiaire dans le domaine informatique du ministère de la Défense depuis février 2026.
+rMUbgy Ce que je fais
+6-7Bsv Consolidation de données de plusieurs sources
+DBWNYR Transformation de tableurs en base de données
+vWxdoP Tableaux de bord et présentations, y compris des modèles de présentation réutilisables
+iWNiB_ Appui à la gestion des processus
+_Np8h9 Appui à la rédaction d'un article sur les systèmes sans équipage
+Qo57N3 Outils du quotidien
+-p5yGh Excel, Power BI, Python, PowerPoint, VS Code et outils d'IA pour la programmation (Claude Code et Codex).
+kUy7jk C'est la même routine que j'apporte à votre activité : prendre des données en vrac et livrer quelque chose qui se lit en une minute. Les travaux que je prends ici sont en dehors des heures de stage.
+h1E6p3 UniSER, Université du Vieillissement
+SEe8Pg En savoir plus sur Uniser
+iK0iKh Depuis novembre 2025, je fais partie de l'équipe de l'Unieuro qui développe la plateforme de l'UniSER, l'Université du Vieillissement de l'UnB, comme développeur full stack, sous la direction de professeurs de l'Unieuro.
+4qtEzF Ce que fait le système
+lpHTxT Page publique avec avis et actualités
+odcwpe Espace réservé avec connexion
+kSFv1E Présence et notes
+Hq6Cpj Accès séparé pour les étudiants, les professeurs et l'administration
+0JtKgu Quel rapport avec votre projet
+moPafw C'est le même soin que j'apporte à un système sur mesure : connexion sécurisée, chaque personne ne voit que ce qui lui appartient, journal de ce qui se passe dans le système et tests automatiques avant chaque modification.
+gFXCwz Technologies
+d6xLf6 Exemples de mon travail
+r-o3zI Écrans de la plateforme UniSER
+QkJm58 Schémas illustratifs des écrans, sans données réelles.
+Tu1bYx Je travaille en ligne, pour tout le Brésil.
+VmRjs3 Voir plus
+dhwz0h Un magasin fictif, depuis le tableur jusqu'au tableau de bord terminé. Toutes les données sont des exemples.
+MBTijh Exemple
+pU_6fK Chargement de l'exemple…
+Ptbgzw Impossible d'ouvrir l'exemple pour le moment. Rechargez la page pour réessayer.
+GGSWln Votre tableur quand il arrive ici
+jf-7Te Voici ce qui arrive d'habitude : chaque onglet à sa façon, dates et noms écrits de plusieurs manières.
+iTOKAD Ouvrir le tableur
+abnzp2 Le tableur tel qu'il arrive
+RjLZ-_ Les cinq onglets d'un magasin fictif, sans rien corriger. Les lignes en rouge sont les ventes à crédit.
+k_MSch Onglets du tableur
+REDYp1 Ligne de vente à crédit
+XLz6qZ Votre tableur après être passé entre mes mains
+NW_Rgg Le même magasin dans un seul tableau : une ligne par vente, tout selon le même modèle.
+i3MT69 Le tableur rangé
+WvDuhx Un onglet, une ligne par vente. Les lignes en rouge sont les ventes à crédit.
+Kjtg9P Ce qui a été rangé
+DLqq0l Toutes les dates au même format (année-mois-jour).
+5e2L42 Chaque client avec un seul nom, écrit correctement.
+SpHYwj Valeurs en nombres, sans texte au milieu.
+M-dvYn Une ligne par vente ; l'onglet copié et les lignes en double ont disparu.
+zQSamV Vente à crédit dans une colonne à part (statut), et pas seulement par la couleur.
+oeSL3x Catégorie de chaque produit, pour additionner par type.
+ZO3nMG Le total de chaque vente est la quantité multipliée par le prix unitaire.
+TNvspg Votre tableur sous forme visuelle
+UWIkGg Les chiffres du tableur rangé, dans un tableau de bord avec lequel vous pouvez jouer : filtrez, cliquez et voyez tout changer.
+Dv--t3 Ouvrir le tableau de bord
+84oKfD Tableau de bord des ventes · magasin fictif
+ygS7Q8 Chiffre d'affaires par mois
+k_j8QE {1} : tableur d'exemple, faites défiler pour en voir plus
+qiQ30x Affichage de {1} lignes sur {2}.
+w-oMe7 Chiffre d'affaires
+fh3Mr6 N° de ventes
+Ubbpuk Crédit à encaisser
+289Pc3 Filtres
+WWawzo Catégorie
+HlwcyX Moyen de paiement
+p4o6-0 Tous les clients
+0i9oMG Effacer les filtres
+t4F2kN Filtres actifs
+2x7FTA Retirer le filtre {1}
+zQaVtq {1} sur {2} ventes
+27FCoL Payé
+OJpSpz À crédit
+Om8jXb Chiffre d'affaires par jour
+ZDysh3 Chiffre d'affaires par catégorie
+_UWf3t Chiffre d'affaires par moyen de paiement
+D_0NwM Top 5 des clients
+lxuafn Cliquez pour filtrer les autres graphiques.
+pv38WH Aucune vente
+j01G3i {1}, sous forme de tableau
+ir6KaZ Trier par {1}
+RlWLAM Page {1} sur {2}
+BwcoF7 Page précédente
+cCBXNk Page suivante
+Z2MbmN Aucune vente avec ces filtres
+HL30Pb Affichage de {1} ventes sur {2}, {3}.
+Bt-1Ah Ventes du mois
+zUUhg3 Stock bas
+Ig9DVU Articles les plus vendus
+v8nSLj Avant, chaque semaine
+kGcps0 Ouvrir les 3 fichiers de ventes
+vPueq4 Copier-coller dans un seul onglet
+VgTQpp Filtrer et supprimer ce qui reste
+E0lvj2 Mettre en forme et vérifier les totaux
+0wuRjs Un clic fait les quatre étapes.
+g-Lshp Studio Lia · Manucure à Brasília
+808onm Accueil sur rendez-vous, du lundi au samedi.
+pXVeDw Mains
+1RJ7G- Pieds
+ZMF0Pq Mains et pieds
+Dz1TEU Réserver sur WhatsApp
+SpyOe9 Entre.
+wA5vUT Un dossier avec des PDF, des tableurs ou des e-mails.
+yUNfFv Travaille.
+c8xFmn Le script lit, vérifie et additionne.
+Fl3hul Sort.
+AZzput Un tableur ou un rapport prêt.
+-GKFTE Devis de base sur le site
+qa0v7B Échange et proposition écrite
+py7F8E Acompte de 50 %
+ic-s4f Je veux quelque chose comme l'exemple « {1} »{2}.
+j8dVLw Service
+hUZsm0 Ligne
+j7K7Gs Jour
+uVw7oQ estimé : {1}
+vhGgCK À convenir dans la proposition
+PZyTa3 {1} en plus
+acgKen 1 jour ouvré
+rQWVgC {1} jours ouvrés
+apabB8 Brésil
+r9cMai Réparation et organisation de tableurs
+X9TVUZ Tableaux de bord de données
+3-pj7W Automatisation avec Excel et Python
+ix1ixI Création de sites et de landing pages
+Gw4A5y Systèmes sur mesure
