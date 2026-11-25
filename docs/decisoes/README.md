@@ -15,3 +15,4 @@ Registro das decisões técnicas e de produto, dividido por tema. O que ainda fa
 | [`assistente.md`](assistente.md) | Assistente do chat (motor de regras e, depois, modelo no navegador) | 1 |
 | [`testes-e-auditorias.md`](testes-e-auditorias.md) | Testes e rodadas de auditoria | 5 |
 | [`veja-mais.md`](veja-mais.md) | Seção Veja mais: planilha de exemplo e painel interativo | 2 |
+| [`idiomas.md`](idiomas.md) | Site em vários idiomas | 1 |
