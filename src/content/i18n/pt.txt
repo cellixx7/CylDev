@@ -930,6 +930,7 @@ yH8kSA Pedido enviado com o aviso de concordância com os Termos de contrataçã
 # src/content/textos/paginas.ts
 PzbnZH Voltar para o site
 GF86jb Nesta página
+Ag5v0L Este texto está disponível só em português, e é a versão em português que vale. Se tiver dúvida, escreva para mim.
 p0D1uD Voltar ao topo
 KHOx0J Mensagem recebida.
 pGtp8_ Obrigado pelo contato. Respondo pelo canal que você escolheu.
@@ -1044,15 +1045,7 @@ cCBXNk Próxima página
 Z2MbmN Nenhuma venda com esses filtros
 HL30Pb Mostrando {1} de {2} vendas, {3}.
 # src/pages/como-funciona/main.tsx
-ch7NwT maria camisa
-nOwS8J Camisa - João
-B1OwCV R$ 40,00
-LNl7YX cliente?
-usSDK9 TOTAL ??? (não bate)
-kJoNMF R$ 120
-I6an9m Adesivo
 Bt-1Ah Vendas no mês
-PkKsM0 R$ 4.820
 zUUhg3 Estoque baixo
 Ig9DVU Itens mais vendidos
 v8nSLj Antes, toda semana
@@ -1064,10 +1057,8 @@ E0lvj2 Formatar e conferir os totais
 g-Lshp Studio Lia · Manicure em Brasília
 808onm Atendimento com hora marcada, de segunda a sábado.
 pXVeDw Mão
-8Vjo-h R$ 35
 1RJ7G- Pé
 ZMF0Pq Mão e pé
-cQhUNN R$ 70
 Dz1TEU Agendar no WhatsApp
 SpyOe9 Entra.
 wA5vUT Uma pasta com PDFs, planilhas ou e-mails.
@@ -1081,47 +1072,18 @@ py7F8E Entrada de 50%
 ic-s4f Quero algo como o exemplo "{1}"{2}.
 # src/pages/negocios/orcamento/Orcamento.tsx
 j8dVLw Serviço
-# src/pages/negocios/sobre/CenasEstagio.tsx
-yWpip_ translateX({1}px) rotate({2}deg)
 # src/pages/negocios/veja-mais/GradePlanilha.tsx
 hUZsm0 Linha
 # src/pages/negocios/veja-mais/PainelPlanilha.tsx
 j7K7Gs Dia
-# src/shared/components/Catalogo.tsx
-0z_n_b Quero um orçamento de: {1} ({2}).
-# src/shared/components/Contatos.tsx
-vk6yT5 Contato pelo site (origem: {1})
-# src/shared/components/Formulario.tsx
-OD6oXu {1} resize
-# src/shared/components/cabecalho/ControleComunidade.tsx
-nw0vgi block {1}
-# src/shared/components/cyl/Cyl.tsx
-com-mu $1 opacity="0"
-# src/shared/lib/formato.ts
-oiHyfz {1} h
 # src/shared/lib/orcamento.ts
 uVw7oQ estimado: {1}
 vhGgCK Combinado na proposta
 PZyTa3 {1} a mais
-Ok2zRb combo {1}%
-DI2XpB piloto {1}%
-jZhL9- com {1}
-xhfU4L mais mensalidade de {1} (hospedagem à parte)
-Txp5c- sistema sob consulta, fora do total
-dbzF5R Quero fazer um orçamento.
-cCB0Oq Quero fazer um orçamento com:
--QKkiI Prazo dos combináveis, juntos: {1}
-dKEi5J Total estimado: {1} (estimativa, confirmada na conversa).
-# src/shared/lib/painelPlanilha.ts
-r7QYyP CSV fora do formato esperado
-5wh6Se Número inválido na linha {1}: {2}
-qTDvGx Situação inválida na linha {1}: {2}
 # src/shared/lib/prazo.ts
-gNlS4Y Horas e horas por dia precisam ser positivas.
 acgKen 1 dia útil
 rQWVgC {1} dias úteis
 # src/shared/lib/seo.ts
-jf6LWs Nenhum pacote de Negócios com preço.
 apabB8 Brasil
 r9cMai Ajuste e organização de planilhas
 X9TVUZ Painéis de dados

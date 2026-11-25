@@ -6,6 +6,15 @@ Formato: `## AAAA-MM-DD: título curto (PR #n)` e, embaixo, só o que o visitant
 
 ## Não publicado
 
+### Site em vários idiomas
+
+- Botão de idioma ao lado do botão de tema, com os idiomas no ar (hoje: português, inglês, espanhol, francês e chinês). Cada idioma tem o seu endereço (`/en/`, `/es/`, `/fr/`, `/zh/`); o português fica na raiz, sem prefixo.
+- Primeira visita: o site abre no idioma do navegador; se não for um dos idiomas do site, abre em inglês. A escolha pelo botão fica salva no aparelho (`localStorage`) e vale nas próximas visitas. Robôs de busca não são redirecionados.
+- Tudo é traduzido: menus, páginas, orçamento, formulário, erros, página de agradecimento e 404. Os textos jurídicos (Termos, Privacidade, Perguntas, Acessibilidade) continuam só em português nos outros idiomas, com um aviso de que vale a versão em português.
+- O Assistente Cyl (chat) continua só em português; nos outros idiomas o botão dele não aparece.
+- SEO: `hreflang`, `x-default` (inglês), canonical por idioma e sitemap com as versões alternativas.
+- Como funciona e como acrescentar um idioma ou um texto: `docs/decisoes/idiomas.md`.
+
 ### SEO: o site passa a se apresentar como CylDev
 
 - Título e descrição da home agora dizem "CylDev" e o que é feito (ajuste de planilha, painel, site ou landing page). Antes só o nome "Marcelo Vaz" aparecia, e quem busca "cyldev" não encontrava a marca no título.

@@ -9,7 +9,7 @@ import { botao } from "../estilos";
 import { CabecalhoNegocios } from "./cabecalho/CabecalhoNegocios";
 import { ContatoRodape, Rodape } from "./Rodape";
 import { TextoRico } from "./TextoRico";
-import { rota } from "../i18n/rota";
+import { idiomaAtual, rota } from "../i18n/rota";
 
 /**
  * Página de leitura (Termos, privacidade, acessibilidade, perguntas): título, versão, índice e seções com âncora.
@@ -34,6 +34,14 @@ export function PaginaTexto({
               {t.titulo}
             </h1>
             <p className="text-texto-suave">{t.atualizado}</p>
+            {idiomaAtual !== "pt" && (
+              <p
+                role="note"
+                className="border-l-[3px] border-destaque bg-realce px-4 py-3"
+              >
+                {r.avisoIdioma}
+              </p>
+            )}
             {t.intro.map((p) => (
               <p key={p}>
                 <TextoRico texto={p} />

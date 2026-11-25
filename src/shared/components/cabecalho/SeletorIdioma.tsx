@@ -36,7 +36,7 @@ export function SeletorIdioma() {
     <div ref={raiz} className="relative">
       <button
         type="button"
-        className="inline-flex min-h-alvo cursor-pointer items-center justify-center gap-1 rounded-pequeno border border-linha bg-transparent px-2 text-base text-texto"
+        className="inline-flex min-h-alvo cursor-pointer items-center justify-center gap-1 rounded-pequeno border border-linha bg-transparent px-1.5 text-base sm:px-2 text-texto"
         aria-label={`${comum.idioma.rotulo}: ${dadosIdiomaAtual.nome}`}
         aria-expanded={aberto}
         aria-controls="lista-idiomas"

@@ -16,6 +16,19 @@ Dono: **Marcelo** (decisão comercial ou ação fora do código) ou **dev** (mud
 | [ ] | Sistema sob medida: preço-base de 6 h x R$ 50 (a partir de R$ 300, sem teto) e as horas das respostas | `HORAS_BASE_SISTEMA` em `servicos.ts`, `perguntasSistema.ts` | 12/11/2026 |
 | [ ] | Conferir os textos dos modais do Sobre | `src/content/textos/sobre.ts` | 13/11/2026 |
 
+## Idiomas (dev e Marcelo)
+
+Decisões em `decisoes/idiomas.md`. Idiomas no ar: `src/shared/i18n/ativos.json`.
+
+| | Pendência | Dono | Desde |
+|---|---|---|---|
+| [ ] | Traduzir russo, árabe, hindi, bengali e urdu (cada um só entra em `ativos.json` quando `node --experimental-strip-types scripts/cobertura.ts <idioma>` mostrar tudo traduzido) | dev | 25/11/2026 |
+| [ ] | Traduzir os textos jurídicos (`pt-juridico.txt`, 212 textos) ou manter só em português com o aviso | dev | 25/11/2026 |
+| [ ] | Preços de referência em dólar e euro (pesquisa de mercado; não inventar valor; rotular como estimativa) | dev e Marcelo | 25/11/2026 |
+| [ ] | Revisão por falante nativo: não há revisor. Ler com atenção os textos de preço, desconto, prazo, pagamento e desistência (módulos do orçamento e do formulário) em cada idioma | Marcelo | 25/11/2026 |
+| [ ] | Traduzir o Assistente Cyl (hoje só em português; o botão some nos outros idiomas) | dev | 25/11/2026 |
+| [ ] | Testar o layout da direita para a esquerda (árabe e urdu) e as fontes de escrita não latina quando esses idiomas entrarem | dev | 25/11/2026 |
+
 ## Assistente do chat (dev)
 
 Etapa 1 (motor de regras + interface) entregue em 19/11/2026; detalhes em `decisoes/assistente.md`.

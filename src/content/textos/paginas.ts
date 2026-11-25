@@ -7,6 +7,8 @@ import { site } from "../site";
 export const paginaDeTexto = {
   voltar: "Voltar para o site",
   indice: "Nesta página",
+  avisoIdioma:
+    "Este texto está disponível só em português, e é a versão em português que vale. Se tiver dúvida, escreva para mim.",
   topo: "Voltar ao topo",
 };
 

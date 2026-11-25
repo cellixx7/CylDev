@@ -59,10 +59,10 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
     "sticky top-2 z-50 mx-2 md:top-3 md:mx-auto md:w-[calc(100%-2rem)] md:max-w-site";
   // Três colunas: marca | centro | menu. As laterais têm a mesma largura, então o centro fica no meio de verdade.
   const classesBarra =
-    "relative grid grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-padrao border border-linha bg-fundo/95 px-3 py-1 shadow-lg backdrop-blur md:px-5";
+    "relative grid grid-cols-[1fr_auto_1fr] items-center gap-1 rounded-padrao border border-linha bg-fundo/95 px-2 py-1 sm:gap-2 sm:px-3 shadow-lg backdrop-blur md:px-5";
 
   const classesMarca =
-    "justify-self-start inline-flex min-h-alvo items-center whitespace-nowrap font-titulo text-medio font-bold tracking-[-0.01em] no-underline";
+    "justify-self-start inline-flex min-h-alvo items-center whitespace-nowrap font-titulo text-base font-bold sm:text-medio tracking-[-0.01em] no-underline";
 
   const botaoBase =
     "min-h-alvo cursor-pointer rounded-pequeno border border-linha bg-transparent px-3 text-base text-texto aria-pressed:bg-texto aria-pressed:text-fundo";
@@ -111,7 +111,7 @@ export function Cabecalho({ area, temaPadrao, marca, links = [], centro }: Props
             {marca}
           </a>
           <div className="flex items-center justify-self-center">{centro}</div>
-          <div className="flex items-center gap-2 justify-self-end">
+          <div className="flex items-center gap-1 justify-self-end sm:gap-2">
             <SeletorIdioma />
             <button
               type="button"

@@ -1,6 +1,6 @@
 // Idiomas do site. Lógica pura (sem navegador), usada no build (vite.config.ts), no seletor e na detecção.
 // Decisão e motivos: docs/decisoes/idiomas.md.
-import ativos from "./ativos.json";
+import ativos from "./ativos.json" with { type: "json" };
 
 /** Código usado no endereço (/en/, /zh/...). O português é o idioma original e vive na raiz, sem prefixo. */
 export type CodigoIdioma = "pt" | "en" | "zh" | "hi" | "es" | "fr" | "ar" | "bn" | "ru" | "ur";
